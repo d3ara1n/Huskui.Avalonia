@@ -39,14 +39,15 @@
 
     <!-- Include files needed for NuGet packaging -->
     <ItemGroup>
-        <None Include="Assets\icon.png" Pack="true" PackagePath="\" Condition="Exists('Assets\icon.png')" />
+        <None Include="Assets\icon.png" Pack="true" PackagePath="\" Condition="Exists('Assets\icon.png')"/>
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
     <!-- Source Link for better debugging experience -->
     <ItemGroup>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Assets\" />
+        <Folder Include="Assets\"/>
     </ItemGroup>
 </Project>
