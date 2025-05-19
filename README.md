@@ -88,36 +88,6 @@ Huskui.Avalonia includes the following components:
 </husk:AppWindow>
 ```
 
-## Project Structure
-
-- **src/Huskui.Avalonia**: Main library project
-  - **Controls**: UI component implementations
-  - **Behaviors**: Attached behaviors
-  - **Converters**: Value converters
-  - **Transitions**: Animation transitions
-  - **Models**: Data models
-  - **Themes**: Styling and theming resources
-- **samples/Huskui.Gallery**: Demo application showcasing the components
-
-## Building from Source
-
-1. Clone the repository:
-```
-git clone https://github.com/d3ara1n/Huskui.Avalonia.git
-```
-
-2. Open the solution in Visual Studio or your preferred IDE
-
-3. Build the solution:
-```
-dotnet build
-```
-
-4. Run the gallery sample to see the components in action:
-```
-dotnet run --project samples/Huskui.Gallery/Huskui.Gallery.csproj
-```
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

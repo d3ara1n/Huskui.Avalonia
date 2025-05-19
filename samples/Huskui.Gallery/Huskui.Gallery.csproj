@@ -20,6 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj"/>
+        <ProjectReference Include="..\..\src\Huskui.Avalonia\Huskui.Avalonia.csproj"/>
     </ItemGroup>
 </Project>

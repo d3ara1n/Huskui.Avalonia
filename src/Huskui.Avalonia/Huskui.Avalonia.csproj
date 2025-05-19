@@ -6,6 +6,25 @@
         <Nullable>enable</Nullable>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <LangVersion>preview</LangVersion>
+
+        <!-- NuGet Package Metadata -->
+        <PackageId>Huskui.Avalonia</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>d3ara1n</Authors>
+        <Company>d3ara1n</Company>
+        <Product>Huskui.Avalonia</Product>
+        <Description>A modern, elegant UI component library for Avalonia UI, providing a comprehensive set of customizable controls for building beautiful cross-platform desktop applications.</Description>
+        <PackageTags>avalonia;ui;controls;xaml;cross-platform;desktop</PackageTags>
+        <PackageProjectUrl>https://github.com/d3ara1n/Huskui.Avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/d3ara1n/Huskui.Avalonia</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,5 +35,18 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
+    </ItemGroup>
+
+    <!-- Include files needed for NuGet packaging -->
+    <ItemGroup>
+        <None Include="Assets\icon.png" Pack="true" PackagePath="\" Condition="Exists('Assets\icon.png')" />
+    </ItemGroup>
+
+    <!-- Source Link for better debugging experience -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Assets\" />
     </ItemGroup>
 </Project>
