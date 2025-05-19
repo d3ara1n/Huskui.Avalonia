@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Huskui.Avalonia.Controls;
+using Huskui.Gallery.Views;
 
 namespace Huskui.Gallery;
 
@@ -12,10 +13,15 @@ public partial class MainWindow : AppWindow
         InitializeComponent();
     }
 
-    private void ChangeTheme_OnClick(object? sender, RoutedEventArgs e)
+    protected override void OnLoaded(RoutedEventArgs e)
     {
-        Application.Current!.RequestedThemeVariant = Application.Current.ActualThemeVariant == ThemeVariant.Light
-                                                         ? ThemeVariant.Dark
-                                                         : ThemeVariant.Light;
+        base.OnLoaded(e);
+
+        if (DataContext is MainWindowContext context)
+        {
+            context.Delegate = Root;
+            Root.PageActivator = MainWindowContext.Activate;
+            Root.Navigate(typeof(PortalView), null, null);
+        }
     }
 }

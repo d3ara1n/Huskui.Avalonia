@@ -3,5 +3,5 @@
 public interface IPageModel
 {
     Task InitializeAsync(CancellationToken token = default);
-    Task CleanupAsync(CancellationToken token = default);
+    Task DeinitializeAsync(CancellationToken token = default);
 }

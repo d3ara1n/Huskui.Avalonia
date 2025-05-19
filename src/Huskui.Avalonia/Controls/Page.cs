@@ -27,31 +27,25 @@ public class Page : HeaderedContentControl
 
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 
-    private bool _canGoBack;
-
-    private bool _isBackButtonVisible = true;
-
-    private bool _isHeaderVisible = true;
-
     public bool IsBackButtonVisible
     {
-        get => _isBackButtonVisible;
-        set => SetAndRaise(IsBackButtonVisibleProperty, ref _isBackButtonVisible, value);
-    }
+        get;
+        set => SetAndRaise(IsBackButtonVisibleProperty, ref field, value);
+    } = true;
 
     public IPageModel? Model { get; set; }
 
     public bool CanGoBack
     {
-        get => _canGoBack;
-        set => SetAndRaise(CanGoBackProperty, ref _canGoBack, value);
+        get;
+        set => SetAndRaise(CanGoBackProperty, ref field, value);
     }
 
     public bool IsHeaderVisible
     {
-        get => _isHeaderVisible;
-        set => SetAndRaise(IsHeaderVisibleProperty, ref _isHeaderVisible, value);
-    }
+        get;
+        set => SetAndRaise(IsHeaderVisibleProperty, ref field, value);
+    } = true;
 
     protected override Type StyleKeyOverride => typeof(Page);
 
@@ -82,10 +76,10 @@ public class Page : HeaderedContentControl
         if (!Design.IsDesignMode)
         {
             if (!_cancellationTokenSource.IsCancellationRequested)
-                _cancellationTokenSource.Cancel();
+                await _cancellationTokenSource.CancelAsync();
 
             if (Model is not null)
-                await Model.CleanupAsync(CancellationToken.None);
+                await Model.DeinitializeAsync(CancellationToken.None);
         }
     }
 

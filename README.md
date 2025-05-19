@@ -1,6 +1,6 @@
 # Huskui.Avalonia
 
-Huskui.Avalonia is a modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed to provide a comprehensive set of customizable controls for building beautiful cross-platform desktop applications.
+Huskui.Avalonia is a modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed to provide a comprehensive set of customizable controls for building beautiful cross-platform desktop applications. Inspired by [ParkUI](https://park-ui.com/) and using the [Radix Colors](https://www.radix-ui.com/colors) palette.
 
 ## Features
 
@@ -16,21 +16,17 @@ Huskui.Avalonia is a modern, elegant UI component library for [Avalonia UI](http
 Huskui.Avalonia includes the following components:
 
 - **AppWindow**: Enhanced window with built-in support for overlays, toasts, modals, and notifications
-- **Button**: Styled buttons with multiple variants (normal, outline, ghost) and states (primary, success, warning, danger)
-- **Card**: Container for grouping related content
+- **Card**: Container for grouping related content with consistent styling
 - **InfoBar**: Informational message bars with different severity levels
 - **Tag**: Compact labels for categorization and metadata
-- **IconLabel**: Combined icon and text label
+- **IconLabel**: Combined icon and text label with FluentIcons integration
 - **TextBox**: Enhanced text input with support for inner content
-- **ComboBox**: Dropdown selection control
-- **Dialog**: Modal dialog boxes
-- **Divider**: Line separators for content sections
-- **Frame**: Navigation container with transition animations
-- **Page**: Content pages for use with Frame
-- **ProgressBar** and **ProgressRing**: Loading indicators
-- **SkeletonContainer**: Loading placeholder for content
+- **HighlightBlock**: Text highlighting for code snippets and keyboard shortcuts
 - **NotificationHost** and **NotificationItem**: Toast notification system
-- **OverlayHost** and **OverlayItem**: Overlay management system
+- **OverlayHost** and **Modals/Dialogs/Drawers/Toasts**: Overlay management system
+- **SkeletonContainer**: Loading placeholder for content
+- **BusyContainer**: Container with loading state management
+- **LazyContainer**: Component for deferred loading of content
 - And many more...
 
 ## Getting Started
