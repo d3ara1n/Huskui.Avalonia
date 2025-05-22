@@ -1,6 +1,4 @@
-using Avalonia;
 using Avalonia.Interactivity;
-using Avalonia.Styling;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Views;
 

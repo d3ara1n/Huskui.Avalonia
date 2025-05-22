@@ -2,7 +2,4 @@
 
 namespace Huskui.Gallery.ViewModels;
 
-public class PortalViewModel: ObservableObject
-{
-    
-}
+public class PortalViewModel : ObservableObject { }

@@ -9,7 +9,7 @@
 
         <!-- NuGet Package Metadata -->
         <PackageId>Huskui.Avalonia</PackageId>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
         <Product>Huskui.Avalonia</Product>

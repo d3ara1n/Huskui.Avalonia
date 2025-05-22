@@ -11,7 +11,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-    
+
     <Application.Styles>
         <StyleInclude Source="avares://Huskui.Avalonia/Prelude.axaml" />
     </Application.Styles>

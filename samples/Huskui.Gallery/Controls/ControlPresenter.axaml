@@ -17,7 +17,7 @@
                         Background="{TemplateBinding Background}">
                     <Grid RowDefinitions="Auto,Auto,*">
                         <StackPanel Grid.Row="0" Margin="12">
-                            <TextBlock Text="{TemplateBinding Title}" FontSize="{StaticResource LargeFontSize}"/>
+                            <TextBlock Text="{TemplateBinding Title}" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock Text="{TemplateBinding Subtitle}"
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                        FontSize="{StaticResource SmallFontSize}"
@@ -31,8 +31,10 @@
                                               Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Padding="{TemplateBinding Padding}" />
-                            <husk:Divider Grid.Column="1" Orientation="Vertical" IsVisible="{TemplateBinding Operation,Converter={x:Static ObjectConverters.IsNotNull}}"/>
-                            <ContentPresenter Grid.Column="2" Content="{TemplateBinding Operation}" IsVisible="{TemplateBinding Operation,Converter={x:Static ObjectConverters.IsNotNull}}"
+                            <husk:Divider Grid.Column="1" Orientation="Vertical"
+                                          IsVisible="{TemplateBinding Operation,Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <ContentPresenter Grid.Column="2" Content="{TemplateBinding Operation}"
+                                              IsVisible="{TemplateBinding Operation,Converter={x:Static ObjectConverters.IsNotNull}}"
                                               Padding="12" />
                         </Grid>
                     </Grid>

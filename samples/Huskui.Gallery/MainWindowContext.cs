@@ -10,29 +10,15 @@ namespace Huskui.Gallery;
 
 public partial class MainWindowContext : ObservableObject
 {
+    private static int activatorErrorCount;
     public Frame Delegate { get; set; } = null!;
 
     public AvaloniaList<EntryModel> Entries { get; } =
     [
-        new EntryModel { Display = "Buttons", Page = typeof(ButtonsView) },
-        new EntryModel { Display = "Buttons", Page = null },
-        new EntryModel { Display = "Buttons", Page = null }
+        new() { Display = "Buttons", Page = typeof(ButtonsView) },
+        new() { Display = "Buttons", Page = null },
+        new() { Display = "Buttons", Page = null }
     ];
-
-    #region Properties
-
-    [ObservableProperty]
-    public partial EntryModel? SelectedEntry { get; set; }
-
-    partial void OnSelectedEntryChanged(EntryModel? value)
-    {
-        if (value is not null)
-            Delegate.Navigate(value.Page, null, null);
-    }
-
-    #endregion
-
-    private static int activatorErrorCount;
 
     public static object? Activate(Type view, object? parameter)
     {
@@ -75,4 +61,17 @@ public partial class MainWindowContext : ObservableObject
             throw;
         }
     }
+
+    #region Properties
+
+    [ObservableProperty]
+    public partial EntryModel? SelectedEntry { get; set; }
+
+    partial void OnSelectedEntryChanged(EntryModel? value)
+    {
+        if (value is not null)
+            Delegate.Navigate(value.Page, null, null);
+    }
+
+    #endregion
 }

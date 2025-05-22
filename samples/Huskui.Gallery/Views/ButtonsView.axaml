@@ -43,8 +43,7 @@
                         Theme="{StaticResource GhostButtonTheme}" />
             </Grid>
         </controls:ControlPresenter>
-        <controls:ControlPresenter Title="SplitButton &amp; DropDownButton"
-                                   Subtitle="They are the same except for the arrow">
+        <controls:ControlPresenter Title="SplitButton &amp; DropDownButton">
             <StackPanel Spacing="12" Orientation="Horizontal">
                 <SplitButton Content="SplitButton">
                     <SplitButton.Flyout>
@@ -60,6 +59,12 @@
                         </MenuFlyout>
                     </DropDownButton.Flyout>
                 </DropDownButton>
+            </StackPanel>
+        </controls:ControlPresenter>
+        <controls:ControlPresenter>
+            <StackPanel>
+                <ToggleButton />
+                <ToggleSplitButton />
             </StackPanel>
         </controls:ControlPresenter>
     </StackPanel>
