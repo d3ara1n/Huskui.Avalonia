@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:huskt="https://github.com/d3ara1n/Huskui.Avalonia/Transitions"
     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <ControlTheme x:Key="{x:Type local:AppWindow}" TargetType="local:AppWindow">
@@ -60,7 +59,7 @@
                             </ContentPresenter>
                             <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}" Padding="12,32,12,0">
                                 <local:OverlayHost.Transition>
-                                    <huskt:HookUpTransition />
+                                    <local:HookUpTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:OverlayHost
@@ -68,7 +67,7 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center">
                                 <local:OverlayHost.Transition>
-                                    <huskt:HookUpTransition />
+                                    <local:HookUpTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:OverlayHost
@@ -76,7 +75,7 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center">
                                 <local:OverlayHost.Transition>
-                                    <huskt:ScaleInTransition />
+                                    <local:ScaleInTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:NotificationHost

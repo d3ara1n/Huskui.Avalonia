@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="using:FluentIcons.Avalonia"
-                    xmlns:models="https://github.com/d3ara1n/Huskui.Avalonia/Models">
+                    xmlns:fi="using:FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White" Width="360">
             <ScrollViewer>
@@ -13,7 +12,7 @@
                     <local:NotificationItem Level="Success" Title="Downloading file"
                                             IsProgressBarVisible="True" Progress="54">
                         <local:NotificationItem.Actions>
-                            <models:NotificationAction Text="Cancel" />
+                            <local:NotificationAction Text="Cancel" />
                         </local:NotificationItem.Actions>
                         <StackPanel Spacing="4">
                             <StackPanel Orientation="Horizontal" Spacing="6">
@@ -30,16 +29,16 @@
                     <local:NotificationItem Level="Warning" Title="Checking updates" Content="It takes very long."
                                             IsProgressBarVisible="True" IsProgressIndeterminate="True">
                         <local:NotificationItem.Actions>
-                            <models:NotificationAction Text="Go" />
-                            <models:NotificationAction Text="To" />
-                            <models:NotificationAction Text="Hell" />
+                            <local:NotificationAction Text="Go" />
+                            <local:NotificationAction Text="To" />
+                            <local:NotificationAction Text="Hell" />
                         </local:NotificationItem.Actions>
                     </local:NotificationItem>
                     <local:NotificationItem Level="Danger" Content="It takes...shot.">
                         <local:NotificationItem.Actions>
-                            <models:NotificationAction Text="Then" />
-                            <models:NotificationAction Text="Go" />
-                            <models:NotificationAction Text="Back" />
+                            <local:NotificationAction Text="Then" />
+                            <local:NotificationAction Text="Go" />
+                            <local:NotificationAction Text="Back" />
                         </local:NotificationItem.Actions>
                     </local:NotificationItem>
                 </StackPanel>
@@ -133,7 +132,7 @@
                                                 </ItemsPanelTemplate>
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
-                                                <DataTemplate DataType="models:NotificationAction">
+                                                <DataTemplate DataType="local:NotificationAction">
                                                     <HyperlinkButton Content="{Binding Text}"
                                                                      Command="{Binding Command}"
                                                                      CommandParameter="{Binding  Parameter}" />

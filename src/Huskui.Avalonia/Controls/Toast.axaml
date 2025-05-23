@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="using:FluentIcons.Avalonia"
-                    xmlns:huskc="https://github.com/d3ara1n/Huskui.Avalonia/Converters">
+                    xmlns:fi="using:FluentIcons.Avalonia">
     <Thickness x:Key="ToastContentMargin">24,68,24,20</Thickness>
     <Thickness x:Key="ToastHeaderlessContentMargin">24</Thickness>
     <Thickness x:Key="ToastHeaderContentMargin">0,68,0,0</Thickness>
@@ -14,7 +13,7 @@
         <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="CornerRadius"
-                Value="{Binding Source={StaticResource ExtraExtraLargeCornerRadius},Converter={x:Static huskc:CornerRadiusConverters.Upper}}" />
+                Value="{Binding Source={StaticResource ExtraExtraLargeCornerRadius},Converter={x:Static local:CornerRadiusConverters.Upper}}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Template">
@@ -34,10 +33,10 @@
                         </ScrollViewer>
                         <Panel VerticalAlignment="Top">
                             <Border Name="HeaderBackground" IsVisible="{TemplateBinding IsHeaderVisible}"
-                                    CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static huskc:CornerRadiusConverters.Upper}}"
+                                    CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static local:CornerRadiusConverters.Upper}}"
                                     Background="{StaticResource OverlaySolidBackgroundBrush}">
                                 <Border.Opacity>
-                                    <MultiBinding Converter="{x:Static huskc:InternalConverters.OffsetToOpacity}">
+                                    <MultiBinding Converter="{x:Static local:InternalConverters.OffsetToOpacity}">
                                         <Binding ElementName="ScrollViewer" Path="Offset" />
                                         <Binding ElementName="HeaderBackground" Path="Bounds.Height" />
                                     </MultiBinding>

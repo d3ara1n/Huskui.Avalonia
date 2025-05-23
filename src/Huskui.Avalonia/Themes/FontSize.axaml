@@ -43,7 +43,7 @@
     <ResourceDictionary.MergedDictionaries>
         <!-- Quicksand 的字形要求普通大小为 14 才看得清, 不过能用 Medium 字重补偿 -->
         <!-- Outfit 则只需要 12 就能很好显示 -->
-        <ResourceInclude Source="/Themes/FontSize.Large.axaml" />
+        <MergeResourceInclude Source="/Themes/FontSize.Large.axaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

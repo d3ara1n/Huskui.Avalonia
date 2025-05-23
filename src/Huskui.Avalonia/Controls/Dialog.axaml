@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:converters="https://github.com/d3ara1n/Huskui.Avalonia/Converters">
+                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <ControlTheme x:Key="{x:Type local:Dialog}" TargetType="local:Dialog">
         <Setter Property="Container" Value="{Binding $parent[local:OverlayItem], Mode=OneWay} " />
         <Setter Property="MinHeight" Value="128" />
@@ -47,8 +46,8 @@
                                 <TextBlock Text="{TemplateBinding PrimaryText}" />
                             </Button>
                             <Button IsCancel="True"
-                                    Grid.Column="{TemplateBinding IsPrimaryButtonVisible, Converter={x:Static converters:InternalConverters.ButtonColumn},ConverterParameter=1}"
-                                    Grid.ColumnSpan="{TemplateBinding IsPrimaryButtonVisible, Converter={x:Static converters:InternalConverters.ButtonColumnSpan},ConverterParameter=2}"
+                                    Grid.Column="{TemplateBinding IsPrimaryButtonVisible, Converter={x:Static local:InternalConverters.ButtonColumn},ConverterParameter=1}"
+                                    Grid.ColumnSpan="{TemplateBinding IsPrimaryButtonVisible, Converter={x:Static local:InternalConverters.ButtonColumnSpan},ConverterParameter=2}"
                                     Command="{Binding SecondaryCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                                 <TextBlock Text="{TemplateBinding SecondaryText}" />
                             </Button>

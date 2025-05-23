@@ -48,13 +48,26 @@ public class AppWindow : Window
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
+
+        if (_toastHost != null)
+            _toastHost.IsPresentChanged -= UpdateObstructed;
+        if (_modalHost != null)
+            _modalHost.IsPresentChanged -= UpdateObstructed;
+        if (_dialogHost != null)
+            _dialogHost.IsPresentChanged -= UpdateObstructed;
+
         _notificationHost = e.NameScope.Find<NotificationHost>(PART_NotificationHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
         _dialogHost = e.NameScope.Find<OverlayHost>(PART_DialogHost);
-        _toastHost?.GetObservable(OverlayHost.IsPresentProperty).Subscribe(UpdateObstructed);
-        _modalHost?.GetObservable(OverlayHost.IsPresentProperty).Subscribe(UpdateObstructed);
-        _dialogHost?.GetObservable(OverlayHost.IsPresentProperty).Subscribe(UpdateObstructed);
+
+        ArgumentNullException.ThrowIfNull(_toastHost);
+        ArgumentNullException.ThrowIfNull(_modalHost);
+        ArgumentNullException.ThrowIfNull(_dialogHost);
+
+        _toastHost.IsPresentChanged += UpdateObstructed;
+        _modalHost.IsPresentChanged += UpdateObstructed;
+        _dialogHost.IsPresentChanged += UpdateObstructed;
 
         if (_toastHost is not null)
             LogicalChildren.Add(_toastHost);
@@ -66,11 +79,12 @@ public class AppWindow : Window
             LogicalChildren.Add(_notificationHost);
     }
 
-    private void UpdateObstructed(bool _)
+    private void UpdateObstructed(object? _, PropertyChangedRoutedEventArgs<bool> __)
     {
         ArgumentNullException.ThrowIfNull(_toastHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
+
         PseudoClasses.Set(":obstructed", _toastHost.IsPresent || _modalHost.IsPresent || _dialogHost.IsPresent);
     }
 

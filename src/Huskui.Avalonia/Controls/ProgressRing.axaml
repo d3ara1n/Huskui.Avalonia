@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:huskc="https://github.com/d3ara1n/Huskui.Avalonia/Converters">
+                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Grid ColumnDefinitions="*,12,*" Background="White">
             <StackPanel Grid.Column="0" Width="128" Margin="32" VerticalAlignment="Center" Orientation="Horizontal"
@@ -80,7 +79,7 @@
                     <TextBlock Name="PercentageText" FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Center"
                                VerticalAlignment="Center" IsVisible="{TemplateBinding ShowProgressText}">
                         <TextBlock.Text>
-                            <MultiBinding Converter="{x:Static huskc:InternalConverters.StringFormat}">
+                            <MultiBinding Converter="{x:Static local:InternalConverters.StringFormat}">
                                 <TemplateBinding Property="ProgressTextFormat" />
                                 <Binding Path="Value"
                                          RelativeSource="{RelativeSource TemplatedParent}" />
@@ -161,7 +160,7 @@
                                VerticalAlignment="Center" IsVisible="{TemplateBinding ShowProgressText}"
                                Margin="{TemplateBinding TrackPadding}">
                         <TextBlock.Text>
-                            <MultiBinding Converter="{x:Static huskc:InternalConverters.StringFormat}">
+                            <MultiBinding Converter="{x:Static local:InternalConverters.StringFormat}">
                                 <TemplateBinding Property="ProgressTextFormat" />
                                 <Binding Path="Value"
                                          RelativeSource="{RelativeSource TemplatedParent}" />

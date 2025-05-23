@@ -63,9 +63,13 @@ public class InfiniteScrollView : ItemsControl
     {
         base.OnApplyTemplate(e);
 
+        if (_scrollViewer != null)
+            _scrollViewer.ScrollChanged -= OnScroll;
+
         _scrollViewer = e.NameScope.Find<ScrollViewer>(PART_ScrollViewer);
         _pendingPresenter = e.NameScope.Find<ContentPresenter>(PART_PendingPresenter);
-        _scrollViewer?.GetObservable(ScrollViewer.OffsetProperty).Subscribe(OnScroll);
+        ArgumentNullException.ThrowIfNull(_scrollViewer);
+        _scrollViewer.ScrollChanged += OnScroll;
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -80,12 +84,13 @@ public class InfiniteScrollView : ItemsControl
         return base.ArrangeOverride(finalSize);
     }
 
-    private void OnScroll(Vector offset)
+    private void OnScroll(object? __, ScrollChangedEventArgs args)
     {
         if (_scrollViewer == null || _pendingPresenter == null)
             return;
 
-        if (!_updatingSafe && offset.Y > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height)
+        if (!_updatingSafe
+         && _scrollViewer.Offset.Y > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height)
             _ = UpdateAsync();
     }
 

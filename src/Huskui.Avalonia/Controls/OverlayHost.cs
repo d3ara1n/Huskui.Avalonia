@@ -36,6 +36,11 @@ public class OverlayHost : TemplatedControl
                                                                       o => o.Transition,
                                                                       (o, v) => o.Transition = v);
 
+    public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<bool>> IsPresentChangedEvent =
+        RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
+                                                                                    RoutingStrategies.Bubble);
+
+
     private Border? _stage;
 
     [Content]
@@ -59,6 +64,12 @@ public class OverlayHost : TemplatedControl
 
     protected override Type StyleKeyOverride => typeof(OverlayHost);
 
+    public event EventHandler<PropertyChangedRoutedEventArgs<bool>>? IsPresentChanged
+    {
+        add => AddHandler(IsPresentChangedEvent, value);
+        remove => RemoveHandler(IsPresentChangedEvent, value);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -71,7 +82,13 @@ public class OverlayHost : TemplatedControl
         base.OnPropertyChanged(change);
 
         if (change.Property == IsPresentProperty)
+        {
             PseudoClasses.Set(":present", change.GetNewValue<bool>());
+            RaiseEvent(new PropertyChangedRoutedEventArgs<bool>(IsPresentChangedEvent,
+                                                                this,
+                                                                change.GetOldValue<bool>(),
+                                                                change.GetNewValue<bool>()));
+        }
     }
 
     public void Pop(object control)

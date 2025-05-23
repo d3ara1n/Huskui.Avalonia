@@ -1,15 +1,15 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <MergeResourceInclude Source="Colors.Overlay.axaml" />
-        <MergeResourceInclude Source="Colors.Layover.axaml" />
-        <MergeResourceInclude Source="Colors.White.axaml" />
-        <MergeResourceInclude Source="Colors.Black.axaml" />
-        <MergeResourceInclude Source="Colors.Gray.Neutral.axaml" />
-        <MergeResourceInclude Source="Colors.Accent.Amber.axaml" />
-        <MergeResourceInclude Source="Colors.Success.Grass.axaml" />
-        <MergeResourceInclude Source="Colors.Warning.Orange.axaml" />
-        <MergeResourceInclude Source="Colors.Danger.Tomato.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Overlay.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Layover.axaml" />
+        <ResourceInclude Source="/Themes/Colors.White.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Black.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Gray.Neutral.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Accent.Amber.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Success.Grass.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Warning.Orange.axaml" />
+        <ResourceInclude Source="/Themes/Colors.Danger.Tomato.axaml" />
     </ResourceDictionary.MergedDictionaries>
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">

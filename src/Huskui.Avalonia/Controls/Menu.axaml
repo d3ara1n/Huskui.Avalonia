@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:fi="using:FluentIcons.Avalonia"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:huskc="https://github.com/d3ara1n/Huskui.Avalonia/Converters">
+                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel Margin="24">
@@ -83,7 +83,7 @@
                                 <Panel>
                                     <TextBlock VerticalAlignment="Center"
                                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                               Text="{TemplateBinding InputGesture,Converter={x:Static huskc:InternalConverters.KeyGestureToString}}" />
+                                               Text="{TemplateBinding InputGesture,Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
                                 </Panel>
 
                                 <StackPanel Orientation="Horizontal" Spacing="6">
@@ -201,7 +201,7 @@
                             <Panel Grid.Column="2">
                                 <TextBlock x:Name="PART_InputGestureText" VerticalAlignment="Center"
                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           Text="{TemplateBinding InputGesture,Converter={x:Static huskc:InternalConverters.KeyGestureToString}}" />
+                                           Text="{TemplateBinding InputGesture,Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
                             </Panel>
 
                             <Panel Grid.Column="4">

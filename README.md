@@ -56,7 +56,7 @@ Huskui.Avalonia includes the following components:
              x:Class="YourApp.App">
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="avares://Huskui.Avalonia/Prelude.axaml" />
+        <StyleInclude Source="/Prelude.axaml" />
     </Application.Styles>
 </Application>
 ```

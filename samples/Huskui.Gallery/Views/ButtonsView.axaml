@@ -7,8 +7,7 @@
            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
            x:Class="Huskui.Gallery.Views.ButtonsView" Header="Buttons">
     <StackPanel Spacing="32">
-        <controls:ControlPresenter Title="Basic Button Types"
-                                   Subtitle="By setting the `Theme`  and `Classes` properties to">
+        <controls:ControlPresenter Title="Basic Button Types">
             <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12"
                   RowSpacing="12">
                 <Button Grid.Column="0" Grid.Row="0" Content="Default" />
@@ -61,10 +60,16 @@
                 </DropDownButton>
             </StackPanel>
         </controls:ControlPresenter>
-        <controls:ControlPresenter>
-            <StackPanel>
-                <ToggleButton />
-                <ToggleSplitButton />
+        <controls:ControlPresenter Title="ToggleButton &amp; ToggleSplitButton">
+            <StackPanel Spacing="12">
+                <ToggleButton Content="ToggleButton" />
+                <ToggleSplitButton Content="ToggleSplitButton">
+                    <ToggleSplitButton.Flyout>
+                        <MenuFlyout>
+                            <MenuItem Header="Other Button" />
+                        </MenuFlyout>
+                    </ToggleSplitButton.Flyout>
+                </ToggleSplitButton>
             </StackPanel>
         </controls:ControlPresenter>
     </StackPanel>
