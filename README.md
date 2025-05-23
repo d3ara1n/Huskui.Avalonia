@@ -24,7 +24,7 @@ Huskui.Avalonia includes the following components:
 - **InfoBar**: Informational message bars with different severity levels
 - **Tag**: Compact labels for categorization and metadata
 - **IconLabel**: Combined icon and text label with FluentIcons integration
-- **TextBox**: Enhanced text input with support for inner content
+- **Frame**: Navigation container with transition animations
 - **HighlightBlock**: Text highlighting for code snippets and keyboard shortcuts
 - **NotificationHost** and **NotificationItem**: Toast notification system
 - **OverlayHost** and **Modals/Dialogs/Drawers/Toasts**: Overlay management system

@@ -1,10 +1,128 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel>
             <StackPanel Margin="24" Spacing="12">
-                <Expander />
+                <Expander>
+                    <Expander.Header>
+                        <TextBlock Text="Hello World" />
+                    </Expander.Header>
+                    <TextBlock Text="Hello World" />
+                </Expander>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
+
+    <ControlTheme x:Key="ExpanderHeaderToggleButtonTheme" TargetType="ToggleButton">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Padding="{TemplateBinding Padding}"
+                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  Background="{TemplateBinding Background}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type Expander}" TargetType="Expander">
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
+                                  IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
+                                  Background="Transparent"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
+                        <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
+                            <ContentPresenter Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                            <Border Name="SymbolBorder" HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               FontSize="{TemplateBinding FontSize}" />
+                            </Border>
+                        </DockPanel>
+                    </ToggleButton>
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Padding="{TemplateBinding Padding}" IsVisible="{TemplateBinding IsExpanded}" />
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:up">
+            <Style Selector="^ /template/ ToggleButton#Toggle">
+                <Setter Property="DockPanel.Dock" Value="Bottom" />
+            </Style>
+            <Style Selector="^ /template/ Border#SymbolBorder">
+                <Setter Property="DockPanel.Dock" Value="Right" />
+            </Style>
+            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronDown" />
+            </Style>
+
+            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronUp" />
+            </Style>
+        </Style>
+        <Style Selector="^:down">
+            <Style Selector="^ /template/ ToggleButton#Toggle">
+                <Setter Property="DockPanel.Dock" Value="Top" />
+            </Style>
+            <Style Selector="^ /template/ Border#SymbolBorder">
+                <Setter Property="DockPanel.Dock" Value="Right" />
+            </Style>
+            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronUp" />
+            </Style>
+
+            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronDown" />
+            </Style>
+        </Style>
+        <Style Selector="^:right">
+            <Style Selector="^ /template/ ToggleButton#Toggle">
+                <Setter Property="DockPanel.Dock" Value="Left" />
+            </Style>
+            <Style Selector="^ /template/ Border#SymbolBorder">
+                <Setter Property="DockPanel.Dock" Value="Top" />
+            </Style>
+            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronLeft" />
+            </Style>
+
+            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronRight" />
+            </Style>
+        </Style>
+        <Style Selector="^:left">
+            <Style Selector="^ /template/ ToggleButton#Toggle">
+                <Setter Property="DockPanel.Dock" Value="Right" />
+            </Style>
+            <Style Selector="^ /template/ Border#SymbolBorder">
+                <Setter Property="DockPanel.Dock" Value="Bottom" />
+            </Style>
+            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronRight" />
+            </Style>
+
+            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
+                <Setter Property="Symbol" Value="ChevronLeft" />
+            </Style>
+        </Style>
+    </ControlTheme>
 </ResourceDictionary>
