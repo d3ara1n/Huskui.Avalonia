@@ -36,12 +36,13 @@
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="12" />
+        <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <DockPanel>
                     <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
                                   IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
-                                  Background="Transparent"
+                                  Background="{TemplateBinding Background}"
                                   BorderBrush="{TemplateBinding BorderBrush}"
                                   BorderThickness="{TemplateBinding BorderThickness}"
                                   Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
@@ -51,7 +52,8 @@
                             <Border Name="SymbolBorder" HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                                 <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               FontSize="{TemplateBinding FontSize}" />
+                                               FontSize="{TemplateBinding FontSize}"
+                                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                             </Border>
                         </DockPanel>
                     </ToggleButton>
