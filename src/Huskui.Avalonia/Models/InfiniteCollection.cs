@@ -24,7 +24,6 @@ public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable
 
         IsFetching = true;
         var rv = await factory.Invoke(_index++, _cts.Token);
-        await Task.Delay(TimeSpan.FromSeconds(3));
         var dirty = false;
         foreach (var item in rv)
         {
