@@ -5,6 +5,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Interactivity;
+using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Huskui.Avalonia.Models;
 
@@ -29,6 +30,7 @@ public class LazyContainer : TemplatedControl
 
     private ContentPresenter? _contentPresenter;
 
+    [DependsOn(nameof(SourceTemplate))]
     public LazyObject? Source
     {
         get => GetValue(SourceProperty);
@@ -59,10 +61,35 @@ public class LazyContainer : TemplatedControl
     {
         base.OnApplyTemplate(e);
 
+        if (_contentPresenter != null)
+            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
+
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
+        if (_contentPresenter != null)
+            _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
 
         if (Source != null)
             await LoadAsync(Source);
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+
+        if (_contentPresenter != null)
+            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
+    }
+
+    private void ContentPresenterOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == ContentPresenter.ChildProperty)
+        {
+            if (e.OldValue is ILogical oldChild)
+                LogicalChildren.Remove(oldChild);
+
+            if (e.NewValue is ILogical newChild)
+                LogicalChildren.Add(newChild);
+        }
     }
 
 

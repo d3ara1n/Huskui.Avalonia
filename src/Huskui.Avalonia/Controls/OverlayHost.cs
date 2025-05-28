@@ -17,13 +17,10 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":present")]
 [TemplatePart(PART_Stage, typeof(Border))]
 [TemplatePart(PART_ItemsPresenter, typeof(ItemsPresenter))]
-public class OverlayHost : TemplatedControl
+public class OverlayHost : ItemsControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
     public const string PART_Stage = nameof(PART_Stage);
-
-    public static readonly DirectProperty<OverlayHost, OverlayItems> ItemsProperty =
-        AvaloniaProperty.RegisterDirect<OverlayHost, OverlayItems>(nameof(Items), o => o.Items, (o, v) => o.Items = v);
 
     public static readonly DirectProperty<OverlayHost, bool> IsPresentProperty =
         AvaloniaProperty.RegisterDirect<OverlayHost, bool>(nameof(IsPresent),
@@ -40,15 +37,7 @@ public class OverlayHost : TemplatedControl
         RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
                                                                                     RoutingStrategies.Bubble);
 
-
     private Border? _stage;
-
-    [Content]
-    public OverlayItems Items
-    {
-        get;
-        set => SetAndRaise(ItemsProperty, ref field, value);
-    } = [];
 
     public bool IsPresent
     {
@@ -94,9 +83,10 @@ public class OverlayHost : TemplatedControl
     public void Pop(object control)
     {
         IsVisible = true;
-        OverlayItem? item = new() { Content = control };
+        var item = new OverlayItem { Content = control, Distance = 0 };
+        foreach (var i in Items.OfType<OverlayItem>())
+            i.Distance++;
         Items.Add(item);
-        // item.DismissCommand = new InternalDismissCommand(this, item);
 
 
         // Make control attached to visual tree ensuring its parent is valid
@@ -124,6 +114,12 @@ public class OverlayHost : TemplatedControl
 
         void Clean()
         {
+            for (var i = 0; i < Items.IndexOf(item); i++)
+            {
+                if (Items[i] is OverlayItem inner)
+                    inner.Distance--;
+            }
+
             Items.Remove(item);
             if (Items.Count == 0)
             {
@@ -134,7 +130,11 @@ public class OverlayHost : TemplatedControl
         }
     }
 
-    public void Dismiss() => Dismiss(Items.Last());
+    public void Dismiss()
+    {
+        if (Items is [.., OverlayItem last])
+            Dismiss(last);
+    }
 
     protected override void OnLoaded(RoutedEventArgs e)
     {

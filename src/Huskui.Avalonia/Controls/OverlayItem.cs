@@ -81,6 +81,7 @@ public class OverlayItem : ContentControl
 
     private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e)
     {
+        // 捕捉路过的事件并加上容器信息
         e.Container ??= this;
     }
 
