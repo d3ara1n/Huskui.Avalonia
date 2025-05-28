@@ -7,7 +7,6 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Metadata;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Huskui.Avalonia.Transitions;
@@ -115,10 +114,8 @@ public class OverlayHost : ItemsControl
         void Clean()
         {
             for (var i = 0; i < Items.IndexOf(item); i++)
-            {
                 if (Items[i] is OverlayItem inner)
                     inner.Distance--;
-            }
 
             Items.Remove(item);
             if (Items.Count == 0)

@@ -7,6 +7,8 @@ namespace Huskui.Avalonia.Transitions;
 
 public class CompositionPageSlideTransition : IPageTransition
 {
+    #region IPageTransition Members
+
     public Task Start(Visual? from, Visual? to, bool forward, CancellationToken cancellationToken)
     {
         if (from != null)
@@ -47,4 +49,6 @@ public class CompositionPageSlideTransition : IPageTransition
 
         return Task.Delay(TimeSpan.FromMilliseconds(297), cancellationToken);
     }
+
+    #endregion
 }

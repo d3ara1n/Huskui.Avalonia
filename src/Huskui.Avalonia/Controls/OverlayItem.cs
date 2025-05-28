@@ -85,8 +85,12 @@ public class OverlayItem : ContentControl
         e.Container ??= this;
     }
 
+    #region Nested type: DismissRequestedEventArgs
+
     public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
     {
         public OverlayItem? Container { get; set; }
     }
+
+    #endregion
 }

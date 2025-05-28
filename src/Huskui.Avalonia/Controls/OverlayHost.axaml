@@ -40,8 +40,7 @@
                     <ItemsPresenter Name="{x:Static local:OverlayHost.PART_ItemsPresenter}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    Margin="{TemplateBinding Padding}" ItemsPanel="{TemplateBinding ItemsPanel}">
-                    </ItemsPresenter>
+                                    Margin="{TemplateBinding Padding}" ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Panel>
             </ControlTemplate>
         </Setter>

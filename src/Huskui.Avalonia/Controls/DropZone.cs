@@ -101,15 +101,23 @@ public class DropZone : ContentControl
             PseudoClasses.Set(":drop", change.NewValue != null);
     }
 
+    #region Nested type: DragOverEventArgs
+
     public class DragOverEventArgs(IDataObject data) : RoutedEventArgs
     {
         public IDataObject Data => data;
         public bool Accepted { get; set; }
     }
 
+    #endregion
+
+    #region Nested type: DropEventArgs
+
     public class DropEventArgs(IDataObject data) : RoutedEventArgs
     {
         public IDataObject Data => data;
         public object? Model { get; set; }
     }
+
+    #endregion
 }

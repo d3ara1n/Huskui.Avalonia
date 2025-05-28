@@ -205,8 +205,6 @@ public class Frame : TemplatedControl
 
     private class InternalGoBackCommand(Frame host) : ICommand
     {
-        internal void OnCanExecutedChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
         #region ICommand Members
 
         public bool CanExecute(object? parameter) => host.CanGoBack;
@@ -216,6 +214,8 @@ public class Frame : TemplatedControl
         public event EventHandler? CanExecuteChanged;
 
         #endregion
+
+        internal void OnCanExecutedChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion

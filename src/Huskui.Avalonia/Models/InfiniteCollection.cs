@@ -9,11 +9,15 @@ public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable
     private readonly CancellationTokenSource _cts = new();
     private int _index = startIndex;
 
+    #region IDisposable Members
+
     public void Dispose()
     {
         if (!_cts.IsCancellationRequested)
             _cts.Cancel();
     }
+
+    #endregion
 
     #region IInfiniteCollection Members
 

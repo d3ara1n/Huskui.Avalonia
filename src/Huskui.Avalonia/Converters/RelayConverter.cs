@@ -14,6 +14,16 @@ public class RelayConverter : IValueConverter
 
     public RelayConverter(Func<object?, object?> convert) => _convert = (value, _, _, _) => convert(value);
 
+    #region IValueConverter Members
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        _convert(value, targetType, parameter, culture);
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
+        throw new NotImplementedException();
+
+    #endregion
+
     internal static object ConvertValue(Type targetType, object value)
     {
         if (targetType.IsInstanceOfType(value))
@@ -67,14 +77,4 @@ public class RelayConverter : IValueConverter
 
         return compareBase.Equals(valueBase);
     }
-
-    #region IValueConverter Members
-
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        _convert(value, targetType, parameter, culture);
-
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        throw new NotImplementedException();
-
-    #endregion
 }
