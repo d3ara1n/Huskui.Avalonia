@@ -8,7 +8,7 @@
                     <Expander.Header>
                         <TextBlock Text="Hello World" />
                     </Expander.Header>
-                    <TextBlock Text="Hello World" />
+                    <TextBlock Text="Bye World" />
                 </Expander>
             </StackPanel>
         </Panel>
@@ -36,35 +36,55 @@
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="12" />
-        <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <DockPanel>
-                    <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
-                                  IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
-                                  Background="{TemplateBinding Background}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
-                        <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
-                            <ContentPresenter Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                            <Border Name="SymbolBorder" HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
-                                <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </Border>
-                        </DockPanel>
-                    </ToggleButton>
-                    <ContentPresenter Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Padding="{TemplateBinding Padding}" IsVisible="{TemplateBinding IsExpanded}" />
-                </DockPanel>
+                <Border x:Name="Background" Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border.Transitions>
+                        <Transitions>
+                            <BrushTransition Property="Background" Easing="CubicEaseOut"
+                                             Duration="{StaticResource ControlFasterAnimationDuration}" />
+                        </Transitions>
+                    </Border.Transitions>
+                    <DockPanel>
+                        <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
+                                      Background="Transparent"
+                                      IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
+                                      Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
+                            <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
+                                <ContentPresenter Content="{TemplateBinding Header}"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                                <Border Name="SymbolBorder" HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                    <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                                </Border>
+                            </DockPanel>
+                        </ToggleButton>
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Padding="{TemplateBinding Padding}" Margin=" 8,4,8,8" IsVisible="{TemplateBinding IsExpanded}"
+                                          Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                          BoxShadow="0 0 4 0 #3F000000" CornerRadius="{TemplateBinding CornerRadius}"/>
+                    </DockPanel>
+                </Border>
             </ControlTemplate>
         </Setter>
+        
+        <Style Selector="^:disabled /template/ Border#Background">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+        
+        <Style Selector="^:expanded /template/ Border#Background">
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+        </Style>
 
         <Style Selector="^:up">
             <Style Selector="^ /template/ ToggleButton#Toggle">
