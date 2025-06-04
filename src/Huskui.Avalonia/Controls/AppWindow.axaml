@@ -39,24 +39,6 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" />
                     <VisualLayerManager>
                         <VisualLayerManager.ChromeOverlayLayer>
-                            <TitleBar />
-                        </VisualLayerManager.ChromeOverlayLayer>
-
-                        <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
-                            <ContentPresenter
-                                Name="ContentPresenter"
-                                Margin="{TemplateBinding Padding}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}">
-                                <ContentPresenter.Transitions>
-                                    <Transitions>
-                                        <EffectTransition Property="Effect"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                    </Transitions>
-                                </ContentPresenter.Transitions>
-                            </ContentPresenter>
                             <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}" Padding="12,32,12,0">
                                 <local:OverlayHost.Transition>
                                     <local:HookUpTransition />
@@ -90,18 +72,49 @@
                                     </ItemsPanelTemplate>
                                 </local:NotificationHost.ItemsPanel>
                             </local:NotificationHost>
+                        </VisualLayerManager.ChromeOverlayLayer>
+                        <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
+                            <ContentPresenter
+                                Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}">
+                                <ContentPresenter.Transitions>
+                                    <Transitions>
+                                        <EffectTransition Property="Effect"
+                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    </Transitions>
+                                </ContentPresenter.Transitions>
+                            </ContentPresenter>
+                            <Border Name="{x:Static local:AppWindow.PART_ChromeBackground}" Opacity="0" IsHitTestVisible="False"
+                                    Background="{StaticResource OverlaySmokeBackgroundBrush}">
+                                <Border.Transitions>
+                                    <Transitions>
+                                        <DoubleTransition
+                                            Easing="CubicEaseOut"
+                                            Property="Opacity"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    </Transitions>
+                                </Border.Transitions>
+                            </Border>
                         </Panel>
                     </VisualLayerManager>
                 </Panel>
             </ControlTemplate>
         </Setter>
 
-        <!-- TODO: 目前 Blur 效果会导致看不见的元素也被强行触发全屏重绘导致性能裂开 -->
-        <!-- <Style Selector="^:obstructed /template/ ContentPresenter#ContentPresenter"> -->
-        <!--     <Setter Property="Effect"> -->
-        <!--         <BlurEffect /> -->
-        <!--     </Setter> -->
-        <!-- </Style> -->
+        <Style Selector="^:obstructed /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Effect">
+                <BlurEffect />
+            </Setter>
+        </Style>
+
+        <Style Selector="^:obstructed /template/ Border#PART_ChromeBackground">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
 
         <Style Selector="^local|AppWindow[ActualTransparencyLevel=Mica][IsActive=True]">
             <Setter Property="Background" Value="{StaticResource TransparentBrush}" />

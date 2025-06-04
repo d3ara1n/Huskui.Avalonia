@@ -14,12 +14,10 @@ using Huskui.Avalonia.Transitions;
 namespace Huskui.Avalonia.Controls;
 
 [PseudoClasses(":present")]
-[TemplatePart(PART_Stage, typeof(Border))]
 [TemplatePart(PART_ItemsPresenter, typeof(ItemsPresenter))]
 public class OverlayHost : ItemsControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
-    public const string PART_Stage = nameof(PART_Stage);
 
     public static readonly DirectProperty<OverlayHost, bool> IsPresentProperty =
         AvaloniaProperty.RegisterDirect<OverlayHost, bool>(nameof(IsPresent),
@@ -35,8 +33,6 @@ public class OverlayHost : ItemsControl
     public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<bool>> IsPresentChangedEvent =
         RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
                                                                                     RoutingStrategies.Bubble);
-
-    private Border? _stage;
 
     public bool IsPresent
     {
@@ -56,13 +52,6 @@ public class OverlayHost : ItemsControl
     {
         add => AddHandler(IsPresentChangedEvent, value);
         remove => RemoveHandler(IsPresentChangedEvent, value);
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        _stage = e.NameScope.Find<Border>(PART_Stage);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -98,8 +87,8 @@ public class OverlayHost : ItemsControl
         if (Items.Count == 1)
         {
             IsPresent = true;
-            ArgumentNullException.ThrowIfNull(_stage);
-            StageInAnimation.RunAsync(_stage);
+            // ArgumentNullException.ThrowIfNull(_stage);
+            // StageInAnimation.RunAsync(_stage);
         }
     }
 
@@ -121,8 +110,8 @@ public class OverlayHost : ItemsControl
             if (Items.Count == 0)
             {
                 IsPresent = false;
-                ArgumentNullException.ThrowIfNull(_stage);
-                StageOutAnimation.RunAsync(_stage).ContinueWith(_ => Dispatcher.UIThread.Post(() => IsVisible = false));
+                // ArgumentNullException.ThrowIfNull(_stage);
+                // StageOutAnimation.RunAsync(_stage).ContinueWith(_ => Dispatcher.UIThread.Post(() => IsVisible = false));
             }
         }
     }

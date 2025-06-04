@@ -7,5 +7,5 @@
     <CornerRadius x:Key="ExtraLargeCornerRadius">14</CornerRadius>
     <CornerRadius x:Key="ExtraExtraLargeCornerRadius">20</CornerRadius>
     <CornerRadius x:Key="ExtraExtraExtraLargeCornerRadius">28</CornerRadius>
-    <CornerRadius x:Key="FullCornerRadius">99</CornerRadius>
+    <CornerRadius x:Key="FullCornerRadius">999</CornerRadius>
 </ResourceDictionary>

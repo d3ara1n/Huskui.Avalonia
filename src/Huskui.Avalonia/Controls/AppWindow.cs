@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -9,6 +10,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_ModalHost, typeof(OverlayHost))]
 [TemplatePart(PART_DialogHost, typeof(OverlayHost))]
 [TemplatePart(PART_NotificationHost, typeof(NotificationHost))]
+[TemplatePart(PART_ChromeBackground, typeof(Border))]
 [PseudoClasses(":obstructed")]
 public class AppWindow : Window
 {
@@ -16,6 +18,7 @@ public class AppWindow : Window
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
     public const string PART_NotificationHost = nameof(PART_NotificationHost);
+    public const string PART_ChromeBackground = nameof(PART_ChromeBackground);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
         AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),
@@ -23,11 +26,10 @@ public class AppWindow : Window
                                                          (o, v) => o.IsMaximized = v);
 
     private OverlayHost? _dialogHost;
-
     private OverlayHost? _modalHost;
-    private NotificationHost? _notificationHost;
-
     private OverlayHost? _toastHost;
+    private NotificationHost? _notificationHost;
+    private Border? _chromeBackground;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -55,11 +57,15 @@ public class AppWindow : Window
             _modalHost.IsPresentChanged -= UpdateObstructed;
         if (_dialogHost != null)
             _dialogHost.IsPresentChanged -= UpdateObstructed;
+        
+        if (_chromeBackground is not null)
+            _chromeBackground.PointerPressed -= Background_PointerPressed;
 
         _notificationHost = e.NameScope.Find<NotificationHost>(PART_NotificationHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
         _dialogHost = e.NameScope.Find<OverlayHost>(PART_DialogHost);
+        _chromeBackground = e.NameScope.Find<Border>(PART_ChromeBackground);
 
         ArgumentNullException.ThrowIfNull(_toastHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
@@ -69,6 +75,9 @@ public class AppWindow : Window
         _modalHost.IsPresentChanged += UpdateObstructed;
         _dialogHost.IsPresentChanged += UpdateObstructed;
 
+        if (_chromeBackground is not null)
+            _chromeBackground.PointerPressed += Background_PointerPressed;
+
         if (_toastHost is not null)
             LogicalChildren.Add(_toastHost);
         if (_modalHost is not null)
@@ -77,6 +86,11 @@ public class AppWindow : Window
             LogicalChildren.Add(_dialogHost);
         if (_notificationHost is not null)
             LogicalChildren.Add(_notificationHost);
+    }
+
+    private void Background_PointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        BeginMoveDrag(e);
     }
 
     private void UpdateObstructed(object? _, PropertyChangedRoutedEventArgs<bool> __)
