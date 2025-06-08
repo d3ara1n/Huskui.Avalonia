@@ -2,7 +2,6 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -26,8 +25,8 @@ public class AppWindow : Window
 
     private OverlayHost? _dialogHost;
     private OverlayHost? _modalHost;
-    private OverlayHost? _toastHost;
     private NotificationHost? _notificationHost;
+    private OverlayHost? _toastHost;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 

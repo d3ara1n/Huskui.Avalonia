@@ -70,18 +70,19 @@
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Padding="{TemplateBinding Padding}" Margin=" 8,4,8,8" IsVisible="{TemplateBinding IsExpanded}"
+                                          Padding="{TemplateBinding Padding}" Margin=" 8,4,8,8"
+                                          IsVisible="{TemplateBinding IsExpanded}"
                                           Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                          BoxShadow="0 0 4 0 #3F000000" CornerRadius="{TemplateBinding CornerRadius}"/>
+                                          BoxShadow="0 0 4 0 #3F000000" CornerRadius="{TemplateBinding CornerRadius}" />
                     </DockPanel>
                 </Border>
             </ControlTemplate>
         </Setter>
-        
+
         <Style Selector="^:disabled /template/ Border#Background">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
-        
+
         <Style Selector="^:expanded /template/ Border#Background">
             <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
         </Style>

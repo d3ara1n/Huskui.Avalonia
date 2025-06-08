@@ -4,7 +4,6 @@ using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Styling;
@@ -84,11 +83,7 @@ public class OverlayHost : ItemsControl
         transition.Start(null, item.ContentPresenter, true, CancellationToken.None);
 
         if (Items.Count == 1)
-        {
             IsPresent = true;
-            // ArgumentNullException.ThrowIfNull(_stage);
-            // StageInAnimation.RunAsync(_stage);
-        }
     }
 
     public void Dismiss(OverlayItem item)
@@ -107,11 +102,7 @@ public class OverlayHost : ItemsControl
 
             Items.Remove(item);
             if (Items.Count == 0)
-            {
                 IsPresent = false;
-                // ArgumentNullException.ThrowIfNull(_stage);
-                // StageOutAnimation.RunAsync(_stage).ContinueWith(_ => Dispatcher.UIThread.Post(() => IsVisible = false));
-            }
         }
     }
 
