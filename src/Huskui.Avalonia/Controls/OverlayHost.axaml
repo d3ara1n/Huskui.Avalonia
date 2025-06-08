@@ -25,7 +25,6 @@
     <ControlTheme x:Key="{x:Type local:OverlayHost}" TargetType="local:OverlayHost">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="IsVisible" Value="False" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <Panel />
@@ -34,6 +33,18 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
+                    <Border Name="Smoke" Opacity="0"
+                            IsHitTestVisible="False"
+                            Background="{StaticResource OverlaySmokeBackgroundBrush}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <DoubleTransition
+                                    Easing="CubicEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                    </Border>
                     <ItemsPresenter Name="{x:Static local:OverlayHost.PART_ItemsPresenter}"
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -41,5 +52,10 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^:present /template/ Border#Smoke">
+            <Setter Property="Opacity" Value="1" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

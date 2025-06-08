@@ -70,7 +70,6 @@ public class OverlayHost : ItemsControl
 
     public void Pop(object control)
     {
-        IsVisible = true;
         var item = new OverlayItem { Content = control, Distance = 0 };
         foreach (var i in Items.OfType<OverlayItem>())
             i.Distance++;
