@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huskui.Avalonia", "src\Huskui.Avalonia\Huskui.Avalonia.csproj", "{5D6BBAB3-F508-44E5-8E96-980771F7AD3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huskui.Gallery", "samples\Huskui.Gallery\Huskui.Gallery.csproj", "{883EDA6C-53C4-4E59-A4C6-484E1E0A5AED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huskui.Gallery", "src\Huskui.Gallery\Huskui.Gallery.csproj", "{883EDA6C-53C4-4E59-A4C6-484E1E0A5AED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{CF26F04A-B887-43DB-AEF3-A225289E1454}"
 	ProjectSection(SolutionItems) = preProject
