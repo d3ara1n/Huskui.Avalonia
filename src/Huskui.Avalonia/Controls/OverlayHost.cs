@@ -76,7 +76,7 @@ public class OverlayHost : ItemsControl
 
 
         // Make control attached to visual tree ensuring its parent is valid
-        // Make OnApplyTemplate called and _stage bound
+        // Make OnApplyTemplate called
         UpdateLayout();
         // if (control is Visual visual) Transition.Start(null, visual, true, CancellationToken.None);
         var transition = item.Transition ?? Transition;

@@ -4,6 +4,7 @@
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Themes/Colors.Accent.Neutral.axaml" />
                 <ResourceInclude Source="/Themes/Colors.axaml" />
                 <ResourceInclude Source="/Themes/Basics.axaml" />
                 <ResourceInclude Source="/Themes/CornerRadius.axaml" />

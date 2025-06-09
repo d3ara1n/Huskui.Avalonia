@@ -9,7 +9,7 @@
 
         <!-- NuGet Package Metadata -->
         <PackageId>Huskui.Avalonia</PackageId>
-        <Version>0.2.2</Version>
+        <Version>0.3.0</Version>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
         <Product>Huskui.Avalonia</Product>
@@ -25,10 +25,11 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <Title>Huskui.Avalonia</Title>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.1"/>
+        <PackageReference Include="Avalonia" Version="11.3.0"/>
         <PackageReference Include="FluentIcons.Avalonia" Version="1.1.302"/>
     </ItemGroup>
 
