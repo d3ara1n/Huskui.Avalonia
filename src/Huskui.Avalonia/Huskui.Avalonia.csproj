@@ -25,7 +25,7 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <Title>Huskui.Avalonia</Title>
+        <Title>Huskui for Avalonia</Title>
     </PropertyGroup>
 
     <ItemGroup>
