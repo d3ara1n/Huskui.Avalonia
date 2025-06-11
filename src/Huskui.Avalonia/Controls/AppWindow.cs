@@ -16,7 +16,6 @@ public class AppWindow : Window
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
     public const string PART_NotificationHost = nameof(PART_NotificationHost);
-    public const string PART_ChromeBackground = nameof(PART_ChromeBackground);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
         AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),

@@ -128,6 +128,7 @@ public class OverlayHost : ItemsControl
     {
         if (e.Container != null)
             Dismiss(e.Container);
+        e.Handled = true;
     }
 
     #region StageInAnimation & StageOutAnimation

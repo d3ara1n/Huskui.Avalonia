@@ -39,6 +39,7 @@ public class NotificationHost : ItemsControl
 
     private void ItemClosedHandler(object? sender, RoutedEventArgs e)
     {
+        e.Handled = true;
         if (e.Source is NotificationItem item)
             Items.Remove(item);
     }
