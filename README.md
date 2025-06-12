@@ -56,7 +56,7 @@ Huskui.Avalonia includes the following components:
              x:Class="YourApp.App">
     <Application.Styles>
         <FluentTheme />
-        <StyleInclude Source="/Prelude.axaml" />
+        <husk:HuskuiTheme Accent="Lime" />
     </Application.Styles>
 </Application>
 ```
