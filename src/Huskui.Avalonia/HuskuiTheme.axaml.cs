@@ -10,7 +10,7 @@ public class HuskuiTheme : Styles
 {
     public static readonly StyledProperty<AccentColor> AccentProperty =
         AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent),
-                                                            defaultValue: AccentColor.Amber,
+                                                            AccentColor.Neutral,
                                                             defaultBindingMode: BindingMode.OneTime);
 
 
