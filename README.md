@@ -42,8 +42,7 @@ Huskui.Avalonia includes the following components:
 
 ### Installation
 
-1. Add a reference to the Huskui.Avalonia project in your solution, or
-2. Install the package from NuGet (when available)
+`dotnet add package Huskui.Avalonia`
 
 ### Basic Usage
 
@@ -67,7 +66,6 @@ Huskui.Avalonia includes the following components:
 <husk:AppWindow xmlns="https://github.com/avaloniaui"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
                 x:Class="YourApp.MainWindow"
                 Title="Your App">
     <Grid RowDefinitions="Auto,*" Margin="24">
@@ -78,9 +76,9 @@ Huskui.Avalonia includes the following components:
         <StackPanel Grid.Row="1" Spacing="12">
             <husk:IconLabel Icon="Home" Text="Home" />
 
-            <husk:Button Content="Standard Button" />
-            <husk:Button Classes="Primary" Content="Primary Button" />
-            <husk:Button Classes="Success" Content="Success Button" />
+            <Button Content="Standard Button" />
+            <Button Classes="Primary" Content="Primary Button" />
+            <Button Classes="Success" Content="Success Button" />
 
             <husk:Tag Content="Sample Tag" />
         </StackPanel>
