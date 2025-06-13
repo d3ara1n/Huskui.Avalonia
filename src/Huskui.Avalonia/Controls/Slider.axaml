@@ -1,0 +1,134 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <Design.PreviewWith>
+        <Panel Background="White">
+            <StackPanel Margin="24" Spacing="12">
+                <Slider Width="128" Value="50" />
+                <Slider Orientation="Vertical" Height="128" Value="50" />
+            </StackPanel>
+        </Panel>
+    </Design.PreviewWith>
+    <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
+        <Setter Property="MinHeight" Value="18" />
+        <Setter Property="MinWidth" Value="18" />
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+        <Style Selector="^:horizontal">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Panel>
+                        <Track
+                            Name="PART_Track"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Horizontal"
+                            Value="{TemplateBinding Value, Mode=TwoWay}">
+                            <Track.DecreaseButton>
+                                <RepeatButton
+                                    Name="PART_DecreaseButton"
+                                    Focusable="False"
+                                    Margin="0,0,-9,0"
+                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Vertical}}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+                            </Track.DecreaseButton>
+                            <Track.IncreaseButton>
+                                <RepeatButton
+                                    Name="PART_IncreaseButton"
+                                    Focusable="False"
+                                    Margin="-9,0,0,0"
+                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Vertical}}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource ControlBackgroundBrush}" />
+                            </Track.IncreaseButton>
+                            <Thumb Width="{Binding $self.Bounds.Height}" />
+                        </Track>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^:vertical">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Panel>
+                        <Track
+                            Name="PART_Track"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Vertical"
+                            Value="{TemplateBinding Value, Mode=TwoWay}">
+                            <Track.DecreaseButton>
+                                <RepeatButton
+                                    Name="PART_DecreaseButton"
+                                    Focusable="False"
+                                    Margin="0,-9,0,0"
+                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Horizontal}}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+                            </Track.DecreaseButton>
+                            <Track.IncreaseButton>
+                                <RepeatButton
+                                    Name="PART_IncreaseButton"
+                                    Focusable="False"
+                                    Margin="0,0,0,-9"
+                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Horizontal}}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{StaticResource ControlBackgroundBrush}" />
+                            </Track.IncreaseButton>
+                            <Thumb Height="{Binding $self.Bounds.Width}" />
+                        </Track>
+                    </Panel>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^ /template/ RepeatButton">
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border
+                        Margin="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}" />
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="^ /template/ Thumb">
+            <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+            <Setter Property="Transitions">
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform"
+                                                   Duration="{StaticResource ControlFastestAnimationDuration}" />
+                </Transitions>
+            </Setter>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}">
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+
+        <Style Selector="^ /template/ Thumb:pointerover">
+            <Setter Property="RenderTransform" Value="scale(0.9)" />
+        </Style>
+
+        <Style Selector="^ /template/ Thumb:pressed">
+            <Setter Property="RenderTransform" Value="scale(0.8)" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

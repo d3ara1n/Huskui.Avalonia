@@ -29,6 +29,19 @@ public static class ThicknessConverters
         _ => v
     });
 
+    public static IValueConverter Vertical { get; } = new RelayConverter((v, _) => v switch
+    {
+        Thickness it => new Thickness(0d, it.Top, 0d, it.Bottom),
+        _ => v
+    });
+
+    public static IValueConverter Horizontal { get; } = new RelayConverter((v, _) => v switch
+    {
+        Thickness it => new Thickness(it.Left, 0d, it.Right, 0d),
+        _ => v
+    });
+
+
     public static IValueConverter ToDouble { get; } = new RelayConverter((v, p) =>
     {
         if (v is Thickness thickness)

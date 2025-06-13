@@ -23,7 +23,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="CornerRadius" Value="99" />
+        <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="KnobTransitions">
             <Transitions>

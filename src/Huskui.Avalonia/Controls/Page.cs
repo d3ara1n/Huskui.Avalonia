@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -24,6 +25,16 @@ public class Page : HeaderedContentControl
         AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsBackButtonVisible),
                                                     o => o.IsBackButtonVisible,
                                                     (o, v) => o.IsBackButtonVisible = v);
+
+    public static readonly StyledProperty<BoxShadows> BoxShadowProperty = AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
+
+    public BoxShadows BoxShadow
+    {
+        get => GetValue(BoxShadowProperty);
+        set => SetValue(BoxShadowProperty, value);
+    }
+
+    
 
     private readonly CancellationTokenSource _cancellationTokenSource = new();
 

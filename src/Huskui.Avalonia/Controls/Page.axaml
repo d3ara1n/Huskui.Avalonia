@@ -23,7 +23,6 @@
         <Setter Property="Padding" Value="{StaticResource PageContentMargin}" />
         <Setter Property="CanGoBack" Value="{Binding $parent[local:Frame].CanGoBack, Mode=OneWay}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
@@ -35,7 +34,8 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}" ClipToBounds="True">
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        BoxShadow="{TemplateBinding BoxShadow}">
                     <ScrollViewer
                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
@@ -55,7 +55,8 @@
                                         Margin="0,0,12,0"
                                         Command="{Binding $parent[local:Frame].GoBackCommand}"
                                         IsVisible="{TemplateBinding IsBackButtonVisible}">
-                                    <fi:SymbolIcon Symbol="ArrowLeft" FontSize="12" Width="12" Height="12" />
+                                    <fi:SymbolIcon Symbol="ArrowLeft" FontSize="{StaticResource MediumFontSize}"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Button>
                                 <ContentPresenter Content="{TemplateBinding Header}"
                                                   ContentTemplate="{TemplateBinding HeaderTemplate}">

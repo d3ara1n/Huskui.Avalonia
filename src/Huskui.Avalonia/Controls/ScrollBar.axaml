@@ -159,6 +159,7 @@
             </Setter>
         </Style>
         <Style Selector="^ /template/ Thumb">
+            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="CornerRadius" Value="99" />
             <Setter Property="Background" Value="{TemplateBinding Foreground}" />
             <Setter Property="Template">
