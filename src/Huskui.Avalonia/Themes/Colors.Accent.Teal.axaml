@@ -1,32 +1,32 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default"><Color x:Key="AccentColor0">#FAFEFD</Color>
-            <Color x:Key="AccentColor1">#F3FBF9</Color>
-            <Color x:Key="AccentColor2">#E0F8F3</Color>
-            <Color x:Key="AccentColor3">#CCF3EA</Color>
-            <Color x:Key="AccentColor4">#B8EAE0</Color>
-            <Color x:Key="AccentColor5">#A1DED2</Color>
-            <Color x:Key="AccentColor6">#83CDC1</Color>
-            <Color x:Key="AccentColor7">#53B9AB</Color>
-            <Color x:Key="AccentColor8">#12A594</Color>
-            <Color x:Key="AccentColor9">#0D9B8A</Color>
-            <Color x:Key="AccentColor10">#008573</Color>
-            <Color x:Key="AccentColor11">#0D3D38</Color>
+        <ResourceDictionary x:Key="Default"><Color x:Key="Accent0Color">#FAFEFD</Color>
+            <Color x:Key="Accent1Color">#F3FBF9</Color>
+            <Color x:Key="Accent2Color">#E0F8F3</Color>
+            <Color x:Key="Accent3Color">#CCF3EA</Color>
+            <Color x:Key="Accent4Color">#B8EAE0</Color>
+            <Color x:Key="Accent5Color">#A1DED2</Color>
+            <Color x:Key="Accent6Color">#83CDC1</Color>
+            <Color x:Key="Accent7Color">#53B9AB</Color>
+            <Color x:Key="Accent8Color">#12A594</Color>
+            <Color x:Key="Accent9Color">#0D9B8A</Color>
+            <Color x:Key="Accent11Color">#008573</Color>
+            <Color x:Key="Accent12Color">#0D3D38</Color>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <Color x:Key="AccentColor0">#0D1514</Color>
-            <Color x:Key="AccentColor1">#111C1B</Color>
-            <Color x:Key="AccentColor2">#0D2D2A</Color>
-            <Color x:Key="AccentColor3">#023B37</Color>
-            <Color x:Key="AccentColor4">#084843</Color>
-            <Color x:Key="AccentColor5">#145750</Color>
-            <Color x:Key="AccentColor6">#1C6961</Color>
-            <Color x:Key="AccentColor7">#207E73</Color>
-            <Color x:Key="AccentColor8">#12A594</Color>
-            <Color x:Key="AccentColor9">#0EB39E</Color>
-            <Color x:Key="AccentColor10">#0BD8B6</Color>
-            <Color x:Key="AccentColor11">#ADF0DD</Color>
+            <Color x:Key="Accent0Color">#0D1514</Color>
+            <Color x:Key="Accent1Color">#111C1B</Color>
+            <Color x:Key="Accent2Color">#0D2D2A</Color>
+            <Color x:Key="Accent3Color">#023B37</Color>
+            <Color x:Key="Accent4Color">#084843</Color>
+            <Color x:Key="Accent5Color">#145750</Color>
+            <Color x:Key="Accent6Color">#1C6961</Color>
+            <Color x:Key="Accent7Color">#207E73</Color>
+            <Color x:Key="Accent8Color">#12A594</Color>
+            <Color x:Key="Accent9Color">#0EB39E</Color>
+            <Color x:Key="Accent11Color">#0BD8B6</Color>
+            <Color x:Key="Accent12Color">#ADF0DD</Color>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
