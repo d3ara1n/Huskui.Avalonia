@@ -30,7 +30,7 @@
                 <DoubleTransition
                     Easing="CubicEaseOut"
                     Property="Canvas.Left"
-                    Duration="0:0:0.2" />
+                    Duration="{StaticResource ControlNormalAnimationDuration}" />
             </Transitions>
         </Setter>
         <Setter Property="Template">
@@ -59,7 +59,7 @@
                                           ContentTemplate="{TemplateBinding OnContentTemplate}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <Border Grid.Column="0" Name="SwitchKnobBounds" Height="20" Width="40"
+                        <Border Grid.Column="0" Name="SwitchKnobBounds" Width="40" Height="20"
                                 Cursor="Hand"
                                 CornerRadius="{TemplateBinding CornerRadius}"
                                 Background="{TemplateBinding Background}"
@@ -72,26 +72,21 @@
                                 </Transitions>
                             </Border.Transitions>
                             <Canvas x:Name="PART_SwitchKnob"
-                                    HorizontalAlignment="Left"
-                                    Width="20" Height="20">
-
-                                <Grid x:Name="PART_MovingKnobs"
-                                      Width="20" Height="20">
-
-                                    <Ellipse Name="SwitchKnob"
-                                             Fill="{StaticResource OverlaySolidBackgroundBrush}"
-                                             Width="16" Height="16">
-                                        <Ellipse.Effect>
-                                            <DropShadowEffect BlurRadius="6" Opacity="0.1" OffsetX="2" OffsetY="2" />
-                                        </Ellipse.Effect>
-                                        <Ellipse.Transitions>
+                                    HorizontalAlignment="Left" Width="20"
+                                    Height="20">
+                                <Panel x:Name="PART_MovingKnobs" Width="20" Height="20">
+                                    <Border Name="SwitchKnob" Width="16" Height="16"
+                                            Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                            BoxShadow="2 2 4 0 #3F000000"
+                                            CornerRadius="{StaticResource FullCornerRadius}">
+                                        <Border.Transitions>
                                             <Transitions>
                                                 <TransformOperationsTransition Property="RenderTransform"
                                                                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                                             </Transitions>
-                                        </Ellipse.Transitions>
-                                    </Ellipse>
-                                </Grid>
+                                        </Border.Transitions>
+                                    </Border>
+                                </Panel>
                             </Canvas>
                         </Border>
                     </Grid>
@@ -103,10 +98,10 @@
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
 
-        <Style Selector="^:pointerover /template/ Ellipse#SwitchKnob">
+        <Style Selector="^:pointerover /template/ Border#SwitchKnob">
             <Setter Property="RenderTransform" Value="scale(0.9)" />
         </Style>
-        <Style Selector="^:pressed /template/ Ellipse#SwitchKnob">
+        <Style Selector="^:pressed /template/ Border#SwitchKnob">
             <Setter Property="RenderTransform" Value="scale(0.8)" />
         </Style>
 
