@@ -26,17 +26,17 @@ public class Page : HeaderedContentControl
                                                     o => o.IsBackButtonVisible,
                                                     (o, v) => o.IsBackButtonVisible = v);
 
-    public static readonly StyledProperty<BoxShadows> BoxShadowProperty = AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
+    public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
+        AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
+
+
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     public BoxShadows BoxShadow
     {
         get => GetValue(BoxShadowProperty);
         set => SetValue(BoxShadowProperty, value);
     }
-
-    
-
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
 
     public bool IsBackButtonVisible
     {

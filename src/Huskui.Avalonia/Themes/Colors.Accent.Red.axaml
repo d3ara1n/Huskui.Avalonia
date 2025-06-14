@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default"><Color x:Key="Accent0Color">#FFFCFC</Color>
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="Accent0Color">#FFFCFC</Color>
             <Color x:Key="Accent1Color">#FFF7F7</Color>
             <Color x:Key="Accent2Color">#FEEBEC</Color>
             <Color x:Key="Accent3Color">#FFDBDC</Color>

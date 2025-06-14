@@ -35,7 +35,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                         VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        BoxShadow="{TemplateBinding BoxShadow}">
+                        BoxShadow="{TemplateBinding BoxShadow}" ClipToBounds="True">
                     <ScrollViewer
                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"

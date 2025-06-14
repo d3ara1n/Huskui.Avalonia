@@ -117,17 +117,16 @@
                 <ControlTemplate>
                     <Border BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}">
-                    </Border>
+                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" />
                 </ControlTemplate>
             </Setter>
         </Style>
 
-        <Style Selector="^ /template/ Thumb:pointerover">
+        <Style Selector="^:pointerover /template/ Thumb">
             <Setter Property="RenderTransform" Value="scale(0.9)" />
         </Style>
 
-        <Style Selector="^ /template/ Thumb:pressed">
+        <Style Selector="^:pressed /template/ Thumb">
             <Setter Property="RenderTransform" Value="scale(0.8)" />
         </Style>
     </ControlTheme>
