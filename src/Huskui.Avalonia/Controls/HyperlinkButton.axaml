@@ -1,9 +1,13 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White" Width="256" Height="128">
             <StackPanel Margin="32" Spacing="8">
                 <HyperlinkButton NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
+                    Husk/ui
+                </HyperlinkButton>
+                <HyperlinkButton Classes="Dashed" NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
                     Husk/ui
                 </HyperlinkButton>
                 <HyperlinkButton NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/" IsEnabled="False">
@@ -38,19 +42,20 @@
                                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Border Name="Underline" BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Width="{Binding #PART_ContentPresenter.Bounds.Width}">
-                        <Border.Transitions>
+                    <Rectangle Name="Underline"
+                               StrokeThickness="{TemplateBinding BorderThickness,Converter={x:Static husk:ThicknessConverters.ToDouble},ConverterParameter=bottom}"
+                               Stroke="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               Width="{Binding #PART_ContentPresenter.Bounds.Width}">
+                        <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
+                                <BrushTransition Property="Stroke" Easing="SineEaseOut"
                                                  Duration="{StaticResource ControlFastestAnimationDuration}" />
                                 <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
                                                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                             </Transitions>
-                        </Border.Transitions>
-                    </Border>
+                        </Rectangle.Transitions>
+                    </Rectangle>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
                         Content="{TemplateBinding Content}"
@@ -63,11 +68,11 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:pointerover/template/ Border#Underline">
+        <Style Selector="^:pointerover/template/ Rectangle#Underline">
             <Setter Property="RenderTransform" Value="scaleY(2)" />
         </Style>
 
-        <Style Selector="^:pressed/template/ Border#Underline">
+        <Style Selector="^:pressed/template/ Rectangle#Underline">
             <Setter Property="RenderTransform" Value="scaleY(0.0)" />
         </Style>
 
@@ -79,8 +84,12 @@
         <Style Selector="^:disabled /template/ Panel#Container">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
-        <Style Selector="^:disabled /template/ Border#Underline">
-            <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Style Selector="^:disabled /template/ Rectangle#Underline">
+            <Setter Property="Stroke" Value="{StaticResource ControlBorderBrush}" />
+        </Style>
+
+        <Style Selector="^.Dashed /template/ Rectangle#Underline">
+            <Setter Property="StrokeDashArray" Value="2,2" />
         </Style>
     </ControlTheme>
 
@@ -105,20 +114,21 @@
                                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Border Name="Underline" BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Width="{Binding #PART_ContentPresenter.Bounds.Width}"
-                            RenderTransform="translateY(2px)">
-                        <Border.Transitions>
+                    <Rectangle Name="Underline"
+                               StrokeThickness="{TemplateBinding BorderThickness,Converter={x:Static husk:ThicknessConverters.ToDouble},ConverterParameter=bottom}"
+                               Stroke="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               Width="{Binding #PART_ContentPresenter.Bounds.Width}"
+                               RenderTransform="translateY(2px)">
+                        <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
+                                <BrushTransition Property="Stroke" Easing="SineEaseOut"
                                                  Duration="{StaticResource ControlFastestAnimationDuration}" />
                                 <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseIn"
                                                                Duration="{StaticResource ControlInstantAnimationDuration}" />
                             </Transitions>
-                        </Border.Transitions>
-                    </Border>
+                        </Rectangle.Transitions>
+                    </Rectangle>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
                         Content="{TemplateBinding Content}"
@@ -141,7 +151,7 @@
         <Style Selector="^:pointerover/template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
         </Style>
-        <Style Selector="^:pointerover/template/ Border#Underline">
+        <Style Selector="^:pointerover/template/ Rectangle#Underline">
             <Setter Property="RenderTransform" Value="translateY(0px)" />
         </Style>
 
@@ -153,8 +163,8 @@
         <Style Selector="^:disabled /template/ Panel#Container">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
-        <Style Selector="^:disabled /template/ Border#Underline">
-            <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Style Selector="^:disabled /template/ Rectangle#Underline">
+            <Setter Property="Stroke" Value="{StaticResource ControlBorderBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
