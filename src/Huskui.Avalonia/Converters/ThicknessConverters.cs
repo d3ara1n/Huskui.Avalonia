@@ -57,6 +57,16 @@ public static class ThicknessConverters
         return v;
     });
 
+    public static IValueConverter FromDouble { get; } = new RelayConverter((v, _) =>
+    {
+        return v switch
+        {
+            double d => new Thickness(d),
+            int i => new Thickness(i),
+            _ => v
+        };
+    });
+
     public static IValueConverter DividedBy { get; } = new RelayConverter((v, p) =>
     {
         if (v is double o)
