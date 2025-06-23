@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 
@@ -18,12 +19,16 @@ public class SwitchPresenter : TemplatedControl
                                                                       (o, v) => o.CurrentCase = v);
 
     public static readonly DirectProperty<SwitchPresenter, object?> ValueProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, object?>(nameof(Value), o => o.Value, (o, v) => o.Value = v);
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, object?>(nameof(Value),
+                                                                  o => o.Value,
+                                                                  (o, v) => o.Value = v,
+                                                                  defaultBindingMode: BindingMode.OneWay);
 
     public static readonly DirectProperty<SwitchPresenter, Type> TargetTypeProperty =
         AvaloniaProperty.RegisterDirect<SwitchPresenter, Type>(nameof(TargetType),
                                                                o => o.TargetType,
-                                                               (o, v) => o.TargetType = v);
+                                                               (o, v) => o.TargetType = v,
+                                                               defaultBindingMode: BindingMode.OneTime);
 
     public static readonly StyledProperty<object?> ContentProperty =
         AvaloniaProperty.Register<SwitchPresenter, object?>(nameof(Content));
