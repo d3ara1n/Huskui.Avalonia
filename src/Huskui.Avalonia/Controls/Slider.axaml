@@ -18,7 +18,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Panel>
+                    <Panel Name="Container">
                         <Track
                             Name="PART_Track"
                             IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
@@ -54,7 +54,7 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Panel>
+                    <Panel Name="Container">
                         <Track
                             Name="PART_Track"
                             IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
@@ -103,31 +103,44 @@
         </Style>
 
         <Style Selector="^ /template/ Thumb">
-            <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
-            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
-            <Setter Property="Transitions">
-                <Transitions>
-                    <TransformOperationsTransition Property="RenderTransform"
-                                                   Duration="{StaticResource ControlFastestAnimationDuration}" />
-                </Transitions>
-            </Setter>
-            <Setter Property="Template">
-                <ControlTemplate>
-                    <Border BorderThickness="{TemplateBinding BorderThickness}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" />
-                </ControlTemplate>
+            <Setter Property="Theme">
+                <ControlTheme TargetType="Thumb">
+                    <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+                    <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Template">
+                        <ControlTemplate>
+                            <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    CornerRadius="{TemplateBinding CornerRadius}"
+                                    Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <Ellipse Name="Knob" Fill="{StaticResource ControlAccentInteractiveBackgroundBrush}">
+                                    <Ellipse.Transitions>
+                                        <Transitions>
+                                            <TransformOperationsTransition Property="RenderTransform"
+                                                                           Easing="CubicEaseOut"
+                                                                           Duration="{StaticResource ControlInstantAnimationDuration}" />
+                                        </Transitions>
+                                    </Ellipse.Transitions>
+                                </Ellipse>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter>
+
+                    <Style Selector="^:pointerover /template/ Ellipse#Knob">
+                        <Setter Property="RenderTransform" Value="scale(1.1)" />
+                    </Style>
+                    <Style Selector="^:pressed /template/ Ellipse#Knob">
+                        <Setter Property="RenderTransform" Value="scale(0.9)" />
+                    </Style>
+                </ControlTheme>
             </Setter>
         </Style>
 
-        <Style Selector="^:pointerover /template/ Thumb">
-            <Setter Property="RenderTransform" Value="scale(0.9)" />
-        </Style>
-
-        <Style Selector="^:pressed /template/ Thumb">
-            <Setter Property="RenderTransform" Value="scale(0.8)" />
+        <Style Selector="^:disabled /template/ Panel#Container">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
