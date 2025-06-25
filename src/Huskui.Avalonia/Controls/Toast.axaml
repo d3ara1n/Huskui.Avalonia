@@ -30,17 +30,9 @@
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Padding="{TemplateBinding Padding}" />
                         </ScrollViewer>
-                        <Panel VerticalAlignment="Top">
-                            <Border Name="HeaderBackground" IsVisible="{TemplateBinding IsHeaderVisible}"
-                                    CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static local:CornerRadiusConverters.Upper}}"
-                                    Background="{StaticResource OverlaySolidBackgroundBrush}">
-                                <Border.Opacity>
-                                    <MultiBinding Converter="{x:Static local:InternalConverters.OffsetToOpacity}">
-                                        <Binding ElementName="ScrollViewer" Path="Offset" />
-                                        <Binding ElementName="HeaderBackground" Path="Bounds.Height" />
-                                    </MultiBinding>
-                                </Border.Opacity>
-                            </Border>
+                        <Border Name="HeaderBackground" VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding IsHeaderVisible}"
+                                CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static local:CornerRadiusConverters.Upper}}">
                             <DockPanel Margin="{StaticResource ToastHeaderlessContentMargin}">
                                 <Button Padding="8" CornerRadius="{StaticResource FullCornerRadius}"
                                         Theme="{StaticResource OutlineButtonTheme}"
@@ -61,7 +53,7 @@
                                     </ContentPresenter.Styles>
                                 </ContentPresenter>
                             </DockPanel>
-                        </Panel>
+                        </Border>
                     </Panel>
                 </Border>
             </ControlTemplate>
