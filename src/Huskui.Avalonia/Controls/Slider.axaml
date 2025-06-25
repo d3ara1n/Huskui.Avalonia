@@ -10,28 +10,26 @@
         </Panel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
-        <Setter Property="MinHeight" Value="18" />
-        <Setter Property="MinWidth" Value="18" />
-        <Setter Property="Padding" Value="6" />
+        <Setter Property="Padding" Value="2" />
         <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Style Selector="^:horizontal">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Template">
                 <ControlTemplate>
                     <Panel Name="Container">
-                        <Track
-                            Name="PART_Track"
-                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                            Maximum="{TemplateBinding Maximum}"
-                            Minimum="{TemplateBinding Minimum}"
-                            Orientation="Horizontal"
-                            Value="{TemplateBinding Value, Mode=TwoWay}">
+                        <Track Margin="{TemplateBinding Padding}"
+                               Name="PART_Track"
+                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                               Maximum="{TemplateBinding Maximum}"
+                               Minimum="{TemplateBinding Minimum}"
+                               Orientation="Horizontal"
+                               Value="{TemplateBinding Value, Mode=TwoWay}">
                             <Track.DecreaseButton>
                                 <RepeatButton
                                     Name="PART_DecreaseButton"
                                     Focusable="False"
-                                    Margin="0,0,-9,0"
-                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Vertical}}"
+                                    Height="6"
+                                    Margin="0,0,-4,0"
                                     CornerRadius="{TemplateBinding CornerRadius}"
                                     Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
                             </Track.DecreaseButton>
@@ -39,12 +37,12 @@
                                 <RepeatButton
                                     Name="PART_IncreaseButton"
                                     Focusable="False"
-                                    Margin="-9,0,0,0"
-                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Vertical}}"
+                                    Height="6"
+                                    Margin="-4,0,0,0"
                                     CornerRadius="{TemplateBinding CornerRadius}"
                                     Background="{StaticResource ControlBackgroundBrush}" />
                             </Track.IncreaseButton>
-                            <Thumb Width="{Binding $self.Bounds.Height}" />
+                            <Thumb Width="18" Height="18" />
                         </Track>
                     </Panel>
                 </ControlTemplate>
@@ -55,19 +53,19 @@
             <Setter Property="Template">
                 <ControlTemplate>
                     <Panel Name="Container">
-                        <Track
-                            Name="PART_Track"
-                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                            Maximum="{TemplateBinding Maximum}"
-                            Minimum="{TemplateBinding Minimum}"
-                            Orientation="Vertical"
-                            Value="{TemplateBinding Value, Mode=TwoWay}">
+                        <Track Margin="{TemplateBinding Padding}"
+                               Name="PART_Track"
+                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                               Maximum="{TemplateBinding Maximum}"
+                               Minimum="{TemplateBinding Minimum}"
+                               Orientation="Vertical"
+                               Value="{TemplateBinding Value, Mode=TwoWay}">
                             <Track.DecreaseButton>
                                 <RepeatButton
                                     Name="PART_DecreaseButton"
                                     Focusable="False"
-                                    Margin="0,-9,0,0"
-                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Horizontal}}"
+                                    Width="6"
+                                    Margin="0,-4,0,0"
                                     CornerRadius="{TemplateBinding CornerRadius}"
                                     Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
                             </Track.DecreaseButton>
@@ -75,12 +73,12 @@
                                 <RepeatButton
                                     Name="PART_IncreaseButton"
                                     Focusable="False"
-                                    Margin="0,0,0,-9"
-                                    Padding="{TemplateBinding Padding,Converter={x:Static husk:ThicknessConverters.Horizontal}}"
+                                    Width="6"
+                                    Margin="0,0,0,-4"
                                     CornerRadius="{TemplateBinding CornerRadius}"
                                     Background="{StaticResource ControlBackgroundBrush}" />
                             </Track.IncreaseButton>
-                            <Thumb Height="{Binding $self.Bounds.Width}" />
+                            <Thumb Width="18" Height="18" />
                         </Track>
                     </Panel>
                 </ControlTemplate>
@@ -107,15 +105,15 @@
                 <ControlTheme TargetType="Thumb">
                     <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
                     <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
-                    <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
                     <Setter Property="Padding" Value="3" />
+                    <Setter Property="ClipToBounds" Value="False" />
                     <Setter Property="Template">
                         <ControlTemplate>
                             <Border BorderThickness="{TemplateBinding BorderThickness}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                    Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                                    BoxShadow="0 0 2 0 #3f000000">
                                 <Ellipse Name="Knob" Fill="{StaticResource ControlAccentInteractiveBackgroundBrush}">
                                     <Ellipse.Transitions>
                                         <Transitions>
