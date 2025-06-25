@@ -43,6 +43,12 @@
                                 <ContentPresenter Content="{TemplateBinding Header}"
                                                   ContentTemplate="{TemplateBinding HeaderTemplate}"
                                                   IsVisible="{TemplateBinding IsHeaderVisible}">
+                                    <ContentPresenter.Opacity>
+                                        <MultiBinding Converter="{x:Static local:InternalConverters.OffsetToOpacity}">
+                                            <Binding ElementName="ScrollViewer" Path="Offset" />
+                                            <Binding ElementName="HeaderBackground" Path="Bounds.Height" />
+                                        </MultiBinding>
+                                    </ContentPresenter.Opacity>
                                     <ContentPresenter.Styles>
                                         <Style Selector="ContentPresenter > TextBlock">
                                             <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
