@@ -1,0 +1,57 @@
+
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install GitVersion
+        uses: GitTools/actions/gitversion/setup@v3.2.1
+        with:
+          versionSpec: '6.x'
+
+      - name: Run GitVersion
+        id: gitversion
+        uses: GitTools/actions/gitversion/execute@v3.2.1
+        with:
+            useConfigFile: true
+
+      - name: Install git-cliff
+        run: |
+            cargo install git-cliff
+
+      - name: Pack NuGet package
+        run: |
+          dotnet pack src/Huskui.Avalonia/Huskui.Avalonia.csproj \
+            --configuration Release \
+            --output ./publish
+
+      - name: Generate changelog
+        run: git-cliff -o ./CHANGELOG.md
+
+      - name: Publish to NuGet
+        run: |
+            dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+            dotnet nuget push ./publish/*.snupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: ./CHANGELOG.md

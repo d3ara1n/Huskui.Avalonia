@@ -9,7 +9,6 @@
 
         <!-- NuGet Package Metadata -->
         <PackageId>Huskui.Avalonia</PackageId>
-        <Version>0.3.0</Version>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
         <Product>Huskui.Avalonia</Product>
@@ -30,13 +29,11 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.0"/>
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.302"/>
+        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.303" />
     </ItemGroup>
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
-        <AvaloniaXaml Remove="HuskuiTheme.axaml"/>
-        <AvaloniaResource Include="HuskuiTheme.axaml"/>
     </ItemGroup>
 
     <!-- Include files needed for NuGet packaging -->
@@ -47,6 +44,10 @@
 
     <!-- Source Link for better debugging experience -->
     <ItemGroup>
+        <PackageReference Include="GitVersion.MsBuild" Version="6.3.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
     </ItemGroup>
 </Project>
