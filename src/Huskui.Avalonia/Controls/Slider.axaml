@@ -9,7 +9,6 @@
         </Panel>
     </Design.PreviewWith>
     <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
-        <Setter Property="Padding" Value="2" />
         <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Style Selector="^:horizontal">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -30,7 +29,7 @@
                                     Height="6"
                                     Margin="0,0,-4,0"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+                                    Background="{StaticResource ControlAccentBackgroundBrush}" />
                             </Track.DecreaseButton>
                             <Track.IncreaseButton>
                                 <RepeatButton
@@ -66,7 +65,7 @@
                                     Width="6"
                                     Margin="0,-4,0,0"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+                                    Background="{StaticResource ControlAccentBackgroundBrush}" />
                             </Track.DecreaseButton>
                             <Track.IncreaseButton>
                                 <RepeatButton
@@ -103,17 +102,16 @@
             <Setter Property="Theme">
                 <ControlTheme TargetType="Thumb">
                     <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
-                    <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
-                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+                    <Setter Property="Padding" Value="2" />
                     <Setter Property="ClipToBounds" Value="False" />
                     <Setter Property="Template">
                         <ControlTemplate>
                             <Border BorderThickness="{TemplateBinding BorderThickness}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     CornerRadius="{TemplateBinding CornerRadius}"
-                                    Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
-                                    BoxShadow="0 0 2 0 #3f000000">
-                                <Ellipse Name="Knob" Fill="{StaticResource ControlAccentInteractiveBackgroundBrush}">
+                                    Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <Ellipse Name="Knob" Fill="{StaticResource OverlaySolidBackgroundBrush}">
                                     <Ellipse.Transitions>
                                         <Transitions>
                                             <TransformOperationsTransition Property="RenderTransform"
