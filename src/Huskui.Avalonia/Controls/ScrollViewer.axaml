@@ -24,9 +24,24 @@
                         </ScrollContentPresenter.GestureRecognizers>
                     </ScrollContentPresenter>
                     <ScrollBar Name="PART_HorizontalScrollBar"
-                               Orientation="Horizontal" VerticalAlignment="Bottom" />
+                               Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <ScrollBar.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Opacity"
+                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </ScrollBar.Transitions>
+                    </ScrollBar>
                     <ScrollBar Name="PART_VerticalScrollBar"
-                               Orientation="Vertical" HorizontalAlignment="Right" />
+                               Orientation="Vertical" HorizontalAlignment="Right">
+
+                        <ScrollBar.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Opacity"
+                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </ScrollBar.Transitions>
+                    </ScrollBar>
                 </Panel>
             </ControlTemplate>
         </Setter>

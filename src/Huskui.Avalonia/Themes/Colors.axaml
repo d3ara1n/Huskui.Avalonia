@@ -18,7 +18,7 @@
 
             <StaticResource x:Key="FlyoutColor" ResourceKey="Gray1Color" />
             <StaticResource x:Key="LayerColor" ResourceKey="White7Color" />
-            <StaticResource x:Key="CardColor" ResourceKey="Gray2Color" />
+            <StaticResource x:Key="CardColor" ResourceKey="White7Color" />
             <StaticResource x:Key="InteractiveColor" ResourceKey="White7Color" />
             <StaticResource x:Key="SmokeColor" ResourceKey="Black7Color" />
             <StaticResource x:Key="DarkColor" ResourceKey="Gray12Color" />
