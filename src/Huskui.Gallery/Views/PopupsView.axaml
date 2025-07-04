@@ -49,12 +49,12 @@
                             <MenuItem
                                 Icon="{fie:SymbolIcon Symbol=CheckboxChecked,FontSize={StaticResource MediumFontSize}}"
                                 Header="And">
-                                <MenuItem Header="Checkbox" HotKey="F2" ToggleType="CheckBox" />
+                                <MenuItem Header="Checkbox" InputGesture="Shift+C" ToggleType="CheckBox" />
                             </MenuItem>
                             <MenuItem Icon="{fie:SymbolIcon Symbol=Checkbox1,FontSize={StaticResource MediumFontSize}}"
                                       Header="Also">
-                                <MenuItem Header="Radio" HotKey="F3" ToggleType="Radio" IsChecked="True" />
-                                <MenuItem Header="Station" HotKey="F3" ToggleType="Radio" />
+                                <MenuItem Header="Radio" InputGesture="Shift+B" ToggleType="Radio" IsChecked="True" />
+                                <MenuItem Header="Station" InputGesture="F3" ToggleType="Radio" />
                             </MenuItem>
                         </MenuFlyout>
                     </Button.ContextFlyout>

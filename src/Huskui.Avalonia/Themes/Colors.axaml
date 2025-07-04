@@ -123,8 +123,7 @@
 
     <!-- Common -->
     <!-- Foreground -->
-    <SolidColorBrush x:Key="ControlSecondaryForegroundBrush" Color="{DynamicResource Gray11Color}" />
-    <SolidColorBrush x:Key="ControlTertiaryForegroundBrush" Color="{DynamicResource Gray10Color}" />
+    <SolidColorBrush x:Key="ControlSecondaryForegroundBrush" Color="{DynamicResource Gray10Color}" />
     <SolidColorBrush x:Key="ControlReversedForegroundBrush" Color="{DynamicResource Gray1Color}" />
     <SolidColorBrush x:Key="ControlDarkForegroundBrush" Color="{DynamicResource DarkColor}" />
 
