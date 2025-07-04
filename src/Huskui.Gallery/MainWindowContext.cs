@@ -16,7 +16,7 @@ public partial class MainWindowContext : ObservableObject
     public AvaloniaList<EntryModel> Entries { get; } =
     [
         new() { Display = "Buttons", Page = typeof(ButtonsView) },
-        new() { Display = "Buttons", Page = null },
+        new() { Display = "Popups", Page = typeof(PopupsView) },
         new() { Display = "Buttons", Page = null }
     ];
 

@@ -119,7 +119,7 @@
                                Stroke="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                Width="{Binding #PART_ContentPresenter.Bounds.Width}"
-                               RenderTransform="translateY(2px)">
+                               RenderTransform="translateY(0px)">
                         <Rectangle.Transitions>
                             <Transitions>
                                 <BrushTransition Property="Stroke" Easing="SineEaseOut"
@@ -152,12 +152,12 @@
             <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
         </Style>
         <Style Selector="^:pointerover/template/ Rectangle#Underline">
-            <Setter Property="RenderTransform" Value="translateY(0px)" />
+            <Setter Property="RenderTransform" Value="translateY(-1px)" />
         </Style>
 
         <Style Selector="^:pressed /template/ Panel#Container">
             <Setter Property="Opacity" Value="0.7" />
-            <Setter Property="RenderTransform" Value="translateY(2px)" />
+            <Setter Property="RenderTransform" Value="translateY(3px)" />
         </Style>
 
         <Style Selector="^:disabled /template/ Panel#Container">

@@ -2,11 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Thickness x:Key="ToolTipFillMargin">-12,-8</Thickness>
-
     <ControlTheme x:Key="{x:Type ToolTip}"
                   TargetType="ToolTip">
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="Padding" Value="12,8" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Name="LayoutRoot" Margin="2"
@@ -15,7 +15,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}" BoxShadow="0 0 4 0 #3F000000">
                     <ContentPresenter Name="PART_ContentPresenter"
-                                      Padding="12,8"
+                                      Padding="{TemplateBinding Padding}"
                                       Content="{TemplateBinding Content}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}">
                         <!-- 由于 ToolTip 不在 LogicalTree上，无法选中 -->

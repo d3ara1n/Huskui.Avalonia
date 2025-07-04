@@ -42,6 +42,18 @@
                         Theme="{StaticResource GhostButtonTheme}" />
             </Grid>
         </controls:ControlPresenter>
+        <controls:ControlPresenter Title="Hyperlinks">
+            <StackPanel Spacing="12">
+                <HyperlinkButton>
+                    <husk:IconLabel Icon="Search" Text="Default with icon" />
+                </HyperlinkButton>
+                <TextBlock>
+                    <Run Text="Or use it in a" />
+                    <HyperlinkButton Content="TextBlock" />
+                    <Run Text="." />
+                </TextBlock>
+            </StackPanel>
+        </controls:ControlPresenter>
         <controls:ControlPresenter Title="SplitButton &amp; DropDownButton">
             <StackPanel Spacing="12" Orientation="Horizontal">
                 <SplitButton Content="SplitButton">
@@ -60,17 +72,38 @@
                 </DropDownButton>
             </StackPanel>
         </controls:ControlPresenter>
-        <controls:ControlPresenter Title="ToggleButton &amp; ToggleSplitButton">
-            <StackPanel Spacing="12">
-                <ToggleButton Content="ToggleButton" />
-                <ToggleSplitButton Content="ToggleSplitButton">
-                    <ToggleSplitButton.Flyout>
-                        <MenuFlyout>
-                            <MenuItem Header="Other Button" />
-                        </MenuFlyout>
-                    </ToggleSplitButton.Flyout>
-                </ToggleSplitButton>
-            </StackPanel>
+        <controls:ControlPresenter Title="Toggles &amp; Switches">
+            <controls:ControlPresenter.Operation>
+                <StackPanel>
+                    <TextBlock Text="Value" />
+                    <ToggleSwitch Name="ToggleZoneValue" IsChecked="True" />
+                </StackPanel>
+            </controls:ControlPresenter.Operation>
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <StackPanel Grid.Column="0" Spacing="12">
+                    <ToggleButton Content="ToggleButton"
+                                  IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}" />
+                    <ToggleButton Theme="{StaticResource GhostToggleButtonTheme}" Content="GhostToggleButtonTheme"
+                                  IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}" />
+                    <ToggleSplitButton Content="ToggleSplitButton"
+                                       IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}">
+                        <ToggleSplitButton.Flyout>
+                            <MenuFlyout>
+                                <MenuItem Header="Other Button" />
+                            </MenuFlyout>
+                        </ToggleSplitButton.Flyout>
+                    </ToggleSplitButton>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="12">
+                    <ToggleSwitch Content="Switch" OnContent="On Content" OffContent="Off Content"
+                                  IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}" />
+                    <RadioButton Content="Default" IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}" />
+                    <RadioButton Content="AlternativeRadioButtonTheme"
+                                 Theme="{StaticResource AlternativeRadioButtonTheme}"
+                                 IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked,Converter={x:Static BoolConverters.Not}}" />
+                    <CheckBox IsChecked="{Binding ElementName=ToggleZoneValue,Path=IsChecked}" Content="Default" />
+                </StackPanel>
+            </Grid>
         </controls:ControlPresenter>
     </StackPanel>
 </husk:Page>
