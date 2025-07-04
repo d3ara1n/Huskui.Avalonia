@@ -107,17 +107,6 @@
             </Style>
         </Style>
 
-        <Style Selector="^:indeterminate">
-            <Style Selector="^ /template/ Border#Box">
-                <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
-            </Style>
-
-            <Style Selector="^ /template/ Ellipse#Indeterminate">
-                <Setter Property="Opacity" Value="1" />
-            </Style>
-        </Style>
-
         <Style Selector="^:disabled /template/ Border#Box">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
