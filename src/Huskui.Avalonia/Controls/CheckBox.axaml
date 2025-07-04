@@ -49,31 +49,19 @@
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <fi:SymbolIcon Name="Indeterminate" Symbol="LineHorizontal1"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           Foreground="{StaticResource ControlDarkForegroundBrush}" Opacity="0"
-                                           RenderTransform="scale(0.98)">
-                                <fi:SymbolIcon.Transitions>
+                            <Border Name="Indicator" CornerRadius="{TemplateBinding CornerRadius}"
+                                    Margin="2" RenderTransform="scale(0.0)"
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}">
+                                <Border.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="BackEaseOut"
-                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <CornerRadiusTransition Property="CornerRadius" Easing="CubicEaseOut"
+                                                                Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition Property="RenderTransform"
+                                                                       Easing="CubicEaseOut"
+                                                                       Duration="{StaticResource ControlInstantAnimationDuration}" />
                                     </Transitions>
-                                </fi:SymbolIcon.Transitions>
-                            </fi:SymbolIcon>
-                            <fi:SymbolIcon Name="Determinate" Symbol="Checkmark" FontSize="{TemplateBinding FontSize}"
-                                           Foreground="{StaticResource ControlDarkForegroundBrush}" Opacity="0"
-                                           RenderTransform="scale(0.0)">
-                                <fi:SymbolIcon.Transitions>
-                                    <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="BackEaseOut"
-                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                    </Transitions>
-                                </fi:SymbolIcon.Transitions>
-                            </fi:SymbolIcon>
+                                </Border.Transitions>
+                            </Border>
                         </Panel>
                     </Border>
                     <ContentPresenter Name="PART_ContentPresenter"
@@ -99,9 +87,16 @@
                 <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
             </Style>
 
-            <Style Selector="^ /template/ fi|SymbolIcon#Determinate">
-                <Setter Property="Opacity" Value="1" />
+            <Style Selector="^ /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(1.0)" />
+            </Style>
+
+            <Style Selector="^:pointerover /template/ Border#Indicator">
+                <Setter Property="RenderTransform" Value="scale(1.2)" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="RenderTransform" Value="scale(0.8)" />
             </Style>
         </Style>
 
@@ -118,10 +113,17 @@
                 <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
                 <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
             </Style>
-
-            <Style Selector="^ /template/ fi|SymbolIcon#Indeterminate">
-                <Setter Property="Opacity" Value="1" />
+            <Style Selector="^ /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(1.0)" />
+                <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+            </Style>
+
+            <Style Selector="^:pointerover /template/ Border#Indicator">
+                <Setter Property="RenderTransform" Value="scale(1.2)" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="RenderTransform" Value="scale(0.8)" />
             </Style>
         </Style>
 

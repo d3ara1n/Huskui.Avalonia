@@ -64,9 +64,10 @@
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Ellipse Name="Determinate" Margin="2" Fill="{StaticResource OverlaySolidBackgroundBrush}"
-                                     RenderTransform="scale(0.0)">
-                                <Ellipse.Transitions>
+                            <Border Name="Indicator" Margin="2" CornerRadius="{StaticResource FullCornerRadius}"
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                    RenderTransform="scale(0.0)">
+                                <Border.Transitions>
                                     <Transitions>
                                         <DoubleTransition Property="Opacity" Easing="CubicEaseOut"
                                                           Duration="{StaticResource ControlFasterAnimationDuration}" />
@@ -74,8 +75,8 @@
                                                                        Easing="CubicEaseOut"
                                                                        Duration="{StaticResource ControlInstantAnimationDuration}" />
                                     </Transitions>
-                                </Ellipse.Transitions>
-                            </Ellipse>
+                                </Border.Transitions>
+                            </Border>
                         </Panel>
                     </Border>
                     <ContentPresenter Name="PART_ContentPresenter"
@@ -101,16 +102,15 @@
                 <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
             </Style>
 
-            <Style Selector="^ /template/ Ellipse#Determinate">
+            <Style Selector="^ /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(1.0)" />
             </Style>
 
-            <Style Selector="^:pointerover /template/ Ellipse#Determinate">
+            <Style Selector="^:pointerover /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(1.2)" />
             </Style>
 
-
-            <Style Selector="^:pressed /template/ Ellipse#Determinate">
+            <Style Selector="^:pressed /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(0.8)" />
             </Style>
         </Style>
@@ -158,18 +158,17 @@
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Ellipse Name="Determinate" Margin="{TemplateBinding BorderThickness}"
-                                     Fill="{StaticResource OverlaySolidBackgroundBrush}">
-                                <Ellipse.Transitions>
+                            <Border Name="Indicator" CornerRadius="{StaticResource FullCornerRadius}"
+                                    Margin="{TemplateBinding BorderThickness}"
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}">
+                                <Border.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="CubicEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
                                         <TransformOperationsTransition Property="RenderTransform"
                                                                        Easing="CubicEaseOut"
                                                                        Duration="{StaticResource ControlInstantAnimationDuration}" />
                                     </Transitions>
-                                </Ellipse.Transitions>
-                            </Ellipse>
+                                </Border.Transitions>
+                            </Border>
                         </Panel>
                     </Border>
                     <ContentPresenter Name="PART_ContentPresenter"
@@ -195,16 +194,15 @@
                 <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
             </Style>
 
-            <Style Selector="^ /template/ Ellipse#Determinate">
+            <Style Selector="^ /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(0.6)" />
             </Style>
 
-            <Style Selector="^:pointerover /template/ Ellipse#Determinate">
+            <Style Selector="^:pointerover /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(0.7)" />
             </Style>
 
-
-            <Style Selector="^:pressed /template/ Ellipse#Determinate">
+            <Style Selector="^:pressed /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(0.5)" />
             </Style>
         </Style>
