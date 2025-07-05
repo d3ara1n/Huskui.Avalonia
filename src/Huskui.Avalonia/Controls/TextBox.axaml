@@ -65,11 +65,11 @@
                                     <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
                                     <Setter Property="Padding" Value="8,4" />
                                     <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
-                                    <Setter Property="Margin" Value="0,4,4,4" />
+                                    <Setter Property="Margin" Value="2"/>
                                 </Style>
                             </Grid.Styles>
                             <ContentPresenter Grid.Column="0" Content="{TemplateBinding InnerLeftContent}"
-                                              Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                                              Foreground="{StaticResource ControlSecondaryForegroundBrush}"/>
                             <ScrollViewer Grid.Column="2"
                                           Cursor="Ibeam"
                                           AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
@@ -184,7 +184,7 @@
                                     <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
                                     <Setter Property="Padding" Value="8,4" />
                                     <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
-                                    <Setter Property="Margin" Value="0,4,4,4" />
+                                    <Setter Property="Margin" Value="2" />
                                 </Style>
                             </Grid.Styles>
                             <ContentPresenter Grid.Column="0" Content="{TemplateBinding InnerLeftContent}"
@@ -299,7 +299,7 @@
                                     <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
                                     <Setter Property="Padding" Value="8,4" />
                                     <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
-                                    <Setter Property="Margin" Value="0,4,4,4" />
+                                    <Setter Property="Margin" Value="2" />
                                 </Style>
                             </Grid.Styles>
                             <ContentPresenter Grid.Column="0" Content="{TemplateBinding InnerLeftContent}"

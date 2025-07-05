@@ -5,5 +5,5 @@
            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
            x:Class="Huskui.Gallery.Views.PortalView" IsHeaderVisible="False">
-    <TextBlock Text="There is no code previewer, Press F12 to see the code." />
+    <TextBlock Text="There is no code previewer, press F12 to see the properties and check the repository for the code behind." />
 </husk:Page>

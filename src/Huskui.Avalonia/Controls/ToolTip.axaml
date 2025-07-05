@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Thickness x:Key="ToolTipFillMargin">-12,-8</Thickness>
+    
     <ControlTheme x:Key="{x:Type ToolTip}"
                   TargetType="ToolTip">
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
@@ -18,12 +19,6 @@
                                       Padding="{TemplateBinding Padding}"
                                       Content="{TemplateBinding Content}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}">
-                        <!-- 由于 ToolTip 不在 LogicalTree上，无法选中 -->
-                        <!-- <ContentPresenter.Styles> -->
-                        <!--     <Style Selector="ContentPresenter > TextBlock"> -->
-                        <!--         <Setter Property="Margin" Value="12,6"/> -->
-                        <!--     </Style> -->
-                        <!-- </ContentPresenter.Styles> -->
                     </ContentPresenter>
                 </Border>
             </ControlTemplate>

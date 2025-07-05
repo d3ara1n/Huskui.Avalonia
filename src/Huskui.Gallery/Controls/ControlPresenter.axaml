@@ -20,7 +20,7 @@
                             <TextBlock Text="{TemplateBinding Title}" FontSize="{StaticResource LargeFontSize}" />
                             <TextBlock Text="{TemplateBinding Subtitle}"
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                       FontSize="{StaticResource SmallFontSize}"
+                                       FontSize="{StaticResource MediumFontSize}"
                                        IsVisible="{TemplateBinding Subtitle, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
                         </StackPanel>
                         <husk:Divider Grid.Row="1" />

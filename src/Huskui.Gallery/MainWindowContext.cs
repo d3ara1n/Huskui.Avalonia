@@ -17,6 +17,7 @@ public partial class MainWindowContext : ObservableObject
     [
         new() { Display = "Buttons", Page = typeof(ButtonsView) },
         new() { Display = "Popups", Page = typeof(PopupsView) },
+        new() { Display = "Presents", Page = typeof(PresetsView) },
         new() { Display = "Buttons", Page = null }
     ];
 
