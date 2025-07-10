@@ -19,7 +19,7 @@
                                 BackgroundSource="Digger"
                                 TintColor="{DynamicResource SolidColor}"
                                 TintOpacity="1"
-                                MaterialOpacity="0.6" />
+                                MaterialOpacity="0.65" />
                         </ExperimentalAcrylicBorder.Material>
                     </ExperimentalAcrylicBorder>
                     <Border Background="{TemplateBinding Background}" IsHitTestVisible="False">
