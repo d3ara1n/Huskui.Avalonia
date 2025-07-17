@@ -9,10 +9,14 @@ namespace Huskui.Avalonia;
 public class HuskuiTheme : Styles
 {
     public static readonly StyledProperty<AccentColor> AccentProperty =
-        AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent), defaultBindingMode: BindingMode.OneTime);
+        AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent),
+                                                            AccentColor.Neutral,
+                                                            defaultBindingMode: BindingMode.OneWay);
 
     public static readonly StyledProperty<CornerStyle> CornerProperty =
-        AvaloniaProperty.Register<HuskuiTheme, CornerStyle>(nameof(Corner), defaultBindingMode: BindingMode.OneTime);
+        AvaloniaProperty.Register<HuskuiTheme, CornerStyle>(nameof(Corner),
+                                                            CornerStyle.Normal,
+                                                            defaultBindingMode: BindingMode.OneWay);
 
 
     public HuskuiTheme()
@@ -46,7 +50,8 @@ public class HuskuiTheme : Styles
                     Source = new Uri(source, UriKind.Absolute)
                 };
         }
-        else if (change.Property == CornerProperty)
+
+        if (change.Property == CornerProperty)
         {
             var corner = change.GetNewValue<CornerStyle>();
             var source = $"avares://Huskui.Avalonia/Themes/CornerRadius.{corner}.axaml";

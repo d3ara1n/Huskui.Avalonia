@@ -91,7 +91,7 @@
                                     <Grid RowDefinitions="Auto,4,*,4,Auto" ColumnDefinitions="*,Auto"
                                           Margin="{TemplateBinding Padding}">
                                         <Grid Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"
-                                              ColumnDefinitions="*,8,Auto">
+                                              ColumnDefinitions="*,Auto" ColumnSpacing="8">
                                             <Grid.IsVisible>
                                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                                     <Binding Path="Title"
@@ -104,7 +104,8 @@
                                             <TextBlock Grid.Column="0" Text="{TemplateBinding Title}"
                                                        FontWeight="{StaticResource ControlStrongFontWeight}"
                                                        TextTrimming="CharacterEllipsis" />
-                                            <Button Grid.Column="2" Padding="6" CornerRadius="10"
+                                            <Button Grid.Column="1" Padding="6"
+                                                    CornerRadius="{StaticResource FullCornerRadius}"
                                                     Theme="{StaticResource OutlineButtonTheme}"
                                                     DockPanel.Dock="Right" IsEnabled="{TemplateBinding IsOpen}"
                                                     Command="{Binding Close,RelativeSource={RelativeSource Mode=TemplatedParent}}"
