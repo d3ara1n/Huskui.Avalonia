@@ -11,6 +11,9 @@ public class HuskuiTheme : Styles
     public static readonly StyledProperty<AccentColor> AccentProperty =
         AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent), defaultBindingMode: BindingMode.OneTime);
 
+    public static readonly StyledProperty<CornerStyle> CornerProperty =
+        AvaloniaProperty.Register<HuskuiTheme, CornerStyle>(nameof(Corner), defaultBindingMode: BindingMode.OneTime);
+
 
     public HuskuiTheme()
     {
@@ -23,6 +26,12 @@ public class HuskuiTheme : Styles
         set => SetValue(AccentProperty, value);
     }
 
+    public CornerStyle Corner
+    {
+        get => GetValue(CornerProperty);
+        set => SetValue(CornerProperty, value);
+    }
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -31,6 +40,16 @@ public class HuskuiTheme : Styles
         {
             var color = change.GetNewValue<AccentColor>();
             var source = $"avares://Huskui.Avalonia/Themes/Colors.Accent.{color}.axaml";
+            Resources.MergedDictionaries[1] =
+                new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
+                {
+                    Source = new Uri(source, UriKind.Absolute)
+                };
+        }
+        else if (change.Property == CornerProperty)
+        {
+            var corner = change.GetNewValue<CornerStyle>();
+            var source = $"avares://Huskui.Avalonia/Themes/CornerRadius.{corner}.axaml";
             Resources.MergedDictionaries[0] =
                 new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
                 {
