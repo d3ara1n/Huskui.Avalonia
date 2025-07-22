@@ -128,8 +128,7 @@
     <SolidColorBrush x:Key="NotificationBorderBrush" Color="{DynamicResource Gray1Color}" />
     <SolidColorBrush x:Key="NotificationBackgroundBrush" Color="{DynamicResource Gray1Color}" />
 
-    <LinearGradientBrush x:Key="NotificationSuccessBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%"
-                         Opacity="0.7">
+    <LinearGradientBrush x:Key="NotificationSuccessBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%">
         <GradientStops>
             <GradientStop Offset="0" Color="{DynamicResource Success4Color}" />
             <GradientStop Offset="0.3" Color="{DynamicResource Success2Color}" />
@@ -137,8 +136,7 @@
             <GradientStop Offset="1" Color="{DynamicResource Gray2Color}" />
         </GradientStops>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="NotificationWarningBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%"
-                         Opacity="0.7">
+    <LinearGradientBrush x:Key="NotificationWarningBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%">
         <GradientStops>
             <GradientStop Offset="0" Color="{DynamicResource Warning4Color}" />
             <GradientStop Offset="0.3" Color="{DynamicResource Warning2Color}" />
@@ -146,8 +144,7 @@
             <GradientStop Offset="1" Color="{DynamicResource Gray2Color}" />
         </GradientStops>
     </LinearGradientBrush>
-    <LinearGradientBrush x:Key="NotificationDangerBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%"
-                         Opacity="0.5">
+    <LinearGradientBrush x:Key="NotificationDangerBackgroundBrush" StartPoint="50%,0%" EndPoint="50%,100%">
         <GradientStops>
             <GradientStop Offset="0" Color="{DynamicResource Danger4Color}" />
             <GradientStop Offset="0.3" Color="{DynamicResource Danger2Color}" />
