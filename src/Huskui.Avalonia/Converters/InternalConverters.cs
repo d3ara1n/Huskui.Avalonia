@@ -31,7 +31,7 @@ internal static class InternalConverters
     public static IMultiValueConverter StringFormat { get; } = new RelayMultiConverter((v, _, info) =>
     {
         if (v is [string format, ..])
-            return string.Format(info, format, v.Skip(1).ToArray());
+            return string.Format(info, format, [.. v.Skip(1)]);
 
         return v;
     });
