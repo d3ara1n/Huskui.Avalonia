@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Huskui.Avalonia.Transitions;
 
 namespace Huskui.Avalonia.Controls;
@@ -30,6 +31,15 @@ public class Dialog : HeaderedContentControl
 
     public static readonly StyledProperty<bool> IsPrimaryButtonVisibleProperty =
         AvaloniaProperty.Register<Dialog, bool>(nameof(IsPrimaryButtonVisible));
+
+    public static readonly RoutedEvent ConfirmRequestedEvent =
+        RoutedEvent.Register<Dialog, ConfirmRequestedEventArgs>(nameof(ConfirmRequested), RoutingStrategies.Bubble);
+
+    public event EventHandler<ConfirmRequestedEventArgs> ConfirmRequested
+    {
+        add => AddHandler(ConfirmRequestedEvent, value);
+        remove => RemoveHandler(ConfirmRequestedEvent, value);
+    }
 
 
     public readonly TaskCompletionSource<bool> CompletionSource = new();
@@ -98,6 +108,11 @@ public class Dialog : HeaderedContentControl
 
     private void Confirm()
     {
+        var args = new ConfirmRequestedEventArgs(this, Result);
+        RaiseEvent(args);
+        if (args.Rejected)
+            return;
+
         if (Container != null)
         {
             Container.Transition = new PopUpTransition();
@@ -129,6 +144,17 @@ public class Dialog : HeaderedContentControl
         #endregion
 
         internal void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    #endregion
+
+    #region Nested Type: ConfirmRequestedEventArgs
+
+    public class ConfirmRequestedEventArgs(object? source, object? result)
+        : RoutedEventArgs(ConfirmRequestedEvent, source)
+    {
+        public object? Result { get; init; } = result;
+        public bool Rejected { get; set; }
     }
 
     #endregion
