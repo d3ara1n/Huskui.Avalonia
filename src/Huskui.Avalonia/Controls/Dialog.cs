@@ -35,12 +35,6 @@ public class Dialog : HeaderedContentControl
     public static readonly RoutedEvent ConfirmRequestedEvent =
         RoutedEvent.Register<Dialog, ConfirmRequestedEventArgs>(nameof(ConfirmRequested), RoutingStrategies.Bubble);
 
-    public event EventHandler<ConfirmRequestedEventArgs> ConfirmRequested
-    {
-        add => AddHandler(ConfirmRequestedEvent, value);
-        remove => RemoveHandler(ConfirmRequestedEvent, value);
-    }
-
 
     public readonly TaskCompletionSource<bool> CompletionSource = new();
 
@@ -102,6 +96,12 @@ public class Dialog : HeaderedContentControl
     public ICommand PrimaryCommand { get; }
     public ICommand SecondaryCommand { get; }
 
+    public event EventHandler<ConfirmRequestedEventArgs> ConfirmRequested
+    {
+        add => AddHandler(ConfirmRequestedEvent, value);
+        remove => RemoveHandler(ConfirmRequestedEvent, value);
+    }
+
     protected virtual bool ValidateResult(object? result) => false;
 
     private bool CanConfirm() => ValidateResult(Result);
@@ -130,6 +130,21 @@ public class Dialog : HeaderedContentControl
 
     public void Dismiss() => Cancel();
 
+    #region Nested type: ConfirmRequestedEventArgs
+
+    #region Nested Type: ConfirmRequestedEventArgs
+
+    public class ConfirmRequestedEventArgs(object? source, object? result)
+        : RoutedEventArgs(ConfirmRequestedEvent, source)
+    {
+        public object? Result { get; init; } = result;
+        public bool Rejected { get; set; }
+    }
+
+    #endregion
+
+    #endregion
+
     #region Nested type: InternalCommand
 
     private class InternalCommand(Action execute, Func<bool>? canExecute = null) : ICommand
@@ -144,17 +159,6 @@ public class Dialog : HeaderedContentControl
         #endregion
 
         internal void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    #endregion
-
-    #region Nested Type: ConfirmRequestedEventArgs
-
-    public class ConfirmRequestedEventArgs(object? source, object? result)
-        : RoutedEventArgs(ConfirmRequestedEvent, source)
-    {
-        public object? Result { get; init; } = result;
-        public bool Rejected { get; set; }
     }
 
     #endregion
