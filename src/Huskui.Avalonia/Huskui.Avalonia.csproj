@@ -28,7 +28,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.0"/>
+        <PackageReference Include="Avalonia" Version="11.3.3"/>
         <PackageReference Include="FluentIcons.Avalonia" Version="1.1.303"/>
     </ItemGroup>
 
@@ -44,7 +44,7 @@
 
     <!-- Source Link for better debugging experience -->
     <ItemGroup>
-        <PackageReference Include="GitVersion.MsBuild" Version="6.3.0">
+        <PackageReference Include="GitVersion.MsBuild" Version="6.4.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
