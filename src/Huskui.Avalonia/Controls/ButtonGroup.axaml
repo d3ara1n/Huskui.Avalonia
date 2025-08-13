@@ -19,6 +19,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="ItemContainerTheme" Value="{StaticResource ButtonGroupItemTheme}" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Horizontal" />
@@ -47,6 +48,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Name="Container">
