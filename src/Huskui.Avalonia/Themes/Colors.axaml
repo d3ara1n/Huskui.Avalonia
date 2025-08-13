@@ -21,7 +21,8 @@
             <StaticResource x:Key="CardColor" ResourceKey="White7Color" />
             <StaticResource x:Key="InteractiveColor" ResourceKey="White7Color" />
             <StaticResource x:Key="SmokeColor" ResourceKey="Black7Color" />
-            <StaticResource x:Key="DarkColor" ResourceKey="Gray12Color" />
+            <StaticResource x:Key="WhiteColor" ResourceKey="Gray1Color" />
+            <StaticResource x:Key="BlackColor" ResourceKey="Gray12Color" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <Color x:Key="TransparentColor">#00000000</Color>
@@ -33,7 +34,8 @@
             <StaticResource x:Key="CardColor" ResourceKey="Black3Color" />
             <StaticResource x:Key="InteractiveColor" ResourceKey="Black3Color" />
             <StaticResource x:Key="SmokeColor" ResourceKey="Black7Color" />
-            <StaticResource x:Key="DarkColor" ResourceKey="Gray1Color" />
+            <StaticResource x:Key="WhiteColor" ResourceKey="Gray12Color" />
+            <StaticResource x:Key="BlackColor" ResourceKey="Gray1Color" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
@@ -123,7 +125,8 @@
     <!-- Foreground -->
     <SolidColorBrush x:Key="ControlSecondaryForegroundBrush" Color="{DynamicResource Gray10Color}" />
     <SolidColorBrush x:Key="ControlReversedForegroundBrush" Color="{DynamicResource Gray1Color}" />
-    <SolidColorBrush x:Key="ControlDarkForegroundBrush" Color="{DynamicResource DarkColor}" />
+    <SolidColorBrush x:Key="ControlWhiteForegroundBrush" Color="{DynamicResource WhiteColor}" />
+    <SolidColorBrush x:Key="ControlBlackForegroundBrush" Color="{DynamicResource BlackColor}" />
 
     <SolidColorBrush x:Key="NotificationBorderBrush" Color="{DynamicResource Gray1Color}" />
     <SolidColorBrush x:Key="NotificationBackgroundBrush" Color="{DynamicResource Gray1Color}" />

@@ -100,7 +100,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
         </Style>
         <Style Selector="^:checked /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{StaticResource ControlDarkForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
 
         <!-- <Style Selector="^:checked /template/ ContentPresenter#PART_ContentPresenter"> -->

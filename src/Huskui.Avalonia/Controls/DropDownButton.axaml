@@ -109,22 +109,22 @@
 
         <Style Selector="^.Primary">
             <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
-            <Setter Property="Foreground" Value="{StaticResource ControlDarkForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
 
         <Style Selector="^.Success">
             <Setter Property="Background" Value="{StaticResource ControlSuccessInteractiveBackgroundBrush}" />
-            <Setter Property="Foreground" Value="{StaticResource ControlDarkForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
 
         <Style Selector="^.Warning">
             <Setter Property="Background" Value="{StaticResource ControlWarningInteractiveBackgroundBrush}" />
-            <Setter Property="Foreground" Value="{StaticResource ControlDarkForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
 
         <Style Selector="^.Danger">
             <Setter Property="Background" Value="{StaticResource ControlDangerInteractiveBackgroundBrush}" />
-            <Setter Property="Foreground" Value="{StaticResource ControlDarkForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
