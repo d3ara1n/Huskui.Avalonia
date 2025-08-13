@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Rendering.Composition;
 
@@ -40,8 +39,8 @@ namespace Huskui.Avalonia.Transitions
                     visual.StartAnimation("Opacity", opacity);
 
                     var slide = compositor.CreateVector3KeyFrameAnimation();
-                    slide.InsertKeyFrame(0, new Vector3(0f, (float)visual.Size.Y, 0f));
-                    slide.InsertKeyFrame(1, new Vector3(0f, 0f, 0f));
+                    slide.InsertKeyFrame(0, new(0f, (float)visual.Size.Y, 0f));
+                    slide.InsertKeyFrame(1, new(0f, 0f, 0f));
                     slide.Duration = TimeSpan.FromMilliseconds(297);
                     visual.StartAnimation("Offset", slide);
                 }

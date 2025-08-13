@@ -57,7 +57,7 @@ namespace Huskui.Avalonia.Controls
                         width = child.MinWidth;
                     }
 
-                    child.Measure(new Size(width, availableSize.Height));
+                    child.Measure(new(width, availableSize.Height));
                     rowMaxHeight = double.Max(rowMaxHeight, child.DesiredSize.Height);
                 }
 
@@ -68,7 +68,7 @@ namespace Huskui.Avalonia.Controls
             }
 
             var requiredHeight = double.Max(totalHeight + RowSpacing * (row - 1), 0d);
-            return new Size(totalWidth, requiredHeight);
+            return new(totalWidth, requiredHeight);
         }
 
         protected override Size ArrangeOverride(Size final)
@@ -149,7 +149,7 @@ namespace Huskui.Avalonia.Controls
                     // TODO: 当 HorizontalAlignment 不为 Stretch 时，依旧用同一个 count，但取每个 child 的 MinWidth
                     // TODO: 应该使用 DesiredSize.Width 作为 MinWidth 而不是 MinWidth
 
-                    child.Arrange(new Rect(usedWidth, totalHeight + RowSpacing * row, double.Floor(width), height));
+                    child.Arrange(new(usedWidth, totalHeight + RowSpacing * row, double.Floor(width), height));
                     usedWidth += width + ColumnSpacing;
                 }
 
@@ -160,7 +160,7 @@ namespace Huskui.Avalonia.Controls
             }
 
             var actualHeight = double.Max(totalHeight + RowSpacing * (row - 1), 0d);
-            return new Size(totalWidth, VerticalAlignment == VerticalAlignment.Stretch ? final.Height : actualHeight);
+            return new(totalWidth, VerticalAlignment == VerticalAlignment.Stretch ? final.Height : actualHeight);
         }
 
         private int SeparateLines(double width, int start)

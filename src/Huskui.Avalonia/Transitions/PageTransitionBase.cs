@@ -33,7 +33,7 @@ namespace Huskui.Avalonia.Transitions
             // 捕获交换过的 from, to，不过顺序不影响
             var fromBuilder = new Builder(Duration);
             var toBuilder = new Builder(Duration);
-            Configure(fromBuilder, toBuilder, new Lazy<Visual>(() => GetVisualParent(from, to)));
+            Configure(fromBuilder, toBuilder, new(() => GetVisualParent(from, to)));
 
             var (fromAnimations, toAnimations) = (fromBuilder.Build(forward), toBuilder.Build(forward));
 
@@ -257,7 +257,7 @@ namespace Huskui.Avalonia.Transitions
                         KeyFrame? frame = new();
                         if (_cue.HasValue)
                         {
-                            frame.Cue = new Cue(_cue.Value);
+                            frame.Cue = new(_cue.Value);
                         }
 
                         if (_keyTime.HasValue)

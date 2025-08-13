@@ -156,14 +156,8 @@ namespace Huskui.Avalonia.Controls
             Easing = new SineEaseOut(),
             Children =
             {
-                new KeyFrame
-                {
-                    Cue = new Cue(0d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } }
-                },
-                new KeyFrame
-                {
-                    Cue = new Cue(1d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } }
-                }
+                new() { Cue = new(0d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } } },
+                new() { Cue = new(1d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } } }
             }
         };
 
@@ -174,14 +168,8 @@ namespace Huskui.Avalonia.Controls
             Easing = new SineEaseOut(),
             Children =
             {
-                new KeyFrame
-                {
-                    Cue = new Cue(0d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } }
-                },
-                new KeyFrame
-                {
-                    Cue = new Cue(1d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } }
-                }
+                new() { Cue = new(0d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } } },
+                new() { Cue = new(1d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } } }
             }
         };
 

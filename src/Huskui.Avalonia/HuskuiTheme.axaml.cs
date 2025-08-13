@@ -42,7 +42,7 @@ namespace Huskui.Avalonia
                 Resources.MergedDictionaries[1] =
                     new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
                     {
-                        Source = new Uri(source, UriKind.Absolute)
+                        Source = new(source, UriKind.Absolute)
                     };
             }
 
@@ -53,7 +53,7 @@ namespace Huskui.Avalonia
                 Resources.MergedDictionaries[0] =
                     new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
                     {
-                        Source = new Uri(source, UriKind.Absolute)
+                        Source = new(source, UriKind.Absolute)
                     };
             }
         }

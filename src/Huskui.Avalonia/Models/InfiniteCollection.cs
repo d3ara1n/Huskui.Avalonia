@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace Huskui.Avalonia.Models
 {
@@ -54,7 +53,7 @@ namespace Huskui.Avalonia.Models
                 }
 
                 field = value;
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(HasNext)));
+                OnPropertyChanged(new(nameof(HasNext)));
             }
         } = true;
 
@@ -69,7 +68,7 @@ namespace Huskui.Avalonia.Models
                 }
 
                 field = value;
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(IsFetching)));
+                OnPropertyChanged(new(nameof(IsFetching)));
             }
         }
 

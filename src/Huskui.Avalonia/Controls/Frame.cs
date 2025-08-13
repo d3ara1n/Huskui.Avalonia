@@ -56,7 +56,7 @@ namespace Huskui.Avalonia.Controls
         private ContentPresenter? _presenter;
         private ContentPresenter? _presenter2;
 
-        public Frame() => _goBackCommand = new InternalGoBackCommand(this);
+        public Frame() => _goBackCommand = new(this);
 
         public object? Content
         {
@@ -95,7 +95,7 @@ namespace Huskui.Avalonia.Controls
                 _history.Push(_currentFrame);
             }
 
-            _currentFrame = new FrameFrame(page, parameter, transition);
+            _currentFrame = new(page, parameter, transition);
 
             UpdateContent(content, transition ?? DefaultTransition, false);
 

@@ -138,7 +138,7 @@ namespace Huskui.Avalonia.Controls
                 var opened = change.GetNewValue<bool>();
                 if (opened)
                 {
-                    RaiseEvent(new RoutedEventArgs(OpenedEvent, this));
+                    RaiseEvent(new(OpenedEvent, this));
                 }
 
                 PseudoClasses.Set(":open", opened);
@@ -148,7 +148,7 @@ namespace Huskui.Avalonia.Controls
              && change.Property == OpacityProperty
              && change.NewValue is < double.Epsilon)
             {
-                RaiseEvent(new RoutedEventArgs(ClosedEvent, this));
+                RaiseEvent(new(ClosedEvent, this));
             }
         }
 
