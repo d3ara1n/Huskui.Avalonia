@@ -3,35 +3,38 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Layout;
 
-namespace Huskui.Avalonia.Controls;
-
-[PseudoClasses(":vertical", ":horizontal")]
-public class Divider : ContentControl
+namespace Huskui.Avalonia.Controls
 {
-    public static readonly StyledProperty<Orientation> OrientationProperty =
-        AvaloniaProperty.Register<Divider, Orientation>(nameof(Orientation));
-
-    public Orientation Orientation
+    [PseudoClasses(":vertical", ":horizontal")]
+    public class Divider : ContentControl
     {
-        get => GetValue(OrientationProperty);
-        set => SetValue(OrientationProperty, value);
-    }
+        public static readonly StyledProperty<Orientation> OrientationProperty =
+            AvaloniaProperty.Register<Divider, Orientation>(nameof(Orientation));
 
-    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-    {
-        base.OnPropertyChanged(change);
+        public Orientation Orientation
+        {
+            get => GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
+        }
 
-        if (change.Property == OrientationProperty)
-            switch (change.GetNewValue<Orientation>())
+        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+        {
+            base.OnPropertyChanged(change);
+
+            if (change.Property == OrientationProperty)
             {
-                case Orientation.Horizontal:
-                    PseudoClasses.Set(":vertical", false);
-                    PseudoClasses.Set(":horizontal", true);
-                    break;
-                case Orientation.Vertical:
-                    PseudoClasses.Set(":vertical", true);
-                    PseudoClasses.Set(":horizontal", false);
-                    break;
+                switch (change.GetNewValue<Orientation>())
+                {
+                    case Orientation.Horizontal:
+                        PseudoClasses.Set(":vertical", false);
+                        PseudoClasses.Set(":horizontal", true);
+                        break;
+                    case Orientation.Vertical:
+                        PseudoClasses.Set(":vertical", true);
+                        PseudoClasses.Set(":horizontal", false);
+                        break;
+                }
             }
+        }
     }
 }

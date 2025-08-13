@@ -2,18 +2,21 @@
 using Avalonia.Collections;
 using Huskui.Avalonia.Converters;
 
-namespace Huskui.Avalonia.Controls;
-
-// https://github.com/CommunityToolkit/Windows/blob/main/components/Primitives/src/SwitchPresenter/SwitchHelpers.cs
-public class SwitchCases : AvaloniaList<SwitchCase>
+namespace Huskui.Avalonia.Controls
 {
-    internal SwitchCase? EvaluateCases(object? value, Type targetType)
+    // https://github.com/CommunityToolkit/Windows/blob/main/components/Primitives/src/SwitchPresenter/SwitchHelpers.cs
+    public class SwitchCases : AvaloniaList<SwitchCase>
     {
-        if (Count == 0)
-            // If we have no cases, then we can't match anything.
-            return null;
+        internal SwitchCase? EvaluateCases(object? value, Type targetType)
+        {
+            if (Count == 0)
+                // If we have no cases, then we can't match anything.
+            {
+                return null;
+            }
 
-        return this.FirstOrDefault(@case => RelayConverter.CompareValues(value, @case.Value, targetType))
-            ?? this.FirstOrDefault(x => x.Value == AvaloniaProperty.UnsetValue) ?? this.FirstOrDefault();
+            return this.FirstOrDefault(@case => RelayConverter.CompareValues(value, @case.Value, targetType))
+                ?? this.FirstOrDefault(x => x.Value == AvaloniaProperty.UnsetValue) ?? this.FirstOrDefault();
+        }
     }
 }

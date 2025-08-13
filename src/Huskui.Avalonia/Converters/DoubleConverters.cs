@@ -1,26 +1,31 @@
 ﻿using Avalonia.Data.Converters;
 
-namespace Huskui.Avalonia.Converters;
-
-public static class DoubleConverters
+namespace Huskui.Avalonia.Converters
 {
-    public static IValueConverter DividedBy { get; } = new RelayConverter((v, p) =>
+    public static class DoubleConverters
     {
-        if (v is double o)
+        public static IValueConverter DividedBy { get; } = new RelayConverter((v, p) =>
         {
-            if (p is double d)
-                return o / d;
-
-            if (p is int i)
-                return o / i;
-
-            if (p is string s && double.TryParse(s, out var r))
+            if (v is double o)
             {
-                var l = o / r;
-                return l > 1 ? l : 1;
-            }
-        }
+                if (p is double d)
+                {
+                    return o / d;
+                }
 
-        return v;
-    });
+                if (p is int i)
+                {
+                    return o / i;
+                }
+
+                if (p is string s && double.TryParse(s, out var r))
+                {
+                    var l = o / r;
+                    return l > 1 ? l : 1;
+                }
+            }
+
+            return v;
+        });
+    }
 }

@@ -1,3 +1,4 @@
-﻿namespace Huskui.Avalonia.Models;
-
-public static class InternalCommands { }
+﻿namespace Huskui.Avalonia.Models
+{
+    public static class InternalCommands { }
+}

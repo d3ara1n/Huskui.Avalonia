@@ -3,50 +3,50 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 
-namespace Huskui.Avalonia.Controls;
-
-public class NotificationHost : ItemsControl
+namespace Huskui.Avalonia.Controls
 {
-    public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
-        AvaloniaProperty.Register<NotificationHost, HorizontalAlignment>(nameof(HorizontalContentAlignment));
-
-    public static readonly StyledProperty<VerticalAlignment> VerticalContentAlignmentProperty =
-        AvaloniaProperty.Register<NotificationHost, VerticalAlignment>(nameof(VerticalContentAlignment));
-
-    public HorizontalAlignment HorizontalContentAlignment
+    public class NotificationHost : ItemsControl
     {
-        get => GetValue(HorizontalContentAlignmentProperty);
-        set => SetValue(HorizontalContentAlignmentProperty, value);
-    }
+        public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
+            AvaloniaProperty.Register<NotificationHost, HorizontalAlignment>(nameof(HorizontalContentAlignment));
 
-    public VerticalAlignment VerticalContentAlignment
-    {
-        get => GetValue(VerticalContentAlignmentProperty);
-        set => SetValue(VerticalContentAlignmentProperty, value);
-    }
+        public static readonly StyledProperty<VerticalAlignment> VerticalContentAlignmentProperty =
+            AvaloniaProperty.Register<NotificationHost, VerticalAlignment>(nameof(VerticalContentAlignment));
 
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnAttachedToVisualTree(e);
-        AddHandler(NotificationItem.ClosedEvent, ItemClosedHandler);
-    }
+        public HorizontalAlignment HorizontalContentAlignment
+        {
+            get => GetValue(HorizontalContentAlignmentProperty);
+            set => SetValue(HorizontalContentAlignmentProperty, value);
+        }
 
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnDetachedFromVisualTree(e);
-        RemoveHandler(NotificationItem.ClosedEvent, ItemClosedHandler);
-    }
+        public VerticalAlignment VerticalContentAlignment
+        {
+            get => GetValue(VerticalContentAlignmentProperty);
+            set => SetValue(VerticalContentAlignmentProperty, value);
+        }
 
-    private void ItemClosedHandler(object? sender, RoutedEventArgs e)
-    {
-        e.Handled = true;
-        if (e.Source is NotificationItem item)
-            Items.Remove(item);
-    }
+        protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnAttachedToVisualTree(e);
+            AddHandler(NotificationItem.ClosedEvent, ItemClosedHandler);
+        }
+
+        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+        {
+            base.OnDetachedFromVisualTree(e);
+            RemoveHandler(NotificationItem.ClosedEvent, ItemClosedHandler);
+        }
+
+        private void ItemClosedHandler(object? sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+            if (e.Source is NotificationItem item)
+            {
+                Items.Remove(item);
+            }
+        }
 
 
-    public void Pop(NotificationItem item)
-    {
-        Items.Add(item);
+        public void Pop(NotificationItem item) => Items.Add(item);
     }
 }

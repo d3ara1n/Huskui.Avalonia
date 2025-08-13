@@ -2,23 +2,26 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 
-namespace Huskui.Avalonia.Models;
-
-// Connect DataTemplates to IDataTemplate
-public class RelayDataTemplate : AvaloniaList<IDataTemplate>, IDataTemplate
+namespace Huskui.Avalonia.Models
 {
-    #region IDataTemplate Members
-
-    public Control? Build(object? param)
+    // Connect DataTemplates to IDataTemplate
+    public class RelayDataTemplate : AvaloniaList<IDataTemplate>, IDataTemplate
     {
-        var match = this.FirstOrDefault(x => x.Match(param));
-        if (match is not null)
-            return match.Build(param);
+        #region IDataTemplate Members
 
-        return param as Control;
+        public Control? Build(object? param)
+        {
+            var match = this.FirstOrDefault(x => x.Match(param));
+            if (match is not null)
+            {
+                return match.Build(param);
+            }
+
+            return param as Control;
+        }
+
+        public bool Match(object? data) => this.Any(x => x.Match(data)) || data is Control;
+
+        #endregion
     }
-
-    public bool Match(object? data) => this.Any(x => x.Match(data)) || data is Control;
-
-    #endregion
 }

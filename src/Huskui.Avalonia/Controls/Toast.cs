@@ -1,23 +1,21 @@
 ﻿using Avalonia;
 using Avalonia.Controls.Primitives;
 
-namespace Huskui.Avalonia.Controls;
-
-public class Toast : HeaderedContentControl
+namespace Huskui.Avalonia.Controls
 {
-    public static readonly StyledProperty<bool> IsHeaderVisibleProperty =
-        AvaloniaProperty.Register<Toast, bool>(nameof(IsHeaderVisible), true);
-
-    public bool IsHeaderVisible
+    public class Toast : HeaderedContentControl
     {
-        get => GetValue(IsHeaderVisibleProperty);
-        set => SetValue(IsHeaderVisibleProperty, value);
-    }
+        public static readonly StyledProperty<bool> IsHeaderVisibleProperty =
+            AvaloniaProperty.Register<Toast, bool>(nameof(IsHeaderVisible), true);
 
-    protected override Type StyleKeyOverride { get; } = typeof(Toast);
+        public bool IsHeaderVisible
+        {
+            get => GetValue(IsHeaderVisibleProperty);
+            set => SetValue(IsHeaderVisibleProperty, value);
+        }
 
-    public void Dismiss()
-    {
-        RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
+        protected override Type StyleKeyOverride { get; } = typeof(Toast);
+
+        public void Dismiss() => RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
     }
 }

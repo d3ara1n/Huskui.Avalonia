@@ -1,8 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Avalonia.Controls;
-
-public class Modal : ContentControl
+namespace Huskui.Avalonia.Controls
 {
-    protected override Type StyleKeyOverride => typeof(Modal);
+    public class Modal : ContentControl
+    {
+        protected override Type StyleKeyOverride => typeof(Modal);
+    }
 }

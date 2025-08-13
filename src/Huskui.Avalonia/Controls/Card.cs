@@ -2,16 +2,17 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 
-namespace Huskui.Avalonia.Controls;
-
-public class Card : ContentControl
+namespace Huskui.Avalonia.Controls
 {
-    public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
-        AvaloniaProperty.Register<Card, BoxShadows>(nameof(BoxShadow));
-
-    public BoxShadows BoxShadow
+    public class Card : ContentControl
     {
-        get => GetValue(BoxShadowProperty);
-        set => SetValue(BoxShadowProperty, value);
+        public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
+            AvaloniaProperty.Register<Card, BoxShadows>(nameof(BoxShadow));
+
+        public BoxShadows BoxShadow
+        {
+            get => GetValue(BoxShadowProperty);
+            set => SetValue(BoxShadowProperty, value);
+        }
     }
 }

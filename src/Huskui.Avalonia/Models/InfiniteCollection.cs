@@ -1,69 +1,78 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Huskui.Avalonia.Models;
-
-public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable<T>>> factory, int startIndex = 0)
-    : ObservableCollection<T>, IInfiniteCollection, IDisposable
+namespace Huskui.Avalonia.Models
 {
-    private readonly CancellationTokenSource _cts = new();
-    private int _index = startIndex;
-
-    #region IDisposable Members
-
-    public void Dispose()
+    public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable<T>>> factory, int startIndex = 0)
+        : ObservableCollection<T>, IInfiniteCollection, IDisposable
     {
-        if (!_cts.IsCancellationRequested)
-            _cts.Cancel();
-    }
+        private readonly CancellationTokenSource _cts = new();
+        private int _index = startIndex;
 
-    #endregion
+        #region IDisposable Members
 
-    #region IInfiniteCollection Members
-
-    public async Task FetchAsync()
-    {
-        if (IsFetching && _cts.IsCancellationRequested)
-            return;
-
-        IsFetching = true;
-        var rv = await factory.Invoke(_index++, _cts.Token);
-        var dirty = false;
-        foreach (var item in rv)
+        public void Dispose()
         {
-            dirty = true;
-            Add(item);
+            if (!_cts.IsCancellationRequested)
+            {
+                _cts.Cancel();
+            }
         }
 
-        HasNext = dirty;
-        IsFetching = false;
-    }
+        #endregion
 
-    public bool HasNext
-    {
-        get;
-        set
+        #region IInfiniteCollection Members
+
+        public async Task FetchAsync()
         {
-            if (field == value)
+            if (IsFetching && _cts.IsCancellationRequested)
+            {
                 return;
+            }
 
-            field = value;
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(HasNext)));
+            IsFetching = true;
+            var rv = await factory.Invoke(_index++, _cts.Token);
+            var dirty = false;
+            foreach (var item in rv)
+            {
+                dirty = true;
+                Add(item);
+            }
+
+            HasNext = dirty;
+            IsFetching = false;
         }
-    } = true;
 
-    public bool IsFetching
-    {
-        get;
-        set
+        public bool HasNext
         {
-            if (field == value)
-                return;
+            get;
+            set
+            {
+                if (field == value)
+                {
+                    return;
+                }
 
-            field = value;
-            OnPropertyChanged(new PropertyChangedEventArgs(nameof(IsFetching)));
+                field = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(HasNext)));
+            }
+        } = true;
+
+        public bool IsFetching
+        {
+            get;
+            set
+            {
+                if (field == value)
+                {
+                    return;
+                }
+
+                field = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(IsFetching)));
+            }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }

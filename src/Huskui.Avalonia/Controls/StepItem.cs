@@ -1,3 +1,4 @@
-﻿namespace Huskui.Avalonia.Controls;
-
-public class StepItem { }
+﻿namespace Huskui.Avalonia.Controls
+{
+    public class StepItem { }
+}
