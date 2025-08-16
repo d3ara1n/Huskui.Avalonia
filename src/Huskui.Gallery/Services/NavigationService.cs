@@ -9,7 +9,7 @@ namespace Huskui.Gallery.Services;
 /// </summary>
 public class NavigationService : INavigationService
 {
-    private readonly List<GalleryItem?> _history = new();
+    private readonly List<GalleryItem?> _history = [];
     private int _currentIndex = -1;
 
     public GalleryItem? CurrentItem => _currentIndex >= 0 && _currentIndex < _history.Count 

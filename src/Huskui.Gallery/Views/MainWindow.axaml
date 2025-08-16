@@ -39,7 +39,7 @@
                              Classes="SearchBox"
                              Watermark="Search controls...">
                         <TextBox.InnerLeftContent>
-                            <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource SmallFontSize}" />
+                            <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource SmallFontSize}" Margin="12,0,0,0"/>
                         </TextBox.InnerLeftContent>
                     </TextBox>
                 </StackPanel>
@@ -71,84 +71,42 @@
                 <!-- Navigation Content -->
                 <ScrollViewer Grid.Row="2" Margin="8,16,8,8">
                     <StackPanel>
-                        <!-- Search Results -->
-                        <StackPanel IsVisible="{Binding IsSearchActive}">
-                            <TextBlock Text="Search Results"
-                                       Classes="CategoryHeader" />
-                            <ListBox ItemsSource="{Binding SearchResults}"
-                                     Classes="NavigationList">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate x:DataType="models:GalleryItem">
-                                        <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
-                                            <fi:SymbolIcon Grid.Column="0"
-                                                           Symbol="{Binding Icon}"
-                                                           FontSize="{StaticResource MediumFontSize}"
-                                                           Margin="0,0,12,0" />
-                                            <StackPanel Grid.Column="1">
-                                                <TextBlock Text="{Binding Title}"
-                                                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                                <TextBlock Text="{Binding Description}"
-                                                           FontSize="{StaticResource SmallFontSize}"
-                                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                           TextTrimming="CharacterEllipsis" />
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
-                                                <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
-                                                    <TextBlock Text="NEW" Classes="BadgeText" />
-                                                </Border>
-                                                <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
-                                                    <TextBlock Text="UPD" Classes="BadgeText" />
-                                                </Border>
-                                            </StackPanel>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
+                        <!-- Search Results Header -->
+                        <TextBlock Text="Search Results"
+                                   Classes="CategoryHeader"
+                                   IsVisible="{Binding IsSearchActive}" />
 
-                            </ListBox>
-                        </StackPanel>
-
-                        <!-- Categories -->
-                        <ItemsControl ItemsSource="{Binding Categories}"
-                                      IsVisible="{Binding !IsSearchActive}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="models:GalleryCategory">
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Name}"
-                                                   Classes="CategoryHeader" />
-                                        <ListBox ItemsSource="{Binding Items}"
-                                                 SelectedItem="{Binding $parent[husk:AppWindow].((vm:MainWindowViewModel)DataContext).SelectedItem}"
-                                                 Classes="NavigationList">
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate x:DataType="models:GalleryItem">
-                                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
-                                                        <fi:SymbolIcon Grid.Column="0"
-                                                                       Symbol="{Binding Icon}"
-                                                                       FontSize="{StaticResource MediumFontSize}"
-                                                                       Margin="0,0,12,0" />
-                                                        <StackPanel Grid.Column="1">
-                                                            <TextBlock Text="{Binding Title}"
-                                                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                                            <TextBlock Text="{Binding Description}"
-                                                                       FontSize="{StaticResource SmallFontSize}"
-                                                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                                       TextTrimming="CharacterEllipsis" />
-                                                        </StackPanel>
-                                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
-                                                            <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
-                                                                <TextBlock Text="NEW" Classes="BadgeText" />
-                                                            </Border>
-                                                            <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
-                                                                <TextBlock Text="UPD" Classes="BadgeText" />
-                                                            </Border>
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-                                    </StackPanel>
+                        <!-- Unified Items List -->
+                        <ListBox ItemsSource="{Binding DisplayItems}"
+                                 SelectedItem="{Binding SelectedItem}"
+                                 Classes="NavigationList">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:GalleryItem">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
+                                        <fi:SymbolIcon Grid.Column="0"
+                                                       Symbol="{Binding Icon}"
+                                                       FontSize="{StaticResource MediumFontSize}"
+                                                       Margin="0,0,12,0" />
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding Title}"
+                                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
+                                            <TextBlock Text="{Binding Description}"
+                                                       FontSize="{StaticResource SmallFontSize}"
+                                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                       TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                            <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
+                                                <TextBlock Text="NEW" Classes="BadgeText" />
+                                            </Border>
+                                            <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
+                                                <TextBlock Text="UPD" Classes="BadgeText" />
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
                                 </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </ScrollViewer>
 
@@ -187,7 +145,7 @@
         <!-- Main Content -->
         <Grid Grid.Column="1">
             <!-- Content Frame -->
-            <ContentControl Name="ContentFrame" />
+            <TransitioningContentControl Name="ContentFrame" />
 
             <!-- Settings Overlay -->
             <Border Background="{StaticResource LayerBackgroundBrush}"

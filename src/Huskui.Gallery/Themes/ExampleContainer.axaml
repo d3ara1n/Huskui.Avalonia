@@ -18,7 +18,7 @@
                         CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,Auto,*,Auto">
                         <!-- Header -->
-                        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+                        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="16">
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="{TemplateBinding Title}"
                                            FontSize="{StaticResource LargeFontSize}"
@@ -63,7 +63,6 @@
                                 Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
                                 BorderBrush="{StaticResource ControlBorderBrush}"
                                 BorderThickness="1"
-                                CornerRadius="{StaticResource SmallCornerRadius}"
                                 Margin="0,16,0,0"
                                 IsVisible="{TemplateBinding ShowCode}">
                             <StackPanel>
@@ -91,6 +90,7 @@
                                 </Border>
                                 <controls:CodeViewer Code="{TemplateBinding CSharpCode}"
                                                      Language="csharp"
+                                                     CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static husk:CornerRadiusConverters.Lower}}"
                                                      IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
                             </StackPanel>
                         </Border>

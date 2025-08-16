@@ -24,7 +24,7 @@
             <controls:ExampleContainer Title="Basic Button Styles"
                                        Description="Standard button with different visual styles"
                                        XamlCode="&lt;Button Content=&quot;Default&quot; /&gt;&#10;&lt;Button Content=&quot;Primary&quot; Classes=&quot;Primary&quot; /&gt;&#10;&lt;Button Content=&quot;Success&quot; Classes=&quot;Success&quot; /&gt;&#10;&lt;Button Content=&quot;Warning&quot; Classes=&quot;Warning&quot; /&gt;&#10;&lt;Button Content=&quot;Danger&quot; Classes=&quot;Danger&quot; /&gt;">
-                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" 
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
                       ColumnSpacing="12" RowSpacing="12">
                     
                     <!-- Default Theme -->

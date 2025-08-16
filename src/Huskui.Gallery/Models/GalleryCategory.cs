@@ -19,7 +19,7 @@ public partial class GalleryCategory : ObservableObject
     private Symbol _icon = Symbol.Folder;
 
     [ObservableProperty]
-    private ObservableCollection<GalleryItem> _items = new();
+    private ObservableCollection<GalleryItem> _items = [];
 
     [ObservableProperty]
     private bool _isExpanded = true;

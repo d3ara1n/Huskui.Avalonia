@@ -14,8 +14,8 @@ namespace Huskui.Gallery.Services;
 /// </summary>
 public class GalleryService : IGalleryService
 {
-    public ObservableCollection<GalleryCategory> Categories { get; } = new();
-    public ObservableCollection<GalleryItem> AllItems { get; } = new();
+    public ObservableCollection<GalleryCategory> Categories { get; } = [];
+    public ObservableCollection<GalleryItem> AllItems { get; } = [];
 
     public void Initialize()
     {
@@ -38,16 +38,16 @@ public class GalleryService : IGalleryService
             Name = "Controls",
             Description = "Basic UI controls and components",
             Icon = Symbol.ControlButton,
-            Items = new ObservableCollection<GalleryItem>
-            {
+            Items =
+            [
                 new()
                 {
                     Title = "Buttons",
                     Description = "Various button styles and states",
-                    Icon = Symbol.ControlButton,
+                    Icon = Symbol.Button,
                     PageType = typeof(ButtonsPage),
                     Category = "Controls",
-                    Tags = new() { "button", "click", "action" }
+                    Tags = ["button", "click", "action"]
                 },
                 new()
                 {
@@ -56,7 +56,7 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.RectangleLandscape,
                     PageType = typeof(CardsPage),
                     Category = "Controls",
-                    Tags = new() { "card", "container", "content" }
+                    Tags = ["card", "container", "content"]
                 },
                 new()
                 {
@@ -65,7 +65,7 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.Info,
                     PageType = typeof(InfoBarsPage),
                     Category = "Controls",
-                    Tags = new() { "info", "message", "notification" }
+                    Tags = ["info", "message", "notification"]
                 },
                 new()
                 {
@@ -74,9 +74,9 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.Tag,
                     PageType = typeof(TagsPage),
                     Category = "Controls",
-                    Tags = new() { "tag", "label", "category" }
+                    Tags = ["tag", "label", "category"]
                 }
-            }
+            ]
         };
 
         Categories.Add(category);
@@ -93,8 +93,8 @@ public class GalleryService : IGalleryService
             Name = "Layout",
             Description = "Layout containers and panels",
             Icon = Symbol.LayoutRowTwoSplitTop,
-            Items = new ObservableCollection<GalleryItem>
-            {
+            Items =
+            [
                 new()
                 {
                     Title = "Grids",
@@ -102,7 +102,7 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.Grid,
                     PageType = typeof(GridsPage),
                     Category = "Layout",
-                    Tags = new() { "grid", "layout", "responsive" }
+                    Tags = ["grid", "layout", "responsive"]
                 },
                 new()
                 {
@@ -111,9 +111,9 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.LayoutRowTwoSplitTop,
                     PageType = typeof(StackPanelsPage),
                     Category = "Layout",
-                    Tags = new() { "stack", "panel", "vertical", "horizontal" }
+                    Tags = ["stack", "panel", "vertical", "horizontal"]
                 }
-            }
+            ]
         };
 
         Categories.Add(category);
@@ -130,8 +130,8 @@ public class GalleryService : IGalleryService
             Name = "Input",
             Description = "Input controls and forms",
             Icon = Symbol.TextboxSettings,
-            Items = new ObservableCollection<GalleryItem>
-            {
+            Items =
+            [
                 new()
                 {
                     Title = "Text Inputs",
@@ -139,7 +139,7 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.Textbox,
                     PageType = typeof(TextInputsPage),
                     Category = "Input",
-                    Tags = new() { "textbox", "input", "text", "form" }
+                    Tags = ["textbox", "input", "text", "form"]
                 },
                 new()
                 {
@@ -148,9 +148,9 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.ToggleLeft,
                     PageType = typeof(TogglesPage),
                     Category = "Input",
-                    Tags = new() { "toggle", "switch", "checkbox", "radio" }
+                    Tags = ["toggle", "switch", "checkbox", "radio"]
                 }
-            }
+            ]
         };
 
         Categories.Add(category);
@@ -167,7 +167,7 @@ public class GalleryService : IGalleryService
             Name = "Navigation",
             Description = "Navigation and menu components",
             Icon = Symbol.Navigation,
-            Items = new ObservableCollection<GalleryItem>()
+            Items = []
         };
 
         Categories.Add(category);
@@ -180,7 +180,7 @@ public class GalleryService : IGalleryService
             Name = "Data",
             Description = "Data display and collection controls",
             Icon = Symbol.DataHistogram,
-            Items = new ObservableCollection<GalleryItem>()
+            Items = []
         };
 
         Categories.Add(category);
@@ -193,7 +193,7 @@ public class GalleryService : IGalleryService
             Name = "Media",
             Description = "Media and graphics components",
             Icon = Symbol.Image,
-            Items = new ObservableCollection<GalleryItem>()
+            Items = []
         };
 
         Categories.Add(category);

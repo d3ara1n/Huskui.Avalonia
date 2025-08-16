@@ -82,7 +82,7 @@ public class CodeViewer : TemplatedControl
         if (nameScope?.Find("PART_CodeText") is TextBlock codeText)
         {
             codeText.Text = Code;
-            codeText.FontFamily = new FontFamily("Consolas,Monaco,Menlo,monospace");
+            codeText.FontFamily = new("Consolas,Monaco,Menlo,monospace");
         }
     }
 }

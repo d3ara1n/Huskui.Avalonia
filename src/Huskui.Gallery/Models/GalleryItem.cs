@@ -26,7 +26,7 @@ public partial class GalleryItem : ObservableObject
     private string _category = string.Empty;
 
     [ObservableProperty]
-    private List<string> _tags = new();
+    private List<string> _tags = [];
 
     [ObservableProperty]
     private bool _isNew;

@@ -18,7 +18,6 @@
 
     <Style Selector="ListBox.NavigationList ListBoxItem:selected">
         <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
-        <Setter Property="Foreground" Value="{StaticResource ControlWhiteForegroundBrush}" />
     </Style>
 
     <Style Selector="ListBox.NavigationList ListBoxItem:selected /template/ ContentPresenter">
