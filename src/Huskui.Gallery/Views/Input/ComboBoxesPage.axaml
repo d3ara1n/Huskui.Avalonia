@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Input.ComboBoxesPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="ComboBoxes"
@@ -32,7 +32,7 @@
                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </controls:ExampleContainer.Controls>
-                
+
                 <StackPanel Spacing="16" Width="300">
                     <StackPanel Spacing="8">
                         <TextBlock Text="Countries" />
@@ -47,7 +47,7 @@
                             <ComboBoxItem Content="Australia" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Programming Languages" />
                         <ComboBox x:Name="LanguageCombo"
@@ -61,7 +61,7 @@
                             <ComboBoxItem Content="Go" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="With Watermark" />
                         <ComboBox x:Name="WatermarkCombo"
@@ -85,7 +85,7 @@
                             <ComboBoxItem Content="Option 3" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Ghost Style" />
                         <ComboBox Theme="{StaticResource GhostComboBoxTheme}" SelectedIndex="0">
@@ -103,7 +103,7 @@
                             <ComboBoxItem Content="Option 3" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Success Style" />
                         <ComboBox Classes="Success" SelectedIndex="0">
@@ -112,7 +112,7 @@
                             <ComboBoxItem Content="Option 3" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Warning Style" />
                         <ComboBox Classes="Warning" SelectedIndex="0">
@@ -121,7 +121,7 @@
                             <ComboBoxItem Content="Option 3" />
                         </ComboBox>
                     </StackPanel>
-                    
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Error Style" />
                         <ComboBox Classes="Error" SelectedIndex="0">
@@ -138,9 +138,9 @@
                 <husk:Card Padding="24" Width="400">
                     <StackPanel Spacing="20">
                         <TextBlock Text="Application Settings" FontSize="18" FontWeight="Bold" />
-                        
+
                         <husk:Divider />
-                        
+
                         <StackPanel Spacing="16">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Theme" />
@@ -150,7 +150,7 @@
                                     <ComboBoxItem Content="Dark" />
                                 </ComboBox>
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Language" />
                                 <ComboBox SelectedIndex="0">
@@ -161,7 +161,7 @@
                                     <ComboBoxItem Content="Deutsch" />
                                 </ComboBox>
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Font Size" />
                                 <ComboBox SelectedIndex="1">
@@ -171,7 +171,7 @@
                                     <ComboBoxItem Content="Extra Large" />
                                 </ComboBox>
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Auto-save Interval" />
                                 <ComboBox SelectedIndex="2">
@@ -183,9 +183,9 @@
                                 </ComboBox>
                             </StackPanel>
                         </StackPanel>
-                        
+
                         <husk:Divider />
-                        
+
                         <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
                             <Button Content="Reset to Defaults" />
                             <Button Content="Apply Settings" Classes="Primary" />

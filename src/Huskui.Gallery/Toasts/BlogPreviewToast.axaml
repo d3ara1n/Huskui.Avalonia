@@ -1,148 +1,152 @@
 ﻿<husk:Toast xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
-             x:Class="Huskui.Gallery.Toasts.BlogPreviewToast"
-             Header="Understanding Modern UI Design Patterns"
-             IsHeaderVisible="True">
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+            mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+            x:Class="Huskui.Gallery.Toasts.BlogPreviewToast"
+            Header="Understanding Modern UI Design Patterns"
+            IsHeaderVisible="True">
 
     <ScrollViewer Padding="24">
-                <StackPanel Spacing="20">
+        <StackPanel Spacing="20">
 
-                    <!-- Article Metadata -->
-                    <StackPanel Orientation="Horizontal" Spacing="16">
-                        <TextBlock Text="By Sarah Chen"
-                                   FontSize="14"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                        <TextBlock Text="•"
-                                   FontSize="14"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                        <TextBlock Text="8 min read"
-                                   FontSize="14"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                        <TextBlock Text="•"
-                                   FontSize="14"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                        <TextBlock Text="Published 2 days ago"
-                                   FontSize="14"
-                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            <!-- Article Metadata -->
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <TextBlock Text="By Sarah Chen"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Text="•"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Text="8 min read"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Text="•"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Text="Published 2 days ago"
+                           FontSize="14"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+
+            <!-- Featured Image -->
+            <Border Height="200"
+                    CornerRadius="8"
+                    Background="{DynamicResource AccentFillColorDefaultBrush}">
+                <TextBlock Text="🎨 Featured Image"
+                           FontSize="24"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </Border>
+
+            <!-- Article Content -->
+            <StackPanel Spacing="16">
+
+                <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
+                    <Run
+                        Text="In the rapidly evolving world of software development, user interface design patterns have become the cornerstone of creating intuitive and engaging applications. This comprehensive guide explores the fundamental principles that drive modern UI design and how they can be effectively implemented in today's applications." />
+                </TextBlock>
+
+                <TextBlock Text="The Evolution of UI Design"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Margin="0,8,0,0" />
+
+                <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
+                    <Run
+                        Text="User interface design has undergone a remarkable transformation over the past decade. From skeuomorphic designs that mimicked real-world objects to the clean, minimalist approaches we see today, the journey has been driven by user needs and technological capabilities." />
+                </TextBlock>
+
+                <husk:Card Padding="16" Margin="0,8">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="💡 Key Insight" FontWeight="SemiBold" />
+                        <TextBlock
+                            Text="Modern UI design is not just about aesthetics—it's about creating meaningful interactions that guide users naturally through their tasks."
+                            FontStyle="Italic"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </husk:Card>
+
+                <TextBlock Text="Core Design Principles"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Margin="0,16,0,0" />
+
+                <StackPanel Spacing="12">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="1." FontWeight="SemiBold" />
+                        <TextBlock Text="Consistency: Maintain uniform patterns across all interface elements"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
 
-                    <!-- Featured Image -->
-                    <Border Height="200"
-                            CornerRadius="8"
-                            Background="{DynamicResource AccentFillColorDefaultBrush}">
-                        <TextBlock Text="🎨 Featured Image"
-                                   FontSize="24"
-                                   Foreground="White"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
-                    </Border>
-
-                    <!-- Article Content -->
-                    <StackPanel Spacing="16">
-                        
-                        <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
-                            <Run Text="In the rapidly evolving world of software development, user interface design patterns have become the cornerstone of creating intuitive and engaging applications. This comprehensive guide explores the fundamental principles that drive modern UI design and how they can be effectively implemented in today's applications." />
-                        </TextBlock>
-                        
-                        <TextBlock Text="The Evolution of UI Design" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold" 
-                                   Margin="0,8,0,0" />
-                        
-                        <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
-                            <Run Text="User interface design has undergone a remarkable transformation over the past decade. From skeuomorphic designs that mimicked real-world objects to the clean, minimalist approaches we see today, the journey has been driven by user needs and technological capabilities." />
-                        </TextBlock>
-                        
-                        <husk:Card Padding="16" Margin="0,8">
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="💡 Key Insight" FontWeight="SemiBold" />
-                                <TextBlock Text="Modern UI design is not just about aesthetics—it's about creating meaningful interactions that guide users naturally through their tasks."
-                                           FontStyle="Italic"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </husk:Card>
-                        
-                        <TextBlock Text="Core Design Principles" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold" 
-                                   Margin="0,16,0,0" />
-                        
-                        <StackPanel Spacing="12">
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="1." FontWeight="SemiBold" />
-                                <TextBlock Text="Consistency: Maintain uniform patterns across all interface elements"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="2." FontWeight="SemiBold" />
-                                <TextBlock Text="Clarity: Ensure every element has a clear purpose and meaning"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="3." FontWeight="SemiBold" />
-                                <TextBlock Text="Feedback: Provide immediate responses to user actions"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <TextBlock Text="4." FontWeight="SemiBold" />
-                                <TextBlock Text="Accessibility: Design for users of all abilities and contexts"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </StackPanel>
-                        
-                        <TextBlock Text="Implementation Strategies" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold" 
-                                   Margin="0,16,0,0" />
-                        
-                        <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
-                            <Run Text="Implementing these design principles requires a systematic approach. Start with user research to understand your audience's needs, then create wireframes and prototypes to test your concepts before moving to final implementation." />
-                        </TextBlock>
-                        
-                        <Border Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
-                                CornerRadius="8"
-                                Padding="16"
-                                Margin="0,8">
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="📚 Recommended Reading" FontWeight="SemiBold" />
-                                <TextBlock Text="• Don Norman - The Design of Everyday Things" />
-                                <TextBlock Text="• Steve Krug - Don't Make Me Think" />
-                                <TextBlock Text="• Alan Cooper - About Face: The Essentials of Interaction Design" />
-                            </StackPanel>
-                        </Border>
-                        
-                        <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24" Margin="0,16,0,0">
-                            <Run Text="As we continue to push the boundaries of what's possible in user interface design, remember that the best interfaces are often invisible—they allow users to accomplish their goals without friction or confusion." />
-                        </TextBlock>
-
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="2." FontWeight="SemiBold" />
+                        <TextBlock Text="Clarity: Ensure every element has a clear purpose and meaning"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
 
-                    <!-- Action Buttons -->
-                    <StackPanel Spacing="16" Margin="0,24,0,0">
-                        <husk:Divider />
-                        <Grid ColumnDefinitions="*,Auto">
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="16">
-                                <Button Content="👍 Like (42)" Classes="Subtle" />
-                                <Button Content="💬 Comment (8)" Classes="Subtle" />
-                                <Button Content="🔖 Bookmark" Classes="Subtle" />
-                            </StackPanel>
-
-                            <Button Grid.Column="1"
-                                    Content="Read Full Article"
-                                    Classes="Accent"
-                                    Click="OnReadFullClick" />
-                        </Grid>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="3." FontWeight="SemiBold" />
+                        <TextBlock Text="Feedback: Provide immediate responses to user actions"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="4." FontWeight="SemiBold" />
+                        <TextBlock Text="Accessibility: Design for users of all abilities and contexts"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
                 </StackPanel>
+
+                <TextBlock Text="Implementation Strategies"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Margin="0,16,0,0" />
+
+                <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24">
+                    <Run
+                        Text="Implementing these design principles requires a systematic approach. Start with user research to understand your audience's needs, then create wireframes and prototypes to test your concepts before moving to final implementation." />
+                </TextBlock>
+
+                <Border Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}"
+                        CornerRadius="8"
+                        Padding="16"
+                        Margin="0,8">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="📚 Recommended Reading" FontWeight="SemiBold" />
+                        <TextBlock Text="• Don Norman - The Design of Everyday Things" />
+                        <TextBlock Text="• Steve Krug - Don't Make Me Think" />
+                        <TextBlock Text="• Alan Cooper - About Face: The Essentials of Interaction Design" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock FontSize="16" TextWrapping="Wrap" LineHeight="24" Margin="0,16,0,0">
+                    <Run
+                        Text="As we continue to push the boundaries of what's possible in user interface design, remember that the best interfaces are often invisible—they allow users to accomplish their goals without friction or confusion." />
+                </TextBlock>
+
+            </StackPanel>
+
+            <!-- Action Buttons -->
+            <StackPanel Spacing="16" Margin="0,24,0,0">
+                <husk:Divider />
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="16">
+                        <Button Content="👍 Like (42)" Classes="Subtle" />
+                        <Button Content="💬 Comment (8)" Classes="Subtle" />
+                        <Button Content="🔖 Bookmark" Classes="Subtle" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Content="Read Full Article"
+                            Classes="Accent"
+                            Click="OnReadFullClick" />
+                </Grid>
+            </StackPanel>
+
+        </StackPanel>
     </ScrollViewer>
 
 </husk:Toast>

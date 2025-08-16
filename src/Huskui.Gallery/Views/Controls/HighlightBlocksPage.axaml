@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Controls.HighlightBlocksPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Highlight Blocks"
@@ -23,13 +23,13 @@
                                        Description="Inline text highlighting for emphasis">
                 <StackPanel Spacing="16">
                     <TextBlock TextWrapping="Wrap">
-                        This is normal text with a 
+                        This is normal text with a
                         <husk:HighlightBlock Text="highlighted word" />
                         in the middle of the sentence.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        You can also highlight 
+                        You can also highlight
                         <husk:HighlightBlock Text="multiple" />
                         <husk:HighlightBlock Text="words" />
                         in the same paragraph.
@@ -41,25 +41,25 @@
                                        Description="Using the Shortcut class for keyboard combinations">
                 <StackPanel Spacing="16">
                     <TextBlock TextWrapping="Wrap">
-                        Press 
+                        Press
                         <husk:HighlightBlock Text="Ctrl+C" Classes="Shortcut" />
-                        to copy and 
+                        to copy and
                         <husk:HighlightBlock Text="Ctrl+V" Classes="Shortcut" />
                         to paste.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Use 
+                        Use
                         <husk:HighlightBlock Text="Ctrl+Z" Classes="Shortcut" />
-                        to undo or 
+                        to undo or
                         <husk:HighlightBlock Text="Ctrl+Shift+Z" Classes="Shortcut" />
                         to redo.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Save your work with 
+                        Save your work with
                         <husk:HighlightBlock Text="Ctrl+S" Classes="Shortcut" />
-                        or open a file with 
+                        or open a file with
                         <husk:HighlightBlock Text="Ctrl+O" Classes="Shortcut" />.
                     </TextBlock>
                 </StackPanel>
@@ -69,15 +69,15 @@
                                        Description="Highlighted blocks with accent colors">
                 <StackPanel Spacing="16">
                     <TextBlock TextWrapping="Wrap">
-                        This is a 
+                        This is a
                         <husk:HighlightBlock Text="primary highlight" Classes="Primary" />
                         with accent colors.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Primary shortcuts: 
+                        Primary shortcuts:
                         <husk:HighlightBlock Text="Enter" Classes="Primary Shortcut" />
-                        to confirm or 
+                        to confirm or
                         <husk:HighlightBlock Text="Esc" Classes="Primary Shortcut" />
                         to cancel.
                     </TextBlock>
@@ -88,19 +88,19 @@
                                        Description="Highlighting code or commands in text">
                 <StackPanel Spacing="16">
                     <TextBlock TextWrapping="Wrap">
-                        Run 
+                        Run
                         <husk:HighlightBlock Text="dotnet build" />
                         to compile your project.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Install packages with 
+                        Install packages with
                         <husk:HighlightBlock Text="dotnet add package" />
                         followed by the package name.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Important: Always run 
+                        Important: Always run
                         <husk:HighlightBlock Text="git status" Classes="Primary" />
                         before committing changes.
                     </TextBlock>
@@ -111,11 +111,11 @@
                                        Description="Combining different styles in complex text">
                 <StackPanel Spacing="16">
                     <TextBlock TextWrapping="Wrap">
-                        To deploy your application, first press 
+                        To deploy your application, first press
                         <husk:HighlightBlock Text="Ctrl+Shift+B" Classes="Shortcut" />
-                        to build, then run 
+                        to build, then run
                         <husk:HighlightBlock Text="dotnet publish" />
-                        command, and finally use 
+                        command, and finally use
                         <husk:HighlightBlock Text="git push" Classes="Primary" />
                         to deploy.
                     </TextBlock>
@@ -128,26 +128,26 @@
                     <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
                         Getting Started with Huskui.Avalonia
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        1. Install the package: 
+                        1. Install the package:
                         <husk:HighlightBlock Text="dotnet add package Huskui.Avalonia" />
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        2. Add the theme to your 
+                        2. Add the theme to your
                         <husk:HighlightBlock Text="App.axaml" />
                         file.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        3. Use 
+                        3. Use
                         <husk:HighlightBlock Text="F5" Classes="Shortcut" />
                         to run your application and see the changes.
                     </TextBlock>
-                    
+
                     <TextBlock TextWrapping="Wrap">
-                        Pro tip: Use 
+                        Pro tip: Use
                         <husk:HighlightBlock Text="Ctrl+Shift+F5" Classes="Primary Shortcut" />
                         for a clean rebuild and run.
                     </TextBlock>

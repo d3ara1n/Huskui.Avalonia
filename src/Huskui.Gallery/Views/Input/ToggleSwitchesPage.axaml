@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Input.ToggleSwitchesPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Toggle Switches"
@@ -50,45 +50,45 @@
                 <husk:Card Padding="24" Width="400">
                     <StackPanel Spacing="20">
                         <TextBlock Text="Application Settings" FontSize="18" FontWeight="Bold" />
-                        
+
                         <husk:Divider />
-                        
+
                         <StackPanel Spacing="16">
                             <StackPanel Spacing="8">
                                 <ToggleSwitch Content="Enable notifications" IsChecked="True" />
-                                <TextBlock Text="Receive push notifications for important updates" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <TextBlock Text="Receive push notifications for important updates"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <ToggleSwitch Content="Auto-save documents" IsChecked="True" />
-                                <TextBlock Text="Automatically save changes every 5 minutes" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <TextBlock Text="Automatically save changes every 5 minutes"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <ToggleSwitch Content="Dark mode" IsChecked="False" />
-                                <TextBlock Text="Use dark theme for better viewing in low light" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <TextBlock Text="Use dark theme for better viewing in low light"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <ToggleSwitch Content="Analytics" IsChecked="False" />
-                                <TextBlock Text="Help improve the app by sharing usage data" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <TextBlock Text="Help improve the app by sharing usage data"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
                         </StackPanel>
-                        
+
                         <husk:Divider />
-                        
+
                         <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
                             <Button Content="Reset to Defaults" />
                             <Button Content="Save Settings" Classes="Primary" />
@@ -103,50 +103,50 @@
                     <StackPanel Spacing="20">
                         <StackPanel Spacing="8">
                             <TextBlock Text="Experimental Features" FontSize="18" FontWeight="Bold" />
-                            <TextBlock Text="Enable these features at your own risk. They may be unstable." 
+                            <TextBlock Text="Enable these features at your own risk. They may be unstable."
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                         </StackPanel>
-                        
+
                         <husk:Divider />
-                        
+
                         <StackPanel Spacing="16">
                             <StackPanel Spacing="8">
-                                <ToggleSwitch Content="New UI Framework" 
-                                                   Classes="Primary"
-                                                   IsChecked="False" />
-                                <TextBlock Text="🧪 Experimental new user interface components" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <ToggleSwitch Content="New UI Framework"
+                                              Classes="Primary"
+                                              IsChecked="False" />
+                                <TextBlock Text="🧪 Experimental new user interface components"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
-                                <ToggleSwitch Content="Advanced Search" 
-                                                   Classes="Success"
-                                                   IsChecked="True" />
-                                <TextBlock Text="✨ Enhanced search with AI-powered suggestions" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <ToggleSwitch Content="Advanced Search"
+                                              Classes="Success"
+                                              IsChecked="True" />
+                                <TextBlock Text="✨ Enhanced search with AI-powered suggestions"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
-                                <ToggleSwitch Content="Beta Performance Mode" 
-                                                   Classes="Warning"
-                                                   IsChecked="False" />
-                                <TextBlock Text="⚡ Experimental performance optimizations" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <ToggleSwitch Content="Beta Performance Mode"
+                                              Classes="Warning"
+                                              IsChecked="False" />
+                                <TextBlock Text="⚡ Experimental performance optimizations"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
-                                <ToggleSwitch Content="Debug Mode" 
-                                                   Classes="Danger"
-                                                   IsChecked="False" />
-                                <TextBlock Text="🐛 Show detailed error information and logs" 
-                                           FontSize="12" 
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" 
+                                <ToggleSwitch Content="Debug Mode"
+                                              Classes="Danger"
+                                              IsChecked="False" />
+                                <TextBlock Text="🐛 Show detailed error information and logs"
+                                           FontSize="12"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            Margin="32,0,0,0" />
                             </StackPanel>
                         </StackPanel>

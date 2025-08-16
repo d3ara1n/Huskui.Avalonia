@@ -3,72 +3,71 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Huskui.Avalonia.Controls;
+using Huskui.Gallery.Models;
 using Huskui.Gallery.ViewModels;
 using Huskui.Gallery.Views.Pages;
 
-namespace Huskui.Gallery.Views;
-
-public partial class MainWindow : AppWindow
+namespace Huskui.Gallery.Views
 {
-    private ContentControl? _contentFrame;
-
-    public MainWindow()
+    public partial class MainWindow : AppWindow
     {
-        InitializeComponent();
-    }
+        private ContentControl? _contentFrame;
 
-    protected override void OnLoaded(RoutedEventArgs e)
-    {
-        base.OnLoaded(e);
+        public MainWindow() => InitializeComponent();
 
-        _contentFrame = this.FindControl<ContentControl>("ContentFrame");
-
-        if (DataContext is MainWindowViewModel viewModel)
+        protected override void OnLoaded(RoutedEventArgs e)
         {
-            viewModel.NavigationService.NavigationChanged += OnNavigationChanged;
-            
-            // Navigate to home initially
-            ShowHomePage();
-        }
-    }
+            base.OnLoaded(e);
 
-    private void OnNavigationChanged(object? sender, Models.GalleryItem? item)
-    {
-        if (item?.PageType != null)
-        {
-            try
+            _contentFrame = this.FindControl<ContentControl>("ContentFrame");
+
+            if (DataContext is MainWindowViewModel viewModel)
             {
-                var page = Activator.CreateInstance(item.PageType);
-                if (_contentFrame != null)
-                {
-                    _contentFrame.Content = page;
-                }
+                viewModel.NavigationService.NavigationChanged += OnNavigationChanged;
+
+                // Navigate to home initially
+                ShowHomePage();
             }
-            catch (Exception ex)
+        }
+
+        private void OnNavigationChanged(object? sender, GalleryItem? item)
+        {
+            if (item?.PageType != null)
             {
-                // Show error page or fallback content
-                if (_contentFrame != null)
+                try
                 {
-                    _contentFrame.Content = new TextBlock
+                    var page = Activator.CreateInstance(item.PageType);
+                    if (_contentFrame != null)
                     {
-                        Text = $"Error loading page: {ex.Message}",
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                        VerticalAlignment = VerticalAlignment.Center
-                    };
+                        _contentFrame.Content = page;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Show error page or fallback content
+                    if (_contentFrame != null)
+                    {
+                        _contentFrame.Content = new TextBlock
+                        {
+                            Text = $"Error loading page: {ex.Message}",
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center
+                        };
+                    }
                 }
             }
+            else
+            {
+                ShowHomePage();
+            }
         }
-        else
-        {
-            ShowHomePage();
-        }
-    }
 
-    private void ShowHomePage()
-    {
-        if (_contentFrame != null)
+        private void ShowHomePage()
         {
-            _contentFrame.Content = new HomePage();
+            if (_contentFrame != null)
+            {
+                _contentFrame.Content = new HomePage();
+            }
         }
     }
 }

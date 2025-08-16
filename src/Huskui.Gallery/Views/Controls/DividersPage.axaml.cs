@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Controls;
-
-public partial class DividersPage : UserControl
+namespace Huskui.Gallery.Views.Controls
 {
-    public DividersPage()
+    public partial class DividersPage : UserControl
     {
-        InitializeComponent();
+        public DividersPage() => InitializeComponent();
     }
 }

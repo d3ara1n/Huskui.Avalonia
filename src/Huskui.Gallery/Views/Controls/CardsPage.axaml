@@ -9,7 +9,7 @@
              x:Class="Huskui.Gallery.Views.Controls.CardsPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Cards"
@@ -29,9 +29,10 @@
                         <TextBlock Text="Simple Card"
                                    FontWeight="{StaticResource ControlStrongFontWeight}"
                                    FontSize="{StaticResource LargeFontSize}" />
-                        <TextBlock Text="This is a basic card component that can contain any content. Cards are great for grouping related information and creating visual hierarchy."
-                                   TextWrapping="Wrap"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Text="This is a basic card component that can contain any content. Cards are great for grouping related information and creating visual hierarchy."
+                            TextWrapping="Wrap"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </husk:Card>
             </controls:ExampleContainer>
@@ -58,15 +59,16 @@
                                 <fi:SymbolIcon Symbol="MoreHorizontal" FontSize="{StaticResource MediumFontSize}" />
                             </Button>
                         </Grid>
-                        
+
                         <!-- Divider -->
                         <husk:Divider />
-                        
+
                         <!-- Content -->
                         <StackPanel Margin="24,16,24,24" Spacing="12">
-                            <TextBlock Text="The project is progressing well with 85% completion rate. All major milestones have been achieved on schedule."
-                                       TextWrapping="Wrap" />
-                            
+                            <TextBlock
+                                Text="The project is progressing well with 85% completion rate. All major milestones have been achieved on schedule."
+                                TextWrapping="Wrap" />
+
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <husk:Tag Content="In Progress" Classes="Primary" />
                                 <husk:Tag Content="High Priority" Classes="Warning" />
@@ -138,8 +140,8 @@
             <controls:ExampleContainer Title="Interactive Card"
                                        Description="Clickable card with hover effects"
                                        XamlCode="&lt;Button Classes=&quot;CardButton&quot;&gt;&#10;    &lt;husk:Card&gt;&#10;        &lt;!-- Card content --&gt;&#10;    &lt;/husk:Card&gt;&#10;&lt;/Button&gt;">
-                <Button Background="Transparent" 
-                        BorderThickness="0" 
+                <Button Background="Transparent"
+                        BorderThickness="0"
                         Padding="0"
                         Cursor="Hand"
                         MaxWidth="400">

@@ -5,7 +5,7 @@
              x:Class="Huskui.Gallery.Views.Controls.InfoBarsPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <StackPanel Spacing="8">
                 <TextBlock Text="Info Bars"
                            FontSize="28"

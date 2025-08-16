@@ -4,12 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Overlays.ToastsPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Toasts"
@@ -26,10 +25,11 @@
                     <StackPanel Spacing="12">
                         <TextBlock Text="Content Preview Controls" FontWeight="Bold" FontSize="14" />
                         <Button Content="Preview Blog Article" Click="OnShowBlogPreviewClick" />
-                        <TextBlock Text="Click buttons to show heavy-weight content previews that slide up from the bottom. These are more substantial than modals."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Text="Click buttons to show heavy-weight content previews that slide up from the bottom. These are more substantial than modals."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </controls:ExampleContainer.Controls>
 
@@ -37,11 +37,13 @@
                     <husk:Card Padding="16">
                         <StackPanel Spacing="12">
                             <TextBlock Text="Toast Purpose" FontSize="16" FontWeight="Bold" />
-                            <TextBlock Text="Toasts are heavy-weight content viewers that slide up from the bottom, like a piece of toast popping up. They're even more substantial than modals and are used for content preview without navigation."
-                                       TextWrapping="Wrap" />
-                            <TextBlock Text="Use toasts for previewing articles, documents, or media content when you want to avoid page navigation but need substantial viewing space."
-                                       TextWrapping="Wrap"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                Text="Toasts are heavy-weight content viewers that slide up from the bottom, like a piece of toast popping up. They're even more substantial than modals and are used for content preview without navigation."
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="Use toasts for previewing articles, documents, or media content when you want to avoid page navigation but need substantial viewing space."
+                                TextWrapping="Wrap"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                         </StackPanel>
                     </husk:Card>
                 </StackPanel>
@@ -53,10 +55,11 @@
                     <StackPanel Spacing="12">
                         <TextBlock Text="Interactive Content Controls" FontWeight="Bold" FontSize="14" />
                         <Button Content="Product Details" Click="OnShowProductDetailsClick" />
-                        <TextBlock Text="These toasts show substantial content with interactive elements for detailed viewing without navigation."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Text="These toasts show substantial content with interactive elements for detailed viewing without navigation."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </controls:ExampleContainer.Controls>
 
@@ -106,10 +109,11 @@
 
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Technical Notes" FontWeight="Bold" />
-                                <TextBlock Text="Toasts slide up from the bottom like a piece of toast and are the heaviest-weight overlay control. They're designed for substantial content preview scenarios where you want to avoid navigation but need significant viewing space."
-                                           TextWrapping="Wrap"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                                <TextBlock
+                                    Text="Toasts slide up from the bottom like a piece of toast and are the heaviest-weight overlay control. They're designed for substantial content preview scenarios where you want to avoid navigation but need significant viewing space."
+                                    TextWrapping="Wrap"
+                                    FontSize="12"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                             </StackPanel>
                         </StackPanel>
                     </husk:Card>

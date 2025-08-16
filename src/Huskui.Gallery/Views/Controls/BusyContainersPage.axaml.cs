@@ -1,26 +1,23 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace Huskui.Gallery.Views.Controls;
-
-public partial class BusyContainersPage : UserControl
+namespace Huskui.Gallery.Views.Controls
 {
-    public BusyContainersPage()
+    public partial class BusyContainersPage : UserControl
     {
-        InitializeComponent();
-    }
+        public BusyContainersPage() => InitializeComponent();
 
-    private async void OnSubmitClick(object? sender, RoutedEventArgs e)
-    {
-        FormContainer.IsBusy = true;
-        
-        // Simulate form submission delay
-        await Task.Delay(3000);
-        
-        FormContainer.IsBusy = false;
-    }
+        private async void OnSubmitClick(object? sender, RoutedEventArgs e)
+        {
+            FormContainer.IsBusy = true;
 
-    // Interactive demo now uses ToggleButton binding - no event handlers needed
+            // Simulate form submission delay
+            await Task.Delay(3000);
+
+            FormContainer.IsBusy = false;
+        }
+
+        // Interactive demo now uses ToggleButton binding - no event handlers needed
+    }
 }

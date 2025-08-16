@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Pages.HomePage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="48" MaxWidth="800">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Welcome Section -->
             <StackPanel Spacing="16">
                 <TextBlock Text="Welcome to Huskui Gallery"
@@ -36,9 +36,10 @@
                             <TextBlock Text="Rich Component Library"
                                        FontSize="{StaticResource LargeFontSize}"
                                        FontWeight="{StaticResource ControlStrongFontWeight}" />
-                            <TextBlock Text="Comprehensive set of UI components including buttons, cards, info bars, and more"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                       TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="Comprehensive set of UI components including buttons, cards, info bars, and more"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -53,9 +54,10 @@
                             <TextBlock Text="Advanced Theming"
                                        FontSize="{StaticResource LargeFontSize}"
                                        FontWeight="{StaticResource ControlStrongFontWeight}" />
-                            <TextBlock Text="Built-in support for light/dark themes with customizable accent colors and corner styles"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                       TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="Built-in support for light/dark themes with customizable accent colors and corner styles"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
@@ -71,10 +73,10 @@
                     <StackPanel Spacing="16">
                         <TextBlock Text="Getting Started with Huskui.Avalonia"
                                    FontWeight="{StaticResource ControlStrongFontWeight}" />
-                        
+
                         <TextBlock Text="1. Install the NuGet package:"
                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                        
+
                         <Border Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
                                 BorderBrush="{StaticResource ControlBorderBrush}"
                                 BorderThickness="1"
@@ -114,10 +116,10 @@
                 <TextBlock Text="Navigation"
                            FontSize="{StaticResource LargeFontSize}"
                            FontWeight="{StaticResource ControlStrongFontWeight}" />
-                
+
                 <husk:InfoBar Header="Explore the Gallery">
                     <TextBlock TextWrapping="Wrap">
-                        Use the sidebar to browse different categories of controls. 
+                        Use the sidebar to browse different categories of controls.
                         Each control page includes live examples, code snippets, and customization options.
                         Use the search box to quickly find specific controls.
                     </TextBlock>

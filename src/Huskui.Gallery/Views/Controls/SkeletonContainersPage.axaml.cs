@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Controls;
-
-public partial class SkeletonContainersPage : UserControl
+namespace Huskui.Gallery.Views.Controls
 {
-    public SkeletonContainersPage()
+    public partial class SkeletonContainersPage : UserControl
     {
-        InitializeComponent();
+        public SkeletonContainersPage() => InitializeComponent();
     }
 }

@@ -8,200 +8,203 @@
             x:Class="Huskui.Gallery.Modals.UserProfileModal">
 
     <Grid RowDefinitions="Auto,*,Auto" MaxWidth="600">
-            
-            <!-- Header -->
-            <Border Grid.Row="0"
-                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    Padding="24,16"
-                    CornerRadius="8,8,0,0">
-                <Grid ColumnDefinitions="*,Auto">
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
-                        <fi:SymbolIcon Symbol="Person" FontSize="24" />
-                        <TextBlock Text="Edit Profile" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold"
-                                   VerticalAlignment="Center" />
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                Padding="24,16"
+                CornerRadius="8,8,0,0">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
+                    <fi:SymbolIcon Symbol="Person" FontSize="24" />
+                    <TextBlock Text="Edit Profile"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Content="✕"
+                        Classes="Subtle"
+                        Width="32"
+                        Height="32"
+                        Click="OnCloseClick" />
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" Padding="24">
+            <StackPanel Spacing="24">
+
+                <!-- Profile Picture -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16" HorizontalAlignment="Center">
+                        <Border Width="120"
+                                Height="120"
+                                CornerRadius="60"
+                                Background="{DynamicResource AccentFillColorDefaultBrush}">
+                            <TextBlock Text="SC"
+                                       FontSize="48"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Button Content="Change Photo" Classes="Accent" />
+                            <Button Content="Remove" Classes="Subtle" />
+                        </StackPanel>
                     </StackPanel>
-                    
-                    <Button Grid.Column="1" 
-                            Content="✕" 
-                            Classes="Subtle"
-                            Width="32" 
-                            Height="32"
-                            Click="OnCloseClick" />
-                </Grid>
-            </Border>
-            
-            <!-- Content -->
-            <ScrollViewer Grid.Row="1" Padding="24">
-                <StackPanel Spacing="24">
-                    
-                    <!-- Profile Picture -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16" HorizontalAlignment="Center">
-                            <Border Width="120" 
-                                    Height="120" 
-                                    CornerRadius="60"
-                                    Background="{DynamicResource AccentFillColorDefaultBrush}">
-                                <TextBlock Text="SC" 
-                                           FontSize="48" 
-                                           FontWeight="Bold"
-                                           Foreground="White"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
-                            </Border>
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Button Content="Change Photo" Classes="Accent" />
-                                <Button Content="Remove" Classes="Subtle" />
+                </husk:Card>
+
+                <!-- Personal Information -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Personal Information" FontSize="16" FontWeight="SemiBold" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowDefinitions="Auto,Auto,Auto,Auto"
+                              RowSpacing="12">
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
+                                <TextBlock Text="First Name" FontWeight="Medium" />
+                                <TextBox Text="Sarah" />
                             </StackPanel>
-                        </StackPanel>
-                    </husk:Card>
-                    
-                    <!-- Personal Information -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Personal Information" FontSize="16" FontWeight="SemiBold" />
-                            
-                            <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="12">
-                                
-                                <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
-                                    <TextBlock Text="First Name" FontWeight="Medium" />
-                                    <TextBox Text="Sarah" />
+
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Last Name" FontWeight="Medium" />
+                                <TextBox Text="Chen" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="Email Address" FontWeight="Medium" />
+                                <TextBox Text="sarah.chen@techcorp.com" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Grid.Column="0" Spacing="4">
+                                <TextBlock Text="Phone Number" FontWeight="Medium" />
+                                <TextBox Text="+1 (555) 123-4567" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Location" FontWeight="Medium" />
+                                <TextBox Text="San Francisco, CA" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="Bio" FontWeight="Medium" />
+                                <TextBox
+                                    Text="Senior Software Engineer passionate about creating beautiful and functional user interfaces. 8+ years of experience in full-stack development."
+                                    AcceptsReturn="True"
+                                    TextWrapping="Wrap"
+                                    Height="80" />
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <!-- Professional Information -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Professional Information" FontSize="16" FontWeight="SemiBold" />
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowDefinitions="Auto,Auto,Auto"
+                              RowSpacing="12">
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
+                                <TextBlock Text="Job Title" FontWeight="Medium" />
+                                <TextBox Text="Senior Software Engineer" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Company" FontWeight="Medium" />
+                                <TextBox Text="TechCorp Inc." />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
+                                <TextBlock Text="LinkedIn" FontWeight="Medium" />
+                                <TextBox Text="linkedin.com/in/sarahchen" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+                                <TextBlock Text="GitHub" FontWeight="Medium" />
+                                <TextBox Text="github.com/sarahc-dev" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="Skills" FontWeight="Medium" />
+                                <TextBox Text="React, TypeScript, Node.js, Python, AWS, Docker, Kubernetes"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         Height="60" />
+                            </StackPanel>
+
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <!-- Privacy Settings -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Privacy Settings" FontSize="16" FontWeight="SemiBold" />
+
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Public Profile" FontWeight="Medium" />
+                                    <TextBlock Text="Make your profile visible to other users"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
                                 </StackPanel>
-                                
-                                <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
-                                    <TextBlock Text="Last Name" FontWeight="Medium" />
-                                    <TextBox Text="Chen" />
+                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Show Email" FontWeight="Medium" />
+                                    <TextBlock Text="Display email address on public profile"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
                                 </StackPanel>
-                                
-                                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
-                                    <TextBlock Text="Email Address" FontWeight="Medium" />
-                                    <TextBox Text="sarah.chen@techcorp.com" />
+                                <ToggleSwitch Grid.Column="1" />
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Activity Status" FontWeight="Medium" />
+                                    <TextBlock Text="Show when you're online or active"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
                                 </StackPanel>
-                                
-                                <StackPanel Grid.Row="2" Grid.Column="0" Spacing="4">
-                                    <TextBlock Text="Phone Number" FontWeight="Medium" />
-                                    <TextBox Text="+1 (555) 123-4567" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="2" Grid.Column="1" Spacing="4">
-                                    <TextBlock Text="Location" FontWeight="Medium" />
-                                    <TextBox Text="San Francisco, CA" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
-                                    <TextBlock Text="Bio" FontWeight="Medium" />
-                                    <TextBox Text="Senior Software Engineer passionate about creating beautiful and functional user interfaces. 8+ years of experience in full-stack development."
-                                             AcceptsReturn="True"
-                                             TextWrapping="Wrap"
-                                             Height="80" />
-                                </StackPanel>
-                                
+                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
                             </Grid>
                         </StackPanel>
-                    </husk:Card>
-                    
-                    <!-- Professional Information -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Professional Information" FontSize="16" FontWeight="SemiBold" />
-                            
-                            <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
-                                
-                                <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
-                                    <TextBlock Text="Job Title" FontWeight="Medium" />
-                                    <TextBox Text="Senior Software Engineer" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
-                                    <TextBlock Text="Company" FontWeight="Medium" />
-                                    <TextBox Text="TechCorp Inc." />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
-                                    <TextBlock Text="LinkedIn" FontWeight="Medium" />
-                                    <TextBox Text="linkedin.com/in/sarahchen" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
-                                    <TextBlock Text="GitHub" FontWeight="Medium" />
-                                    <TextBox Text="github.com/sarahc-dev" />
-                                </StackPanel>
-                                
-                                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
-                                    <TextBlock Text="Skills" FontWeight="Medium" />
-                                    <TextBox Text="React, TypeScript, Node.js, Python, AWS, Docker, Kubernetes"
-                                             AcceptsReturn="True"
-                                             TextWrapping="Wrap"
-                                             Height="60" />
-                                </StackPanel>
-                                
-                            </Grid>
-                        </StackPanel>
-                    </husk:Card>
-                    
-                    <!-- Privacy Settings -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Privacy Settings" FontSize="16" FontWeight="SemiBold" />
-                            
-                            <StackPanel Spacing="12">
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Public Profile" FontWeight="Medium" />
-                                        <TextBlock Text="Make your profile visible to other users" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" IsChecked="True" />
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Show Email" FontWeight="Medium" />
-                                        <TextBlock Text="Display email address on public profile" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" />
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Activity Status" FontWeight="Medium" />
-                                        <TextBlock Text="Show when you're online or active" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" IsChecked="True" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </husk:Card>
-                    
-                </StackPanel>
-            </ScrollViewer>
-            
-            <!-- Footer -->
-            <Border Grid.Row="2"
-                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    Padding="24,16"
-                    CornerRadius="0,0,8,8">
-                <StackPanel Orientation="Horizontal" 
-                            HorizontalAlignment="Right" 
-                            Spacing="12">
-                    <Button Content="Cancel" 
-                            Click="OnCancelClick" />
-                    <Button Content="Save Profile" 
-                            Classes="Accent" 
-                            Click="OnSaveClick" />
-                </StackPanel>
-            </Border>
+                    </StackPanel>
+                </husk:Card>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                Padding="24,16"
+                CornerRadius="0,0,8,8">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="12">
+                <Button Content="Cancel"
+                        Click="OnCancelClick" />
+                <Button Content="Save Profile"
+                        Classes="Accent"
+                        Click="OnSaveClick" />
+            </StackPanel>
+        </Border>
 
     </Grid>
 

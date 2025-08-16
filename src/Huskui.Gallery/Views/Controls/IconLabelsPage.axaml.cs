@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Controls;
-
-public partial class IconLabelsPage : UserControl
+namespace Huskui.Gallery.Views.Controls
 {
-    public IconLabelsPage()
+    public partial class IconLabelsPage : UserControl
     {
-        InitializeComponent();
+        public IconLabelsPage() => InitializeComponent();
     }
 }

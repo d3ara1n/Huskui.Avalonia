@@ -1,11 +1,9 @@
 ﻿using Huskui.Avalonia.Controls;
 
-namespace Huskui.Gallery.Dialogs;
-
-public partial class RenameFileDialog : Dialog
+namespace Huskui.Gallery.Dialogs
 {
-    public RenameFileDialog()
+    public partial class RenameFileDialog : Dialog
     {
-        InitializeComponent();
+        public RenameFileDialog() => InitializeComponent();
     }
 }

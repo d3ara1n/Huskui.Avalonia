@@ -4,12 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Overlays.DialogsPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Dialogs"
@@ -123,15 +122,16 @@
             <controls:ExampleContainer Title="Dialog Result Validation"
                                        Description="Dialog with Result property binding and validation"
                                        XamlCode="&lt;TextBox Text=&quot;{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}&quot; /&gt;"
-                                       CSharpCode="protected override bool ValidateResult(object? result)&#xA;    =&gt; EmailRegex.IsMatch(result as string ?? &quot;&quot;);&#xA;&#xA;// Usage:&#xA;appWindow.PopDialog(dialog);&#xA;if (await dialog.CompletionSource.Task)&#xA;    var result = dialog.Result;" >
+                                       CSharpCode="protected override bool ValidateResult(object? result)&#xA;    =&gt; EmailRegex.IsMatch(result as string ?? &quot;&quot;);&#xA;&#xA;// Usage:&#xA;appWindow.PopDialog(dialog);&#xA;if (await dialog.CompletionSource.Task)&#xA;    var result = dialog.Result;">
                 <controls:ExampleContainer.Controls>
                     <StackPanel Spacing="12">
                         <TextBlock Text="Result Validation Example" FontWeight="Bold" FontSize="14" />
                         <Button Content="Email Input Dialog" Click="OnShowEmailInputClick" />
-                        <TextBlock Text="This dialog demonstrates Result property binding, ValidateResult override, and CompletionSource usage."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Text="This dialog demonstrates Result property binding, ValidateResult override, and CompletionSource usage."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </controls:ExampleContainer.Controls>
 
@@ -140,17 +140,21 @@
                         <StackPanel Spacing="12">
                             <TextBlock Text="Result Validation Pattern" FontSize="16" FontWeight="Bold" />
 
-                            <TextBlock Text="Dialog uses the Result property as a data binding intermediary for validation and return values. Override ValidateResult method to determine result validity and control Primary button availability."
-                                       TextWrapping="Wrap"
-                                       FontSize="13" />
+                            <TextBlock
+                                Text="Dialog uses the Result property as a data binding intermediary for validation and return values. Override ValidateResult method to determine result validity and control Primary button availability."
+                                TextWrapping="Wrap"
+                                FontSize="13" />
 
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Key Features:" FontWeight="Medium" FontSize="12" />
                                 <StackPanel Spacing="4" Margin="12,0,0,0">
                                     <TextBlock Text="• Result property: Two-way binding with user input" FontSize="12" />
-                                    <TextBlock Text="• ValidateResult method: Override for custom validation logic" FontSize="12" />
-                                    <TextBlock Text="• Primary button state: Auto-enabled/disabled based on validation" FontSize="12" />
-                                    <TextBlock Text="• CompletionSource: Async await for user operation results" FontSize="12" />
+                                    <TextBlock Text="• ValidateResult method: Override for custom validation logic"
+                                               FontSize="12" />
+                                    <TextBlock Text="• Primary button state: Auto-enabled/disabled based on validation"
+                                               FontSize="12" />
+                                    <TextBlock Text="• CompletionSource: Async await for user operation results"
+                                               FontSize="12" />
                                 </StackPanel>
                             </StackPanel>
 
@@ -160,8 +164,10 @@
                                     <TextBlock Text="1. User inputs data in bound controls" FontSize="12" />
                                     <TextBlock Text="2. Data updates Dialog.Result through binding" FontSize="12" />
                                     <TextBlock Text="3. ValidateResult automatically validates data" FontSize="12" />
-                                    <TextBlock Text="4. Primary button enables/disables based on validation" FontSize="12" />
-                                    <TextBlock Text="5. Result returned via CompletionSource on confirmation" FontSize="12" />
+                                    <TextBlock Text="4. Primary button enables/disables based on validation"
+                                               FontSize="12" />
+                                    <TextBlock Text="5. Result returned via CompletionSource on confirmation"
+                                               FontSize="12" />
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

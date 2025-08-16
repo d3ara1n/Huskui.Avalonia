@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Pages;
-
-public partial class HomePage : UserControl
+namespace Huskui.Gallery.Views.Pages
 {
-    public HomePage()
+    public partial class HomePage : UserControl
     {
-        InitializeComponent();
+        public HomePage() => InitializeComponent();
     }
 }

@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Controls.IconLabelsPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Icon Labels"
@@ -62,17 +62,17 @@
             <controls:ExampleContainer Title="Styled Icon Labels"
                                        Description="Icon labels with custom colors and weights">
                 <StackPanel Spacing="16">
-                    <husk:IconLabel Icon="CheckmarkCircle" Text="Success" 
-                                    Foreground="{StaticResource ControlSuccessForegroundBrush}" 
+                    <husk:IconLabel Icon="CheckmarkCircle" Text="Success"
+                                    Foreground="{StaticResource ControlSuccessForegroundBrush}"
                                     FontWeight="Bold" />
-                    <husk:IconLabel Icon="ErrorCircle" Text="Error" 
-                                    Foreground="{StaticResource ControlDangerForegroundBrush}" 
+                    <husk:IconLabel Icon="ErrorCircle" Text="Error"
+                                    Foreground="{StaticResource ControlDangerForegroundBrush}"
                                     FontWeight="Bold" />
-                    <husk:IconLabel Icon="Warning" Text="Warning" 
-                                    Foreground="{StaticResource ControlWarningForegroundBrush}" 
+                    <husk:IconLabel Icon="Warning" Text="Warning"
+                                    Foreground="{StaticResource ControlWarningForegroundBrush}"
                                     FontWeight="Bold" />
-                    <husk:IconLabel Icon="Info" Text="Information" 
-                                    Foreground="{StaticResource ControlAccentForegroundBrush}" 
+                    <husk:IconLabel Icon="Info" Text="Information"
+                                    Foreground="{StaticResource ControlAccentForegroundBrush}"
                                     FontWeight="Bold" />
                 </StackPanel>
             </controls:ExampleContainer>

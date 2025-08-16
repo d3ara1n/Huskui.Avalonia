@@ -2,101 +2,110 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Platform;
 using Avalonia.Styling;
 using Huskui.Avalonia;
 
-namespace Huskui.Gallery.Services;
-
-/// <summary>
-/// Default implementation of IThemeService
-/// </summary>
-public class ThemeService : IThemeService
+namespace Huskui.Gallery.Services
 {
-    private ThemeVariant _currentTheme = ThemeVariant.Default;
-    private AccentColor _currentAccent = AccentColor.Blue;
-    private BackgroundMaterial _currentBackground = BackgroundMaterial.Mica;
-
-    public ThemeVariant CurrentTheme => _currentTheme;
-    public AccentColor CurrentAccent => _currentAccent;
-    public BackgroundMaterial CurrentBackground => _currentBackground;
-
-    public event EventHandler? ThemeChanged;
-
-    public void SetTheme(ThemeVariant theme)
+    /// <summary>
+    ///     Default implementation of IThemeService
+    /// </summary>
+    public class ThemeService : IThemeService
     {
-        if (_currentTheme == theme) return;
+        #region IThemeService Members
 
-        _currentTheme = theme;
-        
-        if (Application.Current is { } app)
+        public ThemeVariant CurrentTheme { get; private set; } = ThemeVariant.Default;
+
+        public AccentColor CurrentAccent { get; private set; } = AccentColor.Blue;
+
+        public BackgroundMaterial CurrentBackground { get; private set; } = BackgroundMaterial.Mica;
+
+        public event EventHandler? ThemeChanged;
+
+        public void SetTheme(ThemeVariant theme)
         {
-            app.RequestedThemeVariant = theme;
+            if (CurrentTheme == theme)
+            {
+                return;
+            }
+
+            CurrentTheme = theme;
+
+            if (Application.Current is { } app)
+            {
+                app.RequestedThemeVariant = theme;
+            }
+
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        ThemeChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    public void SetAccent(AccentColor accent)
-    {
-        if (_currentAccent == accent) return;
-
-        _currentAccent = accent;
-        UpdateHuskuiTheme();
-        ThemeChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    public void SetBackground(BackgroundMaterial background)
-    {
-        if (_currentBackground == background) return;
-
-        _currentBackground = background;
-        UpdateWindowBackground();
-        ThemeChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    public void ToggleTheme()
-    {
-        var newTheme = _currentTheme == ThemeVariant.Dark 
-            ? ThemeVariant.Light 
-            : ThemeVariant.Dark;
-        SetTheme(newTheme);
-    }
-
-    private void UpdateHuskuiTheme()
-    {
-        if (Application.Current?.Styles is { } styles)
+        public void SetAccent(AccentColor accent)
         {
-            // Find and update the HuskuiTheme
-            for (int i = 0; i < styles.Count; i++)
+            if (CurrentAccent == accent)
             {
-                if (styles[i] is HuskuiTheme huskuiTheme)
+                return;
+            }
+
+            CurrentAccent = accent;
+            UpdateHuskuiTheme();
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void SetBackground(BackgroundMaterial background)
+        {
+            if (CurrentBackground == background)
+            {
+                return;
+            }
+
+            CurrentBackground = background;
+            UpdateWindowBackground();
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ToggleTheme()
+        {
+            var newTheme = CurrentTheme == ThemeVariant.Dark ? ThemeVariant.Light : ThemeVariant.Dark;
+            SetTheme(newTheme);
+        }
+
+        #endregion
+
+        private void UpdateHuskuiTheme()
+        {
+            if (Application.Current?.Styles is { } styles)
+            {
+                // Find and update the HuskuiTheme
+                for (var i = 0; i < styles.Count; i++)
                 {
-                    huskuiTheme.Accent = _currentAccent;
-                    break;
+                    if (styles[i] is HuskuiTheme huskuiTheme)
+                    {
+                        huskuiTheme.Accent = CurrentAccent;
+                        break;
+                    }
                 }
             }
         }
-    }
 
-    private void UpdateWindowBackground()
-    {
-        // Update main window TransparencyLevelHint based on selected material
-        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        private void UpdateWindowBackground()
         {
-            var mainWindow = desktop.MainWindow;
-            if (mainWindow != null)
+            // Update main window TransparencyLevelHint based on selected material
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                var transparencyLevel = _currentBackground switch
+                var mainWindow = desktop.MainWindow;
+                if (mainWindow != null)
                 {
-                    BackgroundMaterial.None => WindowTransparencyLevel.None,
-                    BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
-                    BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
-                    BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
-                    _ => WindowTransparencyLevel.None
-                };
+                    var transparencyLevel = CurrentBackground switch
+                    {
+                        BackgroundMaterial.None => WindowTransparencyLevel.None,
+                        BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
+                        BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
+                        BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
+                        _ => WindowTransparencyLevel.None
+                    };
 
-                mainWindow.TransparencyLevelHint = new[] { transparencyLevel };
+                    mainWindow.TransparencyLevelHint = new[] { transparencyLevel };
+                }
             }
         }
     }

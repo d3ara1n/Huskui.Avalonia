@@ -1,186 +1,185 @@
 ﻿<husk:Toast xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
-             x:Class="Huskui.Gallery.Toasts.ProductDetailsToast"
-             Header="Premium Wireless Headphones"
-             IsHeaderVisible="True">
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+            mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+            x:Class="Huskui.Gallery.Toasts.ProductDetailsToast"
+            Header="Premium Wireless Headphones"
+            IsHeaderVisible="True">
 
     <ScrollViewer Padding="24">
-                <Grid ColumnDefinitions="300,*" ColumnSpacing="24">
-                    
-                    <!-- Product Images -->
-                    <StackPanel Grid.Column="0" Spacing="16">
-                        
-                        <!-- Main Image -->
-                        <Border Height="250" 
-                                CornerRadius="8"
-                                Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
-                            <TextBlock Text="🎧" 
-                                       FontSize="80" 
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center" />
+        <Grid ColumnDefinitions="300,*" ColumnSpacing="24">
+
+            <!-- Product Images -->
+            <StackPanel Grid.Column="0" Spacing="16">
+
+                <!-- Main Image -->
+                <Border Height="250"
+                        CornerRadius="8"
+                        Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                    <TextBlock Text="🎧"
+                               FontSize="80"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+                </Border>
+
+                <!-- Thumbnail Images -->
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Border Width="60" Height="60"
+                            CornerRadius="4"
+                            Background="{DynamicResource AccentFillColorDefaultBrush}">
+                        <TextBlock Text="🎧" FontSize="24"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" />
+                    </Border>
+                    <Border Width="60" Height="60"
+                            CornerRadius="4"
+                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                        <TextBlock Text="🎧" FontSize="24"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+                    <Border Width="60" Height="60"
+                            CornerRadius="4"
+                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                        <TextBlock Text="🎧" FontSize="24"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+                    <Border Width="60" Height="60"
+                            CornerRadius="4"
+                            Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                        <TextBlock Text="🎧" FontSize="24"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- Product Details -->
+            <StackPanel Grid.Column="1" Spacing="20">
+
+                <!-- Price and Rating -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="$299.99"
+                               FontSize="28"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="2">
+                            <TextBlock Text="⭐⭐⭐⭐⭐" FontSize="16" />
+                        </StackPanel>
+                        <TextBlock Text="4.8/5" FontWeight="SemiBold" />
+                        <TextBlock Text="(2,847 reviews)"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Key Features -->
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Key Features" FontWeight="SemiBold" />
+                        <StackPanel Spacing="8">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="🔇" FontSize="16" />
+                                <TextBlock Text="Active Noise Cancellation" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="🔋" FontSize="16" />
+                                <TextBlock Text="30-hour battery life" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="🎵" FontSize="16" />
+                                <TextBlock Text="Hi-Res Audio certified" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBlock Text="⚡" FontSize="16" />
+                                <TextBlock Text="Quick charge: 5 min = 2 hours" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+
+                <!-- Color Options -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Color" FontWeight="SemiBold" />
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Border Width="32" Height="32"
+                                CornerRadius="16"
+                                Background="Black"
+                                BorderBrush="{DynamicResource AccentFillColorDefaultBrush}"
+                                BorderThickness="2" />
+                        <Border Width="32" Height="32"
+                                CornerRadius="16"
+                                Background="White"
+                                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                BorderThickness="1" />
+                        <Border Width="32" Height="32"
+                                CornerRadius="16"
+                                Background="Silver"
+                                BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                BorderThickness="1" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Specifications -->
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Specifications" FontWeight="SemiBold" />
+                        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="Driver:" FontWeight="Medium" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="40mm dynamic" Margin="8,0,0,0" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="Frequency:" FontWeight="Medium" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="20Hz-40kHz" Margin="8,0,0,0" />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="Bluetooth:" FontWeight="Medium" />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="5.0" Margin="8,0,0,0" />
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="Weight:" FontWeight="Medium" />
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="250g" Margin="8,0,0,0" />
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <!-- Quantity and Add to Cart -->
+                <StackPanel Spacing="12">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="Quantity:" FontWeight="Medium" VerticalAlignment="Center" />
+                        <Border BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="−" Width="32" Height="32" Classes="Subtle" />
+                                <TextBlock Text="1" Width="40"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                <Button Content="+" Width="32" Height="32" Classes="Subtle" />
+                            </StackPanel>
                         </Border>
-                        
-                        <!-- Thumbnail Images -->
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Border Width="60" Height="60" 
-                                    CornerRadius="4"
-                                    Background="{DynamicResource AccentFillColorDefaultBrush}">
-                                <TextBlock Text="🎧" FontSize="24" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Foreground="White" />
-                            </Border>
-                            <Border Width="60" Height="60" 
-                                    CornerRadius="4"
-                                    Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
-                                <TextBlock Text="🎧" FontSize="24" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
-                            </Border>
-                            <Border Width="60" Height="60" 
-                                    CornerRadius="4"
-                                    Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
-                                <TextBlock Text="🎧" FontSize="24" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
-                            </Border>
-                            <Border Width="60" Height="60" 
-                                    CornerRadius="4"
-                                    Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
-                                <TextBlock Text="🎧" FontSize="24" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
-                            </Border>
-                        </StackPanel>
-                        
                     </StackPanel>
-                    
-                    <!-- Product Details -->
-                    <StackPanel Grid.Column="1" Spacing="20">
-                        
-                        <!-- Price and Rating -->
-                        <StackPanel Spacing="8">
-                            <TextBlock Text="$299.99" 
-                                       FontSize="28" 
-                                       FontWeight="Bold"
-                                       Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <StackPanel Orientation="Horizontal" Spacing="2">
-                                    <TextBlock Text="⭐⭐⭐⭐⭐" FontSize="16" />
-                                </StackPanel>
-                                <TextBlock Text="4.8/5" FontWeight="SemiBold" />
-                                <TextBlock Text="(2,847 reviews)" 
-                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                        
-                        <!-- Key Features -->
-                        <husk:Card Padding="16">
-                            <StackPanel Spacing="12">
-                                <TextBlock Text="Key Features" FontWeight="SemiBold" />
-                                <StackPanel Spacing="8">
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="🔇" FontSize="16" />
-                                        <TextBlock Text="Active Noise Cancellation" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="🔋" FontSize="16" />
-                                        <TextBlock Text="30-hour battery life" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="🎵" FontSize="16" />
-                                        <TextBlock Text="Hi-Res Audio certified" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="⚡" FontSize="16" />
-                                        <TextBlock Text="Quick charge: 5 min = 2 hours" />
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-                        </husk:Card>
-                        
-                        <!-- Color Options -->
-                        <StackPanel Spacing="8">
-                            <TextBlock Text="Color" FontWeight="SemiBold" />
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <Border Width="32" Height="32" 
-                                        CornerRadius="16"
-                                        Background="Black"
-                                        BorderBrush="{DynamicResource AccentFillColorDefaultBrush}"
-                                        BorderThickness="2" />
-                                <Border Width="32" Height="32" 
-                                        CornerRadius="16"
-                                        Background="White"
-                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                                        BorderThickness="1" />
-                                <Border Width="32" Height="32" 
-                                        CornerRadius="16"
-                                        Background="Silver"
-                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                                        BorderThickness="1" />
-                            </StackPanel>
-                        </StackPanel>
-                        
-                        <!-- Specifications -->
-                        <husk:Card Padding="16">
-                            <StackPanel Spacing="12">
-                                <TextBlock Text="Specifications" FontWeight="SemiBold" />
-                                <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
-                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Driver:" FontWeight="Medium" />
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="40mm dynamic" Margin="8,0,0,0" />
-                                    
-                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Frequency:" FontWeight="Medium" />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="20Hz-40kHz" Margin="8,0,0,0" />
-                                    
-                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Bluetooth:" FontWeight="Medium" />
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="5.0" Margin="8,0,0,0" />
-                                    
-                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Weight:" FontWeight="Medium" />
-                                    <TextBlock Grid.Row="3" Grid.Column="1" Text="250g" Margin="8,0,0,0" />
-                                </Grid>
-                            </StackPanel>
-                        </husk:Card>
-                        
-                        <!-- Quantity and Add to Cart -->
-                        <StackPanel Spacing="12">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <TextBlock Text="Quantity:" FontWeight="Medium" VerticalAlignment="Center" />
-                                <Border BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
-                                        BorderThickness="1"
-                                        CornerRadius="4">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="−" Width="32" Height="32" Classes="Subtle" />
-                                        <TextBlock Text="1" Width="40" 
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center" />
-                                        <Button Content="+" Width="32" Height="32" Classes="Subtle" />
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Button Content="Add to Cart" 
-                                        Classes="Accent" 
-                                        Width="150"
-                                        Click="OnAddToCartClick" />
-                                <Button Content="Buy Now" 
-                                        Width="120"
-                                        Click="OnBuyNowClick" />
-                                <Button Content="♡" 
-                                        Classes="Subtle"
-                                        Width="40" />
-                            </StackPanel>
-                        </StackPanel>
-                        
+
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button Content="Add to Cart"
+                                Classes="Accent"
+                                Width="150"
+                                Click="OnAddToCartClick" />
+                        <Button Content="Buy Now"
+                                Width="120"
+                                Click="OnBuyNowClick" />
+                        <Button Content="♡"
+                                Classes="Subtle"
+                                Width="40" />
                     </StackPanel>
-                    
-                </Grid>
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
     </ScrollViewer>
 
 </husk:Toast>

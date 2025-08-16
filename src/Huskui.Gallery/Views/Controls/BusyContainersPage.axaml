@@ -8,7 +8,7 @@
              x:Class="Huskui.Gallery.Views.Controls.BusyContainersPage">
 
     <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="1000">
+        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
             <!-- Page Header -->
             <StackPanel Spacing="8">
                 <TextBlock Text="Busy Containers"
@@ -98,26 +98,26 @@
                             <TextBlock Text="Submitting form..." HorizontalAlignment="Center" FontWeight="Bold" />
                         </StackPanel>
                     </husk:BusyContainer.PendingContent>
-                    
+
                     <husk:Card Padding="24">
                         <StackPanel Spacing="16">
                             <TextBlock Text="User Registration" FontSize="18" FontWeight="Bold" />
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Name" />
                                 <TextBox Watermark="Enter your name" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Email" />
                                 <TextBox Watermark="Enter your email" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Password" />
                                 <TextBox Watermark="Enter password" PasswordChar="*" />
                             </StackPanel>
-                            
+
                             <Button Content="Submit" Classes="Primary" Click="OnSubmitClick" />
                         </StackPanel>
                     </husk:Card>

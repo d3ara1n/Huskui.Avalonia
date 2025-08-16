@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Layout;
-
-public partial class FlexWrapPanelsPage : UserControl
+namespace Huskui.Gallery.Views.Layout
 {
-    public FlexWrapPanelsPage()
+    public partial class FlexWrapPanelsPage : UserControl
     {
-        InitializeComponent();
+        public FlexWrapPanelsPage() => InitializeComponent();
     }
 }

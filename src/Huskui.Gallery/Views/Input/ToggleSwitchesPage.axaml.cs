@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Input;
-
-public partial class ToggleSwitchesPage : UserControl
+namespace Huskui.Gallery.Views.Input
 {
-    public ToggleSwitchesPage()
+    public partial class ToggleSwitchesPage : UserControl
     {
-        InitializeComponent();
+        public ToggleSwitchesPage() => InitializeComponent();
     }
 }

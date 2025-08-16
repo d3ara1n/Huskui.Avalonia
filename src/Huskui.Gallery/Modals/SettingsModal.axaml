@@ -1,167 +1,167 @@
 ﻿<husk:Modal xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-             x:Class="Huskui.Gallery.Modals.SettingsModal">
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+            xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+            x:Class="Huskui.Gallery.Modals.SettingsModal">
 
     <Grid RowDefinitions="Auto,*,Auto" MaxWidth="700">
-            
-            <!-- Header -->
-            <Border Grid.Row="0"
-                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    Padding="24,16"
-                    CornerRadius="8,8,0,0">
-                <Grid ColumnDefinitions="*,Auto">
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
-                        <fi:SymbolIcon Symbol="Settings" FontSize="24" />
-                        <TextBlock Text="Application Settings" 
-                                   FontSize="20" 
-                                   FontWeight="SemiBold"
-                                   VerticalAlignment="Center" />
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                Padding="24,16"
+                CornerRadius="8,8,0,0">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
+                    <fi:SymbolIcon Symbol="Settings" FontSize="24" />
+                    <TextBlock Text="Application Settings"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        Content="✕"
+                        Classes="Subtle"
+                        Width="32"
+                        Height="32"
+                        Click="OnCloseClick" />
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer Grid.Row="1" Padding="24">
+            <StackPanel Spacing="24">
+
+                <!-- General Settings -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="General" FontSize="16" FontWeight="SemiBold" />
+
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Language" FontWeight="Medium" />
+                                    <TextBlock Text="Choose your preferred language"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ComboBox Grid.Column="1"
+                                          Width="150"
+                                          SelectedIndex="0">
+                                    <ComboBoxItem Content="English" />
+                                    <ComboBoxItem Content="中文" />
+                                    <ComboBoxItem Content="日本語" />
+                                    <ComboBoxItem Content="Español" />
+                                </ComboBox>
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Auto-save" FontWeight="Medium" />
+                                    <TextBlock Text="Automatically save changes every 5 minutes"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Check for updates" FontWeight="Medium" />
+                                    <TextBlock Text="Automatically check for application updates"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
-                    
-                    <Button Grid.Column="1" 
-                            Content="✕" 
-                            Classes="Subtle"
-                            Width="32" 
-                            Height="32"
-                            Click="OnCloseClick" />
-                </Grid>
-            </Border>
-            
-            <!-- Content -->
-            <ScrollViewer Grid.Row="1" Padding="24">
-                <StackPanel Spacing="24">
-                    
-                    <!-- General Settings -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="General" FontSize="16" FontWeight="SemiBold" />
-                            
-                            <StackPanel Spacing="12">
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Language" FontWeight="Medium" />
-                                        <TextBlock Text="Choose your preferred language" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ComboBox Grid.Column="1" 
-                                              Width="150"
-                                              SelectedIndex="0">
-                                        <ComboBoxItem Content="English" />
-                                        <ComboBoxItem Content="中文" />
-                                        <ComboBoxItem Content="日本語" />
-                                        <ComboBoxItem Content="Español" />
-                                    </ComboBox>
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Auto-save" FontWeight="Medium" />
-                                        <TextBlock Text="Automatically save changes every 5 minutes" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" IsChecked="True" />
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Check for updates" FontWeight="Medium" />
-                                        <TextBlock Text="Automatically check for application updates" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" IsChecked="True" />
-                                </Grid>
-                            </StackPanel>
+                </husk:Card>
+
+                <!-- Appearance Settings -->
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold" />
+
+                        <StackPanel Spacing="12">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Theme" FontWeight="Medium" />
+                                    <TextBlock Text="Choose between light, dark, or system theme"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ComboBox Grid.Column="1"
+                                          Width="150"
+                                          SelectedIndex="0">
+                                    <ComboBoxItem Content="System" />
+                                    <ComboBoxItem Content="Light" />
+                                    <ComboBoxItem Content="Dark" />
+                                </ComboBox>
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="High contrast" FontWeight="Medium" />
+                                    <TextBlock Text="Increase contrast for better visibility"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <ToggleSwitch Grid.Column="1" />
+                            </Grid>
+
+                            <husk:Divider />
+
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Font size" FontWeight="Medium" />
+                                    <TextBlock Text="Adjust the application font size"
+                                               FontSize="12"
+                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                </StackPanel>
+                                <Slider Grid.Column="1"
+                                        Width="150"
+                                        Minimum="12"
+                                        Maximum="18"
+                                        Value="14"
+                                        TickFrequency="1"
+                                        IsSnapToTickEnabled="True" />
+                            </Grid>
                         </StackPanel>
-                    </husk:Card>
-                    
-                    <!-- Appearance Settings -->
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold" />
-                            
-                            <StackPanel Spacing="12">
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Theme" FontWeight="Medium" />
-                                        <TextBlock Text="Choose between light, dark, or system theme" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ComboBox Grid.Column="1" 
-                                              Width="150"
-                                              SelectedIndex="0">
-                                        <ComboBoxItem Content="System" />
-                                        <ComboBoxItem Content="Light" />
-                                        <ComboBoxItem Content="Dark" />
-                                    </ComboBox>
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="High contrast" FontWeight="Medium" />
-                                        <TextBlock Text="Increase contrast for better visibility" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="1" />
-                                </Grid>
-                                
-                                <husk:Divider />
-                                
-                                <Grid ColumnDefinitions="*,Auto">
-                                    <StackPanel Grid.Column="0">
-                                        <TextBlock Text="Font size" FontWeight="Medium" />
-                                        <TextBlock Text="Adjust the application font size" 
-                                                   FontSize="12" 
-                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                                    </StackPanel>
-                                    <Slider Grid.Column="1" 
-                                            Width="150"
-                                            Minimum="12"
-                                            Maximum="18"
-                                            Value="14"
-                                            TickFrequency="1"
-                                            IsSnapToTickEnabled="True" />
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-                    </husk:Card>
-                    
-                </StackPanel>
-            </ScrollViewer>
-            
-            <!-- Footer -->
-            <Border Grid.Row="2"
-                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                    Padding="24,16"
-                    CornerRadius="0,0,8,8">
-                <StackPanel Orientation="Horizontal" 
-                            HorizontalAlignment="Right" 
-                            Spacing="12">
-                    <Button Content="Reset to Defaults" 
-                            Classes="Subtle" 
-                            Click="OnResetClick" />
-                    <Button Content="Cancel" 
-                            Click="OnCancelClick" />
-                    <Button Content="Save Changes" 
-                            Classes="Accent" 
-                            Click="OnSaveClick" />
-                </StackPanel>
-            </Border>
+                    </StackPanel>
+                </husk:Card>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                Padding="24,16"
+                CornerRadius="0,0,8,8">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Spacing="12">
+                <Button Content="Reset to Defaults"
+                        Classes="Subtle"
+                        Click="OnResetClick" />
+                <Button Content="Cancel"
+                        Click="OnCancelClick" />
+                <Button Content="Save Changes"
+                        Classes="Accent"
+                        Click="OnSaveClick" />
+            </StackPanel>
+        </Border>
 
     </Grid>
 

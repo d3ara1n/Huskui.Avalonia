@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 
-namespace Huskui.Gallery.Views.Controls;
-
-public partial class TagsPage : UserControl
+namespace Huskui.Gallery.Views.Controls
 {
-    public TagsPage()
+    public partial class TagsPage : UserControl
     {
-        InitializeComponent();
+        public TagsPage() => InitializeComponent();
     }
 }
