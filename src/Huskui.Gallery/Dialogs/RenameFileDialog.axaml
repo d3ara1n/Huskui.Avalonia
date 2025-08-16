@@ -1,0 +1,132 @@
+﻿<husk:Dialog xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+              xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+              mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
+              x:Class="Huskui.Gallery.Dialogs.RenameFileDialog"
+              Title="Rename File"
+              PrimaryText="Rename"
+              SecondaryText="Cancel"
+              IsPrimaryButtonVisible="True">
+
+    <StackPanel Spacing="20" Width="400" Margin="24">
+        
+        <!-- Header -->
+        <StackPanel Spacing="12" HorizontalAlignment="Center">
+            <Border Width="48" 
+                    Height="48" 
+                    CornerRadius="24"
+                    Background="{DynamicResource AccentFillColorDefaultBrush}"
+                    HorizontalAlignment="Center">
+                <fi:SymbolIcon Symbol="Rename" 
+                               FontSize="24" 
+                               Foreground="White" />
+            </Border>
+            
+            <TextBlock Text="Enter a new name for the file" 
+                       FontSize="16" 
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center" />
+        </StackPanel>
+        
+        <!-- Current File Info -->
+        <husk:Card Padding="16">
+            <StackPanel Spacing="12">
+                <TextBlock Text="Current file:" 
+                           FontWeight="Medium" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <fi:SymbolIcon Symbol="Document" FontSize="24" />
+                    <StackPanel>
+                        <TextBlock Text="document.pdf" 
+                                   FontWeight="SemiBold" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="2.4 MB" 
+                                       FontSize="12" 
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                            <TextBlock Text="•" 
+                                       FontSize="12" 
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                            <TextBlock Text="PDF Document" 
+                                       FontSize="12" 
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </husk:Card>
+        
+        <!-- New Name Input -->
+        <StackPanel Spacing="8">
+            <TextBlock Text="New name:" 
+                       FontWeight="Medium" />
+            
+            <TextBox x:Name="FileNameTextBox"
+                     Text="document"
+                     Watermark="Enter new filename" />
+            
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBlock Text="Extension:" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                           VerticalAlignment="Center" />
+                <ComboBox SelectedIndex="0" Width="100">
+                    <ComboBoxItem Content=".pdf" />
+                    <ComboBoxItem Content=".doc" />
+                    <ComboBoxItem Content=".docx" />
+                    <ComboBoxItem Content=".txt" />
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        
+        <!-- Preview -->
+        <husk:Card Padding="16" Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Preview:" 
+                           FontWeight="Medium" 
+                           FontSize="12" />
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <fi:SymbolIcon Symbol="Document" FontSize="16" />
+                    <TextBlock x:Name="PreviewText" 
+                               Text="document.pdf" 
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </StackPanel>
+        </husk:Card>
+        
+        <!-- Validation Messages -->
+        <Border x:Name="ValidationBorder"
+                Background="#FFF3E0" 
+                BorderBrush="#FF9800" 
+                BorderThickness="1" 
+                CornerRadius="6" 
+                Padding="12"
+                IsVisible="False">
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <fi:SymbolIcon Symbol="Info" 
+                               FontSize="16" 
+                               Foreground="#FF9800" />
+                <TextBlock x:Name="ValidationText"
+                           Text="A file with this name already exists. Choose a different name." 
+                           FontSize="12" 
+                           Foreground="#E65100"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+        
+        <!-- Options -->
+        <StackPanel Spacing="8">
+            <CheckBox Content="Keep original file creation date" 
+                      IsChecked="True" />
+            <CheckBox Content="Update file in recent documents" 
+                      IsChecked="True" />
+        </StackPanel>
+        
+    </StackPanel>
+
+</husk:Dialog>

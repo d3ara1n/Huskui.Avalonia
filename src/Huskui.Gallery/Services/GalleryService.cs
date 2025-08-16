@@ -5,6 +5,7 @@ using FluentIcons.Common;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Views.Controls;
 using Huskui.Gallery.Views.Layout;
+using Huskui.Gallery.Views.Overlays;
 using Huskui.Gallery.Views.Input;
 
 namespace Huskui.Gallery.Services;
@@ -24,6 +25,8 @@ public class GalleryService : IGalleryService
 
         // Create categories and items
         CreateControlsCategory();
+        CreateContainerCategory();
+        CreateOverlaysCategory();
         CreateLayoutCategory();
         CreateInputCategory();
         CreateNavigationCategory();
@@ -36,7 +39,7 @@ public class GalleryService : IGalleryService
         var category = new GalleryCategory
         {
             Name = "Controls",
-            Description = "Basic UI controls and components",
+            Description = "Interactive UI controls, buttons, and display components",
             Icon = Symbol.ControlButton,
             Items =
             [
@@ -51,13 +54,23 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
-                    Title = "Cards",
-                    Description = "Container components for grouping content",
-                    Icon = Symbol.RectangleLandscape,
-                    PageType = typeof(CardsPage),
+                    Title = "DropDownButtons",
+                    Description = "Dropdown buttons with flyout menus",
+                    Icon = Symbol.ChevronDown,
+                    PageType = typeof(DropDownButtonsPage),
                     Category = "Controls",
-                    Tags = ["card", "container", "content"]
+                    Tags = ["dropdown", "button", "menu", "flyout", "actions"]
                 },
+                new()
+                {
+                    Title = "HyperlinkButtons",
+                    Description = "Navigation links with different themes for inline and standalone use",
+                    Icon = Symbol.Link,
+                    PageType = typeof(HyperlinkButtonsPage),
+                    Category = "Controls",
+                    Tags = ["hyperlink", "link", "navigation", "url", "inline"]
+                },
+
                 new()
                 {
                     Title = "Info Bars",
@@ -94,24 +107,7 @@ public class GalleryService : IGalleryService
                     Category = "Controls",
                     Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"]
                 },
-                new()
-                {
-                    Title = "Busy Containers",
-                    Description = "Loading state containers with blur effects",
-                    Icon = Symbol.ArrowClockwise,
-                    PageType = typeof(BusyContainersPage),
-                    Category = "Controls",
-                    Tags = ["busy", "loading", "container", "blur", "progress"]
-                },
-                new()
-                {
-                    Title = "Skeleton Containers",
-                    Description = "Skeleton placeholders for loading content",
-                    Icon = Symbol.RectangleLandscape,
-                    PageType = typeof(SkeletonContainersPage),
-                    Category = "Controls",
-                    Tags = ["skeleton", "loading", "placeholder", "shimmer"]
-                },
+
                 new()
                 {
                     Title = "Dividers",
@@ -120,6 +116,107 @@ public class GalleryService : IGalleryService
                     PageType = typeof(DividersPage),
                     Category = "Controls",
                     Tags = ["divider", "separator", "line", "section"]
+                }
+            ]
+        };
+
+        Categories.Add(category);
+        foreach (var item in category.Items)
+        {
+            AllItems.Add(item);
+        }
+    }
+
+    private void CreateContainerCategory()
+    {
+        var category = new GalleryCategory
+        {
+            Name = "Container",
+            Description = "Container components for layout and content organization",
+            Icon = Symbol.RectangleLandscape,
+            Items =
+            [
+                new()
+                {
+                    Title = "Cards",
+                    Description = "Container components for grouping content",
+                    Icon = Symbol.RectangleLandscape,
+                    PageType = typeof(CardsPage),
+                    Category = "Container",
+                    Tags = ["card", "container", "content"]
+                },
+                new()
+                {
+                    Title = "Busy Containers",
+                    Description = "Loading state containers with blur effects",
+                    Icon = Symbol.ArrowClockwise,
+                    PageType = typeof(BusyContainersPage),
+                    Category = "Container",
+                    Tags = ["busy", "loading", "container", "blur", "progress"]
+                },
+                new()
+                {
+                    Title = "Skeleton Containers",
+                    Description = "Skeleton placeholders for loading content",
+                    Icon = Symbol.RectangleLandscape,
+                    PageType = typeof(SkeletonContainersPage),
+                    Category = "Container",
+                    Tags = ["skeleton", "loading", "placeholder", "shimmer"]
+                }
+            ]
+        };
+
+        Categories.Add(category);
+        foreach (var item in category.Items)
+        {
+            AllItems.Add(item);
+        }
+    }
+
+    private void CreateOverlaysCategory()
+    {
+        var category = new GalleryCategory
+        {
+            Name = "Overlays",
+            Description = "Modal overlays, dialogs, toasts, and notifications",
+            Icon = Symbol.Layer,
+            Items =
+            [
+                new()
+                {
+                    Title = "Toasts",
+                    Description = "Heavy-weight content viewers that slide up from the bottom",
+                    Icon = Symbol.SlideText,
+                    PageType = typeof(ToastsPage),
+                    Category = "Overlays",
+                    Tags = ["toast", "content", "preview", "bottom", "heavy"]
+                },
+                new()
+                {
+                    Title = "Modals",
+                    Description = "Long interaction containers that cannot be dismissed externally",
+                    Icon = Symbol.RectangleLandscape,
+                    PageType = typeof(ModalsPage),
+                    Category = "Overlays",
+                    Tags = ["modal", "long", "interaction", "settings", "profile"]
+                },
+                new()
+                {
+                    Title = "Dialogs",
+                    Description = "Binary choice dialogs for user input and confirmation",
+                    Icon = Symbol.Chat,
+                    PageType = typeof(DialogsPage),
+                    Category = "Overlays",
+                    Tags = ["dialog", "confirmation", "input", "binary", "choice"]
+                },
+                new()
+                {
+                    Title = "Notifications",
+                    Description = "Notification items with different severity levels and actions",
+                    Icon = Symbol.Alert,
+                    PageType = typeof(NotificationsPage),
+                    Category = "Overlays",
+                    Tags = ["notification", "alert", "message", "status", "feedback"]
                 }
             ]
         };
@@ -194,7 +291,26 @@ public class GalleryService : IGalleryService
                     PageType = typeof(ComboBoxesPage),
                     Category = "Input",
                     Tags = ["combobox", "dropdown", "select", "picker"]
-                }
+                },
+                new()
+                {
+                    Title = "CheckBoxes",
+                    Description = "Checkbox controls with three-state support",
+                    Icon = Symbol.CheckboxChecked,
+                    PageType = typeof(CheckBoxesPage),
+                    Category = "Input",
+                    Tags = ["checkbox", "check", "selection", "boolean", "three-state"]
+                },
+                new()
+                {
+                    Title = "RadioButtons",
+                    Description = "Radio button controls for exclusive selection",
+                    Icon = Symbol.RadioButton,
+                    PageType = typeof(RadioButtonsPage),
+                    Category = "Input",
+                    Tags = ["radio", "button", "selection", "exclusive", "group"]
+                },
+
             ]
         };
 

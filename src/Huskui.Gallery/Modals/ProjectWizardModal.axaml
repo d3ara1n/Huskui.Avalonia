@@ -1,0 +1,239 @@
+﻿<husk:Modal xmlns="https://github.com/avaloniaui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+            xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+            mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="700"
+            x:Class="Huskui.Gallery.Modals.ProjectWizardModal">
+
+    <Grid RowDefinitions="Auto,*,Auto" MaxWidth="800">
+            
+            <!-- Header -->
+            <Border Grid.Row="0"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    Padding="24,16"
+                    CornerRadius="8,8,0,0">
+                <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
+                        <fi:SymbolIcon Symbol="FolderAdd" FontSize="24" />
+                        <StackPanel>
+                            <TextBlock Text="New Project Wizard" 
+                                       FontSize="20" 
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="Step 1 of 4: Project Type" 
+                                       FontSize="12" 
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <Button Grid.Column="1" 
+                            Content="✕" 
+                            Classes="Subtle"
+                            Width="32" 
+                            Height="32"
+                            Click="OnCloseClick" />
+                </Grid>
+            </Border>
+            
+            <!-- Content -->
+            <ScrollViewer Grid.Row="1" Padding="24">
+                <StackPanel Spacing="24">
+                    
+                    <!-- Progress Indicator -->
+                    <husk:Card Padding="20">
+                        <StackPanel Spacing="12">
+                            <TextBlock Text="Setup Progress" FontWeight="SemiBold" />
+                            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+                                <Border Grid.Column="0" 
+                                        Height="4" 
+                                        CornerRadius="2"
+                                        Background="{DynamicResource AccentFillColorDefaultBrush}" />
+                                <Border Grid.Column="1" 
+                                        Height="4" 
+                                        CornerRadius="2"
+                                        Background="{DynamicResource ControlStrokeColorDefaultBrush}" />
+                                <Border Grid.Column="2" 
+                                        Height="4" 
+                                        CornerRadius="2"
+                                        Background="{DynamicResource ControlStrokeColorDefaultBrush}" />
+                                <Border Grid.Column="3" 
+                                        Height="4" 
+                                        CornerRadius="2"
+                                        Background="{DynamicResource ControlStrokeColorDefaultBrush}" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <TextBlock Grid.Column="0" Text="Type" FontSize="12" HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="1" Text="Template" FontSize="12" HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Text="Configuration" FontSize="12" HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="3" Text="Review" FontSize="12" HorizontalAlignment="Center" />
+                            </Grid>
+                        </StackPanel>
+                    </husk:Card>
+                    
+                    <!-- Project Type Selection -->
+                    <husk:Card Padding="20">
+                        <StackPanel Spacing="16">
+                            <TextBlock Text="Choose Project Type" FontSize="16" FontWeight="SemiBold" />
+                            <TextBlock Text="Select the type of project you want to create" 
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                            
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="16" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+                                
+                                <!-- Web Application -->
+                                <Border Grid.Row="0" Grid.Column="0" 
+                                        BorderBrush="{DynamicResource AccentFillColorDefaultBrush}"
+                                        BorderThickness="2"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorSecondaryBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Globe" FontSize="20" />
+                                            <TextBlock Text="Web Application" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Create a modern web application with React, Vue, or Angular"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                                <!-- Desktop Application -->
+                                <Border Grid.Row="0" Grid.Column="1" 
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Desktop" FontSize="20" />
+                                            <TextBlock Text="Desktop Application" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Build cross-platform desktop apps with Avalonia or Electron"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                                <!-- Mobile Application -->
+                                <Border Grid.Row="1" Grid.Column="0" 
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Phone" FontSize="20" />
+                                            <TextBlock Text="Mobile Application" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Develop native mobile apps for iOS and Android"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                                <!-- API Service -->
+                                <Border Grid.Row="1" Grid.Column="1" 
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Server" FontSize="20" />
+                                            <TextBlock Text="API Service" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Create RESTful APIs and microservices"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                                <!-- Library/Package -->
+                                <Border Grid.Row="2" Grid.Column="0" 
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Library" FontSize="20" />
+                                            <TextBlock Text="Library/Package" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Build reusable libraries and npm packages"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                                <!-- Documentation -->
+                                <Border Grid.Row="2" Grid.Column="1" 
+                                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        CornerRadius="8"
+                                        Padding="16"
+                                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}">
+                                    <StackPanel Spacing="8">
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <fi:SymbolIcon Symbol="Document" FontSize="20" />
+                                            <TextBlock Text="Documentation" FontWeight="SemiBold" />
+                                        </StackPanel>
+                                        <TextBlock Text="Generate documentation sites with Docusaurus or GitBook"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+                                
+                            </Grid>
+                        </StackPanel>
+                    </husk:Card>
+                    
+                    <!-- Additional Options -->
+                    <husk:Card Padding="20">
+                        <StackPanel Spacing="16">
+                            <TextBlock Text="Additional Options" FontSize="16" FontWeight="SemiBold" />
+                            
+                            <StackPanel Spacing="12">
+                                <CheckBox Content="Include TypeScript support" IsChecked="True" />
+                                <CheckBox Content="Set up testing framework" IsChecked="True" />
+                                <CheckBox Content="Configure CI/CD pipeline" />
+                                <CheckBox Content="Add Docker configuration" />
+                                <CheckBox Content="Initialize Git repository" IsChecked="True" />
+                            </StackPanel>
+                        </StackPanel>
+                    </husk:Card>
+                    
+                </StackPanel>
+            </ScrollViewer>
+            
+            <!-- Footer -->
+            <Border Grid.Row="2"
+                    Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    Padding="24,16"
+                    CornerRadius="0,0,8,8">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right" 
+                            Spacing="12">
+                    <Button Content="Cancel" 
+                            Click="OnCancelClick" />
+                    <Button Content="Back" 
+                            IsEnabled="False" />
+                    <Button Content="Next" 
+                            Classes="Accent" 
+                            Click="OnNextClick" />
+                </StackPanel>
+            </Border>
+
+    </Grid>
+
+</husk:Modal>

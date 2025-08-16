@@ -1,0 +1,97 @@
+﻿<husk:Dialog xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
+             x:Class="Huskui.Gallery.Dialogs.DeleteConfirmationDialog"
+             Title="Delete File"
+             PrimaryText="Delete"
+             SecondaryText="Cancel"
+             IsPrimaryButtonVisible="True">
+
+    <StackPanel Spacing="20" Width="400" Margin="24">
+
+        <!-- Warning Icon and Message -->
+        <StackPanel Spacing="16" HorizontalAlignment="Center">
+            <Border Width="64"
+                    Height="64"
+                    CornerRadius="32"
+                    Background="#FFEB3B"
+                    HorizontalAlignment="Center">
+                <fi:SymbolIcon Symbol="Warning"
+                               FontSize="32"
+                               Foreground="#F57C00" />
+            </Border>
+
+            <TextBlock Text="Are you sure you want to delete this file?"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center" />
+        </StackPanel>
+
+        <!-- File Information -->
+        <husk:Card Padding="16">
+            <StackPanel Spacing="12">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <fi:SymbolIcon Symbol="Document" FontSize="24" />
+                    <StackPanel>
+                        <TextBlock Text="document.pdf"
+                                   FontWeight="SemiBold"
+                                   FontSize="16" />
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <TextBlock Text="Size: 2.4 MB"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                            <TextBlock Text="•"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                            <TextBlock Text="Modified: Today, 3:45 PM"
+                                       FontSize="12"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <husk:Divider />
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Location:"
+                               FontWeight="Medium"
+                               FontSize="12" />
+                    <TextBlock Text="C:\Users\Sarah\Documents\Projects\document.pdf"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </StackPanel>
+        </husk:Card>
+
+        <!-- Warning Message -->
+        <husk:InfoBar Classes="Warning">
+            <husk:InfoBar.Header>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <fi:SymbolIcon Symbol="ErrorCircle"
+                                   FontSize="16" />
+                    <TextBlock Text="This action cannot be undone"
+                               FontWeight="SemiBold"/>
+                </StackPanel>
+            </husk:InfoBar.Header>
+            <TextBlock
+                Text="The file will be permanently deleted from your computer. Make sure you have a backup if you need to recover it later."
+                FontSize="12"
+                TextWrapping="Wrap" />
+        </husk:InfoBar>
+
+        <!-- Additional Options -->
+        <StackPanel Spacing="8">
+            <CheckBox Content="Move to Recycle Bin instead of permanent deletion"
+                      IsChecked="True" />
+            <CheckBox Content="Delete all files with the same name in this folder" />
+        </StackPanel>
+
+    </StackPanel>
+
+</husk:Dialog>

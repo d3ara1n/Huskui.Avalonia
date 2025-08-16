@@ -1,0 +1,310 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Huskui.Gallery.Views.Input.DropDownButtonsPage">
+
+    <ScrollViewer>
+        <StackPanel Margin="24" Spacing="32">
+
+            <controls:ExampleContainer Title="Basic DropDownButtons"
+                                       Description="Dropdown buttons with flyout menus">
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Button Controls" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="SizeToggle" Content="Large Size" />
+                        <Button Content="Show All Flyouts" Click="OnShowAllFlyoutsClick" />
+                        <TextBlock Text="Toggle size and test flyout interactions." 
+                                   TextWrapping="Wrap" 
+                                   FontSize="12" 
+                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+                
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <DropDownButton Content="Actions" 
+                                        Classes.Large="{Binding #SizeToggle.IsChecked}">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Copy" />
+                                    <MenuItem Header="Paste" />
+                                    <Separator />
+                                    <MenuItem Header="Delete" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="File" 
+                                        Classes.Large="{Binding #SizeToggle.IsChecked}">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="New" />
+                                    <MenuItem Header="Open..." />
+                                    <MenuItem Header="Save" />
+                                    <Separator />
+                                    <MenuItem Header="Exit" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Tools" 
+                                        Classes.Large="{Binding #SizeToggle.IsChecked}">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Settings" />
+                                    <MenuItem Header="Preferences" />
+                                    <Separator />
+                                    <MenuItem Header="About" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer>
+
+            <controls:ExampleContainer Title="DropDownButton Styles"
+                                       Description="Different visual styles for dropdown buttons">
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <DropDownButton Content="Default">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Option 1" />
+                                    <MenuItem Header="Option 2" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Primary" Classes="Primary">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Primary Action" />
+                                    <MenuItem Header="Secondary Action" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Success" Classes="Success">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Confirm" />
+                                    <MenuItem Header="Apply" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Warning" Classes="Warning">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Caution" />
+                                    <MenuItem Header="Proceed" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Danger" Classes="Danger">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Delete" />
+                                    <MenuItem Header="Remove" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer>
+
+            <controls:ExampleContainer Title="Size Variations"
+                                       Description="Small and large dropdown buttons">
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                        <DropDownButton Content="Small" Classes="Small">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Small Action 1" />
+                                    <MenuItem Header="Small Action 2" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Default">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Default Action 1" />
+                                    <MenuItem Header="Default Action 2" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Content="Large" Classes="Large">
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Large Action 1" />
+                                    <MenuItem Header="Large Action 2" />
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer>
+
+            <controls:ExampleContainer Title="Complex Content"
+                                       Description="Dropdown buttons with icons and rich content">
+                <StackPanel Spacing="16" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <DropDownButton>
+                            <husk:IconLabel Icon="Save" Text="Save" />
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Save">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Save" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Save As...">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Save" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="Save Copy">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Copy" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <Separator />
+                                    <MenuItem Header="Export...">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Share" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                        
+                        <DropDownButton Classes="Primary">
+                            <husk:IconLabel Icon="Add" Text="Create" />
+                            <DropDownButton.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="New File">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Document" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <MenuItem Header="New Folder">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Folder" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                    <Separator />
+                                    <MenuItem Header="From Template">
+                                        <MenuItem.Icon>
+                                            <fi:SymbolIcon Symbol="Document" />
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </MenuFlyout>
+                            </DropDownButton.Flyout>
+                        </DropDownButton>
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer>
+
+            <controls:ExampleContainer Title="Toolbar Example"
+                                       Description="DropDownButtons in a practical toolbar">
+                <husk:Card Padding="16" Width="600">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Document Editor Toolbar" FontSize="16" FontWeight="Bold" />
+                        
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <DropDownButton Content="File" Classes="Small">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="New Document" />
+                                        <MenuItem Header="Open..." />
+                                        <MenuItem Header="Recent Files" />
+                                        <Separator />
+                                        <MenuItem Header="Save" />
+                                        <MenuItem Header="Save As..." />
+                                        <Separator />
+                                        <MenuItem Header="Print..." />
+                                        <MenuItem Header="Export PDF" />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                            
+                            <DropDownButton Content="Edit" Classes="Small">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="Undo" />
+                                        <MenuItem Header="Redo" />
+                                        <Separator />
+                                        <MenuItem Header="Cut" />
+                                        <MenuItem Header="Copy" />
+                                        <MenuItem Header="Paste" />
+                                        <Separator />
+                                        <MenuItem Header="Find..." />
+                                        <MenuItem Header="Replace..." />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                            
+                            <DropDownButton Content="Format" Classes="Small">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="Bold" />
+                                        <MenuItem Header="Italic" />
+                                        <MenuItem Header="Underline" />
+                                        <Separator />
+                                        <MenuItem Header="Font..." />
+                                        <MenuItem Header="Paragraph..." />
+                                        <Separator />
+                                        <MenuItem Header="Styles" />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                            
+                            <DropDownButton Content="Insert" Classes="Small">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="Image..." />
+                                        <MenuItem Header="Table..." />
+                                        <MenuItem Header="Link..." />
+                                        <Separator />
+                                        <MenuItem Header="Page Break" />
+                                        <MenuItem Header="Date/Time" />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                            
+                            <DropDownButton Content="View" Classes="Small">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout>
+                                        <MenuItem Header="Zoom In" />
+                                        <MenuItem Header="Zoom Out" />
+                                        <MenuItem Header="Fit to Window" />
+                                        <Separator />
+                                        <MenuItem Header="Show Ruler" />
+                                        <MenuItem Header="Show Grid" />
+                                        <MenuItem Header="Full Screen" />
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                        </StackPanel>
+                        
+                        <husk:Divider />
+                        
+                        <TextBlock Text="Click any dropdown to see the available actions for that menu." 
+                                   FontSize="12" 
+                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </husk:Card>
+            </controls:ExampleContainer>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>
