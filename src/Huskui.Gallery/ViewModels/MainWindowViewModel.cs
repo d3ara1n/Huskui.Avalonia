@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Avalonia.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
 using DynamicData.Binding;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Services;
+using Huskui.Gallery.ViewModels;
 
 namespace Huskui.Gallery.ViewModels;
 
@@ -34,6 +37,9 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     // DynamicData collections
     private readonly SourceList<GalleryItem> _allItemsSource = new();
     private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults = null!;
+
+    [ObservableProperty]
+    private ObservableCollection<CategoryGroupViewModel> _categoryGroups = new();
 
     public ObservableCollection<GalleryCategory> Categories => _galleryService.Categories;
     public IThemeService ThemeService => _themeService;
@@ -64,7 +70,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
             .DistinctUntilChanged();
 
         // Create filtered collection based on search text
-        // When search is empty, show all items; when search has text, show filtered results
         var searchSubscription = _allItemsSource
             .Connect()
             .Filter(searchTextObservable.Select<string, Func<GalleryItem, bool>>(searchText =>
@@ -74,12 +79,18 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
         _disposables.Add(searchSubscription);
 
-        // Update IsSearchActive based on search text
-        var searchActiveSubscription = searchTextObservable
-            .Select(text => !string.IsNullOrWhiteSpace(text))
-            .Subscribe(isActive => IsSearchActive = isActive);
+        // Initialize category groups
+        InitializeCategoryGroups();
 
-        _disposables.Add(searchActiveSubscription);
+        // Update category groups when search text changes
+        var categoryFilterSubscription = searchTextObservable
+            .Subscribe(searchText =>
+            {
+                IsSearchActive = !string.IsNullOrWhiteSpace(searchText);
+                UpdateCategoryFilters(searchText);
+            });
+
+        _disposables.Add(categoryFilterSubscription);
     }
 
     // SearchText changes are now handled reactively in the constructor
@@ -126,13 +137,79 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         IsSettingsOpen = !IsSettingsOpen;
     }
 
-    // SelectSearchResult command removed - now using unified selection through SelectedItem binding
+    [RelayCommand]
+    private void SelectItem(GalleryItem item)
+    {
+        // Clear selection from all category groups first
+        foreach (var categoryGroup in CategoryGroups)
+        {
+            categoryGroup.ClearSelection();
+        }
+
+        // Set the main selected item
+        SelectedItem = item;
+    }
+
+    private void InitializeCategoryGroups()
+    {
+        CategoryGroups.Clear();
+
+        foreach (var category in _galleryService.Categories)
+        {
+            // Create observable collection for this category's items
+            var categoryItems = new ObservableCollection<GalleryItem>(category.Items);
+            var readOnlyItems = new ReadOnlyObservableCollection<GalleryItem>(categoryItems);
+
+            // Create category group view model
+            var groupViewModel = new CategoryGroupViewModel(category, readOnlyItems);
+
+            // Subscribe to selection changes
+            groupViewModel.PropertyChanged += OnCategoryGroupPropertyChanged;
+
+            CategoryGroups.Add(groupViewModel);
+        }
+    }
+
+    private void UpdateCategoryFilters(string searchText)
+    {
+        foreach (var categoryGroup in CategoryGroups)
+        {
+            categoryGroup.UpdateFilter(searchText);
+        }
+    }
+
+    private void OnCategoryGroupPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(CategoryGroupViewModel.SelectedItem) && sender is CategoryGroupViewModel categoryGroup)
+        {
+            if (categoryGroup.SelectedItem != null)
+            {
+                // Clear selection from other category groups
+                foreach (var otherGroup in CategoryGroups)
+                {
+                    if (otherGroup != categoryGroup)
+                    {
+                        otherGroup.ClearSelection();
+                    }
+                }
+
+                // Update main selected item
+                SelectedItem = categoryGroup.SelectedItem;
+            }
+        }
+    }
 
     public void Dispose()
     {
         _disposables.Dispose();
         _allItemsSource.Dispose();
         _navigationService.NavigationChanged -= OnNavigationChanged;
+
+        // Unsubscribe from category group events
+        foreach (var categoryGroup in CategoryGroups)
+        {
+            categoryGroup.PropertyChanged -= OnCategoryGroupPropertyChanged;
+        }
     }
 
     private void OnNavigationChanged(object? sender, GalleryItem? item)

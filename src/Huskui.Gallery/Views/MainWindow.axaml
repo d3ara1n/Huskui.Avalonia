@@ -15,6 +15,34 @@
                 ExtendClientAreaTitleBarHeightHint="44"
                 TransparencyLevelHint="Mica, None">
 
+    <husk:AppWindow.Resources>
+        <!-- Shared Gallery Item Template -->
+        <DataTemplate x:Key="GalleryItemTemplate" x:DataType="models:GalleryItem">
+            <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
+                <fi:SymbolIcon Grid.Column="0"
+                               Symbol="{Binding Icon}"
+                               FontSize="{StaticResource MediumFontSize}"
+                               Margin="0,0,12,0" />
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding Title}"
+                               FontWeight="{StaticResource ControlStrongFontWeight}" />
+                    <TextBlock Text="{Binding Description}"
+                               FontSize="{StaticResource SmallFontSize}"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                               TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                    <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
+                        <TextBlock Text="NEW" Classes="BadgeText" />
+                    </Border>
+                    <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
+                        <TextBlock Text="UPD" Classes="BadgeText" />
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </husk:AppWindow.Resources>
+
     <Grid ColumnDefinitions="320,*">
         <!-- Sidebar -->
         <Border Grid.Column="0"
@@ -71,42 +99,32 @@
                 <!-- Navigation Content -->
                 <ScrollViewer Grid.Row="2" Margin="8,16,8,8">
                     <StackPanel>
-                        <!-- Search Results Header -->
-                        <TextBlock Text="Search Results"
-                                   Classes="CategoryHeader"
-                                   IsVisible="{Binding IsSearchActive}" />
+                        <!-- Search Results (Flat List) -->
+                        <StackPanel IsVisible="{Binding IsSearchActive}">
+                            <TextBlock Text="Search Results"
+                                       Classes="CategoryHeader" />
+                            <ListBox ItemsSource="{Binding SearchResults}"
+                                     SelectedItem="{Binding SelectedItem}"
+                                     Classes="NavigationList"
+                                     ItemTemplate="{StaticResource GalleryItemTemplate}" />
+                        </StackPanel>
 
-                        <!-- Unified Items List -->
-                        <ListBox ItemsSource="{Binding DisplayItems}"
-                                 SelectedItem="{Binding SelectedItem}"
-                                 Classes="NavigationList">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate x:DataType="models:GalleryItem">
-                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
-                                        <fi:SymbolIcon Grid.Column="0"
-                                                       Symbol="{Binding Icon}"
-                                                       FontSize="{StaticResource MediumFontSize}"
-                                                       Margin="0,0,12,0" />
-                                        <StackPanel Grid.Column="1">
-                                            <TextBlock Text="{Binding Title}"
-                                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                            <TextBlock Text="{Binding Description}"
-                                                       FontSize="{StaticResource SmallFontSize}"
-                                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                       TextTrimming="CharacterEllipsis" />
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
-                                            <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
-                                                <TextBlock Text="NEW" Classes="BadgeText" />
-                                            </Border>
-                                            <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
-                                                <TextBlock Text="UPD" Classes="BadgeText" />
-                                            </Border>
-                                        </StackPanel>
-                                    </Grid>
+                        <!-- Category Groups (Grouped List) -->
+                        <ItemsControl ItemsSource="{Binding CategoryGroups}"
+                                      IsVisible="{Binding !IsSearchActive}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="vm:CategoryGroupViewModel">
+                                    <StackPanel IsVisible="{Binding IsVisible}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   Classes="CategoryHeader" />
+                                        <ListBox ItemsSource="{Binding FilteredItems}"
+                                                 SelectedItem="{Binding SelectedItem}"
+                                                 Classes="NavigationList"
+                                                 ItemTemplate="{StaticResource GalleryItemTemplate}" />
+                                    </StackPanel>
                                 </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </ScrollViewer>
 
