@@ -1,5 +1,8 @@
 ﻿using System;
 using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Platform;
 using Avalonia.Styling;
 using Huskui.Avalonia;
 
@@ -12,11 +15,11 @@ public class ThemeService : IThemeService
 {
     private ThemeVariant _currentTheme = ThemeVariant.Default;
     private AccentColor _currentAccent = AccentColor.Blue;
-    private CornerStyle _currentCorner = CornerStyle.Normal;
+    private BackgroundMaterial _currentBackground = BackgroundMaterial.Mica;
 
     public ThemeVariant CurrentTheme => _currentTheme;
     public AccentColor CurrentAccent => _currentAccent;
-    public CornerStyle CurrentCorner => _currentCorner;
+    public BackgroundMaterial CurrentBackground => _currentBackground;
 
     public event EventHandler? ThemeChanged;
 
@@ -43,12 +46,12 @@ public class ThemeService : IThemeService
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void SetCorner(CornerStyle corner)
+    public void SetBackground(BackgroundMaterial background)
     {
-        if (_currentCorner == corner) return;
+        if (_currentBackground == background) return;
 
-        _currentCorner = corner;
-        UpdateHuskuiTheme();
+        _currentBackground = background;
+        UpdateWindowBackground();
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
@@ -70,9 +73,30 @@ public class ThemeService : IThemeService
                 if (styles[i] is HuskuiTheme huskuiTheme)
                 {
                     huskuiTheme.Accent = _currentAccent;
-                    huskuiTheme.Corner = _currentCorner;
                     break;
                 }
+            }
+        }
+    }
+
+    private void UpdateWindowBackground()
+    {
+        // Update main window TransparencyLevelHint based on selected material
+        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var mainWindow = desktop.MainWindow;
+            if (mainWindow != null)
+            {
+                var transparencyLevel = _currentBackground switch
+                {
+                    BackgroundMaterial.None => WindowTransparencyLevel.None,
+                    BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
+                    BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
+                    BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
+                    _ => WindowTransparencyLevel.None
+                };
+
+                mainWindow.TransparencyLevelHint = new[] { transparencyLevel };
             }
         }
     }

@@ -5,6 +5,32 @@ using Huskui.Avalonia;
 namespace Huskui.Gallery.Services;
 
 /// <summary>
+/// Background material types for the application (maps to Avalonia TransparencyLevelHint)
+/// </summary>
+public enum BackgroundMaterial
+{
+    /// <summary>
+    /// No transparency - solid background
+    /// </summary>
+    None,
+
+    /// <summary>
+    /// Mica effect - modern translucent material (Windows 11+)
+    /// </summary>
+    Mica,
+
+    /// <summary>
+    /// Acrylic effect - blurred translucent background
+    /// </summary>
+    AcrylicBlur,
+
+    /// <summary>
+    /// Transparent background
+    /// </summary>
+    Transparent
+}
+
+/// <summary>
 /// Service for managing application themes
 /// </summary>
 public interface IThemeService
@@ -20,9 +46,9 @@ public interface IThemeService
     AccentColor CurrentAccent { get; }
 
     /// <summary>
-    /// Gets the current corner style
+    /// Gets the current background material
     /// </summary>
-    CornerStyle CurrentCorner { get; }
+    BackgroundMaterial CurrentBackground { get; }
 
     /// <summary>
     /// Event raised when theme changes
@@ -42,10 +68,10 @@ public interface IThemeService
     void SetAccent(AccentColor accent);
 
     /// <summary>
-    /// Sets the corner style
+    /// Sets the background material
     /// </summary>
-    /// <param name="corner">The corner style to set</param>
-    void SetCorner(CornerStyle corner);
+    /// <param name="background">The background material to set</param>
+    void SetBackground(BackgroundMaterial background);
 
     /// <summary>
     /// Toggles between light and dark theme

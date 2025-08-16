@@ -39,7 +39,7 @@
                              Classes="SearchBox"
                              Watermark="Search controls...">
                         <TextBox.InnerLeftContent>
-                            <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource SmallFontSize}" Margin="12,0,0,0"/>
+                            <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource SmallFontSize}" Margin="12,0,0,0" />
                         </TextBox.InnerLeftContent>
                     </TextBox>
                 </StackPanel>
@@ -148,7 +148,7 @@
             <TransitioningContentControl Name="ContentFrame" />
 
             <!-- Settings Overlay -->
-            <Border Background="{StaticResource LayerBackgroundBrush}"
+            <Border Background="{StaticResource OverlaySolidBackgroundBrush}"
                     BorderBrush="{StaticResource ControlBorderBrush}"
                     BorderThickness="1,0,0,0"
                     IsVisible="{Binding IsSettingsOpen}">

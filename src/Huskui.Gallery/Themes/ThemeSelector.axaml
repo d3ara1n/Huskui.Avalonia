@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls">
+                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                    xmlns:models="clr-namespace:Huskui.Gallery.Models">
 
     <ControlTheme x:Key="{x:Type controls:ThemeSelector}" TargetType="controls:ThemeSelector">
         <Setter Property="Template">
@@ -12,7 +13,20 @@
                                    FontWeight="{StaticResource ControlStrongFontWeight}"
                                    FontSize="{StaticResource MediumFontSize}" />
                         <ComboBox Name="PART_ThemeComboBox"
-                                  MinWidth="120" />
+                                  MinWidth="200">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:ThemeVariantItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
+                                        <TextBlock Text="{Binding Description}"
+                                                   FontSize="{StaticResource SmallFontSize}"
+                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
 
                     <!-- Accent Color Selection -->
@@ -21,16 +35,42 @@
                                    FontWeight="{StaticResource ControlStrongFontWeight}"
                                    FontSize="{StaticResource MediumFontSize}" />
                         <ComboBox Name="PART_AccentComboBox"
-                                  MinWidth="120" />
+                                  MinWidth="200">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:AccentColorItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
+                                        <TextBlock Text="{Binding Description}"
+                                                   FontSize="{StaticResource SmallFontSize}"
+                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
 
-                    <!-- Corner Style Selection -->
+                    <!-- Background Material Selection -->
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Corner Style"
+                        <TextBlock Text="Background Material"
                                    FontWeight="{StaticResource ControlStrongFontWeight}"
                                    FontSize="{StaticResource MediumFontSize}" />
-                        <ComboBox Name="PART_CornerComboBox"
-                                  MinWidth="120" />
+                        <ComboBox Name="PART_BackgroundComboBox"
+                                  MinWidth="200">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:BackgroundMaterialItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
+                                        <TextBlock Text="{Binding Description}"
+                                                   FontSize="{StaticResource SmallFontSize}"
+                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
                 </StackPanel>
             </ControlTemplate>

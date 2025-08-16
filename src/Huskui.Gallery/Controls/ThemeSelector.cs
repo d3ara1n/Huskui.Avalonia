@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
-using Avalonia.Styling;
-using Huskui.Avalonia;
+using Avalonia.Data;
+using Huskui.Gallery.Models;
 using Huskui.Gallery.Services;
 
 namespace Huskui.Gallery.Controls;
@@ -18,7 +17,7 @@ public class ThemeSelector : TemplatedControl
     private IThemeService? _themeService;
     private ComboBox? _themeComboBox;
     private ComboBox? _accentComboBox;
-    private ComboBox? _cornerComboBox;
+    private ComboBox? _backgroundComboBox;
 
     public static readonly StyledProperty<IThemeService?> ThemeServiceProperty =
         AvaloniaProperty.Register<ThemeSelector, IThemeService?>(nameof(ThemeService));
@@ -35,11 +34,11 @@ public class ThemeSelector : TemplatedControl
 
         _themeComboBox = e.NameScope.Find("PART_ThemeComboBox") as ComboBox;
         _accentComboBox = e.NameScope.Find("PART_AccentComboBox") as ComboBox;
-        _cornerComboBox = e.NameScope.Find("PART_CornerComboBox") as ComboBox;
+        _backgroundComboBox = e.NameScope.Find("PART_BackgroundComboBox") as ComboBox;
 
         SetupThemeComboBox();
         SetupAccentComboBox();
-        SetupCornerComboBox();
+        SetupBackgroundComboBox();
         UpdateCurrentSelections();
     }
 
@@ -68,17 +67,10 @@ public class ThemeSelector : TemplatedControl
     {
         if (_themeComboBox == null) return;
 
-        var themes = new List<ThemeItem>
-        {
-            new("System", ThemeVariant.Default),
-            new("Light", ThemeVariant.Light),
-            new("Dark", ThemeVariant.Dark)
-        };
-
-        _themeComboBox.ItemsSource = themes;
+        _themeComboBox.ItemsSource = ThemeVariantItem.All;
         _themeComboBox.SelectionChanged += (_, _) =>
         {
-            if (_themeComboBox.SelectedItem is ThemeItem item && _themeService != null)
+            if (_themeComboBox.SelectedItem is ThemeVariantItem item && _themeService != null)
             {
                 _themeService.SetTheme(item.Variant);
             }
@@ -89,34 +81,26 @@ public class ThemeSelector : TemplatedControl
     {
         if (_accentComboBox == null) return;
 
-        var accents = Enum.GetValues<AccentColor>()
-            .Select(a => new AccentItem(a.ToString(), a))
-            .ToList();
-
-        _accentComboBox.ItemsSource = accents;
+        _accentComboBox.ItemsSource = AccentColorItem.All;
         _accentComboBox.SelectionChanged += (_, _) =>
         {
-            if (_accentComboBox.SelectedItem is AccentItem item && _themeService != null)
+            if (_accentComboBox.SelectedItem is AccentColorItem item && _themeService != null)
             {
                 _themeService.SetAccent(item.Color);
             }
         };
     }
 
-    private void SetupCornerComboBox()
+    private void SetupBackgroundComboBox()
     {
-        if (_cornerComboBox == null) return;
+        if (_backgroundComboBox == null) return;
 
-        var corners = Enum.GetValues<CornerStyle>()
-            .Select(c => new CornerItem(c.ToString(), c))
-            .ToList();
-
-        _cornerComboBox.ItemsSource = corners;
-        _cornerComboBox.SelectionChanged += (_, _) =>
+        _backgroundComboBox.ItemsSource = BackgroundMaterialItem.All;
+        _backgroundComboBox.SelectionChanged += (_, _) =>
         {
-            if (_cornerComboBox.SelectedItem is CornerItem item && _themeService != null)
+            if (_backgroundComboBox.SelectedItem is BackgroundMaterialItem item && _themeService != null)
             {
-                _themeService.SetCorner(item.Style);
+                _themeService.SetBackground(item.Material);
             }
         };
     }
@@ -126,24 +110,24 @@ public class ThemeSelector : TemplatedControl
         if (_themeService == null) return;
 
         // Update theme selection
-        if (_themeComboBox?.ItemsSource is IEnumerable<ThemeItem> themes)
+        if (_themeComboBox != null)
         {
-            var currentTheme = themes.FirstOrDefault(t => t.Variant == _themeService.CurrentTheme);
+            var currentTheme = ThemeVariantItem.All.FirstOrDefault(t => t.Variant == _themeService.CurrentTheme);
             _themeComboBox.SelectedItem = currentTheme;
         }
 
         // Update accent selection
-        if (_accentComboBox?.ItemsSource is IEnumerable<AccentItem> accents)
+        if (_accentComboBox != null)
         {
-            var currentAccent = accents.FirstOrDefault(a => a.Color == _themeService.CurrentAccent);
+            var currentAccent = AccentColorItem.All.FirstOrDefault(a => a.Color == _themeService.CurrentAccent);
             _accentComboBox.SelectedItem = currentAccent;
         }
 
-        // Update corner selection
-        if (_cornerComboBox?.ItemsSource is IEnumerable<CornerItem> corners)
+        // Update background selection
+        if (_backgroundComboBox != null)
         {
-            var currentCorner = corners.FirstOrDefault(c => c.Style == _themeService.CurrentCorner);
-            _cornerComboBox.SelectedItem = currentCorner;
+            var currentBackground = BackgroundMaterialItem.All.FirstOrDefault(b => b.Material == _themeService.CurrentBackground);
+            _backgroundComboBox.SelectedItem = currentBackground;
         }
     }
 
@@ -152,7 +136,5 @@ public class ThemeSelector : TemplatedControl
         UpdateCurrentSelections();
     }
 
-    private record ThemeItem(string Name, ThemeVariant Variant);
-    private record AccentItem(string Name, AccentColor Color);
-    private record CornerItem(string Name, CornerStyle Style);
+    // Records removed - now using user-friendly models from ThemeModels.cs
 }
