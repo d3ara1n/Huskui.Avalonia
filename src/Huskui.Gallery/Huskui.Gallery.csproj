@@ -35,4 +35,23 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Input\TextBoxesPage.axaml.cs">
+        <DependentUpon>TextBoxesPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Input\ToggleSwitchesPage.axaml.cs">
+        <DependentUpon>ToggleSwitchesPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Input\ButtonsPage.axaml.cs">
+        <DependentUpon>ButtonsPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Input\ComboBoxesPage.axaml.cs">
+        <DependentUpon>ComboBoxesPage.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

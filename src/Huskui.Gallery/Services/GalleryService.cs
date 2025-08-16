@@ -75,6 +75,51 @@ public class GalleryService : IGalleryService
                     PageType = typeof(TagsPage),
                     Category = "Controls",
                     Tags = ["tag", "label", "category"]
+                },
+                new()
+                {
+                    Title = "Icon Labels",
+                    Description = "Icon and text combinations",
+                    Icon = Symbol.Icons,
+                    PageType = typeof(IconLabelsPage),
+                    Category = "Controls",
+                    Tags = ["icon", "label", "text", "fluent"]
+                },
+                new()
+                {
+                    Title = "Highlight Blocks",
+                    Description = "Inline text highlighting for emphasis",
+                    Icon = Symbol.Highlight,
+                    PageType = typeof(HighlightBlocksPage),
+                    Category = "Controls",
+                    Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"]
+                },
+                new()
+                {
+                    Title = "Busy Containers",
+                    Description = "Loading state containers with blur effects",
+                    Icon = Symbol.ArrowClockwise,
+                    PageType = typeof(BusyContainersPage),
+                    Category = "Controls",
+                    Tags = ["busy", "loading", "container", "blur", "progress"]
+                },
+                new()
+                {
+                    Title = "Skeleton Containers",
+                    Description = "Skeleton placeholders for loading content",
+                    Icon = Symbol.RectangleLandscape,
+                    PageType = typeof(SkeletonContainersPage),
+                    Category = "Controls",
+                    Tags = ["skeleton", "loading", "placeholder", "shimmer"]
+                },
+                new()
+                {
+                    Title = "Dividers",
+                    Description = "Visual separators for content sections",
+                    Icon = Symbol.Line,
+                    PageType = typeof(DividersPage),
+                    Category = "Controls",
+                    Tags = ["divider", "separator", "line", "section"]
                 }
             ]
         };
@@ -134,21 +179,30 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
-                    Title = "Text Inputs",
-                    Description = "Text boxes and input fields",
-                    Icon = Symbol.Textbox,
-                    PageType = typeof(TextInputsPage),
+                    Title = "Toggle Switches",
+                    Description = "Modern toggle switches with styling",
+                    Icon = Symbol.ToggleRight,
+                    PageType = typeof(ToggleSwitchesPage),
                     Category = "Input",
-                    Tags = ["textbox", "input", "text", "form"]
+                    Tags = ["toggle", "switch", "boolean", "settings"]
                 },
                 new()
                 {
-                    Title = "Toggles",
-                    Description = "Switches, checkboxes, and radio buttons",
-                    Icon = Symbol.ToggleLeft,
-                    PageType = typeof(TogglesPage),
+                    Title = "TextBoxes",
+                    Description = "Text input controls with validation",
+                    Icon = Symbol.TextBulletListSquare,
+                    PageType = typeof(TextBoxesPage),
                     Category = "Input",
-                    Tags = ["toggle", "switch", "checkbox", "radio"]
+                    Tags = ["textbox", "input", "text", "validation", "form"]
+                },
+                new()
+                {
+                    Title = "ComboBoxes",
+                    Description = "Dropdown selection controls",
+                    Icon = Symbol.ChevronDown,
+                    PageType = typeof(ComboBoxesPage),
+                    Category = "Input",
+                    Tags = ["combobox", "dropdown", "select", "picker"]
                 }
             ]
         };
@@ -171,6 +225,10 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
+        foreach (var item in category.Items)
+        {
+            AllItems.Add(item);
+        }
     }
 
     private void CreateDataCategory()
@@ -190,10 +248,7 @@ public class GalleryService : IGalleryService
     {
         var category = new GalleryCategory
         {
-            Name = "Media",
-            Description = "Media and graphics components",
-            Icon = Symbol.Image,
-            Items = []
+            Name = "Media", Description = "Media and graphics components", Icon = Symbol.Image, Items = []
         };
 
         Categories.Add(category);
@@ -209,16 +264,19 @@ public class GalleryService : IGalleryService
         {
             results.Add(item);
         }
+
         return results;
     }
 
     public ObservableCollection<GalleryItem> GetItemsByCategory(string categoryName)
     {
         var results = new ObservableCollection<GalleryItem>();
-        foreach (var item in AllItems.Where(item => item.Category.Equals(categoryName, StringComparison.OrdinalIgnoreCase)))
+        foreach (var item in AllItems.Where(item => item.Category.Equals(categoryName,
+                                                                         StringComparison.OrdinalIgnoreCase)))
         {
             results.Add(item);
         }
+
         return results;
     }
 }

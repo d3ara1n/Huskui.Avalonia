@@ -27,6 +27,9 @@ public class ExampleContainer : ContentControl
     public static readonly StyledProperty<object?> OptionsProperty =
         AvaloniaProperty.Register<ExampleContainer, object?>(nameof(Options));
 
+    public static readonly StyledProperty<object?> ControlsProperty =
+        AvaloniaProperty.Register<ExampleContainer, object?>(nameof(Controls));
+
     public string Title
     {
         get => GetValue(TitleProperty);
@@ -63,14 +66,26 @@ public class ExampleContainer : ContentControl
         set => SetValue(OptionsProperty, value);
     }
 
+    public object? Controls
+    {
+        get => GetValue(ControlsProperty);
+        set => SetValue(ControlsProperty, value);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
 
-        // Find and wire up code toggle button
-        if (e.NameScope.Find("PART_CodeToggle") is Button codeToggle)
+        // Find and wire up enable toggle button
+        if (e.NameScope.Find("PART_EnableToggle") is ToggleButton enableToggle)
         {
-            codeToggle.Click += (_, _) => ShowCode = !ShowCode;
+            enableToggle.IsCheckedChanged += (_, _) =>
+            {
+                if (e.NameScope.Find("PART_ContentContainer") is Control contentContainer)
+                {
+                    contentContainer.IsEnabled = !enableToggle.IsChecked ?? true;
+                }
+            };
         }
 
         // Find and wire up copy buttons

@@ -30,33 +30,57 @@
                                            Margin="0,4,0,0"
                                            IsVisible="{Binding Description, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
                             </StackPanel>
-                            
+
                             <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                                <!-- Options -->
+                                <!-- Options (for custom buttons like ShowCode) -->
                                 <ContentPresenter Content="{TemplateBinding Options}"
                                                   IsVisible="{TemplateBinding Options, Converter={x:Static ObjectConverters.IsNotNull}}" />
-                                
+
+                                <!-- Enable Toggle Button -->
+                                <ToggleButton Name="PART_EnableToggle"
+                                              Theme="{StaticResource GhostToggleButtonTheme}"
+                                              VerticalAlignment="Center"
+                                              ToolTip.Tip="Toggle Enable State">
+                                    <fi:SymbolIcon Symbol="Power" FontSize="{StaticResource SmallFontSize}" />
+                                </ToggleButton>
+
                                 <!-- Code Toggle Button -->
-                                <Button Name="PART_CodeToggle"
-                                        Theme="{StaticResource GhostButtonTheme}"
-                                        Classes="Small"
-                                        ToolTip.Tip="Toggle Code View"
-                                        IsVisible="{Binding XamlCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                                <ToggleButton Name="PART_CodeToggle"
+                                              Theme="{StaticResource GhostToggleButtonTheme}"
+                                              VerticalAlignment="Center"
+                                              ToolTip.Tip="Toggle Code View"
+                                              IsChecked="{Binding ShowCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}}"
+                                              IsVisible="{Binding XamlCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                                     <fi:SymbolIcon Symbol="Code" FontSize="{StaticResource SmallFontSize}" />
-                                </Button>
+                                </ToggleButton>
                             </StackPanel>
                         </Grid>
 
                         <!-- Divider -->
                         <husk:Divider Grid.Row="1" Margin="0,0,0,16" />
 
-                        <!-- Content -->
-                        <ContentPresenter Grid.Row="2"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Padding="{TemplateBinding Padding}" />
+                        <!-- Content with Controls Panel -->
+                        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+                            <!-- Main Content -->
+                            <ContentPresenter Grid.Column="0"
+                                              Name="PART_ContentContainer"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Padding="{TemplateBinding Padding}" />
+
+                            <!-- Controls Panel (Right Side) -->
+                            <Border Grid.Column="1"
+                                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                                    BorderBrush="{StaticResource ControlBorderBrush}"
+                                    BorderThickness="1,0,0,0"
+                                    Padding="16"
+                                    MinWidth="200"
+                                    IsVisible="{TemplateBinding Controls, Converter={x:Static ObjectConverters.IsNotNull}}">
+                                <ContentPresenter Content="{TemplateBinding Controls}" />
+                            </Border>
+                        </Grid>
 
                         <!-- Code Section -->
                         <Border Grid.Row="3"

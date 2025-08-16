@@ -17,6 +17,18 @@
 
             <controls:ExampleContainer Title="Basic Tags"
                                        Description="Tags with different styles and colors">
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Tag Styles" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="SmallSizeToggle" Content="Small Size" />
+                        <ToggleButton x:Name="ClickableToggle" Content="Clickable" />
+                        <TextBlock Text="Toggle size and clickable states to see different tag behaviors."
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+
                 <StackPanel Spacing="16">
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <husk:Tag Content="Default" />
@@ -24,6 +36,18 @@
                         <husk:Tag Content="Success" Classes="Success" />
                         <husk:Tag Content="Warning" Classes="Warning" />
                         <husk:Tag Content="Danger" Classes="Danger" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Tag Collection Example" FontWeight="Bold" />
+                        <WrapPanel>
+                            <husk:Tag Content="C#" Classes="Primary" Margin="2" />
+                            <husk:Tag Content="Avalonia" Classes="Success" Margin="2" />
+                            <husk:Tag Content="MVVM" Classes="Warning" Margin="2" />
+                            <husk:Tag Content="Cross-platform" Margin="2" />
+                            <husk:Tag Content="Open Source" Classes="Primary" Margin="2" />
+                            <husk:Tag Content="UI Framework" Classes="Success" Margin="2" />
+                        </WrapPanel>
                     </StackPanel>
                 </StackPanel>
             </controls:ExampleContainer>

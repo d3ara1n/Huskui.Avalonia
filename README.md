@@ -33,6 +33,17 @@ Huskui.Avalonia includes the following components:
 - **LazyContainer**: Component for deferred loading of content
 - And many more...
 
+## Gallery
+
+Explore all components and their features in the interactive Gallery application included in this repository. The Gallery provides live examples, interactive controls, and comprehensive documentation for each component.
+
+To run the Gallery:
+```bash
+dotnet run --project src/Huskui.Gallery
+```
+
+> **Note**: The Gallery application and this README documentation were created entirely by AI to showcase the Huskui.Avalonia library. However, the core Huskui.Avalonia control library itself was lovingly crafted by humans (you can tell because there are virtually no comments in the code 😅). The library is production-ready and battle-tested, so please feel confident using it in your projects!
+
 ## Getting Started
 
 ### Prerequisites

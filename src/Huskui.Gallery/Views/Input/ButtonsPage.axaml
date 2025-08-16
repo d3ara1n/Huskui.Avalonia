@@ -22,61 +22,117 @@
 
             <!-- Basic Buttons -->
             <controls:ExampleContainer Title="Basic Button Styles"
-                                       Description="Standard button with different visual styles"
-                                       XamlCode="&lt;Button Content=&quot;Default&quot; /&gt;&#10;&lt;Button Content=&quot;Primary&quot; Classes=&quot;Primary&quot; /&gt;&#10;&lt;Button Content=&quot;Success&quot; Classes=&quot;Success&quot; /&gt;&#10;&lt;Button Content=&quot;Warning&quot; Classes=&quot;Warning&quot; /&gt;&#10;&lt;Button Content=&quot;Danger&quot; Classes=&quot;Danger&quot; /&gt;">
-                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
+                                       Description="Standard button with different visual styles">
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Button States" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="LoadingToggle" Content="Loading State" />
+                        <TextBlock Text="Toggle loading state to see BusyContainer effect on buttons."
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
                       ColumnSpacing="12" RowSpacing="12">
-                    
+
                     <!-- Default Theme -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Default" 
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Default"
                                FontWeight="{StaticResource ControlStrongFontWeight}"
                                HorizontalAlignment="Center" />
-                    <Button Grid.Row="1" Grid.Column="0" Content="Default" />
-                    <Button Grid.Row="2" Grid.Column="0" Content="Primary" Classes="Primary" />
-                    <Button Grid.Row="3" Grid.Column="0" Content="Success" Classes="Success" />
-                    <Button Grid.Row="4" Grid.Column="0" Content="Warning" Classes="Warning" />
-                    <Button Grid.Row="5" Grid.Column="0" Content="Danger" Classes="Danger" />
+                    <husk:BusyContainer Grid.Row="1" Grid.Column="0" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Default" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="2" Grid.Column="0" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Primary" Classes="Primary" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="3" Grid.Column="0" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Success" Classes="Success" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="4" Grid.Column="0" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Warning" Classes="Warning" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="5" Grid.Column="0" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Danger" Classes="Danger" />
+                    </husk:BusyContainer>
 
                     <!-- Outline Theme -->
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Outline" 
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Outline"
                                FontWeight="{StaticResource ControlStrongFontWeight}"
                                HorizontalAlignment="Center" />
-                    <Button Grid.Row="1" Grid.Column="1" Content="Default" 
-                            Theme="{StaticResource OutlineButtonTheme}" />
-                    <Button Grid.Row="2" Grid.Column="1" Content="Primary" Classes="Primary"
-                            Theme="{StaticResource OutlineButtonTheme}" />
-                    <Button Grid.Row="3" Grid.Column="1" Content="Success" Classes="Success"
-                            Theme="{StaticResource OutlineButtonTheme}" />
-                    <Button Grid.Row="4" Grid.Column="1" Content="Warning" Classes="Warning"
-                            Theme="{StaticResource OutlineButtonTheme}" />
-                    <Button Grid.Row="5" Grid.Column="1" Content="Danger" Classes="Danger"
-                            Theme="{StaticResource OutlineButtonTheme}" />
+                    <husk:BusyContainer Grid.Row="1" Grid.Column="1" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Default"
+                                Theme="{StaticResource OutlineButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="2" Grid.Column="1" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Primary" Classes="Primary"
+                                Theme="{StaticResource OutlineButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="3" Grid.Column="1" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Success" Classes="Success"
+                                Theme="{StaticResource OutlineButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="4" Grid.Column="1" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Warning" Classes="Warning"
+                                Theme="{StaticResource OutlineButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="5" Grid.Column="1" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Danger" Classes="Danger"
+                                Theme="{StaticResource OutlineButtonTheme}" />
+                    </husk:BusyContainer>
 
                     <!-- Ghost Theme -->
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Ghost" 
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Ghost"
                                FontWeight="{StaticResource ControlStrongFontWeight}"
                                HorizontalAlignment="Center" />
-                    <Button Grid.Row="1" Grid.Column="2" Content="Default" 
-                            Theme="{StaticResource GhostButtonTheme}" />
-                    <Button Grid.Row="2" Grid.Column="2" Content="Primary" Classes="Primary"
-                            Theme="{StaticResource GhostButtonTheme}" />
-                    <Button Grid.Row="3" Grid.Column="2" Content="Success" Classes="Success"
-                            Theme="{StaticResource GhostButtonTheme}" />
-                    <Button Grid.Row="4" Grid.Column="2" Content="Warning" Classes="Warning"
-                            Theme="{StaticResource GhostButtonTheme}" />
-                    <Button Grid.Row="5" Grid.Column="2" Content="Danger" Classes="Danger"
-                            Theme="{StaticResource GhostButtonTheme}" />
+                    <husk:BusyContainer Grid.Row="1" Grid.Column="2" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Default"
+                                Theme="{StaticResource GhostButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="2" Grid.Column="2" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Primary" Classes="Primary"
+                                Theme="{StaticResource GhostButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="3" Grid.Column="2" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Success" Classes="Success"
+                                Theme="{StaticResource GhostButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="4" Grid.Column="2" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Warning" Classes="Warning"
+                                Theme="{StaticResource GhostButtonTheme}" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer Grid.Row="5" Grid.Column="2" IsBusy="{Binding #LoadingToggle.IsChecked}">
+                        <Button Content="Danger" Classes="Danger"
+                                Theme="{StaticResource GhostButtonTheme}" />
+                    </husk:BusyContainer>
                 </Grid>
             </controls:ExampleContainer>
 
             <!-- Button Sizes -->
             <controls:ExampleContainer Title="Button Sizes"
-                                       Description="Buttons in different sizes"
-                                       XamlCode="&lt;Button Content=&quot;Small&quot; Classes=&quot;Small&quot; /&gt;&#10;&lt;Button Content=&quot;Default&quot; /&gt;&#10;&lt;Button Content=&quot;Large&quot; Classes=&quot;Large&quot; /&gt;">
+                                       Description="Buttons in different sizes">
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Size Controls" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="SizeLoadingToggle" Content="Loading State" />
+                        <TextBlock Text="Compare button sizes with and without loading states."
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
+                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+
                 <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
-                    <Button Content="Small" Classes="Small" />
-                    <Button Content="Default" />
-                    <Button Content="Large" Classes="Large" />
+                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
+                        <Button Content="Small" Classes="Small Primary" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
+                        <Button Content="Default" Classes="Primary" />
+                    </husk:BusyContainer>
+                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
+                        <Button Content="Large" Classes="Large Primary" />
+                    </husk:BusyContainer>
                 </StackPanel>
             </controls:ExampleContainer>
 

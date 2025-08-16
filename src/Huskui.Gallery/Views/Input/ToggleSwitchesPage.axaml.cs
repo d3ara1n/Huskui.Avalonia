@@ -2,9 +2,9 @@
 
 namespace Huskui.Gallery.Views.Input;
 
-public partial class TogglesPage : UserControl
+public partial class ToggleSwitchesPage : UserControl
 {
-    public TogglesPage()
+    public ToggleSwitchesPage()
     {
         InitializeComponent();
     }
