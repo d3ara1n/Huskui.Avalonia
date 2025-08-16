@@ -5,8 +5,9 @@
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel>
-                    <ScrollContentPresenter Name="PART_ContentPresenter"
+                <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,Auto">
+                    <ScrollContentPresenter Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                                            Name="PART_ContentPresenter"
                                             Padding="{TemplateBinding Padding}"
                                             ClipToBounds="{TemplateBinding ClipToBounds}"
                                             HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
@@ -23,8 +24,8 @@
                                 IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
                         </ScrollContentPresenter.GestureRecognizers>
                     </ScrollContentPresenter>
-                    <ScrollBar Name="PART_HorizontalScrollBar"
-                               Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <ScrollBar Grid.Row="1" Grid.Column="0" Name="PART_HorizontalScrollBar"
+                               Orientation="Horizontal">
                         <ScrollBar.Transitions>
                             <Transitions>
                                 <DoubleTransition Property="Opacity"
@@ -32,9 +33,8 @@
                             </Transitions>
                         </ScrollBar.Transitions>
                     </ScrollBar>
-                    <ScrollBar Name="PART_VerticalScrollBar"
-                               Orientation="Vertical" HorizontalAlignment="Right">
-
+                    <ScrollBar Grid.Row="0" Grid.Column="1" Name="PART_VerticalScrollBar"
+                               Orientation="Vertical">
                         <ScrollBar.Transitions>
                             <Transitions>
                                 <DoubleTransition Property="Opacity"
@@ -42,7 +42,11 @@
                             </Transitions>
                         </ScrollBar.Transitions>
                     </ScrollBar>
-                </Panel>
+                    <Panel Name="PART_ScrollBarsSeparator"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Background="Transparent" />
+                </Grid>
             </ControlTemplate>
         </Setter>
 
