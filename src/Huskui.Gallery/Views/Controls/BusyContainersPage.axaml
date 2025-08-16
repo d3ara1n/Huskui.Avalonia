@@ -7,8 +7,17 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Controls.BusyContainersPage">
 
-    <ScrollViewer>
-        <StackPanel Margin="24" Spacing="32">
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <!-- Page Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Busy Containers"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Loading state containers with visual feedback for async operations"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
 
             <controls:ExampleContainer Title="Basic Busy Container"
                                        Description="Container that shows loading state with blur effect">

@@ -8,8 +8,17 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Overlays.DialogsPage">
 
-    <ScrollViewer>
-        <StackPanel Margin="24" Spacing="32">
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <!-- Page Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Dialogs"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Modal dialogs for user input collection and binary decision making"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
 
             <controls:ExampleContainer Title="Confirmation Dialogs"
                                        Description="Binary choice dialogs for user confirmation">

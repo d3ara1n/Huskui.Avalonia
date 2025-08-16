@@ -7,8 +7,17 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Input.CheckBoxesPage">
 
-    <ScrollViewer>
-        <StackPanel Margin="24" Spacing="32">
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <!-- Page Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="CheckBoxes"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Binary selection controls for multiple choice options"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
 
             <controls:ExampleContainer Title="Basic CheckBoxes"
                                        Description="Standard checkboxes with different states">

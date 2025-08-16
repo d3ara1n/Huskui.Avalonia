@@ -8,8 +8,17 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Overlays.ModalsPage">
 
-    <ScrollViewer>
-        <StackPanel Margin="24" Spacing="32">
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <!-- Page Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Modals"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Modal containers for complex user interactions and extended workflows"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
 
             <controls:ExampleContainer Title="Long Interaction Modals"
                                        Description="Modal containers for complex, extended user interactions">
