@@ -1,4 +1,4 @@
-<Application xmlns="https://github.com/avaloniaui"
+﻿<Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              x:Class="Huskui.Gallery.App"
@@ -8,12 +8,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="avares://Huskui.Gallery/Themes/Controls.axaml" />
+                <ResourceInclude Source="avares://Huskui.Gallery/Themes/Gallery.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 
     <Application.Styles>
-        <husk:HuskuiTheme Accent="Amber" />
+        <husk:HuskuiTheme Accent="Blue" Corner="Normal" />
+        <StyleInclude Source="avares://Huskui.Gallery/Styles/Gallery.axaml" />
     </Application.Styles>
 </Application>

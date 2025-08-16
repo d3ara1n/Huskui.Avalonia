@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls">
+
+    <ControlTheme x:Key="{x:Type controls:ThemeSelector}" TargetType="controls:ThemeSelector">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel Spacing="16">
+                    <!-- Theme Selection -->
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Theme"
+                                   FontWeight="{StaticResource ControlStrongFontWeight}"
+                                   FontSize="{StaticResource MediumFontSize}" />
+                        <ComboBox Name="PART_ThemeComboBox"
+                                  MinWidth="120" />
+                    </StackPanel>
+
+                    <!-- Accent Color Selection -->
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Accent Color"
+                                   FontWeight="{StaticResource ControlStrongFontWeight}"
+                                   FontSize="{StaticResource MediumFontSize}" />
+                        <ComboBox Name="PART_AccentComboBox"
+                                  MinWidth="120" />
+                    </StackPanel>
+
+                    <!-- Corner Style Selection -->
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Corner Style"
+                                   FontWeight="{StaticResource ControlStrongFontWeight}"
+                                   FontSize="{StaticResource MediumFontSize}" />
+                        <ComboBox Name="PART_CornerComboBox"
+                                  MinWidth="120" />
+                    </StackPanel>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+</ResourceDictionary>

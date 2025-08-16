@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+             x:Class="Huskui.Gallery.Views.Controls.TagsPage">
+
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Tags"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Small labels for categorization and metadata"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
+
+            <controls:ExampleContainer Title="Basic Tags"
+                                       Description="Tags with different styles and colors">
+                <StackPanel Spacing="16">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <husk:Tag Content="Default" />
+                        <husk:Tag Content="Primary" Classes="Primary" />
+                        <husk:Tag Content="Success" Classes="Success" />
+                        <husk:Tag Content="Warning" Classes="Warning" />
+                        <husk:Tag Content="Danger" Classes="Danger" />
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

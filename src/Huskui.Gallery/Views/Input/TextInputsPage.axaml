@@ -1,0 +1,29 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+             x:Class="Huskui.Gallery.Views.Input.TextInputsPage">
+
+    <ScrollViewer Padding="48">
+        <StackPanel Spacing="32" MaxWidth="1000">
+            <StackPanel Spacing="8">
+                <TextBlock Text="Text Inputs"
+                           FontSize="28"
+                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock Text="Text boxes and input fields"
+                           FontSize="{StaticResource LargeFontSize}"
+                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+            </StackPanel>
+
+            <controls:ExampleContainer Title="Basic Text Inputs"
+                                       Description="Standard text input controls">
+                <StackPanel Spacing="16" MaxWidth="300">
+                    <TextBox Watermark="Enter text..." />
+                    <TextBox Text="Text with value" />
+                    <TextBox Watermark="Disabled input" IsEnabled="False" />
+                    <TextBox AcceptsReturn="True" Height="80" Watermark="Multi-line text..." />
+                </StackPanel>
+            </controls:ExampleContainer>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

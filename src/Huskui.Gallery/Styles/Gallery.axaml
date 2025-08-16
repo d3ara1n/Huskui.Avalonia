@@ -1,0 +1,88 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Gallery-specific styles -->
+
+    <!-- Navigation styles -->
+    <Style Selector="ListBox.NavigationList">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style Selector="ListBox.NavigationList ListBoxItem">
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Margin" Value="0,2" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+    </Style>
+
+    <Style Selector="ListBox.NavigationList ListBoxItem:selected">
+        <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlWhiteForegroundBrush}" />
+    </Style>
+
+    <Style Selector="ListBox.NavigationList ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Category header styles -->
+    <Style Selector="TextBlock.CategoryHeader">
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+        <Setter Property="Margin" Value="12,16,12,8" />
+    </Style>
+
+    <!-- Search box styles -->
+    <Style Selector="TextBox.SearchBox">
+        <Setter Property="Watermark" Value="Search controls..." />
+        <Setter Property="MinWidth" Value="200" />
+    </Style>
+
+    <!-- Home page styles -->
+    <Style Selector="TextBlock.WelcomeTitle">
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        <Setter Property="Margin" Value="0,0,0,16" />
+    </Style>
+
+    <Style Selector="TextBlock.WelcomeSubtitle">
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+        <Setter Property="Margin" Value="0,0,0,32" />
+    </Style>
+
+    <!-- Feature card styles -->
+    <Style Selector="Border.FeatureCard">
+        <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <Style Selector="Border.FeatureCard:pointerover">
+        <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+    </Style>
+
+    <!-- Status indicators -->
+    <Style Selector="Border.NewBadge">
+        <Setter Property="Background" Value="{StaticResource ControlSuccessBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="8,4" />
+    </Style>
+
+    <Style Selector="Border.UpdatedBadge">
+        <Setter Property="Background" Value="{StaticResource ControlWarningBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="8,4" />
+    </Style>
+
+    <Style Selector="TextBlock.BadgeText">
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+
+</Styles>
