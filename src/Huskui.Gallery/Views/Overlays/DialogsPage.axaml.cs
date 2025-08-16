@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Controls;
+using Huskui.Avalonia.Models;
 using Huskui.Gallery.Dialogs;
 
 namespace Huskui.Gallery.Views.Overlays;
@@ -67,6 +68,44 @@ public partial class DialogsPage : UserControl
 
         var dialog = new RenameFileDialog();
         appWindow.PopDialog(dialog);
+    }
+
+    private async void OnShowEmailInputClick(object? sender, RoutedEventArgs e)
+    {
+        var appWindow = GetAppWindow();
+        if (appWindow == null) return;
+
+        var dialog = new EmailInputDialog();
+
+        // 显示Dialog并等待用户操作
+        appWindow.PopDialog(dialog);
+
+        // 等待Dialog完成
+        if (await dialog.CompletionSource.Task)
+        {
+            // 用户点击了Confirm，获取结果
+            var email = dialog.Result as string;
+
+            // 使用Notification提示用户输入的邮箱
+            var notification = new NotificationItem
+            {
+                Level = NotificationLevel.Success,
+                Title = "Email Confirmed",
+                Content = $"You entered: {email}"
+            };
+            appWindow.PopNotification(notification);
+        }
+        else
+        {
+            // 用户点击了Cancel或关闭
+            var notification = new NotificationItem
+            {
+                Level = NotificationLevel.Information,
+                Title = "Input Cancelled",
+                Content = "Email input was cancelled"
+            };
+            appWindow.PopNotification(notification);
+        }
     }
 
     private void OnShowCreateFolderClick(object? sender, RoutedEventArgs e)

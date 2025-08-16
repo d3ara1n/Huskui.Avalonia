@@ -17,12 +17,11 @@
         <StackPanel Spacing="16" HorizontalAlignment="Center">
             <Border Width="64"
                     Height="64"
-                    CornerRadius="32"
-                    Background="#FFEB3B"
+                    CornerRadius="4"
+                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                     HorizontalAlignment="Center">
                 <fi:SymbolIcon Symbol="Warning"
-                               FontSize="32"
-                               Foreground="#F57C00" />
+                               FontSize="32" />
             </Border>
 
             <TextBlock Text="Are you sure you want to delete this file?"
@@ -76,7 +75,7 @@
                     <fi:SymbolIcon Symbol="ErrorCircle"
                                    FontSize="16" />
                     <TextBlock Text="This action cannot be undone"
-                               FontWeight="SemiBold"/>
+                               FontWeight="SemiBold" />
                 </StackPanel>
             </husk:InfoBar.Header>
             <TextBlock

@@ -21,8 +21,7 @@
                     Background="{DynamicResource AccentFillColorDefaultBrush}"
                     HorizontalAlignment="Center">
                 <fi:SymbolIcon Symbol="Rename" 
-                               FontSize="24" 
-                               Foreground="White" />
+                               FontSize="24" />
             </Border>
             
             <TextBlock Text="Enter a new name for the file" 
