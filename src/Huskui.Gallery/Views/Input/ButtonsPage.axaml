@@ -112,27 +112,10 @@
             <!-- Button Sizes -->
             <controls:ExampleContainer Title="Button Sizes"
                                        Description="Buttons in different sizes">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Size Controls" FontWeight="Bold" FontSize="14" />
-                        <ToggleButton x:Name="SizeLoadingToggle" Content="Loading State" />
-                        <TextBlock Text="Compare button sizes with and without loading states."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
                 <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
-                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
-                        <Button Content="Small" Classes="Small Primary" />
-                    </husk:BusyContainer>
-                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
-                        <Button Content="Default" Classes="Primary" />
-                    </husk:BusyContainer>
-                    <husk:BusyContainer IsBusy="{Binding #SizeLoadingToggle.IsChecked}">
-                        <Button Content="Large" Classes="Large Primary" />
-                    </husk:BusyContainer>
+                    <Button Content="Small" Classes="Small Primary" />
+                    <Button Content="Default" Classes="Primary" />
+                    <Button Content="Large" Classes="Large Primary" />
                 </StackPanel>
             </controls:ExampleContainer>
 
@@ -204,7 +187,7 @@
                             </MenuFlyout>
                         </SplitButton.Flyout>
                     </SplitButton>
-                    
+
                     <DropDownButton Content="Actions">
                         <DropDownButton.Flyout>
                             <MenuFlyout>

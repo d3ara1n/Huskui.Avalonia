@@ -142,21 +142,12 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
-                    Title = "Grids",
-                    Description = "Grid layout examples and patterns",
-                    Icon = Symbol.Grid,
-                    PageType = typeof(GridsPage),
+                    Title = "FlexWrap Panels",
+                    Description = "Flexible wrapping layout with dynamic width distribution",
+                    Icon = Symbol.LayoutRowTwoSplitBottom,
+                    PageType = typeof(FlexWrapPanelsPage),
                     Category = "Layout",
-                    Tags = ["grid", "layout", "responsive"]
-                },
-                new()
-                {
-                    Title = "Stack Panels",
-                    Description = "Vertical and horizontal stacking",
-                    Icon = Symbol.LayoutRowTwoSplitTop,
-                    PageType = typeof(StackPanelsPage),
-                    Category = "Layout",
-                    Tags = ["stack", "panel", "vertical", "horizontal"]
+                    Tags = ["flex", "wrap", "responsive", "dynamic", "panel"]
                 }
             ]
         };

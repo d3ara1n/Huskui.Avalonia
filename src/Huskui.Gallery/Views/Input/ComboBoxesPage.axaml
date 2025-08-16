@@ -15,11 +15,11 @@
                 <controls:ExampleContainer.Controls>
                     <StackPanel Spacing="12">
                         <TextBlock Text="Selection Controls" FontWeight="Bold" FontSize="14" />
-                        <ToggleButton x:Name="EditableToggle" Content="Editable" />
                         <Button Content="Clear Selection" Click="OnClearSelectionClick" />
-                        <TextBlock Text="Toggle editable mode and test selection clearing." 
-                                   TextWrapping="Wrap" 
-                                   FontSize="12" 
+                        <Button Content="Reset to Defaults" Click="OnResetSelectionClick" />
+                        <TextBlock Text="Clear all selections or reset to default values."
+                                   TextWrapping="Wrap"
+                                   FontSize="12"
                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
                 </controls:ExampleContainer.Controls>
@@ -77,6 +77,15 @@
                         </ComboBox>
                     </StackPanel>
                     
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Ghost Style" />
+                        <ComboBox Theme="{StaticResource GhostComboBoxTheme}" SelectedIndex="0">
+                            <ComboBoxItem Content="Ghost ComboBox" />
+                            <ComboBoxItem Content="Option 2" />
+                            <ComboBoxItem Content="Option 3" />
+                        </ComboBox>
+                    </StackPanel>
+
                     <StackPanel Spacing="8">
                         <TextBlock Text="Primary Style" />
                         <ComboBox Classes="Primary" SelectedIndex="0">

@@ -12,14 +12,20 @@
 
             <controls:ExampleContainer Title="Basic Skeleton Loading"
                                        Description="Skeleton placeholder for content loading">
-                <controls:ExampleContainer.Options>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <ToggleButton x:Name="LoadingToggle" Content="Loading" IsChecked="True" />
-                        <ToggleButton x:Name="AnimatedToggle" Content="Animated" IsChecked="True" />
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Skeleton Controls" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="LoadingToggle" Content="Loading State" IsChecked="True" />
+                        <ToggleButton x:Name="AnimatedToggle" Content="Animation" IsChecked="True" />
+                        <TextBlock
+                            Text="Toggle loading state to show/hide skeleton placeholders and animation effects."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
-                </controls:ExampleContainer.Options>
-                
-                <husk:SkeletonContainer IsLoading="{Binding #LoadingToggle.IsChecked}" 
+                </controls:ExampleContainer.Controls>
+
+                <husk:SkeletonContainer IsLoading="{Binding #LoadingToggle.IsChecked}"
                                         IsAnimated="{Binding #AnimatedToggle.IsChecked}"
                                         Width="400" Height="200">
                     <husk:Card Padding="20">
@@ -33,8 +39,9 @@
                                     <TextBlock Text="john.doe@example.com" />
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-                                       TextWrapping="Wrap" />
+                            <TextBlock
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </husk:Card>
                 </husk:SkeletonContainer>
@@ -42,45 +49,56 @@
 
             <controls:ExampleContainer Title="List Skeleton"
                                        Description="Skeleton for list items">
-                <controls:ExampleContainer.Options>
-                    <ToggleButton x:Name="ListLoadingToggle" Content="Loading" IsChecked="True" />
-                </controls:ExampleContainer.Options>
-                
-                <husk:SkeletonContainer IsLoading="{Binding #ListLoadingToggle.IsChecked}" 
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="List Skeleton Controls" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="ListLoadingToggle" Content="Loading" IsChecked="True" />
+                        <TextBlock
+                            Text="Toggle loading state to show/hide skeleton placeholders."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+
+                <husk:SkeletonContainer IsLoading="{Binding #ListLoadingToggle.IsChecked}"
                                         IsAnimated="True"
                                         Width="500" Height="300">
                     <StackPanel Spacing="12">
                         <TextBlock Text="Recent Articles" FontSize="16" FontWeight="Bold" Margin="0,0,0,8" />
-                        
+
                         <!-- Article 1 -->
                         <husk:Card Padding="16">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Getting Started with Avalonia UI" FontWeight="Bold" />
-                                <TextBlock Text="Learn the basics of building cross-platform applications with Avalonia UI framework." />
+                                <TextBlock
+                                    Text="Learn the basics of building cross-platform applications with Avalonia UI framework." />
                                 <StackPanel Orientation="Horizontal" Spacing="16">
                                     <TextBlock Text="Published: 2024-01-15" FontSize="12" />
                                     <TextBlock Text="Author: Jane Smith" FontSize="12" />
                                 </StackPanel>
                             </StackPanel>
                         </husk:Card>
-                        
+
                         <!-- Article 2 -->
                         <husk:Card Padding="16">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Advanced MVVM Patterns" FontWeight="Bold" />
-                                <TextBlock Text="Explore advanced Model-View-ViewModel patterns for complex applications." />
+                                <TextBlock
+                                    Text="Explore advanced Model-View-ViewModel patterns for complex applications." />
                                 <StackPanel Orientation="Horizontal" Spacing="16">
                                     <TextBlock Text="Published: 2024-01-10" FontSize="12" />
                                     <TextBlock Text="Author: Bob Johnson" FontSize="12" />
                                 </StackPanel>
                             </StackPanel>
                         </husk:Card>
-                        
+
                         <!-- Article 3 -->
                         <husk:Card Padding="16">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Custom Control Development" FontWeight="Bold" />
-                                <TextBlock Text="Create your own custom controls with proper styling and theming support." />
+                                <TextBlock
+                                    Text="Create your own custom controls with proper styling and theming support." />
                                 <StackPanel Orientation="Horizontal" Spacing="16">
                                     <TextBlock Text="Published: 2024-01-05" FontSize="12" />
                                     <TextBlock Text="Author: Alice Brown" FontSize="12" />
@@ -93,27 +111,35 @@
 
             <controls:ExampleContainer Title="Form Skeleton"
                                        Description="Skeleton for form layouts">
-                <controls:ExampleContainer.Options>
-                    <ToggleButton x:Name="FormLoadingToggle" Content="Loading" IsChecked="True" />
-                </controls:ExampleContainer.Options>
-                
-                <husk:SkeletonContainer IsLoading="{Binding #FormLoadingToggle.IsChecked}" 
+                <controls:ExampleContainer.Controls>
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Form Skeleton Controls" FontWeight="Bold" FontSize="14" />
+                        <ToggleButton x:Name="FormLoadingToggle" Content="Loading" IsChecked="True" />
+                        <TextBlock
+                            Text="Toggle loading state to show/hide skeleton placeholders."
+                            TextWrapping="Wrap"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </controls:ExampleContainer.Controls>
+
+                <husk:SkeletonContainer IsLoading="{Binding #FormLoadingToggle.IsChecked}"
                                         IsAnimated="True"
                                         Width="400" Height="350">
                     <husk:Card Padding="24">
                         <StackPanel Spacing="16">
                             <TextBlock Text="Contact Form" FontSize="18" FontWeight="Bold" />
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Name" />
                                 <TextBox Watermark="Enter your name" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Email" />
                                 <TextBox Watermark="Enter your email" />
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Subject" />
                                 <ComboBox>
@@ -122,12 +148,12 @@
                                     <ComboBoxItem Content="Feedback" />
                                 </ComboBox>
                             </StackPanel>
-                            
+
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Message" />
                                 <TextBox AcceptsReturn="True" Height="80" Watermark="Enter your message" />
                             </StackPanel>
-                            
+
                             <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
                                 <Button Content="Cancel" />
                                 <Button Content="Send Message" Classes="Primary" />

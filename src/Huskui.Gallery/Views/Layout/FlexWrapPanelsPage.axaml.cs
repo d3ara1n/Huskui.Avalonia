@@ -2,9 +2,9 @@
 
 namespace Huskui.Gallery.Views.Layout;
 
-public partial class StackPanelsPage : UserControl
+public partial class FlexWrapPanelsPage : UserControl
 {
-    public StackPanelsPage()
+    public FlexWrapPanelsPage()
     {
         InitializeComponent();
     }

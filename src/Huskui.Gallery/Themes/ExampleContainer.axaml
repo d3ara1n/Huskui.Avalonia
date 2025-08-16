@@ -57,7 +57,7 @@
                         </Grid>
 
                         <!-- Divider -->
-                        <husk:Divider Grid.Row="1" Margin="0,0,0,16" />
+                        <husk:Divider Grid.Row="1" />
 
                         <!-- Content with Controls Panel -->
                         <Grid Grid.Row="2" ColumnDefinitions="*,Auto">

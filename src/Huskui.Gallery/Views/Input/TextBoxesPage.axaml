@@ -54,36 +54,6 @@
                 </StackPanel>
             </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="TextBox Styles"
-                                       Description="Different visual styles for text inputs">
-                <StackPanel Spacing="16" Width="400">
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Default Style" />
-                        <TextBox Text="Default textbox" />
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Primary Style" />
-                        <TextBox Text="Primary textbox" Classes="Primary" />
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Success Style" />
-                        <TextBox Text="Success textbox" Classes="Success" />
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Warning Style" />
-                        <TextBox Text="Warning textbox" Classes="Warning" />
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="8">
-                        <TextBlock Text="Error Style" />
-                        <TextBox Text="Error textbox" Classes="Error" />
-                    </StackPanel>
-                </StackPanel>
-            </controls:ExampleContainer>
-
             <controls:ExampleContainer Title="Form Example"
                                        Description="Real-world form with validation">
                 <controls:ExampleContainer.Controls>

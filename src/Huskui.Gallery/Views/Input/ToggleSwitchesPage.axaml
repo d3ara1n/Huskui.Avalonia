@@ -12,48 +12,26 @@
 
             <controls:ExampleContainer Title="Basic Toggle Switches"
                                        Description="Standard toggle switches with different states">
-                <controls:ExampleContainer.Options>
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <ToggleButton x:Name="DisabledToggle" Content="Disabled" />
-                    </StackPanel>
-                </controls:ExampleContainer.Options>
-                
+
                 <StackPanel Spacing="16">
                     <StackPanel Spacing="12">
-                        <ToggleSwitch Content="Default Toggle" 
-                                           IsEnabled="{Binding !#DisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Checked Toggle" 
-                                           IsChecked="True"
-                                           IsEnabled="{Binding !#DisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Unchecked Toggle" 
-                                           IsChecked="False"
-                                           IsEnabled="{Binding !#DisabledToggle.IsChecked}" />
+                        <ToggleSwitch Content="Default Toggle" />
+                        <ToggleSwitch Content="Checked Toggle" IsChecked="True" />
+                        <ToggleSwitch Content="Unchecked Toggle" IsChecked="False" />
                     </StackPanel>
                 </StackPanel>
             </controls:ExampleContainer>
 
             <controls:ExampleContainer Title="Toggle Switch Styles"
                                        Description="Different visual styles for toggle switches">
-                <controls:ExampleContainer.Options>
-                    <ToggleButton x:Name="StyleDisabledToggle" Content="Disabled" />
-                </controls:ExampleContainer.Options>
-                
+
                 <StackPanel Spacing="16">
                     <StackPanel Spacing="12">
-                        <ToggleSwitch Content="Default Style" 
-                                           IsEnabled="{Binding !#StyleDisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Primary Style" 
-                                           Classes="Primary"
-                                           IsEnabled="{Binding !#StyleDisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Success Style" 
-                                           Classes="Success"
-                                           IsEnabled="{Binding !#StyleDisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Warning Style" 
-                                           Classes="Warning"
-                                           IsEnabled="{Binding !#StyleDisabledToggle.IsChecked}" />
-                        <ToggleSwitch Content="Danger Style" 
-                                           Classes="Danger"
-                                           IsEnabled="{Binding !#StyleDisabledToggle.IsChecked}" />
+                        <ToggleSwitch Content="Default Style" />
+                        <ToggleSwitch Content="Primary Style" Classes="Primary" />
+                        <ToggleSwitch Content="Success Style" Classes="Success" />
+                        <ToggleSwitch Content="Warning Style" Classes="Warning" />
+                        <ToggleSwitch Content="Danger Style" Classes="Danger" />
                     </StackPanel>
                 </StackPanel>
             </controls:ExampleContainer>
