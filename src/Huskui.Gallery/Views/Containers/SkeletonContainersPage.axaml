@@ -5,7 +5,7 @@
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Controls.SkeletonContainersPage">
+             x:Class="Huskui.Gallery.Views.Containers.SkeletonContainersPage">
 
     <ScrollViewer Padding="48">
         <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
@@ -36,7 +36,7 @@
 
                 <husk:SkeletonContainer IsLoading="{Binding #LoadingToggle.IsChecked}"
                                         IsAnimated="{Binding #AnimatedToggle.IsChecked}"
-                                        Width="400" Height="200">
+                                        Width="400">
                     <husk:Card Padding="20">
                         <StackPanel Spacing="16">
                             <TextBlock Text="User Profile" FontSize="18" FontWeight="Bold" />
@@ -72,7 +72,7 @@
 
                 <husk:SkeletonContainer IsLoading="{Binding #ListLoadingToggle.IsChecked}"
                                         IsAnimated="True"
-                                        Width="500" Height="300">
+                                        Width="500">
                     <StackPanel Spacing="12">
                         <TextBlock Text="Recent Articles" FontSize="16" FontWeight="Bold" Margin="0,0,0,8" />
 
@@ -134,7 +134,7 @@
 
                 <husk:SkeletonContainer IsLoading="{Binding #FormLoadingToggle.IsChecked}"
                                         IsAnimated="True"
-                                        Width="400" Height="350">
+                                        Width="400">
                     <husk:Card Padding="24">
                         <StackPanel Spacing="16">
                             <TextBlock Text="Contact Form" FontSize="18" FontWeight="Bold" />

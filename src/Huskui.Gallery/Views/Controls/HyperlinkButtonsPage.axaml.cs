@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace Huskui.Gallery.Views.Input
+namespace Huskui.Gallery.Views.Controls
 {
     public partial class HyperlinkButtonsPage : UserControl
     {

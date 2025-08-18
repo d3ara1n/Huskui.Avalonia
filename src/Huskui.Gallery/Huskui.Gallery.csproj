@@ -35,4 +35,35 @@
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Views\Controls\ButtonsPage.axaml.cs">
+            <DependentUpon>ButtonsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Controls\DropDownButtonsPage.axaml.cs">
+            <DependentUpon>DropDownButtonsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Controls\HyperlinkButtonsPage.axaml.cs">
+            <DependentUpon>HyperlinkButtonsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Controls\RadioButtonsPage.axaml.cs">
+            <DependentUpon>RadioButtonsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Containers\BusyContainersPage.axaml.cs">
+            <DependentUpon>BusyContainersPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Containers\SkeletonContainersPage.axaml.cs">
+            <DependentUpon>SkeletonContainersPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Containers\CardsPage.axaml.cs">
+            <DependentUpon>CardsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
 </Project>

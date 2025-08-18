@@ -5,8 +5,8 @@
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
              xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-             x:Class="Huskui.Gallery.Views.Controls.CardsPage">
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="800"
+             x:Class="Huskui.Gallery.Views.Containers.CardsPage">
 
     <ScrollViewer Padding="48">
         <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
@@ -41,10 +41,10 @@
             <controls:ExampleContainer Title="Card with Header and Actions"
                                        Description="Card with header section and action buttons"
                                        XamlCode="&lt;husk:Card&gt;&#10;    &lt;StackPanel&gt;&#10;        &lt;!-- Header --&gt;&#10;        &lt;Grid ColumnDefinitions=&quot;*,Auto&quot; Margin=&quot;24,24,24,16&quot;&gt;&#10;            &lt;TextBlock Text=&quot;Card Title&quot; /&gt;&#10;            &lt;Button Content=&quot;Action&quot; /&gt;&#10;        &lt;/Grid&gt;&#10;        &lt;!-- Content --&gt;&#10;        &lt;TextBlock Text=&quot;Content&quot; Margin=&quot;24,0,24,24&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/husk:Card&gt;">
-                <husk:Card MaxWidth="400">
-                    <StackPanel>
+                <husk:Card Padding="24" MaxWidth="400">
+                    <StackPanel Spacing="16">
                         <!-- Header -->
-                        <Grid ColumnDefinitions="*,Auto" Margin="24,24,24,16">
+                        <Grid ColumnDefinitions="*,Auto">
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Project Status"
                                            FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -64,7 +64,7 @@
                         <husk:Divider />
 
                         <!-- Content -->
-                        <StackPanel Margin="24,16,24,24" Spacing="12">
+                        <StackPanel Spacing="12">
                             <TextBlock
                                 Text="The project is progressing well with 85% completion rate. All major milestones have been achieved on schedule."
                                 TextWrapping="Wrap" />
@@ -140,11 +140,7 @@
             <controls:ExampleContainer Title="Interactive Card"
                                        Description="Clickable card with hover effects"
                                        XamlCode="&lt;Button Classes=&quot;CardButton&quot;&gt;&#10;    &lt;husk:Card&gt;&#10;        &lt;!-- Card content --&gt;&#10;    &lt;/husk:Card&gt;&#10;&lt;/Button&gt;">
-                <Button Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        Cursor="Hand"
-                        MaxWidth="400">
+                <Button Theme="{StaticResource GhostButtonTheme}">
                     <husk:Card Padding="24">
                         <StackPanel Spacing="16">
                             <Grid ColumnDefinitions="Auto,*,Auto">

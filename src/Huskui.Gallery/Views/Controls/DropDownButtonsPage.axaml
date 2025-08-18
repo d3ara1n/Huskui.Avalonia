@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
              xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Input.DropDownButtonsPage">
+             x:Class="Huskui.Gallery.Views.Controls.DropDownButtonsPage">
 
     <ScrollViewer Padding="48">
         <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">

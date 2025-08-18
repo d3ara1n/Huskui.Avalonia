@@ -2,7 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace Huskui.Gallery.Views.Controls
+namespace Huskui.Gallery.Views.Containers
 {
     public partial class BusyContainersPage : UserControl
     {

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using FluentIcons.Common;
 using Huskui.Gallery.Models;
+using Huskui.Gallery.Views.Containers;
 using Huskui.Gallery.Views.Controls;
 using Huskui.Gallery.Views.Input;
 using Huskui.Gallery.Views.Layout;
@@ -102,6 +103,15 @@ namespace Huskui.Gallery.Services
                         PageType = typeof(HyperlinkButtonsPage),
                         Category = "Controls",
                         Tags = ["hyperlink", "link", "navigation", "url", "inline"]
+                    },
+                    new()
+                    {
+                        Title = "RadioButtons",
+                        Description = "Radio button controls for exclusive selection",
+                        Icon = Symbol.RadioButton,
+                        PageType = typeof(RadioButtonsPage),
+                        Category = "Input",
+                        Tags = ["radio", "button", "selection", "exclusive", "group"]
                     },
                     new()
                     {
@@ -331,15 +341,6 @@ namespace Huskui.Gallery.Services
                         PageType = typeof(CheckBoxesPage),
                         Category = "Input",
                         Tags = ["checkbox", "check", "selection", "boolean", "three-state"]
-                    },
-                    new()
-                    {
-                        Title = "RadioButtons",
-                        Description = "Radio button controls for exclusive selection",
-                        Icon = Symbol.RadioButton,
-                        PageType = typeof(RadioButtonsPage),
-                        Category = "Input",
-                        Tags = ["radio", "button", "selection", "exclusive", "group"]
                     }
                 ]
             };

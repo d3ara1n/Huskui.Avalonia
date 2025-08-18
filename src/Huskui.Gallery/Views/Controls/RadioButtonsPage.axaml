@@ -5,7 +5,7 @@
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Input.RadioButtonsPage">
+             x:Class="Huskui.Gallery.Views.Controls.RadioButtonsPage">
 
     <ScrollViewer Padding="48">
         <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
