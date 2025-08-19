@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
              xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Huskui.Gallery.Views.Input.TextBoxesPage">
 
@@ -45,6 +46,25 @@
                         <TextBox Watermark="Enter your name..."
                                  IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}" />
                     </StackPanel>
+                    <TextBlock Text="With Inner Content" />
+                    <TextBox Watermark="Enter your name..."
+                             IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}">
+                        <TextBox.InnerLeftContent>
+                            <DockPanel>
+                                <husk:Divider DockPanel.Dock="Right" Orientation="Vertical" />
+                                <fi:SymbolIcon Symbol="Mail" VerticalAlignment="Center"
+                                               FontSize="{StaticResource MediumFontSize}"
+                                               Margin="12,0" />
+                            </DockPanel>
+                        </TextBox.InnerLeftContent>
+                        <TextBox.InnerRightContent>
+                            <Button Command="{Binding $parent[TextBox].Clear}">
+                                <fi:SymbolIcon Symbol="Backspace" VerticalAlignment="Center"
+                                               FontSize="{StaticResource MediumFontSize}" />
+                            </Button>
+                        </TextBox.InnerRightContent>
+                    </TextBox>
+                    <StackPanel Spacing="8" />
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="Password TextBox" />

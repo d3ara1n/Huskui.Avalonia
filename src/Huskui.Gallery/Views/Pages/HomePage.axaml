@@ -97,6 +97,9 @@
                                 Padding="12">
                             <TextBlock FontFamily="Consolas,Monaco,Menlo,monospace"
                                        FontSize="{StaticResource SmallFontSize}">
+                                <Run Text="xmlns:husk=&quot;https://github.com/d3ara1n/Huskui.Avalonia&quot;" />
+                                <LineBreak />
+                                <LineBreak />
                                 <Run Text="&lt;Application.Styles&gt;" />
                                 <LineBreak />
                                 <Run Text="    &lt;husk:HuskuiTheme Accent=&quot;Blue&quot; /&gt;" />

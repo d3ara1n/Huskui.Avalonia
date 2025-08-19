@@ -42,7 +42,15 @@
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                       RecognizesAccessKey="True" />
-                    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto">
+                    <Grid Name="InteractivePart" Grid.Row="1" ColumnDefinitions="Auto,Auto">
+                        <Grid.Transitions>
+                            <Transitions>
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Grid.Transitions>
                         <ContentPresenter Name="PART_OffContentPresenter"
                                           Grid.Column="1"
                                           Margin="6,0,0,0"
@@ -69,10 +77,6 @@
                                 <Transitions>
                                     <BrushTransition Property="Background"
                                                      Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                    <DoubleTransition
-                                        Easing="SineEaseOut"
-                                        Property="Opacity"
-                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
                             <Canvas x:Name="PART_SwitchKnob"
@@ -98,7 +102,7 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border#SwitchKnobBounds">
+        <Style Selector="^:disabled /template/ Grid#InteractivePart">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
 

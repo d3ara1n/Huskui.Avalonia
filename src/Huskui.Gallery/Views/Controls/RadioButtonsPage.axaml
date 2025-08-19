@@ -108,7 +108,7 @@
 
                     <RadioButton x:Name="PayPalRadio" GroupName="PaymentGroup">
                         <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="🅿️" FontSize="20" />
+                            <TextBlock Text="📱" FontSize="20" />
                             <StackPanel>
                                 <TextBlock Text="PayPal" FontWeight="Bold" />
                                 <TextBlock Text="Pay with your PayPal account"
