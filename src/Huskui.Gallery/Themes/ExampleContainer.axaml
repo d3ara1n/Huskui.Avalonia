@@ -76,7 +76,7 @@
                                     BorderBrush="{StaticResource ControlBorderBrush}"
                                     BorderThickness="1,0,0,0"
                                     Padding="16"
-                                    MinWidth="200"
+                                    Width="300"
                                     IsVisible="{TemplateBinding Controls, Converter={x:Static ObjectConverters.IsNotNull}}">
                                 <ContentPresenter Content="{TemplateBinding Controls}" />
                             </Border>
