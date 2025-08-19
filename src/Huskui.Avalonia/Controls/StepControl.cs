@@ -42,6 +42,8 @@ namespace Huskui.Avalonia.Controls
                     continue;
                 }
 
+                item.IsFirst = i == 0;
+                item.IsLast = i == Items.Count - 1;
                 item.IsCompleted = i < SelectedIndex;
             }
         }

@@ -15,6 +15,24 @@ namespace Huskui.Avalonia.Controls
         public static readonly StyledProperty<bool> IsCompletedProperty =
             AvaloniaProperty.Register<StepItem, bool>(nameof(IsCompleted));
 
+        public static readonly StyledProperty<bool> IsLastProperty =
+            AvaloniaProperty.Register<StepItem, bool>(nameof(IsLast));
+
+        public static readonly StyledProperty<bool> IsFirstProperty =
+            AvaloniaProperty.Register<StepItem, bool>(nameof(IsFirst));
+
+        public bool IsFirst
+        {
+            get => GetValue(IsFirstProperty);
+            set => SetValue(IsFirstProperty, value);
+        }
+
+        public bool IsLast
+        {
+            get => GetValue(IsLastProperty);
+            set => SetValue(IsLastProperty, value);
+        }
+
         public bool IsSelected
         {
             get => GetValue(IsSelectedProperty);
