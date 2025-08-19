@@ -37,23 +37,17 @@ namespace Huskui.Gallery.Views
                 try
                 {
                     var page = Activator.CreateInstance(item.PageType);
-                    if (_contentFrame != null)
-                    {
-                        _contentFrame.Content = page;
-                    }
+                    _contentFrame?.Content = page;
                 }
                 catch (Exception ex)
                 {
                     // Show error page or fallback content
-                    if (_contentFrame != null)
+                    _contentFrame?.Content = new TextBlock
                     {
-                        _contentFrame.Content = new TextBlock
-                        {
-                            Text = $"Error loading page: {ex.Message}",
-                            HorizontalAlignment = HorizontalAlignment.Center,
-                            VerticalAlignment = VerticalAlignment.Center
-                        };
-                    }
+                        Text = $"Error loading page: {ex.Message}",
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
                 }
             }
             else
@@ -64,10 +58,7 @@ namespace Huskui.Gallery.Views
 
         private void ShowHomePage()
         {
-            if (_contentFrame != null)
-            {
-                _contentFrame.Content = new HomePage();
-            }
+            _contentFrame?.Content = new HomePage();
         }
     }
 }

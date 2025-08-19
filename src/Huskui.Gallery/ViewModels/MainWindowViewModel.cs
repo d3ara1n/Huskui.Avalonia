@@ -18,22 +18,19 @@ namespace Huskui.Gallery.ViewModels
         private readonly SourceList<GalleryItem> _allItemsSource = new();
         private readonly CompositeDisposable _disposables = new();
         private readonly IGalleryService _galleryService;
-        private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults = null!;
+        private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults;
 
         [ObservableProperty]
-        private ObservableCollection<CategoryGroupViewModel> _categoryGroups = new();
+        public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } = new();
+        [ObservableProperty]
+        public partial bool IsSearchActive { get; set; }
+        [ObservableProperty]
+        public partial bool IsSettingsOpen { get; set; }
+        [ObservableProperty]
+        public partial string SearchText { get; set; } = string.Empty;
 
         [ObservableProperty]
-        private bool _isSearchActive;
-
-        [ObservableProperty]
-        private bool _isSettingsOpen;
-
-        [ObservableProperty]
-        private string _searchText = string.Empty;
-
-        [ObservableProperty]
-        private GalleryItem? _selectedItem;
+        public partial GalleryItem? SelectedItem { get; set; }
 
         public MainWindowViewModel(
             IGalleryService galleryService,
@@ -79,16 +76,12 @@ namespace Huskui.Gallery.ViewModels
 
             _disposables.Add(categoryFilterSubscription);
         }
-
-        public ObservableCollection<GalleryCategory> Categories => _galleryService.Categories;
+        
         public IThemeService ThemeService { get; }
 
         public INavigationService NavigationService { get; }
 
         public ReadOnlyObservableCollection<GalleryItem> SearchResults => _searchResults;
-
-        // Unified display items - shows either search results or all items based on search state
-        public ReadOnlyObservableCollection<GalleryItem> DisplayItems => _searchResults;
 
         #region IDisposable Members
 

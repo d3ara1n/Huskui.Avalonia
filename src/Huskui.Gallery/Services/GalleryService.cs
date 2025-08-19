@@ -203,6 +203,16 @@ namespace Huskui.Gallery.Services
                         PageType = typeof(SkeletonContainersPage),
                         Category = "Container",
                         Tags = ["skeleton", "loading", "placeholder", "shimmer"]
+                    },
+                    new()
+                    {
+                        Title = "Tab Strips",
+                        Description =
+                            "Horizontal navigation components for switching between views or content",
+                        Icon = Symbol.Tab,
+                        PageType = typeof(TabStripsPage),
+                        Category = "Container",
+                        Tags = ["tab", "strip", "navigation", "view", "content"]
                     }
                 ]
             };
