@@ -27,7 +27,7 @@
                         <Button Content="User Settings" Click="OnShowSettingsModalClick" />
                         <Button Content="User Profile" Click="OnShowProfileModalClick" />
                         <TextBlock
-                            Text="Click buttons to show modals for extended interactions. These cannot be dismissed by clicking outside or pressing Escape."
+                            Text="Click buttons to show modals for extended interactions. &#xA;These cannot be dismissed by clicking outside or pressing Escape."
                             TextWrapping="Wrap"
                             FontSize="12"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}" />

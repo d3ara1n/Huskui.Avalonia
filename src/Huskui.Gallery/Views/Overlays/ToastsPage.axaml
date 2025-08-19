@@ -26,7 +26,7 @@
                         <TextBlock Text="Content Preview Controls" FontWeight="Bold" FontSize="14" />
                         <Button Content="Preview Blog Article" Click="OnShowBlogPreviewClick" />
                         <TextBlock
-                            Text="Click buttons to show heavy-weight content previews that slide up from the bottom. These are more substantial than modals."
+                            Text="Click buttons to show heavy-weight content previews that slide up from the bottom. &#xA;These are more substantial than modals."
                             TextWrapping="Wrap"
                             FontSize="12"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
