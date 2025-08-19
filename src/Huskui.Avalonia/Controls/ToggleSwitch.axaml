@@ -69,6 +69,10 @@
                                 <Transitions>
                                     <BrushTransition Property="Background"
                                                      Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    <DoubleTransition
+                                        Easing="SineEaseOut"
+                                        Property="Opacity"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
                             <Canvas x:Name="PART_SwitchKnob"
