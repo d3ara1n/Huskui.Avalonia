@@ -20,18 +20,6 @@ namespace Huskui.Gallery.ViewModels
         private readonly IGalleryService _galleryService;
         private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults;
 
-        [ObservableProperty]
-        public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } = new();
-        [ObservableProperty]
-        public partial bool IsSearchActive { get; set; }
-        [ObservableProperty]
-        public partial bool IsSettingsOpen { get; set; }
-        [ObservableProperty]
-        public partial string SearchText { get; set; } = string.Empty;
-
-        [ObservableProperty]
-        public partial GalleryItem? SelectedItem { get; set; }
-
         public MainWindowViewModel(
             IGalleryService galleryService,
             INavigationService navigationService,
@@ -76,7 +64,22 @@ namespace Huskui.Gallery.ViewModels
 
             _disposables.Add(categoryFilterSubscription);
         }
-        
+
+        [ObservableProperty]
+        public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } = new();
+
+        [ObservableProperty]
+        public partial bool IsSearchActive { get; set; }
+
+        [ObservableProperty]
+        public partial bool IsSettingsOpen { get; set; }
+
+        [ObservableProperty]
+        public partial string SearchText { get; set; } = string.Empty;
+
+        [ObservableProperty]
+        public partial GalleryItem? SelectedItem { get; set; }
+
         public IThemeService ThemeService { get; }
 
         public INavigationService NavigationService { get; }

@@ -56,9 +56,6 @@ namespace Huskui.Gallery.Views
             }
         }
 
-        private void ShowHomePage()
-        {
-            _contentFrame?.Content = new HomePage();
-        }
+        private void ShowHomePage() => _contentFrame?.Content = new HomePage();
     }
 }

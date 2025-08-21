@@ -1,223 +1,210 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Overlays.DialogsPage">
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.Overlays.DialogsPage">
+    <StackPanel Spacing="32">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <!-- Page Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Dialogs"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Modal dialogs for user input collection and binary decision making"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-            </StackPanel>
-
-            <controls:ExampleContainer Title="Confirmation Dialogs"
-                                       Description="Binary choice dialogs for user confirmation">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Confirmation Controls" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Delete Confirmation" Click="OnShowDeleteConfirmClick" />
-                        <Button Content="Save Changes" Click="OnShowSaveConfirmClick" />
-                        <Button Content="Email Input" Click="OnShowEmailInputClick" />
-                        <Button Content="Exit Application" Click="OnShowExitConfirmClick" />
-                        <TextBlock Text="Click buttons to show confirmation dialogs with Primary/Secondary commands."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="400">
-                    <husk:Card Padding="16">
-                        <StackPanel Spacing="12">
-                            <TextBlock Text="Dialog Purpose" FontSize="16" FontWeight="Bold" />
-                            <TextBlock
-                                Text="Dialogs are designed for pure user input collection with binary choices. They only have PrimaryCommand (positive/affirmative) and SecondaryCommand (negative/cancel) actions."
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Text="Use dialogs when you need a clear yes/no, confirm/cancel, or save/discard decision from the user."
-                                TextWrapping="Wrap"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                        </StackPanel>
-                    </husk:Card>
+        <controls:ExampleContainer Title="Confirmation Dialogs"
+                                   Description="Binary choice dialogs for user confirmation">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Confirmation Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Delete Confirmation" Click="OnShowDeleteConfirmClick" />
+                    <Button Content="Save Changes" Click="OnShowSaveConfirmClick" />
+                    <Button Content="Email Input" Click="OnShowEmailInputClick" />
+                    <Button Content="Exit Application" Click="OnShowExitConfirmClick" />
+                    <TextBlock Text="Click buttons to show confirmation dialogs with Primary/Secondary commands."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                 </StackPanel>
-            </controls:ExampleContainer>
+            </controls:ExampleContainer.Controls>
 
-            <controls:ExampleContainer Title="Input Dialogs"
-                                       Description="Dialogs for collecting simple user input">
-                <controls:ExampleContainer.Controls>
+            <StackPanel Spacing="16" Width="400">
+                <husk:Card Padding="16">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Input Collection" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Rename File" Click="OnShowRenameDialogClick" />
-                        <Button Content="Create Folder" Click="OnShowCreateFolderClick" />
-                        <Button Content="Set Password" Click="OnShowPasswordDialogClick" />
-                        <TextBlock Text="These dialogs collect simple input with clear accept/cancel actions."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="450">
-                    <husk:Card Padding="16">
-                        <StackPanel Spacing="12">
-                            <TextBlock Text="Input Patterns" FontSize="16" FontWeight="Bold" />
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="• Single text input (filename, folder name)" />
-                                <TextBlock Text="• Password or sensitive data entry" />
-                                <TextBlock Text="• Simple configuration values" />
-                                <TextBlock Text="• Quick data collection with validation" />
-                            </StackPanel>
-                        </StackPanel>
-                    </husk:Card>
-                </StackPanel>
-            </controls:ExampleContainer>
-
-            <controls:ExampleContainer Title="Decision Dialogs"
-                                       Description="Critical decision points requiring user choice">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Decision Points" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Unsaved Changes" Click="OnShowUnsavedChangesClick" />
-                        <Button Content="Overwrite File" Click="OnShowOverwriteDialogClick" />
-                        <Button Content="Permanent Action" Click="OnShowPermanentActionClick" />
-                        <TextBlock Text="Critical decisions that require explicit user confirmation."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="500">
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
-                        <husk:Card Grid.Column="0" Padding="16">
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="⚠️ Destructive Actions" FontWeight="Bold" />
-                                <TextBlock Text="Delete, overwrite, or permanent changes"
-                                           FontSize="12"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </husk:Card>
-
-                        <husk:Card Grid.Column="1" Padding="16">
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="💾 Data Loss Prevention" FontWeight="Bold" />
-                                <TextBlock Text="Save/discard unsaved changes"
-                                           FontSize="12"
-                                           TextWrapping="Wrap" />
-                            </StackPanel>
-                        </husk:Card>
-                    </Grid>
-                </StackPanel>
-            </controls:ExampleContainer>
-
-            <controls:ExampleContainer Title="Dialog Result Validation"
-                                       Description="Dialog with Result property binding and validation"
-                                       XamlCode="&lt;TextBox Text=&quot;{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}&quot; /&gt;"
-                                       CSharpCode="protected override bool ValidateResult(object? result)&#xA;    =&gt; EmailRegex.IsMatch(result as string ?? &quot;&quot;);&#xA;&#xA;// Usage:&#xA;appWindow.PopDialog(dialog);&#xA;if (await dialog.CompletionSource.Task)&#xA;    var result = dialog.Result;">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Result Validation Example" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Email Input Dialog" Click="OnShowEmailInputClick" />
+                        <TextBlock Text="Dialog Purpose" FontSize="16" FontWeight="Bold" />
                         <TextBlock
-                            Text="This dialog demonstrates Result property binding, ValidateResult override, and CompletionSource usage."
+                            Text="Dialogs are designed for pure user input collection with binary choices. They only have PrimaryCommand (positive/affirmative) and SecondaryCommand (negative/cancel) actions."
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Text="Use dialogs when you need a clear yes/no, confirm/cancel, or save/discard decision from the user."
                             TextWrapping="Wrap"
-                            FontSize="12"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                     </StackPanel>
-                </controls:ExampleContainer.Controls>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
 
-                <StackPanel Spacing="16" Width="500">
-                    <husk:Card Padding="16">
-                        <StackPanel Spacing="12">
-                            <TextBlock Text="Result Validation Pattern" FontSize="16" FontWeight="Bold" />
+        <controls:ExampleContainer Title="Input Dialogs"
+                                   Description="Dialogs for collecting simple user input">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Input Collection" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Rename File" Click="OnShowRenameDialogClick" />
+                    <Button Content="Create Folder" Click="OnShowCreateFolderClick" />
+                    <Button Content="Set Password" Click="OnShowPasswordDialogClick" />
+                    <TextBlock Text="These dialogs collect simple input with clear accept/cancel actions."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
 
-                            <TextBlock
-                                Text="Dialog uses the Result property as a data binding intermediary for validation and return values. Override ValidateResult method to determine result validity and control Primary button availability."
-                                TextWrapping="Wrap"
-                                FontSize="13" />
+            <StackPanel Spacing="16" Width="450">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Input Patterns" FontSize="16" FontWeight="Bold" />
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="• Single text input (filename, folder name)" />
+                            <TextBlock Text="• Password or sensitive data entry" />
+                            <TextBlock Text="• Simple configuration values" />
+                            <TextBlock Text="• Quick data collection with validation" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
 
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Key Features:" FontWeight="Medium" FontSize="12" />
-                                <StackPanel Spacing="4" Margin="12,0,0,0">
-                                    <TextBlock Text="• Result property: Two-way binding with user input" FontSize="12" />
-                                    <TextBlock Text="• ValidateResult method: Override for custom validation logic"
-                                               FontSize="12" />
-                                    <TextBlock Text="• Primary button state: Auto-enabled/disabled based on validation"
-                                               FontSize="12" />
-                                    <TextBlock Text="• CompletionSource: Async await for user operation results"
-                                               FontSize="12" />
-                                </StackPanel>
-                            </StackPanel>
+        <controls:ExampleContainer Title="Decision Dialogs"
+                                   Description="Critical decision points requiring user choice">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Decision Points" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Unsaved Changes" Click="OnShowUnsavedChangesClick" />
+                    <Button Content="Overwrite File" Click="OnShowOverwriteDialogClick" />
+                    <Button Content="Permanent Action" Click="OnShowPermanentActionClick" />
+                    <TextBlock Text="Critical decisions that require explicit user confirmation."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
 
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Workflow:" FontWeight="Medium" FontSize="12" />
-                                <StackPanel Spacing="4" Margin="12,0,0,0">
-                                    <TextBlock Text="1. User inputs data in bound controls" FontSize="12" />
-                                    <TextBlock Text="2. Data updates Dialog.Result through binding" FontSize="12" />
-                                    <TextBlock Text="3. ValidateResult automatically validates data" FontSize="12" />
-                                    <TextBlock Text="4. Primary button enables/disables based on validation"
-                                               FontSize="12" />
-                                    <TextBlock Text="5. Result returned via CompletionSource on confirmation"
-                                               FontSize="12" />
-                                </StackPanel>
-                            </StackPanel>
+            <StackPanel Spacing="16" Width="500">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                    <husk:Card Grid.Column="0" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="⚠️ Destructive Actions" FontWeight="Bold" />
+                            <TextBlock Text="Delete, overwrite, or permanent changes"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
                         </StackPanel>
                     </husk:Card>
+
+                    <husk:Card Grid.Column="1" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="💾 Data Loss Prevention" FontWeight="Bold" />
+                            <TextBlock Text="Save/discard unsaved changes"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </husk:Card>
+                </Grid>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Dialog Result Validation"
+                                   Description="Dialog with Result property binding and validation"
+                                   XamlCode="&lt;TextBox Text=&quot;{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}&quot; /&gt;"
+                                   CSharpCode="protected override bool ValidateResult(object? result)&#xA;    =&gt; EmailRegex.IsMatch(result as string ?? &quot;&quot;);&#xA;&#xA;// Usage:&#xA;appWindow.PopDialog(dialog);&#xA;if (await dialog.CompletionSource.Task)&#xA;    var result = dialog.Result;">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Result Validation Example" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Email Input Dialog" Click="OnShowEmailInputClick" />
+                    <TextBlock
+                        Text="This dialog demonstrates Result property binding, ValidateResult override, and CompletionSource usage."
+                        TextWrapping="Wrap"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                 </StackPanel>
-            </controls:ExampleContainer>
+            </controls:ExampleContainer.Controls>
 
-            <controls:ExampleContainer Title="Dialog Best Practices"
-                                       Description="Guidelines for effective dialog usage">
-                <StackPanel Spacing="16" Width="600">
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Design Guidelines" FontSize="18" FontWeight="Bold" />
+            <StackPanel Spacing="16" Width="500">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Result Validation Pattern" FontSize="16" FontWeight="Bold" />
 
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="✅ Do" FontWeight="Bold" Foreground="Green" />
-                                    <TextBlock Text="• Use clear, actionable button labels (Save/Cancel, Delete/Keep)" />
-                                    <TextBlock Text="• Keep content focused on the single decision" />
-                                    <TextBlock Text="• Make the primary action obvious and safe" />
-                                    <TextBlock Text="• Provide clear context for the decision" />
-                                </StackPanel>
+                        <TextBlock
+                            Text="Dialog uses the Result property as a data binding intermediary for validation and return values. Override ValidateResult method to determine result validity and control Primary button availability."
+                            TextWrapping="Wrap"
+                            FontSize="13" />
 
-                                <husk:Divider />
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Key Features:" FontWeight="Medium" FontSize="12" />
+                            <StackPanel Spacing="4" Margin="12,0,0,0">
+                                <TextBlock Text="• Result property: Two-way binding with user input" FontSize="12" />
+                                <TextBlock Text="• ValidateResult method: Override for custom validation logic"
+                                           FontSize="12" />
+                                <TextBlock Text="• Primary button state: Auto-enabled/disabled based on validation"
+                                           FontSize="12" />
+                                <TextBlock Text="• CompletionSource: Async await for user operation results"
+                                           FontSize="12" />
+                            </StackPanel>
+                        </StackPanel>
 
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
-                                    <TextBlock Text="• Use for complex interactions (use Modal instead)" />
-                                    <TextBlock Text="• Add more than two action buttons" />
-                                    <TextBlock Text="• Use vague labels like 'OK' or 'Yes'" />
-                                    <TextBlock Text="• Include complex forms or multiple inputs" />
-                                </StackPanel>
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Workflow:" FontWeight="Medium" FontSize="12" />
+                            <StackPanel Spacing="4" Margin="12,0,0,0">
+                                <TextBlock Text="1. User inputs data in bound controls" FontSize="12" />
+                                <TextBlock Text="2. Data updates Dialog.Result through binding" FontSize="12" />
+                                <TextBlock Text="3. ValidateResult automatically validates data" FontSize="12" />
+                                <TextBlock Text="4. Primary button enables/disables based on validation"
+                                           FontSize="12" />
+                                <TextBlock Text="5. Result returned via CompletionSource on confirmation"
+                                           FontSize="12" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Dialog Best Practices"
+                                   Description="Guidelines for effective dialog usage">
+            <StackPanel Spacing="16" Width="600">
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Design Guidelines" FontSize="18" FontWeight="Bold" />
+
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="✅ Do" FontWeight="Bold" Foreground="Green" />
+                                <TextBlock Text="• Use clear, actionable button labels (Save/Cancel, Delete/Keep)" />
+                                <TextBlock Text="• Keep content focused on the single decision" />
+                                <TextBlock Text="• Make the primary action obvious and safe" />
+                                <TextBlock Text="• Provide clear context for the decision" />
                             </StackPanel>
 
                             <husk:Divider />
 
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Technical Notes" FontWeight="Bold" />
-                                <TextBlock
-                                    Text="Dialogs are designed for binary decisions with PrimaryCommand (affirmative) and SecondaryCommand (negative/cancel). They focus user attention on a single decision point and should be used sparingly for critical choices."
-                                    TextWrapping="Wrap"
-                                    FontSize="12"
-                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
+                                <TextBlock Text="• Use for complex interactions (use Modal instead)" />
+                                <TextBlock Text="• Add more than two action buttons" />
+                                <TextBlock Text="• Use vague labels like 'OK' or 'Yes'" />
+                                <TextBlock Text="• Include complex forms or multiple inputs" />
                             </StackPanel>
                         </StackPanel>
-                    </husk:Card>
-                </StackPanel>
-            </controls:ExampleContainer>
 
-        </StackPanel>
-    </ScrollViewer>
+                        <husk:Divider />
 
-</UserControl>
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Technical Notes" FontWeight="Bold" />
+                            <TextBlock
+                                Text="Dialogs are designed for binary decisions with PrimaryCommand (affirmative) and SecondaryCommand (negative/cancel). They focus user attention on a single decision point and should be used sparingly for critical choices."
+                                TextWrapping="Wrap"
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

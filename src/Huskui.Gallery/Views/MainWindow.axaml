@@ -97,8 +97,8 @@
                 </StackPanel>
 
                 <!-- Navigation Content -->
-                <ScrollViewer Grid.Row="2" Padding="8,16,8,8">
-                    <StackPanel>
+                <ScrollViewer Grid.Row="2">
+                    <StackPanel Margin="8,16,8,8">
                         <!-- Search Results (Flat List) -->
                         <StackPanel IsVisible="{Binding IsSearchActive}">
                             <TextBlock Text="Search Results"

@@ -1,126 +1,113 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Overlays.ToastsPage">
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.Overlays.ToastsPage">
+    <StackPanel Spacing="32">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <!-- Page Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Toasts"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Temporary overlay messages for brief status updates and alerts"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+        <controls:ExampleContainer Title="Content Preview Toasts"
+                                   Description="Heavy-weight bottom-sliding content viewers">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Content Preview Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Preview Blog Article" Click="OnShowBlogPreviewClick" />
+                    <TextBlock
+                        Text="Click buttons to show heavy-weight content previews that slide up from the bottom. These are more substantial than modals."
+                        TextWrapping="Wrap"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="16" Width="400">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Toast Purpose" FontSize="16" FontWeight="Bold" />
+                        <TextBlock
+                            Text="Toasts are heavy-weight content viewers that slide up from the bottom, like a piece of toast popping up. They're even more substantial than modals and are used for content preview without navigation."
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Text="Use toasts for previewing articles, documents, or media content when you want to avoid page navigation but need substantial viewing space."
+                            TextWrapping="Wrap"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </husk:Card>
             </StackPanel>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Content Preview Toasts"
-                                       Description="Heavy-weight bottom-sliding content viewers">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Content Preview Controls" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Preview Blog Article" Click="OnShowBlogPreviewClick" />
-                        <TextBlock
-                            Text="Click buttons to show heavy-weight content previews that slide up from the bottom. These are more substantial than modals."
-                            TextWrapping="Wrap"
-                            FontSize="12"
-                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="400">
-                    <husk:Card Padding="16">
-                        <StackPanel Spacing="12">
-                            <TextBlock Text="Toast Purpose" FontSize="16" FontWeight="Bold" />
-                            <TextBlock
-                                Text="Toasts are heavy-weight content viewers that slide up from the bottom, like a piece of toast popping up. They're even more substantial than modals and are used for content preview without navigation."
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Text="Use toasts for previewing articles, documents, or media content when you want to avoid page navigation but need substantial viewing space."
-                                TextWrapping="Wrap"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                        </StackPanel>
-                    </husk:Card>
+        <controls:ExampleContainer Title="Interactive Content Toasts"
+                                   Description="Large content viewers with interactive elements">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Interactive Content Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Product Details" Click="OnShowProductDetailsClick" />
+                    <TextBlock
+                        Text="These toasts show substantial content with interactive elements for detailed viewing without navigation."
+                        TextWrapping="Wrap"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                 </StackPanel>
-            </controls:ExampleContainer>
+            </controls:ExampleContainer.Controls>
 
-            <controls:ExampleContainer Title="Interactive Content Toasts"
-                                       Description="Large content viewers with interactive elements">
-                <controls:ExampleContainer.Controls>
+            <StackPanel Spacing="16" Width="450">
+                <husk:Card Padding="16">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Interactive Content Controls" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Product Details" Click="OnShowProductDetailsClick" />
-                        <TextBlock
-                            Text="These toasts show substantial content with interactive elements for detailed viewing without navigation."
-                            TextWrapping="Wrap"
-                            FontSize="12"
-                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="450">
-                    <husk:Card Padding="16">
-                        <StackPanel Spacing="12">
-                            <TextBlock Text="Heavy-Weight Features" FontSize="16" FontWeight="Bold" />
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="• Full content preview and reading" />
-                                <TextBlock Text="• Interactive elements and controls" />
-                                <TextBlock Text="• Rich media and image galleries" />
-                                <TextBlock Text="• Detailed information display" />
-                            </StackPanel>
+                        <TextBlock Text="Heavy-Weight Features" FontSize="16" FontWeight="Bold" />
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="• Full content preview and reading" />
+                            <TextBlock Text="• Interactive elements and controls" />
+                            <TextBlock Text="• Rich media and image galleries" />
+                            <TextBlock Text="• Detailed information display" />
                         </StackPanel>
-                    </husk:Card>
-                </StackPanel>
-            </controls:ExampleContainer>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Toast Best Practices"
-                                       Description="Guidelines for effective toast usage in content preview">
-                <StackPanel Spacing="16" Width="600">
-                    <husk:Card Padding="20">
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Design Guidelines" FontSize="18" FontWeight="Bold" />
+        <controls:ExampleContainer Title="Toast Best Practices"
+                                   Description="Guidelines for effective toast usage in content preview">
+            <StackPanel Spacing="16" Width="600">
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Design Guidelines" FontSize="18" FontWeight="Bold" />
 
-                            <StackPanel Spacing="12">
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="✅ Do" FontWeight="Bold" Foreground="Green" />
-                                    <TextBlock Text="• Use for content preview without navigation" />
-                                    <TextBlock Text="• Make them large enough for comfortable viewing" />
-                                    <TextBlock Text="• Include clear close/dismiss actions" />
-                                    <TextBlock Text="• Design for substantial content consumption" />
-                                </StackPanel>
-
-                                <husk:Divider />
-
-                                <StackPanel Spacing="4">
-                                    <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
-                                    <TextBlock Text="• Use for simple notifications (use Notification instead)" />
-                                    <TextBlock Text="• Make them too small for the content" />
-                                    <TextBlock Text="• Use for quick interactions (use Dialog instead)" />
-                                    <TextBlock Text="• Auto-dismiss important content" />
-                                </StackPanel>
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="✅ Do" FontWeight="Bold" Foreground="Green" />
+                                <TextBlock Text="• Use for content preview without navigation" />
+                                <TextBlock Text="• Make them large enough for comfortable viewing" />
+                                <TextBlock Text="• Include clear close/dismiss actions" />
+                                <TextBlock Text="• Design for substantial content consumption" />
                             </StackPanel>
 
                             <husk:Divider />
 
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Technical Notes" FontWeight="Bold" />
-                                <TextBlock
-                                    Text="Toasts slide up from the bottom like a piece of toast and are the heaviest-weight overlay control. They're designed for substantial content preview scenarios where you want to avoid navigation but need significant viewing space."
-                                    TextWrapping="Wrap"
-                                    FontSize="12"
-                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
+                                <TextBlock Text="• Use for simple notifications (use Notification instead)" />
+                                <TextBlock Text="• Make them too small for the content" />
+                                <TextBlock Text="• Use for quick interactions (use Dialog instead)" />
+                                <TextBlock Text="• Auto-dismiss important content" />
                             </StackPanel>
                         </StackPanel>
-                    </husk:Card>
-                </StackPanel>
-            </controls:ExampleContainer>
 
-        </StackPanel>
-    </ScrollViewer>
+                        <husk:Divider />
 
-</UserControl>
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Technical Notes" FontWeight="Bold" />
+                            <TextBlock
+                                Text="Toasts slide up from the bottom like a piece of toast and are the heaviest-weight overlay control. They're designed for substantial content preview scenarios where you want to avoid navigation but need significant viewing space."
+                                TextWrapping="Wrap"
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Controls
 {
-    public partial class HighlightBlocksPage : UserControl
+    public partial class HighlightBlocksPage : ControlPage
     {
         public HighlightBlocksPage() => InitializeComponent();
     }

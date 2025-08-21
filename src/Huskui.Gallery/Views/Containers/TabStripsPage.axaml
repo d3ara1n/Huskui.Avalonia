@@ -1,64 +1,53 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Containers.TabStripsPage">
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <!-- Page Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="Tab Strips"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Horizontal navigation components for switching between views or content"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.Containers.TabStripsPage">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer Title="Basic TabStrip"
+                                   Description="Simple tab strip with different styles"
+                                   XamlCode="&lt;TabStrip&gt;&#10;    &lt;TabItem Content=&quot;Hola&quot; /&gt;&#10;&lt;/TabStrip&gt;&#10;&lt;TabStrip Theme=&quot;{StaticResource SegmentedTabStripTheme}&quot; /&gt;">
+            <StackPanel Spacing="16">
+                <TextBlock Text="Block Style" FontWeight="Bold" />
+                <TabStrip>
+                    <TabStripItem>
+                        <TextBlock>
+                            <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
+                            <LineBreak />
+                            <Run Text="Design Center"
+                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </TextBlock>
+                    </TabStripItem>
+                    <TabStripItem IsEnabled="False">
+                        <TextBlock>
+                            <Run Text="Dock" FontSize="{StaticResource LargeFontSize}" />
+                            <LineBreak />
+                            <Run Text="Machine Assembler"
+                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </TextBlock>
+                    </TabStripItem>
+                    <TabStripItem>
+                        <TextBlock>
+                            <Run Text="Socket" FontSize="{StaticResource LargeFontSize}" />
+                            <LineBreak />
+                            <Run Text="Power Supply"
+                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </TextBlock>
+                    </TabStripItem>
+                </TabStrip>
+                <TextBlock Text="Bar Style" />
+                <TabStrip Theme="{StaticResource SegmentedTabStripTheme}">
+                    <TabStripItem Content="Monday" />
+                    <TabStripItem Content="Tuesday" />
+                    <TabStripItem Content="Wednesday" />
+                    <TabStripItem Content="Thursday" />
+                    <TabStripItem Content="Friday" />
+                </TabStrip>
             </StackPanel>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Basic TabStrip"
-                                       Description="Simple tab strip with different styles"
-                                       XamlCode="&lt;TabStrip&gt;&#10;    &lt;TabItem Content=&quot;Hola&quot; /&gt;&#10;&lt;/TabStrip&gt;&#10;&lt;TabStrip Theme=&quot;{StaticResource SegmentedTabStripTheme}&quot; /&gt;">
-                <StackPanel Spacing="16">
-                    <TextBlock Text="Block Style" FontWeight="Bold" />
-                    <TabStrip>
-                        <TabStripItem>
-                            <TextBlock>
-                                <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
-                                <LineBreak />
-                                <Run Text="Design Center"
-                                     Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </TextBlock>
-                        </TabStripItem>
-                        <TabStripItem IsEnabled="False">
-                            <TextBlock>
-                                <Run Text="Dock" FontSize="{StaticResource LargeFontSize}" />
-                                <LineBreak />
-                                <Run Text="Machine Assembler"
-                                     Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </TextBlock>
-                        </TabStripItem>
-                        <TabStripItem>
-                            <TextBlock>
-                                <Run Text="Socket" FontSize="{StaticResource LargeFontSize}" />
-                                <LineBreak />
-                                <Run Text="Power Supply"
-                                     Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </TextBlock>
-                        </TabStripItem>
-                    </TabStrip>
-                    <TextBlock Text="Bar Style" />
-                    <TabStrip Theme="{StaticResource SegmentedTabStripTheme}">
-                        <TabStripItem Content="Monday" />
-                        <TabStripItem Content="Tuesday" />
-                        <TabStripItem Content="Wednesday" />
-                        <TabStripItem Content="Thursday" />
-                        <TabStripItem Content="Friday" />
-                    </TabStrip>
-                </StackPanel>
-            </controls:ExampleContainer>
-
-        </StackPanel>
-    </ScrollViewer>
-</UserControl>
+    </StackPanel>
+</controls:ControlPage>

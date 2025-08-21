@@ -1,14 +1,9 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+﻿using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Containers
 {
-    public partial class TabStripsPage : UserControl
+    public partial class TabStripsPage : ControlPage
     {
-        public TabStripsPage()
-        {
-            InitializeComponent();
-        }
+        public TabStripsPage() => InitializeComponent();
     }
 }

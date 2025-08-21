@@ -79,7 +79,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Buttons",
-                        Description = "Various button styles and states",
+                        Description = "Interactive button controls with various styles and states",
                         Icon = Symbol.Button,
                         PageType = typeof(ButtonsPage),
                         Category = "Controls",
@@ -88,7 +88,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "DropDownButtons",
-                        Description = "Dropdown buttons with flyout menus",
+                        Description = "Button controls with dropdown menus for additional actions",
                         Icon = Symbol.ChevronDown,
                         PageType = typeof(DropDownButtonsPage),
                         Category = "Controls",
@@ -97,8 +97,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "HyperlinkButtons",
-                        Description =
-                            "Navigation links with different themes for inline and standalone use",
+                        Description = "Link-style buttons for navigation and external references",
                         Icon = Symbol.Link,
                         PageType = typeof(HyperlinkButtonsPage),
                         Category = "Controls",
@@ -107,7 +106,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "RadioButtons",
-                        Description = "Radio button controls for exclusive selection",
+                        Description = "Single selection controls for mutually exclusive options",
                         Icon = Symbol.RadioButton,
                         PageType = typeof(RadioButtonsPage),
                         Category = "Input",
@@ -116,7 +115,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Info Bars",
-                        Description = "Informational message components",
+                        Description = "Informational message components with different severity levels",
                         Icon = Symbol.Info,
                         PageType = typeof(InfoBarsPage),
                         Category = "Controls",
@@ -125,7 +124,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Tags",
-                        Description = "Small labels for categorization",
+                        Description = "Small labels for categorization and metadata",
                         Icon = Symbol.Tag,
                         PageType = typeof(TagsPage),
                         Category = "Controls",
@@ -134,7 +133,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Icon Labels",
-                        Description = "Icon and text combinations",
+                        Description = "Combined icon and text labels for enhanced visual communication",
                         Icon = Symbol.Icons,
                         PageType = typeof(IconLabelsPage),
                         Category = "Controls",
@@ -143,7 +142,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Highlight Blocks",
-                        Description = "Inline text highlighting for emphasis",
+                        Description = "Emphasized content blocks for important information and callouts",
                         Icon = Symbol.Highlight,
                         PageType = typeof(HighlightBlocksPage),
                         Category = "Controls",
@@ -152,7 +151,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Dividers",
-                        Description = "Visual separators for content sections",
+                        Description = "Visual separators for organizing and structuring content layout",
                         Icon = Symbol.Line,
                         PageType = typeof(DividersPage),
                         Category = "Controls",
@@ -180,7 +179,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Cards",
-                        Description = "Container components for grouping content",
+                        Description = "Container components for grouping and organizing content",
                         Icon = Symbol.RectangleLandscape,
                         PageType = typeof(CardsPage),
                         Category = "Container",
@@ -189,7 +188,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Busy Containers",
-                        Description = "Loading state containers with blur effects",
+                        Description = "Loading state containers with visual feedback for async operations",
                         Icon = Symbol.ArrowClockwise,
                         PageType = typeof(BusyContainersPage),
                         Category = "Container",
@@ -198,7 +197,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Skeleton Containers",
-                        Description = "Skeleton placeholders for loading content",
+                        Description = "Loading placeholders that mimic content structure during data fetching",
                         Icon = Symbol.RectangleLandscape,
                         PageType = typeof(SkeletonContainersPage),
                         Category = "Container",
@@ -206,13 +205,21 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
+                        Title = "List Boxes",
+                        Description = "Vertical list containers with different configurations",
+                        Icon = Symbol.List,
+                        PageType = typeof(ListBoxesPage),
+                        Category = "Container",
+                        Tags = ["list", "box", "vertical", "content"]
+                    },
+                    new()
+                    {
                         Title = "Tab Strips",
-                        Description =
-                            "Horizontal navigation components for switching between views or content",
+                        Description = "Horizontal tab containers for content organization",
                         Icon = Symbol.Tab,
                         PageType = typeof(TabStripsPage),
                         Category = "Container",
-                        Tags = ["tab", "strip", "navigation", "view", "content"]
+                        Tags = ["list", "tab", "vertical", "switcher"]
                     }
                 ]
             };
@@ -245,7 +252,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Modals",
-                        Description = "Long interaction containers that cannot be dismissed externally",
+                        Description = "Modal containers for complex user interactions and extended workflows",
                         Icon = Symbol.RectangleLandscape,
                         PageType = typeof(ModalsPage),
                         Category = "Overlays",
@@ -254,7 +261,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Dialogs",
-                        Description = "Binary choice dialogs for user input and confirmation",
+                        Description = "Modal dialogs for user input collection and binary decision making",
                         Icon = Symbol.Chat,
                         PageType = typeof(DialogsPage),
                         Category = "Overlays",
@@ -263,7 +270,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Notifications",
-                        Description = "Notification items with different severity levels and actions",
+                        Description = "Status feedback notifications for user awareness and system updates",
                         Icon = Symbol.Alert,
                         PageType = typeof(NotificationsPage),
                         Category = "Overlays",
@@ -291,7 +298,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "FlexWrap Panels",
-                        Description = "Flexible wrapping layout with dynamic width distribution",
+                        Description = "Flexible wrapping layout panels for responsive content arrangement",
                         Icon = Symbol.LayoutRowTwoSplitBottom,
                         PageType = typeof(FlexWrapPanelsPage),
                         Category = "Layout",
@@ -319,7 +326,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "Toggle Switches",
-                        Description = "Modern toggle switches with styling",
+                        Description = "Binary toggle controls for on/off settings and preferences",
                         Icon = Symbol.ToggleRight,
                         PageType = typeof(ToggleSwitchesPage),
                         Category = "Input",
@@ -328,7 +335,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "TextBoxes",
-                        Description = "Text input controls with validation",
+                        Description = "Text input controls for single-line and multi-line text entry",
                         Icon = Symbol.TextBulletListSquare,
                         PageType = typeof(TextBoxesPage),
                         Category = "Input",
@@ -337,7 +344,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "ComboBoxes",
-                        Description = "Dropdown selection controls",
+                        Description = "Dropdown selection controls for choosing from predefined options",
                         Icon = Symbol.ChevronDown,
                         PageType = typeof(ComboBoxesPage),
                         Category = "Input",
@@ -346,7 +353,7 @@ namespace Huskui.Gallery.Services
                     new()
                     {
                         Title = "CheckBoxes",
-                        Description = "Checkbox controls with three-state support",
+                        Description = "Binary selection controls for multiple choice options",
                         Icon = Symbol.CheckboxChecked,
                         PageType = typeof(CheckBoxesPage),
                         Category = "Input",

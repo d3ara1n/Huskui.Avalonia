@@ -2,11 +2,12 @@
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Models;
+using Huskui.Gallery.Controls;
 using Huskui.Gallery.Dialogs;
 
 namespace Huskui.Gallery.Views.Overlays
 {
-    public partial class DialogsPage : UserControl
+    public partial class DialogsPage : ControlPage
     {
         public DialogsPage() => InitializeComponent();
 

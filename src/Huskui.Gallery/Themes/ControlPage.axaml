@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                    xmlns:views="clr-namespace:Huskui.Gallery.Views"
+                    xmlns:viewModels="clr-namespace:Huskui.Gallery.ViewModels">
+    <ControlTheme x:Key="{x:Type controls:ControlPage}" TargetType="controls:ControlPage">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ScrollViewer>
+                    <DockPanel Margin="48" VerticalSpacing="32" HorizontalAlignment="Center" MinWidth="800">
+                        <!-- Page Header -->
+                        <StackPanel DockPanel.Dock="Top" Spacing="8">
+                            <TextBlock
+                                Text="{Binding $parent[views:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Title,FallbackValue={x:Null}}"
+                                FontSize="28"
+                                FontWeight="{StaticResource ControlStrongFontWeight}" />
+                            <TextBlock
+                                Text="{Binding $parent[views:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Description,FallbackValue={x:Null}}"
+                                FontSize="{StaticResource LargeFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </DockPanel>
+                </ScrollViewer>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

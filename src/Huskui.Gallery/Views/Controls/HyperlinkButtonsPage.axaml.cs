@@ -1,9 +1,9 @@
-﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Controls
 {
-    public partial class HyperlinkButtonsPage : UserControl
+    public partial class HyperlinkButtonsPage : ControlPage
     {
         public HyperlinkButtonsPage() => InitializeComponent();
 

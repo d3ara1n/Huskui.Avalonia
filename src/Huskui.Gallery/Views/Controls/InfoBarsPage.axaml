@@ -1,30 +1,19 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             x:Class="Huskui.Gallery.Views.Controls.InfoBarsPage">
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      x:Class="Huskui.Gallery.Views.Controls.InfoBarsPage">
+    <StackPanel Spacing="32">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <StackPanel Spacing="8">
-                <TextBlock Text="Info Bars"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Informational message components with different severity levels"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+        <controls:ExampleContainer Title="Basic Info Bars"
+                                   Description="Info bars with different severity levels">
+            <StackPanel Spacing="16">
+                <husk:InfoBar Header="Information" Content="This is an informational message." />
+                <husk:InfoBar Header="Success" Content="Operation completed successfully." Classes="Success" />
+                <husk:InfoBar Header="Warning" Content="Please review your settings." Classes="Warning" />
+                <husk:InfoBar Header="Error" Content="An error occurred during processing." Classes="Danger" />
             </StackPanel>
+        </controls:ExampleContainer>
+    </StackPanel>
 
-            <controls:ExampleContainer Title="Basic Info Bars"
-                                       Description="Info bars with different severity levels">
-                <StackPanel Spacing="16">
-                    <husk:InfoBar Header="Information" Content="This is an informational message." />
-                    <husk:InfoBar Header="Success" Content="Operation completed successfully." Classes="Success" />
-                    <husk:InfoBar Header="Warning" Content="Please review your settings." Classes="Warning" />
-                    <husk:InfoBar Header="Error" Content="An error occurred during processing." Classes="Danger" />
-                </StackPanel>
-            </controls:ExampleContainer>
-        </StackPanel>
-    </ScrollViewer>
-
-</UserControl>
+</controls:ControlPage>

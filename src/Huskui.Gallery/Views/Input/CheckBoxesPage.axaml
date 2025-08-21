@@ -1,155 +1,142 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Input.CheckBoxesPage">
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.Input.CheckBoxesPage">
+    <StackPanel Spacing="32">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <!-- Page Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="CheckBoxes"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Binary selection controls for multiple choice options"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+        <controls:ExampleContainer Title="Basic CheckBoxes"
+                                   Description="Standard checkboxes with different states">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Checkbox States" FontWeight="Bold" FontSize="14" />
+                    <ToggleButton x:Name="ThreeStateToggle" Content="Three State Mode" />
+                    <Button Content="Reset All" Click="OnResetAllClick" />
+                    <TextBlock Text="Toggle three-state mode and reset all checkboxes to test different behaviors."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="16" Width="300">
+                <CheckBox Content="Unchecked"
+                          IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
+                <CheckBox Content="Checked"
+                          IsChecked="True"
+                          IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
+                <CheckBox Content="Indeterminate"
+                          IsChecked="{x:Null}"
+                          IsThreeState="True" />
+                <CheckBox Content="Disabled Unchecked"
+                          IsEnabled="False"
+                          IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
+                <CheckBox Content="Disabled Checked"
+                          IsChecked="True"
+                          IsEnabled="False"
+                          IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
             </StackPanel>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Basic CheckBoxes"
-                                       Description="Standard checkboxes with different states">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Checkbox States" FontWeight="Bold" FontSize="14" />
-                        <ToggleButton x:Name="ThreeStateToggle" Content="Three State Mode" />
-                        <Button Content="Reset All" Click="OnResetAllClick" />
-                        <TextBlock Text="Toggle three-state mode and reset all checkboxes to test different behaviors."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                    </StackPanel>
-                </controls:ExampleContainer.Controls>
-
-                <StackPanel Spacing="16" Width="300">
-                    <CheckBox Content="Unchecked"
-                              IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
-                    <CheckBox Content="Checked"
-                              IsChecked="True"
-                              IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
-                    <CheckBox Content="Indeterminate"
-                              IsChecked="{x:Null}"
-                              IsThreeState="True" />
-                    <CheckBox Content="Disabled Unchecked"
-                              IsEnabled="False"
-                              IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
-                    <CheckBox Content="Disabled Checked"
-                              IsChecked="True"
-                              IsEnabled="False"
-                              IsThreeState="{Binding #ThreeStateToggle.IsChecked}" />
+        <controls:ExampleContainer Title="Checkbox Themes"
+                                   Description="Different visual themes for checkboxes">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="32">
+                <StackPanel Grid.Column="0" Spacing="12">
+                    <TextBlock Text="Default Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <CheckBox Content="Default Unchecked" />
+                    <CheckBox Content="Default Checked" IsChecked="True" />
+                    <CheckBox Content="Default Indeterminate" IsChecked="{x:Null}" IsThreeState="True" />
                 </StackPanel>
-            </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Checkbox Themes"
-                                       Description="Different visual themes for checkboxes">
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="32">
-                    <StackPanel Grid.Column="0" Spacing="12">
-                        <TextBlock Text="Default Theme" FontWeight="Bold" HorizontalAlignment="Center" />
-                        <CheckBox Content="Default Unchecked" />
-                        <CheckBox Content="Default Checked" IsChecked="True" />
-                        <CheckBox Content="Default Indeterminate" IsChecked="{x:Null}" IsThreeState="True" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Spacing="12">
-                        <TextBlock Text="Alternative Theme" FontWeight="Bold" HorizontalAlignment="Center" />
-                        <CheckBox Content="Alternative Unchecked" Theme="{StaticResource AlternativeCheckBoxTheme}" />
-                        <CheckBox Content="Alternative Checked" IsChecked="True"
-                                  Theme="{StaticResource AlternativeCheckBoxTheme}" />
-                        <CheckBox Content="Alternative Indeterminate" IsChecked="{x:Null}" IsThreeState="True"
-                                  Theme="{StaticResource AlternativeCheckBoxTheme}" />
-                    </StackPanel>
-                </Grid>
-            </controls:ExampleContainer>
-
-            <controls:ExampleContainer Title="Complex Content"
-                                       Description="Checkboxes with rich content">
-                <StackPanel Spacing="16" Width="400">
-                    <CheckBox>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="📧" FontSize="16" />
-                            <StackPanel>
-                                <TextBlock Text="Email Notifications" FontWeight="Bold" />
-                                <TextBlock Text="Receive notifications via email"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </CheckBox>
-
-                    <CheckBox IsChecked="True">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="🔔" FontSize="16" />
-                            <StackPanel>
-                                <TextBlock Text="Push Notifications" FontWeight="Bold" />
-                                <TextBlock Text="Show desktop notifications"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </CheckBox>
-
-                    <CheckBox IsChecked="{x:Null}" IsThreeState="True">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="📱" FontSize="16" />
-                            <StackPanel>
-                                <TextBlock Text="SMS Notifications" FontWeight="Bold" />
-                                <TextBlock Text="Some contacts enabled"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </CheckBox>
+                <StackPanel Grid.Column="1" Spacing="12">
+                    <TextBlock Text="Alternative Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <CheckBox Content="Alternative Unchecked" Theme="{StaticResource AlternativeCheckBoxTheme}" />
+                    <CheckBox Content="Alternative Checked" IsChecked="True"
+                              Theme="{StaticResource AlternativeCheckBoxTheme}" />
+                    <CheckBox Content="Alternative Indeterminate" IsChecked="{x:Null}" IsThreeState="True"
+                              Theme="{StaticResource AlternativeCheckBoxTheme}" />
                 </StackPanel>
-            </controls:ExampleContainer>
+            </Grid>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Settings Form Example"
-                                       Description="Real-world usage in settings forms">
-                <husk:Card Padding="24" Width="450">
-                    <StackPanel Spacing="20">
-                        <TextBlock Text="Privacy Settings" FontSize="18" FontWeight="Bold" />
+        <controls:ExampleContainer Title="Complex Content"
+                                   Description="Checkboxes with rich content">
+            <StackPanel Spacing="16" Width="400">
+                <CheckBox>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="📧" FontSize="16" />
+                        <StackPanel>
+                            <TextBlock Text="Email Notifications" FontWeight="Bold" />
+                            <TextBlock Text="Receive notifications via email"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </CheckBox>
+
+                <CheckBox IsChecked="True">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="🔔" FontSize="16" />
+                        <StackPanel>
+                            <TextBlock Text="Push Notifications" FontWeight="Bold" />
+                            <TextBlock Text="Show desktop notifications"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </CheckBox>
+
+                <CheckBox IsChecked="{x:Null}" IsThreeState="True">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="📱" FontSize="16" />
+                        <StackPanel>
+                            <TextBlock Text="SMS Notifications" FontWeight="Bold" />
+                            <TextBlock Text="Some contacts enabled"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </CheckBox>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Settings Form Example"
+                                   Description="Real-world usage in settings forms">
+            <husk:Card Padding="24" Width="450">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Privacy Settings" FontSize="18" FontWeight="Bold" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Data Collection" FontWeight="Bold" />
+
+                        <CheckBox x:Name="AnalyticsCheckBox" Content="Allow analytics data collection"
+                                  IsChecked="True" />
+                        <CheckBox x:Name="CrashReportsCheckBox" Content="Send crash reports" IsChecked="True" />
+                        <CheckBox x:Name="UsageDataCheckBox" Content="Share usage statistics" />
 
                         <husk:Divider />
 
-                        <StackPanel Spacing="16">
-                            <TextBlock Text="Data Collection" FontWeight="Bold" />
+                        <TextBlock Text="Communication" FontWeight="Bold" />
 
-                            <CheckBox x:Name="AnalyticsCheckBox" Content="Allow analytics data collection"
-                                      IsChecked="True" />
-                            <CheckBox x:Name="CrashReportsCheckBox" Content="Send crash reports" IsChecked="True" />
-                            <CheckBox x:Name="UsageDataCheckBox" Content="Share usage statistics" />
+                        <CheckBox x:Name="MarketingCheckBox" Content="Receive marketing emails" />
+                        <CheckBox x:Name="UpdatesCheckBox" Content="Notify about product updates" IsChecked="True" />
+                        <CheckBox x:Name="NewsletterCheckBox" Content="Subscribe to newsletter" />
 
-                            <husk:Divider />
+                        <husk:Divider />
 
-                            <TextBlock Text="Communication" FontWeight="Bold" />
-
-                            <CheckBox x:Name="MarketingCheckBox" Content="Receive marketing emails" />
-                            <CheckBox x:Name="UpdatesCheckBox" Content="Notify about product updates" IsChecked="True" />
-                            <CheckBox x:Name="NewsletterCheckBox" Content="Subscribe to newsletter" />
-
-                            <husk:Divider />
-
-                            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
-                                <Button Content="Reset to Defaults" Click="OnResetClick" />
-                                <Button Content="Save Settings" Classes="Primary" Click="OnSaveClick" />
-                            </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                            <Button Content="Reset to Defaults" Click="OnResetClick" />
+                            <Button Content="Save Settings" Classes="Primary" Click="OnSaveClick" />
                         </StackPanel>
                     </StackPanel>
-                </husk:Card>
-            </controls:ExampleContainer>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
 
-        </StackPanel>
-    </ScrollViewer>
-
-</UserControl>
+    </StackPanel>
+</controls:ControlPage>

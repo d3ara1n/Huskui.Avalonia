@@ -1,9 +1,9 @@
-﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Controls
 {
-    public partial class RadioButtonsPage : UserControl
+    public partial class RadioButtonsPage : ControlPage
     {
         public RadioButtonsPage() => InitializeComponent();
 

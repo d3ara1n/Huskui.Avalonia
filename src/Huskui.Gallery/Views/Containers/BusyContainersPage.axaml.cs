@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Containers
 {
-    public partial class BusyContainersPage : UserControl
+    public partial class BusyContainersPage : ControlPage
     {
         public BusyContainersPage() => InitializeComponent();
 

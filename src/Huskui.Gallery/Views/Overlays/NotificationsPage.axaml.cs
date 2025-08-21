@@ -3,10 +3,11 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Models;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Overlays
 {
-    public partial class NotificationsPage : UserControl
+    public partial class NotificationsPage : ControlPage
     {
         public NotificationsPage() => InitializeComponent();
 

@@ -1,9 +1,9 @@
-﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Controls
 {
-    public partial class DropDownButtonsPage : UserControl
+    public partial class DropDownButtonsPage : ControlPage
     {
         public DropDownButtonsPage() => InitializeComponent();
 

@@ -1,9 +1,9 @@
-﻿using Avalonia.Controls;
-using Avalonia.Interactivity;
+﻿using Avalonia.Interactivity;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Input
 {
-    public partial class CheckBoxesPage : UserControl
+    public partial class CheckBoxesPage : ControlPage
     {
         public CheckBoxesPage() => InitializeComponent();
 

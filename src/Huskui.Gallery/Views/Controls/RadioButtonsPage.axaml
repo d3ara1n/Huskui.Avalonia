@@ -1,183 +1,170 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.Controls.RadioButtonsPage">
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.Controls.RadioButtonsPage">
+    <StackPanel Spacing="32">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" HorizontalAlignment="Center" MinWidth="800">
-            <!-- Page Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="RadioButtons"
-                           FontSize="28"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TextBlock Text="Single selection controls for mutually exclusive options"
-                           FontSize="{StaticResource LargeFontSize}"
-                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+        <controls:ExampleContainer Title="Basic RadioButtons"
+                                   Description="Standard radio buttons with grouping">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Radio Button Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Clear Selection" Click="OnClearSelectionClick" />
+                    <Button Content="Reset Groups" Click="OnResetGroupsClick" />
+                    <TextBlock Text="Clear selections or reset groups to default values."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="24" Width="400">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Size Options" FontWeight="Bold" />
+                    <RadioButton x:Name="SmallRadio"
+                                 Content="Small"
+                                 GroupName="SizeGroup"
+                                 IsChecked="True" />
+                    <RadioButton x:Name="MediumRadio"
+                                 Content="Medium"
+                                 GroupName="SizeGroup" />
+                    <RadioButton x:Name="LargeRadio"
+                                 Content="Large"
+                                 GroupName="SizeGroup" />
+                </StackPanel>
+
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Color Options" FontWeight="Bold" />
+                    <RadioButton x:Name="RedRadio"
+                                 Content="Red"
+                                 GroupName="ColorGroup" />
+                    <RadioButton x:Name="BlueRadio"
+                                 Content="Blue"
+                                 GroupName="ColorGroup"
+                                 IsChecked="True" />
+                    <RadioButton x:Name="GreenRadio"
+                                 Content="Green"
+                                 GroupName="ColorGroup" />
+                </StackPanel>
             </StackPanel>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="Basic RadioButtons"
-                                       Description="Standard radio buttons with grouping">
-                <controls:ExampleContainer.Controls>
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Radio Button Controls" FontWeight="Bold" FontSize="14" />
-                        <Button Content="Clear Selection" Click="OnClearSelectionClick" />
-                        <Button Content="Reset Groups" Click="OnResetGroupsClick" />
-                        <TextBlock Text="Clear selections or reset groups to default values."
-                                   TextWrapping="Wrap"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+        <controls:ExampleContainer Title="RadioButton Themes"
+                                   Description="Different visual themes for radio buttons">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="32">
+                <StackPanel Grid.Column="0" Spacing="12">
+                    <TextBlock Text="Default Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <RadioButton Content="Option 1" GroupName="DefaultGroup" IsChecked="True" />
+                    <RadioButton Content="Option 2" GroupName="DefaultGroup" />
+                    <RadioButton Content="Option 3" GroupName="DefaultGroup" />
+                    <RadioButton Content="Disabled Option" GroupName="DefaultGroup" IsEnabled="False" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Spacing="12">
+                    <TextBlock Text="Alternative Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+                    <RadioButton Content="Option 1" GroupName="AltGroup" IsChecked="True"
+                                 Theme="{StaticResource AlternativeRadioButtonTheme}" />
+                    <RadioButton Content="Option 2" GroupName="AltGroup"
+                                 Theme="{StaticResource AlternativeRadioButtonTheme}" />
+                    <RadioButton Content="Option 3" GroupName="AltGroup"
+                                 Theme="{StaticResource AlternativeRadioButtonTheme}" />
+                    <RadioButton Content="Disabled Option" GroupName="AltGroup" IsEnabled="False"
+                                 Theme="{StaticResource AlternativeRadioButtonTheme}" />
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Complex Content"
+                                   Description="Radio buttons with rich content">
+            <StackPanel Spacing="16" Width="450">
+                <TextBlock Text="Payment Method" FontWeight="Bold" />
+
+                <RadioButton x:Name="CreditCardRadio" GroupName="PaymentGroup" IsChecked="True">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="💳" FontSize="20" />
+                        <StackPanel>
+                            <TextBlock Text="Credit Card" FontWeight="Bold" />
+                            <TextBlock Text="Visa, MasterCard, American Express"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
                     </StackPanel>
-                </controls:ExampleContainer.Controls>
+                </RadioButton>
 
-                <StackPanel Spacing="24" Width="400">
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Size Options" FontWeight="Bold" />
-                        <RadioButton x:Name="SmallRadio"
-                                     Content="Small"
-                                     GroupName="SizeGroup"
-                                     IsChecked="True" />
-                        <RadioButton x:Name="MediumRadio"
-                                     Content="Medium"
-                                     GroupName="SizeGroup" />
-                        <RadioButton x:Name="LargeRadio"
-                                     Content="Large"
-                                     GroupName="SizeGroup" />
+                <RadioButton x:Name="PayPalRadio" GroupName="PaymentGroup">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="📱" FontSize="20" />
+                        <StackPanel>
+                            <TextBlock Text="PayPal" FontWeight="Bold" />
+                            <TextBlock Text="Pay with your PayPal account"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton x:Name="BankTransferRadio" GroupName="PaymentGroup">
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="🏦" FontSize="20" />
+                        <StackPanel>
+                            <TextBlock Text="Bank Transfer" FontWeight="Bold" />
+                            <TextBlock Text="Direct bank account transfer"
+                                       FontSize="12"
+                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </RadioButton>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Settings Form Example"
+                                   Description="Real-world usage in configuration forms">
+            <husk:Card Padding="24" Width="500">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Application Preferences" FontSize="18" FontWeight="Bold" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Theme" FontWeight="Bold" />
+                            <RadioButton x:Name="LightThemeRadio" Content="Light" GroupName="ThemeGroup"
+                                         IsChecked="True" />
+                            <RadioButton x:Name="DarkThemeRadio" Content="Dark" GroupName="ThemeGroup" />
+                            <RadioButton x:Name="SystemThemeRadio" Content="Follow System" GroupName="ThemeGroup" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Language" FontWeight="Bold" />
+                            <RadioButton x:Name="EnglishRadio" Content="English" GroupName="LanguageGroup"
+                                         IsChecked="True" />
+                            <RadioButton x:Name="ChineseRadio" Content="中文" GroupName="LanguageGroup" />
+                            <RadioButton x:Name="SpanishRadio" Content="Español" GroupName="LanguageGroup" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Startup Behavior" FontWeight="Bold" />
+                            <RadioButton x:Name="MinimizedRadio" Content="Start minimized" GroupName="StartupGroup" />
+                            <RadioButton x:Name="NormalRadio" Content="Start normally" GroupName="StartupGroup"
+                                         IsChecked="True" />
+                            <RadioButton x:Name="FullscreenRadio" Content="Start fullscreen"
+                                         GroupName="StartupGroup" />
+                        </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Spacing="12">
-                        <TextBlock Text="Color Options" FontWeight="Bold" />
-                        <RadioButton x:Name="RedRadio"
-                                     Content="Red"
-                                     GroupName="ColorGroup" />
-                        <RadioButton x:Name="BlueRadio"
-                                     Content="Blue"
-                                     GroupName="ColorGroup"
-                                     IsChecked="True" />
-                        <RadioButton x:Name="GreenRadio"
-                                     Content="Green"
-                                     GroupName="ColorGroup" />
+                    <husk:Divider />
+
+                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                        <Button Content="Reset to Defaults" Click="OnResetPreferencesClick" />
+                        <Button Content="Apply Settings" Classes="Primary" Click="OnApplyPreferencesClick" />
                     </StackPanel>
                 </StackPanel>
-            </controls:ExampleContainer>
+            </husk:Card>
+        </controls:ExampleContainer>
 
-            <controls:ExampleContainer Title="RadioButton Themes"
-                                       Description="Different visual themes for radio buttons">
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="32">
-                    <StackPanel Grid.Column="0" Spacing="12">
-                        <TextBlock Text="Default Theme" FontWeight="Bold" HorizontalAlignment="Center" />
-                        <RadioButton Content="Option 1" GroupName="DefaultGroup" IsChecked="True" />
-                        <RadioButton Content="Option 2" GroupName="DefaultGroup" />
-                        <RadioButton Content="Option 3" GroupName="DefaultGroup" />
-                        <RadioButton Content="Disabled Option" GroupName="DefaultGroup" IsEnabled="False" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Column="1" Spacing="12">
-                        <TextBlock Text="Alternative Theme" FontWeight="Bold" HorizontalAlignment="Center" />
-                        <RadioButton Content="Option 1" GroupName="AltGroup" IsChecked="True"
-                                     Theme="{StaticResource AlternativeRadioButtonTheme}" />
-                        <RadioButton Content="Option 2" GroupName="AltGroup"
-                                     Theme="{StaticResource AlternativeRadioButtonTheme}" />
-                        <RadioButton Content="Option 3" GroupName="AltGroup"
-                                     Theme="{StaticResource AlternativeRadioButtonTheme}" />
-                        <RadioButton Content="Disabled Option" GroupName="AltGroup" IsEnabled="False"
-                                     Theme="{StaticResource AlternativeRadioButtonTheme}" />
-                    </StackPanel>
-                </Grid>
-            </controls:ExampleContainer>
-
-            <controls:ExampleContainer Title="Complex Content"
-                                       Description="Radio buttons with rich content">
-                <StackPanel Spacing="16" Width="450">
-                    <TextBlock Text="Payment Method" FontWeight="Bold" />
-
-                    <RadioButton x:Name="CreditCardRadio" GroupName="PaymentGroup" IsChecked="True">
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="💳" FontSize="20" />
-                            <StackPanel>
-                                <TextBlock Text="Credit Card" FontWeight="Bold" />
-                                <TextBlock Text="Visa, MasterCard, American Express"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton x:Name="PayPalRadio" GroupName="PaymentGroup">
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="📱" FontSize="20" />
-                            <StackPanel>
-                                <TextBlock Text="PayPal" FontWeight="Bold" />
-                                <TextBlock Text="Pay with your PayPal account"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton x:Name="BankTransferRadio" GroupName="PaymentGroup">
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="🏦" FontSize="20" />
-                            <StackPanel>
-                                <TextBlock Text="Bank Transfer" FontWeight="Bold" />
-                                <TextBlock Text="Direct bank account transfer"
-                                           FontSize="12"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </RadioButton>
-                </StackPanel>
-            </controls:ExampleContainer>
-
-            <controls:ExampleContainer Title="Settings Form Example"
-                                       Description="Real-world usage in configuration forms">
-                <husk:Card Padding="24" Width="500">
-                    <StackPanel Spacing="20">
-                        <TextBlock Text="Application Preferences" FontSize="18" FontWeight="Bold" />
-
-                        <husk:Divider />
-
-                        <StackPanel Spacing="16">
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Theme" FontWeight="Bold" />
-                                <RadioButton x:Name="LightThemeRadio" Content="Light" GroupName="ThemeGroup"
-                                             IsChecked="True" />
-                                <RadioButton x:Name="DarkThemeRadio" Content="Dark" GroupName="ThemeGroup" />
-                                <RadioButton x:Name="SystemThemeRadio" Content="Follow System" GroupName="ThemeGroup" />
-                            </StackPanel>
-
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Language" FontWeight="Bold" />
-                                <RadioButton x:Name="EnglishRadio" Content="English" GroupName="LanguageGroup"
-                                             IsChecked="True" />
-                                <RadioButton x:Name="ChineseRadio" Content="中文" GroupName="LanguageGroup" />
-                                <RadioButton x:Name="SpanishRadio" Content="Español" GroupName="LanguageGroup" />
-                            </StackPanel>
-
-                            <StackPanel Spacing="8">
-                                <TextBlock Text="Startup Behavior" FontWeight="Bold" />
-                                <RadioButton x:Name="MinimizedRadio" Content="Start minimized" GroupName="StartupGroup" />
-                                <RadioButton x:Name="NormalRadio" Content="Start normally" GroupName="StartupGroup"
-                                             IsChecked="True" />
-                                <RadioButton x:Name="FullscreenRadio" Content="Start fullscreen"
-                                             GroupName="StartupGroup" />
-                            </StackPanel>
-                        </StackPanel>
-
-                        <husk:Divider />
-
-                        <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
-                            <Button Content="Reset to Defaults" Click="OnResetPreferencesClick" />
-                            <Button Content="Apply Settings" Classes="Primary" Click="OnApplyPreferencesClick" />
-                        </StackPanel>
-                    </StackPanel>
-                </husk:Card>
-            </controls:ExampleContainer>
-
-        </StackPanel>
-    </ScrollViewer>
-
-</UserControl>
+    </StackPanel>
+</controls:ControlPage>

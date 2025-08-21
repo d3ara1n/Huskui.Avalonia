@@ -4,5 +4,6 @@
         <ResourceInclude Source="/Themes/ExampleContainer.axaml" />
         <ResourceInclude Source="/Themes/CodeViewer.axaml" />
         <ResourceInclude Source="/Themes/ThemeSelector.axaml" />
+        <ResourceInclude Source="/Themes/ControlPage.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

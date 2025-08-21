@@ -1,8 +1,8 @@
-﻿using Avalonia.Controls;
+﻿using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Controls
 {
-    public partial class InfoBarsPage : UserControl
+    public partial class InfoBarsPage : ControlPage
     {
         public InfoBarsPage() => InitializeComponent();
     }

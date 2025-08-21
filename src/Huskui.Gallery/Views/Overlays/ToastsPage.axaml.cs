@@ -1,11 +1,12 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Controls;
+using Huskui.Gallery.Controls;
 using Huskui.Gallery.Toasts;
 
 namespace Huskui.Gallery.Views.Overlays
 {
-    public partial class ToastsPage : UserControl
+    public partial class ToastsPage : ControlPage
     {
         public ToastsPage() => InitializeComponent();
 
