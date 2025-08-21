@@ -7,8 +7,8 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="Huskui.Gallery.Views.Pages.HomePage">
 
-    <ScrollViewer Padding="48">
-        <StackPanel Spacing="32" MaxWidth="800">
+    <ScrollViewer>
+        <StackPanel Margin="48" Spacing="32" MaxWidth="800">
             <!-- Welcome Section -->
             <StackPanel Spacing="16">
                 <TextBlock Text="Welcome to Huskui Gallery"
