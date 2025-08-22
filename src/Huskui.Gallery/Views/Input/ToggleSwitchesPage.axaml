@@ -16,21 +16,7 @@
                 <StackPanel Spacing="12">
                     <ToggleSwitch Content="Default Toggle" />
                     <ToggleSwitch Content="Checked Toggle" IsChecked="True" />
-                    <ToggleSwitch Content="Unchecked Toggle" IsChecked="False" />
-                </StackPanel>
-            </StackPanel>
-        </controls:ExampleContainer>
-
-        <controls:ExampleContainer Title="Toggle Switch Styles"
-                                   Description="Different visual styles for toggle switches">
-
-            <StackPanel Spacing="16">
-                <StackPanel Spacing="12">
-                    <ToggleSwitch Content="Default Style" />
-                    <ToggleSwitch Content="Primary Style" Classes="Primary" />
-                    <ToggleSwitch Content="Success Style" Classes="Success" />
-                    <ToggleSwitch Content="Warning Style" Classes="Warning" />
-                    <ToggleSwitch Content="Danger Style" Classes="Danger" />
+                    <ToggleSwitch Content="Indeterminate Toggle" IsThreeState="True" IsChecked="{x:Null}" />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
