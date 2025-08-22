@@ -21,6 +21,8 @@ namespace Huskui.Avalonia.Controls
         public static readonly StyledProperty<bool> IsFirstProperty =
             AvaloniaProperty.Register<StepItem, bool>(nameof(IsFirst));
 
+        static StepItem() => SelectableMixin.Attach<StepItem>(IsSelectedProperty);
+
         public bool IsFirst
         {
             get => GetValue(IsFirstProperty);
@@ -33,19 +35,21 @@ namespace Huskui.Avalonia.Controls
             set => SetValue(IsLastProperty, value);
         }
 
-        public bool IsSelected
-        {
-            get => GetValue(IsSelectedProperty);
-            set => SetValue(IsSelectedProperty, value);
-        }
-
         public bool IsCompleted
         {
             get => GetValue(IsCompletedProperty);
             set => SetValue(IsCompletedProperty, value);
         }
 
-        static StepItem() => SelectableMixin.Attach<StepItem>(IsSelectedProperty);
+        #region ISelectable Members
+
+        public bool IsSelected
+        {
+            get => GetValue(IsSelectedProperty);
+            set => SetValue(IsSelectedProperty, value);
+        }
+
+        #endregion
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {

@@ -12,6 +12,12 @@ namespace Huskui.Avalonia.Controls
         private static readonly FuncTemplate<Panel?> DefaultPanel =
             new(() => new StackPanel { Orientation = Orientation.Horizontal });
 
+        static StepControl()
+        {
+            ItemsPanelProperty.OverrideDefaultValue<StepControl>(DefaultPanel);
+            KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<StepControl>(KeyboardNavigationMode.Once);
+        }
+
         protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
             new StepItem();
 
@@ -46,12 +52,6 @@ namespace Huskui.Avalonia.Controls
                 item.IsLast = i == Items.Count - 1;
                 item.IsCompleted = i < SelectedIndex;
             }
-        }
-
-        static StepControl()
-        {
-            ItemsPanelProperty.OverrideDefaultValue<StepControl>(DefaultPanel);
-            KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<StepControl>(KeyboardNavigationMode.Once);
         }
     }
 }

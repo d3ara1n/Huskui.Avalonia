@@ -164,7 +164,7 @@ namespace Huskui.Avalonia.Controls
 
         private void SetPseudoClass(string name)
         {
-            foreach (var i in (string[]) [":information", ":success", ":warning", ":danger"])
+            foreach (var i in (string[])[":information", ":success", ":warning", ":danger"])
             {
                 PseudoClasses.Set(i, name == i);
             }
