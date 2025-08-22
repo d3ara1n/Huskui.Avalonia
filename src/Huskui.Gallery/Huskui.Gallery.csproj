@@ -9,6 +9,7 @@
         <LangVersion>preview</LangVersion>
         <AssemblyTitle>Huskui Gallery</AssemblyTitle>
         <AssemblyDescription>A comprehensive gallery showcasing Huskui.Avalonia controls</AssemblyDescription>
+        <ApplicationIcon>Assets\Icon.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
