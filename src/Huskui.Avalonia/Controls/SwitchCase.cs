@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Metadata;
 
 namespace Huskui.Avalonia.Controls

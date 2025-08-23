@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia
+namespace Huskui.Avalonia
 {
     public interface IPageModel
     {

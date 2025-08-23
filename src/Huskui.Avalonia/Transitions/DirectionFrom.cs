@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Transitions
+namespace Huskui.Avalonia.Transitions
 {
     public enum DirectionFrom { Top, Bottom, Left, Right }
 }

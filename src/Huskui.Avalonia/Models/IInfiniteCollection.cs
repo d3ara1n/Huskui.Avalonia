@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Models
+namespace Huskui.Avalonia.Models
 {
     public interface IInfiniteCollection
     {

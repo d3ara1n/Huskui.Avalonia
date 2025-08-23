@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Avalonia.Data.Converters;
 
 namespace Huskui.Avalonia.Converters

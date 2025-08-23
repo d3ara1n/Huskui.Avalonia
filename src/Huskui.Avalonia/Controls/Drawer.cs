@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Controls
+namespace Huskui.Avalonia.Controls
 {
     public class Drawer { }
 }

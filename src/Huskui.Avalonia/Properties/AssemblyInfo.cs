@@ -1,4 +1,4 @@
-﻿using Avalonia.Metadata;
+using Avalonia.Metadata;
 
 [assembly: XmlnsPrefix("https://github.com/d3ara1n/Huskui.Avalonia", "husk")]
 [assembly: XmlnsDefinition("https://github.com/d3ara1n/Huskui.Avalonia", "Huskui.Avalonia")]

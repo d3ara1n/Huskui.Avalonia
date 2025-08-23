@@ -1,4 +1,4 @@
-﻿using Avalonia.Collections;
+using Avalonia.Collections;
 
 namespace Huskui.Avalonia.Controls
 {
