@@ -68,7 +68,7 @@ namespace Huskui.Avalonia.Converters
             }
 
             if (targetType == null || (targetType == compare.GetType() && targetType == value.GetType()))
-                // Default direct object comparison or we're all the proper type
+            // Default direct object comparison or we're all the proper type
             {
                 return compare.Equals(value);
             }

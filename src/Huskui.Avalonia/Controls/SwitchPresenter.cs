@@ -80,8 +80,8 @@ namespace Huskui.Avalonia.Controls
         private void EvaluateCases()
         {
             if (CurrentCase?.Value != null && CurrentCase.Value.Equals(Value))
-                // If the current case we're on already matches our current value,
-                // then we don't have any work to do.
+            // If the current case we're on already matches our current value,
+            // then we don't have any work to do.
             {
                 return;
             }
