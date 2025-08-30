@@ -28,17 +28,12 @@ namespace Huskui.Avalonia.Controls
             RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
                                                                          RoutingStrategies.Bubble);
 
-        private ContentPresenter? _contentPresenter;
 
         public IPageTransition? Transition
         {
             get;
             set => SetAndRaise(TransitionProperty, ref field, value);
         }
-
-        public ContentPresenter ContentPresenter =>
-            _contentPresenter
-         ?? throw new InvalidOperationException($"{nameof(ContentPresenter)} is not found from the template");
 
         public int Distance
         {
@@ -62,37 +57,9 @@ namespace Huskui.Avalonia.Controls
             remove => RemoveHandler(DismissRequestedEvent, value);
         }
 
-        protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-        {
-            base.OnApplyTemplate(e);
-
-            _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
-        }
-
-        protected override void OnLoaded(RoutedEventArgs e)
-        {
-            base.OnLoaded(e);
-
-            AddHandler(DismissRequestedEvent, DismissRequestedHandler);
-        }
-
-        protected override void OnUnloaded(RoutedEventArgs e)
-        {
-            base.OnUnloaded(e);
-
-            RemoveHandler(DismissRequestedEvent, DismissRequestedHandler);
-        }
-
-        private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e) =>
-            // 捕捉路过的事件并加上容器信息
-            e.Container ??= this;
-
         #region Nested type: DismissRequestedEventArgs
 
-        public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
-        {
-            public OverlayItem? Container { get; set; }
-        }
+        public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source);
 
         #endregion
     }

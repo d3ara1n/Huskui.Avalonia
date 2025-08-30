@@ -24,10 +24,17 @@ namespace Huskui.Avalonia.Controls
         protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
             NeedsContainer<StepItem>(item, out recycleKey);
 
+
+        // 似乎能被 ContainerIndexChangedOverride 替代掉
         // protected override void ClearContainerForItemOverride(Control element) => UpdateSelectedIndex();
-        //
-        // protected override void PrepareContainerForItemOverride(Control container, object? item, int index) =>
-        //     UpdateSelectedIndex();
+
+
+        protected override void ContainerIndexChangedOverride(Control container, int oldIndex, int newIndex)
+        {
+            base.ContainerIndexChangedOverride(container, oldIndex, newIndex);
+
+            UpdateSelectedIndex();
+        }
 
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {

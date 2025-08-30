@@ -4,7 +4,9 @@
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel Margin="24" Orientation="Horizontal">
-                <husk:StepItem Header="Hello World" Content="This is a sample application using Huskui.Avalonia" />
+                <husk:StepControl>
+                    <Border/>
+                </husk:StepControl>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
@@ -16,8 +18,11 @@
             <ControlTemplate>
                 <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
                     <Grid Grid.Row="0" ColumnDefinitions="*,Auto,*">
-                        <Border Grid.Column="0" />
-                        <Border Grid.Column="2" />
+                        <Border Grid.Column="0" Height="4" Background="{StaticResource ControlAccentBackground}" IsVisible="{TemplateBinding IsFirst, Converter={x:Static BoolConverters.Not}}"/>
+                        <husk:SwitchPresenter Grid.Column="1">
+                            <husk:SwitchCase></husk:SwitchCase>
+                        </husk:SwitchPresenter>
+                        <Border Grid.Column="2" Height="4" Background="{StaticResource ControlAccentBackground}" IsVisible="{TemplateBinding IsLast, Converter={x:Static BoolConverters.Not}}"/>
                     </Grid>
                     <ContentPresenter Grid.Row="1" Content="{TemplateBinding Header}"
                                       ContentTemplate="{TemplateBinding HeaderTemplate}"
