@@ -1,5 +1,4 @@
 using Avalonia;
-using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -27,8 +26,6 @@ namespace Huskui.Avalonia.Controls
         private OverlayHost? _modalHost;
         private NotificationHost? _notificationHost;
         private OverlayHost? _toastHost;
-
-        public AvaloniaList<Control> Dialogs { get; } = [];
 
         protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -113,19 +110,19 @@ namespace Huskui.Avalonia.Controls
         public void PopToast(Toast toast)
         {
             ArgumentNullException.ThrowIfNull(_toastHost);
-            // _toastHost.Pop(toast);
+            _toastHost.Pop(toast);
         }
 
         public void PopDialog(Dialog dialog)
         {
             ArgumentNullException.ThrowIfNull(_dialogHost);
-            Dialogs.Add(dialog);
+            _dialogHost.Pop(dialog);
         }
 
         public void PopModal(Modal modal)
         {
             ArgumentNullException.ThrowIfNull(_modalHost);
-            // _modalHost.Pop(modal);
+            _modalHost.Pop(modal);
         }
 
         public void PopNotification(NotificationItem notification)

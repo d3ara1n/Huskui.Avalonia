@@ -25,7 +25,6 @@
     <ControlTheme x:Key="{x:Type local:OverlayHost}" TargetType="local:OverlayHost">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="ItemContainerTheme" Value="{StaticResource {x:Type local:OverlayItem}}" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
                 <Panel />

@@ -53,56 +53,6 @@ namespace Huskui.Avalonia.Controls
             remove => RemoveHandler(IsPresentChangedEvent, value);
         }
 
-        protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
-            new OverlayItem();
-
-        protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
-            NeedsContainer<OverlayItem>(item, out recycleKey);
-
-        // protected override void ClearContainerForItemOverride(Control container) =>
-        //     base.ClearContainerForItemOverride(container);
-
-        protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
-        {
-            base.ContainerForItemPreparedOverride(container, item, index);
-
-            if (container is OverlayItem overlay)
-            {
-                var transition = overlay.Transition ?? Transition;
-                transition.Start(null, overlay, true, CancellationToken.None);
-
-                if (Items.Count == 1)
-                {
-                    IsPresent = true;
-                }
-            }
-
-            UpdateDistanceFrom(index);
-        }
-
-        protected override void PrepareContainerForItemOverride(Control container, object? item, int index) =>
-            base.PrepareContainerForItemOverride(container, item, index);
-
-        protected override void ContainerIndexChangedOverride(Control container, int oldIndex, int newIndex)
-        {
-            base.ContainerIndexChangedOverride(container, oldIndex, newIndex);
-
-            UpdateDistanceFrom(newIndex, oldIndex);
-        }
-
-        private void UpdateDistanceFrom(int newIndex, int oldIndex = -1)
-        {
-            var start = ItemCount - newIndex - 1;
-            for (var i = newIndex; i > oldIndex; i--)
-            {
-                if (ContainerFromIndex(i) is OverlayItem item)
-                {
-                    item.Distance = start;
-                    start++;
-                }
-            }
-        }
-
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
@@ -117,31 +67,31 @@ namespace Huskui.Avalonia.Controls
             }
         }
 
-        // public void Pop(object control)
-        // {
-        //     var item = new OverlayItem { Content = control, Distance = 0 };
-        //     foreach (var i in Items.OfType<OverlayItem>())
-        //     {
-        //         i.Distance++;
-        //     }
-        //
-        //     Items.Add(item);
-        //
-        //
-        //     // Make control attached to visual tree ensuring its parent is valid
-        //     // Make OnApplyTemplate called
-        //     UpdateLayout();
-        //     // if (control is Visual visual) Transition.Start(null, visual, true, CancellationToken.None);
-        //     var transition = item.Transition ?? Transition;
-        //     transition.Start(null, item.ContentPresenter, true, CancellationToken.None);
-        //
-        //     if (Items.Count == 1)
-        //     {
-        //         IsPresent = true;
-        //     }
-        // }
+        public void Pop(object control)
+        {
+            var item = new OverlayItem { Content = control, Distance = 0 };
+            foreach (var i in Items.OfType<OverlayItem>())
+            {
+                i.Distance++;
+            }
 
-        private void Dismiss(OverlayItem item)
+            Items.Add(item);
+
+
+            // Make control attached to visual tree ensuring its parent is valid
+            // Make OnApplyTemplate called
+            UpdateLayout();
+            // if (control is Visual visual) Transition.Start(null, visual, true, CancellationToken.None);
+            var transition = item.Transition ?? Transition;
+            transition.Start(null, item, true, CancellationToken.None);
+
+            if (Items.Count == 1)
+            {
+                IsPresent = true;
+            }
+        }
+
+        public void Dismiss(OverlayItem item)
         {
             var transition = item.Transition ?? Transition;
             transition
@@ -159,7 +109,6 @@ namespace Huskui.Avalonia.Controls
                     }
                 }
 
-                // TODO: 移出不再在这个 OverlayHost 完成
                 Items.Remove(item);
                 if (Items.Count == 0)
                 {
@@ -168,13 +117,13 @@ namespace Huskui.Avalonia.Controls
             }
         }
 
-        // public void Dismiss()
-        // {
-        //     if (Items is [.., OverlayItem last])
-        //     {
-        //         Dismiss(last);
-        //     }
-        // }
+        public void Dismiss()
+        {
+            if (Items is [.., OverlayItem last])
+            {
+                Dismiss(last);
+            }
+        }
 
         protected override void OnLoaded(RoutedEventArgs e)
         {
@@ -190,9 +139,9 @@ namespace Huskui.Avalonia.Controls
 
         private void DismissRequestedHandler(object? sender, OverlayItem.DismissRequestedEventArgs e)
         {
-            if (e.Source is not null && ContainerFromItem(e.Source) is OverlayItem item)
+            if (e.Container != null)
             {
-                Dismiss(item);
+                Dismiss(e.Container);
             }
 
             e.Handled = true;

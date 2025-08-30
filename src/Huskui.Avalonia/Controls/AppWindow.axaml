@@ -55,8 +55,7 @@
                             <local:OverlayHost
                                 Name="{x:Static local:AppWindow.PART_DialogHost}"
                                 HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
-                                ItemsSource="{Binding $parent[local:AppWindow].Dialogs}">
+                                VerticalContentAlignment="Center">
                                 <local:OverlayHost.Transition>
                                     <local:ScaleInTransition />
                                 </local:OverlayHost.Transition>
