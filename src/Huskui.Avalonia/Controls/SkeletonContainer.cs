@@ -2,47 +2,46 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 
-namespace Huskui.Avalonia.Controls
+namespace Huskui.Avalonia.Controls;
+
+[PseudoClasses(":loading", ":animated")]
+public class SkeletonContainer : ContentControl
 {
-    [PseudoClasses(":loading", ":animated")]
-    public class SkeletonContainer : ContentControl
+    public static readonly StyledProperty<bool> IsLoadingProperty =
+        AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsLoading));
+
+
+    public static readonly StyledProperty<bool> IsAnimatedProperty =
+        AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsAnimated));
+
+    public SkeletonContainer() =>
+        // Default Property Value
+        IsAnimated = true;
+
+    public bool IsLoading
     {
-        public static readonly StyledProperty<bool> IsLoadingProperty =
-            AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsLoading));
+        get => GetValue(IsLoadingProperty);
+        set => SetValue(IsLoadingProperty, value);
+    }
 
+    public bool IsAnimated
+    {
+        get => GetValue(IsAnimatedProperty);
+        set => SetValue(IsAnimatedProperty, value);
+    }
 
-        public static readonly StyledProperty<bool> IsAnimatedProperty =
-            AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsAnimated));
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
 
-        public SkeletonContainer() =>
-            // Default Property Value
-            IsAnimated = true;
-
-        public bool IsLoading
+        if (change.Property == IsLoadingProperty)
         {
-            get => GetValue(IsLoadingProperty);
-            set => SetValue(IsLoadingProperty, value);
+            PseudoClasses.Set(":loading", change.GetNewValue<bool>());
         }
 
-        public bool IsAnimated
+        else if (change.Property == IsAnimatedProperty)
         {
-            get => GetValue(IsAnimatedProperty);
-            set => SetValue(IsAnimatedProperty, value);
-        }
-
-        protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
-        {
-            base.OnPropertyChanged(change);
-
-            if (change.Property == IsLoadingProperty)
-            {
-                PseudoClasses.Set(":loading", change.GetNewValue<bool>());
-            }
-
-            else if (change.Property == IsAnimatedProperty)
-            {
-                PseudoClasses.Set(":animated", change.GetNewValue<bool>());
-            }
+            PseudoClasses.Set(":animated", change.GetNewValue<bool>());
         }
     }
 }

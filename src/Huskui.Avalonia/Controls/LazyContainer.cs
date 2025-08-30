@@ -9,156 +9,155 @@ using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Huskui.Avalonia.Models;
 
-namespace Huskui.Avalonia.Controls
+namespace Huskui.Avalonia.Controls;
+
+[TemplatePart(PART_ContentPresenter, typeof(ContentPresenter))]
+public class LazyContainer : TemplatedControl
 {
-    [TemplatePart(PART_ContentPresenter, typeof(ContentPresenter))]
-    public class LazyContainer : TemplatedControl
+    public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
+
+    public static readonly StyledProperty<object?> BadContentProperty =
+        AvaloniaProperty.Register<LazyContainer, object?>(nameof(BadContent));
+
+    public static readonly StyledProperty<bool> IsBadProperty =
+        AvaloniaProperty.Register<LazyContainer, bool>(nameof(IsBad));
+
+    public static readonly StyledProperty<LazyObject?> SourceProperty =
+        AvaloniaProperty.Register<LazyContainer, LazyObject?>(nameof(Source));
+
+    public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
+        AvaloniaProperty.Register<LazyContainer, IDataTemplate?>(nameof(SourceTemplate));
+
+    private ContentPresenter? _contentPresenter;
+
+    [DependsOn(nameof(SourceTemplate))]
+    public LazyObject? Source
     {
-        public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
+        get => GetValue(SourceProperty);
+        set => SetValue(SourceProperty, value);
+    }
 
-        public static readonly StyledProperty<object?> BadContentProperty =
-            AvaloniaProperty.Register<LazyContainer, object?>(nameof(BadContent));
+    public IDataTemplate? SourceTemplate
+    {
+        get => GetValue(SourceTemplateProperty);
+        set => SetValue(SourceTemplateProperty, value);
+    }
 
-        public static readonly StyledProperty<bool> IsBadProperty =
-            AvaloniaProperty.Register<LazyContainer, bool>(nameof(IsBad));
 
-        public static readonly StyledProperty<LazyObject?> SourceProperty =
-            AvaloniaProperty.Register<LazyContainer, LazyObject?>(nameof(Source));
+    [Content]
+    public object? BadContent
+    {
+        get => GetValue(BadContentProperty);
+        set => SetValue(BadContentProperty, value);
+    }
 
-        public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
-            AvaloniaProperty.Register<LazyContainer, IDataTemplate?>(nameof(SourceTemplate));
+    public bool IsBad
+    {
+        get => GetValue(IsBadProperty);
+        set => SetValue(IsBadProperty, value);
+    }
 
-        private ContentPresenter? _contentPresenter;
+    protected override async void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
 
-        [DependsOn(nameof(SourceTemplate))]
-        public LazyObject? Source
+        if (_contentPresenter != null)
         {
-            get => GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
+            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
         }
 
-        public IDataTemplate? SourceTemplate
+        _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
+        if (_contentPresenter != null)
         {
-            get => GetValue(SourceTemplateProperty);
-            set => SetValue(SourceTemplateProperty, value);
+            _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
         }
 
-
-        [Content]
-        public object? BadContent
+        if (Source != null)
         {
-            get => GetValue(BadContentProperty);
-            set => SetValue(BadContentProperty, value);
+            await LoadAsync(Source);
         }
+    }
 
-        public bool IsBad
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+
+        if (_contentPresenter != null)
         {
-            get => GetValue(IsBadProperty);
-            set => SetValue(IsBadProperty, value);
+            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
         }
+    }
 
-        protected override async void OnApplyTemplate(TemplateAppliedEventArgs e)
+    private void ContentPresenterOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == ContentPresenter.ChildProperty)
         {
-            base.OnApplyTemplate(e);
-
-            if (_contentPresenter != null)
+            if (e.OldValue is ILogical oldChild)
             {
-                _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
+                LogicalChildren.Remove(oldChild);
             }
 
-            _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
-            if (_contentPresenter != null)
+            if (e.NewValue is ILogical newChild)
             {
-                _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
-            }
-
-            if (Source != null)
-            {
-                await LoadAsync(Source);
+                LogicalChildren.Add(newChild);
             }
         }
+    }
 
-        protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+
+    protected override async void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == SourceProperty)
         {
-            base.OnDetachedFromVisualTree(e);
-
-            if (_contentPresenter != null)
+            if (change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } old)
             {
-                _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
+                old.Cancel();
+            }
+
+            if (change.NewValue is LazyObject lazy && _contentPresenter is not null)
+            {
+                await LoadAsync(lazy);
             }
         }
+    }
 
-        private void ContentPresenterOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private async Task LoadAsync(LazyObject lazy)
+    {
+        ArgumentNullException.ThrowIfNull(_contentPresenter);
+
+        _contentPresenter.Content = null;
+        _contentPresenter.ContentTemplate = null;
+        IsBad = false;
+        if (lazy.Value != null)
         {
-            if (e.Property == ContentPresenter.ChildProperty)
-            {
-                if (e.OldValue is ILogical oldChild)
-                {
-                    LogicalChildren.Remove(oldChild);
-                }
-
-                if (e.NewValue is ILogical newChild)
-                {
-                    LogicalChildren.Add(newChild);
-                }
-            }
+            _contentPresenter.Content = lazy.Value;
+            _contentPresenter.ContentTemplate = SourceTemplate;
         }
-
-
-        protected override async void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+        else
         {
-            base.OnPropertyChanged(change);
-
-            if (change.Property == SourceProperty)
+            try
             {
-                if (change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } old)
-                {
-                    old.Cancel();
-                }
-
-                if (change.NewValue is LazyObject lazy && _contentPresenter is not null)
-                {
-                    await LoadAsync(lazy);
-                }
-            }
-        }
-
-        private async Task LoadAsync(LazyObject lazy)
-        {
-            ArgumentNullException.ThrowIfNull(_contentPresenter);
-
-            _contentPresenter.Content = null;
-            _contentPresenter.ContentTemplate = null;
-            IsBad = false;
-            if (lazy.Value != null)
-            {
+                await lazy.FetchAsync();
                 _contentPresenter.Content = lazy.Value;
                 _contentPresenter.ContentTemplate = SourceTemplate;
             }
-            else
+            catch
             {
-                try
-                {
-                    await lazy.FetchAsync();
-                    _contentPresenter.Content = lazy.Value;
-                    _contentPresenter.ContentTemplate = SourceTemplate;
-                }
-                catch
-                {
-                    _contentPresenter.Content = BadContent;
-                    _contentPresenter.ContentTemplate = null;
-                    IsBad = true;
-                }
+                _contentPresenter.Content = BadContent;
+                _contentPresenter.ContentTemplate = null;
+                IsBad = true;
             }
         }
+    }
 
-        protected override void OnUnloaded(RoutedEventArgs e)
+    protected override void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+        if (Source is { IsCancelled: false, IsInProgress: true })
         {
-            base.OnUnloaded(e);
-            if (Source is { IsCancelled: false, IsInProgress: true })
-            {
-                Source.Cancel();
-            }
+            Source.Cancel();
         }
     }
 }

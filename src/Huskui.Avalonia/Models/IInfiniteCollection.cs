@@ -1,9 +1,8 @@
-namespace Huskui.Avalonia.Models
+namespace Huskui.Avalonia.Models;
+
+public interface IInfiniteCollection
 {
-    public interface IInfiniteCollection
-    {
-        bool HasNext { get; }
-        bool IsFetching { get; }
-        Task FetchAsync();
-    }
+    bool HasNext { get; }
+    bool IsFetching { get; }
+    Task FetchAsync();
 }

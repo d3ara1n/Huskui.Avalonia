@@ -6,105 +6,104 @@ using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
-namespace Huskui.Avalonia.Controls
+namespace Huskui.Avalonia.Controls;
+
+[PseudoClasses(":loading", ":finished", ":failed")]
+public class Page : HeaderedContentControl
 {
-    [PseudoClasses(":loading", ":finished", ":failed")]
-    public class Page : HeaderedContentControl
+    public static readonly DirectProperty<Page, bool> CanGoBackProperty =
+        Frame.CanGoBackProperty.AddOwner<Page>(o => o.CanGoBack,
+                                               (o, v) => o.CanGoBack = v,
+                                               defaultBindingMode: BindingMode.OneWay);
+
+    public static readonly DirectProperty<Page, bool> IsHeaderVisibleProperty =
+        AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsHeaderVisible),
+                                                    o => o.IsHeaderVisible,
+                                                    (o, v) => o.IsHeaderVisible = v);
+
+    public static readonly DirectProperty<Page, bool> IsBackButtonVisibleProperty =
+        AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsBackButtonVisible),
+                                                    o => o.IsBackButtonVisible,
+                                                    (o, v) => o.IsBackButtonVisible = v);
+
+    public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
+        AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
+
+
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
+
+    public BoxShadows BoxShadow
     {
-        public static readonly DirectProperty<Page, bool> CanGoBackProperty =
-            Frame.CanGoBackProperty.AddOwner<Page>(o => o.CanGoBack,
-                                                   (o, v) => o.CanGoBack = v,
-                                                   defaultBindingMode: BindingMode.OneWay);
+        get => GetValue(BoxShadowProperty);
+        set => SetValue(BoxShadowProperty, value);
+    }
 
-        public static readonly DirectProperty<Page, bool> IsHeaderVisibleProperty =
-            AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsHeaderVisible),
-                                                        o => o.IsHeaderVisible,
-                                                        (o, v) => o.IsHeaderVisible = v);
+    public bool IsBackButtonVisible
+    {
+        get;
+        set => SetAndRaise(IsBackButtonVisibleProperty, ref field, value);
+    } = true;
 
-        public static readonly DirectProperty<Page, bool> IsBackButtonVisibleProperty =
-            AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsBackButtonVisible),
-                                                        o => o.IsBackButtonVisible,
-                                                        (o, v) => o.IsBackButtonVisible = v);
+    public IPageModel? Model { get; set; }
 
-        public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
-            AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
+    public bool CanGoBack
+    {
+        get;
+        set => SetAndRaise(CanGoBackProperty, ref field, value);
+    }
+
+    public bool IsHeaderVisible
+    {
+        get;
+        set => SetAndRaise(IsHeaderVisibleProperty, ref field, value);
+    } = true;
+
+    protected override Type StyleKeyOverride => typeof(Page);
 
 
-        private readonly CancellationTokenSource _cancellationTokenSource = new();
-
-        public BoxShadows BoxShadow
+    protected override async void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if (!Design.IsDesignMode)
         {
-            get => GetValue(BoxShadowProperty);
-            set => SetValue(BoxShadowProperty, value);
-        }
-
-        public bool IsBackButtonVisible
-        {
-            get;
-            set => SetAndRaise(IsBackButtonVisibleProperty, ref field, value);
-        } = true;
-
-        public IPageModel? Model { get; set; }
-
-        public bool CanGoBack
-        {
-            get;
-            set => SetAndRaise(CanGoBackProperty, ref field, value);
-        }
-
-        public bool IsHeaderVisible
-        {
-            get;
-            set => SetAndRaise(IsHeaderVisibleProperty, ref field, value);
-        } = true;
-
-        protected override Type StyleKeyOverride => typeof(Page);
-
-
-        protected override async void OnLoaded(RoutedEventArgs e)
-        {
-            base.OnLoaded(e);
-            if (!Design.IsDesignMode)
+            if (Model is not null)
             {
-                if (Model is not null)
+                SetState(true);
+                try
                 {
-                    SetState(true);
-                    try
-                    {
-                        await Model.InitializeAsync(_cancellationTokenSource.Token);
-                        SetState(false, true);
-                    }
-                    catch
-                    {
-                        SetState(false, false, true);
-                    }
+                    await Model.InitializeAsync(_cancellationTokenSource.Token);
+                    SetState(false, true);
+                }
+                catch
+                {
+                    SetState(false, false, true);
                 }
             }
         }
+    }
 
-        protected override async void OnUnloaded(RoutedEventArgs e)
+    protected override async void OnUnloaded(RoutedEventArgs e)
+    {
+        base.OnUnloaded(e);
+
+        if (!Design.IsDesignMode)
         {
-            base.OnUnloaded(e);
-
-            if (!Design.IsDesignMode)
+            if (!_cancellationTokenSource.IsCancellationRequested)
             {
-                if (!_cancellationTokenSource.IsCancellationRequested)
-                {
-                    await _cancellationTokenSource.CancelAsync();
-                }
+                await _cancellationTokenSource.CancelAsync();
+            }
 
-                if (Model is not null)
-                {
-                    await Model.DeinitializeAsync(CancellationToken.None);
-                }
+            if (Model is not null)
+            {
+                await Model.DeinitializeAsync(CancellationToken.None);
             }
         }
+    }
 
-        private void SetState(bool loading = false, bool finished = false, bool failed = false)
-        {
-            PseudoClasses.Set(":loading", loading);
-            PseudoClasses.Set(":finished", finished);
-            PseudoClasses.Set(":failed", failed);
-        }
+    private void SetState(bool loading = false, bool finished = false, bool failed = false)
+    {
+        PseudoClasses.Set(":loading", loading);
+        PseudoClasses.Set(":finished", finished);
+        PseudoClasses.Set(":failed", failed);
     }
 }

@@ -1,77 +1,76 @@
 using System.Collections.ObjectModel;
 
-namespace Huskui.Avalonia.Models
+namespace Huskui.Avalonia.Models;
+
+public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable<T>>> factory, int startIndex = 0)
+    : ObservableCollection<T>, IInfiniteCollection, IDisposable
 {
-    public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable<T>>> factory, int startIndex = 0)
-        : ObservableCollection<T>, IInfiniteCollection, IDisposable
+    private readonly CancellationTokenSource _cts = new();
+    private int _index = startIndex;
+
+    #region IDisposable Members
+
+    public void Dispose()
     {
-        private readonly CancellationTokenSource _cts = new();
-        private int _index = startIndex;
-
-        #region IDisposable Members
-
-        public void Dispose()
+        if (!_cts.IsCancellationRequested)
         {
-            if (!_cts.IsCancellationRequested)
-            {
-                _cts.Cancel();
-            }
+            _cts.Cancel();
+        }
+    }
+
+    #endregion
+
+    #region IInfiniteCollection Members
+
+    public async Task FetchAsync()
+    {
+        if (IsFetching && _cts.IsCancellationRequested)
+        {
+            return;
         }
 
-        #endregion
-
-        #region IInfiniteCollection Members
-
-        public async Task FetchAsync()
+        IsFetching = true;
+        var rv = await factory.Invoke(_index++, _cts.Token);
+        var dirty = false;
+        foreach (var item in rv)
         {
-            if (IsFetching && _cts.IsCancellationRequested)
+            dirty = true;
+            Add(item);
+        }
+
+        HasNext = dirty;
+        IsFetching = false;
+    }
+
+    public bool HasNext
+    {
+        get;
+        set
+        {
+            if (field == value)
             {
                 return;
             }
 
-            IsFetching = true;
-            var rv = await factory.Invoke(_index++, _cts.Token);
-            var dirty = false;
-            foreach (var item in rv)
-            {
-                dirty = true;
-                Add(item);
-            }
-
-            HasNext = dirty;
-            IsFetching = false;
+            field = value;
+            OnPropertyChanged(new(nameof(HasNext)));
         }
+    } = true;
 
-        public bool HasNext
+    public bool IsFetching
+    {
+        get;
+        set
         {
-            get;
-            set
+            if (field == value)
             {
-                if (field == value)
-                {
-                    return;
-                }
-
-                field = value;
-                OnPropertyChanged(new(nameof(HasNext)));
+                return;
             }
-        } = true;
 
-        public bool IsFetching
-        {
-            get;
-            set
-            {
-                if (field == value)
-                {
-                    return;
-                }
-
-                field = value;
-                OnPropertyChanged(new(nameof(IsFetching)));
-            }
+            field = value;
+            OnPropertyChanged(new(nameof(IsFetching)));
         }
-
-        #endregion
     }
+
+    #endregion
 }

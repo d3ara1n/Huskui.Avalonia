@@ -1,4 +1,3 @@
-namespace Huskui.Avalonia.Models
-{
-    public enum NotificationLevel { Information, Success, Warning, Danger }
-}
+namespace Huskui.Avalonia.Models;
+
+public enum NotificationLevel { Information, Success, Warning, Danger }
