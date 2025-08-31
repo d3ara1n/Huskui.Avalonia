@@ -33,7 +33,7 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <Border Name="Smoke" Opacity="0"
+                    <Border Name="{x:Static local:OverlayHost.PART_SmokeMask}" Opacity="0"
                             IsHitTestVisible="False"
                             Background="{StaticResource OverlaySmokeBackgroundBrush}">
                         <Border.Transitions>
@@ -53,7 +53,7 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:present /template/ Border#Smoke">
+        <Style Selector="^:present /template/ Border#PART_SmokeMask">
             <Setter Property="Opacity" Value="1" />
             <Setter Property="IsHitTestVisible" Value="True" />
         </Style>

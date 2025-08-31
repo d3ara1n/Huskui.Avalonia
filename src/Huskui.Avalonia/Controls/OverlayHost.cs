@@ -4,6 +4,8 @@ using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Styling;
@@ -12,11 +14,13 @@ using Huskui.Avalonia.Transitions;
 
 namespace Huskui.Avalonia.Controls;
 
-[PseudoClasses(":present")]
+[TemplatePart(PART_SmokeMask, typeof(Border))]
 [TemplatePart(PART_ItemsPresenter, typeof(ItemsPresenter))]
+[PseudoClasses(":present")]
 public class OverlayHost : ItemsControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
+    public const string PART_SmokeMask = nameof(PART_SmokeMask);
 
     public static readonly DirectProperty<OverlayHost, bool> IsPresentProperty =
         AvaloniaProperty.RegisterDirect<OverlayHost, bool>(nameof(IsPresent),
@@ -33,6 +37,22 @@ public class OverlayHost : ItemsControl
         RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
                                                                                     RoutingStrategies.Bubble);
 
+    public static readonly RoutedEvent<MaskPointerPressedEventArgs> MaskPointerPressedEvent =
+        RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(nameof(MaskPointerPressed),
+                                                                       RoutingStrategies.Bubble);
+
+    public event EventHandler<MaskPointerPressedEventArgs> MaskPointerPressed
+    {
+        add => AddHandler(MaskPointerPressedEvent, value);
+        remove => RemoveHandler(MaskPointerPressedEvent, value);
+    }
+
+    public event EventHandler<PropertyChangedRoutedEventArgs<bool>>? IsPresentChanged
+    {
+        add => AddHandler(IsPresentChangedEvent, value);
+        remove => RemoveHandler(IsPresentChangedEvent, value);
+    }
+
     public bool IsPresent
     {
         get;
@@ -47,10 +67,28 @@ public class OverlayHost : ItemsControl
 
     protected override Type StyleKeyOverride => typeof(OverlayHost);
 
-    public event EventHandler<PropertyChangedRoutedEventArgs<bool>>? IsPresentChanged
+    private Border? _smokeMask;
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        add => AddHandler(IsPresentChangedEvent, value);
-        remove => RemoveHandler(IsPresentChangedEvent, value);
+        base.OnApplyTemplate(e);
+
+        if (_smokeMask != null)
+        {
+            _smokeMask.PointerPressed -= SmokeMask_OnPointerPressed;
+        }
+
+        _smokeMask = e.NameScope.Find<Border>(PART_SmokeMask);
+
+        if (_smokeMask != null)
+        {
+            _smokeMask.PointerPressed += SmokeMask_OnPointerPressed;
+        }
+    }
+
+    private void SmokeMask_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        RaiseEvent(new MaskPointerPressedEventArgs(this, e));
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -94,9 +132,7 @@ public class OverlayHost : ItemsControl
     public void Dismiss(OverlayItem item)
     {
         var transition = item.Transition ?? Transition;
-        transition
-           .Start(item, null, false, CancellationToken.None)
-           .ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
+        transition.Start(item, null, false, CancellationToken.None).ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
         return;
 
         void Clean()
@@ -193,6 +229,16 @@ public class OverlayHost : ItemsControl
     {
         get => GetValue(VerticalContentAlignmentProperty);
         set => SetValue(VerticalContentAlignmentProperty, value);
+    }
+
+    #endregion
+
+    #region Nested Type: MaskPointerPressedEventArgs
+
+    public class MaskPointerPressedEventArgs(object? source, PointerPressedEventArgs args)
+        : RoutedEventArgs(MaskPointerPressedEvent, source)
+    {
+        public PointerPressedEventArgs Inner => args;
     }
 
     #endregion

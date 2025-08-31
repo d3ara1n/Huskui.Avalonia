@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -52,16 +53,19 @@ public class AppWindow : Window
         if (_toastHost != null)
         {
             _toastHost.IsPresentChanged -= UpdateObstructed;
+            _toastHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
         if (_modalHost != null)
         {
             _modalHost.IsPresentChanged -= UpdateObstructed;
+            _modalHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
         if (_dialogHost != null)
         {
             _dialogHost.IsPresentChanged -= UpdateObstructed;
+            _dialogHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
         _notificationHost = e.NameScope.Find<NotificationHost>(PART_NotificationHost);
@@ -72,30 +76,25 @@ public class AppWindow : Window
         ArgumentNullException.ThrowIfNull(_toastHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
+        ArgumentNullException.ThrowIfNull(_notificationHost);
 
         _toastHost.IsPresentChanged += UpdateObstructed;
         _modalHost.IsPresentChanged += UpdateObstructed;
         _dialogHost.IsPresentChanged += UpdateObstructed;
+        _toastHost.MaskPointerPressed += OnMaskPointerPressed;
+        _modalHost.MaskPointerPressed += OnMaskPointerPressed;
+        _dialogHost.MaskPointerPressed += OnMaskPointerPressed;
 
-        if (_toastHost is not null)
-        {
-            LogicalChildren.Add(_toastHost);
-        }
+        LogicalChildren.Add(_toastHost);
+        LogicalChildren.Add(_modalHost);
+        LogicalChildren.Add(_dialogHost);
+        LogicalChildren.Add(_notificationHost);
+    }
 
-        if (_modalHost is not null)
-        {
-            LogicalChildren.Add(_modalHost);
-        }
-
-        if (_dialogHost is not null)
-        {
-            LogicalChildren.Add(_dialogHost);
-        }
-
-        if (_notificationHost is not null)
-        {
-            LogicalChildren.Add(_notificationHost);
-        }
+    private void OnMaskPointerPressed(object? sender, OverlayHost.MaskPointerPressedEventArgs e)
+    {
+        BeginMoveDrag(e.Inner);
+        e.Handled = true;
     }
 
     private void UpdateObstructed(object? _, PropertyChangedRoutedEventArgs<bool> __)
