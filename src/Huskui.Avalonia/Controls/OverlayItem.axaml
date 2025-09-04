@@ -27,17 +27,19 @@
             </ControlTemplate>
         </Setter>
 
-        <!-- <Style Selector="^:active"> -->
+        <!-- <Style Selector="^:active /template/ LayoutTransformControl#TransformRoot"> -->
         <!--     <Setter Property="Effect"> -->
         <!--         <DropShadowEffect OffsetX="0" OffsetY="0" BlurRadius="12" Opacity="0.2" /> -->
         <!--     </Setter> -->
-        <!-- </Style> -->
+        <!-- </Style>      -->
+
+        <Style Selector="^:not(:active) /template/ LayoutTransformControl#TransformRoot">
+            <Setter Property="Effect">
+                <BlurEffect Radius="6" />
+            </Setter>
+        </Style>
 
         <Style Selector="^">
-            <!-- <Setter Property="Effect"> -->
-            <!--     <BlurEffect Radius="6" /> -->
-            <!-- </Setter> -->
-
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="Opacity" Value="0.0" />
                 <Setter Property="RenderTransform" Value="translateY(-30px) scaleX(0.90)" />
