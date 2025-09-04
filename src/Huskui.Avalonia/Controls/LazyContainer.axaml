@@ -5,8 +5,16 @@
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <local:SkeletonContainer CornerRadius="{TemplateBinding CornerRadius}"
-                                         IsLoading="{Binding Source.IsInProgress,RelativeSource={RelativeSource Mode=TemplatedParent},FallbackValue=False}">
+                <local:SkeletonContainer CornerRadius="{TemplateBinding CornerRadius}">
+                    <local:SkeletonContainer.IsLoading>
+                        <MultiBinding Converter="{x:Static BoolConverters.And}">
+                            <Binding Path="IsBad" Converter="{x:Static BoolConverters.Not}"
+                                     RelativeSource="{RelativeSource TemplatedParent}">
+                            </Binding>
+                            <Binding Path="Source.IsInProgress" RelativeSource="{RelativeSource TemplatedParent}"
+                                     FallbackValue="{x:False}" />
+                        </MultiBinding>
+                    </local:SkeletonContainer.IsLoading>
                     <ContentPresenter Name="{x:Static local:LazyContainer.PART_ContentPresenter}" />
                 </local:SkeletonContainer>
             </ControlTemplate>
