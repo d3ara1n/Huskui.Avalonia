@@ -22,32 +22,24 @@
                                    Description="Tooltips can be placed on any side of the target control."
                                    XamlCode="&lt;ToolTip Placement=&quot;...&quot; /&gt;">
             <StackPanel Orientation="Horizontal" Spacing="16">
-                <Button Content="Top">
+                <Button Content="Top" ToolTip.Placement="Top">
                     <ToolTip.Tip>
-                        <ToolTip Placement="Top">
-                            <TextBlock Text="Top Placement" />
-                        </ToolTip>
+                        <TextBlock Text="Top Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Bottom">
+                <Button Content="Bottom" ToolTip.Placement="Bottom">
                     <ToolTip.Tip>
-                        <ToolTip Placement="Bottom">
-                            <TextBlock Text="Bottom Placement" />
-                        </ToolTip>
+                        <TextBlock Text="Bottom Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Left">
+                <Button Content="Left" ToolTip.Placement="Left">
                     <ToolTip.Tip>
-                        <ToolTip Placement="Left">
-                            <TextBlock Text="Left Placement" />
-                        </ToolTip>
+                        <TextBlock Text="Left Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Right">
+                <Button Content="Right" ToolTip.Placement="Right">
                     <ToolTip.Tip>
-                        <ToolTip Placement="Right">
-                            <TextBlock Text="Right Placement" />
-                        </ToolTip>
+                        <TextBlock Text="Right Placement" />
                     </ToolTip.Tip>
                 </Button>
             </StackPanel>
