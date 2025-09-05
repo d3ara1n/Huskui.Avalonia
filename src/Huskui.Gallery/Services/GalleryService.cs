@@ -260,6 +260,15 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
+                        Title = "ToolTips",
+                        Description = "Display informational tooltips on hover.",
+                        Icon = Symbol.TooltipQuote,
+                        PageType = typeof(ToolTipsPage),
+                        Category = "Overlays",
+                        Tags = ["tooltip", "tip", "info", "hover"]
+                    },
+                    new()
+                    {
                         Title = "Toasts",
                         Description = "Heavy-weight content viewers that slide up from the bottom",
                         Icon = Symbol.SlideText,
