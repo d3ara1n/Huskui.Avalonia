@@ -40,9 +40,8 @@
                         <!-- Code content -->
                         <ScrollViewer Grid.Row="1"
                                       HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Auto"
-                                      Padding="12">
-                            <Grid ColumnDefinitions="Auto,*">
+                                      VerticalScrollBarVisibility="Auto">
+                            <Grid ColumnDefinitions="Auto,*" Margin="12">
                                 <!-- Line numbers -->
                                 <TextBlock Grid.Column="0"
                                            Name="PART_LineNumbers"

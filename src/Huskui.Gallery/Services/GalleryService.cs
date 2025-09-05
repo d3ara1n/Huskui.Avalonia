@@ -114,7 +114,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Info Bars",
+                        Title = "InfoBars",
                         Description = "Informational message components with different severity levels",
                         Icon = Symbol.Info,
                         PageType = typeof(InfoBarsPage),
@@ -132,7 +132,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Icon Labels",
+                        Title = "IconLabels",
                         Description = "Combined icon and text labels for enhanced visual communication",
                         Icon = Symbol.Icons,
                         PageType = typeof(IconLabelsPage),
@@ -141,7 +141,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Highlight Blocks",
+                        Title = "HighlightBlocks",
                         Description = "Emphasized content blocks for important information and callouts",
                         Icon = Symbol.Highlight,
                         PageType = typeof(HighlightBlocksPage),
@@ -187,7 +187,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Busy Containers",
+                        Title = "BusyContainers",
                         Description = "Loading state containers with visual feedback for async operations",
                         Icon = Symbol.ArrowClockwise,
                         PageType = typeof(BusyContainersPage),
@@ -196,7 +196,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Skeleton Containers",
+                        Title = "SkeletonContainers",
                         Description = "Loading placeholders that mimic content structure during data fetching",
                         Icon = Symbol.RectangleLandscape,
                         PageType = typeof(SkeletonContainersPage),
@@ -205,7 +205,7 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "List Boxes",
+                        Title = "ListBoxes",
                         Description = "Vertical list containers with different configurations",
                         Icon = Symbol.List,
                         PageType = typeof(ListBoxesPage),
@@ -214,10 +214,19 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Tab Strips",
+                        Title = "TabStrips",
                         Description = "Horizontal tab containers for content organization",
                         Icon = Symbol.Tab,
                         PageType = typeof(TabStripsPage),
+                        Category = "Container",
+                        Tags = ["list", "tab", "vertical", "switcher"]
+                    },
+                    new()
+                    {
+                        Title = "TabControls",
+                        Description = "Tab containers for content organization",
+                        Icon = Symbol.Tab,
+                        PageType = typeof(TabControlsPage),
                         Category = "Container",
                         Tags = ["list", "tab", "vertical", "switcher"]
                     }
@@ -297,7 +306,7 @@ namespace Huskui.Gallery.Services
                 [
                     new()
                     {
-                        Title = "FlexWrap Panels",
+                        Title = "FlexWrapPanels",
                         Description = "Flexible wrapping layout panels for responsive content arrangement",
                         Icon = Symbol.LayoutRowTwoSplitBottom,
                         PageType = typeof(FlexWrapPanelsPage),
@@ -325,7 +334,7 @@ namespace Huskui.Gallery.Services
                 [
                     new()
                     {
-                        Title = "Toggle Switches",
+                        Title = "ToggleSwitches",
                         Description = "Binary toggle controls for on/off settings and preferences",
                         Icon = Symbol.ToggleRight,
                         PageType = typeof(ToggleSwitchesPage),

@@ -128,10 +128,9 @@
 
         <!-- Interactive Card -->
         <controls:ExampleContainer Title="Interactive Card"
-                                   Description="Clickable card with hover effects"
-                                   XamlCode="&lt;Button Classes=&quot;CardButton&quot;&gt;&#10;    &lt;husk:Card&gt;&#10;        &lt;!-- Card content --&gt;&#10;    &lt;/husk:Card&gt;&#10;&lt;/Button&gt;">
-            <Button Theme="{StaticResource GhostButtonTheme}">
-                <husk:Card Padding="24">
+                                   Description="Clickable card with hover effects">
+            <husk:Card Padding="0">
+                <Button Theme="{StaticResource GhostButtonTheme}">
                     <StackPanel Spacing="16">
                         <Grid ColumnDefinitions="Auto,*,Auto">
                             <fi:SymbolIcon Grid.Column="0"
@@ -154,8 +153,8 @@
                                            VerticalAlignment="Center" />
                         </Grid>
                     </StackPanel>
-                </husk:Card>
-            </Button>
+                </Button>
+            </husk:Card>
         </controls:ExampleContainer>
 
     </StackPanel>
