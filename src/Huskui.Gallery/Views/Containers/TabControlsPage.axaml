@@ -13,7 +13,7 @@
         <!-- Default TabControl -->
         <controls:ExampleContainer Title="Default TabControl"
                                    Description="A standard TabControl with items placed on top."
-                                   XamlCode="&lt;husk:TabControl&gt; ... &lt;/husk:TabControl&gt;">
+                                   XamlCode="&lt;TabControl&gt;&#10;    &lt;TabItem Header=&quot;Document&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Music&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Video&quot; IsSelected=&quot;True&quot; /&gt;&#10;&lt;/TabControl&gt;">
             <TabControl>
                 <TabItem Header="Document">
                     <TextBlock Text="Content for Document" Margin="12" />
@@ -30,7 +30,7 @@
         <!-- Solid Theme -->
         <controls:ExampleContainer Title="Solid TabControl Theme"
                                    Description="A TabControl using the 'SolidTabControlTheme'."
-                                   XamlCode="&lt;husk:TabControl Theme=&quot;{StaticResource SolidTabControlTheme}&quot;&gt; ... &lt;/husk:TabControl&gt;">
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource SolidTabControlTheme}&quot;&gt;&#10;    &lt;TabItem Header=&quot;Home&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Profile&quot; IsSelected=&quot;True&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Settings&quot; /&gt;&#10;&lt;/TabControl&gt;">
             <TabControl Theme="{StaticResource SolidTabControlTheme}">
                 <TabItem Header="Home">
                     <TextBlock Text="Solid Theme Content" Margin="12" />
@@ -47,7 +47,7 @@
         <!-- Neo Theme -->
         <controls:ExampleContainer Title="Neo TabControl Theme"
                                    Description="A TabControl using the 'NeoTabControlTheme'."
-                                   XamlCode="&lt;husk:TabControl Theme=&quot;{StaticResource NeoTabControlTheme}&quot;&gt; ... &lt;/husk:TabControl&gt;">
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource NeoTabControlTheme}&quot;&gt;&#10;    &lt;TabItem Header=&quot;Home&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Profile&quot; IsSelected=&quot;True&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Settings&quot; /&gt;&#10;&lt;/TabControl&gt;">
             <TabControl Theme="{StaticResource NeoTabControlTheme}">
                 <TabItem Header="Home">
                     <TextBlock Text="Neo Theme Content" Margin="12" />
@@ -64,7 +64,7 @@
         <!-- Advanced Styling -->
         <controls:ExampleContainer Title="Advanced Styling"
                                    Description="Showcasing complex headers, primary classes, and disabled states."
-                                   XamlCode="&lt;TabItem Header=&quot;...&quot; Classes=&quot;Primary&quot; IsEnabled=&quot;False&quot;&gt; ... &lt;/TabItem&gt;">
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource SolidTabControlTheme}&quot;&gt;&#10;    &lt;TabItem&gt;&#10;        &lt;TabItem.Header&gt;&#10;            &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;&#10;                &lt;fi:SymbolIcon Symbol=&quot;Home&quot; FontSize=&quot;16&quot;/&gt;&#10;                &lt;TextBlock Text=&quot;Home&quot;/&gt;&#10;            &lt;/StackPanel&gt;&#10;        &lt;/TabItem.Header&gt;&#10;    &lt;/TabItem&gt;&#10;    &lt;TabItem Classes=&quot;Primary&quot; IsSelected=&quot;True&quot;&gt;&#10;        ...&#10;    &lt;/TabItem&gt;&#10;    &lt;TabItem IsEnabled=&quot;False&quot;&gt;&#10;        ...&#10;    &lt;/TabItem&gt;&#10;&lt;/TabControl&gt;">
             <TabControl Theme="{StaticResource SolidTabControlTheme}">
                 <TabItem>
                     <TabItem.Header>

@@ -66,8 +66,12 @@
             <DependentUpon>CardsPage.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Compile Update="Views\Containers\TabControlsPage.axaml.cs">
+                <Compile Update="Views\Containers\TabControlsPage.axaml.cs">
             <DependentUpon>TabControlsPage.axaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Overlays\FlyoutsPage.axaml.cs">
+            <DependentUpon>FlyoutsPage.axaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
     </ItemGroup>

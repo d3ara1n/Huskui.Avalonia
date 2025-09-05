@@ -18,6 +18,7 @@
                     <ContentPresenter Name="PART_ContentPresenter"
                                       Padding="{TemplateBinding Padding}"
                                       Content="{TemplateBinding Content}"
+                                      TextBlock.TextWrapping="Wrap"
                                       ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Border>
             </ControlTemplate>

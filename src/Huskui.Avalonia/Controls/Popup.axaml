@@ -15,7 +15,8 @@
                                 IsHitTestVisible="False" />
                         <VisualLayerManager IsPopup="True">
                             <LayoutTransformControl Name="PART_LayoutTransform"
-                                                    LayoutTransform="{TemplateBinding Transform}">
+                                                    LayoutTransform="{TemplateBinding Transform}"
+                                                    UseRenderTransform="True">
                                 <ContentPresenter Name="PART_ContentPresenter"
                                                   Padding="{TemplateBinding Padding}"
                                                   Background="{TemplateBinding Background}"

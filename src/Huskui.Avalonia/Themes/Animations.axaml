@@ -15,4 +15,19 @@
             </Animation>
         </Style.Animations>
     </Style>
+
+    <Style Selector="Popup[IsOpen=False] LayoutTransformControl#PART_LayoutTransform">
+        <Style.Animations>
+            <Animation Duration="{StaticResource ControlSlowerAnimationDuration}" Easing="CubicEaseOut">
+                <KeyFrame Cue="0.0">
+                    <Setter Property="ScaleTransform.ScaleX" Value="1.0" />
+                    <Setter Property="ScaleTransform.ScaleY" Value="1.0" />
+                </KeyFrame>
+                <KeyFrame Cue="1.0">
+                    <Setter Property="ScaleTransform.ScaleX" Value="0.98" />
+                    <Setter Property="ScaleTransform.ScaleY" Value="0.98" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
 </Styles>

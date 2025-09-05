@@ -251,6 +251,15 @@ namespace Huskui.Gallery.Services
                 [
                     new()
                     {
+                        Title = "Flyouts",
+                        Description = "Pop-up containers for displaying content.",
+                        Icon = Symbol.Layer,
+                        PageType = typeof(FlyoutsPage),
+                        Category = "Overlays",
+                        Tags = ["flyout", "popup", "menu", "overlay"]
+                    },
+                    new()
+                    {
                         Title = "Toasts",
                         Description = "Heavy-weight content viewers that slide up from the bottom",
                         Icon = Symbol.SlideText,

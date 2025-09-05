@@ -1,0 +1,102 @@
+<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="800"
+                      x:Class="Huskui.Gallery.Views.Overlays.FlyoutsPage">
+
+    <StackPanel Spacing="32">
+
+        <!-- Basic Flyout -->
+        <controls:ExampleContainer Title="Basic Flyout"
+                                   Description="A simple flyout attached to a button."
+                                   XamlCode="&lt;Button Content=&quot;Open Flyout&quot;&gt;&#10;    &lt;Button.Flyout&gt;&#10;        &lt;Flyout&gt;&#10;            &lt;TextBlock Text=&quot;This is a simple flyout.&quot; /&gt;&#10;        &lt;/Flyout&gt;&#10;    &lt;/Button.Flyout&gt;&#10;&lt;/Button&gt;">
+            <Button Content="Open Flyout">
+                <Button.Flyout>
+                    <Flyout>
+                        <TextBlock Text="This is a simple flyout." />
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </controls:ExampleContainer>
+
+        <!-- Placement Modes -->
+        <controls:ExampleContainer Title="Placement Modes"
+                                   Description="Flyouts can be placed on any side of the target control."
+                                   XamlCode="&lt;Button Content=&quot;Top&quot;&gt;&#10;    &lt;Button.Flyout&gt;&#10;        &lt;Flyout Placement=&quot;Top&quot;&gt;&#10;            &lt;TextBlock Text=&quot;Top Placement&quot; /&gt;&#10;        &lt;/Flyout&gt;&#10;    &lt;/Button.Flyout&gt;&#10;&lt;/Button&gt;">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <Button Content="Top">
+                    <Button.Flyout>
+                        <Flyout Placement="Top">
+                            <TextBlock Text="Top Placement" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button Content="Bottom">
+                    <Button.Flyout>
+                        <Flyout Placement="Bottom">
+                            <TextBlock Text="Bottom Placement" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button Content="Left">
+                    <Button.Flyout>
+                        <Flyout Placement="Left">
+                            <TextBlock Text="Left Placement" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button Content="Right">
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <TextBlock Text="Right Placement" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!-- Complex Content -->
+        <controls:ExampleContainer Title="Complex Content"
+                                   Description="Flyouts can host complex content and interactive controls."
+                                   XamlCode="&lt;Flyout&gt;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;&#10;        &lt;TextBlock Text=&quot;Settings&quot; FontSize=&quot;18&quot; FontWeight=&quot;Medium&quot;/&gt;&#10;        &lt;husk:Divider/&gt;&#10;        &lt;CheckBox Content=&quot;Enable Notifications&quot; IsChecked=&quot;True&quot;/&gt;&#10;        &lt;TextBlock Text=&quot;Theme&quot;/&gt;&#10;        &lt;ComboBox SelectedIndex=&quot;0&quot;&gt;&#10;            &lt;ComboBoxItem&gt;Light&lt;/ComboBoxItem&gt;&#10;            &lt;ComboBoxItem&gt;Dark&lt;/ComboBoxItem&gt;&#10;        &lt;/ComboBox&gt;&#10;        &lt;Button Content=&quot;Save Changes&quot; Classes=&quot;Primary&quot;/&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/Flyout&gt;">
+            <Button Content="Show Complex Flyout">
+                <Button.Flyout>
+                    <Flyout>
+                        <StackPanel Spacing="12">
+                            <TextBlock Text="Settings" FontSize="18" FontWeight="Medium" />
+                            <husk:Divider />
+                            <CheckBox Content="Enable Notifications" IsChecked="True" />
+                            <TextBlock Text="Theme" />
+                            <ComboBox SelectedIndex="0">
+                                <ComboBoxItem>Light</ComboBoxItem>
+                                <ComboBoxItem>Dark</ComboBoxItem>
+                            </ComboBox>
+                            <Button Content="Save Changes" Classes="Primary" />
+                        </StackPanel>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+        </controls:ExampleContainer>
+
+        <!-- Menu Flyout -->
+        <controls:ExampleContainer Title="Menu Flyout"
+                                   Description="A flyout showing interactive menu items."
+                                   XamlCode="&lt;MenuFlyout&gt;&#10;    &lt;MenuItem Header=&quot;New&quot;/&gt;&#10;    &lt;MenuItem Header=&quot;Open&quot;/&gt;&#10;    &lt;MenuItem Header=&quot;Save&quot;/&gt;&#10;    &lt;Separator/&gt;&#10;    &lt;MenuItem Header=&quot;Exit&quot;/&gt;&#10;&lt;/MenuFlyout&gt;">
+            <Button Content="Open Menu">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="New" />
+                        <MenuItem Header="Open" />
+                        <MenuItem Header="Save" />
+                        <Separator />
+                        <MenuItem Header="Exit" />
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
