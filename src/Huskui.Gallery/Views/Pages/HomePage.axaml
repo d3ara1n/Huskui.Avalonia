@@ -83,7 +83,6 @@
                                 CornerRadius="{StaticResource SmallCornerRadius}"
                                 Padding="12">
                             <TextBlock Text="dotnet add package Huskui.Avalonia"
-                                       FontFamily="Consolas,Monaco,Menlo,monospace"
                                        FontSize="{StaticResource SmallFontSize}" />
                         </Border>
 
@@ -95,8 +94,7 @@
                                 BorderThickness="1"
                                 CornerRadius="{StaticResource SmallCornerRadius}"
                                 Padding="12">
-                            <TextBlock FontFamily="Consolas,Monaco,Menlo,monospace"
-                                       FontSize="{StaticResource SmallFontSize}">
+                            <TextBlock FontSize="{StaticResource SmallFontSize}">
                                 <Run Text="xmlns:husk=&quot;https://github.com/d3ara1n/Huskui.Avalonia&quot;" />
                                 <LineBreak />
                                 <LineBreak />

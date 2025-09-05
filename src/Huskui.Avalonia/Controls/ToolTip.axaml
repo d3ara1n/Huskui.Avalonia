@@ -8,17 +8,13 @@
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Padding" Value="12,8" />
-        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border Name="LayoutRoot" Margin="2"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <Border.Effect>
-                        <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
-                    </Border.Effect>
+                        CornerRadius="{TemplateBinding CornerRadius}" BoxShadow="0 0 4 0 #3F000000">
                     <ContentPresenter Name="PART_ContentPresenter"
                                       Padding="{TemplateBinding Padding}"
                                       Content="{TemplateBinding Content}"

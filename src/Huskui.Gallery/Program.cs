@@ -24,6 +24,6 @@ namespace Huskui.Gallery
                 })
                .With(new FontManagerOptions { DefaultFamilyName = "fonts:Manrope#Manrope" })
                .UsePlatformDetect()
-               .LogToTrace();
+               .LogToTextWriter(Console.Out);
     }
 }

@@ -36,19 +36,4 @@
         <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
-
-    <ItemGroup>
-        <Compile Update="Views\Containers\TabControlsPage.axaml.cs">
-            <DependentUpon>TabControlsPage.axaml</DependentUpon>
-            <SubType>Code</SubType>
-        </Compile>
-        <Compile Update="Views\Overlays\FlyoutsPage.axaml.cs">
-            <DependentUpon>FlyoutsPage.axaml</DependentUpon>
-            <SubType>Code</SubType>
-        </Compile>
-        <Compile Update="Views\Overlays\ToolTipsPage.axaml.cs">
-            <DependentUpon>ToolTipsPage.axaml</DependentUpon>
-            <SubType>Code</SubType>
-        </Compile>
-    </ItemGroup>
 </Project>

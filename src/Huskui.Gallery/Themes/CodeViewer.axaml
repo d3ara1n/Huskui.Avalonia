@@ -45,7 +45,6 @@
                                 <!-- Line numbers -->
                                 <TextBlock Grid.Column="0"
                                            Name="PART_LineNumbers"
-                                           FontFamily="Consolas,Monaco,Menlo,monospace"
                                            FontSize="{StaticResource SmallFontSize}"
                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                            VerticalAlignment="Top"
@@ -55,7 +54,6 @@
                                 <!-- Code text -->
                                 <TextBlock Grid.Column="1"
                                            Name="PART_CodeText"
-                                           FontFamily="Consolas,Monaco,Menlo,monospace"
                                            FontSize="{StaticResource SmallFontSize}"
                                            Text="{TemplateBinding Code}"
                                            TextWrapping="NoWrap"
