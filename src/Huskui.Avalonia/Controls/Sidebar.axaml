@@ -4,7 +4,7 @@
     <Thickness x:Key="DrawerContentMargin">18</Thickness>
     <BoxShadows x:Key="DrawerBoxShadow">0 0 4 0 #3F000000</BoxShadows>
 
-    <ControlTheme x:Key="{x:Type local:Drawer}" TargetType="local:Drawer">
+    <ControlTheme x:Key="{x:Type local:Sidebar}" TargetType="local:Sidebar">
         <Setter Property="MinWidth" Value="256" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />

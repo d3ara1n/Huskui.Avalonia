@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace Huskui.Avalonia.Controls;
 
-public class Drawer : ContentControl
+public class Sidebar : ContentControl
 {
-    protected override Type StyleKeyOverride => typeof(Drawer);
+    protected override Type StyleKeyOverride => typeof(Sidebar);
 
     public void Dismiss() => RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
 }

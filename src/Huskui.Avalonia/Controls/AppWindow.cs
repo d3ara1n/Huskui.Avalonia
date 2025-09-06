@@ -131,10 +131,10 @@ public class AppWindow : Window
         _toastHost.Pop(toast);
     }
 
-    public void PopDrawer(Drawer drawer)
+    public void PopDrawer(Sidebar sidebar)
     {
         ArgumentNullException.ThrowIfNull(_drawerHost);
-        _drawerHost.Pop(drawer);
+        _drawerHost.Pop(sidebar);
     }
 
     public void PopDialog(Dialog dialog)

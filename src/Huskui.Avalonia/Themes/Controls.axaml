@@ -13,7 +13,7 @@
         <ResourceInclude Source="/Controls/ComboBox.axaml" />
         <ResourceInclude Source="/Controls/Dialog.axaml" />
         <ResourceInclude Source="/Controls/Divider.axaml" />
-        <ResourceInclude Source="/Controls/Drawer.axaml" />
+        <ResourceInclude Source="/Controls/Sidebar.axaml" />
         <ResourceInclude Source="/Controls/DropDownButton.axaml" />
         <ResourceInclude Source="/Controls/DropZone.axaml" />
         <ResourceInclude Source="/Controls/Expander.axaml" />
