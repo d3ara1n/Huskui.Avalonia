@@ -5,19 +5,19 @@
                       xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
                       xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
                       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.Overlays.NotificationsPage">
+                      x:Class="Huskui.Gallery.Views.Overlays.GrowlsPage">
 
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Status Feedback Notifications"
+        <controls:ExampleContainer Title="Status Feedback Growls"
                                    Description="Lightweight status feedback with different severity levels">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Notification Controls" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Show Information" Click="OnShowInfoNotificationClick" />
-                    <Button Content="Show Success" Click="OnShowSuccessNotificationClick" />
-                    <Button Content="Show Warning" Click="OnShowWarningNotificationClick" />
-                    <Button Content="Show Danger" Click="OnShowDangerNotificationClick" />
+                    <TextBlock Text="Growl Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Show Information" Click="OnShowInfoGrowlClick" />
+                    <Button Content="Show Success" Click="OnShowSuccessGrowlClick" />
+                    <Button Content="Show Warning" Click="OnShowWarningGrowlClick" />
+                    <Button Content="Show Danger" Click="OnShowDangerGrowlClick" />
                     <TextBlock Text="Click buttons to show different types of notifications."
                                TextWrapping="Wrap"
                                FontSize="12"
@@ -28,9 +28,9 @@
             <StackPanel Spacing="16" Width="400">
                 <husk:Card Padding="16">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Notification Purpose" FontSize="16" FontWeight="Bold" />
+                        <TextBlock Text="Growl Purpose" FontSize="16" FontWeight="Bold" />
                         <TextBlock
-                            Text="Notifications provide lightweight, non-intrusive status feedback to users. Unlike heavy-weight Toasts or long-interaction Modals, they focus on quick status updates and system feedback."
+                            Text="Growls provide lightweight, non-intrusive status feedback to users. Unlike heavy-weight Toasts or long-interaction Modals, they focus on quick status updates and system feedback."
                             TextWrapping="Wrap" />
                         <TextBlock
                             Text="Use notifications for operation results, system status, background task updates, and user action confirmations."
@@ -41,15 +41,15 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Enhanced Status Notifications"
+        <controls:ExampleContainer Title="Enhanced Status Growls"
                                    Description="Status feedback with actions and progress indicators">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock Text="Interactive Features" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Show Action Notification" Click="OnShowActionNotificationClick" />
-                    <Button Content="Show Progress Notification" Click="OnShowProgressNotificationClick" />
-                    <Button Content="Show Rich Content" Click="OnShowRichNotificationClick" />
-                    <Button Content="Clear All Notifications" Click="OnClearAllNotificationsClick" />
+                    <Button Content="Show Action Growl" Click="OnShowActionGrowlClick" />
+                    <Button Content="Show Progress Growl" Click="OnShowProgressGrowlClick" />
+                    <Button Content="Show Rich Content" Click="OnShowRichGrowlClick" />
+                    <Button Content="Clear All Growls" Click="OnClearAllGrowlsClick" />
                     <TextBlock Text="These notifications include interactive elements and rich content."
                                TextWrapping="Wrap"
                                FontSize="12"
@@ -71,7 +71,7 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Notification Scenarios"
+        <controls:ExampleContainer Title="Growl Scenarios"
                                    Description="Real-world usage scenarios for notifications">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
@@ -130,7 +130,7 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Notification Best Practices"
+        <controls:ExampleContainer Title="Growl Best Practices"
                                    Description="Guidelines for effective notification usage">
             <StackPanel Spacing="16" Width="600">
                 <husk:Card Padding="20">
@@ -162,7 +162,7 @@
                         <StackPanel Spacing="8">
                             <TextBlock Text="Technical Notes" FontWeight="Bold" />
                             <TextBlock
-                                Text="Notifications are the lightest-weight overlay control, designed for quick status feedback. Unlike Toasts (heavy content preview), Modals (long interactions), or Dialogs (binary decisions), they focus on non-intrusive status updates and system feedback."
+                                Text="Growls are the lightest-weight overlay control, designed for quick status feedback. Unlike Toasts (heavy content preview), Modals (long interactions), or Dialogs (binary decisions), they focus on non-intrusive status updates and system feedback."
                                 TextWrapping="Wrap"
                                 FontSize="12"
                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />

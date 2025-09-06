@@ -69,7 +69,7 @@
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <TextBlock Text="📧" FontSize="16" />
                         <StackPanel>
-                            <TextBlock Text="Email Notifications" FontWeight="Bold" />
+                            <TextBlock Text="Email Growls" FontWeight="Bold" />
                             <TextBlock Text="Receive notifications via email"
                                        FontSize="12"
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
@@ -81,7 +81,7 @@
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <TextBlock Text="🔔" FontSize="16" />
                         <StackPanel>
-                            <TextBlock Text="Push Notifications" FontWeight="Bold" />
+                            <TextBlock Text="Push Growls" FontWeight="Bold" />
                             <TextBlock Text="Show desktop notifications"
                                        FontSize="12"
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
@@ -93,7 +93,7 @@
                     <StackPanel Orientation="Horizontal" Spacing="8">
                         <TextBlock Text="📱" FontSize="16" />
                         <StackPanel>
-                            <TextBlock Text="SMS Notifications" FontWeight="Bold" />
+                            <TextBlock Text="SMS Growls" FontWeight="Bold" />
                             <TextBlock Text="Some contacts enabled"
                                        FontSize="12"
                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />

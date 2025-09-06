@@ -9,7 +9,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_DrawerHost, typeof(OverlayHost))]
 [TemplatePart(PART_ModalHost, typeof(OverlayHost))]
 [TemplatePart(PART_DialogHost, typeof(OverlayHost))]
-[TemplatePart(PART_NotificationHost, typeof(NotificationHost))]
+[TemplatePart(PART_GrowlHost, typeof(GrowlHost))]
 [PseudoClasses(":obstructed")]
 public class AppWindow : Window
 {
@@ -17,7 +17,7 @@ public class AppWindow : Window
     public const string PART_DrawerHost = nameof(PART_DrawerHost);
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
-    public const string PART_NotificationHost = nameof(PART_NotificationHost);
+    public const string PART_GrowlHost = nameof(PART_GrowlHost);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
         AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),
@@ -27,7 +27,7 @@ public class AppWindow : Window
     private OverlayHost? _dialogHost;
     private OverlayHost? _drawerHost;
     private OverlayHost? _modalHost;
-    private NotificationHost? _notificationHost;
+    private GrowlHost? _growlHost;
 
     private OverlayHost? _toastHost;
 
@@ -77,7 +77,7 @@ public class AppWindow : Window
             _dialogHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
-        _notificationHost = e.NameScope.Find<NotificationHost>(PART_NotificationHost);
+        _growlHost = e.NameScope.Find<GrowlHost>(PART_GrowlHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
         _drawerHost = e.NameScope.Find<OverlayHost>(PART_DrawerHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
@@ -87,7 +87,7 @@ public class AppWindow : Window
         ArgumentNullException.ThrowIfNull(_drawerHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
-        ArgumentNullException.ThrowIfNull(_notificationHost);
+        ArgumentNullException.ThrowIfNull(_growlHost);
 
         _toastHost.IsPresentChanged += UpdateObstructed;
         _drawerHost.IsPresentChanged += UpdateObstructed;
@@ -102,7 +102,7 @@ public class AppWindow : Window
         LogicalChildren.Add(_drawerHost);
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
-        LogicalChildren.Add(_notificationHost);
+        LogicalChildren.Add(_growlHost);
     }
 
     private void OnMaskPointerPressed(object? sender, OverlayHost.MaskPointerPressedEventArgs e)
@@ -149,9 +149,9 @@ public class AppWindow : Window
         _modalHost.Pop(modal);
     }
 
-    public void PopNotification(NotificationItem notification)
+    public void PopGrowl(GrowlItem growl)
     {
-        ArgumentNullException.ThrowIfNull(_notificationHost);
-        _notificationHost.Pop(notification);
+        ArgumentNullException.ThrowIfNull(_growlHost);
+        _growlHost.Pop(growl);
     }
 }

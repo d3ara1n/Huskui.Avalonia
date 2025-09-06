@@ -7,6 +7,7 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Data;
 using Avalonia.LogicalTree;
+using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -42,7 +43,7 @@ public class Frame : TemplatedControl
         AvaloniaProperty.Register<Frame, object?>(nameof(Content));
 
 
-    private readonly InternalGoBackCommand _goBackCommand;
+    private readonly InternalCommand _goBackCommand;
 
     private readonly Stack<FrameFrame> _history = new();
 
@@ -56,7 +57,7 @@ public class Frame : TemplatedControl
     private ContentPresenter? _presenter;
     private ContentPresenter? _presenter2;
 
-    public Frame() => _goBackCommand = new(this);
+    public Frame() => _goBackCommand = new(GoBack, () => CanGoBack);
 
     public object? Content
     {
@@ -100,7 +101,7 @@ public class Frame : TemplatedControl
         UpdateContent(content, transition ?? DefaultTransition, false);
 
         RaisePropertyChanged(CanGoBackProperty, old, CanGoBack);
-        _goBackCommand.OnCanExecutedChanged();
+        _goBackCommand.OnCanExecuteChanged();
     }
 
     public void GoBack()
@@ -122,7 +123,7 @@ public class Frame : TemplatedControl
         }
 
         RaisePropertyChanged(CanGoBackProperty, true, CanGoBack);
-        _goBackCommand.OnCanExecutedChanged();
+        _goBackCommand.OnCanExecuteChanged();
     }
 
     private void UpdateContent(object? content, IPageTransition transition, bool reverse)
@@ -207,25 +208,6 @@ public class Frame : TemplatedControl
     // }
 
     public record FrameFrame(Type Page, object? Parameter, IPageTransition? Transition);
-
-    #endregion
-
-    #region Nested type: InternalGoBackCommand
-
-    private class InternalGoBackCommand(Frame host) : ICommand
-    {
-        #region ICommand Members
-
-        public bool CanExecute(object? parameter) => host.CanGoBack;
-
-        public void Execute(object? parameter) => host.GoBack();
-
-        public event EventHandler? CanExecuteChanged;
-
-        #endregion
-
-        internal void OnCanExecutedChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    }
 
     #endregion
 }

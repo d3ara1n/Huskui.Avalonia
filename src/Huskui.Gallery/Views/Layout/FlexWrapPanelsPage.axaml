@@ -94,7 +94,7 @@
                     <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
                         <StackPanel Spacing="8">
                             <TextBlock Text="🔔" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Notifications" FontWeight="Bold" HorizontalAlignment="Center" />
+                            <TextBlock Text="Growls" FontWeight="Bold" HorizontalAlignment="Center" />
                             <TextBlock Text="View alerts" FontSize="12" HorizontalAlignment="Center" />
                         </StackPanel>
                     </husk:Card>

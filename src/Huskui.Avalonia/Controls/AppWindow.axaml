@@ -67,18 +67,18 @@
                                     <local:ScaleInTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
-                            <local:NotificationHost
-                                Name="{x:Static local:AppWindow.PART_NotificationHost}"
+                            <local:GrowlHost
+                                Name="{x:Static local:AppWindow.PART_GrowlHost}"
                                 Margin="18,12"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 HorizontalContentAlignment="Right">
-                                <local:NotificationHost.ItemsPanel>
+                                <local:GrowlHost.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Spacing="2" />
                                     </ItemsPanelTemplate>
-                                </local:NotificationHost.ItemsPanel>
-                            </local:NotificationHost>
+                                </local:GrowlHost.ItemsPanel>
+                            </local:GrowlHost>
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
                             <ContentPresenter

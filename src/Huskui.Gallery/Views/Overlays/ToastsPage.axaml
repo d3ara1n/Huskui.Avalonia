@@ -87,7 +87,7 @@
 
                             <StackPanel Spacing="4">
                                 <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
-                                <TextBlock Text="• Use for simple notifications (use Notification instead)" />
+                                <TextBlock Text="• Use for simple notifications (use Growl instead)" />
                                 <TextBlock Text="• Make them too small for the content" />
                                 <TextBlock Text="• Use for quick interactions (use Dialog instead)" />
                                 <TextBlock Text="• Auto-dismiss important content" />

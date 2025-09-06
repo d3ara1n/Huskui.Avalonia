@@ -1,23 +1,28 @@
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
+using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Markup.Xaml.Templates;
+using Avalonia.Metadata;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Huskui.Avalonia.Transitions;
+using VisualExtensions = Avalonia.VisualTree.VisualExtensions;
 
 namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_SmokeMask, typeof(Border))]
 [TemplatePart(PART_ItemsPresenter, typeof(ItemsPresenter))]
 [PseudoClasses(":present")]
-public class OverlayHost : ItemsControl
+public class OverlayHost : TemplatedControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
     public const string PART_SmokeMask = nameof(PART_SmokeMask);
@@ -28,10 +33,25 @@ public class OverlayHost : ItemsControl
                                                            (o, v) => o.IsPresent = v);
 
 
-    public static readonly DirectProperty<OverlayHost, IPageTransition> TransitionProperty =
-        AvaloniaProperty.RegisterDirect<OverlayHost, IPageTransition>(nameof(Transition),
-                                                                      o => o.Transition,
-                                                                      (o, v) => o.Transition = v);
+    public static readonly StyledProperty<IPageTransition> TransitionProperty =
+        AvaloniaProperty.Register<OverlayHost, IPageTransition>(nameof(Transition),
+                                                                new PageCoverOverTransition(null,
+                                                                    DirectionFrom.Bottom));
+
+    public IPageTransition Transition
+    {
+        get => GetValue(TransitionProperty);
+        set => SetValue(TransitionProperty, value);
+    }
+
+    public static readonly StyledProperty<int> ItemCountProperty =
+        AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
+
+    public int ItemCount
+    {
+        get => GetValue(ItemCountProperty);
+        set => SetValue(ItemCountProperty, value);
+    }
 
     public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<bool>> IsPresentChangedEvent =
         RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
@@ -41,6 +61,18 @@ public class OverlayHost : ItemsControl
         RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(nameof(MaskPointerPressed),
                                                                        RoutingStrategies.Bubble);
 
+    public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
+        AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
+
+    public ITemplate ItemsPanel
+    {
+        get => GetValue(ItemsPanelProperty);
+        set => SetValue(ItemsPanelProperty, value);
+    }
+
+    [Content]
+    public AvaloniaList<OverlayItem> Items { get; } = [];
+
     private Border? _smokeMask;
 
     public bool IsPresent
@@ -48,12 +80,6 @@ public class OverlayHost : ItemsControl
         get;
         set => SetAndRaise(IsPresentProperty, ref field, value);
     }
-
-    public IPageTransition Transition
-    {
-        get;
-        set => SetAndRaise(TransitionProperty, ref field, value);
-    } = new PageCoverOverTransition(null, DirectionFrom.Bottom);
 
     protected override Type StyleKeyOverride => typeof(OverlayHost);
 
@@ -112,48 +138,59 @@ public class OverlayHost : ItemsControl
         }
 
         Items.Add(item);
+        LogicalChildren.Add(item);
 
-
-        // Make control attached to visual tree ensuring its parent is valid
-        // Make OnApplyTemplate called
-        UpdateLayout();
-        // if (control is Visual visual) Transition.Start(null, visual, true, CancellationToken.None);
-        var transition = item.Transition ?? Transition;
-        transition.Start(null, item, true, CancellationToken.None);
-
+        ItemCount = Items.Count;
         if (Items.Count == 1)
         {
             IsPresent = true;
         }
+
+        var transition = item.Transition ?? Transition;
+        transition.Start(null, item, true, CancellationToken.None);
     }
 
-    public void Dismiss(OverlayItem item)
+    public void Dismiss(object control)
     {
-        var transition = item.Transition ?? Transition;
-        transition.Start(item, null, false, CancellationToken.None).ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
-        return;
-
-        void Clean()
+        var item = control switch
         {
-            for (var i = 0; i < Items.IndexOf(item); i++)
-            {
-                if (Items[i] is OverlayItem inner)
-                {
-                    inner.Distance--;
-                }
-            }
+            OverlayItem it => it,
+            Visual visual => VisualExtensions.FindAncestorOfType<OverlayItem>(visual),
+            _ => null
+        };
+        if (item is not null)
+        {
+            var transition = item.Transition ?? Transition;
+            transition
+               .Start(item, null, false, CancellationToken.None)
+               .ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
+            return;
 
-            Items.Remove(item);
-            if (Items.Count == 0)
+            void Clean()
             {
-                IsPresent = false;
+                for (var i = 0; i < Items.IndexOf(item); i++)
+                {
+                    if (Items[i] is { } inner)
+                    {
+                        inner.Distance--;
+                    }
+                }
+
+
+                LogicalChildren.Remove(item);
+                Items.Remove(item);
+                ItemCount = Items.Count;
+                if (Items.Count == 0)
+                {
+                    IsPresent = false;
+                }
             }
         }
     }
 
     public void Dismiss()
     {
-        if (Items is [.., OverlayItem last])
+        if (Items is [.., { } last])
         {
             Dismiss(last);
         }
@@ -176,50 +213,18 @@ public class OverlayHost : ItemsControl
         if (e.Container != null)
         {
             Dismiss(e.Container);
-        }
 
-        e.Handled = true;
+            e.Handled = true;
+        }
     }
 
     #region Nested type: MaskPointerPressedEventArgs
-
-    #region Nested Type: MaskPointerPressedEventArgs
 
     public class MaskPointerPressedEventArgs(object? source, PointerPressedEventArgs args)
         : RoutedEventArgs(MaskPointerPressedEvent, source)
     {
         public PointerPressedEventArgs Inner => args;
     }
-
-    #endregion
-
-    #endregion
-
-    #region StageInAnimation & StageOutAnimation
-
-    private static readonly Animation StageInAnimation = new()
-    {
-        FillMode = FillMode.Forward,
-        Duration = TimeSpan.FromMilliseconds(146),
-        Easing = new SineEaseOut(),
-        Children =
-        {
-            new() { Cue = new(0d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } } },
-            new() { Cue = new(1d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } } }
-        }
-    };
-
-    private static readonly Animation StageOutAnimation = new()
-    {
-        FillMode = FillMode.Forward,
-        Duration = TimeSpan.FromMilliseconds(146),
-        Easing = new SineEaseOut(),
-        Children =
-        {
-            new() { Cue = new(0d), Setters = { new Setter { Property = OpacityProperty, Value = 1d } } },
-            new() { Cue = new(1d), Setters = { new Setter { Property = OpacityProperty, Value = 0d } } }
-        }
-    };
 
     #endregion
 

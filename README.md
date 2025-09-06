@@ -26,7 +26,7 @@ Huskui.Avalonia includes the following components:
 - **IconLabel**: Combined icon and text label with FluentIcons integration
 - **Frame**: Navigation container with transition animations
 - **HighlightBlock**: Text highlighting for code snippets and keyboard shortcuts
-- **NotificationHost** and **NotificationItem**: Toast notification system
+- **GrowlHost** and **GrowlItem**: Toast notification system
 - **OverlayHost** and **Modals/Dialogs/Drawers/Toasts**: Overlay management system
 - **SkeletonContainer**: Loading placeholder for content
 - **BusyContainer**: Container with loading state management

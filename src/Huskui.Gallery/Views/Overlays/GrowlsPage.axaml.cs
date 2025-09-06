@@ -7,13 +7,13 @@ using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views.Overlays
 {
-    public partial class NotificationsPage : ControlPage
+    public partial class GrowlsPage : ControlPage
     {
-        public NotificationsPage() => InitializeComponent();
+        public GrowlsPage() => InitializeComponent();
 
         private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
 
-        private void OnShowInfoNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowInfoGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -21,17 +21,17 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Information,
+                Level = GrowlLevel.Information,
                 Title = "Information",
                 Content = "This is an informational notification message."
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowSuccessNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowSuccessGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -39,15 +39,15 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Success, Title = "Success", Content = "Operation completed successfully!"
+                Level = GrowlLevel.Success, Title = "Success", Content = "Operation completed successfully!"
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowWarningNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowWarningGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -55,17 +55,17 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Warning,
+                Level = GrowlLevel.Warning,
                 Title = "Warning",
                 Content = "Please review your settings before proceeding."
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowDangerNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowDangerGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -73,17 +73,17 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Danger,
+                Level = GrowlLevel.Danger,
                 Title = "Error",
                 Content = "An error occurred while processing your request."
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowActionNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowActionGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -91,9 +91,9 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Information,
+                Level = GrowlLevel.Information,
                 Title = "Action Required",
                 Content = "Your session will expire in 5 minutes."
             };
@@ -101,10 +101,10 @@ namespace Huskui.Gallery.Views.Overlays
             notification.Actions.Add(new() { Text = "Extend" });
             notification.Actions.Add(new() { Text = "Logout" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowProgressNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowProgressGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -112,9 +112,9 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Information,
+                Level = GrowlLevel.Information,
                 Title = "File Download",
                 Content = "Downloading update.zip... 35% complete",
                 IsProgressBarVisible = true,
@@ -123,10 +123,10 @@ namespace Huskui.Gallery.Views.Overlays
 
             notification.Actions.Add(new() { Text = "Cancel" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnShowRichNotificationClick(object? sender, RoutedEventArgs e)
+        private void OnShowRichGrowlClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -134,9 +134,9 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Success,
+                Level = GrowlLevel.Success,
                 Title = "New Message",
                 Content = "John Doe: Hey, are you available for a quick call?"
             };
@@ -144,10 +144,10 @@ namespace Huskui.Gallery.Views.Overlays
             notification.Actions.Add(new() { Text = "Reply" });
             notification.Actions.Add(new() { Text = "Call" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
-        private void OnClearAllNotificationsClick(object? sender, RoutedEventArgs e)
+        private void OnClearAllGrowlsClick(object? sender, RoutedEventArgs e)
         {
             var appWindow = GetAppWindow();
             if (appWindow == null)
@@ -155,14 +155,14 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Information,
-                Title = "Notifications Cleared",
+                Level = GrowlLevel.Information,
+                Title = "Growls Cleared",
                 Content = "All notifications have been dismissed."
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
         private void OnShowFileOperationClick(object? sender, RoutedEventArgs e)
@@ -173,9 +173,9 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Success,
+                Level = GrowlLevel.Success,
                 Title = "File Copied",
                 Content = "document.pdf copied to Documents folder"
             };
@@ -183,7 +183,7 @@ namespace Huskui.Gallery.Views.Overlays
             notification.Actions.Add(new() { Text = "Open" });
             notification.Actions.Add(new() { Text = "Show in Folder" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
         private void OnShowSystemStatusClick(object? sender, RoutedEventArgs e)
@@ -194,16 +194,16 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Warning,
+                Level = GrowlLevel.Warning,
                 Title = "Low Battery",
                 Content = "Battery level is low (15% remaining)"
             };
 
             notification.Actions.Add(new() { Text = "Power Settings" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
         private void OnShowUserActionClick(object? sender, RoutedEventArgs e)
@@ -214,14 +214,14 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Success,
+                Level = GrowlLevel.Success,
                 Title = "Document Saved",
                 Content = "Your changes have been saved automatically at " + DateTime.Now.ToString("HH:mm:ss")
             };
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
 
         private void OnShowBackgroundTaskClick(object? sender, RoutedEventArgs e)
@@ -232,16 +232,16 @@ namespace Huskui.Gallery.Views.Overlays
                 return;
             }
 
-            var notification = new NotificationItem
+            var notification = new GrowlItem
             {
-                Level = NotificationLevel.Information,
+                Level = GrowlLevel.Information,
                 Title = "Backup Complete",
                 Content = "Cloud backup completed successfully. 1,247 files backed up (2.3 GB)"
             };
 
             notification.Actions.Add(new() { Text = "View Details" });
 
-            appWindow.PopNotification(notification);
+            appWindow.PopGrowl(notification);
         }
     }
 }

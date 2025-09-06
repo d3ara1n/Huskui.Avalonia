@@ -296,10 +296,10 @@ namespace Huskui.Gallery.Services
                     },
                     new()
                     {
-                        Title = "Notifications",
+                        Title = "Growls",
                         Description = "Status feedback notifications for user awareness and system updates",
                         Icon = Symbol.Alert,
-                        PageType = typeof(NotificationsPage),
+                        PageType = typeof(GrowlsPage),
                         Category = "Overlays",
                         Tags = ["notification", "alert", "message", "status", "feedback"]
                     }

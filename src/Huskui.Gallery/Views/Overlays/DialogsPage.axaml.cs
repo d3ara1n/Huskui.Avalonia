@@ -96,23 +96,23 @@ namespace Huskui.Gallery.Views.Overlays
                 // 用户点击了Confirm，获取结果
                 var email = dialog.Result as string;
 
-                // 使用Notification提示用户输入的邮箱
-                var notification = new NotificationItem
+                // 使用Growl提示用户输入的邮箱
+                var notification = new GrowlItem
                 {
-                    Level = NotificationLevel.Success, Title = "Email Confirmed", Content = $"You entered: {email}"
+                    Level = GrowlLevel.Success, Title = "Email Confirmed", Content = $"You entered: {email}"
                 };
-                appWindow.PopNotification(notification);
+                appWindow.PopGrowl(notification);
             }
             else
             {
                 // 用户点击了Cancel或关闭
-                var notification = new NotificationItem
+                var notification = new GrowlItem
                 {
-                    Level = NotificationLevel.Information,
+                    Level = GrowlLevel.Information,
                     Title = "Input Cancelled",
                     Content = "Email input was cancelled"
                 };
-                appWindow.PopNotification(notification);
+                appWindow.PopGrowl(notification);
             }
         }
 
