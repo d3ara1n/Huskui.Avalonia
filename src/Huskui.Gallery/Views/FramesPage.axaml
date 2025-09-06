@@ -10,7 +10,7 @@
                       x:Class="Huskui.Gallery.Views.FramesPage">
     <StackPanel Spacing="32">
         <controls:ExampleContainer Title="Basic Frame"
-                                   Description="Navigating between pages with transitions">
+                                   Description="Navigating between pages with transitions" Padding="0">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <ComboBox x:Name="TransitionCombo"
@@ -27,7 +27,9 @@
                     <Button Content="Back" Click="BackButton_OnClick" IsEnabled="{Binding #Root.CanGoBack}" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
-            <husk:Frame x:Name="Root" />
+            <Border ClipToBounds="True" Padding="24">
+                <husk:Frame x:Name="Root" CanGoBackOutOfStack="True" ClipToBounds="False" />
+            </Border>
         </controls:ExampleContainer>
     </StackPanel>
 </controls:ControlPage>

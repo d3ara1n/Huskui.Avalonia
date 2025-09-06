@@ -50,6 +50,8 @@ public class Frame : TemplatedControl
     private FrameFrame? _currentFrame;
     private CancellationTokenSource? _currentToken;
 
+    private bool _arrangeLock = true;
+    private (object? Content, IPageTransition Transition, bool Reverse)? _current;
     private ContentPresenter? _presenter;
     private ContentPresenter? _presenter2;
     private bool _toggle;
@@ -143,44 +145,62 @@ public class Frame : TemplatedControl
     private void UpdateContent(object? content, IPageTransition transition, bool reverse)
     {
         HistoryCount = _history.Count;
+        CanGoBack = _history.Count > 0 || CanGoBackOutOfStack;
+        _current = (content, transition, reverse);
+        _arrangeLock = false;
+        InvalidateArrange();
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var rv = base.ArrangeOverride(finalSize);
 
         ArgumentNullException.ThrowIfNull(_presenter);
         ArgumentNullException.ThrowIfNull(_presenter2);
 
-        CanGoBack = _history.Count > 0 || CanGoBackOutOfStack;
-        _currentToken?.Cancel();
-        var cancel = new CancellationTokenSource();
-        _currentToken = cancel;
+        if (_current.HasValue && !_arrangeLock)
+        {
+            _arrangeLock = true;
+            var (content, transition, reverse) = _current.Value;
 
-        var currentPresenter = _toggle ? _presenter : _presenter2;
-        var targetPresenter = _toggle ? _presenter2 : _presenter;
-        _toggle = !_toggle;
+            _currentToken?.Cancel();
+            var cancel = new CancellationTokenSource();
+            _currentToken = cancel;
 
-        (currentPresenter.ZIndex, targetPresenter.ZIndex) = (0, 1);
-        (currentPresenter.IsVisible, targetPresenter.IsVisible) = (true, true);
+            var currentPresenter = _toggle ? _presenter : _presenter2;
+            var targetPresenter = _toggle ? _presenter2 : _presenter;
+            _toggle = !_toggle;
 
-        targetPresenter.Content = content;
+            (currentPresenter.ZIndex, targetPresenter.ZIndex) = (0, 1);
+            (currentPresenter.IsVisible, targetPresenter.IsVisible) = (true, content != null);
 
-        var (fromPresenter, toPresenter) = reverse
-                                               ? (targetPresenter, currentPresenter)
-                                               : (currentPresenter, targetPresenter);
-        transition
-           .Start(fromPresenter, toPresenter, !reverse, cancel.Token)
-           .ContinueWith(_ =>
-                         {
-                             if (cancel.IsCancellationRequested)
+            targetPresenter.Content = content;
+
+            // content == null 时短路到 (current, target)，即不切换
+            //  否则应用 reverse 规则
+            var (fromPresenter, toPresenter) = content != null && reverse
+                                                   ? (targetPresenter, currentPresenter)
+                                                   : (currentPresenter, targetPresenter);
+            transition
+               .Start(fromPresenter, toPresenter, !reverse, cancel.Token)
+               .ContinueWith(_ =>
                              {
-                                 return;
-                             }
+                                 if (cancel.IsCancellationRequested)
+                                 {
+                                     return;
+                                 }
 
-                             (currentPresenter.IsVisible, targetPresenter.IsVisible) = (false, true);
-                             currentPresenter.Content = null;
+                                 (currentPresenter.IsVisible, targetPresenter.IsVisible) = (false, content != null);
+                                 currentPresenter.Content = null;
 
-                             // NOTE: ContentControl.Content 改变会移除 from.Content 自 LogicalChildren，这会导致 from.Content 的 StaticResource 全部失效
-                             //  因此要放在动画结束 from 退出时对 Content 进行设置
-                             Content = targetPresenter.Content;
-                         },
-                         TaskScheduler.FromCurrentSynchronizationContext());
+                                 // NOTE: ContentControl.Content 改变会移除 from.Content 自 LogicalChildren，这会导致 from.Content 的 StaticResource 全部失效
+                                 //  因此要放在动画结束 from 退出时对 Content 进行设置
+                                 Content = targetPresenter.Content;
+                             },
+                             TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        return rv;
     }
 
 
