@@ -8,10 +8,10 @@ namespace Huskui.Avalonia.Transitions;
 
 public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTransition
 {
-    private static readonly TimeSpan DEFAULT_DURATION = TimeSpan.FromMilliseconds(197);
-    private static readonly Easing DEFAULT_EASING = new LinearEasing();
+    private static readonly TimeSpan DefaultDuration = TimeSpan.FromMilliseconds(197);
+    private static readonly Easing DefaultEasing = new LinearEasing();
 
-    public TimeSpan Duration { get; set; } = duration ?? DEFAULT_DURATION;
+    public TimeSpan Duration { get; set; } = duration ?? DefaultDuration;
 
     #region IPageTransition Members
 
@@ -25,10 +25,10 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
         var tasks = new List<Task>();
 
         // 在反向时动画会反着施加到 from 和 to 上，to 会倒着播放原先消失的动画，这里取巧直接反转 from 和 to，并倒转双方动画实现
-        if (!forward)
-        {
-            (from, to) = (to, from);
-        }
+        // if (!forward)
+        // {
+        //     (from, to) = (to, from);
+        // }
 
         // 捕获交换过的 from, to，不过顺序不影响
         var fromBuilder = new Builder(Duration);
@@ -100,7 +100,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
                                          TimeSpan.Zero,
                                          FillMode.Forward,
                                          1.0d,
-                                         DEFAULT_EASING));
+                                         DefaultEasing));
 
         public AnimationBuilder Animation(TimeSpan? duration = null, Easing? easing = null)
         {

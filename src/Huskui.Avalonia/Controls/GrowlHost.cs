@@ -99,12 +99,13 @@ public class GrowlHost : TemplatedControl
     public void Dismiss(GrowlItem item) =>
         Transition
            .Start(item, null, true, CancellationToken.None)
-           .ContinueWith(_ => Dispatcher.UIThread.Post(() =>
-            {
-                {
-                    LogicalChildren.Remove(item);
-                    Items.Remove(item);
-                    ItemCount = Items.Count;
-                }
-            }));
+           .ContinueWith(_ =>
+                         {
+                             {
+                                 LogicalChildren.Remove(item);
+                                 Items.Remove(item);
+                                 ItemCount = Items.Count;
+                             }
+                         },
+                         TaskScheduler.FromCurrentSynchronizationContext());
 }

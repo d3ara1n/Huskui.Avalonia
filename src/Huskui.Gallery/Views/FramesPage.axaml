@@ -1,0 +1,33 @@
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:views="clr-namespace:Huskui.Gallery.Views"
+                      xmlns:models="clr-namespace:Huskui.Gallery.Models"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.FramesPage">
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer Title="Basic Frame"
+                                   Description="Navigating between pages with transitions">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <ComboBox x:Name="TransitionCombo"
+                              ItemsSource="{Binding $parent[views:FramesPage].TransitionInfos}"
+                              SelectedItem="{Binding $parent[views:FramesPage].SelectedTransitionInfo, Mode=TwoWay}"
+                              SelectedIndex="0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:TransitionInfo">
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Next" Click="NextButton_OnClick" />
+                    <Button Content="Back" Click="BackButton_OnClick" IsEnabled="{Binding #Root.CanGoBack}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <husk:Frame x:Name="Root" />
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

@@ -161,7 +161,7 @@ public class OverlayHost : TemplatedControl
             var transition = item.Transition ?? Transition;
             transition
                .Start(item, null, true, CancellationToken.None)
-               .ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
+               .ContinueWith(_ => Clean(), TaskScheduler.FromCurrentSynchronizationContext());
             return;
 
             void Clean()

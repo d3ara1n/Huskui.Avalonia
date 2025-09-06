@@ -1,0 +1,99 @@
+<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="1200"
+                      x:Class="Huskui.Gallery.Views.TabControlsPage">
+
+    <StackPanel Spacing="32">
+
+        <!-- Default TabControl -->
+        <controls:ExampleContainer Title="Default TabControl"
+                                   Description="A standard TabControl with items placed on top."
+                                   XamlCode="&lt;TabControl&gt;&#10;    &lt;TabItem Header=&quot;Document&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Music&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Video&quot; IsSelected=&quot;True&quot; /&gt;&#10;&lt;/TabControl&gt;">
+            <TabControl>
+                <TabItem Header="Document">
+                    <TextBlock Text="Content for Document" Margin="12" />
+                </TabItem>
+                <TabItem Header="Music">
+                    <TextBlock Text="Content for Music" Margin="12" />
+                </TabItem>
+                <TabItem Header="Video" IsSelected="True">
+                    <TextBlock Text="Content for Video" Margin="12" />
+                </TabItem>
+            </TabControl>
+        </controls:ExampleContainer>
+
+        <!-- Solid Theme -->
+        <controls:ExampleContainer Title="Solid TabControl Theme"
+                                   Description="A TabControl using the 'SolidTabControlTheme'."
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource SolidTabControlTheme}&quot;&gt;&#10;    &lt;TabItem Header=&quot;Home&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Profile&quot; IsSelected=&quot;True&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Settings&quot; /&gt;&#10;&lt;/TabControl&gt;">
+            <TabControl Theme="{StaticResource SolidTabControlTheme}">
+                <TabItem Header="Home">
+                    <TextBlock Text="Solid Theme Content" Margin="12" />
+                </TabItem>
+                <TabItem Header="Profile" IsSelected="True">
+                    <TextBlock Text="Solid Theme Content" Margin="12" />
+                </TabItem>
+                <TabItem Header="Settings">
+                    <TextBlock Text="Solid Theme Content" Margin="12" />
+                </TabItem>
+            </TabControl>
+        </controls:ExampleContainer>
+
+        <!-- Neo Theme -->
+        <controls:ExampleContainer Title="Neo TabControl Theme"
+                                   Description="A TabControl using the 'NeoTabControlTheme'."
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource NeoTabControlTheme}&quot;&gt;&#10;    &lt;TabItem Header=&quot;Home&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Profile&quot; IsSelected=&quot;True&quot; /&gt;&#10;    &lt;TabItem Header=&quot;Settings&quot; /&gt;&#10;&lt;/TabControl&gt;">
+            <TabControl Theme="{StaticResource NeoTabControlTheme}">
+                <TabItem Header="Home">
+                    <TextBlock Text="Neo Theme Content" Margin="12" />
+                </TabItem>
+                <TabItem Header="Profile" IsSelected="True">
+                    <TextBlock Text="Neo Theme Content" Margin="12" />
+                </TabItem>
+                <TabItem Header="Settings">
+                    <TextBlock Text="Neo Theme Content" Margin="12" />
+                </TabItem>
+            </TabControl>
+        </controls:ExampleContainer>
+
+        <!-- Advanced Styling -->
+        <controls:ExampleContainer Title="Advanced Styling"
+                                   Description="Showcasing complex headers, primary classes, and disabled states."
+                                   XamlCode="&lt;TabControl Theme=&quot;{StaticResource SolidTabControlTheme}&quot;&gt;&#10;    &lt;TabItem&gt;&#10;        &lt;TabItem.Header&gt;&#10;            &lt;StackPanel Orientation=&quot;Horizontal&quot; Spacing=&quot;8&quot;&gt;&#10;                &lt;fi:SymbolIcon Symbol=&quot;Home&quot; FontSize=&quot;16&quot;/&gt;&#10;                &lt;TextBlock Text=&quot;Home&quot;/&gt;&#10;            &lt;/StackPanel&gt;&#10;        &lt;/TabItem.Header&gt;&#10;    &lt;/TabItem&gt;&#10;    &lt;TabItem Classes=&quot;Primary&quot; IsSelected=&quot;True&quot;&gt;&#10;        ...&#10;    &lt;/TabItem&gt;&#10;    &lt;TabItem IsEnabled=&quot;False&quot;&gt;&#10;        ...&#10;    &lt;/TabItem&gt;&#10;&lt;/TabControl&gt;">
+            <TabControl Theme="{StaticResource SolidTabControlTheme}">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <fi:SymbolIcon Symbol="Home" FontSize="16" />
+                            <TextBlock Text="Home" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock Text="Content for Home" Margin="12" />
+                </TabItem>
+                <TabItem Classes="Primary" IsSelected="True">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <fi:SymbolIcon Symbol="Heart" FontSize="16" />
+                            <TextBlock Text="Favorites (Primary)" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock Text="Content for Favorites" Margin="12" />
+                </TabItem>
+                <TabItem IsEnabled="False">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <fi:SymbolIcon Symbol="Archive" FontSize="16" />
+                            <TextBlock Text="Archive (Disabled)" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock Text="Content for Archive" Margin="12" />
+                </TabItem>
+            </TabControl>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

@@ -1,0 +1,176 @@
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.GrowlsPage">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer Title="Status Feedback Growls"
+                                   Description="Lightweight status feedback with different severity levels">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Growl Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Show Information" Click="OnShowInfoGrowlClick" />
+                    <Button Content="Show Success" Click="OnShowSuccessGrowlClick" />
+                    <Button Content="Show Warning" Click="OnShowWarningGrowlClick" />
+                    <Button Content="Show Danger" Click="OnShowDangerGrowlClick" />
+                    <TextBlock Text="Click buttons to show different types of notifications."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="16" Width="400">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Growl Purpose" FontSize="16" FontWeight="Bold" />
+                        <TextBlock
+                            Text="Growls provide lightweight, non-intrusive status feedback to users. Unlike heavy-weight Toasts or long-interaction Modals, they focus on quick status updates and system feedback."
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Text="Use notifications for operation results, system status, background task updates, and user action confirmations."
+                            TextWrapping="Wrap"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Enhanced Status Growls"
+                                   Description="Status feedback with actions and progress indicators">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Interactive Features" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Show Action Growl" Click="OnShowActionGrowlClick" />
+                    <Button Content="Show Progress Growl" Click="OnShowProgressGrowlClick" />
+                    <Button Content="Show Rich Content" Click="OnShowRichGrowlClick" />
+                    <Button Content="Clear All Growls" Click="OnClearAllGrowlsClick" />
+                    <TextBlock Text="These notifications include interactive elements and rich content."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="16" Width="450">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Enhanced Status Features" FontSize="16" FontWeight="Bold" />
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="• Quick action buttons for immediate responses" />
+                            <TextBlock Text="• Progress indicators for background operations" />
+                            <TextBlock Text="• Severity levels (Info, Success, Warning, Error)" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Growl Scenarios"
+                                   Description="Real-world usage scenarios for notifications">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Scenario Examples" FontWeight="Bold" FontSize="14" />
+                    <Button Content="File Operation" Click="OnShowFileOperationClick" />
+                    <Button Content="System Status" Click="OnShowSystemStatusClick" />
+                    <Button Content="User Action" Click="OnShowUserActionClick" />
+                    <Button Content="Background Task" Click="OnShowBackgroundTaskClick" />
+                    <TextBlock Text="Common scenarios where notifications provide user feedback."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel Spacing="16" Width="500">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                    <husk:Card Grid.Column="0" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="📁 File Operations" FontWeight="Bold" />
+                            <TextBlock Text="Copy, move, delete confirmations"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </husk:Card>
+
+                    <husk:Card Grid.Column="1" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="⚙️ System Status" FontWeight="Bold" />
+                            <TextBlock Text="Connection, updates, errors"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </husk:Card>
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                    <husk:Card Grid.Column="0" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="👤 User Actions" FontWeight="Bold" />
+                            <TextBlock Text="Save, send, publish confirmations"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </husk:Card>
+
+                    <husk:Card Grid.Column="1" Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="🔄 Background Tasks" FontWeight="Bold" />
+                            <TextBlock Text="Sync, backup, processing status"
+                                       FontSize="12"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </husk:Card>
+                </Grid>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Growl Best Practices"
+                                   Description="Guidelines for effective notification usage">
+            <StackPanel Spacing="16" Width="600">
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Design Guidelines" FontSize="18" FontWeight="Bold" />
+
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="✅ Do" FontWeight="Bold" Foreground="Green" />
+                                <TextBlock Text="• Use for quick status feedback and confirmations" />
+                                <TextBlock Text="• Keep messages clear and actionable" />
+                                <TextBlock Text="• Choose appropriate severity levels" />
+                                <TextBlock Text="• Auto-dismiss non-critical status updates" />
+                            </StackPanel>
+
+                            <husk:Divider />
+
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="❌ Don't" FontWeight="Bold" Foreground="Red" />
+                                <TextBlock Text="• Use for complex content (use Toast instead)" />
+                                <TextBlock Text="• Use for critical decisions (use Dialog instead)" />
+                                <TextBlock Text="• Use for long interactions (use Modal instead)" />
+                                <TextBlock Text="• Overwhelm users with too many notifications" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <husk:Divider />
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Technical Notes" FontWeight="Bold" />
+                            <TextBlock
+                                Text="Growls are the lightest-weight overlay control, designed for quick status feedback. Unlike Toasts (heavy content preview), Modals (long interactions), or Dialogs (binary decisions), they focus on non-intrusive status updates and system feedback."
+                                TextWrapping="Wrap"
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

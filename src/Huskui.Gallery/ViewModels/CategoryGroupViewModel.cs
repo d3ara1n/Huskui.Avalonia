@@ -14,16 +14,16 @@ public partial class CategoryGroupViewModel : ObservableObject
     private readonly GalleryCategory _category;
 
     [ObservableProperty]
-    private ReadOnlyObservableCollection<GalleryItem> _filteredItems;
+    public partial ReadOnlyObservableCollection<GalleryItem> FilteredItems { get; set; }
 
     [ObservableProperty]
-    private bool _isVisible = true;
+    public partial bool IsVisible { get; set; } = true;
 
     [ObservableProperty]
-    private string _searchText = string.Empty;
+    public partial string SearchText { get; set; } = string.Empty;
 
     [ObservableProperty]
-    private GalleryItem? _selectedItem;
+    public partial GalleryItem? SelectedItem { get; set; }
 
     public CategoryGroupViewModel(GalleryCategory category, ReadOnlyObservableCollection<GalleryItem> allItems)
     {

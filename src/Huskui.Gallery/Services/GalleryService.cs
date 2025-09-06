@@ -3,11 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using FluentIcons.Common;
 using Huskui.Gallery.Models;
-using Huskui.Gallery.Views.Containers;
-using Huskui.Gallery.Views.Controls;
-using Huskui.Gallery.Views.Input;
-using Huskui.Gallery.Views.Layout;
-using Huskui.Gallery.Views.Overlays;
+using Huskui.Gallery.Views;
 
 namespace Huskui.Gallery.Services;
 
@@ -28,12 +24,12 @@ public class GalleryService : IGalleryService
 
         // Create categories and items
         CreateControlsCategory();
-        CreateContainerCategory();
+        CreateContainersCategory();
         CreateOverlaysCategory();
         CreateLayoutCategory();
         CreateInputCategory();
         CreateNavigationCategory();
-        CreateDataCategory();
+        CreateCollectionsCategory();
         CreateMediaCategory();
     }
 
@@ -167,11 +163,11 @@ public class GalleryService : IGalleryService
         }
     }
 
-    private void CreateContainerCategory()
+    private void CreateContainersCategory()
     {
         var category = new GalleryCategory
         {
-            Name = "Container",
+            Name = "Containers",
             Description = "Container components for layout and content organization",
             Icon = Symbol.RectangleLandscape,
             Items =
@@ -202,33 +198,6 @@ public class GalleryService : IGalleryService
                     PageType = typeof(SkeletonContainersPage),
                     Category = "Container",
                     Tags = ["skeleton", "loading", "placeholder", "shimmer"]
-                },
-                new()
-                {
-                    Title = "ListBoxes",
-                    Description = "Vertical list containers with different configurations",
-                    Icon = Symbol.List,
-                    PageType = typeof(ListBoxesPage),
-                    Category = "Container",
-                    Tags = ["list", "box", "vertical", "content"]
-                },
-                new()
-                {
-                    Title = "TabStrips",
-                    Description = "Horizontal tab containers for content organization",
-                    Icon = Symbol.Tab,
-                    PageType = typeof(TabStripsPage),
-                    Category = "Container",
-                    Tags = ["list", "tab", "vertical", "switcher"]
-                },
-                new()
-                {
-                    Title = "TabControls",
-                    Description = "Tab containers for content organization",
-                    Icon = Symbol.Tab,
-                    PageType = typeof(TabControlsPage),
-                    Category = "Container",
-                    Tags = ["list", "tab", "vertical", "switcher"]
                 }
             ]
         };
@@ -403,7 +372,27 @@ public class GalleryService : IGalleryService
             Name = "Navigation",
             Description = "Navigation and menu components",
             Icon = Symbol.Navigation,
-            Items = []
+            Items =
+            [
+                new()
+                {
+                    Title = "TabControls",
+                    Description = "Tab containers for content organization",
+                    Icon = Symbol.Tab,
+                    PageType = typeof(TabControlsPage),
+                    Category = "Container",
+                    Tags = ["list", "tab", "navigation", "vertical", "switcher"]
+                },
+                new()
+                {
+                    Title = "Frames",
+                    Description = "Navigation containers for page transitions and routing",
+                    Icon = Symbol.Navigation,
+                    PageType = typeof(FramesPage),
+                    Category = "Container",
+                    Tags = ["frame", "navigation", "page", "transition"]
+                }
+            ]
         };
 
         Categories.Add(category);
@@ -413,14 +402,34 @@ public class GalleryService : IGalleryService
         }
     }
 
-    private void CreateDataCategory()
+    private void CreateCollectionsCategory()
     {
         var category = new GalleryCategory
         {
-            Name = "Data",
+            Name = "Collections",
             Description = "Data display and collection controls",
             Icon = Symbol.DataHistogram,
-            Items = []
+            Items =
+            [
+                new()
+                {
+                    Title = "ListBoxes",
+                    Description = "Vertical list containers with different configurations",
+                    Icon = Symbol.List,
+                    PageType = typeof(ListBoxesPage),
+                    Category = "Container",
+                    Tags = ["list", "box", "vertical", "content"]
+                },
+                new()
+                {
+                    Title = "TabStrips",
+                    Description = "Horizontal tab containers for content organization",
+                    Icon = Symbol.Tab,
+                    PageType = typeof(TabStripsPage),
+                    Category = "Container",
+                    Tags = ["list", "tab", "vertical", "switcher"]
+                }
+            ]
         };
 
         Categories.Add(category);

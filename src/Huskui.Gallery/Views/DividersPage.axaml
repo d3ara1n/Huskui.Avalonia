@@ -1,0 +1,165 @@
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.DividersPage">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer Title="Basic Dividers"
+                                   Description="Simple horizontal and vertical dividers">
+            <StackPanel Spacing="24">
+                <!-- Horizontal Dividers -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Horizontal Dividers" FontWeight="Bold" />
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Content above divider" />
+                        <husk:Divider />
+                        <TextBlock Text="Content below divider" />
+                        <husk:Divider />
+                        <TextBlock Text="More content" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Vertical Dividers -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Vertical Dividers" FontWeight="Bold" />
+                    <StackPanel Orientation="Horizontal" Spacing="16" Height="60">
+                        <TextBlock Text="Left content" VerticalAlignment="Center" />
+                        <husk:Divider Orientation="Vertical" />
+                        <TextBlock Text="Middle content" VerticalAlignment="Center" />
+                        <husk:Divider Orientation="Vertical" />
+                        <TextBlock Text="Right content" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Dividers with Text"
+                                   Description="Dividers with labels and content">
+            <StackPanel Spacing="24">
+                <!-- Text Dividers -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Section Dividers" FontWeight="Bold" />
+                    <StackPanel Spacing="16">
+                        <husk:Divider Content="Personal Information" />
+                        <StackPanel Spacing="8">
+                            <TextBox Watermark="First Name" />
+                            <TextBox Watermark="Last Name" />
+                            <TextBox Watermark="Email Address" />
+                        </StackPanel>
+
+                        <husk:Divider Content="Contact Details" />
+                        <StackPanel Spacing="8">
+                            <TextBox Watermark="Phone Number" />
+                            <TextBox Watermark="Address" />
+                            <TextBox Watermark="City" />
+                        </StackPanel>
+
+                        <husk:Divider Content="Preferences" />
+                        <StackPanel Spacing="8">
+                            <CheckBox Content="Email notifications" />
+                            <CheckBox Content="SMS notifications" />
+                            <CheckBox Content="Marketing emails" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Styled Dividers"
+                                   Description="Dividers with different styles and themes">
+            <controls:ExampleContainer.Options>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <ComboBox x:Name="StyleCombo" SelectedIndex="0" Width="120">
+                        <ComboBoxItem Content="Default" />
+                        <ComboBoxItem Content="Primary" />
+                        <ComboBoxItem Content="Success" />
+                        <ComboBoxItem Content="Warning" />
+                        <ComboBoxItem Content="Danger" />
+                    </ComboBox>
+                </StackPanel>
+            </controls:ExampleContainer.Options>
+
+            <StackPanel Spacing="16">
+                <TextBlock Text="Default Style" />
+                <husk:Divider />
+
+                <TextBlock Text="Primary Style" />
+                <husk:Divider Classes="Primary" />
+
+                <TextBlock Text="Success Style" />
+                <husk:Divider Classes="Success" />
+
+                <TextBlock Text="Warning Style" />
+                <husk:Divider Classes="Warning" />
+
+                <TextBlock Text="Danger Style" />
+                <husk:Divider Classes="Danger" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer Title="Layout Examples"
+                                   Description="Real-world usage in different layouts">
+            <StackPanel Spacing="24">
+                <!-- Card with Dividers -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Card Layout" FontWeight="Bold" />
+                    <husk:Card Padding="20" Width="400">
+                        <StackPanel Spacing="16">
+                            <StackPanel Spacing="8">
+                                <TextBlock Text="User Profile" FontSize="16" FontWeight="Bold" />
+                                <TextBlock Text="Manage your account settings"
+                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            </StackPanel>
+
+                            <husk:Divider />
+
+                            <StackPanel Spacing="12">
+                                <husk:IconLabel Icon="Person" Text="Edit Profile" />
+                                <husk:IconLabel Icon="Settings" Text="Account Settings" />
+                                <husk:IconLabel Icon="Shield" Text="Privacy &amp; Security" />
+                            </StackPanel>
+
+                            <husk:Divider />
+
+                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                <Button Content="Save Changes" Classes="Primary" />
+                                <Button Content="Cancel" />
+                            </StackPanel>
+                        </StackPanel>
+                    </husk:Card>
+                </StackPanel>
+
+                <!-- Menu Layout -->
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Menu Layout" FontWeight="Bold" />
+                    <Border BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="12"
+                            Width="300">
+                        <StackPanel Spacing="8">
+                            <husk:IconLabel Icon="Home" Text="Dashboard" />
+                            <husk:IconLabel Icon="Document" Text="Documents" />
+                            <husk:IconLabel Icon="Image" Text="Media" />
+
+                            <husk:Divider Margin="0,8" />
+
+                            <husk:IconLabel Icon="Settings" Text="Settings" />
+                            <husk:IconLabel Icon="QuestionCircle" Text="Help &amp; Support" />
+
+                            <husk:Divider Margin="0,8" />
+
+                            <husk:IconLabel Icon="SignOut" Text="Sign Out" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

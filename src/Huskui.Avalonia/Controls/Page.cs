@@ -11,10 +11,8 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":loading", ":finished", ":failed")]
 public class Page : HeaderedContentControl
 {
-    public static readonly DirectProperty<Page, bool> CanGoBackProperty =
-        Frame.CanGoBackProperty.AddOwner<Page>(o => o.CanGoBack,
-                                               (o, v) => o.CanGoBack = v,
-                                               defaultBindingMode: BindingMode.OneWay);
+    public static readonly StyledProperty<bool> CanGoBackProperty =
+        AvaloniaProperty.Register<Page, bool>(nameof(CanGoBack));
 
     public static readonly DirectProperty<Page, bool> IsHeaderVisibleProperty =
         AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsHeaderVisible),
@@ -48,8 +46,8 @@ public class Page : HeaderedContentControl
 
     public bool CanGoBack
     {
-        get;
-        set => SetAndRaise(CanGoBackProperty, ref field, value);
+        get => GetValue(CanGoBackProperty);
+        set => SetValue(CanGoBackProperty, value);
     }
 
     public bool IsHeaderVisible
