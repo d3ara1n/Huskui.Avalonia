@@ -85,6 +85,8 @@
                                     <Transitions>
                                         <EffectTransition Property="Effect"
                                                           Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition Property="RenderTransform" Easing="CubicEaseOut"
+                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
                                     </Transitions>
                                 </ContentPresenter.Transitions>
                             </ContentPresenter>
@@ -98,6 +100,7 @@
             <Setter Property="Effect">
                 <BlurEffect />
             </Setter>
+            <Setter Property="RenderTransform" Value="scale(0.98)" />
         </Style>
 
         <Style Selector="^local|AppWindow[ActualTransparencyLevel=Mica][IsActive=True]">
