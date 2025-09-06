@@ -37,9 +37,9 @@ public class PageSlideTransition : PageTransitionBase
         };
 
         from
-           .Animation(new SplineEasing(0.1, 0.9, 0.2))
+           .Animation(new SplineEasing(0.4, 0.0, 0.6))
            .AddFrame(0d, [(translateProperty, 0d), (Visual.OpacityProperty, 1d)])
-           .AddFrame(0.95d, [(Visual.OpacityProperty, 0d)])
+           .AddFrame(0.05d, [(Visual.OpacityProperty, 1d)])
            .AddFrame(1d, [(translateProperty, -translateFrom), (Visual.OpacityProperty, 0d)]);
 
         to

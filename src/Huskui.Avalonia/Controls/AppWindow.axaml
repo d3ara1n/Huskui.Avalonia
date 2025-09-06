@@ -48,7 +48,7 @@
                                 Name="{x:Static local:AppWindow.PART_DrawerHost}"
                                 HorizontalContentAlignment="Right">
                                 <local:OverlayHost.Transition>
-                                    <local:PageSlideTransition Direction="Right" />
+                                    <local:SidebarTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:OverlayHost

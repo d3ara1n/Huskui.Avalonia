@@ -73,7 +73,7 @@ public sealed class PageCoverOverTransition : PageTransitionBase
            .AddFrame(1d, [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)]);
 
         to
-           .Animation(new CubicEaseOut())
+           .Animation(new SplineEasing(0.1, 0.9, 0.2))
            .AddFrame(0d, [(Visual.OpacityProperty, 0d), (translateProperty, translateFrom)])
            .AddFrame(1d, [(Visual.OpacityProperty, 1d), (translateProperty, 0d)]);
     }
