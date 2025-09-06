@@ -4,14 +4,12 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class FocusOnTransition : PageTransitionBase
+public class FocusOnTransition(TimeSpan? duration = null, DirectionFrom? direction = null)
+    : PageTransitionBase(duration)
 {
-    public FocusOnTransition() : this(null, null) { }
+    public FocusOnTransition() : this(null) { }
 
-    public FocusOnTransition(TimeSpan? duration, DirectionFrom? direction) : base(duration) =>
-        Direction = direction ?? DirectionFrom.Bottom;
-
-    public DirectionFrom Direction { get; set; }
+    public DirectionFrom Direction { get; set; } = direction ?? DirectionFrom.Bottom;
 
     protected override void Cleanup(Visual? from, Visual? to)
     {

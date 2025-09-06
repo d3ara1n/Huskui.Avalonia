@@ -4,8 +4,10 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class PageSlideTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(297))
+public class PageSlideTransition : PageTransitionBase
 {
+    public PageSlideTransition() : this(TimeSpan.FromMilliseconds(297)) { }
+    public PageSlideTransition(TimeSpan? duration = null) : base(duration) { }
     public DirectionFrom Direction { get; set; } = DirectionFrom.Right;
 
     protected override void Cleanup(Visual? from, Visual? to)

@@ -6,10 +6,12 @@ namespace Huskui.Avalonia.Transitions;
 
 public sealed class PageCoverOverTransition : PageTransitionBase
 {
-    public PageCoverOverTransition(TimeSpan? duration, DirectionFrom? direction) : base(duration) =>
-        Direction = direction ?? DirectionFrom.Right;
+    public PageCoverOverTransition() : this(null) { }
 
-    public PageCoverOverTransition() : this(null, null) { }
+    public PageCoverOverTransition(TimeSpan? duration = null, DirectionFrom? direction = null) : base(duration)
+    {
+        Direction = direction ?? DirectionFrom.Right;
+    }
 
     public DirectionFrom Direction { get; set; }
 
@@ -52,9 +54,7 @@ public sealed class PageCoverOverTransition : PageTransitionBase
            .Animation()
            .AddFrame(0d,
             [
-                (ScaleTransform.ScaleXProperty, 1d),
-                (ScaleTransform.ScaleYProperty, 1d),
-                (Visual.OpacityProperty, 1d)
+                (ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d), (Visual.OpacityProperty, 1d)
             ])
            .AddFrame(0.5d,
             [

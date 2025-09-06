@@ -8,10 +8,10 @@ namespace Huskui.Avalonia.Transitions;
 
 public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTransition
 {
-    private static readonly TimeSpan DefaultDuration = TimeSpan.FromMilliseconds(197);
-    private static readonly Easing DefaultEasing = new LinearEasing();
+    private static readonly TimeSpan DEFAULT_DURATION = TimeSpan.FromMilliseconds(197);
+    private static readonly Easing DEFAULT_EASING = new LinearEasing();
 
-    public TimeSpan Duration { get; set; } = duration ?? DefaultDuration;
+    public TimeSpan Duration { get; set; } = duration ?? DEFAULT_DURATION;
 
     #region IPageTransition Members
 
@@ -100,7 +100,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
                                          TimeSpan.Zero,
                                          FillMode.Forward,
                                          1.0d,
-                                         DefaultEasing));
+                                         DEFAULT_EASING));
 
         public AnimationBuilder Animation(TimeSpan? duration = null, Easing? easing = null)
         {
@@ -157,9 +157,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
                 return this;
             }
 
-            public AnimationBuilder AddFrame(
-                TimeSpan keyTime,
-                Span<(AvaloniaProperty Property, object? Value)> setters)
+            public AnimationBuilder AddFrame(TimeSpan keyTime, Span<(AvaloniaProperty Property, object? Value)> setters)
             {
                 var frame = new FrameBuilder(null, keyTime);
                 foreach (var setter in setters)
