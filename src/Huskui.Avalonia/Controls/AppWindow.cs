@@ -7,6 +7,7 @@ using Avalonia.Input;
 namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_ToastHost, typeof(OverlayHost))]
+[TemplatePart(PART_DrawerHost, typeof(OverlayHost))]
 [TemplatePart(PART_ModalHost, typeof(OverlayHost))]
 [TemplatePart(PART_DialogHost, typeof(OverlayHost))]
 [TemplatePart(PART_NotificationHost, typeof(NotificationHost))]
@@ -14,6 +15,7 @@ namespace Huskui.Avalonia.Controls;
 public class AppWindow : Window
 {
     public const string PART_ToastHost = nameof(PART_ToastHost);
+    public const string PART_DrawerHost = nameof(PART_DrawerHost);
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
     public const string PART_NotificationHost = nameof(PART_NotificationHost);
@@ -23,10 +25,11 @@ public class AppWindow : Window
                                                          o => o.IsMaximized,
                                                          (o, v) => o.IsMaximized = v);
 
-    private OverlayHost? _dialogHost;
-    private OverlayHost? _modalHost;
-    private NotificationHost? _notificationHost;
     private OverlayHost? _toastHost;
+    private OverlayHost? _drawerHost;
+    private OverlayHost? _modalHost;
+    private OverlayHost? _dialogHost;
+    private NotificationHost? _notificationHost;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -56,6 +59,12 @@ public class AppWindow : Window
             _toastHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
+        if (_drawerHost != null)
+        {
+            _drawerHost.IsPresentChanged -= UpdateObstructed;
+            _drawerHost.MaskPointerPressed -= OnMaskPointerPressed;
+        }
+
         if (_modalHost != null)
         {
             _modalHost.IsPresentChanged -= UpdateObstructed;
@@ -70,15 +79,18 @@ public class AppWindow : Window
 
         _notificationHost = e.NameScope.Find<NotificationHost>(PART_NotificationHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
+        _drawerHost = e.NameScope.Find<OverlayHost>(PART_DrawerHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
         _dialogHost = e.NameScope.Find<OverlayHost>(PART_DialogHost);
 
         ArgumentNullException.ThrowIfNull(_toastHost);
+        ArgumentNullException.ThrowIfNull(_drawerHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
         ArgumentNullException.ThrowIfNull(_notificationHost);
 
         _toastHost.IsPresentChanged += UpdateObstructed;
+        _drawerHost.IsPresentChanged += UpdateObstructed;
         _modalHost.IsPresentChanged += UpdateObstructed;
         _dialogHost.IsPresentChanged += UpdateObstructed;
         _toastHost.MaskPointerPressed += OnMaskPointerPressed;
@@ -86,6 +98,7 @@ public class AppWindow : Window
         _dialogHost.MaskPointerPressed += OnMaskPointerPressed;
 
         LogicalChildren.Add(_toastHost);
+        LogicalChildren.Add(_drawerHost);
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
         LogicalChildren.Add(_notificationHost);
@@ -100,16 +113,23 @@ public class AppWindow : Window
     private void UpdateObstructed(object? _, PropertyChangedRoutedEventArgs<bool> __)
     {
         ArgumentNullException.ThrowIfNull(_toastHost);
+        ArgumentNullException.ThrowIfNull(_drawerHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
 
-        PseudoClasses.Set(":obstructed", _toastHost.IsPresent || _modalHost.IsPresent || _dialogHost.IsPresent);
+        PseudoClasses.Set(":obstructed", _toastHost.IsPresent || _drawerHost.IsPresent || _modalHost.IsPresent || _dialogHost.IsPresent);
     }
 
     public void PopToast(Toast toast)
     {
         ArgumentNullException.ThrowIfNull(_toastHost);
         _toastHost.Pop(toast);
+    }
+
+    public void PopDrawer(Drawer drawer)
+    {
+        ArgumentNullException.ThrowIfNull(_drawerHost);
+        _drawerHost.Pop(drawer);
     }
 
     public void PopDialog(Dialog dialog)

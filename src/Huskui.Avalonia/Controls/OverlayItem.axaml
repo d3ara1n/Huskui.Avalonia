@@ -35,7 +35,7 @@
 
         <Style Selector="^:not(:active) /template/ LayoutTransformControl#TransformRoot">
             <Setter Property="Effect">
-                <BlurEffect Radius="6" />
+                <BlurEffect Radius="2" />
             </Setter>
         </Style>
 

@@ -17,15 +17,9 @@ public class FocusOnTransition : PageTransitionBase
     {
         base.Cleanup(from, to);
 
-        if (from != null)
-        {
-            from.RenderTransform = null;
-        }
+        from?.RenderTransform = null;
 
-        if (to != null)
-        {
-            to.RenderTransform = null;
-        }
+        to?.RenderTransform = null;
     }
 
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)

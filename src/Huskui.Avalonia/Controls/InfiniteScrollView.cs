@@ -108,10 +108,7 @@ public class InfiniteScrollView : ItemsControl
     {
         if (_source == null)
         {
-            if (_pendingPresenter != null)
-            {
-                _pendingPresenter.IsVisible = false;
-            }
+            _pendingPresenter?.IsVisible = false;
 
             return;
         }
@@ -126,10 +123,7 @@ public class InfiniteScrollView : ItemsControl
             return;
         }
 
-        if (_pendingPresenter != null)
-        {
-            _pendingPresenter.IsVisible = true;
-        }
+        _pendingPresenter?.IsVisible = true;
 
         PseudoClasses.Set(":loading", false);
         PseudoClasses.Set(":finished", false);
@@ -148,10 +142,7 @@ public class InfiniteScrollView : ItemsControl
 
         if (!_source.HasNext)
         {
-            if (_pendingPresenter != null)
-            {
-                _pendingPresenter.IsVisible = false;
-            }
+            _pendingPresenter?.IsVisible = false;
 
             return;
         }

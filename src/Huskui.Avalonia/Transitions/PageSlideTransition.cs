@@ -4,40 +4,34 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class PageSlideTransition(DirectionFrom direction = DirectionFrom.Right)
-    : PageTransitionBase(TimeSpan.FromMilliseconds(297))
+public class PageSlideTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(297))
 {
+    public DirectionFrom Direction { get; set; } = DirectionFrom.Right;
+
     protected override void Cleanup(Visual? from, Visual? to)
     {
         base.Cleanup(from, to);
 
-        if (from != null)
-        {
-            from.RenderTransform = null;
-        }
-
-        if (to != null)
-        {
-            to.RenderTransform = null;
-        }
+        from?.RenderTransform = null;
+        to?.RenderTransform = null;
     }
 
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {
         var parent = parentAccessor.Value;
-        var translateProperty = direction switch
+        var translateProperty = Direction switch
         {
             DirectionFrom.Right or DirectionFrom.Left => TranslateTransform.XProperty,
             DirectionFrom.Top or DirectionFrom.Bottom => TranslateTransform.YProperty,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(nameof(Direction))
         };
-        var translateFrom = direction switch
+        var translateFrom = Direction switch
         {
             DirectionFrom.Left => -parent.Bounds.Width,
             DirectionFrom.Right => parent.Bounds.Width,
             DirectionFrom.Top => -parent.Bounds.Height,
             DirectionFrom.Bottom => parent.Bounds.Height,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(nameof(Direction))
         };
 
         from

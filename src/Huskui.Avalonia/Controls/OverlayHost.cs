@@ -161,15 +161,15 @@ public class OverlayHost : ItemsControl
         }
     }
 
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        base.OnLoaded(e);
+        base.OnAttachedToVisualTree(e);
         AddHandler(OverlayItem.DismissRequestedEvent, DismissRequestedHandler);
     }
 
-    protected override void OnUnloaded(RoutedEventArgs e)
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
-        base.OnUnloaded(e);
+        base.OnDetachedFromVisualTree(e);
         RemoveHandler(OverlayItem.DismissRequestedEvent, DismissRequestedHandler);
     }
 

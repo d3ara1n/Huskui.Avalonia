@@ -6,11 +6,13 @@
     <Thickness x:Key="ToastHeaderlessContentMargin">24</Thickness>
     <Thickness x:Key="ToastHeaderContentMargin">0,70,0,0</Thickness>
     <Thickness x:Key="ToastToplessContentMargin">24,0,24,24</Thickness>
+
     <ControlTheme x:Key="{x:Type local:Toast}" TargetType="local:Toast">
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="Padding" Value="{StaticResource ToastContentMargin}" />
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
         <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />
+        <Setter Property="Margin" Value="12,32,12,0" />
         <Setter Property="CornerRadius"
                 Value="{Binding Source={StaticResource LargeCornerRadius},Converter={x:Static local:CornerRadiusConverters.Upper}}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
