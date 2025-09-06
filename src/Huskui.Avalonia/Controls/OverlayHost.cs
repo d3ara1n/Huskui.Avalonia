@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Animation;
-using Avalonia.Animation.Easings;
 using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -10,7 +9,6 @@ using Avalonia.Controls.Templates;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Markup.Xaml.Templates;
 using Avalonia.Metadata;
 using Avalonia.Styling;
 using Avalonia.Threading;
@@ -38,20 +36,8 @@ public class OverlayHost : TemplatedControl
                                                                 new PageCoverOverTransition(null,
                                                                     DirectionFrom.Bottom));
 
-    public IPageTransition Transition
-    {
-        get => GetValue(TransitionProperty);
-        set => SetValue(TransitionProperty, value);
-    }
-
     public static readonly StyledProperty<int> ItemCountProperty =
         AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
-
-    public int ItemCount
-    {
-        get => GetValue(ItemCountProperty);
-        set => SetValue(ItemCountProperty, value);
-    }
 
     public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<bool>> IsPresentChangedEvent =
         RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
@@ -64,6 +50,20 @@ public class OverlayHost : TemplatedControl
     public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
         AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
 
+    private Border? _smokeMask;
+
+    public IPageTransition Transition
+    {
+        get => GetValue(TransitionProperty);
+        set => SetValue(TransitionProperty, value);
+    }
+
+    public int ItemCount
+    {
+        get => GetValue(ItemCountProperty);
+        set => SetValue(ItemCountProperty, value);
+    }
+
     public ITemplate ItemsPanel
     {
         get => GetValue(ItemsPanelProperty);
@@ -72,8 +72,6 @@ public class OverlayHost : TemplatedControl
 
     [Content]
     public AvaloniaList<OverlayItem> Items { get; } = [];
-
-    private Border? _smokeMask;
 
     public bool IsPresent
     {

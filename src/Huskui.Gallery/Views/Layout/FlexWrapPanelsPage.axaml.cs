@@ -1,9 +1,8 @@
 ﻿using Huskui.Gallery.Controls;
 
-namespace Huskui.Gallery.Views.Layout
+namespace Huskui.Gallery.Views.Layout;
+
+public partial class FlexWrapPanelsPage : ControlPage
 {
-    public partial class FlexWrapPanelsPage : ControlPage
-    {
-        public FlexWrapPanelsPage() => InitializeComponent();
-    }
+    public FlexWrapPanelsPage() => InitializeComponent();
 }

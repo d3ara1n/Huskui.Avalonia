@@ -1,9 +1,8 @@
 ﻿using Huskui.Gallery.Controls;
 
-namespace Huskui.Gallery.Views.Input
+namespace Huskui.Gallery.Views.Input;
+
+public partial class ToggleSwitchesPage : ControlPage
 {
-    public partial class ToggleSwitchesPage : ControlPage
-    {
-        public ToggleSwitchesPage() => InitializeComponent();
-    }
+    public ToggleSwitchesPage() => InitializeComponent();
 }

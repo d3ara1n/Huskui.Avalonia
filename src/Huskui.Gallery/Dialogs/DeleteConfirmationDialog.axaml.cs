@@ -1,9 +1,8 @@
 ﻿using Huskui.Avalonia.Controls;
 
-namespace Huskui.Gallery.Dialogs
+namespace Huskui.Gallery.Dialogs;
+
+public partial class DeleteConfirmationDialog : Dialog
 {
-    public partial class DeleteConfirmationDialog : Dialog
-    {
-        public DeleteConfirmationDialog() => InitializeComponent();
-    }
+    public DeleteConfirmationDialog() => InitializeComponent();
 }

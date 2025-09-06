@@ -1,10 +1,8 @@
-﻿using Avalonia.Controls;
-using Huskui.Gallery.Controls;
+﻿using Huskui.Gallery.Controls;
 
-namespace Huskui.Gallery.Views.Containers
+namespace Huskui.Gallery.Views.Containers;
+
+public partial class SkeletonContainersPage : ControlPage
 {
-    public partial class SkeletonContainersPage : ControlPage
-    {
-        public SkeletonContainersPage() => InitializeComponent();
-    }
+    public SkeletonContainersPage() => InitializeComponent();
 }

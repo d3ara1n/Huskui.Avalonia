@@ -1,12 +1,8 @@
 using Huskui.Gallery.Controls;
 
-namespace Huskui.Gallery.Views.Overlays
+namespace Huskui.Gallery.Views.Overlays;
+
+public partial class FlyoutsPage : ControlPage
 {
-    public partial class FlyoutsPage : ControlPage
-    {
-        public FlyoutsPage()
-        {
-            InitializeComponent();
-        }
-    }
+    public FlyoutsPage() => InitializeComponent();
 }

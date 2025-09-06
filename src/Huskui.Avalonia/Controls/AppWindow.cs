@@ -26,8 +26,8 @@ public class AppWindow : Window
 
     private OverlayHost? _dialogHost;
     private OverlayHost? _drawerHost;
-    private OverlayHost? _modalHost;
     private GrowlHost? _growlHost;
+    private OverlayHost? _modalHost;
 
     private OverlayHost? _toastHost;
 

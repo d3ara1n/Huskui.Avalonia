@@ -1,12 +1,8 @@
 using Huskui.Gallery.Controls;
 
-namespace Huskui.Gallery.Views.Containers
+namespace Huskui.Gallery.Views.Containers;
+
+public partial class TabControlsPage : ControlPage
 {
-    public partial class TabControlsPage : ControlPage
-    {
-        public TabControlsPage()
-        {
-            InitializeComponent();
-        }
-    }
+    public TabControlsPage() => InitializeComponent();
 }

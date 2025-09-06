@@ -6,46 +6,45 @@ using Huskui.Gallery.ViewModels;
 using Huskui.Gallery.Views;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Huskui.Gallery
+namespace Huskui.Gallery;
+
+public class App : Application
 {
-    public class App : Application
+    public static ServiceProvider? ServiceProvider { get; private set; }
+
+    public override void Initialize()
     {
-        public static ServiceProvider? ServiceProvider { get; private set; }
+        AvaloniaXamlLoader.Load(this);
+        ConfigureServices();
+    }
 
-        public override void Initialize()
+    public override void OnFrameworkInitializationCompleted()
+    {
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            AvaloniaXamlLoader.Load(this);
-            ConfigureServices();
+            var mainViewModel = ServiceProvider?.GetRequiredService<MainWindowViewModel>();
+            desktop.MainWindow = new MainWindow { DataContext = mainViewModel };
         }
 
-        public override void OnFrameworkInitializationCompleted()
-        {
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                var mainViewModel = ServiceProvider?.GetRequiredService<MainWindowViewModel>();
-                desktop.MainWindow = new MainWindow { DataContext = mainViewModel };
-            }
+        base.OnFrameworkInitializationCompleted();
+    }
 
-            base.OnFrameworkInitializationCompleted();
-        }
+    private static void ConfigureServices()
+    {
+        var services = new ServiceCollection();
 
-        private static void ConfigureServices()
-        {
-            var services = new ServiceCollection();
+        // Register services
+        services.AddSingleton<IGalleryService, GalleryService>();
+        services.AddSingleton<IThemeService, ThemeService>();
+        services.AddSingleton<INavigationService, NavigationService>();
 
-            // Register services
-            services.AddSingleton<IGalleryService, GalleryService>();
-            services.AddSingleton<IThemeService, ThemeService>();
-            services.AddSingleton<INavigationService, NavigationService>();
+        // Register view models
+        services.AddTransient<MainWindowViewModel>();
 
-            // Register view models
-            services.AddTransient<MainWindowViewModel>();
+        ServiceProvider = services.BuildServiceProvider();
 
-            ServiceProvider = services.BuildServiceProvider();
-
-            // Initialize services
-            var galleryService = ServiceProvider.GetRequiredService<IGalleryService>();
-            galleryService.Initialize();
-        }
+        // Initialize services
+        var galleryService = ServiceProvider.GetRequiredService<IGalleryService>();
+        galleryService.Initialize();
     }
 }

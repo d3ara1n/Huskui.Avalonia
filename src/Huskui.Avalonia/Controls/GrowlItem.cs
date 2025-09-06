@@ -41,14 +41,14 @@ public sealed class GrowlItem : ContentControl
     public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
         RoutedEvent.Register<GrowlItem, DismissRequestedEventArgs>(nameof(DismissRequested), RoutingStrategies.Bubble);
 
+    private readonly CancellationTokenSource _cts = new();
+    private readonly InternalCommand _dismissCommand;
+
     public GrowlItem() => _dismissCommand = new(Dismiss, () => !_cts.IsCancellationRequested);
 
     protected override Type StyleKeyOverride { get; } = typeof(GrowlItem);
 
-    private readonly CancellationTokenSource _cts = new();
-
     public ICommand DismissCommand => _dismissCommand;
-    private InternalCommand _dismissCommand;
 
     public bool IsCloseButtonVisible
     {
@@ -98,13 +98,13 @@ public sealed class GrowlItem : ContentControl
         set => SetValue(TitleProperty, value);
     }
 
+    public CancellationToken Token => _cts.Token;
+
     public event EventHandler<DismissRequestedEventArgs>? DismissRequested
     {
         add => AddHandler(DismissRequestedEvent, value);
         remove => RemoveHandler(DismissRequestedEvent, value);
     }
-
-    public CancellationToken Token => _cts.Token;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
