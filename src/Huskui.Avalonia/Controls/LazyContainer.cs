@@ -126,7 +126,10 @@ public class LazyContainer : TemplatedControl
     private async Task LoadAsync(LazyObject lazy)
     {
         if (Design.IsDesignMode)
+        {
             return;
+        }
+
         ArgumentNullException.ThrowIfNull(_contentPresenter);
 
         _contentPresenter.Content = null;

@@ -5,7 +5,7 @@
         <Panel Background="White">
             <StackPanel Margin="24" Orientation="Horizontal">
                 <husk:StepControl>
-                    <Border/>
+                    <Border />
                 </husk:StepControl>
             </StackPanel>
         </Panel>
@@ -18,11 +18,13 @@
             <ControlTemplate>
                 <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
                     <Grid Grid.Row="0" ColumnDefinitions="*,Auto,*">
-                        <Border Grid.Column="0" Height="4" Background="{StaticResource ControlAccentBackground}" IsVisible="{TemplateBinding IsFirst, Converter={x:Static BoolConverters.Not}}"/>
+                        <Border Grid.Column="0" Height="4" Background="{StaticResource ControlAccentBackground}"
+                                IsVisible="{TemplateBinding IsFirst, Converter={x:Static BoolConverters.Not}}" />
                         <husk:SwitchPresenter Grid.Column="1">
-                            <husk:SwitchCase></husk:SwitchCase>
+                            <husk:SwitchCase />
                         </husk:SwitchPresenter>
-                        <Border Grid.Column="2" Height="4" Background="{StaticResource ControlAccentBackground}" IsVisible="{TemplateBinding IsLast, Converter={x:Static BoolConverters.Not}}"/>
+                        <Border Grid.Column="2" Height="4" Background="{StaticResource ControlAccentBackground}"
+                                IsVisible="{TemplateBinding IsLast, Converter={x:Static BoolConverters.Not}}" />
                     </Grid>
                     <ContentPresenter Grid.Row="1" Content="{TemplateBinding Header}"
                                       ContentTemplate="{TemplateBinding HeaderTemplate}"

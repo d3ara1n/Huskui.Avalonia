@@ -41,17 +41,7 @@ public class OverlayHost : ItemsControl
         RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(nameof(MaskPointerPressed),
                                                                        RoutingStrategies.Bubble);
 
-    public event EventHandler<MaskPointerPressedEventArgs> MaskPointerPressed
-    {
-        add => AddHandler(MaskPointerPressedEvent, value);
-        remove => RemoveHandler(MaskPointerPressedEvent, value);
-    }
-
-    public event EventHandler<PropertyChangedRoutedEventArgs<bool>>? IsPresentChanged
-    {
-        add => AddHandler(IsPresentChangedEvent, value);
-        remove => RemoveHandler(IsPresentChangedEvent, value);
-    }
+    private Border? _smokeMask;
 
     public bool IsPresent
     {
@@ -67,7 +57,17 @@ public class OverlayHost : ItemsControl
 
     protected override Type StyleKeyOverride => typeof(OverlayHost);
 
-    private Border? _smokeMask;
+    public event EventHandler<MaskPointerPressedEventArgs> MaskPointerPressed
+    {
+        add => AddHandler(MaskPointerPressedEvent, value);
+        remove => RemoveHandler(MaskPointerPressedEvent, value);
+    }
+
+    public event EventHandler<PropertyChangedRoutedEventArgs<bool>>? IsPresentChanged
+    {
+        add => AddHandler(IsPresentChangedEvent, value);
+        remove => RemoveHandler(IsPresentChangedEvent, value);
+    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -86,10 +86,8 @@ public class OverlayHost : ItemsControl
         }
     }
 
-    private void SmokeMask_OnPointerPressed(object? sender, PointerPressedEventArgs e)
-    {
+    private void SmokeMask_OnPointerPressed(object? sender, PointerPressedEventArgs e) =>
         RaiseEvent(new MaskPointerPressedEventArgs(this, e));
-    }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -183,6 +181,20 @@ public class OverlayHost : ItemsControl
         e.Handled = true;
     }
 
+    #region Nested type: MaskPointerPressedEventArgs
+
+    #region Nested Type: MaskPointerPressedEventArgs
+
+    public class MaskPointerPressedEventArgs(object? source, PointerPressedEventArgs args)
+        : RoutedEventArgs(MaskPointerPressedEvent, source)
+    {
+        public PointerPressedEventArgs Inner => args;
+    }
+
+    #endregion
+
+    #endregion
+
     #region StageInAnimation & StageOutAnimation
 
     private static readonly Animation StageInAnimation = new()
@@ -229,16 +241,6 @@ public class OverlayHost : ItemsControl
     {
         get => GetValue(VerticalContentAlignmentProperty);
         set => SetValue(VerticalContentAlignmentProperty, value);
-    }
-
-    #endregion
-
-    #region Nested Type: MaskPointerPressedEventArgs
-
-    public class MaskPointerPressedEventArgs(object? source, PointerPressedEventArgs args)
-        : RoutedEventArgs(MaskPointerPressedEvent, source)
-    {
-        public PointerPressedEventArgs Inner => args;
     }
 
     #endregion

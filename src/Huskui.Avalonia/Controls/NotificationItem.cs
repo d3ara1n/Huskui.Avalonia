@@ -144,9 +144,7 @@ public class NotificationItem : ContentControl
             PseudoClasses.Set(":open", opened);
         }
 
-        if (Token.IsCancellationRequested
-         && change.Property == OpacityProperty
-         && change.NewValue is < double.Epsilon)
+        if (Token.IsCancellationRequested && change.Property == OpacityProperty && change.NewValue is < double.Epsilon)
         {
             RaiseEvent(new(ClosedEvent, this));
         }

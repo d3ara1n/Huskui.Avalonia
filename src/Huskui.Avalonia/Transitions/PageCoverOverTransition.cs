@@ -8,10 +8,8 @@ public sealed class PageCoverOverTransition : PageTransitionBase
 {
     public PageCoverOverTransition() : this(null) { }
 
-    public PageCoverOverTransition(TimeSpan? duration = null, DirectionFrom? direction = null) : base(duration)
-    {
+    public PageCoverOverTransition(TimeSpan? duration = null, DirectionFrom? direction = null) : base(duration) =>
         Direction = direction ?? DirectionFrom.Right;
-    }
 
     public DirectionFrom Direction { get; set; }
 

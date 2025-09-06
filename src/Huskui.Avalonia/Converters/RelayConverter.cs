@@ -40,8 +40,7 @@ public class RelayConverter : IValueConverter
                     return result;
                 }
 
-                throw new
-                    InvalidOperationException("The requested bool value was not present in the provided type.");
+                throw new InvalidOperationException("The requested bool value was not present in the provided type.");
             }
 
             if (targetType.IsEnum)
@@ -51,8 +50,7 @@ public class RelayConverter : IValueConverter
                     return result;
                 }
 
-                throw new
-                    InvalidOperationException("The requested enum value was not present in the provided type.");
+                throw new InvalidOperationException("The requested enum value was not present in the provided type.");
             }
         }
 

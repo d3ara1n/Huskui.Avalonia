@@ -6,9 +6,7 @@ namespace Huskui.Avalonia.Controls;
 public class SwitchCase : AvaloniaObject
 {
     public static readonly DirectProperty<SwitchCase, object?> ContentProperty =
-        AvaloniaProperty.RegisterDirect<SwitchCase, object?>(nameof(Content),
-                                                             o => o.Content,
-                                                             (o, v) => o.Content = v);
+        AvaloniaProperty.RegisterDirect<SwitchCase, object?>(nameof(Content), o => o.Content, (o, v) => o.Content = v);
 
     public static readonly DirectProperty<SwitchCase, object?> ValueProperty =
         AvaloniaProperty.RegisterDirect<SwitchCase, object?>(nameof(Value), o => o.Value, (o, v) => o.Value = v);

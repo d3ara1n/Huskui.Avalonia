@@ -28,8 +28,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="[11.3.0]" />
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.308" />
+        <PackageReference Include="Avalonia" Version="[11.3.0]"/>
+        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.308"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -48,7 +48,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.2"/>
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
     </ItemGroup>
 </Project>

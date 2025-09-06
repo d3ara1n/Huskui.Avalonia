@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Input;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -25,11 +24,12 @@ public class AppWindow : Window
                                                          o => o.IsMaximized,
                                                          (o, v) => o.IsMaximized = v);
 
-    private OverlayHost? _toastHost;
+    private OverlayHost? _dialogHost;
     private OverlayHost? _drawerHost;
     private OverlayHost? _modalHost;
-    private OverlayHost? _dialogHost;
     private NotificationHost? _notificationHost;
+
+    private OverlayHost? _toastHost;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -118,7 +118,11 @@ public class AppWindow : Window
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
 
-        PseudoClasses.Set(":obstructed", _toastHost.IsPresent || _drawerHost.IsPresent || _modalHost.IsPresent || _dialogHost.IsPresent);
+        PseudoClasses.Set(":obstructed",
+                          _toastHost.IsPresent
+                       || _drawerHost.IsPresent
+                       || _modalHost.IsPresent
+                       || _dialogHost.IsPresent);
     }
 
     public void PopToast(Toast toast)
