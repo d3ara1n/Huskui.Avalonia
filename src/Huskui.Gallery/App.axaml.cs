@@ -3,7 +3,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Huskui.Gallery.Services;
 using Huskui.Gallery.ViewModels;
-using Huskui.Gallery.Views;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Gallery;

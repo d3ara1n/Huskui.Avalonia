@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using Avalonia.Media;
-using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Transitions;
 using Huskui.Gallery.Controls;
 using Huskui.Gallery.Models;
@@ -16,6 +10,11 @@ namespace Huskui.Gallery.Views;
 
 public partial class FramesPage : ControlPage
 {
+    public static readonly DirectProperty<FramesPage, TransitionInfo> SelectedTransitionInfoProperty =
+        AvaloniaProperty.RegisterDirect<FramesPage, TransitionInfo>(nameof(SelectedTransitionInfo),
+                                                                    o => o.SelectedTransitionInfo,
+                                                                    (o, v) => o.SelectedTransitionInfo = v);
+
     public FramesPage()
     {
         InitializeComponent();
@@ -31,24 +30,14 @@ public partial class FramesPage : ControlPage
         new(new PopUpTransition())
     ];
 
-    public static readonly DirectProperty<FramesPage, TransitionInfo> SelectedTransitionInfoProperty =
-        AvaloniaProperty.RegisterDirect<FramesPage, TransitionInfo>(nameof(SelectedTransitionInfo),
-                                                                    o => o.SelectedTransitionInfo,
-                                                                    (o, v) => o.SelectedTransitionInfo = v);
-
     public TransitionInfo SelectedTransitionInfo
     {
         get;
         set => SetAndRaise(SelectedTransitionInfoProperty, ref field, value);
     }
 
-    private void NextButton_OnClick(object? sender, RoutedEventArgs e)
-    {
+    private void NextButton_OnClick(object? sender, RoutedEventArgs e) =>
         Root.Navigate(typeof(ExamplePage), Root.HistoryCount, SelectedTransitionInfo.Transition);
-    }
 
-    private void BackButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        Root.GoBack();
-    }
+    private void BackButton_OnClick(object? sender, RoutedEventArgs e) => Root.GoBack();
 }

@@ -5,7 +5,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
-using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Huskui.Avalonia.Models;
 
@@ -40,14 +39,28 @@ public class Frame : TemplatedControl
     public static readonly StyledProperty<bool> CanGoBackProperty =
         AvaloniaProperty.Register<Frame, bool>(nameof(CanGoBack));
 
+    public static readonly StyledProperty<bool> CanGoBackOutOfStackProperty =
+        AvaloniaProperty.Register<Frame, bool>(nameof(CanGoBackOutOfStack));
+
+
+    private readonly InternalCommand _goBackCommand;
+
+    private readonly Stack<FrameFrame> _history = new();
+
+    private FrameFrame? _currentFrame;
+    private CancellationTokenSource? _currentToken;
+
+    private ContentPresenter? _presenter;
+    private ContentPresenter? _presenter2;
+    private bool _toggle;
+
+    public Frame() => _goBackCommand = new(GoBack, () => CanGoBack);
+
     public bool CanGoBack
     {
         get => GetValue(CanGoBackProperty);
         set => SetValue(CanGoBackProperty, value);
     }
-
-    public static readonly StyledProperty<bool> CanGoBackOutOfStackProperty =
-        AvaloniaProperty.Register<Frame, bool>(nameof(CanGoBackOutOfStack));
 
     public bool CanGoBackOutOfStack
     {
@@ -65,23 +78,6 @@ public class Frame : TemplatedControl
     {
         get => GetValue(HistoryCountProperty);
         set => SetValue(HistoryCountProperty, value);
-    }
-
-
-    private readonly InternalCommand _goBackCommand;
-
-    private readonly Stack<FrameFrame> _history = new();
-
-    private FrameFrame? _currentFrame;
-    private CancellationTokenSource? _currentToken;
-    private bool _toggle;
-
-    private ContentPresenter? _presenter;
-    private ContentPresenter? _presenter2;
-
-    public Frame()
-    {
-        _goBackCommand = new(GoBack, () => CanGoBack);
     }
 
     public object? Content

@@ -8,7 +8,6 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Metadata;
 using Avalonia.Styling;
-using Avalonia.Threading;
 using Huskui.Avalonia.Transitions;
 
 namespace Huskui.Avalonia.Controls;

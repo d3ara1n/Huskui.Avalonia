@@ -13,6 +13,16 @@ public partial class CategoryGroupViewModel : ObservableObject
     private readonly ReadOnlyObservableCollection<GalleryItem> _allItems;
     private readonly GalleryCategory _category;
 
+    public CategoryGroupViewModel(GalleryCategory category, ReadOnlyObservableCollection<GalleryItem> allItems)
+    {
+        _category = category;
+        _allItems = allItems;
+        FilteredItems = allItems;
+
+        // Initially show all items
+        UpdateFilteredItems();
+    }
+
     [ObservableProperty]
     public partial ReadOnlyObservableCollection<GalleryItem> FilteredItems { get; set; }
 
@@ -24,16 +34,6 @@ public partial class CategoryGroupViewModel : ObservableObject
 
     [ObservableProperty]
     public partial GalleryItem? SelectedItem { get; set; }
-
-    public CategoryGroupViewModel(GalleryCategory category, ReadOnlyObservableCollection<GalleryItem> allItems)
-    {
-        _category = category;
-        _allItems = allItems;
-        FilteredItems = allItems;
-
-        // Initially show all items
-        UpdateFilteredItems();
-    }
 
     public string Name => _category.Name;
     public string Description => _category.Description;
