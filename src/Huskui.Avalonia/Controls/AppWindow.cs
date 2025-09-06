@@ -94,6 +94,7 @@ public class AppWindow : Window
         _modalHost.IsPresentChanged += UpdateObstructed;
         _dialogHost.IsPresentChanged += UpdateObstructed;
         _toastHost.MaskPointerPressed += OnMaskPointerPressed;
+        _drawerHost.MaskPointerPressed += OnMaskPointerPressed;
         _modalHost.MaskPointerPressed += OnMaskPointerPressed;
         _dialogHost.MaskPointerPressed += OnMaskPointerPressed;
 
