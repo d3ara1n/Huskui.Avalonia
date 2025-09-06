@@ -160,7 +160,7 @@ public class OverlayHost : TemplatedControl
         {
             var transition = item.Transition ?? Transition;
             transition
-               .Start(item, null, false, CancellationToken.None)
+               .Start(item, null, true, CancellationToken.None)
                .ContinueWith(_ => Dispatcher.UIThread.Post(Clean));
             return;
 

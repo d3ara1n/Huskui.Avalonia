@@ -88,7 +88,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
 
     public class Builder
     {
-        private readonly IList<AnimationBuilder> _builder = new List<AnimationBuilder>();
+        private readonly List<AnimationBuilder> _builder = [];
         private readonly TimeSpan _duration;
 
         public Builder(TimeSpan duration) => _duration = duration;
@@ -117,7 +117,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
 
         public class AnimationBuilder
         {
-            private readonly IList<FrameBuilder> _frames = new List<FrameBuilder>();
+            private readonly List<FrameBuilder> _frames = [];
             private TimeSpan? _delay;
             private TimeSpan? _duration;
             private Easing? _easing;
@@ -214,7 +214,7 @@ public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTrans
                 double speedRatio,
                 Easing easing)
             {
-                Animation? animation = new()
+                var animation = new Animation
                 {
                     Duration = _duration ?? duration,
                     FillMode = _fillMode ?? fillMode,

@@ -98,7 +98,7 @@ public class GrowlHost : TemplatedControl
 
     public void Dismiss(GrowlItem item) =>
         Transition
-           .Start(item, null, false, CancellationToken.None)
+           .Start(item, null, true, CancellationToken.None)
            .ContinueWith(_ => Dispatcher.UIThread.Post(() =>
             {
                 {
