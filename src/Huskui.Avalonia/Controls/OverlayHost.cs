@@ -159,7 +159,7 @@ public class OverlayHost : TemplatedControl
         {
             var transition = item.Transition ?? Transition;
             transition
-               .Start(item, null, true, CancellationToken.None)
+               .Start(null, item, false, CancellationToken.None)
                .ContinueWith(_ => Clean(), TaskScheduler.FromCurrentSynchronizationContext());
             return;
 
