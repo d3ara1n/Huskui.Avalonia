@@ -44,7 +44,7 @@ jobs:
                       --output ./publish
 
             -   name: Generate changelog
-                run: git-cliff -o ./CHANGELOG.md
+                run: git-cliff  --latest -o ./CHANGELOG.md
 
             -   name: Publish to NuGet
                 run: |
