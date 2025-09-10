@@ -4,6 +4,8 @@ Huskui.Avalonia is a modern, elegant UI component library for [Avalonia UI](http
 provide a comprehensive set of customizable controls for building beautiful cross-platform desktop applications.
 Inspired by [ParkUI](https://park-ui.com/) and using the [Radix Colors](https://www.radix-ui.com/colors) palette.
 
+![Screenshot](assets/screenshots.png)
+
 ## Features
 
 - **Rich Component Library**: Includes a wide range of UI components like AppWindow, Card, InfoBar, Tag, IconLabel, and
