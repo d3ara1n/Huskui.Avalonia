@@ -178,11 +178,11 @@ public class Frame : TemplatedControl
 
             // content == null 时短路到 (current, target)，即不切换
             //  否则应用 reverse 规则
-            var (fromPresenter, toPresenter) = content != null && reverse
+            var (outPresenter, inPresenter) = content != null && reverse
                                                    ? (targetPresenter, currentPresenter)
                                                    : (currentPresenter, targetPresenter);
             transition
-               .Start(fromPresenter, toPresenter, !reverse, cancel.Token)
+               .Start(outPresenter, inPresenter, !reverse, cancel.Token)
                .ContinueWith(_ =>
                              {
                                  if (cancel.IsCancellationRequested)

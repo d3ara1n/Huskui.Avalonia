@@ -126,6 +126,57 @@ public class OverlayHost : TemplatedControl
         }
     }
 
+    private Stack<OverlayItem> _toPops = [];
+    private Stack<OverlayItem> _toDismiss = [];
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var rv = base.ArrangeOverride(finalSize);
+
+        if (_toPops.Count > 0)
+        {
+            while (_toPops.TryPop(out var item))
+            {
+                var transition = item.Transition ?? Transition;
+                transition.Start(null, item, true, CancellationToken.None);
+            }
+        }
+
+        if (_toDismiss.Count > 0)
+        {
+            while (_toDismiss.TryPop(out var item))
+            {
+                var transition = item.Transition ?? Transition;
+                transition
+                   .Start(null, item, false, CancellationToken.None)
+                   .ContinueWith(_ => Clean(), TaskScheduler.FromCurrentSynchronizationContext());
+                continue;
+
+                void Clean()
+                {
+                    for (var i = 0; i < Items.IndexOf(item); i++)
+                    {
+                        if (Items[i] is { } inner)
+                        {
+                            inner.Distance--;
+                        }
+                    }
+
+
+                    LogicalChildren.Remove(item);
+                    Items.Remove(item);
+                    ItemCount = Items.Count;
+                    if (Items.Count == 0)
+                    {
+                        IsPresent = false;
+                    }
+                }
+            }
+        }
+
+        return rv;
+    }
+
     public void Pop(object control)
     {
         var item = new OverlayItem { Content = control, Distance = 0 };
@@ -143,8 +194,8 @@ public class OverlayHost : TemplatedControl
             IsPresent = true;
         }
 
-        var transition = item.Transition ?? Transition;
-        transition.Start(null, item, true, CancellationToken.None);
+        _toPops.Push(item);
+        InvalidateArrange();
     }
 
     public void Dismiss(object control)
@@ -157,31 +208,8 @@ public class OverlayHost : TemplatedControl
         };
         if (item is not null)
         {
-            var transition = item.Transition ?? Transition;
-            transition
-               .Start(null, item, false, CancellationToken.None)
-               .ContinueWith(_ => Clean(), TaskScheduler.FromCurrentSynchronizationContext());
-            return;
-
-            void Clean()
-            {
-                for (var i = 0; i < Items.IndexOf(item); i++)
-                {
-                    if (Items[i] is { } inner)
-                    {
-                        inner.Distance--;
-                    }
-                }
-
-
-                LogicalChildren.Remove(item);
-                Items.Remove(item);
-                ItemCount = Items.Count;
-                if (Items.Count == 0)
-                {
-                    IsPresent = false;
-                }
-            }
+            _toDismiss.Push(item);
+            InvalidateArrange();
         }
     }
 
