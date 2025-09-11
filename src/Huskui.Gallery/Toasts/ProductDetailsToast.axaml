@@ -8,8 +8,8 @@
             Header="Premium Wireless Headphones"
             IsHeaderVisible="True">
 
-    <ScrollViewer Padding="24">
-        <Grid ColumnDefinitions="300,*" ColumnSpacing="24">
+    <ScrollViewer>
+        <Grid ColumnDefinitions="300,*" ColumnSpacing="24" Margin="24">
 
             <!-- Product Images -->
             <StackPanel Grid.Column="0" Spacing="16">

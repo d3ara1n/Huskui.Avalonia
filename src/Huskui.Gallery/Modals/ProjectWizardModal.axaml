@@ -11,7 +11,6 @@
 
         <!-- Header -->
         <Border Grid.Row="0"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                 Padding="24,16"
                 CornerRadius="8,8,0,0">
             <Grid ColumnDefinitions="*,Auto">
@@ -28,17 +27,16 @@
                 </StackPanel>
 
                 <Button Grid.Column="1"
-                        Content="✕"
-                        Classes="Subtle"
-                        Width="32"
-                        Height="32"
-                        Click="OnCloseClick" />
+                        Click="OnCloseClick">
+                    <fi:SymbolIcon Symbol="Dismiss" FontSize="{StaticResource MediumFontSize}"
+                                   HorizontalAlignment="Center" />
+                </Button>
             </Grid>
         </Border>
 
         <!-- Content -->
-        <ScrollViewer Grid.Row="1" Padding="24">
-            <StackPanel Spacing="24">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="24" Margin="24">
 
                 <!-- Progress Indicator -->
                 <husk:Card Padding="20">

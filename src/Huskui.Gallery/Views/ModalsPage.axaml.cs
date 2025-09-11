@@ -20,7 +20,7 @@ public partial class ModalsPage : ControlPage
             return;
         }
 
-        var modal = new Modal { Content = new SettingsModal() };
+        var modal = new SettingsModal();
         appWindow.PopModal(modal);
     }
 

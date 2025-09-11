@@ -8,8 +8,8 @@
             Header="Understanding Modern UI Design Patterns"
             IsHeaderVisible="True">
 
-    <ScrollViewer Padding="24">
-        <StackPanel Spacing="20">
+    <ScrollViewer>
+        <StackPanel Spacing="20" Margin="24">
 
             <!-- Article Metadata -->
             <StackPanel Orientation="Horizontal" Spacing="16">

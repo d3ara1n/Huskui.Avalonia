@@ -4,14 +4,13 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
             x:Class="Huskui.Gallery.Modals.SettingsModal">
 
-    <Grid RowDefinitions="Auto,*,Auto" MaxWidth="700">
+    <Grid RowDefinitions="Auto,*,Auto" MaxWidth="600">
 
         <!-- Header -->
         <Border Grid.Row="0"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
                 Padding="24,16"
                 CornerRadius="8,8,0,0">
             <Grid ColumnDefinitions="*,Auto">
@@ -24,17 +23,16 @@
                 </StackPanel>
 
                 <Button Grid.Column="1"
-                        Content="✕"
-                        Classes="Subtle"
-                        Width="32"
-                        Height="32"
-                        Click="OnCloseClick" />
+                        Click="OnCloseClick">
+                    <fi:SymbolIcon Symbol="Dismiss" FontSize="{StaticResource MediumFontSize}"
+                                   HorizontalAlignment="Center" />
+                </Button>
             </Grid>
         </Border>
 
         <!-- Content -->
-        <ScrollViewer Grid.Row="1" Padding="24">
-            <StackPanel Spacing="24">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Spacing="24" Margin="24">
 
                 <!-- General Settings -->
                 <husk:Card Padding="20">
