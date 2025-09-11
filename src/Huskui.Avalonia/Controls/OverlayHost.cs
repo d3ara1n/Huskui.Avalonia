@@ -126,8 +126,8 @@ public class OverlayHost : TemplatedControl
         }
     }
 
-    private Stack<OverlayItem> _toPops = [];
-    private Stack<OverlayItem> _toDismiss = [];
+    private Queue<OverlayItem> _toPops = [];
+    private Queue<OverlayItem> _toDismiss = [];
 
     protected override Size ArrangeOverride(Size finalSize)
     {
@@ -135,7 +135,7 @@ public class OverlayHost : TemplatedControl
 
         if (_toPops.Count > 0)
         {
-            while (_toPops.TryPop(out var item))
+            while (_toPops.TryDequeue(out var item))
             {
                 var transition = item.Transition ?? Transition;
                 transition.Start(null, item, true, CancellationToken.None);
@@ -144,33 +144,30 @@ public class OverlayHost : TemplatedControl
 
         if (_toDismiss.Count > 0)
         {
-            while (_toDismiss.TryPop(out var item))
+            while (_toDismiss.TryDequeue(out var item))
             {
                 var transition = item.Transition ?? Transition;
                 transition
                    .Start(null, item, false, CancellationToken.None)
-                   .ContinueWith(_ => Clean(), TaskScheduler.FromCurrentSynchronizationContext());
-                continue;
-
-                void Clean()
-                {
-                    for (var i = 0; i < Items.IndexOf(item); i++)
-                    {
-                        if (Items[i] is { } inner)
-                        {
-                            inner.Distance--;
-                        }
-                    }
+                   .ContinueWith(_ =>
+                   {
+                       for (var i = 0; i < Items.IndexOf(item); i++)
+                       {
+                           if (Items[i] is { } inner)
+                           {
+                               inner.Distance--;
+                           }
+                       }
 
 
-                    LogicalChildren.Remove(item);
-                    Items.Remove(item);
-                    ItemCount = Items.Count;
-                    if (Items.Count == 0)
-                    {
-                        IsPresent = false;
-                    }
-                }
+                       LogicalChildren.Remove(item);
+                       Items.Remove(item);
+                       ItemCount = Items.Count;
+                       if (Items.Count == 0)
+                       {
+                           IsPresent = false;
+                       }
+                   }, TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 
@@ -194,7 +191,7 @@ public class OverlayHost : TemplatedControl
             IsPresent = true;
         }
 
-        _toPops.Push(item);
+        _toPops.Enqueue(item);
         InvalidateArrange();
     }
 
@@ -206,9 +203,9 @@ public class OverlayHost : TemplatedControl
             Visual visual => VisualExtensions.FindAncestorOfType<OverlayItem>(visual),
             _ => null
         };
-        if (item is not null)
+        if (item is not null && !_toDismiss.Contains(item))
         {
-            _toDismiss.Push(item);
+            _toDismiss.Enqueue(item);
             InvalidateArrange();
         }
     }
