@@ -14,7 +14,7 @@
             <ControlTemplate>
                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="{TemplateBinding Spacing}">
                     <fi:SymbolIcon Grid.Column="0" Symbol="{TemplateBinding Icon}"
-                                   IconVariant="{TemplateBinding Variant}"
+                                   IconVariant="{TemplateBinding Variant}" VerticalAlignment="Center"
                                    FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" />
                     <TextBlock Grid.Column="1" Text="{TemplateBinding Text}" FontSize="{TemplateBinding FontSize}"
                                Foreground="{TemplateBinding Foreground}" />

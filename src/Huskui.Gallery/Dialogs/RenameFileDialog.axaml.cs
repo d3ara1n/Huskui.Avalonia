@@ -5,4 +5,6 @@ namespace Huskui.Gallery.Dialogs;
 public partial class RenameFileDialog : Dialog
 {
     public RenameFileDialog() => InitializeComponent();
+
+    protected override bool ValidateResult(object? result) => true;
 }
