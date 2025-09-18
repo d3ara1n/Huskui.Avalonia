@@ -39,7 +39,8 @@ public static class CornerRadiusConverters
                 "topleft" => radius.TopLeft,
                 "bottomright" => radius.BottomRight,
                 "bottomleft" => radius.BottomLeft,
-                _ => radius
+                _ when radius.IsUniform => radius.BottomLeft,
+                _ => v
             };
         }
 
