@@ -1,0 +1,51 @@
+﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.StepControlsPage">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer Title="Basic StepControl"
+                                   Description="A simple StepControl with different states">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Step Controls" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Next Step" Click="OnNextStepClick" />
+                    <Button Content="Previous Step" Click="OnPreviousStepClick" />
+                    <TextBlock Text="Navigate through steps to see different states."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel Spacing="12">
+                <husk:StepControl Name="Control" SelectedIndex="0">
+                    <husk:StepItem Header="Step 1">
+                        <TextBlock Text="Step 1" />
+                    </husk:StepItem>
+                    <husk:StepItem Header="Step 2">
+                        <TextBlock Text="Step 2" />
+                    </husk:StepItem>
+                    <husk:StepItem Header="Step 3">
+                        <TextBlock Text="Step 3" />
+                    </husk:StepItem>
+                </husk:StepControl>
+                <TextBlock>
+                    <Run Text="Selected Index: " />
+                    <Run Text="{Binding #Control.SelectedIndex}" />
+                </TextBlock>
+                <husk:InfoBar Header="Tip">
+                    <TextBlock>
+                        <Run Text="Setting" />
+                        <husk:HighlightBlock Text="SelectedIndex" />
+                        <Run Text="to -1 will show all steps as completed." />
+                    </TextBlock>
+                </husk:InfoBar>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

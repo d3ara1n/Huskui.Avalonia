@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FluentIcons.Common;
 
@@ -11,51 +12,44 @@ namespace Huskui.Gallery.Models;
 public partial class GalleryItem : ObservableObject
 {
     [ObservableProperty]
-    private string _category = string.Empty;
+    public partial string Description { get; set; } = string.Empty;
 
     [ObservableProperty]
-    private string _description = string.Empty;
+    public partial Symbol Icon { get; set; } = Symbol.Document;
 
     [ObservableProperty]
-    private Symbol _icon = Symbol.Document;
+    public partial bool IsNew { get; set; }
 
     [ObservableProperty]
-    private bool _isNew;
+    public partial bool IsUpdated { get; set; }
 
     [ObservableProperty]
-    private bool _isUpdated;
+    public partial Type? PageType { get; set; }
 
     [ObservableProperty]
-    private Type? _pageType;
+    public partial string SearchText { get; set; } = string.Empty;
 
     [ObservableProperty]
-    private string _searchText = string.Empty;
+    public partial List<string> Tags { get; set; } = [];
 
     [ObservableProperty]
-    private List<string> _tags = [];
+    public partial string Title { get; set; } = string.Empty;
 
-    [ObservableProperty]
-    private string _title = string.Empty;
+    protected override void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+        base.OnPropertyChanged(e);
 
-    public GalleryItem() =>
-        PropertyChanged += (_, e) =>
+        if (e.PropertyName is nameof(Title) or nameof(Description))
         {
-            if (e.PropertyName is nameof(Title) or nameof(Description) or nameof(Category))
-            {
-                UpdateSearchText();
-            }
-        };
+            UpdateSearchText();
+        }
+    }
 
     private void UpdateSearchText() =>
-        SearchText = $"{Title} {Description} {Category} {string.Join(" ", Tags)}".ToLowerInvariant();
+        SearchText = $"{Title} {Description} {string.Join(" ", Tags)}".ToLowerInvariant();
 
     public bool MatchesSearch(string searchTerm)
     {
-        if (string.IsNullOrWhiteSpace(searchTerm))
-        {
-            return true;
-        }
-
-        return SearchText.Contains(searchTerm.ToLowerInvariant());
+        return string.IsNullOrWhiteSpace(searchTerm) || SearchText.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase);
     }
 }

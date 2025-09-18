@@ -21,6 +21,14 @@ public class StepItem : HeaderedContentControl, ISelectable
     public static readonly StyledProperty<bool> IsFirstProperty =
         AvaloniaProperty.Register<StepItem, bool>(nameof(IsFirst));
 
+    public static readonly StyledProperty<int> IndexProperty = AvaloniaProperty.Register<StepItem, int>(nameof(Index));
+
+    public int Index
+    {
+        get => GetValue(IndexProperty);
+        set => SetValue(IndexProperty, value);
+    }
+
     static StepItem() => SelectableMixin.Attach<StepItem>(IsSelectedProperty);
 
     public bool IsFirst

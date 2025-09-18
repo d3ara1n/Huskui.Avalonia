@@ -15,6 +15,7 @@ public class StepControl : SelectingItemsControl
     static StepControl()
     {
         ItemsPanelProperty.OverrideDefaultValue<StepControl>(DefaultPanel);
+        SelectionModeProperty.OverrideDefaultValue<StepControl>(SelectionMode.Single);
         KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<StepControl>(KeyboardNavigationMode.Once);
     }
 
@@ -25,15 +26,56 @@ public class StepControl : SelectingItemsControl
         NeedsContainer<StepItem>(item, out recycleKey);
 
 
-    // 似乎能被 ContainerIndexChangedOverride 替代掉
-    // protected override void ClearContainerForItemOverride(Control element) => UpdateSelectedIndex();
-
-
-    protected override void ContainerIndexChangedOverride(Control container, int oldIndex, int newIndex)
+    public void NextStep()
     {
-        base.ContainerIndexChangedOverride(container, oldIndex, newIndex);
+        SelectedIndex++;
+    }
 
-        UpdateSelectedIndex();
+    public void PreviousStep()
+    {
+        if (SelectedIndex == -1)
+            SelectedIndex = Items.Count - 1;
+        else
+            SelectedIndex--;
+    }
+
+
+    // 似乎能被 ContainerIndexChangedOverride 替代掉
+    // protected override void ClearContainerForItemOverride(Control element)
+    // {
+    //     base.ClearContainerForItemOverride(element);
+    //
+    //     var index = IndexFromContainer(element);
+    //     if (index >= 0)
+    //     {
+    //         for (var i = index; i < Items.Count; i++)
+    //         {
+    //             if (ContainerFromIndex(i) is not StepItem item)
+    //             {
+    //                 continue;
+    //             }
+    //
+    //             item.Index = 0;
+    //             item.IsSelected = i == SelectedIndex;
+    //             item.IsFirst = i == 0;
+    //             item.IsLast = i == Items.Count - 1;
+    //             item.IsCompleted = i < SelectedIndex;
+    //         }
+    //     }
+    // }
+
+
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
+    {
+        base.PrepareContainerForItemOverride(container, item, index);
+
+        if (container is StepItem stepItem)
+        {
+            stepItem.Index = index;
+            stepItem.IsFirst = index == 0;
+            stepItem.IsLast = index == Items.Count - 1;
+            stepItem.IsCompleted = index < SelectedIndex || SelectedIndex == -1;
+        }
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -42,22 +84,14 @@ public class StepControl : SelectingItemsControl
 
         if (change.Property == SelectedIndexProperty)
         {
-            UpdateSelectedIndex();
-        }
-    }
-
-    private void UpdateSelectedIndex()
-    {
-        for (var i = 0; i < Items.Count; i++)
-        {
-            if (ContainerFromIndex(i) is not StepItem item)
+            var selectedIndex = change.GetNewValue<int>();
+            for (var i = 0; i < Items.Count; i++)
             {
-                continue;
+                if (ContainerFromIndex(i) is StepItem item)
+                {
+                    item.IsCompleted = i < selectedIndex || selectedIndex == -1;
+                }
             }
-
-            item.IsFirst = i == 0;
-            item.IsLast = i == Items.Count - 1;
-            item.IsCompleted = i < SelectedIndex;
         }
     }
 }

@@ -10,19 +10,19 @@ namespace Huskui.Gallery.Models;
 public partial class GalleryCategory : ObservableObject
 {
     [ObservableProperty]
-    private string _description = string.Empty;
+    public partial string Description { get; set; } = string.Empty;
 
     [ObservableProperty]
-    private Symbol _icon = Symbol.Folder;
+    public partial Symbol Icon { get; set; } = Symbol.Folder;
 
     [ObservableProperty]
-    private bool _isExpanded = true;
+    public partial bool IsExpanded { get; set; } = true;
 
     [ObservableProperty]
-    private ObservableCollection<GalleryItem> _items = [];
+    public partial ObservableCollection<GalleryItem> Items { get; set; } = [];
 
     [ObservableProperty]
-    private string _name = string.Empty;
+    public partial string Name { get; set; } = string.Empty;
 
     public int ItemCount => Items.Count;
 }

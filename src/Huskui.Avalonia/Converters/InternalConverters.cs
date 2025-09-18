@@ -60,6 +60,16 @@ internal static class InternalConverters
 
     public static IValueConverter TrueIfNotMatch { get; } = new RelayConverter((v, p) => v != p);
 
+    public static IValueConverter ToDisplayIndex { get; } = new RelayConverter((v, _) =>
+    {
+        if (v is int index)
+        {
+            return index + 1;
+        }
+
+        return v;
+    });
+
     public static IValueConverter CountToArray { get; } = new RelayConverter((v, _) =>
     {
         if (v is int count)
