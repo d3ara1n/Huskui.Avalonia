@@ -47,11 +47,11 @@ public class Frame : TemplatedControl
 
     private readonly Stack<FrameFrame> _history = new();
 
-    private FrameFrame? _currentFrame;
-    private CancellationTokenSource? _currentToken;
-
     private bool _arrangeLock = true;
     private (object? Content, IPageTransition Transition, bool Reverse)? _current;
+
+    private FrameFrame? _currentFrame;
+    private CancellationTokenSource? _currentToken;
     private ContentPresenter? _presenter;
     private ContentPresenter? _presenter2;
     private bool _toggle;
@@ -179,8 +179,8 @@ public class Frame : TemplatedControl
             // content == null 时短路到 (current, target)，即不切换
             //  否则应用 reverse 规则
             var (outPresenter, inPresenter) = content != null && reverse
-                                                   ? (targetPresenter, currentPresenter)
-                                                   : (currentPresenter, targetPresenter);
+                                                  ? (targetPresenter, currentPresenter)
+                                                  : (currentPresenter, targetPresenter);
             transition
                .Start(outPresenter, inPresenter, !reverse, cancel.Token)
                .ContinueWith(_ =>

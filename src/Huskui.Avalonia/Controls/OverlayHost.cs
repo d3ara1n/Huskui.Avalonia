@@ -49,6 +49,10 @@ public class OverlayHost : TemplatedControl
     public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
         AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
 
+    private readonly Queue<OverlayItem> _toDismiss = [];
+
+    private readonly Queue<OverlayItem> _toPops = [];
+
     private Border? _smokeMask;
 
     public IPageTransition Transition
@@ -126,9 +130,6 @@ public class OverlayHost : TemplatedControl
         }
     }
 
-    private Queue<OverlayItem> _toPops = [];
-    private Queue<OverlayItem> _toDismiss = [];
-
     protected override Size ArrangeOverride(Size finalSize)
     {
         var rv = base.ArrangeOverride(finalSize);
@@ -150,24 +151,25 @@ public class OverlayHost : TemplatedControl
                 transition
                    .Start(null, item, false, CancellationToken.None)
                    .ContinueWith(_ =>
-                   {
-                       for (var i = 0; i < Items.IndexOf(item); i++)
-                       {
-                           if (Items[i] is { } inner)
-                           {
-                               inner.Distance--;
-                           }
-                       }
+                                 {
+                                     for (var i = 0; i < Items.IndexOf(item); i++)
+                                     {
+                                         if (Items[i] is { } inner)
+                                         {
+                                             inner.Distance--;
+                                         }
+                                     }
 
 
-                       LogicalChildren.Remove(item);
-                       Items.Remove(item);
-                       ItemCount = Items.Count;
-                       if (Items.Count == 0)
-                       {
-                           IsPresent = false;
-                       }
-                   }, TaskScheduler.FromCurrentSynchronizationContext());
+                                     LogicalChildren.Remove(item);
+                                     Items.Remove(item);
+                                     ItemCount = Items.Count;
+                                     if (Items.Count == 0)
+                                     {
+                                         IsPresent = false;
+                                     }
+                                 },
+                                 TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 

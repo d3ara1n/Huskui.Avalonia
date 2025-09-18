@@ -26,17 +26,18 @@ public class StepControl : SelectingItemsControl
         NeedsContainer<StepItem>(item, out recycleKey);
 
 
-    public void NextStep()
-    {
-        SelectedIndex++;
-    }
+    public void NextStep() => SelectedIndex++;
 
     public void PreviousStep()
     {
         if (SelectedIndex == -1)
+        {
             SelectedIndex = Items.Count - 1;
+        }
         else
+        {
             SelectedIndex--;
+        }
     }
 
 

@@ -48,8 +48,7 @@ public partial class GalleryItem : ObservableObject
     private void UpdateSearchText() =>
         SearchText = $"{Title} {Description} {string.Join(" ", Tags)}".ToLowerInvariant();
 
-    public bool MatchesSearch(string searchTerm)
-    {
-        return string.IsNullOrWhiteSpace(searchTerm) || SearchText.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase);
-    }
+    public bool MatchesSearch(string searchTerm) =>
+        string.IsNullOrWhiteSpace(searchTerm)
+     || SearchText.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase);
 }
