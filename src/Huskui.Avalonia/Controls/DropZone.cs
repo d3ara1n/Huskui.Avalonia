@@ -19,13 +19,7 @@ public class DropZone : ContentControl
         AvaloniaProperty.Register<DropZone, object?>(nameof(Model));
 
 
-    public DropZone()
-    {
-        DragDrop.SetAllowDrop(this, true);
-        AddHandler(DragDrop.DragEnterEvent, OnDragEnter, handledEventsToo: true);
-        AddHandler(DragDrop.DragLeaveEvent, OnDragLeave, handledEventsToo: true);
-        AddHandler(DragDrop.DropEvent, OnDrop, handledEventsToo: true);
-    }
+    public DropZone() => DragDrop.SetAllowDrop(this, true);
 
     public object? Model
     {
@@ -48,12 +42,12 @@ public class DropZone : ContentControl
 
     private void OnDragEnter(object? sender, DragEventArgs e)
     {
-        e.Handled = true;
         var args = new DragOverEventArgs(e.Data) { RoutedEvent = DragOverEvent };
         RaiseEvent(args);
         PseudoClasses.Set(":drop", false);
         if (args.Accepted)
         {
+            e.Handled = true;
             e.DragEffects = DragDropEffects.Copy;
             PseudoClasses.Set(":dragover", true);
         }
@@ -67,14 +61,12 @@ public class DropZone : ContentControl
     private void OnDragLeave(object? sender, DragEventArgs e)
     {
         e.Handled = true;
-        e.DragEffects = DragDropEffects.None;
         PseudoClasses.Set(":dragover", false);
         PseudoClasses.Set(":drop", Model != null);
     }
 
     private void OnDrop(object? sender, DragEventArgs e)
     {
-        e.Handled = true;
         e.DragEffects = DragDropEffects.None;
         PseudoClasses.Set(":dragover", false);
         var validation = new DragOverEventArgs(e.Data) { RoutedEvent = DragOverEvent };
@@ -85,12 +77,31 @@ public class DropZone : ContentControl
             RaiseEvent(args);
             if (args.Model != null)
             {
+                e.Handled = true;
                 Model = args.Model;
                 return;
             }
         }
 
         Model = null;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+
+        AddHandler(DragDrop.DragEnterEvent, OnDragEnter);
+        AddHandler(DragDrop.DragLeaveEvent, OnDragLeave);
+        AddHandler(DragDrop.DropEvent, OnDrop);
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+
+        RemoveHandler(DragDrop.DragEnterEvent, OnDragEnter);
+        RemoveHandler(DragDrop.DragLeaveEvent, OnDragLeave);
+        RemoveHandler(DragDrop.DropEvent, OnDrop);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)

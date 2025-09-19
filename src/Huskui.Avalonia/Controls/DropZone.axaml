@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
                     xmlns:fi="using:FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel Background="{StaticResource SystemChromeWhiteColor}">
-            <local:DropZone Margin="12" Padding="16,12">
+            <husk:DropZone Margin="12" Padding="16,12">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Spacing="4">
                         <fi:SymbolIcon Symbol="Attach" FontSize="14" IconVariant="Filled" />
@@ -16,10 +16,10 @@
                     <TextBlock Text="Up to 12MB" HorizontalAlignment="Center"
                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                 </StackPanel>
-            </local:DropZone>
+            </husk:DropZone>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type local:DropZone}" TargetType="local:DropZone">
+    <ControlTheme x:Key="{x:Type husk:DropZone}" TargetType="husk:DropZone">
         <Setter Property="Padding" Value="12" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
@@ -28,8 +28,8 @@
             <ControlTemplate>
                 <Panel>
                     <Rectangle Name="DashLine"
-                               RadiusX="{TemplateBinding CornerRadius, Converter={x:Static local:CornerRadiusConverters.ToDouble}}"
-                               RadiusY="{TemplateBinding CornerRadius, Converter={x:Static local:CornerRadiusConverters.ToDouble}}"
+                               RadiusX="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
+                               RadiusY="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
                                StrokeThickness="2"
                                Stroke="{TemplateBinding BorderBrush}"
                                StrokeDashArray="6,2"
