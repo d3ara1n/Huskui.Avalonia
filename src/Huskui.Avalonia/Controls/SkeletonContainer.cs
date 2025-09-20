@@ -14,9 +14,10 @@ public class SkeletonContainer : ContentControl
     public static readonly StyledProperty<bool> IsAnimatedProperty =
         AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsAnimated));
 
-    public SkeletonContainer() =>
-        // Default Property Value
-        IsAnimated = true;
+    static SkeletonContainer() => IsHitTestVisibleProperty.OverrideDefaultValue<SkeletonContainer>(false);
+
+    // 同步伪类更新
+    public SkeletonContainer() => IsAnimated = true;
 
     public bool IsLoading
     {
