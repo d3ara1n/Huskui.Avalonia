@@ -53,29 +53,7 @@ public class AppWindow : Window
     {
         base.OnApplyTemplate(e);
 
-        if (_toastHost != null)
-        {
-            _toastHost.IsPresentChanged -= UpdateObstructed;
-            _toastHost.MaskPointerPressed -= OnMaskPointerPressed;
-        }
-
-        if (_drawerHost != null)
-        {
-            _drawerHost.IsPresentChanged -= UpdateObstructed;
-            _drawerHost.MaskPointerPressed -= OnMaskPointerPressed;
-        }
-
-        if (_modalHost != null)
-        {
-            _modalHost.IsPresentChanged -= UpdateObstructed;
-            _modalHost.MaskPointerPressed -= OnMaskPointerPressed;
-        }
-
-        if (_dialogHost != null)
-        {
-            _dialogHost.IsPresentChanged -= UpdateObstructed;
-            _dialogHost.MaskPointerPressed -= OnMaskPointerPressed;
-        }
+        UnregisterHandlers();
 
         _growlHost = e.NameScope.Find<GrowlHost>(PART_GrowlHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
@@ -103,6 +81,39 @@ public class AppWindow : Window
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
         LogicalChildren.Add(_growlHost);
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        UnregisterHandlers();
+    }
+
+    private void UnregisterHandlers()
+    {
+        if (_toastHost != null)
+        {
+            _toastHost.IsPresentChanged -= UpdateObstructed;
+            _toastHost.MaskPointerPressed -= OnMaskPointerPressed;
+        }
+
+        if (_drawerHost != null)
+        {
+            _drawerHost.IsPresentChanged -= UpdateObstructed;
+            _drawerHost.MaskPointerPressed -= OnMaskPointerPressed;
+        }
+
+        if (_modalHost != null)
+        {
+            _modalHost.IsPresentChanged -= UpdateObstructed;
+            _modalHost.MaskPointerPressed -= OnMaskPointerPressed;
+        }
+
+        if (_dialogHost != null)
+        {
+            _dialogHost.IsPresentChanged -= UpdateObstructed;
+            _dialogHost.MaskPointerPressed -= OnMaskPointerPressed;
+        }
     }
 
     private void OnMaskPointerPressed(object? sender, OverlayHost.MaskPointerPressedEventArgs e)

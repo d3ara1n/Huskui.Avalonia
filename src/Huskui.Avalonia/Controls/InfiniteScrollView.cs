@@ -65,15 +65,28 @@ public class InfiniteScrollView : ItemsControl
     {
         base.OnApplyTemplate(e);
 
-        if (_scrollViewer != null)
-        {
-            _scrollViewer.ScrollChanged -= OnScroll;
-        }
+        UnregisterHandlers();
 
         _scrollViewer = e.NameScope.Find<ScrollViewer>(PART_ScrollViewer);
         _pendingPresenter = e.NameScope.Find<ContentPresenter>(PART_PendingPresenter);
         ArgumentNullException.ThrowIfNull(_scrollViewer);
+
         _scrollViewer.ScrollChanged += OnScroll;
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+
+        UnregisterHandlers();
+    }
+
+    private void UnregisterHandlers()
+    {
+        if (_scrollViewer != null)
+        {
+            _scrollViewer.ScrollChanged -= OnScroll;
+        }
     }
 
     protected override Size ArrangeOverride(Size finalSize)

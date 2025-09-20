@@ -100,16 +100,21 @@ public class OverlayHost : TemplatedControl
     {
         base.OnApplyTemplate(e);
 
-        if (_smokeMask != null)
-        {
-            _smokeMask.PointerPressed -= SmokeMask_OnPointerPressed;
-        }
+        UnregisterHandlers();
 
         _smokeMask = e.NameScope.Find<Border>(PART_SmokeMask);
 
         if (_smokeMask != null)
         {
             _smokeMask.PointerPressed += SmokeMask_OnPointerPressed;
+        }
+    }
+
+    private void UnregisterHandlers()
+    {
+        if (_smokeMask != null)
+        {
+            _smokeMask.PointerPressed -= SmokeMask_OnPointerPressed;
         }
     }
 
@@ -230,6 +235,8 @@ public class OverlayHost : TemplatedControl
     {
         base.OnDetachedFromVisualTree(e);
         RemoveHandler(OverlayItem.DismissRequestedEvent, DismissRequestedHandler);
+
+        UnregisterHandlers();
     }
 
     private void DismissRequestedHandler(object? sender, OverlayItem.DismissRequestedEventArgs e)

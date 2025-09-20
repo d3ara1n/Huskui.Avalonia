@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -29,6 +30,7 @@ public class LazyContainer : TemplatedControl
         AvaloniaProperty.Register<LazyContainer, IDataTemplate?>(nameof(SourceTemplate));
 
     private ContentPresenter? _contentPresenter;
+    private CancellationTokenSource? _currentLoadCancellation;
 
     [DependsOn(nameof(SourceTemplate))]
     public LazyObject? Source
@@ -57,14 +59,11 @@ public class LazyContainer : TemplatedControl
         set => SetValue(IsBadProperty, value);
     }
 
-    protected override async void OnApplyTemplate(TemplateAppliedEventArgs e)
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
 
-        if (_contentPresenter != null)
-        {
-            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
-        }
+        UnregisterHandlers();
 
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
         if (_contentPresenter != null)
@@ -72,9 +71,10 @@ public class LazyContainer : TemplatedControl
             _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
         }
 
+        // Start loading if source is available
         if (Source != null)
         {
-            await LoadAsync(Source);
+            _ = LoadContentAsync(Source);
         }
     }
 
@@ -82,6 +82,11 @@ public class LazyContainer : TemplatedControl
     {
         base.OnDetachedFromVisualTree(e);
 
+        UnregisterHandlers();
+    }
+
+    private void UnregisterHandlers()
+    {
         if (_contentPresenter != null)
         {
             _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
@@ -105,61 +110,62 @@ public class LazyContainer : TemplatedControl
     }
 
 
-    protected override async void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
         if (change.Property == SourceProperty)
         {
-            if (change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } old)
+            if (change.OldValue is LazyObject oldLazy && !oldLazy.IsCancelled && oldLazy.IsInProgress)
             {
-                old.Cancel();
+                oldLazy.Cancel();
             }
 
-            if (change.NewValue is LazyObject lazy && _contentPresenter is not null)
+            if (change.NewValue is LazyObject newLazy && _contentPresenter is not null)
             {
-                await LoadAsync(lazy);
+                _ = LoadContentAsync(newLazy);
             }
         }
     }
 
-    private async Task LoadAsync(LazyObject lazy)
+    private async Task LoadContentAsync(LazyObject lazy)
     {
-        if (Design.IsDesignMode)
+        if (Design.IsDesignMode || Source is null || _contentPresenter is null)
         {
             return;
         }
 
-        ArgumentNullException.ThrowIfNull(_contentPresenter);
+        try
+        {
+            _contentPresenter.ContentTemplate = null;
+            _contentPresenter.Content = null;
+            IsBad = false;
 
-        _contentPresenter.Content = null;
-        _contentPresenter.ContentTemplate = null;
-        IsBad = false;
-        if (lazy.Value != null)
-        {
-            _contentPresenter.Content = lazy.Value;
-            _contentPresenter.ContentTemplate = SourceTemplate;
-        }
-        else
-        {
-            try
+            if (Source.Value != null)
             {
-                await lazy.FetchAsync();
-                _contentPresenter.Content = lazy.Value;
                 _contentPresenter.ContentTemplate = SourceTemplate;
+                _contentPresenter.Content = Source.Value;
+                return;
             }
-            catch
-            {
-                _contentPresenter.Content = BadContent;
-                _contentPresenter.ContentTemplate = null;
-                IsBad = true;
-            }
+
+            await lazy.FetchAsync();
+            _contentPresenter.ContentTemplate = SourceTemplate;
+            _contentPresenter.Content = Source.Value;
+        }
+        catch (OperationCanceledException) { }
+        catch (Exception ex)
+        {
+            _contentPresenter.ContentTemplate = null;
+            _contentPresenter.Content = BadContent;
+            IsBad = true;
+            Debug.WriteLine($"LazyContainer failed to load content: {ex.Message}");
         }
     }
 
     protected override void OnUnloaded(RoutedEventArgs e)
     {
         base.OnUnloaded(e);
+
         if (Source is { IsCancelled: false, IsInProgress: true })
         {
             Source.Cancel();

@@ -4,7 +4,13 @@
 			"path": "."
 		}
 	],
-	"settings": {},
+	"settings": {
+		"axaml.selectedSolution": "c:\\Users\\d3ara\\Projects\\Polymerium\\submodules\\Huskui.Avalonia\\Huskui.slnx",
+		"cSpell.words": [
+			"Avalonia",
+			"Huskui"
+		]
+	},
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [
