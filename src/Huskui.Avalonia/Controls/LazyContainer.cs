@@ -30,7 +30,6 @@ public class LazyContainer : TemplatedControl
         AvaloniaProperty.Register<LazyContainer, IDataTemplate?>(nameof(SourceTemplate));
 
     private ContentPresenter? _contentPresenter;
-    private CancellationTokenSource? _currentLoadCancellation;
 
     [DependsOn(nameof(SourceTemplate))]
     public LazyObject? Source

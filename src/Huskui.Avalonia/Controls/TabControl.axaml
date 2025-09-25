@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="using:System"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Grid Width="1024" Height="340" ColumnDefinitions="*,*">
             <TabControl Grid.Column="0" Margin="24" TabStripPlacement="Top">
@@ -86,7 +87,11 @@
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding SelectedContent}"
-                            ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}">
+                            <TransitioningContentControl.PageTransition>
+                                <husk:TabTransition />
+                            </TransitioningContentControl.PageTransition>
+                        </TransitioningContentControl>
                     </DockPanel>
                 </Border>
             </ControlTemplate>
