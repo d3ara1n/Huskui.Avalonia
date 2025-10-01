@@ -8,7 +8,7 @@
                 <local:SkeletonContainer CornerRadius="{TemplateBinding CornerRadius}">
                     <local:SkeletonContainer.IsLoading>
                         <MultiBinding Converter="{x:Static BoolConverters.And}">
-                            <Binding Path="IsBad" Converter="{x:Static BoolConverters.Not}"
+                            <Binding Path="IsFaulted" Converter="{x:Static BoolConverters.Not}"
                                      RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding Path="Source.IsInProgress" RelativeSource="{RelativeSource TemplatedParent}"
                                      FallbackValue="{x:False}" />

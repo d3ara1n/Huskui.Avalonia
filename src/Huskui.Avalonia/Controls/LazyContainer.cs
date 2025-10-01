@@ -17,11 +17,11 @@ public class LazyContainer : TemplatedControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
-    public static readonly StyledProperty<object?> BadContentProperty =
-        AvaloniaProperty.Register<LazyContainer, object?>(nameof(BadContent));
+    public static readonly StyledProperty<object?> FaultContentProperty =
+        AvaloniaProperty.Register<LazyContainer, object?>(nameof(FaultContent));
 
-    public static readonly StyledProperty<bool> IsBadProperty =
-        AvaloniaProperty.Register<LazyContainer, bool>(nameof(IsBad));
+    public static readonly StyledProperty<bool> IsFaultedProperty =
+        AvaloniaProperty.Register<LazyContainer, bool>(nameof(IsFaulted));
 
     public static readonly StyledProperty<LazyObject?> SourceProperty =
         AvaloniaProperty.Register<LazyContainer, LazyObject?>(nameof(Source));
@@ -46,16 +46,16 @@ public class LazyContainer : TemplatedControl
 
 
     [Content]
-    public object? BadContent
+    public object? FaultContent
     {
-        get => GetValue(BadContentProperty);
-        set => SetValue(BadContentProperty, value);
+        get => GetValue(FaultContentProperty);
+        set => SetValue(FaultContentProperty, value);
     }
 
-    public bool IsBad
+    public bool IsFaulted
     {
-        get => GetValue(IsBadProperty);
-        set => SetValue(IsBadProperty, value);
+        get => GetValue(IsFaultedProperty);
+        set => SetValue(IsFaultedProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -136,9 +136,10 @@ public class LazyContainer : TemplatedControl
 
         try
         {
-            _contentPresenter.ContentTemplate = null;
-            _contentPresenter.Content = null;
-            IsBad = false;
+            // 以下会在第二次替换 Source 时触发，并产生未知原因报错
+            // _contentPresenter.ContentTemplate = null;
+            // _contentPresenter.Content = null;
+            IsFaulted = false;
 
             if (Source.Value != null)
             {
@@ -155,8 +156,8 @@ public class LazyContainer : TemplatedControl
         catch (Exception ex)
         {
             _contentPresenter.ContentTemplate = null;
-            _contentPresenter.Content = BadContent;
-            IsBad = true;
+            _contentPresenter.Content = FaultContent;
+            IsFaulted = true;
             Debug.WriteLine($"LazyContainer failed to load content: {ex.Message}");
         }
     }
