@@ -56,7 +56,7 @@
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center">
                                 <local:OverlayHost.Transition>
-                                    <local:FocusOnTransition />
+                                    <local:ModalTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:OverlayHost
