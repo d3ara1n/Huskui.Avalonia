@@ -224,7 +224,7 @@
         </Style>
 
         <Style Selector="^:selected /template/ Border#Border">
-            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentBorderBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
