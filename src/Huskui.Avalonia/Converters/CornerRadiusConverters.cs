@@ -47,6 +47,16 @@ public static class CornerRadiusConverters
         return v;
     });
 
+    public static IValueConverter FromDouble { get; } = new RelayConverter((v, _) =>
+    {
+        return v switch
+        {
+            double d => new CornerRadius(d),
+            int i => new CornerRadius(i),
+            _ => v
+        };
+    });
+
     public static IValueConverter ToInnerRadius { get; } = new RelayConverter((v, p) =>
     {
         if (v is CornerRadius radius)
@@ -56,49 +66,43 @@ public static class CornerRadiusConverters
                 double it => it,
                 int it => (double)it,
                 string it when double.TryParse(it, out var result) => result,
-                string it when int.TryParse(it, out var result) => (double)result,
                 Thickness { IsUniform: true } it => it.Bottom,
                 _ => null
             };
 
             if (padding.HasValue)
             {
-                return new CornerRadius(radius.TopLeft - padding.Value,
-                                        radius.TopRight - padding.Value,
-                                        radius.BottomRight - padding.Value,
-                                        radius.BottomLeft - padding.Value);
+                return new CornerRadius(radius.TopLeft - padding.Value / (radius.TopLeft / padding < 1.5 ? 3d : 1d),
+                                        radius.TopRight - padding.Value / (radius.TopRight / padding < 1.5 ? 3d : 1d),
+                                        radius.BottomRight
+                                      - padding.Value / (radius.BottomRight / padding < 1.5 ? 3d : 1d),
+                                        radius.BottomLeft
+                                      - padding.Value / (radius.BottomLeft / padding < 1.5 ? 3d : 1d));
             }
         }
 
-        return v;
+        return new CornerRadius(0);
     });
 
-    public static IMultiValueConverter ToInnerRadiusMulti { get; } = new RelayMultiConverter((v, _, info) =>
+    public static IMultiValueConverter ToInnerRadiusMulti { get; } = new RelayMultiConverter((v, _, _) =>
     {
-        return v switch
+        var (radius, padding) = v switch
         {
-            [CornerRadius c, double p] => new CornerRadius(c.TopLeft - p,
-                                                           c.TopRight - p,
-                                                           c.BottomRight - p,
-                                                           c.BottomLeft - p),
-            [CornerRadius c, int p] => new CornerRadius(c.TopLeft - p,
-                                                        c.TopRight - p,
-                                                        c.BottomRight - p,
-                                                        c.BottomLeft - p),
-            [CornerRadius c, string p] when double.TryParse(p, out var result) => new CornerRadius(c.TopLeft - result,
-                c.TopRight - result,
-                c.BottomRight - result,
-                c.BottomLeft - result),
-            [CornerRadius c, string p] when int.TryParse(p, out var result) => new CornerRadius(c.TopLeft - result,
-                c.TopRight - result,
-                c.BottomRight - result,
-                c.BottomLeft - result),
-            [CornerRadius c, Thickness { IsUniform: true } t] => new CornerRadius(c.TopLeft - t.Bottom,
-                c.TopRight - t.Bottom,
-                c.BottomRight - t.Bottom,
-                c.BottomLeft - t.Bottom),
-
-            _ => v
+            [CornerRadius c, double p] => (c, p),
+            [CornerRadius c, int p] => (c, p),
+            [CornerRadius c, string p] when double.TryParse(p, out var result) => (c, result),
+            [CornerRadius c, Thickness { IsUniform: true } t] => (c, t.Bottom),
+            _ => (new(0), 0)
         };
+
+        if (radius == default && padding == 0)
+        {
+            return new CornerRadius(0);
+        }
+
+        return new CornerRadius(radius.TopLeft - padding / (radius.TopLeft / padding < 1.5 ? 3d : 1d),
+                                radius.TopRight - padding / (radius.TopRight / padding < 1.5 ? 3d : 1d),
+                                radius.BottomRight - padding / (radius.BottomRight / padding < 1.5 ? 3d : 1d),
+                                radius.BottomLeft - padding / (radius.BottomLeft / padding < 1.5 ? 3d : 1d));
     });
 }

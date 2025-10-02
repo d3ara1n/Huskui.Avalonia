@@ -3,6 +3,7 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
                       mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                       x:Class="Huskui.Gallery.Views.TabStripsPage">
     <StackPanel Spacing="32">
@@ -10,9 +11,16 @@
         <controls:ExampleContainer Title="Basic TabStrip"
                                    Description="Simple tab strip with different styles"
                                    XamlCode="&lt;TabStrip&gt;&#10;    &lt;TabItem Content=&quot;Hola&quot; /&gt;&#10;&lt;/TabStrip&gt;&#10;&lt;TabStrip Theme=&quot;{StaticResource SegmentedTabStripTheme}&quot; /&gt;">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="8">
+                    <TextBlock Text="CornerRadius" />
+                    <Slider x:Name="CornerRadiusSlider"
+                            Minimum="0" Maximum="20" Value="4" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
             <StackPanel Spacing="16">
-                <TextBlock Text="Block Style" FontWeight="Bold" />
-                <TabStrip>
+                <TextBlock Text="Block Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TabStrip CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
                     <TabStripItem>
                         <TextBlock>
                             <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
@@ -38,13 +46,30 @@
                         </TextBlock>
                     </TabStripItem>
                 </TabStrip>
-                <TextBlock Text="Bar Style" />
-                <TabStrip Theme="{StaticResource SegmentedTabStripTheme}">
+                <TextBlock Text="Bar Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TabStrip Theme="{StaticResource SegmentedTabStripTheme}"
+                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
                     <TabStripItem Content="Monday" />
                     <TabStripItem Content="Tuesday" />
                     <TabStripItem Content="Wednesday" />
                     <TabStripItem Content="Thursday" />
                     <TabStripItem Content="Friday" />
+                </TabStrip>
+                <TextBlock Text="Pivot Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TabStrip Theme="{StaticResource PivotTabStripTheme}"
+                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                    <TabStripItem Content="Home" />
+                    <TabStripItem Content="Download" />
+                    <TabStripItem Content="Settings" />
+                    <TabStripItem Content="About" />
+                </TabStrip>
+                <TextBlock Text="Chip Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TabStrip Theme="{StaticResource ChipTabStripTheme}"
+                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                    <TabStripItem Content="Administrator" />
+                    <TabStripItem Content="Organizer" />
+                    <TabStripItem Content="Speaker" />
+                    <TabStripItem Content="Attendee" />
                 </TabStrip>
             </StackPanel>
         </controls:ExampleContainer>

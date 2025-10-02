@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using DynamicData;
 using FluentIcons.Common;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Views;
@@ -29,6 +31,11 @@ public class GalleryService : IGalleryService
         CreateNavigationCategory();
         CreateCollectionsCategory();
         CreateMediaCategory();
+
+        foreach (var item in Categories.SelectMany(c => c.Items))
+        {
+            AllItems.Add(item);
+        }
     }
 
     #endregion
@@ -118,10 +125,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateContainersCategory()
@@ -161,10 +164,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateOverlaysCategory()
@@ -228,10 +227,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateLayoutCategory()
@@ -255,10 +250,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateInputCategory()
@@ -306,10 +297,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateNavigationCategory()
@@ -341,10 +328,6 @@ public class GalleryService : IGalleryService
         };
 
         Categories.Add(category);
-        foreach (var item in category.Items)
-        {
-            AllItems.Add(item);
-        }
     }
 
     private void CreateCollectionsCategory()

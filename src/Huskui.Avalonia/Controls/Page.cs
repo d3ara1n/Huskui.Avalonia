@@ -28,6 +28,7 @@ public class Page : HeaderedContentControl
 
 
     private readonly CancellationTokenSource _cancellationTokenSource = new();
+    public CancellationToken LifetimeToken => _cancellationTokenSource.Token;
 
     public BoxShadows BoxShadow
     {
@@ -68,7 +69,7 @@ public class Page : HeaderedContentControl
                 SetState(true);
                 try
                 {
-                    await Model.InitializeAsync(_cancellationTokenSource.Token);
+                    await Model.InitializeAsync();
                     SetState(false, true);
                 }
                 catch
@@ -92,7 +93,7 @@ public class Page : HeaderedContentControl
 
             if (Model is not null)
             {
-                await Model.DeinitializeAsync(CancellationToken.None);
+                await Model.DeinitializeAsync();
             }
         }
     }

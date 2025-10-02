@@ -51,9 +51,10 @@
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Border Name="Indicator" CornerRadius="{StaticResource ExtraSmallCornerRadius}"
+                            <Border Name="Indicator"
                                     Margin="2" RenderTransform="scale(0.0)"
-                                    Background="{StaticResource OverlaySolidBackgroundBrush}">
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                    CornerRadius="{StaticResource ExtraSmallCornerRadius}">
                                 <Border.Transitions>
                                     <Transitions>
                                         <CornerRadiusTransition Property="CornerRadius" Easing="CubicEaseOut"
