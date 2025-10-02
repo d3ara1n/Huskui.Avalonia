@@ -30,6 +30,7 @@
         <ResourceInclude Source="/Controls/ListBox.axaml" />
         <ResourceInclude Source="/Controls/Menu.axaml" />
         <ResourceInclude Source="/Controls/Modal.axaml" />
+        <ResourceInclude Source="/Controls/GridSplitter.axaml" />
         <ResourceInclude Source="/Controls/GrowlHost.axaml" />
         <ResourceInclude Source="/Controls/GrowlItem.axaml" />
         <ResourceInclude Source="/Controls/OverlayHost.axaml" />
