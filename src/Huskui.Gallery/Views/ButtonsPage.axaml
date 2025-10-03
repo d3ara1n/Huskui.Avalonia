@@ -150,5 +150,34 @@
             </StackPanel>
         </controls:ExampleContainer>
 
+        <!-- Button Groups -->
+        <controls:ExampleContainer Title="Button Groups"
+                                   Description="Grouped buttons for related actions">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="CornerRadius" FontWeight="{StaticResource ControlStrongFontWeight}" />
+                    <Slider Name="CornerRadiusSlider" Minimum="0" Maximum="20" Value="4" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <husk:ButtonGroup
+                CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <Button>
+                    <husk:IconLabel Icon="ArrowUndo" Text="Undo" />
+                </Button>
+                <Button>
+                    <husk:IconLabel Icon="ArrowRedo" Text="Redo" />
+                </Button>
+                <Button>
+                    <husk:IconLabel Icon="Edit" Text="Edit" />
+                </Button>
+                <Button>
+                    <husk:IconLabel Icon="Copy" Text="Copy" />
+                </Button>
+                <Button>
+                    <husk:IconLabel Icon="ClipboardPaste" Text="Paste" />
+                </Button>
+            </husk:ButtonGroup>
+        </controls:ExampleContainer>
+
     </StackPanel>
 </controls:ControlPage>
