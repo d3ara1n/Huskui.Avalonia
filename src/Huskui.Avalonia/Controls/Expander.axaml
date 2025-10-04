@@ -55,8 +55,6 @@
                                       IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
                                       Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
                             <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
-                                <ContentPresenter Content="{TemplateBinding Header}"
-                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
                                 <Border Name="SymbolBorder" HorizontalAlignment="Center"
                                         VerticalAlignment="Center">
                                     <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center"
@@ -64,6 +62,8 @@
                                                    FontSize="{TemplateBinding FontSize}"
                                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                                 </Border>
+                                <ContentPresenter Content="{TemplateBinding Header}"
+                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
                             </DockPanel>
                         </ToggleButton>
                         <ContentPresenter Content="{TemplateBinding Content}"
@@ -95,11 +95,11 @@
                 <Setter Property="DockPanel.Dock" Value="Right" />
             </Style>
             <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronDown" />
+                <Setter Property="Symbol" Value="Add" />
             </Style>
 
             <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronUp" />
+                <Setter Property="Symbol" Value="Subtract" />
             </Style>
         </Style>
         <Style Selector="^:down">
@@ -110,11 +110,11 @@
                 <Setter Property="DockPanel.Dock" Value="Right" />
             </Style>
             <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronUp" />
+                <Setter Property="Symbol" Value="Add" />
             </Style>
 
             <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronDown" />
+                <Setter Property="Symbol" Value="Subtract" />
             </Style>
         </Style>
         <Style Selector="^:right">
@@ -125,11 +125,11 @@
                 <Setter Property="DockPanel.Dock" Value="Top" />
             </Style>
             <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronLeft" />
+                <Setter Property="Symbol" Value="Add" />
             </Style>
 
             <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronRight" />
+                <Setter Property="Symbol" Value="Subtract" />
             </Style>
         </Style>
         <Style Selector="^:left">
@@ -140,11 +140,11 @@
                 <Setter Property="DockPanel.Dock" Value="Bottom" />
             </Style>
             <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronRight" />
+                <Setter Property="Symbol" Value="Add" />
             </Style>
 
             <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="ChevronLeft" />
+                <Setter Property="Symbol" Value="Subtract" />
             </Style>
         </Style>
     </ControlTheme>
