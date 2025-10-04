@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel>
             <StackPanel Margin="24" Spacing="12">
@@ -72,8 +73,17 @@
                                           VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Padding="{TemplateBinding Padding}" Margin=" 8,4,8,8"
                                           IsVisible="{TemplateBinding IsExpanded}"
-                                          Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                          BoxShadow="0 0 4 0 #3F000000" CornerRadius="{TemplateBinding CornerRadius}" />
+                                          Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                                          BoxShadow="0 0 4 0 #3F000000">
+                            <ContentPresenter.CornerRadius>
+                                <MultiBinding Converter="{x:Static husk:CornerRadiusConverters.ToInnerRadiusMulti}">
+                                    <Binding Path="CornerRadius"
+                                             RelativeSource="{RelativeSource Mode=TemplatedParent}" />
+                                    <Binding Path="Padding"
+                                             RelativeSource="{RelativeSource Mode=TemplatedParent}" />
+                                </MultiBinding>
+                            </ContentPresenter.CornerRadius>
+                        </ContentPresenter>
                     </DockPanel>
                 </Border>
             </ControlTemplate>
