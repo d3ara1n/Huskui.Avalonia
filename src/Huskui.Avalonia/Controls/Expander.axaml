@@ -32,11 +32,14 @@
         </Setter>
     </ControlTheme>
 
+    <Thickness x:Key="ExpanderHeaderMargin">12,8</Thickness>
+    <Thickness x:Key="ExpanderContentMargin">12</Thickness>
+
     <ControlTheme x:Key="{x:Type Expander}" TargetType="Expander">
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="12" />
+        <Setter Property="Padding" Value="{StaticResource ExpanderContentMargin}" />
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
@@ -54,7 +57,8 @@
                         <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
                                       Background="Transparent"
                                       IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
-                                      Padding="12,8" CornerRadius="{TemplateBinding CornerRadius}">
+                                      Padding="{StaticResource ExpanderHeaderMargin}"
+                                      CornerRadius="{TemplateBinding CornerRadius}">
                             <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
                                 <Border Name="SymbolBorder" HorizontalAlignment="Center"
                                         VerticalAlignment="Center">
