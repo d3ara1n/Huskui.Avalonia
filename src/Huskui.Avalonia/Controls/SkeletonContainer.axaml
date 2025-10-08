@@ -22,10 +22,12 @@
             <ControlTemplate>
                 <Panel>
                     <ContentPresenter Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}" />
                     <Border Name="Mask" Background="{TemplateBinding Background}" IsVisible="False"
-                            CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="True">
+                            CornerRadius="{TemplateBinding CornerRadius}">
                         <Border Name="Wave" Background="{StaticResource Overlay7Color}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
                                 Opacity="0" />
                     </Border>
                 </Panel>

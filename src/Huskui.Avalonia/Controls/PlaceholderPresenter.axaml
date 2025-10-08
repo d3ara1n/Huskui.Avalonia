@@ -4,7 +4,12 @@
     <ControlTheme x:Key="{x:Type local:PlaceholderPresenter}" TargetType="local:PlaceholderPresenter">
         <Setter Property="Template">
             <ControlTemplate>
-                <ContentPresenter Name="{x:Static local:PlaceholderPresenter.PART_ContentPresenter}" />
+                <ContentPresenter Name="{x:Static local:PlaceholderPresenter.PART_ContentPresenter}"
+                                  Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                                  BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
