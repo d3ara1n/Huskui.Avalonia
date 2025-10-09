@@ -135,16 +135,12 @@ public class Dialog : HeaderedContentControl
 
     #region Nested type: ConfirmRequestedEventArgs
 
-    #region Nested Type: ConfirmRequestedEventArgs
-
     public class ConfirmRequestedEventArgs(object? source, object? result)
         : RoutedEventArgs(ConfirmRequestedEvent, source)
     {
         public object? Result { get; init; } = result;
         public bool Rejected { get; set; }
     }
-
-    #endregion
 
     #endregion
 }
