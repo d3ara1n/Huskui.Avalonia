@@ -5,7 +5,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class FadeTransition : PageTransitionBase
+public class CrossFadeTransition : PageTransitionBase
 {
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {
