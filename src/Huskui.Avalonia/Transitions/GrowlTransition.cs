@@ -12,14 +12,14 @@ public class GrowlTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(40
         var offset = parent.Bounds.Width;
 
         from
-           .Animation(new CubicEaseOut())
+           .Animation(new CubicEaseInOut())
            .AddFrame(0.3d,
             [
                 (ScaleTransform.ScaleXProperty, 0.95d),
                 (ScaleTransform.ScaleYProperty, 0.95d),
                 (TranslateTransform.XProperty, 0.0d)
             ])
-           .AddFrame(0.9d,
+           .AddFrame(0.7d,
             [
                 (Visual.OpacityProperty, 1.0d),
                 (ScaleTransform.ScaleXProperty, 0.95d),
@@ -36,18 +36,19 @@ public class GrowlTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(40
 
         to
            .Animation(new CubicEaseOut())
-           .AddFrame(0.0, [(Visual.OpacityProperty, 0d)])
-           .AddFrame(0.5d,
+           .AddFrame(0.0,
             [
-                (Visual.OpacityProperty, 0d),
+                (Visual.OpacityProperty, 0.0d),
                 (ScaleTransform.ScaleXProperty, 0.95d),
-                (ScaleTransform.ScaleYProperty, 0.95d)
+                (ScaleTransform.ScaleYProperty, 0.95d),
+                (TranslateTransform.XProperty, offset)
             ])
-           .AddFrame(0.9d,
+           .AddFrame(0.8d,
             [
                 (Visual.OpacityProperty, 1.0d),
-                (ScaleTransform.ScaleXProperty, 1.05d),
-                (ScaleTransform.ScaleYProperty, 1.05d)
+                (ScaleTransform.ScaleXProperty, 0.95d),
+                (ScaleTransform.ScaleYProperty, 0.95d),
+                (TranslateTransform.XProperty, 0.0d)
             ])
            .AddFrame(1.0d,
             [
