@@ -2,6 +2,7 @@ namespace Huskui.Avalonia;
 
 public enum AccentColor
 {
+    System,
     Neutral,
     Tomato,
     Red,

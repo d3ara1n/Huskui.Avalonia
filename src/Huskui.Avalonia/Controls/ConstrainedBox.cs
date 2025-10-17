@@ -43,7 +43,8 @@ public class ConstrainedBox : ContentControl
         {
             return result;
         }
-        else if (ratio.Count(x => x == ':') == 1)
+
+        if (ratio.Count(x => x == ':') == 1)
         {
             var split = ratio.Split(':');
             var width = split[0];

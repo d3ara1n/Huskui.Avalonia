@@ -16,7 +16,7 @@ public class ThemeService : IThemeService
 
     public ThemeVariant CurrentTheme { get; private set; } = ThemeVariant.Default;
 
-    public AccentColor CurrentAccent { get; private set; } = AccentColor.Blue;
+    public AccentColor CurrentAccent { get; private set; } = AccentColor.System;
 
     public BackgroundMaterial CurrentBackground { get; private set; } = BackgroundMaterial.Mica;
 
@@ -76,9 +76,9 @@ public class ThemeService : IThemeService
         if (Application.Current?.Styles is { } styles)
         {
             // Find and update the HuskuiTheme
-            for (var i = 0; i < styles.Count; i++)
+            foreach (var t in styles)
             {
-                if (styles[i] is HuskuiTheme huskuiTheme)
+                if (t is HuskuiTheme huskuiTheme)
                 {
                     huskuiTheme.Accent = CurrentAccent;
                     break;
@@ -104,7 +104,7 @@ public class ThemeService : IThemeService
                     _ => WindowTransparencyLevel.None
                 };
 
-                mainWindow.TransparencyLevelHint = new[] { transparencyLevel };
+                mainWindow.TransparencyLevelHint = [transparencyLevel];
             }
         }
     }

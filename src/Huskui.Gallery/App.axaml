@@ -14,7 +14,7 @@
     </Application.Resources>
 
     <Application.Styles>
-        <husk:HuskuiTheme Accent="Blue" Corner="Normal" />
+        <husk:HuskuiTheme Corner="Normal" />
         <StyleInclude Source="avares://Huskui.Gallery/Styles/Gallery.axaml" />
     </Application.Styles>
 </Application>

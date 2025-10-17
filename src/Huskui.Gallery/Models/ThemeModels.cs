@@ -26,6 +26,7 @@ public record AccentColorItem(string DisplayName, string Description, AccentColo
 {
     public static readonly AccentColorItem[] All =
     [
+        new("System", "Use the accent color from the system settings", AccentColor.System),
         new("Blue", "Classic blue accent color", AccentColor.Blue),
         new("Green", "Fresh green accent color", AccentColor.Green),
         new("Orange", "Vibrant orange accent color", AccentColor.Orange),

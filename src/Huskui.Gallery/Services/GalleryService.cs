@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using DynamicData;
 using FluentIcons.Common;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Views;

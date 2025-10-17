@@ -20,7 +20,8 @@
             </controls:ExampleContainer.Controls>
             <StackPanel Spacing="16">
                 <TextBlock Text="Block Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TabStrip CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <TabStrip
+                    CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
                     <TabStripItem>
                         <TextBlock>
                             <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
