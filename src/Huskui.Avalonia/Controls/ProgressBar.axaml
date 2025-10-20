@@ -86,7 +86,7 @@
                             <Border Name="PART_Indicator"
                                     Background="{TemplateBinding Background}" />
                         </Panel>
-                        <Panel Name="Indeterminate" Opacity="0.0">
+                        <Panel Name="Indeterminate" IsVisible="False">
                             <Border Name="Runner"
                                     Background="{TemplateBinding Background}" Opacity="0.5" />
                             <Border Name="Chaser"
@@ -127,10 +127,10 @@
                 <!-- </Style> -->
 
                 <Style Selector="^ /template/ Panel#Determinate">
-                    <Setter Property="Opacity" Value="0.0" />
+                    <Setter Property="IsVisible" Value="False" />
                 </Style>
                 <Style Selector="^ /template/ Panel#Indeterminate">
-                    <Setter Property="Opacity" Value="1.0" />
+                    <Setter Property="IsVisible" Value="True" />
                 </Style>
 
                 <Style Selector="^ /template/ Border#Runner">
