@@ -29,7 +29,7 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.7"/>
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.311"/>
+        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.312" />
     </ItemGroup>
 
     <ItemGroup>
