@@ -60,8 +60,8 @@
                                         <CornerRadiusTransition Property="CornerRadius" Easing="CubicEaseOut"
                                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
                                         <TransformOperationsTransition Property="RenderTransform"
-                                                                       Easing="CubicEaseOut"
-                                                                       Duration="{StaticResource ControlInstantAnimationDuration}" />
+                                                                       Easing="BackEaseOut"
+                                                                       Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </Border.Transitions>
                             </Border>
