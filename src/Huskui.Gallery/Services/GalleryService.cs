@@ -257,7 +257,7 @@ public class GalleryService : IGalleryService
         {
             Name = "Input",
             Description = "Input controls and forms",
-            Icon = Symbol.TextboxSettings,
+            Icon = Symbol.TextBoxSettings,
             Items =
             [
                 new()
