@@ -13,14 +13,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.7"/>
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.7"/>
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.7">
+        <PackageReference Include="Avalonia" Version="11.3.8"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.8"/>
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.8">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.312"/>
+        <PackageReference Include="FluentIcons.Avalonia" Version="1.1.313"/>
         <PackageReference Include="HotAvalonia" Version="3.0.0">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
