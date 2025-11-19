@@ -28,8 +28,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.8"/>
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.2.313"/>
+        <PackageReference Include="Avalonia" Version="11.3.9" />
+        <PackageReference Include="FluentIcons.Avalonia" Version="1.2.315" />
     </ItemGroup>
 
     <ItemGroup>
