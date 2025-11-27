@@ -7,13 +7,18 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
 using DynamicData.Binding;
+using Huskui.Avalonia;
+using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Gallery.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject, IDisposable
 {
+    private readonly IServiceProvider _serviceProvider;
+
     // DynamicData collections
     private readonly SourceList<GalleryItem> _allItemsSource = new();
     private readonly CompositeDisposable _disposables = new();
@@ -23,11 +28,13 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     public MainWindowViewModel(
         IGalleryService galleryService,
         INavigationService navigationService,
-        IThemeService themeService)
+        IThemeService themeService,
+        IServiceProvider serviceProvider)
     {
         _galleryService = galleryService;
         NavigationService = navigationService;
         ThemeService = themeService;
+        _serviceProvider = serviceProvider;
 
         NavigationService.NavigationChanged += OnNavigationChanged;
 
@@ -84,6 +91,8 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
     public INavigationService NavigationService { get; }
 
+    public Frame.PageActivatorDelegate PageActivator => ActivatePage;
+
     public ReadOnlyObservableCollection<GalleryItem> SearchResults => _searchResults;
 
     #region IDisposable Members
@@ -102,6 +111,41 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     }
 
     #endregion
+
+    private object? ActivatePage(Type view, object? parameter)
+    {
+        if (!view.IsAssignableTo(typeof(Page)))
+        {
+            throw new ArgumentOutOfRangeException(nameof(view), view, "Parameter view must be derived from Page");
+        }
+
+        var name = view.FullName!.Replace("View", "ViewModel", StringComparison.Ordinal);
+        var type = Type.GetType(name);
+
+        var page = Activator.CreateInstance(view) as Page;
+
+        if (page is not null && type is not null)
+        {
+            if (!type.IsAssignableTo(typeof(ObservableObject)))
+            {
+                throw new ArgumentOutOfRangeException(nameof(view),
+                                                      type,
+                                                      $"{view.Name} was bound to a view model which is not derived from ObservableObject");
+            }
+
+            var viewModel = ActivatorUtilities.CreateInstance(_serviceProvider, type);
+
+            page.DataContext = viewModel;
+
+            if (viewModel is IPageModel pageModel)
+            {
+                pageModel.PageToken = page.LifetimeToken;
+                page.Model = pageModel;
+            }
+        }
+
+        return page;
+    }
 
     // SearchText changes are now handled reactively in the constructor
 

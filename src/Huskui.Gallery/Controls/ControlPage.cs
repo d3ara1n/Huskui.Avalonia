@@ -1,10 +1,11 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
+using Huskui.Avalonia.Controls;
 
 namespace Huskui.Gallery.Controls;
 
-public class ControlPage : ContentControl
+public class ControlPage : Page
 {
     public static readonly StyledProperty<string> TitleProperty =
         AvaloniaProperty.Register<ControlPage, string>(nameof(Title));

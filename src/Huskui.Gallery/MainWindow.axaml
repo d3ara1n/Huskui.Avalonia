@@ -163,7 +163,7 @@
         <!-- Main Content -->
         <Grid Grid.Column="1">
             <!-- Content Frame -->
-            <TransitioningContentControl Name="ContentFrame" />
+            <husk:Frame Name="ContentFrame" />
 
             <!-- Settings Overlay -->
             <Border Background="{StaticResource OverlaySolidBackgroundBrush}"

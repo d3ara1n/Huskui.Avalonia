@@ -5,13 +5,13 @@ using Avalonia.Layout;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.ViewModels;
-using HomePage = Huskui.Gallery.Views.HomePage;
+using Huskui.Gallery.Views;
 
 namespace Huskui.Gallery;
 
 public partial class MainWindow : AppWindow
 {
-    private ContentControl? _contentFrame;
+    private Frame? _contentFrame;
 
     public MainWindow() => InitializeComponent();
 
@@ -19,11 +19,12 @@ public partial class MainWindow : AppWindow
     {
         base.OnLoaded(e);
 
-        _contentFrame = this.FindControl<ContentControl>("ContentFrame");
+        _contentFrame = this.FindControl<Frame>("ContentFrame");
 
         if (DataContext is MainWindowViewModel viewModel)
         {
             viewModel.NavigationService.NavigationChanged += OnNavigationChanged;
+            _contentFrame?.PageActivator = viewModel.PageActivator;
 
             // Navigate to home initially
             ShowHomePage();
@@ -36,18 +37,17 @@ public partial class MainWindow : AppWindow
         {
             try
             {
-                var page = Activator.CreateInstance(item.PageType);
-                _contentFrame?.Content = page;
+                _contentFrame?.Navigate(item.PageType, null, null);
             }
             catch (Exception ex)
             {
                 // Show error page or fallback content
-                _contentFrame?.Content = new TextBlock
-                {
-                    Text = $"Error loading page: {ex.Message}",
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
-                };
+                // _contentFrame?.Content = new TextBlock
+                // {
+                //     Text = $"Error loading page: {ex.Message}",
+                //     HorizontalAlignment = HorizontalAlignment.Center,
+                //     VerticalAlignment = VerticalAlignment.Center
+                // };
             }
         }
         else
@@ -56,5 +56,5 @@ public partial class MainWindow : AppWindow
         }
     }
 
-    private void ShowHomePage() => _contentFrame?.Content = new HomePage();
+    private void ShowHomePage() => _contentFrame?.Navigate(typeof(HomePage), null, null);
 }
