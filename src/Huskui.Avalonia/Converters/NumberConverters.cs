@@ -8,6 +8,26 @@ public static class NumberConverters
 
     public static IValueConverter IsNonZero { get; } = new RelayConverter((v, _) => !IsObjectZero(v));
 
+    public static IValueConverter IsPositive { get; } = new RelayConverter((v, _) => v switch
+    {
+        int i => int.IsPositive(i),
+        long l => long.IsPositive(l),
+        float f => float.IsPositive(f),
+        double d => double.IsPositive(d),
+        decimal m => decimal.IsPositive(m),
+        _ => v
+    });
+
+    public static IValueConverter IsNegative { get; } = new RelayConverter((v, _) => v switch
+    {
+        int i => int.IsNegative(i),
+        long l => long.IsNegative(l),
+        float f => float.IsNegative(f),
+        double d => double.IsNegative(d),
+        decimal m => decimal.IsNegative(m),
+        _ => v
+    });
+
     private static bool IsObjectZero(object? value)
     {
         if (value is int i)
