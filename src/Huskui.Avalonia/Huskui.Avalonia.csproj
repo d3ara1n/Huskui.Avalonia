@@ -44,7 +44,7 @@
 
     <!-- Source Link for better debugging experience -->
     <ItemGroup>
-        <PackageReference Include="GitVersion.MsBuild" Version="6.5.0">
+        <PackageReference Include="GitVersion.MsBuild" Version="6.5.1">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
