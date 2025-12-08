@@ -47,5 +47,41 @@
             </StackPanel>
         </controls:ExampleContainer>
 
+        <controls:ExampleContainer Title="Minimal StepControl"
+                                   Description="A minimal step indicator using dots">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Minimal Theme" FontWeight="Bold" FontSize="14" />
+                    <Button Content="Next Step" Click="OnMinimalNextStepClick" />
+                    <Button Content="Previous Step" Click="OnMinimalPreviousStepClick" />
+                    <TextBlock Text="Simple dot indicators for progress visualization."
+                               TextWrapping="Wrap"
+                               FontSize="12"
+                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel Spacing="12">
+                <husk:StepControl Name="MinimalControl" SelectedIndex="0"
+                                  Theme="{StaticResource MinimalStepControlTheme}">
+                    <husk:StepItem />
+                    <husk:StepItem />
+                    <husk:StepItem />
+                    <husk:StepItem />
+                    <husk:StepItem />
+                </husk:StepControl>
+                <TextBlock>
+                    <Run Text="Selected Index: " />
+                    <Run Text="{Binding #MinimalControl.SelectedIndex}" />
+                </TextBlock>
+                <husk:InfoBar Header="Usage">
+                    <TextBlock>
+                        <Run Text="Apply" />
+                        <husk:HighlightBlock Text="Theme='{StaticResource MinimalStepControlTheme}'" />
+                        <Run Text="to use the minimal dot indicator style." />
+                    </TextBlock>
+                </husk:InfoBar>
+            </StackPanel>
+        </controls:ExampleContainer>
+
     </StackPanel>
 </controls:ControlPage>

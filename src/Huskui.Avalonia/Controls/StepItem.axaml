@@ -112,4 +112,25 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+
+    <ControlTheme x:Key="MinimalStepItemTheme" TargetType="husk:StepItem">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Setter Property="MinWidth" Value="8" />
+        <Setter Property="Margin" Value="4,0" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Ellipse x:Name="Indicator" Width="8" Height="8"
+                         Fill="{StaticResource ControlTranslucentFullBackgroundBrush}" />
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:completed /template/ Ellipse#Indicator">
+            <Setter Property="Fill" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+        </Style>
+
+        <Style Selector="^:selected /template/ Ellipse#Indicator">
+            <Setter Property="Fill" Value="{StaticResource ControlAccentForegroundBrush}" />
+        </Style>
+    </ControlTheme>
 </ResourceDictionary>

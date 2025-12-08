@@ -20,4 +20,18 @@ public partial class StepControlsPage : ControlPage
             Control.SelectedIndex--;
         }
     }
+
+    private void OnMinimalNextStepClick(object? sender, RoutedEventArgs e) => MinimalControl.SelectedIndex++;
+
+    private void OnMinimalPreviousStepClick(object? sender, RoutedEventArgs e)
+    {
+        if (MinimalControl.SelectedIndex == -1)
+        {
+            MinimalControl.SelectedIndex = MinimalControl.Items.Count - 1;
+        }
+        else
+        {
+            MinimalControl.SelectedIndex--;
+        }
+    }
 }

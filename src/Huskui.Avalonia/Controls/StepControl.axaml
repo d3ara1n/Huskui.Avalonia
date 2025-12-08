@@ -8,4 +8,9 @@
             </ControlTemplate>
         </Setter>
     </ControlTheme>
+
+    <ControlTheme x:Key="MinimalStepControlTheme" TargetType="husk:StepControl"
+                  BasedOn="{StaticResource {x:Type husk:StepControl}}">
+        <Setter Property="ItemContainerTheme" Value="{StaticResource MinimalStepItemTheme}" />
+    </ControlTheme>
 </ResourceDictionary>
