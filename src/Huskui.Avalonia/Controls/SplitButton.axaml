@@ -30,7 +30,7 @@
         <Setter Property="Padding" Value="14,9" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="2">
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="1">
                     <Button x:Name="PART_PrimaryButton" Grid.Column="0"
                             Foreground="{TemplateBinding Foreground}"
                             Background="{TemplateBinding Background}"
