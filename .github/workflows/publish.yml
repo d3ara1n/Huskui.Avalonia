@@ -1,61 +1,69 @@
 name: Publish NuGet Package
 
 on:
-    push:
-        tags:
-            - 'v*'
+  push:
+    tags:
+      - 'v*'
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v4
-                with:
-                    fetch-depth: 0
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-            -   name: Setup .NET
-                uses: actions/setup-dotnet@v4
-                with:
-                    dotnet-version: '9.0.x'
+      - name: Extract .NET version from csproj
+        id: dotnet
+        run: |
+          dotnet_version=$(grep '<TargetFramework>' src/Huskui.Avalonia/Huskui.Avalonia.csproj | grep -o 'net[0-9]\+\.[0-9]\+' | sed 's/net//')
+          echo "dotnet_version=$dotnet_version" >> $GITHUB_OUTPUT
+          echo "dotnet_framework=net${dotnet_version}" >> $GITHUB_OUTPUT
+        shell: bash
 
-            -   name: Install GitVersion
-                uses: GitTools/actions/gitversion/setup@v3.2.1
-                with:
-                    versionSpec: '6.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ steps.dotnet.outputs.dotnet_version }}
 
-            -   name: Run GitVersion
-                id: gitversion
-                uses: GitTools/actions/gitversion/execute@v3.2.1
-                with:
-                    useConfigFile: true
+      - name: Install GitVersion
+        uses: GitTools/actions/gitversion/setup@v3.2.1
+        with:
+          versionSpec: '6.x'
 
-            -   name: Install git-cliff
-                run: |
-                    cargo install git-cliff
+      - name: Run GitVersion
+        id: gitversion
+        uses: GitTools/actions/gitversion/execute@v3.2.1
+        with:
+          useConfigFile: true
 
-            -   name: Pack NuGet package
-                run: |
-                    dotnet pack src/Huskui.Avalonia/Huskui.Avalonia.csproj \
-                      --configuration Release \
-                      --output ./publish
+      - name: Install git-cliff
+        run: |
+          cargo install git-cliff
 
-            -   name: Generate changelog
-                run: git-cliff  --latest -o ./CHANGELOG.md
+      - name: Pack NuGet package
+        run: |
+          dotnet pack src/Huskui.Avalonia/Huskui.Avalonia.csproj \
+            --configuration Release \
+            --output ./publish
 
-            -   name: Publish to NuGet
-                run: |
-                    dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
-                
-                env:
-                    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      - name: Generate changelog
+        run: git-cliff  --latest -o ./CHANGELOG.md
 
-            -   name: Create GitHub Release
-                uses: softprops/action-gh-release@v2
-                with:
-                    tag_name: ${{ github.ref_name }}
-                    name: Release ${{ github.ref_name }}
-                    body_path: ./CHANGELOG.md
+      - name: Publish to NuGet
+        run: |
+          dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body_path: ./CHANGELOG.md
