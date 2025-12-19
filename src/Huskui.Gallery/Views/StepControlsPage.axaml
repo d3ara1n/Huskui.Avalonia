@@ -40,7 +40,9 @@
                 <husk:InfoBar Header="Tip">
                     <TextBlock>
                         <Run Text="Setting" />
-                        <husk:HighlightBlock Text="SelectedIndex" />
+                        <InlineUIContainer BaselineAlignment="TextBottom">
+                            <husk:HighlightBlock Text="SelectedIndex" />
+                        </InlineUIContainer>
                         <Run Text="to -1 will show all steps as completed." />
                     </TextBlock>
                 </husk:InfoBar>
@@ -76,7 +78,9 @@
                 <husk:InfoBar Header="Usage">
                     <TextBlock>
                         <Run Text="Apply" />
-                        <husk:HighlightBlock Text="Theme='{StaticResource MinimalStepControlTheme}'" />
+                        <InlineUIContainer BaselineAlignment="TextBottom">
+                            <husk:HighlightBlock Text="Theme='{StaticResource MinimalStepControlTheme}'" />
+                        </InlineUIContainer>
                         <Run Text="to use the minimal dot indicator style." />
                     </TextBlock>
                 </husk:InfoBar>

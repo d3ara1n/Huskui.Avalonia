@@ -5,13 +5,13 @@
         <Panel Background="White">
             <StackPanel Margin="24" Spacing="12" Orientation="Horizontal">
                 <TextBlock>
-                    <local:HighlightBlock Text="Ctrl+C" Classes="Shortcut" />
+                    <local:HighlightInline Text="Ctrl+C" IsShortcut="True" />
                     <Run Text="and" />
-                    <local:HighlightBlock Text="Ctrl+C" Classes="Primary Shortcut" />
+                    <local:HighlightInline Text="Ctrl+C" IsShortcut="True" IsPrimary="True" />
                     <Run Text="then" />
-                    <local:HighlightBlock Text="✨ git push -f" />
+                    <local:HighlightInline Text="✨ git push -f" />
                     <Run Text="or" />
-                    <local:HighlightBlock Text="✨ git push -f" Classes="Primary" />
+                    <local:HighlightInline Text="✨ git push -f" IsPrimary="True" />
                     <Run Text="!" />
                 </TextBlock>
             </StackPanel>
