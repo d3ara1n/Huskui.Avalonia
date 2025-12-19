@@ -30,7 +30,7 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Padding="{TemplateBinding Padding}">
-                    <TextPresenter Text="{TemplateBinding Text}" VerticalAlignment="Center" />
+                    <TextPresenter Text="{TemplateBinding Text}" VerticalAlignment="Center" TextWrapping="NoWrap" />
                 </Border>
             </ControlTemplate>
         </Setter>
