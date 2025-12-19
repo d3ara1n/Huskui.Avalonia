@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
 using Avalonia.Media;
-using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Converters;
@@ -94,7 +93,7 @@ internal static class InternalConverters
     });
 
     /// <summary>
-    /// Converts a RatingStarFillState to opacity (0 for Empty, 1 for Full/Half).
+    ///     Converts a RatingStarFillState to opacity (0 for Empty, 1 for Full/Half).
     /// </summary>
     public static IValueConverter RatingStarFillToOpacity { get; } = new RelayConverter((v, _) =>
     {
@@ -107,7 +106,7 @@ internal static class InternalConverters
     });
 
     /// <summary>
-    /// Converts a RatingStarFillState and FontSize to a clip geometry for half-star display.
+    ///     Converts a RatingStarFillState and FontSize to a clip geometry for half-star display.
     /// </summary>
     public static IMultiValueConverter RatingStarClipGeometry { get; } = new RelayMultiConverter((v, _, _) =>
     {

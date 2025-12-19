@@ -47,12 +47,12 @@ public class DropContainer : ContentControl
     private void OnDrop(object? sender, DragEventArgs e)
     {
         PseudoClasses.Set(":dragover", false);
-			var args = new DragOverEventArgs(this, e.DataTransfer);
+        var args = new DragOverEventArgs(this, e.DataTransfer);
         RaiseEvent(args);
         if (args.IsValid)
         {
             e.Handled = true;
-				RaiseEvent(new DropEventArgs(this, e.DataTransfer));
+            RaiseEvent(new DropEventArgs(this, e.DataTransfer));
         }
     }
 
@@ -65,7 +65,7 @@ public class DropContainer : ContentControl
 
     private void OnDragEnter(object? sender, DragEventArgs e)
     {
-			var args = new DragOverEventArgs(this, e.DataTransfer);
+        var args = new DragOverEventArgs(this, e.DataTransfer);
         RaiseEvent(args);
         if (args.IsValid)
         {
@@ -89,9 +89,9 @@ public class DropContainer : ContentControl
 
     #region Nested type: DragOverEventArgs
 
-		public class DragOverEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DragOverEvent, source)
+    public class DragOverEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DragOverEvent, source)
     {
-			public IDataTransfer Data => data;
+        public IDataTransfer Data => data;
         public bool IsValid { get; set; }
     }
 
@@ -99,9 +99,9 @@ public class DropContainer : ContentControl
 
     #region Nested type: DropEventArgs
 
-		public class DropEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DropEvent, source)
+    public class DropEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DropEvent, source)
     {
-			public IDataTransfer Data => data;
+        public IDataTransfer Data => data;
     }
 
     #endregion

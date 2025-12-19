@@ -12,11 +12,18 @@ public class RatingStar(int index) : INotifyPropertyChanged
         set
         {
             if (field == value)
+            {
                 return;
+            }
+
             field = value;
             PropertyChanged?.Invoke(this, new(nameof(FillState)));
         }
     }
 
+    #region INotifyPropertyChanged Members
+
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    #endregion
 }

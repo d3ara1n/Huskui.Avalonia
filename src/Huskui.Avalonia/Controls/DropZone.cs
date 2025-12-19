@@ -42,7 +42,7 @@ public class DropZone : ContentControl
 
     private void OnDragEnter(object? sender, DragEventArgs e)
     {
-			var args = new DragOverEventArgs(e.DataTransfer) { RoutedEvent = DragOverEvent };
+        var args = new DragOverEventArgs(e.DataTransfer) { RoutedEvent = DragOverEvent };
         RaiseEvent(args);
         PseudoClasses.Set(":drop", false);
         if (args.Accepted)
@@ -69,11 +69,11 @@ public class DropZone : ContentControl
     {
         e.DragEffects = DragDropEffects.None;
         PseudoClasses.Set(":dragover", false);
-			var validation = new DragOverEventArgs(e.DataTransfer) { RoutedEvent = DragOverEvent };
+        var validation = new DragOverEventArgs(e.DataTransfer) { RoutedEvent = DragOverEvent };
         RaiseEvent(validation);
         if (validation.Accepted)
         {
-				var args = new DropEventArgs(e.DataTransfer) { RoutedEvent = DropEvent };
+            var args = new DropEventArgs(e.DataTransfer) { RoutedEvent = DropEvent };
             RaiseEvent(args);
             if (args.Model != null)
             {
@@ -116,9 +116,9 @@ public class DropZone : ContentControl
 
     #region Nested type: DragOverEventArgs
 
-		public class DragOverEventArgs(IDataTransfer data) : RoutedEventArgs
+    public class DragOverEventArgs(IDataTransfer data) : RoutedEventArgs
     {
-			public IDataTransfer Data => data;
+        public IDataTransfer Data => data;
         public bool Accepted { get; set; }
     }
 
@@ -126,9 +126,9 @@ public class DropZone : ContentControl
 
     #region Nested type: DropEventArgs
 
-		public class DropEventArgs(IDataTransfer data) : RoutedEventArgs
+    public class DropEventArgs(IDataTransfer data) : RoutedEventArgs
     {
-			public IDataTransfer Data => data;
+        public IDataTransfer Data => data;
         public object? Model { get; set; }
     }
 

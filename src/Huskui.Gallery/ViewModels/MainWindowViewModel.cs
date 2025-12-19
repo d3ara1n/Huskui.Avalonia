@@ -17,13 +17,12 @@ namespace Huskui.Gallery.ViewModels;
 
 public partial class MainWindowViewModel : ObservableObject, IDisposable
 {
-    private readonly IServiceProvider _serviceProvider;
-
     // DynamicData collections
     private readonly SourceList<GalleryItem> _allItemsSource = new();
     private readonly CompositeDisposable _disposables = new();
     private readonly IGalleryService _galleryService;
     private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults;
+    private readonly IServiceProvider _serviceProvider;
 
     public MainWindowViewModel(
         IGalleryService galleryService,

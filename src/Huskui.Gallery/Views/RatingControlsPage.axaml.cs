@@ -16,15 +16,10 @@ public partial class RatingControlsPage : ControlPage
         }
     }
 
-    private void OnResetBasicClick(object? sender, RoutedEventArgs e)
-    {
-        BasicRating.Value = 3;
-    }
+    private void OnResetBasicClick(object? sender, RoutedEventArgs e) => BasicRating.Value = 3;
 
-    private void OnSubmitReviewClick(object? sender, RoutedEventArgs e)
-    {
+    private void OnSubmitReviewClick(object? sender, RoutedEventArgs e) =>
         // In a real application, you would submit the review here
         // For demo purposes, we just reset the rating
         ReviewRating.Value = 0;
-    }
 }

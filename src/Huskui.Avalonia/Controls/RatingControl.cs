@@ -130,13 +130,21 @@ public class RatingControl : RangeBase
         base.OnPropertyChanged(change);
 
         if (change.Property == IsReadOnlyProperty)
+        {
             PseudoClasses.Set(":readonly", change.GetNewValue<bool>());
+        }
 
         if (change.Property == MaximumProperty)
+        {
             UpdateStarsCollection();
+        }
 
-        if (change.Property == ValueProperty || change.Property == PreviewValueProperty || change.Property == IsPreviewingProperty)
+        if (change.Property == ValueProperty
+         || change.Property == PreviewValueProperty
+         || change.Property == IsPreviewingProperty)
+        {
             UpdateStarStates();
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -182,7 +190,9 @@ public class RatingControl : RangeBase
     private void OnStarPointerMoved(object? sender, PointerEventArgs e)
     {
         if (IsReadOnly || sender is not Control { DataContext: RatingStar starItem } container)
+        {
             return;
+        }
 
         PreviewValue = CalculateValue(container, starItem.Index, e);
         IsPreviewing = true;
@@ -191,7 +201,9 @@ public class RatingControl : RangeBase
     private void OnStarPointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (IsReadOnly || sender is not Control { DataContext: RatingStar starItem } container)
+        {
             return;
+        }
 
         var newValue = CalculateValue(container, starItem.Index, e);
         Value = IsClearEnabled && Math.Abs(Value - newValue) < 0.01 ? 0 : newValue;
@@ -201,7 +213,9 @@ public class RatingControl : RangeBase
     private double CalculateValue(Control container, int index, PointerEventArgs e)
     {
         if (!AllowHalfStars || container.Bounds.Width <= 0)
+        {
             return index + 1;
+        }
 
         var relativeX = e.GetPosition(container).X / container.Bounds.Width;
         return relativeX <= 0.5 ? index + 0.5 : index + 1;
@@ -211,7 +225,10 @@ public class RatingControl : RangeBase
     {
         Stars.Clear();
         for (var i = 0; i < (int)Maximum; i++)
+        {
             Stars.Add(new(i));
+        }
+
         UpdateStarStates();
     }
 

@@ -43,14 +43,18 @@
                                     Opacity="{Binding FillState, Converter={x:Static local:InternalConverters.RatingStarFillToOpacity}}">
                                     <fi:SymbolIcon.Transitions>
                                         <Transitions>
-                                            <DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut" />
-                                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" Easing="BackEaseOut" />
+                                            <DoubleTransition Property="Opacity" Duration="0:0:0.1"
+                                                              Easing="SineEaseOut" />
+                                            <TransformOperationsTransition Property="RenderTransform"
+                                                                           Duration="0:0:0.1" Easing="BackEaseOut" />
                                         </Transitions>
                                     </fi:SymbolIcon.Transitions>
                                     <fi:SymbolIcon.Clip>
-                                        <MultiBinding Converter="{x:Static local:InternalConverters.RatingStarClipGeometry}">
+                                        <MultiBinding
+                                            Converter="{x:Static local:InternalConverters.RatingStarClipGeometry}">
                                             <Binding Path="FillState" />
-                                            <Binding Path="FontSize" RelativeSource="{RelativeSource AncestorType=local:RatingControl}" />
+                                            <Binding Path="FontSize"
+                                                     RelativeSource="{RelativeSource AncestorType=local:RatingControl}" />
                                         </MultiBinding>
                                     </fi:SymbolIcon.Clip>
                                 </fi:SymbolIcon>

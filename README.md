@@ -48,7 +48,8 @@ dotnet run --project src/Huskui.Gallery
 
 > **Note**: The Gallery application and this README documentation were created entirely by AI to showcase the
 > Huskui.Avalonia library. However, the core Huskui.Avalonia control library itself was lovingly crafted by humans (you
-> can tell because there are virtually no comments in the library code 😅). The library is production-ready and battle-tested, so
+> can tell because there are virtually no comments in the library code 😅). The library is production-ready and
+> battle-tested, so
 > please feel confident using it in your projects!
 
 ## Getting Started

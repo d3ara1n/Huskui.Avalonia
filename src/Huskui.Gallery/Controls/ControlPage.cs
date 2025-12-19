@@ -1,6 +1,5 @@
 ﻿using System;
 using Avalonia;
-using Avalonia.Controls;
 using Huskui.Avalonia.Controls;
 
 namespace Huskui.Gallery.Controls;
