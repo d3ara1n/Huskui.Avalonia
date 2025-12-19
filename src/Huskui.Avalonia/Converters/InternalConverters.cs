@@ -1,6 +1,9 @@
 using Avalonia;
 using Avalonia.Data.Converters;
 using Avalonia.Input;
+using Avalonia.Media;
+using Huskui.Avalonia.Controls;
+using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Converters;
 
@@ -88,5 +91,38 @@ internal static class InternalConverters
         }
 
         return v;
+    });
+
+    /// <summary>
+    /// Converts a RatingStarFillState to opacity (0 for Empty, 1 for Full/Half).
+    /// </summary>
+    public static IValueConverter RatingStarFillToOpacity { get; } = new RelayConverter((v, _) =>
+    {
+        if (v is RatingStarFillState state)
+        {
+            return state == RatingStarFillState.Empty ? 0.0 : 1.0;
+        }
+
+        return 0.0;
+    });
+
+    /// <summary>
+    /// Converts a RatingStarFillState and FontSize to a clip geometry for half-star display.
+    /// </summary>
+    public static IMultiValueConverter RatingStarClipGeometry { get; } = new RelayMultiConverter((v, _, _) =>
+    {
+        // NOTE: 这里使用 FontSize 当做宽度作对半裁切，如果未来图标的字体大小不再与宽度一致，需要改为 Bounds.Width
+        if (v is [RatingStarFillState state, double fontSize])
+        {
+            return state == RatingStarFillState.Half
+                       ?
+                       // Clip to left half
+                       new RectangleGeometry(new(0, 0, fontSize / 2, fontSize))
+                       :
+                       // Full star - no clip needed (return a large rect that covers everything)
+                       new(new(0, 0, fontSize * 2, fontSize * 2));
+        }
+
+        return null;
     });
 }

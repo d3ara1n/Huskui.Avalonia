@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
+                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+    <Design.PreviewWith>
+        <StackPanel Background="White" Margin="24" Spacing="12">
+            <local:RatingControl Value="3" />
+            <local:RatingControl Value="2.5" AllowHalfStars="True" />
+            <local:RatingControl Value="4" IsReadOnly="True" />
+        </StackPanel>
+    </Design.PreviewWith>
+
+    <SolidColorBrush x:Key="RatingControlFilledBrush" Color="#FFD700" />
+    <SolidColorBrush x:Key="RatingControlUnfilledBrush" Color="#D0D0D0" />
+
+    <ControlTheme x:Key="{x:Type local:RatingControl}" TargetType="local:RatingControl">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="FilledColor" Value="{StaticResource RatingControlFilledBrush}" />
+        <Setter Property="UnfilledColor" Value="{StaticResource RatingControlUnfilledBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ItemsControl Name="{x:Static local:RatingControl.PART_StarsPanel}"
+                              ItemsSource="{TemplateBinding Stars}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="{Binding Spacing, RelativeSource={RelativeSource AncestorType=local:RatingControl}}" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="local:RatingStar">
+                            <Panel>
+                                <fi:SymbolIcon
+                                    Symbol="{Binding UnfilledIcon, RelativeSource={RelativeSource AncestorType=local:RatingControl}}"
+                                    FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:RatingControl}}"
+                                    Foreground="{Binding UnfilledColor, RelativeSource={RelativeSource AncestorType=local:RatingControl}}" />
+                                <fi:SymbolIcon
+                                    Symbol="{Binding FilledIcon, RelativeSource={RelativeSource AncestorType=local:RatingControl}}"
+                                    IconVariant="Filled"
+                                    FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=local:RatingControl}}"
+                                    Foreground="{Binding FilledColor, RelativeSource={RelativeSource AncestorType=local:RatingControl}}"
+                                    Opacity="{Binding FillState, Converter={x:Static local:InternalConverters.RatingStarFillToOpacity}}">
+                                    <fi:SymbolIcon.Transitions>
+                                        <Transitions>
+                                            <DoubleTransition Property="Opacity" Duration="0:0:0.1" Easing="SineEaseOut" />
+                                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" Easing="BackEaseOut" />
+                                        </Transitions>
+                                    </fi:SymbolIcon.Transitions>
+                                    <fi:SymbolIcon.Clip>
+                                        <MultiBinding Converter="{x:Static local:InternalConverters.RatingStarClipGeometry}">
+                                            <Binding Path="FillState" />
+                                            <Binding Path="FontSize" RelativeSource="{RelativeSource AncestorType=local:RatingControl}" />
+                                        </MultiBinding>
+                                    </fi:SymbolIcon.Clip>
+                                </fi:SymbolIcon>
+                            </Panel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^:readonly">
+            <Setter Property="Cursor" Value="Arrow" />
+        </Style>
+
+        <Style Selector="^:not(:readonly):pointerover /template/ Panel > fi|SymbolIcon">
+            <Setter Property="RenderTransform" Value="scale(1.1)" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

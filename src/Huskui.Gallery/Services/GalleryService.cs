@@ -291,6 +291,14 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.CheckboxChecked,
                     PageType = typeof(CheckBoxesPage),
                     Tags = ["checkbox", "check", "selection", "boolean", "three-state"]
+                },
+                new()
+                {
+                    Title = "RatingControls",
+                    Description = "Star-based rating controls for user feedback and reviews",
+                    Icon = Symbol.Star,
+                    PageType = typeof(RatingControlsPage),
+                    Tags = ["rating", "star", "review", "feedback", "score"]
                 }
             ]
         };

@@ -13,19 +13,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.9" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.9" />
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.9">
+        <PackageReference Include="Avalonia" Version="11.3.10" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.10" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.10">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="FluentIcons.Avalonia" Version="1.2.315" />
-        <PackageReference Include="HotAvalonia" Version="3.0.0">
+        <PackageReference Include="FluentIcons.Avalonia" Version="2.0.316.1" />
+        <PackageReference Include="HotAvalonia" Version="3.0.2">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
         <PackageReference Include="DynamicData" Version="9.4.1" />
     </ItemGroup>
 

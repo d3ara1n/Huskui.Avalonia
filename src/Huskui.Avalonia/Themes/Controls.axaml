@@ -41,6 +41,7 @@
         <ResourceInclude Source="/Controls/ProgressBar.axaml" />
         <ResourceInclude Source="/Controls/ProgressRing.axaml" />
         <ResourceInclude Source="/Controls/RadioButton.axaml" />
+        <ResourceInclude Source="/Controls/RatingControl.axaml" />
         <ResourceInclude Source="/Controls/ScrollBar.axaml" />
         <ResourceInclude Source="/Controls/ScrollViewer.axaml" />
         <ResourceInclude Source="/Controls/Separator.axaml" />
