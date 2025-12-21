@@ -41,10 +41,28 @@ public sealed class GrowlItem : ContentControl
     public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
         RoutedEvent.Register<GrowlItem, DismissRequestedEventArgs>(nameof(DismissRequested), RoutingStrategies.Bubble);
 
+    public static readonly StyledProperty<bool> IsExpandedProperty =
+        AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsExpanded), true);
+
+    public static readonly StyledProperty<bool> IsExpandButtonVisibleProperty =
+        AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsExpandButtonVisible), true);
+
     private readonly CancellationTokenSource _cts = new();
     private readonly InternalCommand _dismissCommand;
 
     public GrowlItem() => _dismissCommand = new(Dismiss, () => !_cts.IsCancellationRequested);
+
+    public bool IsExpanded
+    {
+        get => GetValue(IsExpandedProperty);
+        set => SetValue(IsExpandedProperty, value);
+    }
+
+    public bool IsExpandButtonVisible
+    {
+        get => GetValue(IsExpandButtonVisibleProperty);
+        set => SetValue(IsExpandButtonVisibleProperty, value);
+    }
 
     protected override Type StyleKeyOverride { get; } = typeof(GrowlItem);
 

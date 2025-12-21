@@ -6,6 +6,8 @@
         <Panel Background="White" Width="360">
             <ScrollViewer>
                 <StackPanel Margin="24" Spacing="6">
+                    <local:GrowlItem Title="Hello" BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                                     Progress="46" IsProgressBarVisible="True" />
                     <local:GrowlItem Title="{x:Null}" IsCloseButtonVisible="False">
                         <Button Content="Do NOT Press" />
                     </local:GrowlItem>
@@ -26,7 +28,8 @@
                             </TextBlock>
                         </StackPanel>
                     </local:GrowlItem>
-                    <local:GrowlItem Level="Warning" Title="Checking updates" Content="It takes very long."
+                    <local:GrowlItem Level="Warning" Title="Checking updates"
+                                     Content="It takes very looooooooooooooooooooooooooooooooong."
                                      IsProgressBarVisible="True" IsProgressIndeterminate="True">
                         <local:GrowlItem.Actions>
                             <local:GrowlAction Text="Go" />
@@ -74,7 +77,11 @@
                             BackgroundSizing="{TemplateBinding BackgroundSizing}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Margin="3" BoxShadow="0 0 4 0 #3F000000">
+                            Margin="3">
+                        <Border.Effect>
+                            <!-- Due to non-uniform corner radius, BoxShadow does not work -->
+                            <DropShadowEffect BlurRadius="6" Opacity="0.1" OffsetX="0" OffsetY="0" />
+                        </Border.Effect>
                         <Border CornerRadius="{TemplateBinding CornerRadius}"
                                 ClipToBounds="{TemplateBinding ClipToBounds}">
                             <DockPanel>
@@ -84,9 +91,9 @@
                                              IsIndeterminate="{TemplateBinding IsProgressIndeterminate}"
                                              Maximum="{TemplateBinding ProgressMaximum}"
                                              IsVisible="{TemplateBinding IsProgressBarVisible}" />
-                                <Grid RowDefinitions="Auto,4,*,4,Auto" ColumnDefinitions="*,Auto"
+                                <Grid RowDefinitions="Auto,*"
                                       Margin="{TemplateBinding Padding}">
-                                    <Grid Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0"
+                                    <Grid Grid.Row="0" Grid.Column="0"
                                           ColumnDefinitions="*,Auto" ColumnSpacing="8">
                                         <Grid.IsVisible>
                                             <MultiBinding Converter="{x:Static BoolConverters.Or}">
@@ -100,41 +107,74 @@
                                         <TextBlock Grid.Column="0" Text="{TemplateBinding Title}"
                                                    FontWeight="{StaticResource ControlStrongFontWeight}"
                                                    TextTrimming="CharacterEllipsis" />
-                                        <Button Grid.Column="1" Padding="6"
-                                                CornerRadius="{StaticResource FullCornerRadius}"
-                                                Theme="{StaticResource OutlineButtonTheme}"
-                                                Command="{Binding DismissCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                                                IsVisible="{TemplateBinding IsCloseButtonVisible}">
-                                            <fi:SymbolIcon Symbol="Dismiss" Height="6" Width="6" />
-                                        </Button>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                                            <ToggleButton Padding="4"
+                                                          CornerRadius="{StaticResource FullCornerRadius}"
+                                                          Theme="{StaticResource OutlineButtonTheme}"
+                                                          IsChecked="{Binding IsExpanded,Mode=TwoWay,RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                                <ToggleButton.IsVisible>
+                                                    <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                                        <Binding Path="IsExpandButtonVisible"
+                                                                 RelativeSource="{RelativeSource Mode=TemplatedParent}" />
+                                                        <Binding Path="Content"
+                                                                 RelativeSource="{RelativeSource Mode=TemplatedParent}"
+                                                                 Converter="{x:Static ObjectConverters.IsNotNull}" />
+
+                                                    </MultiBinding>
+                                                </ToggleButton.IsVisible>
+                                                <local:SwitchPresenter Value="{TemplateBinding IsExpanded}"
+                                                                       TargetType="x:Boolean">
+                                                    <local:SwitchCase Value="{x:False}">
+                                                        <fi:SymbolIcon Symbol="ChevronDown" FontSize="9" />
+                                                    </local:SwitchCase>
+                                                    <local:SwitchCase Value="{x:True}">
+                                                        <fi:SymbolIcon Symbol="ChevronUp" FontSize="9" />
+                                                    </local:SwitchCase>
+                                                </local:SwitchPresenter>
+                                            </ToggleButton>
+                                            <Button Padding="4"
+                                                    CornerRadius="{StaticResource FullCornerRadius}"
+                                                    Theme="{StaticResource OutlineButtonTheme}"
+                                                    Command="{Binding DismissCommand,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                    IsVisible="{TemplateBinding IsCloseButtonVisible}">
+                                                <fi:SymbolIcon Symbol="Dismiss" FontSize="9" />
+                                            </Button>
+                                        </StackPanel>
                                     </Grid>
-                                    <ContentPresenter Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0"
-                                                      Content="{TemplateBinding Content}"
-                                                      ContentTemplate="{TemplateBinding ContentTemplate}">
-                                        <ContentPresenter.Styles>
-                                            <Style Selector="ContentPresenter > TextBlock">
-                                                <Setter Property="TextWrapping" Value="Wrap" />
-                                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-                                                <Setter Property="Foreground"
-                                                        Value="{StaticResource ControlSecondaryForegroundBrush}" />
-                                            </Style>
-                                        </ContentPresenter.Styles>
-                                    </ContentPresenter>
-                                    <ItemsControl Grid.Row="4" Grid.Column="1"
-                                                  ItemsSource="{TemplateBinding Actions}">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal" Spacing="12" />
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate DataType="local:GrowlAction">
-                                                <HyperlinkButton Content="{Binding Text}"
-                                                                 Command="{Binding Command}"
-                                                                 CommandParameter="{Binding  Parameter}" />
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+                                    <Grid Grid.Row="1" Grid.Column="0"
+                                          RowDefinitions="*,Auto"
+                                          ColumnDefinitions="*,Auto"
+                                          IsVisible="{TemplateBinding IsExpanded}">
+                                        <ContentPresenter Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                                          Margin="0,4,0,0"
+                                                          IsVisible="{TemplateBinding Content,Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}">
+                                            <ContentPresenter.Styles>
+                                                <Style Selector="ContentPresenter > TextBlock">
+                                                    <Setter Property="TextWrapping" Value="Wrap" />
+                                                    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                                    <Setter Property="Foreground"
+                                                            Value="{StaticResource ControlSecondaryForegroundBrush}" />
+                                                </Style>
+                                            </ContentPresenter.Styles>
+                                        </ContentPresenter>
+                                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                                      ItemsSource="{TemplateBinding Actions}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" Spacing="12" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate DataType="local:GrowlAction">
+                                                    <HyperlinkButton Content="{Binding Text}"
+                                                                     Command="{Binding Command}"
+                                                                     CommandParameter="{Binding  Parameter}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
                                 </Grid>
                             </DockPanel>
                         </Border>
