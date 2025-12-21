@@ -53,10 +53,10 @@
                 Value="{Binding HorizontalContentAlignment,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:GrowlHost}}" />
         <Setter Property="VerticalAlignment"
                 Value="{Binding VerticalContentAlignment,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:GrowlHost}}" />
-        <Setter Property="BorderBrush" Value="{StaticResource GrowlBorderBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
-        <Setter Property="Background" Value="{StaticResource GrowlBackgroundBrush}" />
-        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        <Setter Property="BorderThickness" Value="0,3,0,0" />
+        <Setter Property="BorderBrush" Value="{StaticResource OverlaySolidBackgroundBrush}" />
         <Setter Property="Padding" Value="12,8" />
         <Setter Property="MinWidth" Value="220" />
         <Setter Property="Transitions">
@@ -78,7 +78,8 @@
                         <Border CornerRadius="{TemplateBinding CornerRadius}"
                                 ClipToBounds="{TemplateBinding ClipToBounds}">
                             <DockPanel>
-                                <ProgressBar DockPanel.Dock="Bottom" CornerRadius="0"
+                                <ProgressBar DockPanel.Dock="Bottom"
+                                             CornerRadius="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static local:CornerRadiusConverters.Lower}}"
                                              Value="{TemplateBinding Progress}"
                                              IsIndeterminate="{TemplateBinding IsProgressIndeterminate}"
                                              Maximum="{TemplateBinding ProgressMaximum}"
@@ -144,15 +145,15 @@
 
         <Style Selector="^:success">
             <Setter Property="Title" Value="Success" />
-            <Setter Property="Background" Value="{StaticResource GrowlSuccessBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlSuccessBorderBrush}" />
         </Style>
         <Style Selector="^:warning">
             <Setter Property="Title" Value="Warning" />
-            <Setter Property="Background" Value="{StaticResource GrowlWarningBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlWarningBorderBrush}" />
         </Style>
         <Style Selector="^:danger">
             <Setter Property="Title" Value="Danger" />
-            <Setter Property="Background" Value="{StaticResource GrowlDangerBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDangerBorderBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
