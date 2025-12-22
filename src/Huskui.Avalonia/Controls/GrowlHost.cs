@@ -1,3 +1,4 @@
+using System.Collections;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Collections;
@@ -24,9 +25,9 @@ public class GrowlHost : TemplatedControl
     public static readonly StyledProperty<int> ItemCountProperty =
         AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
 
-    public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
-        AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel),
-                                                          new FuncTemplate<StackPanel>(() => new()));
+    public static readonly StyledProperty<ITemplate<Panel?>> ItemsPanelProperty =
+        AvaloniaProperty.Register<OverlayHost, ITemplate<Panel?>>(nameof(ItemsPanel),
+                                                                  new FuncTemplate<Panel?>(() => new StackPanel()));
 
     public static readonly StyledProperty<IPageTransition> TransitionProperty =
         AvaloniaProperty.Register<GrowlHost, IPageTransition>(nameof(Transition), new GrowlTransition());
