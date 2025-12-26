@@ -26,7 +26,7 @@ public partial class FramesPage : ControlPage
     [
         new(new PageCoverOverTransition()),
         new(new FocusOnTransition()),
-        new(new HookUpTransition()),
+        new(new TabTransition()),
         new(new PopUpTransition())
     ];
 

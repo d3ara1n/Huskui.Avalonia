@@ -10,6 +10,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_ModalHost, typeof(OverlayHost))]
 [TemplatePart(PART_DialogHost, typeof(OverlayHost))]
 [TemplatePart(PART_GrowlHost, typeof(GrowlHost))]
+[TemplatePart(PART_DrawerHost, typeof(DrawerHost))]
 [PseudoClasses(":obstructed")]
 public class AppWindow : Window
 {
@@ -18,6 +19,7 @@ public class AppWindow : Window
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
     public const string PART_GrowlHost = nameof(PART_GrowlHost);
+    public const string PART_DrawerHost = nameof(PART_DrawerHost);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
         AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),
@@ -28,6 +30,7 @@ public class AppWindow : Window
     private OverlayHost? _sidebarHost;
     private GrowlHost? _growlHost;
     private OverlayHost? _modalHost;
+    private DrawerHost? _drawerHost;
 
     private OverlayHost? _toastHost;
 
@@ -60,12 +63,14 @@ public class AppWindow : Window
         _sidebarHost = e.NameScope.Find<OverlayHost>(PART_SidebarHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
         _dialogHost = e.NameScope.Find<OverlayHost>(PART_DialogHost);
+        _drawerHost = e.NameScope.Find<DrawerHost>(PART_DrawerHost);
 
         ArgumentNullException.ThrowIfNull(_toastHost);
         ArgumentNullException.ThrowIfNull(_sidebarHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
         ArgumentNullException.ThrowIfNull(_growlHost);
+        ArgumentNullException.ThrowIfNull(_drawerHost);
 
         _toastHost.IsPresentChanged += UpdateObstructed;
         _sidebarHost.IsPresentChanged += UpdateObstructed;
@@ -81,6 +86,7 @@ public class AppWindow : Window
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
         LogicalChildren.Add(_growlHost);
+        LogicalChildren.Add(_drawerHost);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -164,5 +170,11 @@ public class AppWindow : Window
     {
         ArgumentNullException.ThrowIfNull(_growlHost);
         _growlHost.Pop(growl);
+    }
+
+    public void AddDrawer(Drawer drawer)
+    {
+        ArgumentNullException.ThrowIfNull(_drawerHost);
+        _drawerHost.Children.Add(drawer);
     }
 }

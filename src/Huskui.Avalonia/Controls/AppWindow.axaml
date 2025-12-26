@@ -79,6 +79,7 @@
                                     </ItemsPanelTemplate>
                                 </local:GrowlHost.ItemsPanel>
                             </local:GrowlHost>
+                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}" />
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
                             <ContentPresenter

@@ -221,6 +221,14 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.Alert,
                     PageType = typeof(GrowlsPage),
                     Tags = ["notification", "alert", "message", "status", "feedback"]
+                },
+                new()
+                {
+                    Title = "Drawers",
+                    Description = "Floating drawer that can be dragged, resized, and collapsed",
+                    Icon = Symbol.PanelBottom,
+                    PageType = typeof(DrawerPage),
+                    Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"]
                 }
             ]
         };
