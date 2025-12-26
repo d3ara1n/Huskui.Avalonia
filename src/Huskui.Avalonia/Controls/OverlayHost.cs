@@ -154,7 +154,7 @@ public class OverlayHost : TemplatedControl
             {
                 var transition = item.Transition ?? Transition;
                 transition
-                   .Start(null, item, false, CancellationToken.None)
+                   .Start(item, null, true, CancellationToken.None)
                    .ContinueWith(_ =>
                                  {
                                      for (var i = 0; i < Items.IndexOf(item); i++)

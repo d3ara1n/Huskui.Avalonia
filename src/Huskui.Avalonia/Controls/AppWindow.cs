@@ -6,7 +6,7 @@ using Avalonia.Controls.Primitives;
 namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_ToastHost, typeof(OverlayHost))]
-[TemplatePart(PART_DrawerHost, typeof(OverlayHost))]
+[TemplatePart(PART_SidebarHost, typeof(OverlayHost))]
 [TemplatePart(PART_ModalHost, typeof(OverlayHost))]
 [TemplatePart(PART_DialogHost, typeof(OverlayHost))]
 [TemplatePart(PART_GrowlHost, typeof(GrowlHost))]
@@ -14,7 +14,7 @@ namespace Huskui.Avalonia.Controls;
 public class AppWindow : Window
 {
     public const string PART_ToastHost = nameof(PART_ToastHost);
-    public const string PART_DrawerHost = nameof(PART_DrawerHost);
+    public const string PART_SidebarHost = nameof(PART_SidebarHost);
     public const string PART_ModalHost = nameof(PART_ModalHost);
     public const string PART_DialogHost = nameof(PART_DialogHost);
     public const string PART_GrowlHost = nameof(PART_GrowlHost);
@@ -25,7 +25,7 @@ public class AppWindow : Window
                                                          (o, v) => o.IsMaximized = v);
 
     private OverlayHost? _dialogHost;
-    private OverlayHost? _drawerHost;
+    private OverlayHost? _sidebarHost;
     private GrowlHost? _growlHost;
     private OverlayHost? _modalHost;
 
@@ -57,27 +57,27 @@ public class AppWindow : Window
 
         _growlHost = e.NameScope.Find<GrowlHost>(PART_GrowlHost);
         _toastHost = e.NameScope.Find<OverlayHost>(PART_ToastHost);
-        _drawerHost = e.NameScope.Find<OverlayHost>(PART_DrawerHost);
+        _sidebarHost = e.NameScope.Find<OverlayHost>(PART_SidebarHost);
         _modalHost = e.NameScope.Find<OverlayHost>(PART_ModalHost);
         _dialogHost = e.NameScope.Find<OverlayHost>(PART_DialogHost);
 
         ArgumentNullException.ThrowIfNull(_toastHost);
-        ArgumentNullException.ThrowIfNull(_drawerHost);
+        ArgumentNullException.ThrowIfNull(_sidebarHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
         ArgumentNullException.ThrowIfNull(_growlHost);
 
         _toastHost.IsPresentChanged += UpdateObstructed;
-        _drawerHost.IsPresentChanged += UpdateObstructed;
+        _sidebarHost.IsPresentChanged += UpdateObstructed;
         _modalHost.IsPresentChanged += UpdateObstructed;
         _dialogHost.IsPresentChanged += UpdateObstructed;
         _toastHost.MaskPointerPressed += OnMaskPointerPressed;
-        _drawerHost.MaskPointerPressed += OnMaskPointerPressed;
+        _sidebarHost.MaskPointerPressed += OnMaskPointerPressed;
         _modalHost.MaskPointerPressed += OnMaskPointerPressed;
         _dialogHost.MaskPointerPressed += OnMaskPointerPressed;
 
         LogicalChildren.Add(_toastHost);
-        LogicalChildren.Add(_drawerHost);
+        LogicalChildren.Add(_sidebarHost);
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
         LogicalChildren.Add(_growlHost);
@@ -97,10 +97,10 @@ public class AppWindow : Window
             _toastHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
-        if (_drawerHost != null)
+        if (_sidebarHost != null)
         {
-            _drawerHost.IsPresentChanged -= UpdateObstructed;
-            _drawerHost.MaskPointerPressed -= OnMaskPointerPressed;
+            _sidebarHost.IsPresentChanged -= UpdateObstructed;
+            _sidebarHost.MaskPointerPressed -= OnMaskPointerPressed;
         }
 
         if (_modalHost != null)
@@ -125,13 +125,13 @@ public class AppWindow : Window
     private void UpdateObstructed(object? _, PropertyChangedRoutedEventArgs<bool> __)
     {
         ArgumentNullException.ThrowIfNull(_toastHost);
-        ArgumentNullException.ThrowIfNull(_drawerHost);
+        ArgumentNullException.ThrowIfNull(_sidebarHost);
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
 
         PseudoClasses.Set(":obstructed",
                           _toastHost.IsPresent
-                       || _drawerHost.IsPresent
+                       || _sidebarHost.IsPresent
                        || _modalHost.IsPresent
                        || _dialogHost.IsPresent);
     }
@@ -144,8 +144,8 @@ public class AppWindow : Window
 
     public void PopDrawer(Sidebar sidebar)
     {
-        ArgumentNullException.ThrowIfNull(_drawerHost);
-        _drawerHost.Pop(sidebar);
+        ArgumentNullException.ThrowIfNull(_sidebarHost);
+        _sidebarHost.Pop(sidebar);
     }
 
     public void PopDialog(Dialog dialog)

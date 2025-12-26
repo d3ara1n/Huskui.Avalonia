@@ -22,6 +22,10 @@ public class ScaleInTransition : PageTransitionBase
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {
         from
+           .Animation(new CubicEaseIn())
+           .AddFrame(0d, [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)])
+           .AddFrame(1d, [(ScaleTransform.ScaleXProperty, 1.1d), (ScaleTransform.ScaleYProperty, 1.1d)]);
+        from
            .Animation(new SineEaseIn())
            .AddFrame(0d, [(Visual.OpacityProperty, 1d)])
            .AddFrame(1d, [(Visual.OpacityProperty, 0d)]);

@@ -41,11 +41,11 @@
                         <VisualLayerManager.ChromeOverlayLayer>
                             <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}">
                                 <local:OverlayHost.Transition>
-                                    <local:HookUpTransition />
+                                    <local:SlideUpTransition />
                                 </local:OverlayHost.Transition>
                             </local:OverlayHost>
                             <local:OverlayHost
-                                Name="{x:Static local:AppWindow.PART_DrawerHost}"
+                                Name="{x:Static local:AppWindow.PART_SidebarHost}"
                                 HorizontalContentAlignment="Right">
                                 <local:OverlayHost.Transition>
                                     <local:PageSlideTransition />

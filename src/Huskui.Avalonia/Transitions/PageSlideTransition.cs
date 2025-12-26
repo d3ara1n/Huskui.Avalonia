@@ -4,10 +4,9 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class PageSlideTransition : PageTransitionBase
+public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase(duration)
 {
     public PageSlideTransition() : this(TimeSpan.FromMilliseconds(297)) { }
-    public PageSlideTransition(TimeSpan? duration = null) : base(duration) { }
     public DirectionFrom Direction { get; set; } = DirectionFrom.Right;
 
     protected override void Cleanup(Visual? from, Visual? to)
@@ -37,10 +36,10 @@ public class PageSlideTransition : PageTransitionBase
         };
 
         from
-           .Animation(new SplineEasing(0.4, 0.0, 0.6))
+           .Animation(new CubicEaseInOut())
            .AddFrame(0d, [(translateProperty, 0d), (Visual.OpacityProperty, 1d)])
            .AddFrame(0.05d, [(Visual.OpacityProperty, 1d)])
-           .AddFrame(1d, [(translateProperty, -translateFrom), (Visual.OpacityProperty, 0d)]);
+           .AddFrame(1d, [(translateProperty, translateFrom), (Visual.OpacityProperty, 0d)]);
 
         to
            .Animation(new SplineEasing(0.1, 0.9, 0.2))

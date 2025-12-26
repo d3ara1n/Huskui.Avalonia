@@ -5,6 +5,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
+using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -26,17 +27,11 @@ public class OverlayItem : ContentControl
         RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
                                                                      RoutingStrategies.Bubble);
 
-    private ContentPresenter? _contentPresenter;
-
     public IPageTransition? Transition
     {
         get;
         set => SetAndRaise(TransitionProperty, ref field, value);
     }
-
-    public ContentPresenter ContentPresenter =>
-        _contentPresenter
-     ?? throw new InvalidOperationException($"{nameof(ContentPresenter)} is not found from the template");
 
     public int Distance
     {
@@ -54,17 +49,18 @@ public class OverlayItem : ContentControl
 
     protected override Type StyleKeyOverride => typeof(OverlayItem);
 
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        if (change.Property == ContentProperty && change.NewValue is IPageTransitionOverride @override)
+        {
+            Transition = @override.TransitionOverride;
+        }
+    }
+
     public event EventHandler<DismissRequestedEventArgs>? DismissRequested
     {
         add => AddHandler(DismissRequestedEvent, value);
         remove => RemoveHandler(DismissRequestedEvent, value);
-    }
-
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
-    {
-        base.OnApplyTemplate(e);
-
-        _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
     }
 
     protected override void OnLoaded(RoutedEventArgs e)
