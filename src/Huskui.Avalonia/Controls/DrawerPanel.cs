@@ -4,7 +4,7 @@ using Avalonia.Layout;
 
 namespace Huskui.Avalonia.Controls;
 
-public class DrawerHost : Panel
+public class DrawerPanel : Panel
 {
     protected override Size MeasureOverride(Size availableSize)
     {

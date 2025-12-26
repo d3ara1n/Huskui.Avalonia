@@ -1,19 +1,19 @@
 <controls:ControlPage xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Huskui.Gallery.Views.DrawerPage">
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                      x:Class="Huskui.Gallery.Views.DrawerPage">
     <StackPanel Spacing="20" Margin="20">
-        <TextBlock Text="Drawer Control" Classes="h1" />
-        <TextBlock Text="A floating drawer that can be dragged, resized, and collapsed." Classes="body" />
 
-        <Button Content="Open New Drawer" Click="OpenDrawer_OnClick" />
-        
-        <TextBlock Text="Click the button above to spawn a drawer at the bottom of the window." 
-                   Classes="caption" 
-                   Foreground="{DynamicResource ControlForegroundLowBrush}"/>
+        <controls:ExampleContainer Title="Drawers"
+                                   Description="A floating drawer that can be dragged, resized, and collapsed">
+
+            <StackPanel>
+                <Button Content="Open New Drawer" Click="OpenDrawer_OnClick" />
+            </StackPanel>
+        </controls:ExampleContainer>
     </StackPanel>
 </controls:ControlPage>

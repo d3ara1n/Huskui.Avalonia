@@ -26,13 +26,12 @@ public class AppWindow : Window
                                                          o => o.IsMaximized,
                                                          (o, v) => o.IsMaximized = v);
 
-    private OverlayHost? _dialogHost;
-    private OverlayHost? _sidebarHost;
-    private GrowlHost? _growlHost;
-    private OverlayHost? _modalHost;
     private DrawerHost? _drawerHost;
-
     private OverlayHost? _toastHost;
+    private OverlayHost? _modalHost;
+    private OverlayHost? _sidebarHost;
+    private OverlayHost? _dialogHost;
+    private GrowlHost? _growlHost;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -81,12 +80,12 @@ public class AppWindow : Window
         _modalHost.MaskPointerPressed += OnMaskPointerPressed;
         _dialogHost.MaskPointerPressed += OnMaskPointerPressed;
 
+        LogicalChildren.Add(_drawerHost);
         LogicalChildren.Add(_toastHost);
         LogicalChildren.Add(_sidebarHost);
         LogicalChildren.Add(_modalHost);
         LogicalChildren.Add(_dialogHost);
         LogicalChildren.Add(_growlHost);
-        LogicalChildren.Add(_drawerHost);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -148,7 +147,7 @@ public class AppWindow : Window
         _toastHost.Pop(toast);
     }
 
-    public void PopDrawer(Sidebar sidebar)
+    public void PopSidebar(Sidebar sidebar)
     {
         ArgumentNullException.ThrowIfNull(_sidebarHost);
         _sidebarHost.Pop(sidebar);
@@ -172,9 +171,9 @@ public class AppWindow : Window
         _growlHost.Pop(growl);
     }
 
-    public void AddDrawer(Drawer drawer)
+    public void PopDrawer(Drawer drawer)
     {
         ArgumentNullException.ThrowIfNull(_drawerHost);
-        _drawerHost.Children.Add(drawer);
+        _drawerHost.Pop(drawer);
     }
 }

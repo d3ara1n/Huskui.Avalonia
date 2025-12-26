@@ -28,7 +28,7 @@ public partial class DrawerPage : ControlPage
                     HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center
                 }
             };
-            window.AddDrawer(drawer);
+            window.PopDrawer(drawer);
         }
     }
 }

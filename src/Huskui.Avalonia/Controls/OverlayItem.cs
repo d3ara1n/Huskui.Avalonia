@@ -51,6 +51,8 @@ public class OverlayItem : ContentControl
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
+        base.OnPropertyChanged(change);
+
         if (change.Property == ContentProperty && change.NewValue is IPageTransitionOverride @override)
         {
             Transition = @override.TransitionOverride;

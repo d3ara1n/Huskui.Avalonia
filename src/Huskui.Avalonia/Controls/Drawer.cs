@@ -15,7 +15,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_ResizeTop, typeof(Control))]
 [TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_ToggleStateButton, typeof(Button))]
-[PseudoClasses(":open", ":closed", ":dragging", ":resizing")]
+[PseudoClasses(":open", ":dragging", ":resizing")]
 public class Drawer : ContentControl
 {
     public const string PART_Header = "PART_Header";
@@ -35,7 +35,7 @@ public class Drawer : ContentControl
         AvaloniaProperty.Register<Drawer, string?>(nameof(Title));
 
     public static readonly StyledProperty<double> HeaderHeightProperty =
-        AvaloniaProperty.Register<Drawer, double>(nameof(HeaderHeight), 32.0);
+        AvaloniaProperty.Register<Drawer, double>(nameof(HeaderHeight), 42d);
 
     public bool IsOpen
     {
@@ -65,8 +65,6 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
-    private Button? _closeButton;
-    private Button? _toggleStateButton;
 
     private Point _lastPoint;
     private bool _isDragging;
@@ -78,13 +76,24 @@ public class Drawer : ContentControl
 
     static Drawer()
     {
-        IsOpenProperty.Changed.AddClassHandler<Drawer>((x, e) => x.OnIsOpenChanged(e));
+        AffectsArrange<Drawer>(OffsetXProperty);
     }
 
     private void OnIsOpenChanged(AvaloniaPropertyChangedEventArgs e)
     {
         UpdatePseudoClasses();
         InvalidateMeasure();
+    }
+
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == IsOpenProperty)
+        {
+            OnIsOpenChanged(change);
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -95,8 +104,6 @@ public class Drawer : ContentControl
         _resizeLeft = e.NameScope.Find<Control>(PART_ResizeLeft);
         _resizeRight = e.NameScope.Find<Control>(PART_ResizeRight);
         _resizeTop = e.NameScope.Find<Control>(PART_ResizeTop);
-        _closeButton = e.NameScope.Find<Button>(PART_CloseButton);
-        _toggleStateButton = e.NameScope.Find<Button>(PART_ToggleStateButton);
 
         if (_header != null)
         {
@@ -126,29 +133,12 @@ public class Drawer : ContentControl
             _resizeTop.PointerReleased += OnResizePointerReleased;
         }
 
-        if (_closeButton != null)
-        {
-            _closeButton.Click += (s, ev) =>
-            {
-                // Logic to close/remove the drawer. 
-                // For now, we can just hide it or raise an event.
-                // Let's assume the parent might want to remove it.
-                IsVisible = false; 
-            };
-        }
-
-        if (_toggleStateButton != null)
-        {
-            _toggleStateButton.Click += (s, ev) => IsOpen = !IsOpen;
-        }
-
         UpdatePseudoClasses();
     }
 
     private void UpdatePseudoClasses()
     {
         PseudoClasses.Set(":open", IsOpen);
-        PseudoClasses.Set(":closed", !IsOpen);
         PseudoClasses.Set(":dragging", _isDragging);
         PseudoClasses.Set(":resizing", _isResizingLeft || _isResizingRight || _isResizingTop);
     }
@@ -173,13 +163,13 @@ public class Drawer : ContentControl
             var delta = currentPoint - _lastPoint;
             OffsetX += delta.X;
             _lastPoint = currentPoint;
-            
+
             // Request layout update on parent to handle clamping
             if (Parent is Control parentControl)
             {
                 parentControl.InvalidateArrange();
             }
-            
+
             e.Handled = true;
         }
     }
@@ -241,7 +231,7 @@ public class Drawer : ContentControl
             }
 
             _lastPoint = currentPoint;
-            
+
             if (Parent is Control parentControl)
             {
                 parentControl.InvalidateArrange();
@@ -269,16 +259,16 @@ public class Drawer : ContentControl
         if (!IsOpen)
         {
             // When closed, height is restricted to HeaderHeight
-            // We still measure content but don't give it space? 
+            // We still measure content but don't give it space?
             // Or we just force Height to HeaderHeight?
             // Let's force the desired size to be Width x HeaderHeight
-            
+
             // We need to call base.MeasureOverride to ensure children are measured
             base.MeasureOverride(availableSize);
-            
+
             return new Size(Width, HeaderHeight);
         }
-        
+
         return base.MeasureOverride(availableSize);
     }
 }

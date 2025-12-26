@@ -14,6 +14,7 @@
         <ResourceInclude Source="/Controls/Dialog.axaml" />
         <ResourceInclude Source="/Controls/Divider.axaml" />
         <ResourceInclude Source="/Controls/Drawer.axaml" />
+        <ResourceInclude Source="/Controls/DrawerHost.axaml" />
         <ResourceInclude Source="/Controls/Sidebar.axaml" />
         <ResourceInclude Source="/Controls/DropContainer.axaml" />
         <ResourceInclude Source="/Controls/DropDownButton.axaml" />

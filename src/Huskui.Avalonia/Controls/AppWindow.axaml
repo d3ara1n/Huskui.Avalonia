@@ -39,6 +39,7 @@
                     <Panel Margin="{TemplateBinding WindowDecorationMargin}" />
                     <VisualLayerManager>
                         <VisualLayerManager.ChromeOverlayLayer>
+                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}" />
                             <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}">
                                 <local:OverlayHost.Transition>
                                     <local:SlideUpTransition />
@@ -79,7 +80,6 @@
                                     </ItemsPanelTemplate>
                                 </local:GrowlHost.ItemsPanel>
                             </local:GrowlHost>
-                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}" />
                         </VisualLayerManager.ChromeOverlayLayer>
                         <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
                             <ContentPresenter
