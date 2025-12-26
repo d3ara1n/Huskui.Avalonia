@@ -16,5 +16,5 @@ public class Toast : HeaderedContentControl
 
     protected override Type StyleKeyOverride { get; } = typeof(Toast);
 
-    public void Dismiss() => RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
+    public void Dismiss() => RaiseEvent(new OverlayHost.DismissRequestedEventArgs(this));
 }

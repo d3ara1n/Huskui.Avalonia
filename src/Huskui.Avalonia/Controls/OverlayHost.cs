@@ -46,6 +46,16 @@ public class OverlayHost : TemplatedControl
         RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(nameof(MaskPointerPressed),
                                                                        RoutingStrategies.Bubble);
 
+    public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
+        RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
+                                                                     RoutingStrategies.Bubble);
+
+    public event EventHandler<DismissRequestedEventArgs>? DismissRequested
+    {
+        add => AddHandler(DismissRequestedEvent, value);
+        remove => RemoveHandler(DismissRequestedEvent, value);
+    }
+
     public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
         AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
 
@@ -228,18 +238,18 @@ public class OverlayHost : TemplatedControl
     protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnAttachedToVisualTree(e);
-        AddHandler(OverlayItem.DismissRequestedEvent, DismissRequestedHandler);
+        AddHandler(DismissRequestedEvent, DismissRequestedHandler);
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
     {
         base.OnDetachedFromVisualTree(e);
-        RemoveHandler(OverlayItem.DismissRequestedEvent, DismissRequestedHandler);
+        RemoveHandler(DismissRequestedEvent, DismissRequestedHandler);
 
         UnregisterHandlers();
     }
 
-    private void DismissRequestedHandler(object? sender, OverlayItem.DismissRequestedEventArgs e)
+    private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e)
     {
         if (e.Container != null)
         {
@@ -277,6 +287,16 @@ public class OverlayHost : TemplatedControl
     {
         get => GetValue(VerticalContentAlignmentProperty);
         set => SetValue(VerticalContentAlignmentProperty, value);
+    }
+
+    #endregion
+
+
+    #region Nested type: DismissRequestedEventArgs
+
+    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
+    {
+        public OverlayItem? Container { get; set; }
     }
 
     #endregion

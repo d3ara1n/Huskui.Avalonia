@@ -119,7 +119,7 @@ public class Dialog : HeaderedContentControl
         if (Container != null)
         {
             Container.Transition = new PopUpTransition();
-            RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
+            RaiseEvent(new OverlayHost.DismissRequestedEventArgs(this));
         }
 
         CompletionSource.TrySetResult(CanConfirm());
@@ -127,7 +127,7 @@ public class Dialog : HeaderedContentControl
 
     private void Cancel()
     {
-        RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
+        RaiseEvent(new OverlayHost.DismissRequestedEventArgs(this));
         CompletionSource.TrySetResult(false);
     }
 

@@ -6,5 +6,5 @@ public class Sidebar : ContentControl
 {
     protected override Type StyleKeyOverride => typeof(Sidebar);
 
-    public void Dismiss() => RaiseEvent(new OverlayItem.DismissRequestedEventArgs(this));
+    public void Dismiss() => RaiseEvent(new OverlayHost.DismissRequestedEventArgs(this));
 }

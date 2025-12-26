@@ -23,9 +23,7 @@ public class OverlayItem : ContentControl
                                                                        o => o.Transition,
                                                                        (o, v) => o.Transition = v);
 
-    public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
-        RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
-                                                                     RoutingStrategies.Bubble);
+
 
     public IPageTransition? Transition
     {
@@ -59,36 +57,23 @@ public class OverlayItem : ContentControl
         }
     }
 
-    public event EventHandler<DismissRequestedEventArgs>? DismissRequested
-    {
-        add => AddHandler(DismissRequestedEvent, value);
-        remove => RemoveHandler(DismissRequestedEvent, value);
-    }
+
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
 
-        AddHandler(DismissRequestedEvent, DismissRequestedHandler);
+        AddHandler(OverlayHost.DismissRequestedEvent, DismissRequestedHandler);
     }
 
     protected override void OnUnloaded(RoutedEventArgs e)
     {
         base.OnUnloaded(e);
 
-        RemoveHandler(DismissRequestedEvent, DismissRequestedHandler);
+        RemoveHandler(OverlayHost.DismissRequestedEvent, DismissRequestedHandler);
     }
 
-    private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e) =>
+    private void DismissRequestedHandler(object? sender, OverlayHost.DismissRequestedEventArgs e) =>
         // 捕捉路过的事件并加上容器信息
         e.Container ??= this;
-
-    #region Nested type: DismissRequestedEventArgs
-
-    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
-    {
-        public OverlayItem? Container { get; set; }
-    }
-
-    #endregion
 }
