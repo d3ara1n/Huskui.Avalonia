@@ -20,8 +20,7 @@
                         BoxShadow="0 0 20 0 #20000000">
                     <Grid RowDefinitions="Auto,*">
                         <!-- Header -->
-                        <Grid Name="{x:Static local:Drawer.PART_Header}"
-                              Grid.Row="0"
+                        <Grid Grid.Row="0"
                               Height="{TemplateBinding HeaderHeight}"
                               Background="Transparent"
                               VerticalAlignment="Center"
@@ -29,8 +28,16 @@
 
                             <!-- Drag Handle Icon -->
 
-                            <fi:SymbolIcon Grid.Column="0" Symbol="ReOrderDotsVertical"
-                                           FontSize="{StaticResource MediumFontSize}" />
+
+                            <Border Grid.Column="0" Name="{x:Static local:Drawer.PART_Handle}"
+                                    Padding="6,4"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Cursor="SizeAll">
+                                <fi:SymbolIcon
+                                    Symbol="ReOrderDotsVertical"
+                                    FontSize="{StaticResource MediumFontSize}" />
+                            </Border>
 
                             <!-- Title -->
                             <TextBlock Grid.Column="1"

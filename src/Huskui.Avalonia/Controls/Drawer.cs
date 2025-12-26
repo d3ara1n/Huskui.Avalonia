@@ -9,7 +9,7 @@ using Avalonia.VisualTree;
 
 namespace Huskui.Avalonia.Controls;
 
-[TemplatePart(PART_Header, typeof(Control))]
+[TemplatePart(PART_Handle, typeof(Control))]
 [TemplatePart(PART_ResizeLeft, typeof(Control))]
 [TemplatePart(PART_ResizeRight, typeof(Control))]
 [TemplatePart(PART_ResizeTop, typeof(Control))]
@@ -18,12 +18,12 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":open", ":dragging", ":resizing")]
 public class Drawer : ContentControl
 {
-    public const string PART_Header = "PART_Header";
-    public const string PART_ResizeLeft = "PART_ResizeLeft";
-    public const string PART_ResizeRight = "PART_ResizeRight";
-    public const string PART_ResizeTop = "PART_ResizeTop";
-    public const string PART_CloseButton = "PART_CloseButton";
-    public const string PART_ToggleStateButton = "PART_ToggleStateButton";
+    public const string PART_Handle = nameof(PART_Handle);
+    public const string PART_ResizeLeft = nameof(PART_ResizeLeft);
+    public const string PART_ResizeRight = nameof(PART_ResizeRight);
+    public const string PART_ResizeTop = nameof(PART_ResizeTop);
+    public const string PART_CloseButton = nameof(PART_CloseButton);
+    public const string PART_ToggleStateButton = nameof(PART_ToggleStateButton);
 
     public static readonly StyledProperty<bool> IsOpenProperty =
         AvaloniaProperty.Register<Drawer, bool>(nameof(IsOpen), true);
@@ -65,6 +65,7 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
+    private DrawerPanel? _drawerPanel;
 
     private Point _lastPoint;
     private bool _isDragging;
@@ -100,16 +101,17 @@ public class Drawer : ContentControl
     {
         base.OnApplyTemplate(e);
 
-        _header = e.NameScope.Find<Control>(PART_Header);
+        _header = e.NameScope.Find<Control>(PART_Handle);
         _resizeLeft = e.NameScope.Find<Control>(PART_ResizeLeft);
         _resizeRight = e.NameScope.Find<Control>(PART_ResizeRight);
         _resizeTop = e.NameScope.Find<Control>(PART_ResizeTop);
+        _drawerPanel = this.FindAncestorOfType<DrawerPanel>();
 
         if (_header != null)
         {
             _header.PointerPressed += OnHeaderPointerPressed;
-            _header.PointerMoved += OnHeaderPointerMoved;
-            _header.PointerReleased += OnHeaderPointerReleased;
+            _header.PointerMoved += OnHandlePointerMoved;
+            _header.PointerReleased += OnHandlePointerReleased;
         }
 
         if (_resizeLeft != null)
@@ -155,7 +157,7 @@ public class Drawer : ContentControl
         }
     }
 
-    private void OnHeaderPointerMoved(object? sender, PointerEventArgs e)
+    private void OnHandlePointerMoved(object? sender, PointerEventArgs e)
     {
         if (_isDragging && Parent is Visual parent)
         {
@@ -165,16 +167,13 @@ public class Drawer : ContentControl
             _lastPoint = currentPoint;
 
             // Request layout update on parent to handle clamping
-            if (Parent is Control parentControl)
-            {
-                parentControl.InvalidateArrange();
-            }
+            _drawerPanel?.InvalidateArrange();
 
             e.Handled = true;
         }
     }
 
-    private void OnHeaderPointerReleased(object? sender, PointerReleasedEventArgs e)
+    private void OnHandlePointerReleased(object? sender, PointerReleasedEventArgs e)
     {
         if (_isDragging)
         {
