@@ -8,7 +8,7 @@
                       x:Class="Huskui.Gallery.Views.DrawerPage">
     <StackPanel Spacing="20" Margin="20">
 
-        <controls:ExampleContainer Title="Drawers (WIP)"
+        <controls:ExampleContainer Title="Drawers"
                                    Description="A floating drawer that can be dragged, resized, and collapsed">
 
             <StackPanel>

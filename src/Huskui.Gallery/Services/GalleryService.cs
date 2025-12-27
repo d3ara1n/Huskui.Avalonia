@@ -224,7 +224,7 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
-                    Title = "Drawers",
+                    Title = "Drawers (WIP)",
                     Description = "Floating drawer that can be dragged, resized, and collapsed",
                     Icon = Symbol.PanelBottom,
                     PageType = typeof(DrawerPage),
