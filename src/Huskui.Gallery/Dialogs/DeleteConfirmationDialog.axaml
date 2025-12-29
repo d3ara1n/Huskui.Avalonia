@@ -11,7 +11,7 @@
              SecondaryText="Cancel"
              IsPrimaryButtonVisible="True">
 
-    <StackPanel Spacing="20" Width="400" Margin="24">
+    <StackPanel Spacing="20" Width="400">
 
         <!-- Warning Icon and Message -->
         <StackPanel Spacing="16" HorizontalAlignment="Center">

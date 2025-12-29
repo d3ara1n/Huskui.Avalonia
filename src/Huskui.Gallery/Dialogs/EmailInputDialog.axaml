@@ -10,7 +10,7 @@
              SecondaryText="Cancel"
              IsPrimaryButtonVisible="True">
 
-    <StackPanel Spacing="16" Width="350" Margin="24">
+    <StackPanel Spacing="16" Width="350">
 
         <!-- Input Section -->
         <StackPanel Spacing="8">
