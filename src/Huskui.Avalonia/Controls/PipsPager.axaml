@@ -21,6 +21,7 @@
                     </Border.Transitions>
                     <ListBox HorizontalAlignment="Center"
                              SelectionMode="AlwaysSelected"
+                             AutoScrollToSelectedItem="False"
                              SelectedIndex="{TemplateBinding SelectedIndex,Mode=TwoWay}"
                              ItemsSource="{TemplateBinding ItemCount,Converter={x:Static local:InternalConverters.CountToArray}}">
                         <ListBox.ItemsPanel>
