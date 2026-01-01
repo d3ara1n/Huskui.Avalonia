@@ -3,8 +3,6 @@ using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.Layout;
 using Avalonia.VisualTree;
 
 namespace Huskui.Avalonia.Controls;
@@ -37,6 +35,21 @@ public class Drawer : ContentControl
     public static readonly StyledProperty<double> HeaderHeightProperty =
         AvaloniaProperty.Register<Drawer, double>(nameof(HeaderHeight), 42d);
 
+    private DrawerPanel? _drawerPanel;
+
+    private Control? _header;
+    private bool _isDragging;
+    private bool _isResizingLeft;
+    private bool _isResizingRight;
+    private bool _isResizingTop;
+
+    private Point _lastPoint;
+    private Control? _resizeLeft;
+    private Control? _resizeRight;
+    private Control? _resizeTop;
+
+    static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
+
     public bool IsOpen
     {
         get => GetValue(IsOpenProperty);
@@ -61,24 +74,7 @@ public class Drawer : ContentControl
         set => SetValue(HeaderHeightProperty, value);
     }
 
-    private Control? _header;
-    private Control? _resizeLeft;
-    private Control? _resizeRight;
-    private Control? _resizeTop;
-    private DrawerPanel? _drawerPanel;
-
-    private Point _lastPoint;
-    private bool _isDragging;
-    private bool _isResizingLeft;
-    private bool _isResizingRight;
-    private bool _isResizingTop;
-
     protected override Type StyleKeyOverride => typeof(Drawer);
-
-    static Drawer()
-    {
-        AffectsArrange<Drawer>(OffsetXProperty);
-    }
 
     private void OnIsOpenChanged(AvaloniaPropertyChangedEventArgs e)
     {
@@ -265,7 +261,7 @@ public class Drawer : ContentControl
             // We need to call base.MeasureOverride to ensure children are measured
             base.MeasureOverride(availableSize);
 
-            return new Size(Width, HeaderHeight);
+            return new(Width, HeaderHeight);
         }
 
         return base.MeasureOverride(availableSize);

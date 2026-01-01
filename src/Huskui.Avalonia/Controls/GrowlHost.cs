@@ -1,4 +1,3 @@
-using System.Collections;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Collections;

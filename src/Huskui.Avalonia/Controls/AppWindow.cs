@@ -26,12 +26,13 @@ public class AppWindow : Window
                                                          o => o.IsMaximized,
                                                          (o, v) => o.IsMaximized = v);
 
+    private OverlayHost? _dialogHost;
+
     private DrawerHost? _drawerHost;
-    private OverlayHost? _toastHost;
+    private GrowlHost? _growlHost;
     private OverlayHost? _modalHost;
     private OverlayHost? _sidebarHost;
-    private OverlayHost? _dialogHost;
-    private GrowlHost? _growlHost;
+    private OverlayHost? _toastHost;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 

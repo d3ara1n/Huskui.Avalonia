@@ -5,8 +5,8 @@ using Avalonia.Media;
 namespace Huskui.Avalonia.Controls;
 
 /// <summary>
-/// An inline element that displays a HighlightBlock with proper baseline alignment.
-/// Use this instead of HighlightBlock when embedding in TextBlock with other text.
+///     An inline element that displays a HighlightBlock with proper baseline alignment.
+///     Use this instead of HighlightBlock when embedding in TextBlock with other text.
 /// </summary>
 public class HighlightInline : InlineUIContainer
 {

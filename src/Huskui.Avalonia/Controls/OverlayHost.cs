@@ -50,12 +50,6 @@ public class OverlayHost : TemplatedControl
         RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
                                                                      RoutingStrategies.Bubble);
 
-    public event EventHandler<DismissRequestedEventArgs>? DismissRequested
-    {
-        add => AddHandler(DismissRequestedEvent, value);
-        remove => RemoveHandler(DismissRequestedEvent, value);
-    }
-
     public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
         AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
 
@@ -93,6 +87,12 @@ public class OverlayHost : TemplatedControl
     }
 
     protected override Type StyleKeyOverride => typeof(OverlayHost);
+
+    public event EventHandler<DismissRequestedEventArgs>? DismissRequested
+    {
+        add => AddHandler(DismissRequestedEvent, value);
+        remove => RemoveHandler(DismissRequestedEvent, value);
+    }
 
     public event EventHandler<MaskPointerPressedEventArgs> MaskPointerPressed
     {
@@ -259,6 +259,15 @@ public class OverlayHost : TemplatedControl
         }
     }
 
+    #region Nested type: DismissRequestedEventArgs
+
+    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
+    {
+        public OverlayItem? Container { get; set; }
+    }
+
+    #endregion
+
     #region Nested type: MaskPointerPressedEventArgs
 
     public class MaskPointerPressedEventArgs(object? source, PointerPressedEventArgs args)
@@ -287,16 +296,6 @@ public class OverlayHost : TemplatedControl
     {
         get => GetValue(VerticalContentAlignmentProperty);
         set => SetValue(VerticalContentAlignmentProperty, value);
-    }
-
-    #endregion
-
-
-    #region Nested type: DismissRequestedEventArgs
-
-    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
-    {
-        public OverlayItem? Container { get; set; }
     }
 
     #endregion

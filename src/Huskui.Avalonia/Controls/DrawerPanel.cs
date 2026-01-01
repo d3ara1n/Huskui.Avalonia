@@ -1,6 +1,5 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Layout;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -12,6 +11,7 @@ public class DrawerPanel : Panel
         {
             child.Measure(availableSize);
         }
+
         return availableSize;
     }
 
@@ -27,14 +27,22 @@ public class DrawerPanel : Panel
                 var x = drawer.OffsetX;
 
                 // Ensure the drawer doesn't go off the left edge
-                if (x < 0) x = 0;
+                if (x < 0)
+                {
+                    x = 0;
+                }
 
                 // Ensure the drawer doesn't go off the right edge
                 if (x + desiredSize.Width > finalSize.Width)
+                {
                     x = finalSize.Width - desiredSize.Width;
+                }
 
                 // Double check left edge in case the drawer is wider than the host
-                if (x < 0) x = 0;
+                if (x < 0)
+                {
+                    x = 0;
+                }
 
                 // Update drawer's OffsetX if we clamped it, so it stays in sync
                 if (Math.Abs(x - drawer.OffsetX) > 1)
@@ -53,6 +61,7 @@ public class DrawerPanel : Panel
                 child.Arrange(new(0, 0, finalSize.Width, finalSize.Height));
             }
         }
+
         return finalSize;
     }
 }

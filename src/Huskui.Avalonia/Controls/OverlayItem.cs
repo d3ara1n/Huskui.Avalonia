@@ -3,7 +3,6 @@ using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
-using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Models;
 
@@ -22,7 +21,6 @@ public class OverlayItem : ContentControl
         AvaloniaProperty.RegisterDirect<OverlayItem, IPageTransition?>(nameof(Transition),
                                                                        o => o.Transition,
                                                                        (o, v) => o.Transition = v);
-
 
 
     public IPageTransition? Transition
@@ -56,7 +54,6 @@ public class OverlayItem : ContentControl
             Transition = @override.TransitionOverride;
         }
     }
-
 
 
     protected override void OnLoaded(RoutedEventArgs e)
