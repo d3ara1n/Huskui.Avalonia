@@ -75,6 +75,10 @@ dotnet run --project src/Huskui.Gallery
     <Application.Styles>
         <FluentTheme />
         <husk:HuskuiTheme Accent="Lime" />
+
+        <!-- Optional Addons -->
+        <StyleINclude Source="avares://Huskui.Avalonia/Themes/Addons.NoAutoScrollToSelectedItem.axaml" />
+        <StyleINclude Source="avares://Huskui.Avalonia/Themes/Addons.InlineUIContainerAlignment.axaml" />
     </Application.Styles>
 </Application>
 ```
