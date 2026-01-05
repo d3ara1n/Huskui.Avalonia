@@ -16,5 +16,7 @@
     <Application.Styles>
         <husk:HuskuiTheme Corner="Normal" />
         <StyleInclude Source="avares://Huskui.Gallery/Styles/Gallery.axaml" />
+        <StyleInclude Source="avares://Huskui.Avalonia/Themes/Addons.NoAutoScrollToSelectedItem.axaml" />
+        <StyleInclude Source="avares://Huskui.Avalonia/Themes/Addons.InlineUIContainerAlignment.axaml" />
     </Application.Styles>
 </Application>
