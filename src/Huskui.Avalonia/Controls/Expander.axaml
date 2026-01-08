@@ -4,32 +4,77 @@
                     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel>
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel Margin="24" MinWidth="256" Spacing="12">
                 <Expander>
                     <Expander.Header>
                         <TextBlock Text="Hello World" />
                     </Expander.Header>
                     <TextBlock Text="Bye World" />
                 </Expander>
+                <Expander ExpandDirection="Up">
+                    <Expander.Header>
+                        <TextBlock Text="Hello World" />
+                    </Expander.Header>
+                    <TextBlock Text="Bye World" />
+                </Expander>
+                <StackPanel Orientation="Horizontal" Margin="24" Height="128" Spacing="12">
+                    <Expander ExpandDirection="Left">
+                        <Expander.Header>
+                            <LayoutTransformControl UseRenderTransform="False" LayoutTransform="rotate(90deg)">
+                                <TextBlock Text="Hello World" />
+                            </LayoutTransformControl>
+                        </Expander.Header>
+                        <TextBlock Text="Bye World" />
+                    </Expander>
+                    <Expander ExpandDirection="Right">
+                        <Expander.Header>
+                            <LayoutTransformControl UseRenderTransform="False" LayoutTransform="rotate(270deg)">
+                                <TextBlock Text="Hello World" />
+                            </LayoutTransformControl>
+                        </Expander.Header>
+                        <TextBlock Text="Bye World" />
+                    </Expander>
+                </StackPanel>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
 
     <ControlTheme x:Key="ExpanderHeaderToggleButtonTheme" TargetType="ToggleButton">
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <ContentPresenter Content="{TemplateBinding Content}"
-                                  ContentTemplate="{TemplateBinding ContentTemplate}"
-                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  Padding="{TemplateBinding Padding}"
-                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                  Background="{TemplateBinding Background}" />
+                <Panel>
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Padding="{TemplateBinding Padding}"
+                                      CornerRadius="{TemplateBinding CornerRadius}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Background="{TemplateBinding Background}" />
+                    <Border x:Name="Indicator" Background="{StaticResource TransparentBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                    </Border>
+                </Panel>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#Indicator">
+            <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:pressed /template/ Border#Indicator">
+            <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
+        </Style>
     </ControlTheme>
 
     <Thickness x:Key="ExpanderHeaderMargin">12,8</Thickness>
@@ -43,62 +88,46 @@
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border x:Name="Background" Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <Border.Transitions>
-                        <Transitions>
-                            <BrushTransition Property="Background" Easing="CubicEaseOut"
-                                             Duration="{StaticResource ControlFasterAnimationDuration}" />
-                        </Transitions>
-                    </Border.Transitions>
-                    <DockPanel>
-                        <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
-                                      Background="Transparent"
-                                      IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
-                                      Padding="{StaticResource ExpanderHeaderMargin}"
+                <DockPanel>
+                    <ToggleButton Name="Toggle" Theme="{StaticResource ExpanderHeaderToggleButtonTheme}"
+                                  IsChecked="{TemplateBinding IsExpanded,Mode=TwoWay}"
+                                  Padding="{StaticResource ExpanderHeaderMargin}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="{TemplateBinding CornerRadius}">
+                        <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
+                            <Border Name="SymbolBorder" HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            </Border>
+                            <ContentPresenter Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                        </DockPanel>
+                    </ToggleButton>
+                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      Padding="{TemplateBinding Padding}" IsVisible="{TemplateBinding IsExpanded}"
+                                      Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
                                       CornerRadius="{TemplateBinding CornerRadius}">
-                            <DockPanel HorizontalSpacing="12" VerticalSpacing="12">
-                                <Border Name="SymbolBorder" HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                    <fi:SymbolIcon Name="Symbol" HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="{TemplateBinding FontSize}"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                                </Border>
-                                <ContentPresenter Content="{TemplateBinding Header}"
-                                                  ContentTemplate="{TemplateBinding HeaderTemplate}" />
-                            </DockPanel>
-                        </ToggleButton>
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Padding="{TemplateBinding Padding}" Margin=" 8,4,8,8"
-                                          IsVisible="{TemplateBinding IsExpanded}"
-                                          Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                          BoxShadow="0 0 4 0 #3F000000">
-                            <ContentPresenter.CornerRadius>
-                                <MultiBinding Converter="{x:Static husk:CornerRadiusConverters.ToInnerRadiusMulti}">
-                                    <Binding Path="CornerRadius"
-                                             RelativeSource="{RelativeSource Mode=TemplatedParent}" />
-                                    <Binding Path="Padding"
-                                             RelativeSource="{RelativeSource Mode=TemplatedParent}" />
-                                </MultiBinding>
-                            </ContentPresenter.CornerRadius>
-                        </ContentPresenter>
-                    </DockPanel>
-                </Border>
+                    </ContentPresenter>
+                </DockPanel>
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border#Background">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+
+        <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
+            <Setter Property="Symbol" Value="Add" />
         </Style>
 
-        <Style Selector="^:expanded /template/ Border#Background">
-            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+        <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
+            <Setter Property="Symbol" Value="Subtract" />
         </Style>
 
         <Style Selector="^:up">
@@ -108,14 +137,22 @@
             <Style Selector="^ /template/ Border#SymbolBorder">
                 <Setter Property="DockPanel.Dock" Value="Right" />
             </Style>
-            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Add" />
-            </Style>
-
-            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Subtract" />
+            <Style Selector="^:expanded">
+                <Style Selector="^ /template/ ToggleButton#Toggle">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Lower}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutTop}}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Upper}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutBottom}}" />
+                </Style>
             </Style>
         </Style>
+
         <Style Selector="^:down">
             <Style Selector="^ /template/ ToggleButton#Toggle">
                 <Setter Property="DockPanel.Dock" Value="Top" />
@@ -123,14 +160,22 @@
             <Style Selector="^ /template/ Border#SymbolBorder">
                 <Setter Property="DockPanel.Dock" Value="Right" />
             </Style>
-            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Add" />
-            </Style>
-
-            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Subtract" />
+            <Style Selector="^:expanded">
+                <Style Selector="^ /template/ ToggleButton#Toggle">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Upper}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutBottom}}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Lower}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutTop}}" />
+                </Style>
             </Style>
         </Style>
+
         <Style Selector="^:right">
             <Style Selector="^ /template/ ToggleButton#Toggle">
                 <Setter Property="DockPanel.Dock" Value="Left" />
@@ -138,12 +183,19 @@
             <Style Selector="^ /template/ Border#SymbolBorder">
                 <Setter Property="DockPanel.Dock" Value="Top" />
             </Style>
-            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Add" />
-            </Style>
-
-            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Subtract" />
+            <Style Selector="^:expanded">
+                <Style Selector="^ /template/ ToggleButton#Toggle">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Left}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutRight}}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Right}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutLeft}}" />
+                </Style>
             </Style>
         </Style>
         <Style Selector="^:left">
@@ -153,12 +205,19 @@
             <Style Selector="^ /template/ Border#SymbolBorder">
                 <Setter Property="DockPanel.Dock" Value="Bottom" />
             </Style>
-            <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Add" />
-            </Style>
-
-            <Style Selector="^:expanded /template/ fi|SymbolIcon#Symbol">
-                <Setter Property="Symbol" Value="Subtract" />
+            <Style Selector="^:expanded">
+                <Style Selector="^ /template/ ToggleButton#Toggle">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Right}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutLeft}}" />
+                </Style>
+                <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+                    <Setter Property="CornerRadius"
+                            Value="{Binding CornerRadius,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:CornerRadiusConverters.Left}}" />
+                    <Setter Property="BorderThickness"
+                            Value="{Binding BorderThickness,RelativeSource={RelativeSource TemplatedParent},Converter={x:Static husk:ThicknessConverters.WithoutRight}}" />
+                </Style>
             </Style>
         </Style>
     </ControlTheme>
