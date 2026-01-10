@@ -115,8 +115,7 @@
                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                       Padding="{TemplateBinding Padding}" IsVisible="{TemplateBinding IsExpanded}"
                                       Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                      CornerRadius="{TemplateBinding CornerRadius}">
-                    </ContentPresenter>
+                                      CornerRadius="{TemplateBinding CornerRadius}" />
                 </DockPanel>
             </ControlTemplate>
         </Setter>
