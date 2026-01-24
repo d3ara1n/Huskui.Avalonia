@@ -1,16 +1,20 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.HighlightBlocksPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.HighlightBlocksPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic Highlight Blocks"
-                                   Description="Inline text highlighting for emphasis">
+        <controls:ExampleContainer
+            Title="Basic Highlight Blocks"
+            Description="Inline text highlighting for emphasis">
             <StackPanel Spacing="16">
                 <TextBlock TextWrapping="Wrap">
                     This is normal text with a
@@ -27,55 +31,79 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Keyboard Shortcuts"
-                                   Description="Using the Shortcut class for keyboard combinations">
+        <controls:ExampleContainer
+            Title="Keyboard Shortcuts"
+            Description="Using the Shortcut class for keyboard combinations">
             <StackPanel Spacing="16">
                 <TextBlock TextWrapping="Wrap">
                     Press
-                    <husk:HighlightInline Text="Ctrl+C" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+C" />
                     to copy and
-                    <husk:HighlightInline Text="Ctrl+V" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+V" />
                     to paste.
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap">
                     Use
-                    <husk:HighlightInline Text="Ctrl+Z" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+Z" />
                     to undo or
-                    <husk:HighlightInline Text="Ctrl+Shift+Z" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+Shift+Z" />
                     to redo.
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap">
                     Save your work with
-                    <husk:HighlightInline Text="Ctrl+S" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+S" />
                     or open a file with
-                    <husk:HighlightInline Text="Ctrl+O" IsShortcut="True" />.
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+O" />
+                    .
                 </TextBlock>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Primary Style"
-                                   Description="Highlighted blocks with accent colors">
+        <controls:ExampleContainer
+            Title="Primary Style"
+            Description="Highlighted blocks with accent colors">
             <StackPanel Spacing="16">
                 <TextBlock TextWrapping="Wrap">
                     This is a
-                    <husk:HighlightInline Text="primary highlight" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        Text="primary highlight" />
                     with accent colors.
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap">
                     Primary shortcuts:
-                    <husk:HighlightInline Text="Enter" IsShortcut="True" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        IsShortcut="True"
+                        Text="Enter" />
                     to confirm or
-                    <husk:HighlightInline Text="Esc" IsShortcut="True" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        IsShortcut="True"
+                        Text="Esc" />
                     to cancel.
                 </TextBlock>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Code Snippets"
-                                   Description="Highlighting code or commands in text">
+        <controls:ExampleContainer
+            Title="Code Snippets"
+            Description="Highlighting code or commands in text">
             <StackPanel Spacing="16">
                 <TextBlock TextWrapping="Wrap">
                     Run
@@ -91,31 +119,42 @@
 
                 <TextBlock TextWrapping="Wrap">
                     Important: Always run
-                    <husk:HighlightInline Text="git status" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        Text="git status" />
                     before committing changes.
                 </TextBlock>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Mixed Usage"
-                                   Description="Combining different styles in complex text">
+        <controls:ExampleContainer
+            Title="Mixed Usage"
+            Description="Combining different styles in complex text">
             <StackPanel Spacing="16">
                 <TextBlock TextWrapping="Wrap">
                     To deploy your application, first press
-                    <husk:HighlightInline Text="Ctrl+Shift+B" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+Shift+B" />
                     to build, then run
                     <husk:HighlightInline Text="dotnet publish" />
                     command, and finally use
-                    <husk:HighlightInline Text="git push" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        Text="git push" />
                     to deploy.
                 </TextBlock>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Documentation Example"
-                                   Description="Real-world usage in documentation">
+        <controls:ExampleContainer
+            Title="Documentation Example"
+            Description="Real-world usage in documentation">
             <StackPanel Spacing="16">
-                <TextBlock TextWrapping="Wrap" FontSize="16" FontWeight="Bold">
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="Bold"
+                    TextWrapping="Wrap">
                     Getting Started with Huskui.Avalonia
                 </TextBlock>
 
@@ -132,13 +171,18 @@
 
                 <TextBlock TextWrapping="Wrap">
                     3. Use
-                    <husk:HighlightInline Text="F5" IsShortcut="True" />
+                    <husk:HighlightInline
+                        IsShortcut="True"
+                        Text="F5" />
                     to run your application and see the changes.
                 </TextBlock>
 
                 <TextBlock TextWrapping="Wrap">
                     Pro tip: Use
-                    <husk:HighlightInline Text="Ctrl+Shift+F5" IsShortcut="True" IsPrimary="True" />
+                    <husk:HighlightInline
+                        IsPrimary="True"
+                        IsShortcut="True"
+                        Text="Ctrl+Shift+F5" />
                     for a clean rebuild and run.
                 </TextBlock>
             </StackPanel>

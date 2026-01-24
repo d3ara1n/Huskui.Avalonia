@@ -1,49 +1,62 @@
-﻿<husk:Dialog xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
-             x:Class="Huskui.Gallery.Dialogs.EmailInputDialog"
-             Title="Enter Email Address"
-             PrimaryText="Confirm"
-             SecondaryText="Cancel"
-             IsPrimaryButtonVisible="True">
+﻿<husk:Dialog
+    x:Class="Huskui.Gallery.Dialogs.EmailInputDialog"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Enter Email Address"
+    d:DesignHeight="250"
+    d:DesignWidth="400"
+    IsPrimaryButtonVisible="True"
+    PrimaryText="Confirm"
+    SecondaryText="Cancel"
+    mc:Ignorable="d">
 
-    <StackPanel Spacing="16" Width="350">
+    <StackPanel
+        Width="350"
+        Spacing="16">
 
-        <!-- Input Section -->
+        <!--  Input Section  -->
         <StackPanel Spacing="8">
-            <TextBlock Text="Please enter your email address:"
-                       FontWeight="Medium" />
+            <TextBlock
+                FontWeight="Medium"
+                Text="Please enter your email address:" />
 
-            <TextBox x:Name="EmailTextBox"
-                     Text="{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}"
-                     Watermark="example@domain.com"
-                     KeyDown="OnEmailTextBoxKeyDown" />
+            <TextBox
+                x:Name="EmailTextBox"
+                KeyDown="OnEmailTextBoxKeyDown"
+                Text="{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}"
+                Watermark="example@domain.com" />
         </StackPanel>
 
-        <!-- Validation Message -->
-        <husk:InfoBar x:Name="ValidationBorder"
-                      IsVisible="False" Classes="Danger">
-            <TextBlock x:Name="ValidationText"
-                       Text="Please enter a valid email address"
-                       FontSize="12" />
+        <!--  Validation Message  -->
+        <husk:InfoBar
+            x:Name="ValidationBorder"
+            Classes="Danger"
+            IsVisible="False">
+            <TextBlock
+                x:Name="ValidationText"
+                FontSize="12"
+                Text="Please enter a valid email address" />
         </husk:InfoBar>
 
-        <!-- Info Section -->
+        <!--  Info Section  -->
         <StackPanel Spacing="8">
-            <TextBlock Text="Email format examples:"
-                       FontSize="12"
-                       FontWeight="Medium"
-                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+            <TextBlock
+                FontSize="12"
+                FontWeight="Medium"
+                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                Text="Email format examples:" />
             <StackPanel Spacing="4">
-                <TextBlock Text="• user@example.com"
-                           FontSize="11"
-                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                <TextBlock Text="• name.surname@company.org"
-                           FontSize="11"
-                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock
+                    FontSize="11"
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="• user@example.com" />
+                <TextBlock
+                    FontSize="11"
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="• name.surname@company.org" />
             </StackPanel>
         </StackPanel>
 

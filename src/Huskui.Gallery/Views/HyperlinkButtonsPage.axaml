@@ -1,138 +1,204 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.HyperlinkButtonsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.HyperlinkButtonsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic HyperlinkButtons"
-                                   Description="Standalone hyperlink buttons with navigation">
+        <controls:ExampleContainer
+            Title="Basic HyperlinkButtons"
+            Description="Standalone hyperlink buttons with navigation">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Link Controls" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="DashedToggle" Content="Dashed Style" />
-                    <Button Content="Open All Links" Click="OnOpenAllLinksClick" />
-                    <TextBlock Text="Toggle dashed style and test link navigation."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Link Controls" />
+                    <ToggleButton
+                        x:Name="DashedToggle"
+                        Content="Dashed Style" />
+                    <Button
+                        Click="OnOpenAllLinksClick"
+                        Content="Open All Links" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle dashed style and test link navigation."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <StackPanel Spacing="16" Width="400">
-                <HyperlinkButton Content="Huskui.Avalonia Repository"
-                                 NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia"
-                                 Classes.Dashed="{Binding #DashedToggle.IsChecked}" />
-                <HyperlinkButton Content="Avalonia UI Documentation"
-                                 NavigateUri="https://docs.avaloniaui.net/"
-                                 Classes.Dashed="{Binding #DashedToggle.IsChecked}" />
-                <HyperlinkButton Content="FluentIcons for Avalonia"
-                                 NavigateUri="https://github.com/davidxuang/FluentIcons"
-                                 Classes.Dashed="{Binding #DashedToggle.IsChecked}" />
-                <HyperlinkButton Content="Disabled Link"
-                                 NavigateUri="https://example.com"
-                                 IsEnabled="False"
-                                 Classes.Dashed="{Binding #DashedToggle.IsChecked}" />
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <HyperlinkButton
+                    Classes.Dashed="{Binding #DashedToggle.IsChecked}"
+                    Content="Huskui.Avalonia Repository"
+                    NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
+                <HyperlinkButton
+                    Classes.Dashed="{Binding #DashedToggle.IsChecked}"
+                    Content="Avalonia UI Documentation"
+                    NavigateUri="https://docs.avaloniaui.net/" />
+                <HyperlinkButton
+                    Classes.Dashed="{Binding #DashedToggle.IsChecked}"
+                    Content="FluentIcons for Avalonia"
+                    NavigateUri="https://github.com/davidxuang/FluentIcons" />
+                <HyperlinkButton
+                    IsEnabled="False"
+                    Classes.Dashed="{Binding #DashedToggle.IsChecked}"
+                    Content="Disabled Link"
+                    NavigateUri="https://example.com" />
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Inline HyperlinkButtons"
-                                   Description="HyperlinkButtons inside TextBlock with different theme">
-            <StackPanel Spacing="16" Width="500">
-                <TextBlock TextWrapping="Wrap" FontSize="14">
-                    Welcome to
-                    <HyperlinkButton Content="Huskui.Avalonia"
-                                     NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
-                    , a modern UI component library for
-                    <HyperlinkButton Content="Avalonia UI" NavigateUri="https://avaloniaui.net/" />
-                    . This library provides beautiful and functional controls for cross-platform desktop applications.
-                </TextBlock>
+        <controls:ExampleContainer
+            Title="Inline HyperlinkButtons"
+            Description="HyperlinkButtons inside TextBlock with different theme">
+            <StackPanel
+                Width="500"
+                Spacing="16">
+                <TextBlock
+                    FontSize="14"
+                    TextWrapping="Wrap">
+                    Welcome to<HyperlinkButton
+                        Content="Huskui.Avalonia"
+                        NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
+                    , a modern UI component library for<HyperlinkButton
+                        Content="Avalonia UI"
+                        NavigateUri="https://avaloniaui.net/" />
+                    . This library provides beautiful and functional controls for cross-platform desktop applications.</TextBlock>
 
-                <TextBlock TextWrapping="Wrap" FontSize="14">
-                    You can find more information in the
-                    <HyperlinkButton Content="documentation" NavigateUri="https://docs.avaloniaui.net/" />
-                    or check out the
-                    <HyperlinkButton Content="source code" NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
-                    on GitHub. For questions, visit our
-                    <HyperlinkButton Content="community forum"
-                                     NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/discussions" />
-                    .
-                </TextBlock>
+                <TextBlock
+                    FontSize="14"
+                    TextWrapping="Wrap">
+                    You can find more information in the<HyperlinkButton
+                        Content="documentation"
+                        NavigateUri="https://docs.avaloniaui.net/" />
+                    or check out the<HyperlinkButton
+                        Content="source code"
+                        NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
+                    on GitHub. For questions, visit our<HyperlinkButton
+                        Content="community forum"
+                        NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/discussions" />
+                    .</TextBlock>
 
-                <TextBlock TextWrapping="Wrap" FontSize="14">
+                <TextBlock
+                    FontSize="14"
+                    TextWrapping="Wrap">
                     <Run Text="Note: Links inside TextBlock automatically use the " />
-                    <husk:HighlightBlock Text="InlineHyperlinkButtonTheme" Classes="Primary" />
+                    <husk:HighlightBlock
+                        Classes="Primary"
+                        Text="InlineHyperlinkButtonTheme" />
                     <Run Text=" which provides a more subtle appearance suitable for inline text." />
                 </TextBlock>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Theme Comparison"
-                                   Description="Default vs Inline theme side by side">
-            <Grid ColumnDefinitions="*,*" ColumnSpacing="32" Width="600">
-                <StackPanel Grid.Column="0" Spacing="16">
-                    <TextBlock Text="Default Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+        <controls:ExampleContainer
+            Title="Theme Comparison"
+            Description="Default vs Inline theme side by side">
+            <Grid
+                Width="600"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="32">
+                <StackPanel
+                    Grid.Column="0"
+                    Spacing="16">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="Bold"
+                        Text="Default Theme" />
                     <StackPanel Spacing="12">
-                        <HyperlinkButton Content="Default Link" NavigateUri="https://example.com" />
-                        <HyperlinkButton Content="Dashed Link" NavigateUri="https://example.com" Classes="Dashed" />
-                        <HyperlinkButton Content="Disabled Link" NavigateUri="https://example.com"
-                                         IsEnabled="False" />
+                        <HyperlinkButton
+                            Content="Default Link"
+                            NavigateUri="https://example.com" />
+                        <HyperlinkButton
+                            Classes="Dashed"
+                            Content="Dashed Link"
+                            NavigateUri="https://example.com" />
+                        <HyperlinkButton
+                            IsEnabled="False"
+                            Content="Disabled Link"
+                            NavigateUri="https://example.com" />
                     </StackPanel>
-                    <TextBlock Text="Used for standalone navigation links"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                               TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Used for standalone navigation links"
+                        TextWrapping="Wrap" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Spacing="16">
-                    <TextBlock Text="Inline Theme" FontWeight="Bold" HorizontalAlignment="Center" />
+                <StackPanel
+                    Grid.Column="1"
+                    Spacing="16">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontWeight="Bold"
+                        Text="Inline Theme" />
                     <StackPanel Spacing="12">
-                        <HyperlinkButton Content="Inline Link"
-                                         NavigateUri="https://example.com"
-                                         Theme="{StaticResource InlineHyperlinkButtonTheme}" />
-                        <HyperlinkButton Content="Inline Disabled"
-                                         NavigateUri="https://example.com"
-                                         IsEnabled="False"
-                                         Theme="{StaticResource InlineHyperlinkButtonTheme}" />
+                        <HyperlinkButton
+                            Content="Inline Link"
+                            NavigateUri="https://example.com"
+                            Theme="{StaticResource InlineHyperlinkButtonTheme}" />
+                        <HyperlinkButton
+                            IsEnabled="False"
+                            Content="Inline Disabled"
+                            NavigateUri="https://example.com"
+                            Theme="{StaticResource InlineHyperlinkButtonTheme}" />
                     </StackPanel>
-                    <TextBlock Text="Automatically applied inside TextBlock for inline text"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                               TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Automatically applied inside TextBlock for inline text"
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Rich Text Examples"
-                                   Description="Complex text with multiple inline links">
-            <StackPanel Spacing="20" Width="550">
+        <controls:ExampleContainer
+            Title="Rich Text Examples"
+            Description="Complex text with multiple inline links">
+            <StackPanel
+                Width="550"
+                Spacing="20">
                 <husk:Card Padding="16">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Getting Started Guide" FontSize="16" FontWeight="Bold" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Getting Started Guide" />
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="1. Install the " />
-                            <HyperlinkButton Content="Huskui.Avalonia NuGet package"
-                                             NavigateUri="https://www.nuget.org/packages/Huskui.Avalonia/" />
+                            <HyperlinkButton
+                                Content="Huskui.Avalonia NuGet package"
+                                NavigateUri="https://www.nuget.org/packages/Huskui.Avalonia/" />
                             <Run Text=" in your project." />
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="2. Follow the " />
-                            <HyperlinkButton Content="setup instructions"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia#setup" />
+                            <HyperlinkButton
+                                Content="setup instructions"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia#setup" />
                             <Run Text=" to configure your application." />
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="3. Browse the " />
-                            <HyperlinkButton Content="component gallery" NavigateUri="#" />
+                            <HyperlinkButton
+                                Content="component gallery"
+                                NavigateUri="#" />
                             <Run Text=" to see available controls." />
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="4. Check out " />
-                            <HyperlinkButton Content="example projects"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/tree/main/examples" />
+                            <HyperlinkButton
+                                Content="example projects"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/tree/main/examples" />
                             <Run Text=" for implementation patterns." />
                         </TextBlock>
                     </StackPanel>
@@ -140,28 +206,37 @@
 
                 <husk:Card Padding="16">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Resources &amp; Community" FontSize="16" FontWeight="Bold" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Resources &amp; Community" />
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="Join our community on " />
-                            <HyperlinkButton Content="Discord" NavigateUri="https://discord.gg/avalonia" />
+                            <HyperlinkButton
+                                Content="Discord"
+                                NavigateUri="https://discord.gg/avalonia" />
                             <Run Text=" or " />
-                            <HyperlinkButton Content="GitHub Discussions"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/discussions" />
+                            <HyperlinkButton
+                                Content="GitHub Discussions"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/discussions" />
                             <Run Text=" to get help and share your projects." />
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="Found a bug? Please " />
-                            <HyperlinkButton Content="report it on GitHub"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/issues" />
+                            <HyperlinkButton
+                                Content="report it on GitHub"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/issues" />
                             <Run Text=" with detailed information." />
                         </TextBlock>
                         <TextBlock TextWrapping="Wrap">
                             <Run Text="Want to contribute? Check our " />
-                            <HyperlinkButton Content="contribution guidelines"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/blob/main/CONTRIBUTING.md" />
+                            <HyperlinkButton
+                                Content="contribution guidelines"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/blob/main/CONTRIBUTING.md" />
                             <Run Text=" and " />
-                            <HyperlinkButton Content="code of conduct"
-                                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/blob/main/CODE_OF_CONDUCT.md" />
+                            <HyperlinkButton
+                                Content="code of conduct"
+                                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/blob/main/CODE_OF_CONDUCT.md" />
                             <Run Text="." />
                         </TextBlock>
                     </StackPanel>
@@ -169,37 +244,64 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Navigation Examples"
-                                   Description="Different types of navigation links">
-            <StackPanel Spacing="16" Width="400">
+        <controls:ExampleContainer
+            Title="Navigation Examples"
+            Description="Different types of navigation links">
+            <StackPanel
+                Width="400"
+                Spacing="16">
                 <StackPanel Spacing="8">
-                    <TextBlock Text="External Links" FontWeight="Bold" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="External Links" />
                     <StackPanel Spacing="4">
-                        <HyperlinkButton Content="🌐 Official Website" NavigateUri="https://avaloniaui.net/" />
-                        <HyperlinkButton Content="📚 Documentation" NavigateUri="https://docs.avaloniaui.net/" />
-                        <HyperlinkButton Content="💬 Community Chat" NavigateUri="https://discord.gg/avalonia" />
+                        <HyperlinkButton
+                            Content="🌐 Official Website"
+                            NavigateUri="https://avaloniaui.net/" />
+                        <HyperlinkButton
+                            Content="📚 Documentation"
+                            NavigateUri="https://docs.avaloniaui.net/" />
+                        <HyperlinkButton
+                            Content="💬 Community Chat"
+                            NavigateUri="https://discord.gg/avalonia" />
                     </StackPanel>
                 </StackPanel>
 
                 <husk:Divider />
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Internal Navigation" FontWeight="Bold" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Internal Navigation" />
                     <StackPanel Spacing="4">
-                        <HyperlinkButton Content="🏠 Home Page" NavigateUri="#home" />
-                        <HyperlinkButton Content="🎨 Components" NavigateUri="#components" />
-                        <HyperlinkButton Content="⚙️ Settings" NavigateUri="#settings" />
+                        <HyperlinkButton
+                            Content="🏠 Home Page"
+                            NavigateUri="#home" />
+                        <HyperlinkButton
+                            Content="🎨 Components"
+                            NavigateUri="#components" />
+                        <HyperlinkButton
+                            Content="⚙️ Settings"
+                            NavigateUri="#settings" />
                     </StackPanel>
                 </StackPanel>
 
                 <husk:Divider />
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Special Links" FontWeight="Bold" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Special Links" />
                     <StackPanel Spacing="4">
-                        <HyperlinkButton Content="📧 Send Email" NavigateUri="mailto:support@example.com" />
-                        <HyperlinkButton Content="📞 Call Us" NavigateUri="tel:+1234567890" />
-                        <HyperlinkButton Content="📁 Open File" NavigateUri="file:///C:/example.txt" />
+                        <HyperlinkButton
+                            Content="📧 Send Email"
+                            NavigateUri="mailto:support@example.com" />
+                        <HyperlinkButton
+                            Content="📞 Call Us"
+                            NavigateUri="tel:+1234567890" />
+                        <HyperlinkButton
+                            Content="📁 Open File"
+                            NavigateUri="file:///C:/example.txt" />
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

@@ -1,55 +1,75 @@
-﻿<husk:Dialog xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="300"
-             x:Class="Huskui.Gallery.Dialogs.DeleteConfirmationDialog"
-             Title="Delete File"
-             PrimaryText="Delete"
-             SecondaryText="Cancel"
-             IsPrimaryButtonVisible="True">
+﻿<husk:Dialog
+    x:Class="Huskui.Gallery.Dialogs.DeleteConfirmationDialog"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Delete File"
+    d:DesignHeight="300"
+    d:DesignWidth="500"
+    IsPrimaryButtonVisible="True"
+    PrimaryText="Delete"
+    SecondaryText="Cancel"
+    mc:Ignorable="d">
 
-    <StackPanel Spacing="20" Width="400">
+    <StackPanel
+        Width="400"
+        Spacing="20">
 
-        <!-- Warning Icon and Message -->
-        <StackPanel Spacing="16" HorizontalAlignment="Center">
-            <Border Width="64"
-                    Height="64"
-                    CornerRadius="4"
-                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                    HorizontalAlignment="Center">
-                <fi:SymbolIcon Symbol="Warning"
-                               FontSize="32" />
+        <!--  Warning Icon and Message  -->
+        <StackPanel
+            HorizontalAlignment="Center"
+            Spacing="16">
+            <Border
+                Width="64"
+                Height="64"
+                HorizontalAlignment="Center"
+                Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                CornerRadius="4">
+                <fi:SymbolIcon
+                    FontSize="32"
+                    Symbol="Warning" />
             </Border>
 
-            <TextBlock Text="Are you sure you want to delete this file?"
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       HorizontalAlignment="Center"
-                       TextAlignment="Center" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="18"
+                FontWeight="SemiBold"
+                Text="Are you sure you want to delete this file?"
+                TextAlignment="Center" />
         </StackPanel>
 
-        <!-- File Information -->
+        <!--  File Information  -->
         <husk:Card Padding="16">
             <StackPanel Spacing="12">
-                <StackPanel Orientation="Horizontal" Spacing="12">
-                    <fi:SymbolIcon Symbol="Document" FontSize="24" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <fi:SymbolIcon
+                        FontSize="24"
+                        Symbol="Document" />
                     <StackPanel>
-                        <TextBlock Text="document.pdf"
-                                   FontWeight="SemiBold"
-                                   FontSize="16" />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="Size: 2.4 MB"
-                                       FontSize="12"
-                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                            <TextBlock Text="•"
-                                       FontSize="12"
-                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
-                            <TextBlock Text="Modified: Today, 3:45 PM"
-                                       FontSize="12"
-                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="document.pdf" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="Size: 2.4 MB" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="•" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="Modified: Today, 3:45 PM" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
@@ -57,37 +77,44 @@
                 <husk:Divider />
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="Location:"
-                               FontWeight="Medium"
-                               FontSize="12" />
-                    <TextBlock Text="C:\Users\Sarah\Documents\Projects\document.pdf"
-                               FontSize="12"
-                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
-                               TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="12"
+                        FontWeight="Medium"
+                        Text="Location:" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="C:\Users\Sarah\Documents\Projects\document.pdf"
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </StackPanel>
         </husk:Card>
 
-        <!-- Warning Message -->
+        <!--  Warning Message  -->
         <husk:InfoBar Classes="Warning">
             <husk:InfoBar.Header>
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <fi:SymbolIcon Symbol="ErrorCircle"
-                                   FontSize="16" />
-                    <TextBlock Text="This action cannot be undone"
-                               FontWeight="SemiBold" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="8">
+                    <fi:SymbolIcon
+                        FontSize="16"
+                        Symbol="ErrorCircle" />
+                    <TextBlock
+                        FontWeight="SemiBold"
+                        Text="This action cannot be undone" />
                 </StackPanel>
             </husk:InfoBar.Header>
             <TextBlock
-                Text="The file will be permanently deleted from your computer. Make sure you have a backup if you need to recover it later."
                 FontSize="12"
+                Text="The file will be permanently deleted from your computer. Make sure you have a backup if you need to recover it later."
                 TextWrapping="Wrap" />
         </husk:InfoBar>
 
-        <!-- Additional Options -->
+        <!--  Additional Options  -->
         <StackPanel Spacing="8">
-            <CheckBox Content="Move to Recycle Bin instead of permanent deletion"
-                      IsChecked="True" />
+            <CheckBox
+                Content="Move to Recycle Bin instead of permanent deletion"
+                IsChecked="True" />
             <CheckBox Content="Delete all files with the same name in this folder" />
         </StackPanel>
 

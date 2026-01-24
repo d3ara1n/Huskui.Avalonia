@@ -5,11 +5,15 @@
 		}
 	],
 	"settings": {
+		"editor.formatOnSave": true,
 		"axaml.selectedSolution": "c:\\Users\\d3ara\\Projects\\Polymerium\\submodules\\Huskui.Avalonia\\Huskui.slnx",
 		"cSpell.words": [
 			"Avalonia",
 			"Huskui"
 		]
+	},
+	"extensions": {
+		"recommendations": ["dabbinavo.xaml-styler"]
 	},
 	"launch": {
 		"version": "0.2.0",

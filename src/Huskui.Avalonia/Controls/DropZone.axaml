@@ -1,25 +1,40 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="using:FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="using:FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="{StaticResource SystemChromeWhiteColor}">
-            <husk:DropZone Margin="12" Padding="16,12">
+            <husk:DropZone
+                Margin="12"
+                Padding="16,12">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal" Spacing="4">
-                        <fi:SymbolIcon Symbol="Attach" FontSize="14" IconVariant="Filled" />
-                        <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Drag and drop, or" />
-                        <HyperlinkButton Content="Browser files..."
-                                         FontWeight="{StaticResource ControlStrongFontWeight}"
-                                         Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="4">
+                        <fi:SymbolIcon
+                            FontSize="14"
+                            IconVariant="Filled"
+                            Symbol="Attach" />
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Drag and drop, or" />
+                        <HyperlinkButton
+                            Content="Browser files..."
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Foreground="{StaticResource ControlAccentForegroundBrush}" />
                     </StackPanel>
-                    <TextBlock Text="Up to 12MB" HorizontalAlignment="Center"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Up to 12MB" />
                 </StackPanel>
             </husk:DropZone>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type husk:DropZone}" TargetType="husk:DropZone">
+    <ControlTheme
+        x:Key="{x:Type husk:DropZone}"
+        TargetType="husk:DropZone">
         <Setter Property="Padding" Value="12" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
@@ -27,27 +42,33 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <Rectangle Name="DashLine"
-                               RadiusX="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
-                               RadiusY="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
-                               StrokeThickness="2"
-                               Stroke="{TemplateBinding BorderBrush}"
-                               StrokeDashArray="6,2"
-                               StrokeLineCap="Round"
-                               StrokeJoin="Round" Fill="{TemplateBinding Background}"
-                               Opacity="{StaticResource Overlay1Opacity}">
+                    <Rectangle
+                        Name="DashLine"
+                        Fill="{TemplateBinding Background}"
+                        Opacity="{StaticResource Overlay1Opacity}"
+                        RadiusX="{TemplateBinding CornerRadius,
+                                                  Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
+                        RadiusY="{TemplateBinding CornerRadius,
+                                                  Converter={x:Static husk:CornerRadiusConverters.ToDouble}}"
+                        Stroke="{TemplateBinding BorderBrush}"
+                        StrokeDashArray="6,2"
+                        StrokeJoin="Round"
+                        StrokeLineCap="Round"
+                        StrokeThickness="2">
                         <Rectangle.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Rectangle.Transitions>
                     </Rectangle>
-                    <ContentPresenter Content="{TemplateBinding Content}"
-                                      Padding="{TemplateBinding Padding}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <ContentPresenter
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Panel>
             </ControlTemplate>
         </Setter>

@@ -1,42 +1,59 @@
-<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="800"
-                      x:Class="Huskui.Gallery.Views.ToolTipsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ToolTipsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <!-- Simple ToolTip -->
-        <controls:ExampleContainer Title="Simple ToolTip"
-                                   Description="A simple text tooltip attached to a button."
-                                   XamlCode="&lt;Button Content=&quot;Hover Me&quot; ToolTip.Tip=&quot;This is a tooltip.&quot; /&gt;">
-            <Button Content="Hover Me" ToolTip.Tip="This is a tooltip." />
+        <!--  Simple ToolTip  -->
+        <controls:ExampleContainer
+            Title="Simple ToolTip"
+            Description="A simple text tooltip attached to a button."
+            XamlCode="&lt;Button Content=&quot;Hover Me&quot; ToolTip.Tip=&quot;This is a tooltip.&quot; /&gt;">
+            <Button
+                Content="Hover Me"
+                ToolTip.Tip="This is a tooltip." />
         </controls:ExampleContainer>
 
-        <!-- Placement Modes -->
-        <controls:ExampleContainer Title="Placement Modes"
-                                   Description="Tooltips can be placed on any side of the target control."
-                                   XamlCode="&lt;ToolTip Placement=&quot;...&quot; /&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="16">
-                <Button Content="Top" ToolTip.Placement="Top">
+        <!--  Placement Modes  -->
+        <controls:ExampleContainer
+            Title="Placement Modes"
+            Description="Tooltips can be placed on any side of the target control."
+            XamlCode="&lt;ToolTip Placement=&quot;...&quot; /&gt;">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="16">
+                <Button
+                    Content="Top"
+                    ToolTip.Placement="Top">
                     <ToolTip.Tip>
                         <TextBlock Text="Top Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Bottom" ToolTip.Placement="Bottom">
+                <Button
+                    Content="Bottom"
+                    ToolTip.Placement="Bottom">
                     <ToolTip.Tip>
                         <TextBlock Text="Bottom Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Left" ToolTip.Placement="Left">
+                <Button
+                    Content="Left"
+                    ToolTip.Placement="Left">
                     <ToolTip.Tip>
                         <TextBlock Text="Left Placement" />
                     </ToolTip.Tip>
                 </Button>
-                <Button Content="Right" ToolTip.Placement="Right">
+                <Button
+                    Content="Right"
+                    ToolTip.Placement="Right">
                     <ToolTip.Tip>
                         <TextBlock Text="Right Placement" />
                     </ToolTip.Tip>
@@ -44,34 +61,55 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Complex Content -->
-        <controls:ExampleContainer Title="Complex Content"
-                                   Description="Tooltips can host complex content and interactive controls."
-                                   XamlCode="&lt;ToolTip.Tip&gt; ... &lt;/ToolTip.Tip&gt;">
+        <!--  Complex Content  -->
+        <controls:ExampleContainer
+            Title="Complex Content"
+            Description="Tooltips can host complex content and interactive controls."
+            XamlCode="&lt;ToolTip.Tip&gt; ... &lt;/ToolTip.Tip&gt;">
             <Button Content="Hover for Rich ToolTip">
                 <ToolTip.Tip>
                     <ToolTip Background="{StaticResource SystemFillColorSuccessBrush}">
                         <StackPanel Spacing="8">
-                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                                <fi:SymbolIcon Symbol="CheckmarkCircle" FontSize="{StaticResource MediumFontSize}" />
-                                <TextBlock Grid.Column="1" Text="Status: Connected"
-                                           FontWeight="Medium" VerticalAlignment="Center" />
+                            <Grid
+                                ColumnDefinitions="Auto,*"
+                                ColumnSpacing="8">
+                                <fi:SymbolIcon
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="CheckmarkCircle" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Medium"
+                                    Text="Status: Connected" />
                             </Grid>
-                            <TextBlock Text="Your device is connected securely." Opacity="0.8" />
+                            <TextBlock
+                                Opacity="0.8"
+                                Text="Your device is connected securely." />
                         </StackPanel>
                     </ToolTip>
                 </ToolTip.Tip>
             </Button>
         </controls:ExampleContainer>
 
-        <!-- Show Delay -->
-        <controls:ExampleContainer Title="Custom Show Delay"
-                                   Description="You can control how long the user must hover before the tooltip appears."
-                                   XamlCode="&lt;Button ToolTip.ShowDelay=&quot;1000&quot; ... /&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="16">
-                <Button Content="Default Delay" ToolTip.Tip="Appears after the default delay." />
-                <Button Content="1 Second Delay" ToolTip.Tip="Appears after 1 second." ToolTip.ShowDelay="1000" />
-                <Button Content="Instant" ToolTip.Tip="Appears instantly." ToolTip.ShowDelay="0" />
+        <!--  Show Delay  -->
+        <controls:ExampleContainer
+            Title="Custom Show Delay"
+            Description="You can control how long the user must hover before the tooltip appears."
+            XamlCode="&lt;Button ToolTip.ShowDelay=&quot;1000&quot; ... /&gt;">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="16">
+                <Button
+                    Content="Default Delay"
+                    ToolTip.Tip="Appears after the default delay." />
+                <Button
+                    Content="1 Second Delay"
+                    ToolTip.ShowDelay="1000"
+                    ToolTip.Tip="Appears after 1 second." />
+                <Button
+                    Content="Instant"
+                    ToolTip.ShowDelay="0"
+                    ToolTip.Tip="Appears instantly." />
             </StackPanel>
         </controls:ExampleContainer>
 

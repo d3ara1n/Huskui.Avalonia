@@ -1,23 +1,40 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel>
             <StackPanel>
-                <husk:IconLabel Icon="Home" Text="Home" Foreground="Aqua" FontSize="24" FontWeight="Bold" />
+                <husk:IconLabel
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Foreground="Aqua"
+                    Icon="Home"
+                    Text="Home" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type husk:IconLabel}" TargetType="husk:IconLabel">
+    <ControlTheme
+        x:Key="{x:Type husk:IconLabel}"
+        TargetType="husk:IconLabel">
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="{TemplateBinding Spacing}">
-                    <fi:SymbolIcon Grid.Column="0" Symbol="{TemplateBinding Icon}"
-                                   IconVariant="{TemplateBinding Variant}" VerticalAlignment="Center"
-                                   FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" />
-                    <TextBlock Grid.Column="1" Text="{TemplateBinding Text}" FontSize="{TemplateBinding FontSize}"
-                               Foreground="{TemplateBinding Foreground}" />
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="{TemplateBinding Spacing}">
+                    <fi:SymbolIcon
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontSize="{TemplateBinding FontSize}"
+                        Foreground="{TemplateBinding Foreground}"
+                        IconVariant="{TemplateBinding Variant}"
+                        Symbol="{TemplateBinding Icon}" />
+                    <TextBlock
+                        Grid.Column="1"
+                        FontSize="{TemplateBinding FontSize}"
+                        Foreground="{TemplateBinding Foreground}"
+                        Text="{TemplateBinding Text}" />
                 </Grid>
             </ControlTemplate>
         </Setter>

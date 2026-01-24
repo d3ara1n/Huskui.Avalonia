@@ -1,35 +1,51 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <Design.PreviewWith>
         <Panel>
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <TabStrip>
                     <TabStripItem>
                         <TextBlock>
-                            <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Hub" />
                             <LineBreak />
-                            <Run Text="Design Center" Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Design Center" />
                         </TextBlock>
                     </TabStripItem>
                     <TabStripItem IsEnabled="False">
                         <TextBlock>
-                            <Run Text="Dock" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Dock" />
                             <LineBreak />
-                            <Run Text="Machine Assembler"
-                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Machine Assembler" />
                         </TextBlock>
                     </TabStripItem>
                     <TabStripItem>
                         <TextBlock>
-                            <Run Text="Socket" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Socket" />
                             <LineBreak />
-                            <Run Text="Power Supply" Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Power Supply" />
                         </TextBlock>
                     </TabStripItem>
                 </TabStrip>
-                <TabStrip Theme="{StaticResource SegmentedTabStripTheme}" CornerRadius="8">
+                <TabStrip
+                    CornerRadius="8"
+                    Theme="{StaticResource SegmentedTabStripTheme}">
                     <TabStripItem Content="Monday" />
                     <TabStripItem Content="Tuesday" />
                     <TabStripItem Content="Wednesday" />
@@ -52,26 +68,36 @@
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type TabStrip}" TargetType="TabStrip">
+    <ControlTheme
+        x:Key="{x:Type TabStrip}"
+        TargetType="TabStrip">
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
-                <StackPanel Spacing="3" Orientation="Horizontal" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="3" />
             </ItemsPanelTemplate>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <ItemsPresenter Name="PART_ItemsPresenter"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}" Margin="{TemplateBinding Padding}" />
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        Margin="{TemplateBinding Padding}"
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="SegmentedTabStripTheme" TargetType="TabStrip">
+    <ControlTheme
+        x:Key="SegmentedTabStripTheme"
+        TargetType="TabStrip">
         <Setter Property="Background" Value="{StaticResource OverlayBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
@@ -79,21 +105,28 @@
         <Setter Property="Padding" Value="3" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
-                <StackPanel Spacing="4" Orientation="Horizontal" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="4" />
             </ItemsPanelTemplate>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="PivotTabStripTheme" TargetType="TabStrip">
+    <ControlTheme
+        x:Key="PivotTabStripTheme"
+        TargetType="TabStrip">
         <Setter Property="ItemContainerTheme" Value="{StaticResource PivotTabStripItemTheme}" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
@@ -102,66 +135,85 @@
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="ChipTabStripTheme" TargetType="TabStrip">
+    <ControlTheme
+        x:Key="ChipTabStripTheme"
+        TargetType="TabStrip">
         <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Setter Property="ItemContainerTheme" Value="{StaticResource ChipTabStripItemTheme}" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
-                <StackPanel Spacing="4" Orientation="Horizontal" />
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="4" />
             </ItemsPanelTemplate>
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Padding="{TemplateBinding Padding}" CornerRadius="{TemplateBinding CornerRadius}"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type TabStripItem}" TargetType="TabStripItem">
+    <ControlTheme
+        x:Key="{x:Type TabStripItem}"
+        TargetType="TabStripItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="10,8" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius"
-                Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TabStrip}, Path=CornerRadius}" />
+        <Setter Property="CornerRadius" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=TabStrip}, Path=CornerRadius}" />
         <Setter Property="Background" Value="{StaticResource OverlayInteractiveBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <Border x:Name="Border" Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="BorderBrush"
-                                                 Duration="{StaticResource ControlNormalAnimationDuration}"
-                                                 Easing="SineEaseOut" />
-                                <ThicknessTransition Property="BorderThickness"
-                                                     Duration="{StaticResource ControlNormalAnimationDuration}"
-                                                     Easing="SineEaseOut" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlNormalAnimationDuration}" />
+                                <ThicknessTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderThickness"
+                                    Duration="{StaticResource ControlNormalAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
-                        <Border Name="Indicator" Background="{StaticResource OverlayHalfBackgroundBrush}" Opacity="0"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            Name="Indicator"
+                            Background="{StaticResource OverlayHalfBackgroundBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Opacity="0">
                             <Border.Transitions>
                                 <Transitions>
-                                    <DoubleTransition Property="Opacity"
-                                                      Duration="{StaticResource ControlNormalAnimationDuration}"
-                                                      Easing="SineEaseOut" />
+                                    <DoubleTransition
+                                        Easing="SineEaseOut"
+                                        Property="Opacity"
+                                        Duration="{StaticResource ControlNormalAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
                         </Border>
@@ -172,14 +224,14 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         FontFamily="{TemplateBinding FontFamily}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        Foreground="{TemplateBinding Foreground}"
                         FontSize="{TemplateBinding FontSize}"
                         FontStretch="{TemplateBinding FontStretch}"
                         FontStyle="{TemplateBinding FontStyle}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
                         RecognizesAccessKey="True"
                         TextElement.FontSize="{TemplateBinding FontSize}"
                         TextElement.FontWeight="{TemplateBinding FontWeight}" />
@@ -204,15 +256,21 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="SegmentedTabStripItemTheme" TargetType="TabStripItem">
+    <ControlTheme
+        x:Key="SegmentedTabStripItemTheme"
+        TargetType="TabStripItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="8,6" />
         <Setter Property="CornerRadius">
             <MultiBinding Converter="{x:Static husk:CornerRadiusConverters.ToInnerRadiusMulti}">
-                <Binding Path="CornerRadius"
-                         RelativeSource="{RelativeSource FindAncestor, AncestorType=TabStrip}" />
-                <Binding Path="Padding"
-                         RelativeSource="{RelativeSource FindAncestor, AncestorType=TabStrip}" />
+                <Binding
+                    Path="CornerRadius"
+                    RelativeSource="{RelativeSource FindAncestor,
+                                                    AncestorType=TabStrip}" />
+                <Binding
+                    Path="Padding"
+                    RelativeSource="{RelativeSource FindAncestor,
+                                                    AncestorType=TabStrip}" />
             </MultiBinding>
         </Setter>
         <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
@@ -220,39 +278,52 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Background="{StaticResource TransparentBrush}">
-                    <Border Name="Indicator" Background="{TemplateBinding Background}" Opacity="0"
-                            RenderTransform="scale(0.95)"
-                            ClipToBounds="{TemplateBinding ClipToBounds}"
-                            BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{TemplateBinding CornerRadius}"
-                            BorderThickness="{TemplateBinding BorderThickness}" BoxShadow="0 2 8 0 #1F000000">
+                    <Border
+                        Name="Indicator"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BoxShadow="0 2 8 0 #1F000000"
+                        ClipToBounds="{TemplateBinding ClipToBounds}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0"
+                        RenderTransform="scale(0.95)">
                         <Border.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="BackEaseOut"
-                                                               Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="BackEaseOut"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
-                                      Margin="{TemplateBinding Padding}"
-                                      Foreground="{TemplateBinding Foreground}"
-                                      FontFamily="{TemplateBinding FontFamily}"
-                                      FontWeight="{TemplateBinding FontWeight}"
-                                      FontSize="{TemplateBinding FontSize}"
-                                      FontStretch="{TemplateBinding FontStretch}"
-                                      FontStyle="{TemplateBinding FontStyle}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      CornerRadius="{TemplateBinding CornerRadius}"
-                                      RecognizesAccessKey="True"
-                                      TextElement.FontSize="{TemplateBinding FontSize}"
-                                      TextElement.FontWeight="{TemplateBinding FontWeight}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontStretch="{TemplateBinding FontStretch}"
+                        FontStyle="{TemplateBinding FontStyle}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
+                        RecognizesAccessKey="True"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}">
                         <ContentPresenter.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
@@ -278,7 +349,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="PivotTabStripItemTheme" TargetType="TabStripItem">
+    <ControlTheme
+        x:Key="PivotTabStripItemTheme"
+        TargetType="TabStripItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,6" />
         <Setter Property="Margin" Value="4" />
@@ -290,23 +363,35 @@
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel Name="Container" Background="{TemplateBinding Background}">
+                <Panel
+                    Name="Container"
+                    Background="{TemplateBinding Background}">
                     <Panel.Transitions>
                         <Transitions>
-                            <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                              Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            <DoubleTransition
+                                Easing="SineEaseOut"
+                                Property="Opacity"
+                                Duration="{StaticResource ControlFasterAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Border x:Name="PART_Indicator" Background="{StaticResource ControlBackgroundBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="PART_Indicator"
+                        Background="{StaticResource ControlBackgroundBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="Background" Easing="SineEaseIn"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="QuarticEaseInOut"
-                                                               Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseIn"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="QuarticEaseInOut"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
@@ -317,13 +402,13 @@
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         FontFamily="{TemplateBinding FontFamily}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        Foreground="{TemplateBinding Foreground}"
                         FontSize="{TemplateBinding FontSize}"
                         FontStretch="{TemplateBinding FontStretch}"
                         FontStyle="{TemplateBinding FontStyle}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
                         RecognizesAccessKey="True"
                         TextElement.FontSize="{TemplateBinding FontSize}"
                         TextElement.FontWeight="{TemplateBinding FontWeight}" />
@@ -345,8 +430,7 @@
 
         <Style Selector="^ /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Height"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
             <Setter Property="RenderTransform" Value="scaleX(0.0)" />
         </Style>
 
@@ -359,48 +443,59 @@
 
     </ControlTheme>
 
-    <ControlTheme x:Key="ChipTabStripItemTheme" TargetType="TabStripItem">
+    <ControlTheme
+        x:Key="ChipTabStripItemTheme"
+        TargetType="TabStripItem">
         <Setter Property="Padding" Value="12,6" />
         <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
         <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
-        <Setter Property="CornerRadius"
-                Value="{Binding CornerRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=TabStrip}}" />
+        <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource FindAncestor, AncestorType=TabStrip}}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Background" CornerRadius="{TemplateBinding CornerRadius}"
-                        Background="{TemplateBinding Background}"
-                        Padding="2">
+                <Border
+                    Name="Background"
+                    Padding="2"
+                    Background="{TemplateBinding Background}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition Property="Background" Easing="SineEaseOut"
-                                             Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            <BrushTransition
+                                Easing="SineEaseOut"
+                                Property="Background"
+                                Duration="{StaticResource ControlFasterAnimationDuration}" />
                         </Transitions>
                     </Border.Transitions>
-                    <Border Padding="{TemplateBinding Padding}"
-                            BorderBrush="{StaticResource ControlReversedForegroundBrush}"
-                            BorderThickness="1">
+                    <Border
+                        Padding="{TemplateBinding Padding}"
+                        BorderBrush="{StaticResource ControlReversedForegroundBrush}"
+                        BorderThickness="1">
                         <Border.CornerRadius>
                             <MultiBinding Converter="{x:Static husk:CornerRadiusConverters.ToInnerRadiusMulti}">
-                                <Binding Path="CornerRadius"
-                                         RelativeSource="{RelativeSource FindAncestor, AncestorType=Border}" />
-                                <Binding Path="Padding"
-                                         RelativeSource="{RelativeSource FindAncestor, AncestorType=Border}" />
+                                <Binding
+                                    Path="CornerRadius"
+                                    RelativeSource="{RelativeSource FindAncestor,
+                                                                    AncestorType=Border}" />
+                                <Binding
+                                    Path="Padding"
+                                    RelativeSource="{RelativeSource FindAncestor,
+                                                                    AncestorType=Border}" />
                             </MultiBinding>
                         </Border.CornerRadius>
-                        <ContentPresenter Name="ContentPresenter"
-                                          Content="{TemplateBinding Content}"
-                                          FontFamily="{TemplateBinding FontFamily}"
-                                          FontWeight="{TemplateBinding FontWeight}"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          FontSize="{TemplateBinding FontSize}"
-                                          FontStretch="{TemplateBinding FontStretch}"
-                                          FontStyle="{TemplateBinding FontStyle}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          RecognizesAccessKey="True"
-                                          TextElement.FontSize="{TemplateBinding FontSize}"
-                                          TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                        <ContentPresenter
+                            Name="ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontStretch="{TemplateBinding FontStretch}"
+                            FontStyle="{TemplateBinding FontStyle}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            RecognizesAccessKey="True"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontWeight="{TemplateBinding FontWeight}" />
                     </Border>
                 </Border>
             </ControlTemplate>

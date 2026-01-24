@@ -1,9 +1,14 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Spacing="12" Margin="24">
-                <Carousel Height="160" Width="260">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
+                <Carousel
+                    Width="260"
+                    Height="160">
                     <Carousel.Items>
                         <Border Background="Aqua" />
                         <Border Background="Magenta" />
@@ -13,26 +18,33 @@
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type Carousel}" TargetType="Carousel">
+    <ControlTheme
+        x:Key="{x:Type Carousel}"
+        TargetType="Carousel">
         <Setter Property="PageTransition">
-            <PageSlide SlideInEasing="CubicEaseOut" SlideOutEasing="CubicEaseIn"
-                       Duration="{StaticResource ControlFasterAnimationDuration}" />
+            <PageSlide
+                SlideInEasing="CubicEaseOut"
+                SlideOutEasing="CubicEaseIn"
+                Duration="{StaticResource ControlFasterAnimationDuration}" />
         </Setter>
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="{TemplateBinding ClipToBounds}">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <ScrollViewer
                         Name="PART_ScrollViewer"
                         BringIntoViewOnFocusChange="False"
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden">
-                        <ItemsPresenter Name="PART_ItemsPresenter"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}"
-                                        Margin="{TemplateBinding Padding}" />
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
                     </ScrollViewer>
                 </Border>
             </ControlTemplate>
@@ -44,20 +56,26 @@
             </Style>
         </Style>
     </ControlTheme>
-    <ControlTheme x:Key="SimpleCarouselTheme" TargetType="Carousel">
+    <ControlTheme
+        x:Key="SimpleCarouselTheme"
+        TargetType="Carousel">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="{TemplateBinding ClipToBounds}">
-                    <ScrollViewer Name="PART_ScrollViewer"
-                                  BringIntoViewOnFocusChange="False"
-                                  HorizontalScrollBarVisibility="Hidden"
-                                  VerticalScrollBarVisibility="Hidden">
-                        <ItemsPresenter Name="PART_ItemsPresenter"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}"
-                                        Margin="{TemplateBinding Padding}" />
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ScrollViewer
+                        Name="PART_ScrollViewer"
+                        BringIntoViewOnFocusChange="False"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden">
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
                     </ScrollViewer>
                 </Border>
             </ControlTemplate>

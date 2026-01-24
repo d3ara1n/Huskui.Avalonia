@@ -113,6 +113,16 @@ dotnet run --project src/Huskui.Gallery
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+### Development Setup
+
+1. Clone the repository
+2. Restore tools: `dotnet tool restore`
+3. Open in VS Code and install recommended extensions when prompted
+
+XAML files are auto-formatted on save via [XAML Styler](https://github.com/Xavalon/XamlStyler).
+
+Please ensure your XAML is formatted before submitting a PR.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).

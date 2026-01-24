@@ -1,8 +1,10 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Thickness x:Key="FlyoutContentMargin">12,8</Thickness>
-    <ControlTheme x:Key="{x:Type FlyoutPresenter}"
-                  TargetType="FlyoutPresenter">
+    <ControlTheme
+        x:Key="{x:Type FlyoutPresenter}"
+        TargetType="FlyoutPresenter">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
@@ -13,25 +15,32 @@
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="LayoutRoot" Margin="2"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="{TemplateBinding ClipToBounds}">
+                <Border
+                    Name="LayoutRoot"
+                    Margin="2"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Effect>
-                        <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                        <DropShadowEffect
+                            OffsetX="0"
+                            OffsetY="0"
+                            Opacity="0.2" />
                     </Border.Effect>
                     <ScrollViewer
                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                        <ContentPresenter x:Name="PART_ContentPresenter"
-                                          Padding="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          HorizontalContentAlignment="Stretch"
-                                          VerticalContentAlignment="Stretch"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </ScrollViewer>
                 </Border>
             </ControlTemplate>
@@ -42,8 +51,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type MenuFlyoutPresenter}"
-                  TargetType="MenuFlyoutPresenter">
+    <ControlTheme
+        x:Key="{x:Type MenuFlyoutPresenter}"
+        TargetType="MenuFlyoutPresenter">
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
@@ -51,22 +61,29 @@
         <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="LayoutRoot" Margin="2"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="{TemplateBinding ClipToBounds}">
+                <Border
+                    Name="LayoutRoot"
+                    Margin="2"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Effect>
-                        <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                        <DropShadowEffect
+                            OffsetX="0"
+                            OffsetY="0"
+                            Opacity="0.2" />
                     </Border.Effect>
                     <ScrollViewer
                         HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                         VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                        <ItemsPresenter Name="PART_ItemsPresenter"
-                                        Margin="{TemplateBinding Padding}"
-                                        Grid.IsSharedSizeScope="True"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}"
-                                        KeyboardNavigation.TabNavigation="Continue" />
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            Grid.IsSharedSizeScope="True"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            KeyboardNavigation.TabNavigation="Continue" />
                     </ScrollViewer>
                 </Border>
             </ControlTemplate>

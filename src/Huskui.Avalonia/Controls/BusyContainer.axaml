@@ -1,9 +1,15 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
-        <Panel Background="White" Height="328" Width="256">
-            <Grid Margin="24" RowDefinitions="*,8,*,8,*">
+        <Panel
+            Width="256"
+            Height="328"
+            Background="White">
+            <Grid
+                Margin="24"
+                RowDefinitions="*,8,*,8,*">
                 <local:BusyContainer Grid.Row="0">
                     <Button>Hello World</Button>
                 </local:BusyContainer>
@@ -16,19 +22,26 @@
             </Grid>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type local:BusyContainer}" TargetType="local:BusyContainer">
+    <ControlTheme
+        x:Key="{x:Type local:BusyContainer}"
+        TargetType="local:BusyContainer">
         <Setter Property="Background" Value="{StaticResource OverlayMaskBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border ClipToBounds="{TemplateBinding ClipToBounds}">
                     <Panel>
-                        <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          Padding="{TemplateBinding Padding}" />
-                        <Border Name="Mask" Background="{TemplateBinding Background}"
-                                IsVisible="False" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Padding="{TemplateBinding Padding}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Border
+                            Name="Mask"
+                            IsVisible="False"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <ContentPresenter Content="{TemplateBinding PendingContent}" />
                         </Border>
                     </Panel>

@@ -1,10 +1,13 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Orientation="Horizontal">
+            <StackPanel
+                Margin="24"
+                Orientation="Horizontal">
                 <husk:StepControl>
                     <husk:StepItem Header="Step 1">
                         <TextBlock Text="Step 1" />
@@ -20,7 +23,9 @@
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type husk:StepItem}" TargetType="husk:StepItem">
+    <ControlTheme
+        x:Key="{x:Type husk:StepItem}"
+        TargetType="husk:StepItem">
         <Setter Property="MinWidth" Value="124" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
@@ -28,14 +33,25 @@
         <Setter Property="Padding" Value="12,8" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid RowDefinitions="Auto,*" RowSpacing="8">
-                    <Grid Grid.Row="0" ColumnDefinitions="*,Auto,*">
-                        <husk:SwitchPresenter Grid.Column="0" Height="4"
-                                              IsVisible="{TemplateBinding IsFirst, Converter={x:Static BoolConverters.Not}}">
+                <Grid
+                    RowDefinitions="Auto,*"
+                    RowSpacing="8">
+                    <Grid
+                        Grid.Row="0"
+                        ColumnDefinitions="*,Auto,*">
+                        <husk:SwitchPresenter
+                            Grid.Column="0"
+                            Height="4"
+                            IsVisible="{TemplateBinding IsFirst,
+                                                        Converter={x:Static BoolConverters.Not}}">
                             <husk:SwitchPresenter.Value>
                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
-                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsSelected" />
-                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsCompleted" />
+                                    <Binding
+                                        Path="IsSelected"
+                                        RelativeSource="{RelativeSource TemplatedParent}" />
+                                    <Binding
+                                        Path="IsCompleted"
+                                        RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>
                             </husk:SwitchPresenter.Value>
                             <husk:SwitchCase Value="{x:True}">
@@ -45,34 +61,46 @@
                                 <Border Background="{StaticResource ControlBorderBrush}" />
                             </husk:SwitchCase>
                         </husk:SwitchPresenter>
-                        <husk:SwitchPresenter Grid.Column="1" Value="{TemplateBinding IsCompleted}" Height="32"
-                                              Width="32">
+                        <husk:SwitchPresenter
+                            Grid.Column="1"
+                            Width="32"
+                            Height="32"
+                            Value="{TemplateBinding IsCompleted}">
                             <husk:SwitchCase Value="{x:True}">
-                                <Border BorderBrush="{StaticResource ControlAccentBorderBrush}"
-                                        BorderThickness="2"
-                                        Background="{StaticResource ControlAccentBackgroundBrush}"
-                                        CornerRadius="{StaticResource FullCornerRadius}">
-                                    <fi:SymbolIcon Symbol="Checkmark"
-                                                   HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   FontSize="{StaticResource LargeFontSize}" />
+                                <Border
+                                    Background="{StaticResource ControlAccentBackgroundBrush}"
+                                    BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                                    BorderThickness="2"
+                                    CornerRadius="{StaticResource FullCornerRadius}">
+                                    <fi:SymbolIcon
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        FontSize="{StaticResource LargeFontSize}"
+                                        Symbol="Checkmark" />
                                 </Border>
                             </husk:SwitchCase>
                             <husk:SwitchCase Value="{x:False}">
-                                <Border BorderBrush="{StaticResource ControlAccentBorderBrush}"
-                                        BorderThickness="2" Height="32" Width="32"
-                                        CornerRadius="{StaticResource FullCornerRadius}">
+                                <Border
+                                    Width="32"
+                                    Height="32"
+                                    BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                                    BorderThickness="2"
+                                    CornerRadius="{StaticResource FullCornerRadius}">
                                     <TextBlock
-                                        Text="{TemplateBinding Index, Converter={x:Static husk:InternalConverters.ToDisplayIndex}}"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontSize="{StaticResource LargeFontSize}" />
+                                        FontSize="{StaticResource LargeFontSize}"
+                                        Text="{TemplateBinding Index,
+                                                               Converter={x:Static husk:InternalConverters.ToDisplayIndex}}" />
                                 </Border>
                             </husk:SwitchCase>
                         </husk:SwitchPresenter>
-                        <husk:SwitchPresenter Grid.Column="2" Height="4"
-                                              IsVisible="{TemplateBinding IsLast, Converter={x:Static BoolConverters.Not}}"
-                                              Value="{TemplateBinding IsCompleted}">
+                        <husk:SwitchPresenter
+                            Grid.Column="2"
+                            Height="4"
+                            IsVisible="{TemplateBinding IsLast,
+                                                        Converter={x:Static BoolConverters.Not}}"
+                            Value="{TemplateBinding IsCompleted}">
                             <husk:SwitchCase Value="{x:True}">
                                 <Border Background="{StaticResource ControlAccentBorderBrush}" />
                             </husk:SwitchCase>
@@ -81,28 +109,36 @@
                             </husk:SwitchCase>
                         </husk:SwitchPresenter>
                     </Grid>
-                    <Panel Grid.Row="1" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                        <Border CornerRadius="{TemplateBinding CornerRadius}"
-                                Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}"
-                                IsVisible="{TemplateBinding IsSelected}" />
-                        <Grid RowDefinitions="Auto,*" Margin="{TemplateBinding Padding}">
-                            <ContentPresenter Grid.Row="0" Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
+                    <Panel
+                        Grid.Row="1"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                        <Border
+                            IsVisible="{TemplateBinding IsSelected}"
+                            Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}"
+                            CornerRadius="{TemplateBinding CornerRadius}" />
+                        <Grid
+                            Margin="{TemplateBinding Padding}"
+                            RowDefinitions="Auto,*">
+                            <ContentPresenter
+                                Grid.Row="0"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}">
                                 <ContentPresenter.Styles>
-                                    <Style Selector="ContentPresenter > TextBlock">
+                                    <Style Selector="ContentPresenter &gt; TextBlock">
                                         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
                                         <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
                                     </Style>
                                 </ContentPresenter.Styles>
                             </ContentPresenter>
-                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}">
+                            <ContentPresenter
+                                Grid.Row="1"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}">
                                 <ContentPresenter.Styles>
-                                    <Style Selector="ContentPresenter > TextBlock">
-                                        <Setter Property="Foreground"
-                                                Value="{StaticResource ControlSecondaryForegroundBrush}" />
+                                    <Style Selector="ContentPresenter &gt; TextBlock">
+                                        <Setter Property="Foreground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
                                     </Style>
                                 </ContentPresenter.Styles>
                             </ContentPresenter>
@@ -113,15 +149,20 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="MinimalStepItemTheme" TargetType="husk:StepItem">
+    <ControlTheme
+        x:Key="MinimalStepItemTheme"
+        TargetType="husk:StepItem">
         <Setter Property="Width" Value="8" />
         <Setter Property="Height" Value="8" />
         <Setter Property="MinWidth" Value="8" />
         <Setter Property="Margin" Value="4,0" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Ellipse x:Name="Indicator" Width="8" Height="8"
-                         Fill="{StaticResource ControlTranslucentFullBackgroundBrush}" />
+                <Ellipse
+                    x:Name="Indicator"
+                    Width="8"
+                    Height="8"
+                    Fill="{StaticResource ControlTranslucentFullBackgroundBrush}" />
             </ControlTemplate>
         </Setter>
 

@@ -1,19 +1,29 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Grid Background="AliceBlue" ColumnDefinitions="160,160">
+        <Grid
+            Background="AliceBlue"
+            ColumnDefinitions="160,160">
             <StackPanel
                 Grid.Column="0"
                 Margin="20"
                 Spacing="20">
                 <TextBlock Text="Buttons" />
                 <Button Content="Normal" />
-                <Button Classes="Primary" Content="Normal Primary" />
-                <Button Content="Outline" Theme="{StaticResource OutlineButtonTheme}" />
+                <Button
+                    Classes="Primary"
+                    Content="Normal Primary" />
+                <Button
+                    Content="Outline"
+                    Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
                     Classes="Danger"
                     Content="Outline Danger"
                     Theme="{StaticResource OutlineButtonTheme}" />
-                <Button Content="Ghost" Theme="{StaticResource GhostButtonTheme}" />
+                <Button
+                    Content="Ghost"
+                    Theme="{StaticResource GhostButtonTheme}" />
                 <Button
                     Classes="Success"
                     Content="Ghost Success"
@@ -24,34 +34,38 @@
                 Margin="20"
                 Spacing="20">
                 <TextBlock Text="Disabled" />
-                <Button Content="Normal" IsEnabled="False" />
+                <Button
+                    IsEnabled="False"
+                    Content="Normal" />
                 <Button
                     Classes="Primary"
-                    Content="Normal Primary"
-                    IsEnabled="False" />
-                <Button
-                    Content="Outline"
                     IsEnabled="False"
+                    Content="Normal Primary" />
+                <Button
+                    IsEnabled="False"
+                    Content="Outline"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
                     Classes="Danger"
-                    Content="Outline Danger"
                     IsEnabled="False"
+                    Content="Outline Danger"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
-                    Content="Ghost"
                     IsEnabled="False"
+                    Content="Ghost"
                     Theme="{StaticResource GhostButtonTheme}" />
                 <Button
                     Classes="Success"
-                    Content="Ghost Success"
                     IsEnabled="False"
+                    Content="Ghost Success"
                     Theme="{StaticResource GhostButtonTheme}" />
             </StackPanel>
         </Grid>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="BaseButtonTheme" TargetType="Button">
+    <ControlTheme
+        x:Key="BaseButtonTheme"
+        TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,9" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -72,7 +86,10 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type Button}" BasedOn="{StaticResource BaseButtonTheme}" TargetType="Button">
+    <ControlTheme
+        x:Key="{x:Type Button}"
+        BasedOn="{StaticResource BaseButtonTheme}"
+        TargetType="Button">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
@@ -120,8 +137,10 @@
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border x:Name="Indicator" Background="{StaticResource TransparentBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="Indicator"
+                        Background="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition
@@ -170,7 +189,10 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="OutlineButtonTheme" BasedOn="{StaticResource BaseButtonTheme}" TargetType="Button">
+    <ControlTheme
+        x:Key="OutlineButtonTheme"
+        BasedOn="{StaticResource BaseButtonTheme}"
+        TargetType="Button">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Background" Value="{StaticResource OverlayInteractiveBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
@@ -224,9 +246,12 @@
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border x:Name="Indicator" Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                            BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Opacity="0">
+                    <Border
+                        x:Name="Indicator"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition
@@ -329,7 +354,10 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="GhostButtonTheme" BasedOn="{StaticResource BaseButtonTheme}" TargetType="Button">
+    <ControlTheme
+        x:Key="GhostButtonTheme"
+        BasedOn="{StaticResource BaseButtonTheme}"
+        TargetType="Button">
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
@@ -380,9 +408,12 @@
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border x:Name="Indicator" Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                            BorderBrush="{StaticResource TransparentBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Opacity="0">
+                    <Border
+                        x:Name="Indicator"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition

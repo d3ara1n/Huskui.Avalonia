@@ -1,7 +1,10 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
-    <ControlTheme x:Key="{x:Type husk:StepControl}" TargetType="husk:StepControl">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type husk:StepControl}"
+        TargetType="husk:StepControl">
         <Setter Property="Template">
             <ControlTemplate>
                 <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
@@ -9,8 +12,10 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="MinimalStepControlTheme" TargetType="husk:StepControl"
-                  BasedOn="{StaticResource {x:Type husk:StepControl}}">
+    <ControlTheme
+        x:Key="MinimalStepControlTheme"
+        BasedOn="{StaticResource {x:Type husk:StepControl}}"
+        TargetType="husk:StepControl">
         <Setter Property="ItemContainerTheme" Value="{StaticResource MinimalStepItemTheme}" />
     </ControlTheme>
 </ResourceDictionary>

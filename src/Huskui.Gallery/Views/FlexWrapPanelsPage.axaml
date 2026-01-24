@@ -1,168 +1,347 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.FlexWrapPanelsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.FlexWrapPanelsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic FlexWrapPanel"
-                                   Description="Flexible wrapping layout that distributes width evenly">
+        <controls:ExampleContainer
+            Title="Basic FlexWrapPanel"
+            Description="Flexible wrapping layout that distributes width evenly">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Spacing Controls" FontWeight="Bold" FontSize="14" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Spacing Controls" />
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Column Spacing" FontSize="12" />
-                        <Slider x:Name="ColumnSpacingSlider"
-                                Minimum="0" Maximum="20" Value="8"
-                                TickFrequency="2" IsSnapToTickEnabled="True" />
+                        <TextBlock
+                            FontSize="12"
+                            Text="Column Spacing" />
+                        <Slider
+                            x:Name="ColumnSpacingSlider"
+                            IsSnapToTickEnabled="True"
+                            Maximum="20"
+                            Minimum="0"
+                            TickFrequency="2"
+                            Value="8" />
                     </StackPanel>
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Row Spacing" FontSize="12" />
-                        <Slider x:Name="RowSpacingSlider"
-                                Minimum="0" Maximum="20" Value="8"
-                                TickFrequency="2" IsSnapToTickEnabled="True" />
+                        <TextBlock
+                            FontSize="12"
+                            Text="Row Spacing" />
+                        <Slider
+                            x:Name="RowSpacingSlider"
+                            IsSnapToTickEnabled="True"
+                            Maximum="20"
+                            Minimum="0"
+                            TickFrequency="2"
+                            Value="8" />
                     </StackPanel>
-                    <TextBlock Text="Adjust spacing to see how FlexWrapPanel distributes elements."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Adjust spacing to see how FlexWrapPanel distributes elements."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <Border BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16"
-                    Width="500">
-                <husk:FlexWrapPanel ColumnSpacing="{Binding #ColumnSpacingSlider.Value}"
-                                    RowSpacing="{Binding #RowSpacingSlider.Value}">
-                    <Button Content="Button 1" MinWidth="80" />
-                    <Button Content="Button 2" MinWidth="100" />
-                    <Button Content="Button 3" MinWidth="90" />
-                    <Button Content="Button 4" MinWidth="110" />
-                    <Button Content="Button 5" MinWidth="85" />
-                    <Button Content="Button 6" MinWidth="95" />
-                    <Button Content="Button 7" MinWidth="120" />
-                    <Button Content="Button 8" MinWidth="75" />
+            <Border
+                Width="500"
+                Padding="16"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <husk:FlexWrapPanel
+                    ColumnSpacing="{Binding #ColumnSpacingSlider.Value}"
+                    RowSpacing="{Binding #RowSpacingSlider.Value}">
+                    <Button
+                        MinWidth="80"
+                        Content="Button 1" />
+                    <Button
+                        MinWidth="100"
+                        Content="Button 2" />
+                    <Button
+                        MinWidth="90"
+                        Content="Button 3" />
+                    <Button
+                        MinWidth="110"
+                        Content="Button 4" />
+                    <Button
+                        MinWidth="85"
+                        Content="Button 5" />
+                    <Button
+                        MinWidth="95"
+                        Content="Button 6" />
+                    <Button
+                        MinWidth="120"
+                        Content="Button 7" />
+                    <Button
+                        MinWidth="75"
+                        Content="Button 8" />
                 </husk:FlexWrapPanel>
             </Border>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Responsive Card Layout"
-                                   Description="Cards that adapt to available width">
-            <Border BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16"
-                    Width="600">
-                <husk:FlexWrapPanel ColumnSpacing="16" RowSpacing="16">
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+        <controls:ExampleContainer
+            Title="Responsive Card Layout"
+            Description="Cards that adapt to available width">
+            <Border
+                Width="600"
+                Padding="16"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <husk:FlexWrapPanel
+                    ColumnSpacing="16"
+                    RowSpacing="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="📊" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Analytics" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="View reports" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="📊" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Analytics" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="View reports" />
                         </StackPanel>
                     </husk:Card>
 
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="👥" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Users" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Manage users" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="👥" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Users" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="Manage users" />
                         </StackPanel>
                     </husk:Card>
 
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="⚙️" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Settings" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Configure app" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="⚙️" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Settings" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="Configure app" />
                         </StackPanel>
                     </husk:Card>
 
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="📁" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Files" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Browse files" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="📁" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Files" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="Browse files" />
                         </StackPanel>
                     </husk:Card>
 
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="🔔" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Growls" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="View alerts" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="🔔" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Growls" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="View alerts" />
                         </StackPanel>
                     </husk:Card>
 
-                    <husk:Card MinWidth="150" MaxWidth="200" Padding="16">
+                    <husk:Card
+                        MinWidth="150"
+                        MaxWidth="200"
+                        Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="🎨" FontSize="24" HorizontalAlignment="Center" />
-                            <TextBlock Text="Themes" FontWeight="Bold" HorizontalAlignment="Center" />
-                            <TextBlock Text="Customize UI" FontSize="12" HorizontalAlignment="Center" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="24"
+                                Text="🎨" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="Themes" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="Customize UI" />
                         </StackPanel>
                     </husk:Card>
                 </husk:FlexWrapPanel>
             </Border>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Tag Collection"
-                                   Description="Flexible tag layout with different sizes">
-            <Border BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="8"
-                    Padding="16"
-                    Width="450">
-                <husk:FlexWrapPanel ColumnSpacing="8" RowSpacing="8">
-                    <husk:Tag Content="C#" Classes="Primary" MinWidth="40" />
-                    <husk:Tag Content="Avalonia UI" Classes="Success" MinWidth="60" />
-                    <husk:Tag Content="MVVM" Classes="Warning" MinWidth="45" />
-                    <husk:Tag Content="Cross-platform" MinWidth="80" />
-                    <husk:Tag Content="Desktop" Classes="Primary" MinWidth="50" />
-                    <husk:Tag Content="Open Source" Classes="Success" MinWidth="70" />
-                    <husk:Tag Content="UI Framework" MinWidth="75" />
-                    <husk:Tag Content="XAML" Classes="Warning" MinWidth="40" />
-                    <husk:Tag Content="Reactive" Classes="Primary" MinWidth="55" />
-                    <husk:Tag Content="Modern" Classes="Success" MinWidth="50" />
-                    <husk:Tag Content="Fast" Classes="Danger" MinWidth="35" />
-                    <husk:Tag Content="Flexible" MinWidth="55" />
+        <controls:ExampleContainer
+            Title="Tag Collection"
+            Description="Flexible tag layout with different sizes">
+            <Border
+                Width="450"
+                Padding="16"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <husk:FlexWrapPanel
+                    ColumnSpacing="8"
+                    RowSpacing="8">
+                    <husk:Tag
+                        Classes="Primary"
+                        MinWidth="40"
+                        Content="C#" />
+                    <husk:Tag
+                        Classes="Success"
+                        MinWidth="60"
+                        Content="Avalonia UI" />
+                    <husk:Tag
+                        Classes="Warning"
+                        MinWidth="45"
+                        Content="MVVM" />
+                    <husk:Tag
+                        MinWidth="80"
+                        Content="Cross-platform" />
+                    <husk:Tag
+                        Classes="Primary"
+                        MinWidth="50"
+                        Content="Desktop" />
+                    <husk:Tag
+                        Classes="Success"
+                        MinWidth="70"
+                        Content="Open Source" />
+                    <husk:Tag
+                        MinWidth="75"
+                        Content="UI Framework" />
+                    <husk:Tag
+                        Classes="Warning"
+                        MinWidth="40"
+                        Content="XAML" />
+                    <husk:Tag
+                        Classes="Primary"
+                        MinWidth="55"
+                        Content="Reactive" />
+                    <husk:Tag
+                        Classes="Success"
+                        MinWidth="50"
+                        Content="Modern" />
+                    <husk:Tag
+                        Classes="Danger"
+                        MinWidth="35"
+                        Content="Fast" />
+                    <husk:Tag
+                        MinWidth="55"
+                        Content="Flexible" />
                 </husk:FlexWrapPanel>
             </Border>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Form Layout"
-                                   Description="Responsive form fields using FlexWrapPanel">
-            <husk:Card Padding="24" Width="500">
+        <controls:ExampleContainer
+            Title="Form Layout"
+            Description="Responsive form fields using FlexWrapPanel">
+            <husk:Card
+                Width="500"
+                Padding="24">
                 <StackPanel Spacing="20">
-                    <TextBlock Text="Contact Information" FontSize="18" FontWeight="Bold" />
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Contact Information" />
 
-                    <husk:FlexWrapPanel ColumnSpacing="16" RowSpacing="16">
-                        <StackPanel Spacing="4" MinWidth="120">
-                            <TextBlock Text="First Name" FontSize="12" />
+                    <husk:FlexWrapPanel
+                        ColumnSpacing="16"
+                        RowSpacing="16">
+                        <StackPanel
+                            MinWidth="120"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="First Name" />
                             <TextBox Watermark="Enter first name" />
                         </StackPanel>
 
-                        <StackPanel Spacing="4" MinWidth="120">
-                            <TextBlock Text="Last Name" FontSize="12" />
+                        <StackPanel
+                            MinWidth="120"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="Last Name" />
                             <TextBox Watermark="Enter last name" />
                         </StackPanel>
 
-                        <StackPanel Spacing="4" MinWidth="200">
-                            <TextBlock Text="Email Address" FontSize="12" />
+                        <StackPanel
+                            MinWidth="200"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="Email Address" />
                             <TextBox Watermark="Enter email address" />
                         </StackPanel>
 
-                        <StackPanel Spacing="4" MinWidth="120">
-                            <TextBlock Text="Phone" FontSize="12" />
+                        <StackPanel
+                            MinWidth="120"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="Phone" />
                             <TextBox Watermark="Enter phone number" />
                         </StackPanel>
 
-                        <StackPanel Spacing="4" MinWidth="150">
-                            <TextBlock Text="Country" FontSize="12" />
+                        <StackPanel
+                            MinWidth="150"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="Country" />
                             <ComboBox PlaceholderText="Select country">
                                 <ComboBoxItem Content="United States" />
                                 <ComboBoxItem Content="Canada" />
@@ -170,17 +349,26 @@
                             </ComboBox>
                         </StackPanel>
 
-                        <StackPanel Spacing="4" MinWidth="100">
-                            <TextBlock Text="Zip Code" FontSize="12" />
+                        <StackPanel
+                            MinWidth="100"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="12"
+                                Text="Zip Code" />
                             <TextBox Watermark="Enter zip code" />
                         </StackPanel>
                     </husk:FlexWrapPanel>
 
                     <husk:Divider />
 
-                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
                         <Button Content="Cancel" />
-                        <Button Content="Save Contact" Classes="Primary" />
+                        <Button
+                            Classes="Primary"
+                            Content="Save Contact" />
                     </StackPanel>
                 </StackPanel>
             </husk:Card>

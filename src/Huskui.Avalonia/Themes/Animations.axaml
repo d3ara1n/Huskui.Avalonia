@@ -1,9 +1,12 @@
-﻿<Styles xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style Selector="Popup[IsOpen=True] LayoutTransformControl#PART_LayoutTransform">
         <Style.Animations>
-            <Animation Duration="{StaticResource ControlSlowerAnimationDuration}" Easing="CubicEaseOut">
+            <Animation
+                Easing="CubicEaseOut"
+                Duration="{StaticResource ControlSlowerAnimationDuration}">
                 <KeyFrame Cue="0.0">
                     <Setter Property="ScaleTransform.ScaleX" Value="0.98" />
                     <Setter Property="ScaleTransform.ScaleY" Value="0.98" />
@@ -18,7 +21,9 @@
 
     <Style Selector="Popup[IsOpen=False] LayoutTransformControl#PART_LayoutTransform">
         <Style.Animations>
-            <Animation Duration="{StaticResource ControlSlowerAnimationDuration}" Easing="CubicEaseOut">
+            <Animation
+                Easing="CubicEaseOut"
+                Duration="{StaticResource ControlSlowerAnimationDuration}">
                 <KeyFrame Cue="0.0">
                     <Setter Property="ScaleTransform.ScaleX" Value="1.0" />
                     <Setter Property="ScaleTransform.ScaleY" Value="1.0" />

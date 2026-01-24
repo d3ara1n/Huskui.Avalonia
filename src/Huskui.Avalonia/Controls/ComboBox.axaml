@@ -1,9 +1,12 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <ComboBox SelectedIndex="0">
                     <ComboBoxItem>
                         <TextBlock Text="Hello World" />
@@ -17,7 +20,9 @@
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+    <ControlTheme
+        x:Key="{x:Type ComboBox}"
+        TargetType="ComboBox">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
@@ -32,67 +37,90 @@
             <ControlTemplate>
                 <DataValidationErrors>
                     <Panel>
-                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Border.Transitions>
                                 <Transitions>
-                                    <BrushTransition Property="BorderBrush"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                     Easing="SineEaseOut" />
-                                    <BrushTransition Property="Background"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                     Easing="SineEaseOut" />
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="BorderBrush"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="Background"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
 
-                            <Grid Margin="{TemplateBinding Padding}" ColumnDefinitions="*,6,Auto">
+                            <Grid
+                                Margin="{TemplateBinding Padding}"
+                                ColumnDefinitions="*,6,Auto">
                                 <Panel Grid.Column="0">
-                                    <TextBlock Name="PlaceholderTextBlock"
-                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                               Foreground="{TemplateBinding PlaceholderForeground}"
-                                               TextTrimming="CharacterEllipsis"
-                                               IsVisible="{TemplateBinding SelectionBoxItem,
-                                                   Converter={x:Static ObjectConverters.IsNull}}"
-                                               Text="{TemplateBinding PlaceholderText}" />
-                                    <ContentPresenter Name="PART_ContentPresenter"
-                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    <TextBlock
+                                        Name="PlaceholderTextBlock"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding SelectionBoxItem,
+                                                                    Converter={x:Static ObjectConverters.IsNull}}"
+                                        Foreground="{TemplateBinding PlaceholderForeground}"
+                                        Text="{TemplateBinding PlaceholderText}"
+                                        TextTrimming="CharacterEllipsis" />
+                                    <ContentPresenter
+                                        Name="PART_ContentPresenter"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
                                 </Panel>
-                                <fi:SymbolIcon Grid.Column="2" Symbol="ChevronUpDown"
-                                               FontSize="{TemplateBinding FontSize}" />
+                                <fi:SymbolIcon
+                                    Grid.Column="2"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Symbol="ChevronUpDown" />
                             </Grid>
                         </Border>
-                        <Border x:Name="GlowBorder" CornerRadius="{TemplateBinding CornerRadius}"
-                                BorderBrush="{StaticResource TransparentBrush}" BorderThickness="2">
+                        <Border
+                            x:Name="GlowBorder"
+                            BorderBrush="{StaticResource TransparentBrush}"
+                            BorderThickness="2"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Border.Transitions>
                                 <Transitions>
-                                    <BrushTransition Property="BorderBrush"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                     Easing="SineEaseOut" />
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="BorderBrush"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
                         </Border>
-                        <Popup Name="PART_Popup"
-                               MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
-                               MinHeight="12"
-                               MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                               IsLightDismissEnabled="True"
-                               IsOpen="{TemplateBinding IsDropDownOpen,Mode=TwoWay}"
-                               PlacementTarget="{TemplateBinding}"
-                               InheritsTransform="True">
-                            <Border Margin="2,4" Background="{StaticResource FlyoutBackgroundBrush}"
-                                    CornerRadius="{StaticResource SmallCornerRadius}" ClipToBounds="True">
+                        <Popup
+                            Name="PART_Popup"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            MinHeight="12"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                            InheritsTransform="True"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{TemplateBinding IsDropDownOpen,
+                                                     Mode=TwoWay}"
+                            PlacementTarget="{TemplateBinding}">
+                            <Border
+                                Margin="2,4"
+                                Background="{StaticResource FlyoutBackgroundBrush}"
+                                ClipToBounds="True"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
-                                    <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
                                 </Border.Effect>
                                 <ScrollViewer
                                     HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
                             </Border>
@@ -116,7 +144,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type ComboBoxItem}" TargetType="ComboBoxItem">
+    <ControlTheme
+        x:Key="{x:Type ComboBoxItem}"
+        TargetType="ComboBoxItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
@@ -125,34 +155,52 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Border" CornerRadius="{TemplateBinding CornerRadius}"
-                        ClipToBounds="{TemplateBinding ClipToBounds}" Margin="2"
-                        Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border
+                    Name="Border"
+                    Margin="2"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition Property="Background" Easing="SineEaseOut"
-                                             Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <BrushTransition
+                                Easing="SineEaseOut"
+                                Property="Background"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Border.Transitions>
-                    <Grid ColumnDefinitions="*,6,Auto" Margin="{TemplateBinding Padding}">
-                        <ContentPresenter Grid.Column="0" Name="PART_ContentPresenter"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          RenderTransform="{x:Null}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid
+                        Margin="{TemplateBinding Padding}"
+                        ColumnDefinitions="*,6,Auto">
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            RenderTransform="{x:Null}">
                             <ContentPresenter.Transitions>
                                 <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
-                                                                   Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                    <TransformOperationsTransition
+                                        Easing="SineEaseOut"
+                                        Property="RenderTransform"
+                                        Duration="{StaticResource ControlFastestAnimationDuration}" />
                                 </Transitions>
                             </ContentPresenter.Transitions>
                         </ContentPresenter>
-                        <fi:SymbolIcon Grid.Column="2" Name="Mark" Symbol="Checkmark"
-                                       FontSize="{TemplateBinding FontSize}"
-                                       HorizontalAlignment="Right" VerticalAlignment="Center" IsVisible="False"
-                                       Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                        <fi:SymbolIcon
+                            Name="Mark"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            IsVisible="False"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{StaticResource ControlAccentForegroundBrush}"
+                            Symbol="Checkmark" />
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -183,7 +231,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="GhostComboBoxTheme" TargetType="ComboBox">
+    <ControlTheme
+        x:Key="GhostComboBoxTheme"
+        TargetType="ComboBox">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         <Setter Property="PlaceholderForeground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
@@ -196,56 +246,75 @@
             <ControlTemplate>
                 <DataValidationErrors>
                     <Panel>
-                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border
+                            x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <Border.Transitions>
                                 <Transitions>
-                                    <BrushTransition Property="BorderBrush"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                     Easing="SineEaseOut" />
-                                    <BrushTransition Property="Background"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                     Easing="SineEaseOut" />
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="BorderBrush"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="Background"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
 
-                            <Grid Margin="{TemplateBinding Padding}" ColumnDefinitions="*,6,Auto">
+                            <Grid
+                                Margin="{TemplateBinding Padding}"
+                                ColumnDefinitions="*,6,Auto">
                                 <Panel Grid.Column="0">
-                                    <TextBlock Name="PlaceholderTextBlock"
-                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                               Foreground="{TemplateBinding PlaceholderForeground}"
-                                               TextTrimming="CharacterEllipsis"
-                                               IsVisible="{TemplateBinding SelectionBoxItem,
-                                                   Converter={x:Static ObjectConverters.IsNull}}"
-                                               Text="{TemplateBinding PlaceholderText}" />
-                                    <ContentPresenter Name="PART_ContentPresenter"
-                                                      Content="{TemplateBinding SelectionBoxItem}"
-                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    <TextBlock
+                                        Name="PlaceholderTextBlock"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding SelectionBoxItem,
+                                                                    Converter={x:Static ObjectConverters.IsNull}}"
+                                        Foreground="{TemplateBinding PlaceholderForeground}"
+                                        Text="{TemplateBinding PlaceholderText}"
+                                        TextTrimming="CharacterEllipsis" />
+                                    <ContentPresenter
+                                        Name="PART_ContentPresenter"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
                                 </Panel>
-                                <fi:SymbolIcon Grid.Column="2" Symbol="ChevronUpDown"
-                                               FontSize="{TemplateBinding FontSize}" />
+                                <fi:SymbolIcon
+                                    Grid.Column="2"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Symbol="ChevronUpDown" />
                             </Grid>
                         </Border>
-                        <Popup Name="PART_Popup"
-                               MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
-                               MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                               IsLightDismissEnabled="True"
-                               IsOpen="{TemplateBinding IsDropDownOpen,Mode=TwoWay}"
-                               PlacementTarget="{TemplateBinding}"
-                               InheritsTransform="True">
-                            <Border Margin="2,4" Background="{StaticResource FlyoutBackgroundBrush}"
-                                    CornerRadius="{StaticResource SmallCornerRadius}" ClipToBounds="True">
+                        <Popup
+                            Name="PART_Popup"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                            InheritsTransform="True"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{TemplateBinding IsDropDownOpen,
+                                                     Mode=TwoWay}"
+                            PlacementTarget="{TemplateBinding}">
+                            <Border
+                                Margin="2,4"
+                                Background="{StaticResource FlyoutBackgroundBrush}"
+                                ClipToBounds="True"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
-                                    <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
                                 </Border.Effect>
                                 <ScrollViewer
                                     HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                                     <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
                             </Border>

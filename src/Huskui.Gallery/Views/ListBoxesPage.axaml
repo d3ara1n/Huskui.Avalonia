@@ -1,28 +1,45 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.ListBoxesPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ListBoxesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic ListBoxes"
-                                   Description="Standard listbox controls with different configurations">
+        <controls:ExampleContainer
+            Title="Basic ListBoxes"
+            Description="Standard listbox controls with different configurations">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Selection Controls" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Clear Selection" Click="OnClearSelectionClick" />
-                    <Button Content="Reset to Defaults" Click="OnResetSelectionClick" />
-                    <TextBlock Text="Clear all selections or reset to default values."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Selection Controls" />
+                    <Button
+                        Click="OnClearSelectionClick"
+                        Content="Clear Selection" />
+                    <Button
+                        Click="OnResetSelectionClick"
+                        Content="Reset to Defaults" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Clear all selections or reset to default values."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
             <StackPanel Spacing="16">
-                <ListBox x:Name="BasicListBox" Width="200" Height="200" BorderThickness="1" BorderBrush="Black">
+                <ListBox
+                    x:Name="BasicListBox"
+                    Width="200"
+                    Height="200"
+                    BorderBrush="Black"
+                    BorderThickness="1">
                     <ListBoxItem>Item 1</ListBoxItem>
                     <ListBoxItem>Item 2</ListBoxItem>
                     <ListBoxItem>Item 3</ListBoxItem>
@@ -31,11 +48,17 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="MultiSelect ListBoxes"
-                                   Description="Listboxes with multi-select enabled">
+        <controls:ExampleContainer
+            Title="MultiSelect ListBoxes"
+            Description="Listboxes with multi-select enabled">
             <StackPanel Spacing="16">
-                <ListBox x:Name="MultiSelectListBox" Width="200" Height="200" BorderThickness="1" BorderBrush="Black"
-                         SelectionMode="Multiple">
+                <ListBox
+                    x:Name="MultiSelectListBox"
+                    Width="200"
+                    Height="200"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    SelectionMode="Multiple">
                     <ListBoxItem>Item 1</ListBoxItem>
                     <ListBoxItem>Item 2</ListBoxItem>
                     <ListBoxItem>Item 3</ListBoxItem>
@@ -44,29 +67,47 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Custom ListBoxes"
-                                   Description="Listboxes with custom item templates">
+        <controls:ExampleContainer
+            Title="Custom ListBoxes"
+            Description="Listboxes with custom item templates">
             <StackPanel Spacing="16">
-                <ListBox x:Name="CustomListBox" Width="200" Height="200" BorderThickness="1" BorderBrush="Black">
+                <ListBox
+                    x:Name="CustomListBox"
+                    Width="200"
+                    Height="200"
+                    BorderBrush="Black"
+                    BorderThickness="1">
                     <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
                             <TextBlock Text="Item 1" />
-                            <TextBlock Text="Description 1" FontSize="12"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Description 1" />
                         </StackPanel>
                     </ListBoxItem>
                     <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
                             <TextBlock Text="Item 2" />
-                            <TextBlock Text="Description 2" FontSize="12"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Description 2" />
                         </StackPanel>
                     </ListBoxItem>
                     <ListBoxItem>
-                        <StackPanel Orientation="Horizontal" Spacing="8">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
                             <TextBlock Text="Item 3" />
-                            <TextBlock Text="Description 3" FontSize="12"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Description 3" />
                         </StackPanel>
                     </ListBoxItem>
                 </ListBox>

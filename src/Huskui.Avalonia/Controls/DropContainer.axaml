@@ -1,26 +1,37 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
-    <ControlTheme x:Key="{x:Type husk:DropContainer}" TargetType="husk:DropContainer">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type husk:DropContainer}"
+        TargetType="husk:DropContainer">
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <ContentPresenter Name="ContentPresenter" Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      Padding="{TemplateBinding Padding}">
+                    <ContentPresenter
+                        Name="ContentPresenter"
+                        Padding="{TemplateBinding Padding}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}">
                         <ContentPresenter.Transitions>
                             <Transitions>
-                                <EffectTransition Property="Effect"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <EffectTransition
+                                    Property="Effect"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border Name="Mask" Background="{StaticResource OverlaySmokeBackgroundBrush}"
-                            CornerRadius="{StaticResource MediumCornerRadius}" IsHitTestVisible="False" Opacity="0">
+                    <Border
+                        Name="Mask"
+                        IsHitTestVisible="False"
+                        Background="{StaticResource OverlaySmokeBackgroundBrush}"
+                        CornerRadius="{StaticResource MediumCornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <ContentPresenter Content="{TemplateBinding Overlay}" />

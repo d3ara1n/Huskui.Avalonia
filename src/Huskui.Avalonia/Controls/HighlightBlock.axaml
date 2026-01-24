@@ -1,23 +1,36 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Spacing="12" Orientation="Horizontal">
+            <StackPanel
+                Margin="24"
+                Orientation="Horizontal"
+                Spacing="12">
                 <TextBlock>
-                    <local:HighlightInline Text="Ctrl+C" IsShortcut="True" />
+                    <local:HighlightInline
+                        IsShortcut="True"
+                        Text="Ctrl+C" />
                     <Run Text="and" />
-                    <local:HighlightInline Text="Ctrl+C" IsShortcut="True" IsPrimary="True" />
+                    <local:HighlightInline
+                        IsPrimary="True"
+                        IsShortcut="True"
+                        Text="Ctrl+C" />
                     <Run Text="then" />
                     <local:HighlightInline Text="✨ git push -f" />
                     <Run Text="or" />
-                    <local:HighlightInline Text="✨ git push -f" IsPrimary="True" />
+                    <local:HighlightInline
+                        IsPrimary="True"
+                        Text="✨ git push -f" />
                     <Run Text="!" />
                 </TextBlock>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type local:HighlightBlock}" TargetType="local:HighlightBlock">
+    <ControlTheme
+        x:Key="{x:Type local:HighlightBlock}"
+        TargetType="local:HighlightBlock">
         <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
         <Setter Property="Padding" Value="6,0" />
@@ -26,11 +39,16 @@
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        Padding="{TemplateBinding Padding}">
-                    <TextPresenter Text="{TemplateBinding Text}" VerticalAlignment="Center" TextWrapping="NoWrap" />
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <TextPresenter
+                        VerticalAlignment="Center"
+                        Text="{TemplateBinding Text}"
+                        TextWrapping="NoWrap" />
                 </Border>
             </ControlTemplate>
         </Setter>

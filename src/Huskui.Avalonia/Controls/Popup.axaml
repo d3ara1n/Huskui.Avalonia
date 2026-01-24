@@ -1,6 +1,9 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ControlTheme x:Key="{x:Type PopupRoot}" TargetType="PopupRoot">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTheme
+        x:Key="{x:Type PopupRoot}"
+        TargetType="PopupRoot">
         <Setter Property="Cursor" Value="Arrow" />
         <Setter Property="TransparencyBackgroundFallback" Value="{StaticResource WindowBackgroundBrush}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
@@ -11,21 +14,24 @@
             <ControlTemplate>
                 <LayoutTransformControl LayoutTransform="{TemplateBinding Transform}">
                     <Panel>
-                        <Border Name="PART_TransparencyFallback"
-                                IsHitTestVisible="False" />
+                        <Border
+                            Name="PART_TransparencyFallback"
+                            IsHitTestVisible="False" />
                         <VisualLayerManager IsPopup="True">
-                            <LayoutTransformControl Name="PART_LayoutTransform"
-                                                    LayoutTransform="{TemplateBinding Transform}"
-                                                    UseRenderTransform="True">
-                                <ContentPresenter Name="PART_ContentPresenter"
-                                                  Padding="{TemplateBinding Padding}"
-                                                  Background="{TemplateBinding Background}"
-                                                  BorderBrush="{TemplateBinding BorderBrush}"
-                                                  BorderThickness="{TemplateBinding BorderThickness}"
-                                                  CornerRadius="{TemplateBinding CornerRadius}"
-                                                  ClipToBounds="{TemplateBinding ClipToBounds}"
-                                                  Content="{TemplateBinding Content}"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            <LayoutTransformControl
+                                Name="PART_LayoutTransform"
+                                LayoutTransform="{TemplateBinding Transform}"
+                                UseRenderTransform="True">
+                                <ContentPresenter
+                                    Name="PART_ContentPresenter"
+                                    Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    CornerRadius="{TemplateBinding CornerRadius}" />
                             </LayoutTransformControl>
                         </VisualLayerManager>
                     </Panel>

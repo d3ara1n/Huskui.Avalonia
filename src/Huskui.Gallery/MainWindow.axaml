@@ -1,42 +1,64 @@
-﻿<husk:AppWindow xmlns="https://github.com/avaloniaui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                xmlns:vm="clr-namespace:Huskui.Gallery.ViewModels"
-                xmlns:models="clr-namespace:Huskui.Gallery.Models"
-                xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
-                x:Class="Huskui.Gallery.MainWindow"
-                x:DataType="vm:MainWindowViewModel"
-                Title="Huskui Gallery"
-                MinWidth="800" MinHeight="600"
-                ExtendClientAreaTitleBarHeightHint="44"
-                TransparencyLevelHint="Mica, None">
+﻿<husk:AppWindow
+    x:Class="Huskui.Gallery.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Huskui.Gallery.Models"
+    xmlns:vm="clr-namespace:Huskui.Gallery.ViewModels"
+    Title="Huskui Gallery"
+    MinWidth="800"
+    MinHeight="600"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:MainWindowViewModel"
+    ExtendClientAreaTitleBarHeightHint="44"
+    TransparencyLevelHint="Mica, None"
+    mc:Ignorable="d">
 
     <husk:AppWindow.Resources>
-        <!-- Shared Gallery Item Template -->
-        <DataTemplate x:Key="GalleryItemTemplate" x:DataType="models:GalleryItem">
-            <Grid ColumnDefinitions="Auto,*,Auto" Margin="4">
-                <fi:SymbolIcon Grid.Column="0"
-                               Symbol="{Binding Icon}"
-                               FontSize="{StaticResource MediumFontSize}"
-                               Margin="0,0,12,0" />
+        <!--  Shared Gallery Item Template  -->
+        <DataTemplate
+            x:Key="GalleryItemTemplate"
+            x:DataType="models:GalleryItem">
+            <Grid
+                Margin="4"
+                ColumnDefinitions="Auto,*,Auto">
+                <fi:SymbolIcon
+                    Grid.Column="0"
+                    Margin="0,0,12,0"
+                    FontSize="{StaticResource MediumFontSize}"
+                    Symbol="{Binding Icon}" />
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding Title}"
-                               FontWeight="{StaticResource ControlStrongFontWeight}" />
-                    <TextBlock Text="{Binding Description}"
-                               FontSize="{StaticResource SmallFontSize}"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="{Binding Title}" />
+                    <TextBlock
+                        FontSize="{StaticResource SmallFontSize}"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="{Binding Description}"
+                        TextTrimming="CharacterEllipsis" />
                 </StackPanel>
-                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
-                    <Border Classes="NewBadge" IsVisible="{Binding IsNew}">
-                        <TextBlock Text="NEW" Classes="BadgeText" />
+                <StackPanel
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    Spacing="4">
+                    <Border
+                        Classes="NewBadge"
+                        IsVisible="{Binding IsNew}">
+                        <TextBlock
+                            Classes="BadgeText"
+                            Text="NEW" />
                     </Border>
-                    <Border Classes="UpdatedBadge" IsVisible="{Binding IsUpdated}">
-                        <TextBlock Text="UPD" Classes="BadgeText" />
+                    <Border
+                        Classes="UpdatedBadge"
+                        IsVisible="{Binding IsUpdated}">
+                        <TextBlock
+                            Classes="BadgeText"
+                            Text="UPD" />
                     </Border>
                 </StackPanel>
             </Grid>
@@ -53,12 +75,22 @@
                 <MenuItem Header="Exit" />
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Undo" InputGesture="Ctrl+Z" />
-                <MenuItem Header="Redo" InputGesture="Ctrl+Shift+Z" />
+                <MenuItem
+                    Header="Undo"
+                    InputGesture="Ctrl+Z" />
+                <MenuItem
+                    Header="Redo"
+                    InputGesture="Ctrl+Shift+Z" />
                 <Separator />
-                <MenuItem Header="Cut" InputGesture="Ctrl+X" />
-                <MenuItem Header="Copy" InputGesture="Ctrl+C" />
-                <MenuItem Header="Paste" InputGesture="Ctrl+V" />
+                <MenuItem
+                    Header="Cut"
+                    InputGesture="Ctrl+X" />
+                <MenuItem
+                    Header="Copy"
+                    InputGesture="Ctrl+C" />
+                <MenuItem
+                    Header="Paste"
+                    InputGesture="Ctrl+V" />
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem Header="Zoom In" />
@@ -69,88 +101,120 @@
                     <MenuItem Header="Fit to Window" />
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="About" InputGesture="Ctrl+Shift+A" />
-            <MenuItem Header="Connected" ToggleType="CheckBox" IsChecked="True" />
+            <MenuItem
+                Header="About"
+                InputGesture="Ctrl+Shift+A" />
+            <MenuItem
+                Header="Connected"
+                IsChecked="True"
+                ToggleType="CheckBox" />
         </Menu>
         <Grid ColumnDefinitions="320,*">
-            <!-- Sidebar -->
-            <Border Grid.Column="0"
-                    Background="{StaticResource LayerBackgroundBrush}"
-                    BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="0,0,1,0">
+            <!--  Sidebar  -->
+            <Border
+                Grid.Column="0"
+                Background="{StaticResource LayerBackgroundBrush}"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="0,0,1,0">
                 <Grid RowDefinitions="Auto,Auto,*,Auto">
-                    <!-- Header -->
-                    <StackPanel Grid.Row="0" Margin="16" Spacing="16">
-                        <!-- Title -->
+                    <!--  Header  -->
+                    <StackPanel
+                        Grid.Row="0"
+                        Margin="16"
+                        Spacing="16">
+                        <!--  Title  -->
                         <StackPanel Spacing="4">
-                            <TextBlock Text="Huskui Gallery"
-                                       FontSize="{StaticResource LargeFontSize}"
-                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
-                            <TextBlock Text="Control Library Showcase"
-                                       FontSize="{StaticResource SmallFontSize}"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                FontSize="{StaticResource LargeFontSize}"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Huskui Gallery" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Control Library Showcase" />
                         </StackPanel>
 
-                        <!-- Search -->
-                        <TextBox Text="{Binding SearchText}"
-                                 Classes="SearchBox"
-                                 Watermark="Search controls...">
+                        <!--  Search  -->
+                        <TextBox
+                            Classes="SearchBox"
+                            Text="{Binding SearchText}"
+                            Watermark="Search controls...">
                             <TextBox.InnerLeftContent>
-                                <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource SmallFontSize}"
-                                               Margin="12,0,0,0" />
+                                <fi:SymbolIcon
+                                    Margin="12,0,0,0"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="Search" />
                             </TextBox.InnerLeftContent>
                         </TextBox>
                     </StackPanel>
 
-                    <!-- Navigation Buttons -->
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="16,0" Spacing="8">
-                        <Button Command="{Binding NavigateHomeCommand}"
-                                Theme="{StaticResource GhostButtonTheme}"
-                                Classes="Small"
-                                ToolTip.Tip="Home">
-                            <fi:SymbolIcon Symbol="Home" FontSize="{StaticResource SmallFontSize}" />
+                    <!--  Navigation Buttons  -->
+                    <StackPanel
+                        Grid.Row="1"
+                        Margin="16,0"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                        <Button
+                            Classes="Small"
+                            Command="{Binding NavigateHomeCommand}"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="Home">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource SmallFontSize}"
+                                Symbol="Home" />
                         </Button>
-                        <Button Command="{Binding GoBackCommand}"
-                                Theme="{StaticResource GhostButtonTheme}"
-                                Classes="Small"
-                                IsEnabled="{Binding NavigationService.CanGoBack}"
-                                ToolTip.Tip="Back">
-                            <fi:SymbolIcon Symbol="ArrowLeft" FontSize="{StaticResource SmallFontSize}" />
+                        <Button
+                            Classes="Small"
+                            IsEnabled="{Binding NavigationService.CanGoBack}"
+                            Command="{Binding GoBackCommand}"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="Back">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource SmallFontSize}"
+                                Symbol="ArrowLeft" />
                         </Button>
-                        <Button Command="{Binding GoForwardCommand}"
-                                Theme="{StaticResource GhostButtonTheme}"
-                                Classes="Small"
-                                IsEnabled="{Binding NavigationService.CanGoForward}"
-                                ToolTip.Tip="Forward">
-                            <fi:SymbolIcon Symbol="ArrowRight" FontSize="{StaticResource SmallFontSize}" />
+                        <Button
+                            Classes="Small"
+                            IsEnabled="{Binding NavigationService.CanGoForward}"
+                            Command="{Binding GoForwardCommand}"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="Forward">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource SmallFontSize}"
+                                Symbol="ArrowRight" />
                         </Button>
                     </StackPanel>
 
-                    <!-- Navigation Content -->
+                    <!--  Navigation Content  -->
                     <ScrollViewer Grid.Row="2">
                         <StackPanel Margin="8,16,8,8">
-                            <!-- Search Results (Flat List) -->
+                            <!--  Search Results (Flat List)  -->
                             <StackPanel IsVisible="{Binding IsSearchActive}">
-                                <TextBlock Text="Search Results"
-                                           Classes="CategoryHeader" />
-                                <ListBox ItemsSource="{Binding SearchResults}"
-                                         SelectedItem="{Binding SelectedItem}"
-                                         Classes="NavigationList"
-                                         ItemTemplate="{StaticResource GalleryItemTemplate}" />
+                                <TextBlock
+                                    Classes="CategoryHeader"
+                                    Text="Search Results" />
+                                <ListBox
+                                    Classes="NavigationList"
+                                    ItemTemplate="{StaticResource GalleryItemTemplate}"
+                                    ItemsSource="{Binding SearchResults}"
+                                    SelectedItem="{Binding SelectedItem}" />
                             </StackPanel>
 
-                            <!-- Category Groups (Grouped List) -->
-                            <ItemsControl ItemsSource="{Binding CategoryGroups}"
-                                          IsVisible="{Binding !IsSearchActive}">
+                            <!--  Category Groups (Grouped List)  -->
+                            <ItemsControl
+                                IsVisible="{Binding !IsSearchActive}"
+                                ItemsSource="{Binding CategoryGroups}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate x:DataType="vm:CategoryGroupViewModel">
                                         <StackPanel IsVisible="{Binding IsVisible}">
-                                            <TextBlock Text="{Binding Name}"
-                                                       Classes="CategoryHeader" />
-                                            <ListBox ItemsSource="{Binding FilteredItems}"
-                                                     SelectedItem="{Binding SelectedItem}"
-                                                     Classes="NavigationList"
-                                                     ItemTemplate="{StaticResource GalleryItemTemplate}" />
+                                            <TextBlock
+                                                Classes="CategoryHeader"
+                                                Text="{Binding Name}" />
+                                            <ListBox
+                                                Classes="NavigationList"
+                                                ItemTemplate="{StaticResource GalleryItemTemplate}"
+                                                ItemsSource="{Binding FilteredItems}"
+                                                SelectedItem="{Binding SelectedItem}" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -158,64 +222,78 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <!-- Footer -->
-                    <Border Grid.Row="3"
-                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                            BorderBrush="{StaticResource ControlBorderBrush}"
-                            BorderThickness="0,1,0,0"
-                            Padding="16,12">
+                    <!--  Footer  -->
+                    <Border
+                        Grid.Row="3"
+                        Padding="16,12"
+                        Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="0,1,0,0">
                         <Grid ColumnDefinitions="*,Auto,Auto">
-                            <TextBlock Grid.Column="0"
-                                       Text="Huskui.Avalonia"
-                                       FontSize="{StaticResource SmallFontSize}"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                       VerticalAlignment="Center" />
-                            <Button Grid.Column="1"
-                                    Command="{Binding ToggleThemeCommand}"
-                                    Theme="{StaticResource GhostButtonTheme}"
-                                    Classes="Small"
-                                    ToolTip.Tip="Toggle Theme"
-                                    Margin="0,0,8,0">
-                                <fi:SymbolIcon Symbol="WeatherMoon" FontSize="{StaticResource SmallFontSize}" />
+                            <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Huskui.Avalonia" />
+                            <Button
+                                Classes="Small"
+                                Grid.Column="1"
+                                Margin="0,0,8,0"
+                                Command="{Binding ToggleThemeCommand}"
+                                Theme="{StaticResource GhostButtonTheme}"
+                                ToolTip.Tip="Toggle Theme">
+                                <fi:SymbolIcon
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="WeatherMoon" />
                             </Button>
-                            <Button Grid.Column="2"
-                                    Command="{Binding ToggleSettingsCommand}"
-                                    Theme="{StaticResource GhostButtonTheme}"
-                                    Classes="Small"
-                                    ToolTip.Tip="Settings">
-                                <fi:SymbolIcon Symbol="Settings" FontSize="{StaticResource SmallFontSize}" />
+                            <Button
+                                Classes="Small"
+                                Grid.Column="2"
+                                Command="{Binding ToggleSettingsCommand}"
+                                Theme="{StaticResource GhostButtonTheme}"
+                                ToolTip.Tip="Settings">
+                                <fi:SymbolIcon
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="Settings" />
                             </Button>
                         </Grid>
                     </Border>
                 </Grid>
             </Border>
 
-            <!-- Main Content -->
+            <!--  Main Content  -->
             <Grid Grid.Column="1">
-                <!-- Content Frame -->
+                <!--  Content Frame  -->
                 <husk:Frame Name="ContentFrame" />
 
-                <!-- Settings Overlay -->
-                <Border Background="{StaticResource OverlaySolidBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1,0,0,0"
-                        IsVisible="{Binding IsSettingsOpen}">
+                <!--  Settings Overlay  -->
+                <Border
+                    IsVisible="{Binding IsSettingsOpen}"
+                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1,0,0,0">
                     <ScrollViewer Padding="32">
-                        <StackPanel Spacing="32" MaxWidth="400">
+                        <StackPanel
+                            MaxWidth="400"
+                            Spacing="32">
                             <StackPanel Spacing="16">
-                                <TextBlock Text="Settings"
-                                           FontSize="{StaticResource LargeFontSize}"
-                                           FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                <TextBlock Text="Customize the appearance and behavior of the gallery"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           TextWrapping="Wrap" />
+                                <TextBlock
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="Settings" />
+                                <TextBlock
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Customize the appearance and behavior of the gallery"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
 
                             <controls:ThemeSelector ThemeService="{Binding ThemeService}" />
 
-                            <Button Content="Close"
-                                    Command="{Binding ToggleSettingsCommand}"
-                                    HorizontalAlignment="Right" />
+                            <Button
+                                HorizontalAlignment="Right"
+                                Command="{Binding ToggleSettingsCommand}"
+                                Content="Close" />
                         </StackPanel>
                     </ScrollViewer>
                 </Border>

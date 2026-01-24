@@ -1,5 +1,6 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Color x:Key="Black1Color">#0d000000</Color>
     <Color x:Key="Black2Color">#1a000000</Color>
     <Color x:Key="Black3Color">#26000000</Color>

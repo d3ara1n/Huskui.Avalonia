@@ -1,22 +1,32 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <ToggleSwitch Content="Label" />
                 <ToggleSwitch IsChecked="True" />
-                <ToggleSwitch IsChecked="False" IsEnabled="False" />
-                <ToggleSwitch IsChecked="True" IsEnabled="False" />
+                <ToggleSwitch
+                    IsEnabled="False"
+                    IsChecked="False" />
+                <ToggleSwitch
+                    IsEnabled="False"
+                    IsChecked="True" />
                 <StackPanel Orientation="Horizontal">
                     <Button />
-                    <ToggleSwitch OffContent="{x:Null}" OnContent="{x:Null}" />
+                    <ToggleSwitch
+                        OffContent="{x:Null}"
+                        OnContent="{x:Null}" />
                     <Button />
                 </StackPanel>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type ToggleSwitch}"
-                  TargetType="ToggleSwitch">
+    <ControlTheme
+        x:Key="{x:Type ToggleSwitch}"
+        TargetType="ToggleSwitch">
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
@@ -36,13 +46,18 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Grid RowDefinitions="Auto,*">
-                    <ContentPresenter Grid.Row="0" Name="PART_ContentPresenter"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      RecognizesAccessKey="True" />
-                    <Grid Name="InteractivePart" Grid.Row="1" ColumnDefinitions="Auto,Auto">
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Grid.Row="0"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        RecognizesAccessKey="True" />
+                    <Grid
+                        Name="InteractivePart"
+                        Grid.Row="1"
+                        ColumnDefinitions="Auto,Auto">
                         <Grid.Transitions>
                             <Transitions>
                                 <DoubleTransition
@@ -51,46 +66,64 @@
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Grid.Transitions>
-                        <ContentPresenter Name="PART_OffContentPresenter"
-                                          Grid.Column="1"
-                                          Margin="6,0,0,0"
-                                          IsVisible="{TemplateBinding OffContent,Converter={x:Static ObjectConverters.IsNotNull}}"
-                                          Content="{TemplateBinding OffContent}"
-                                          ContentTemplate="{TemplateBinding OffContentTemplate}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <ContentPresenter Name="PART_OnContentPresenter"
-                                          Grid.Column="1"
-                                          Margin="6,0,0,0"
-                                          IsVisible="{TemplateBinding OnContent,Converter={x:Static ObjectConverters.IsNotNull}}"
-                                          Content="{TemplateBinding OnContent}"
-                                          ContentTemplate="{TemplateBinding OnContentTemplate}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                        <Border Grid.Column="0" Name="SwitchKnobBounds" Width="40" Height="20"
-                                Cursor="Hand"
-                                CornerRadius="{TemplateBinding CornerRadius}"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter
+                            Name="PART_OffContentPresenter"
+                            Grid.Column="1"
+                            Margin="6,0,0,0"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            IsVisible="{TemplateBinding OffContent,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Content="{TemplateBinding OffContent}"
+                            ContentTemplate="{TemplateBinding OffContentTemplate}" />
+                        <ContentPresenter
+                            Name="PART_OnContentPresenter"
+                            Grid.Column="1"
+                            Margin="6,0,0,0"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            IsVisible="{TemplateBinding OnContent,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Content="{TemplateBinding OnContent}"
+                            ContentTemplate="{TemplateBinding OnContentTemplate}" />
+                        <Border
+                            Name="SwitchKnobBounds"
+                            Grid.Column="0"
+                            Width="40"
+                            Height="20"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Cursor="Hand">
                             <Border.Transitions>
                                 <Transitions>
-                                    <BrushTransition Property="Background"
-                                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    <BrushTransition
+                                        Property="Background"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
                             </Border.Transitions>
-                            <Canvas x:Name="PART_SwitchKnob"
-                                    HorizontalAlignment="Left" Width="20"
+                            <Canvas
+                                x:Name="PART_SwitchKnob"
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Left">
+                                <Panel
+                                    x:Name="PART_MovingKnobs"
+                                    Width="20"
                                     Height="20">
-                                <Panel x:Name="PART_MovingKnobs" Width="20" Height="20">
-                                    <Border Name="SwitchKnob" Width="16" Height="16"
-                                            Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                            BoxShadow="2 2 4 0 #25000000"
-                                            CornerRadius="{StaticResource FullCornerRadius}">
+                                    <Border
+                                        Name="SwitchKnob"
+                                        Width="16"
+                                        Height="16"
+                                        Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                        BoxShadow="2 2 4 0 #25000000"
+                                        CornerRadius="{StaticResource FullCornerRadius}">
                                         <Border.Transitions>
                                             <Transitions>
-                                                <TransformOperationsTransition Property="RenderTransform"
-                                                                               Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                                <TransformOperationsTransition
+                                                    Property="RenderTransform"
+                                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
                                             </Transitions>
                                         </Border.Transitions>
                                     </Border>

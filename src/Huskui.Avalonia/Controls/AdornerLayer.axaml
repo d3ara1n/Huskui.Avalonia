@@ -1,9 +1,14 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <ControlTheme x:Key="{x:Type AdornerLayer}" TargetType="AdornerLayer">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTheme
+        x:Key="{x:Type AdornerLayer}"
+        TargetType="AdornerLayer">
         <Setter Property="DefaultFocusAdorner">
             <FocusAdornerTemplate>
-                <Border BorderThickness="1" BorderBrush="{StaticResource ControlAccentBorderBrush}" />
+                <Border
+                    BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                    BorderThickness="1" />
             </FocusAdornerTemplate>
         </Setter>
     </ControlTheme>

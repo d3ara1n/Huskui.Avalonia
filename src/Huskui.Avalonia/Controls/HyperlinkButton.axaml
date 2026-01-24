@@ -1,16 +1,26 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
-        <Panel Background="White" Width="256" Height="128">
-            <StackPanel Margin="32" Spacing="8">
+        <Panel
+            Width="256"
+            Height="128"
+            Background="White">
+            <StackPanel
+                Margin="32"
+                Spacing="8">
                 <HyperlinkButton NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
                     Husk/ui
                 </HyperlinkButton>
-                <HyperlinkButton Classes="Dashed" NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
+                <HyperlinkButton
+                    Classes="Dashed"
+                    NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
                     Husk/ui
                 </HyperlinkButton>
-                <HyperlinkButton NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/" IsEnabled="False">
+                <HyperlinkButton
+                    IsEnabled="False"
+                    NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia/">
                     哈斯可有爱
                 </HyperlinkButton>
                 <TextBlock>
@@ -21,7 +31,9 @@
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme TargetType="HyperlinkButton" x:Key="{x:Type HyperlinkButton}">
+    <ControlTheme
+        x:Key="{x:Type HyperlinkButton}"
+        TargetType="HyperlinkButton">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
@@ -33,36 +45,50 @@
         <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel Name="Container" Background="{TemplateBinding Background}">
+                <Panel
+                    Name="Container"
+                    Background="{TemplateBinding Background}">
                     <Panel.Transitions>
                         <Transitions>
-                            <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                              Duration="{StaticResource ControlFastestAnimationDuration}" />
-                            <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseIn"
-                                                           Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <DoubleTransition
+                                Easing="SineEaseOut"
+                                Property="Opacity"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <TransformOperationsTransition
+                                Easing="SineEaseIn"
+                                Property="RenderTransform"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Rectangle Name="Underline"
-                               StrokeThickness="{TemplateBinding BorderThickness,Converter={x:Static husk:ThicknessConverters.ToDouble},ConverterParameter=bottom}"
-                               Stroke="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
-                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                               Width="{Binding #PART_ContentPresenter.Bounds.Width}">
+                    <Rectangle
+                        Name="Underline"
+                        Width="{Binding #PART_ContentPresenter.Bounds.Width}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="Bottom"
+                        Stroke="{TemplateBinding BorderBrush}"
+                        StrokeThickness="{TemplateBinding BorderThickness,
+                                                          Converter={x:Static husk:ThicknessConverters.ToDouble},
+                                                          ConverterParameter=bottom}">
                         <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Stroke" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFastestAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
-                                                               Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Stroke"
+                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="SineEaseOut"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
                             </Transitions>
                         </Rectangle.Transitions>
                     </Rectangle>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         Foreground="{TemplateBinding Foreground}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         RecognizesAccessKey="True" />
                 </Panel>
             </ControlTemplate>
@@ -93,7 +119,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="InlineHyperlinkButtonTheme" TargetType="HyperlinkButton">
+    <ControlTheme
+        x:Key="InlineHyperlinkButtonTheme"
+        TargetType="HyperlinkButton">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="BorderThickness" Value="0,0,0,2" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
@@ -105,42 +133,58 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel Name="Container" Background="{TemplateBinding Background}">
+                <Panel
+                    Name="Container"
+                    Background="{TemplateBinding Background}">
                     <Panel.Transitions>
                         <Transitions>
-                            <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                              Duration="{StaticResource ControlFastestAnimationDuration}" />
-                            <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseIn"
-                                                           Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <DoubleTransition
+                                Easing="SineEaseOut"
+                                Property="Opacity"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <TransformOperationsTransition
+                                Easing="SineEaseIn"
+                                Property="RenderTransform"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Rectangle Name="Underline"
-                               StrokeThickness="{TemplateBinding BorderThickness,Converter={x:Static husk:ThicknessConverters.ToDouble},ConverterParameter=bottom}"
-                               Stroke="{TemplateBinding BorderBrush}" VerticalAlignment="Bottom"
-                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                               Width="{Binding #PART_ContentPresenter.Bounds.Width}"
-                               RenderTransform="translateY(0px)">
+                    <Rectangle
+                        Name="Underline"
+                        Width="{Binding #PART_ContentPresenter.Bounds.Width}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="Bottom"
+                        RenderTransform="translateY(0px)"
+                        Stroke="{TemplateBinding BorderBrush}"
+                        StrokeThickness="{TemplateBinding BorderThickness,
+                                                          Converter={x:Static husk:ThicknessConverters.ToDouble},
+                                                          ConverterParameter=bottom}">
                         <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Stroke" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFastestAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseIn"
-                                                               Duration="{StaticResource ControlInstantAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Stroke"
+                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="SineEaseIn"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlInstantAnimationDuration}" />
                             </Transitions>
                         </Rectangle.Transitions>
                     </Rectangle>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         Foreground="{TemplateBinding Foreground}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                         RecognizesAccessKey="True">
                         <ContentPresenter.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Foreground" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Foreground"
+                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>

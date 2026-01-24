@@ -1,12 +1,13 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="using:System">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="using:System">
 
-    <!-- Typography -->
+    <!--  Typography  -->
     <FontWeight x:Key="ControlFontWeight">Normal</FontWeight>
     <FontWeight x:Key="ControlStrongFontWeight">Bold</FontWeight>
 
-    <!-- Animations -->
+    <!--  Animations  -->
     <sys:TimeSpan x:Key="ControlInstantAnimationDuration">0:0:0.088</sys:TimeSpan>
     <sys:TimeSpan x:Key="ControlFastestAnimationDuration">0:0:0.106</sys:TimeSpan>
     <sys:TimeSpan x:Key="ControlFasterAnimationDuration">0:0:0.197</sys:TimeSpan>
@@ -14,7 +15,7 @@
     <sys:TimeSpan x:Key="ControlSlowerAnimationDuration">0:0:0.414</sys:TimeSpan>
     <sys:TimeSpan x:Key="ControlSlowestAnimationDuration">0:0:0.608</sys:TimeSpan>
 
-    <!-- Float Layers Opacity -->
+    <!--  Float Layers Opacity  -->
     <sys:Double x:Key="Overlay1Opacity">0.3</sys:Double>
     <sys:Double x:Key="Overlay2Opacity">0.5</sys:Double>
     <sys:Double x:Key="Overlay3Opacity">0.7</sys:Double>
