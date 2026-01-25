@@ -1,9 +1,12 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <CheckBox>
                     <Button Content="Check or Not" />
                 </CheckBox>
@@ -13,7 +16,9 @@
                 <CheckBox IsChecked="True">
                     <TextBlock Text="Checked" />
                 </CheckBox>
-                <CheckBox IsThreeState="True" IsChecked="{x:Null}">
+                <CheckBox
+                    IsChecked="{x:Null}"
+                    IsThreeState="True">
                     <TextBlock Text="Or Maybe?" />
                 </CheckBox>
             </StackPanel>
@@ -21,7 +26,9 @@
     </Design.PreviewWith>
 
 
-    <ControlTheme x:Key="{x:Type CheckBox}" TargetType="CheckBox">
+    <ControlTheme
+        x:Key="{x:Type CheckBox}"
+        TargetType="CheckBox">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -30,56 +37,72 @@
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="6" Background="{StaticResource TransparentBrush}">
-                    <Border Grid.Column="0" Name="Box" Cursor="Hand"
-                            MinHeight="{TemplateBinding FontSize}"
-                            MinWidth="{TemplateBinding FontSize}"
-                            Height="16"
-                            Width="16"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                <Grid
+                    Background="{StaticResource TransparentBrush}"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="6">
+                    <Border
+                        Name="Box"
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        MinWidth="{TemplateBinding FontSize}"
+                        MinHeight="{TemplateBinding FontSize}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Cursor="Hand">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Border Name="Indicator"
-                                    Margin="2" RenderTransform="scale(0.0)"
-                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                    CornerRadius="{StaticResource ExtraSmallCornerRadius}">
+                            <Border
+                                Name="Indicator"
+                                Margin="2"
+                                Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                CornerRadius="{StaticResource ExtraSmallCornerRadius}"
+                                RenderTransform="scale(0.0)">
                                 <Border.Transitions>
                                     <Transitions>
-                                        <CornerRadiusTransition Property="CornerRadius" Easing="CubicEaseOut"
-                                                                Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform"
-                                                                       Easing="CubicEaseOut"
-                                                                       Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                        <CornerRadiusTransition
+                                            Easing="CubicEaseOut"
+                                            Property="CornerRadius"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="CubicEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </Border.Transitions>
                             </Border>
                         </Panel>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Grid.Column="1"
-                                      Margin="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      IsVisible="{TemplateBinding Content,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      RecognizesAccessKey="True"
-                                      TextElement.Foreground="{TemplateBinding Foreground}"
-                                      TextElement.FontSize="{TemplateBinding FontSize}"
-                                      TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Grid.Column="1"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        IsVisible="{TemplateBinding Content,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        RecognizesAccessKey="True"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
             </ControlTemplate>
         </Setter>
@@ -139,7 +162,9 @@
 
     </ControlTheme>
 
-    <ControlTheme x:Key="AlternativeCheckBoxTheme" TargetType="CheckBox">
+    <ControlTheme
+        x:Key="AlternativeCheckBoxTheme"
+        TargetType="CheckBox">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -148,67 +173,93 @@
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="6" Background="{StaticResource TransparentBrush}">
-                    <Border Grid.Column="0" Name="Box" Cursor="Hand"
-                            MinHeight="{TemplateBinding FontSize}"
-                            MinWidth="{TemplateBinding FontSize}"
-                            Height="16"
-                            Width="16"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                <Grid
+                    Background="{StaticResource TransparentBrush}"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="6">
+                    <Border
+                        Name="Box"
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        MinWidth="{TemplateBinding FontSize}"
+                        MinHeight="{TemplateBinding FontSize}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Cursor="Hand">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <fi:SymbolIcon Name="Indeterminate" Symbol="LineHorizontal1"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           Foreground="{StaticResource ControlBlackForegroundBrush}" Opacity="0"
-                                           RenderTransform="scale(0.98)">
+                            <fi:SymbolIcon
+                                Name="Indeterminate"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{StaticResource ControlBlackForegroundBrush}"
+                                Opacity="0"
+                                RenderTransform="scale(0.98)"
+                                Symbol="LineHorizontal1">
                                 <fi:SymbolIcon.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="BackEaseOut"
-                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <DoubleTransition
+                                            Easing="SineEaseOut"
+                                            Property="Opacity"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="BackEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
                                     </Transitions>
                                 </fi:SymbolIcon.Transitions>
                             </fi:SymbolIcon>
-                            <fi:SymbolIcon Name="Determinate" Symbol="Checkmark" FontSize="{TemplateBinding FontSize}"
-                                           Foreground="{StaticResource ControlBlackForegroundBrush}" Opacity="0"
-                                           RenderTransform="scale(0.0)">
+                            <fi:SymbolIcon
+                                Name="Determinate"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{StaticResource ControlBlackForegroundBrush}"
+                                Opacity="0"
+                                RenderTransform="scale(0.0)"
+                                Symbol="Checkmark">
                                 <fi:SymbolIcon.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="BackEaseOut"
-                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <DoubleTransition
+                                            Easing="SineEaseOut"
+                                            Property="Opacity"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="BackEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
                                     </Transitions>
                                 </fi:SymbolIcon.Transitions>
                             </fi:SymbolIcon>
                         </Panel>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Grid.Column="1"
-                                      Margin="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      IsVisible="{TemplateBinding Content,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      RecognizesAccessKey="True"
-                                      TextElement.Foreground="{TemplateBinding Foreground}"
-                                      TextElement.FontSize="{TemplateBinding FontSize}"
-                                      TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Grid.Column="1"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        IsVisible="{TemplateBinding Content,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        RecognizesAccessKey="True"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
             </ControlTemplate>
         </Setter>

@@ -1,39 +1,63 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.SkeletonContainersPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.SkeletonContainersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic Skeleton Loading"
-                                   Description="Skeleton placeholder for content loading">
+        <controls:ExampleContainer
+            Title="Basic Skeleton Loading"
+            Description="Skeleton placeholder for content loading">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Skeleton Controls" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="LoadingToggle" Content="Loading State" IsChecked="True" />
-                    <ToggleButton x:Name="AnimatedToggle" Content="Animation" IsChecked="True" />
                     <TextBlock
-                        Text="Toggle loading state to show/hide skeleton placeholders and animation effects."
-                        TextWrapping="Wrap"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Skeleton Controls" />
+                    <ToggleButton
+                        x:Name="LoadingToggle"
+                        Content="Loading State"
+                        IsChecked="True" />
+                    <ToggleButton
+                        x:Name="AnimatedToggle"
+                        Content="Animation"
+                        IsChecked="True" />
+                    <TextBlock
                         FontSize="12"
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle loading state to show/hide skeleton placeholders and animation effects."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:SkeletonContainer IsLoading="{Binding #LoadingToggle.IsChecked}"
-                                    IsAnimated="{Binding #AnimatedToggle.IsChecked}"
-                                    Width="400">
+            <husk:SkeletonContainer
+                Width="400"
+                IsAnimated="{Binding #AnimatedToggle.IsChecked}"
+                IsLoading="{Binding #LoadingToggle.IsChecked}">
                 <husk:Card Padding="20">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="User Profile" FontSize="18" FontWeight="Bold" />
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <Ellipse Width="60" Height="60" Fill="{StaticResource ControlAccentBackgroundBrush}" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="User Profile" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="12">
+                            <Ellipse
+                                Width="60"
+                                Height="60"
+                                Fill="{StaticResource ControlAccentBackgroundBrush}" />
                             <StackPanel Spacing="8">
-                                <TextBlock Text="John Doe" FontWeight="Bold" />
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="John Doe" />
                                 <TextBlock Text="Software Developer" />
                                 <TextBlock Text="john.doe@example.com" />
                             </StackPanel>
@@ -46,61 +70,94 @@
             </husk:SkeletonContainer>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="List Skeleton"
-                                   Description="Skeleton for list items">
+        <controls:ExampleContainer
+            Title="List Skeleton"
+            Description="Skeleton for list items">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="List Skeleton Controls" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="ListLoadingToggle" Content="Loading" IsChecked="True" />
                     <TextBlock
-                        Text="Toggle loading state to show/hide skeleton placeholders."
-                        TextWrapping="Wrap"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="List Skeleton Controls" />
+                    <ToggleButton
+                        x:Name="ListLoadingToggle"
+                        Content="Loading"
+                        IsChecked="True" />
+                    <TextBlock
                         FontSize="12"
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle loading state to show/hide skeleton placeholders."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:SkeletonContainer IsLoading="{Binding #ListLoadingToggle.IsChecked}"
-                                    IsAnimated="True"
-                                    Width="500">
+            <husk:SkeletonContainer
+                Width="500"
+                IsAnimated="True"
+                IsLoading="{Binding #ListLoadingToggle.IsChecked}">
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Recent Articles" FontSize="16" FontWeight="Bold" Margin="0,0,0,8" />
+                    <TextBlock
+                        Margin="0,0,0,8"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Recent Articles" />
 
-                    <!-- Article 1 -->
+                    <!--  Article 1  -->
                     <husk:Card Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="Getting Started with Avalonia UI" FontWeight="Bold" />
                             <TextBlock
-                                Text="Learn the basics of building cross-platform applications with Avalonia UI framework." />
-                            <StackPanel Orientation="Horizontal" Spacing="16">
-                                <TextBlock Text="Published: 2024-01-15" FontSize="12" />
-                                <TextBlock Text="Author: Jane Smith" FontSize="12" />
+                                FontWeight="Bold"
+                                Text="Getting Started with Avalonia UI" />
+                            <TextBlock Text="Learn the basics of building cross-platform applications with Avalonia UI framework." />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="16">
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Published: 2024-01-15" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Author: Jane Smith" />
                             </StackPanel>
                         </StackPanel>
                     </husk:Card>
 
-                    <!-- Article 2 -->
+                    <!--  Article 2  -->
                     <husk:Card Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="Advanced MVVM Patterns" FontWeight="Bold" />
                             <TextBlock
-                                Text="Explore advanced Model-View-ViewModel patterns for complex applications." />
-                            <StackPanel Orientation="Horizontal" Spacing="16">
-                                <TextBlock Text="Published: 2024-01-10" FontSize="12" />
-                                <TextBlock Text="Author: Bob Johnson" FontSize="12" />
+                                FontWeight="Bold"
+                                Text="Advanced MVVM Patterns" />
+                            <TextBlock Text="Explore advanced Model-View-ViewModel patterns for complex applications." />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="16">
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Published: 2024-01-10" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Author: Bob Johnson" />
                             </StackPanel>
                         </StackPanel>
                     </husk:Card>
 
-                    <!-- Article 3 -->
+                    <!--  Article 3  -->
                     <husk:Card Padding="16">
                         <StackPanel Spacing="8">
-                            <TextBlock Text="Custom Control Development" FontWeight="Bold" />
                             <TextBlock
-                                Text="Create your own custom controls with proper styling and theming support." />
-                            <StackPanel Orientation="Horizontal" Spacing="16">
-                                <TextBlock Text="Published: 2024-01-05" FontSize="12" />
-                                <TextBlock Text="Author: Alice Brown" FontSize="12" />
+                                FontWeight="Bold"
+                                Text="Custom Control Development" />
+                            <TextBlock Text="Create your own custom controls with proper styling and theming support." />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="16">
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Published: 2024-01-05" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Text="Author: Alice Brown" />
                             </StackPanel>
                         </StackPanel>
                     </husk:Card>
@@ -108,26 +165,37 @@
             </husk:SkeletonContainer>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Form Skeleton"
-                                   Description="Skeleton for form layouts">
+        <controls:ExampleContainer
+            Title="Form Skeleton"
+            Description="Skeleton for form layouts">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Form Skeleton Controls" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="FormLoadingToggle" Content="Loading" IsChecked="True" />
                     <TextBlock
-                        Text="Toggle loading state to show/hide skeleton placeholders."
-                        TextWrapping="Wrap"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Form Skeleton Controls" />
+                    <ToggleButton
+                        x:Name="FormLoadingToggle"
+                        Content="Loading"
+                        IsChecked="True" />
+                    <TextBlock
                         FontSize="12"
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle loading state to show/hide skeleton placeholders."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:SkeletonContainer IsLoading="{Binding #FormLoadingToggle.IsChecked}"
-                                    IsAnimated="True"
-                                    Width="400">
+            <husk:SkeletonContainer
+                Width="400"
+                IsAnimated="True"
+                IsLoading="{Binding #FormLoadingToggle.IsChecked}">
                 <husk:Card Padding="24">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="Contact Form" FontSize="18" FontWeight="Bold" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="Contact Form" />
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Name" />
@@ -150,12 +218,20 @@
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Message" />
-                            <TextBox AcceptsReturn="True" Height="80" Watermark="Enter your message" />
+                            <TextBox
+                                Height="80"
+                                AcceptsReturn="True"
+                                Watermark="Enter your message" />
                         </StackPanel>
 
-                        <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                        <StackPanel
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal"
+                            Spacing="12">
                             <Button Content="Cancel" />
-                            <Button Content="Send Message" Classes="Primary" />
+                            <Button
+                                Classes="Primary"
+                                Content="Send Message" />
                         </StackPanel>
                     </StackPanel>
                 </husk:Card>

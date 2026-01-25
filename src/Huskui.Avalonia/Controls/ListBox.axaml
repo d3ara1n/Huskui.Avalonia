@@ -1,27 +1,43 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Panel Background="White">
-            <ListBox Margin="20" Width="220" Height="220" BorderThickness="1" BorderBrush="Black"
-                     Theme="{StaticResource CleanListBoxTheme}">
+            <ListBox
+                Width="220"
+                Height="220"
+                Margin="20"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Theme="{StaticResource CleanListBoxTheme}">
                 <ListBoxItem>Item 1</ListBoxItem>
                 <ListBoxItem>Item 2</ListBoxItem>
                 <ListBoxItem>Item 3</ListBoxItem>
-                <ListBoxItem IsEnabled="False" IsSelected="True"> Selected Disabled</ListBoxItem>
-                <ListBoxItem IsEnabled="False" IsSelected="False">Disabled</ListBoxItem>
+                <ListBoxItem
+                    IsEnabled="False"
+                    IsSelected="True">
+                    Selected Disabled
+                </ListBoxItem>
+                <ListBoxItem
+                    IsEnabled="False"
+                    IsSelected="False">
+                    Disabled
+                </ListBoxItem>
                 <ListBoxItem>Item 4</ListBoxItem>
             </ListBox>
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type ListBox}" TargetType="ListBox">
+    <ControlTheme
+        x:Key="{x:Type ListBox}"
+        TargetType="ListBox">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
         <Setter Property="ItemsPanel">
             <ItemsPanelTemplate>
-                <!-- Spacing Property -->
-                <!-- https://github.com/AvaloniaUI/Avalonia/pull/17356 -->
+                <!--  Spacing Property  -->
+                <!--  https://github.com/AvaloniaUI/Avalonia/pull/17356  -->
                 <VirtualizingStackPanel />
             </ItemsPanelTemplate>
         </Setter>
@@ -34,11 +50,12 @@
                     ClipToBounds="{TemplateBinding ClipToBounds}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <ScrollViewer
-                        Name="PART_ScrollViewer" ClipToBounds="{TemplateBinding ClipToBounds}"
+                        Name="PART_ScrollViewer"
                         AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                        ClipToBounds="{TemplateBinding ClipToBounds}"
                         HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
                         IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
                         IsScrollInertiaEnabled="{TemplateBinding (ScrollViewer.IsScrollInertiaEnabled)}"
                         VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
                         <ItemsPresenter
@@ -51,7 +68,9 @@
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+    <ControlTheme
+        x:Key="{x:Type ListBoxItem}"
+        TargetType="ListBoxItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
@@ -62,41 +81,57 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="ListBoxItem">
                 <Panel>
-                    <Border x:Name="Background" Margin="4,2,4,2"
-                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                    <Border
+                        x:Name="Background"
+                        Margin="4,2,4,2"
+                        Background="{TemplateBinding Background}"
+                        BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background" Easing="SineEaseInOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseInOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseInOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseInOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <Border Name="Indicator" Width="3" Opacity="0" HorizontalAlignment="Left"
-                            RenderTransform="translateX(-4px)" BorderThickness="1"
-                            BorderBrush="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
-                            Background="{StaticResource ControlAccentInteractiveBackgroundBrush}"
-                            CornerRadius="{StaticResource SmallCornerRadius}" Margin="0,4">
+                    <Border
+                        Name="Indicator"
+                        Width="3"
+                        Margin="0,4"
+                        HorizontalAlignment="Left"
+                        Background="{StaticResource ControlAccentInteractiveBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}"
+                        Opacity="0"
+                        RenderTransform="translateX(-4px)">
                         <Border.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
-                                                               Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="SineEaseOut"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
                         Padding="{TemplateBinding Padding}"
-                        ClipToBounds="{TemplateBinding ClipToBounds}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ClipToBounds="{TemplateBinding ClipToBounds}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}"
                         Foreground="{TemplateBinding Foreground}" />
@@ -131,11 +166,16 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="CleanListBoxTheme" TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
+    <ControlTheme
+        x:Key="CleanListBoxTheme"
+        BasedOn="{StaticResource {x:Type ListBox}}"
+        TargetType="ListBox">
         <Setter Property="ItemContainerTheme" Value="{StaticResource CleanListBoxItemTheme}" />
     </ControlTheme>
 
-    <ControlTheme x:Key="CleanListBoxItemTheme" TargetType="ListBoxItem">
+    <ControlTheme
+        x:Key="CleanListBoxItemTheme"
+        TargetType="ListBoxItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="12,8" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -193,8 +233,10 @@
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border x:Name="Indicator" Background="{StaticResource TransparentBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="Indicator"
+                        Background="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition

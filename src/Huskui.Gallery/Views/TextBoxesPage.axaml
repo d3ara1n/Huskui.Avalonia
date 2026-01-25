@@ -1,55 +1,78 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.TextBoxesPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.TextBoxesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic TextBoxes"
-                                   Description="Standard text input controls with different states">
+        <controls:ExampleContainer
+            Title="Basic TextBoxes"
+            Description="Standard text input controls with different states">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Input States" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="ReadOnlyToggle" Content="Read Only" />
-                    <ToggleButton x:Name="ErrorToggle" Content="Error State" />
-                    <TextBlock Text="Toggle different input states to see visual feedback."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Input States" />
+                    <ToggleButton
+                        x:Name="ReadOnlyToggle"
+                        Content="Read Only" />
+                    <ToggleButton
+                        x:Name="ErrorToggle"
+                        Content="Error State" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle different input states to see visual feedback."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <StackPanel Spacing="16" Width="400">
+            <StackPanel
+                Width="400"
+                Spacing="16">
                 <StackPanel Spacing="8">
                     <TextBlock Text="Default TextBox" />
-                    <TextBox Text="Sample text"
-                             IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}" />
+                    <TextBox
+                        IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
+                        Text="Sample text" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="With Watermark" />
-                    <TextBox Watermark="Enter your name..."
-                             IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}" />
+                    <TextBox
+                        IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
+                        Watermark="Enter your name..." />
                 </StackPanel>
                 <TextBlock Text="With Inner Content" />
-                <TextBox Watermark="Enter your name..."
-                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}">
+                <TextBox
+                    IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
+                    Watermark="Enter your name...">
                     <TextBox.InnerLeftContent>
                         <DockPanel>
-                            <husk:Divider DockPanel.Dock="Right" Orientation="Vertical" />
-                            <fi:SymbolIcon Symbol="Mail" VerticalAlignment="Center"
-                                           FontSize="{StaticResource MediumFontSize}"
-                                           Margin="12,0" />
+                            <husk:Divider
+                                DockPanel.Dock="Right"
+                                Orientation="Vertical" />
+                            <fi:SymbolIcon
+                                Margin="12,0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="Mail" />
                         </DockPanel>
                     </TextBox.InnerLeftContent>
                     <TextBox.InnerRightContent>
                         <Button Command="{Binding $parent[TextBox].Clear}">
-                            <fi:SymbolIcon Symbol="Backspace" VerticalAlignment="Center"
-                                           FontSize="{StaticResource MediumFontSize}" />
+                            <fi:SymbolIcon
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="Backspace" />
                         </Button>
                     </TextBox.InnerRightContent>
                 </TextBox>
@@ -57,81 +80,109 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Password TextBox" />
-                    <TextBox PasswordChar="*"
-                             Watermark="Enter password..."
-                             IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}" />
+                    <TextBox
+                        IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
+                        PasswordChar="*"
+                        Watermark="Enter password..." />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Multiline TextBox" />
-                    <TextBox AcceptsReturn="True"
-                             Height="80"
-                             Text="This is a multiline text box.&#x0a;You can enter multiple lines of text here."
-                             IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}" />
+                    <TextBox
+                        Height="80"
+                        AcceptsReturn="True"
+                        IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
+                        Text="This is a multiline text box.&#x0a;You can enter multiple lines of text here." />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Form Example"
-                                   Description="Real-world form with validation">
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="Real-world form with validation">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Form Validation" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="ValidationToggle" Content="Show Validation" />
-                    <Button Content="Clear Form" Click="OnClearFormClick" />
-                    <TextBlock Text="Toggle validation to see error states and messages."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Form Validation" />
+                    <ToggleButton
+                        x:Name="ValidationToggle"
+                        Content="Show Validation" />
+                    <Button
+                        Click="OnClearFormClick"
+                        Content="Clear Form" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle validation to see error states and messages."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:Card Padding="24" Width="400">
+            <husk:Card
+                Width="400"
+                Padding="24">
                 <StackPanel Spacing="16">
-                    <TextBlock Text="User Registration" FontSize="18" FontWeight="Bold" />
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="User Registration" />
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="First Name *" />
-                        <TextBox x:Name="FirstNameBox"
-                                 Watermark="Enter first name" />
-                        <TextBlock Text="First name is required"
-                                   Foreground="{StaticResource ControlDangerForegroundBrush}"
-                                   FontSize="12"
-                                   IsVisible="{Binding #ValidationToggle.IsChecked}" />
+                        <TextBox
+                            x:Name="FirstNameBox"
+                            Watermark="Enter first name" />
+                        <TextBlock
+                            IsVisible="{Binding #ValidationToggle.IsChecked}"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlDangerForegroundBrush}"
+                            Text="First name is required" />
                     </StackPanel>
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="Email *" />
-                        <TextBox x:Name="EmailBox"
-                                 Watermark="Enter email address" />
-                        <TextBlock Text="Please enter a valid email address"
-                                   Foreground="{StaticResource ControlDangerForegroundBrush}"
-                                   FontSize="12"
-                                   IsVisible="{Binding #ValidationToggle.IsChecked}" />
+                        <TextBox
+                            x:Name="EmailBox"
+                            Watermark="Enter email address" />
+                        <TextBlock
+                            IsVisible="{Binding #ValidationToggle.IsChecked}"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlDangerForegroundBrush}"
+                            Text="Please enter a valid email address" />
                     </StackPanel>
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="Password *" />
-                        <TextBox x:Name="PasswordBox"
-                                 PasswordChar="*"
-                                 Watermark="Enter password" />
-                        <TextBlock Text="Password must be at least 8 characters"
-                                   Foreground="{StaticResource ControlDangerForegroundBrush}"
-                                   FontSize="12"
-                                   IsVisible="{Binding #ValidationToggle.IsChecked}" />
+                        <TextBox
+                            x:Name="PasswordBox"
+                            PasswordChar="*"
+                            Watermark="Enter password" />
+                        <TextBlock
+                            IsVisible="{Binding #ValidationToggle.IsChecked}"
+                            FontSize="12"
+                            Foreground="{StaticResource ControlDangerForegroundBrush}"
+                            Text="Password must be at least 8 characters" />
                     </StackPanel>
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="Bio (Optional)" />
-                        <TextBox x:Name="BioBox"
-                                 AcceptsReturn="True"
-                                 Height="80"
-                                 Watermark="Tell us about yourself..." />
+                        <TextBox
+                            x:Name="BioBox"
+                            Height="80"
+                            AcceptsReturn="True"
+                            Watermark="Tell us about yourself..." />
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
                         <Button Content="Cancel" />
-                        <Button Content="Register" Classes="Primary" />
+                        <Button
+                            Classes="Primary"
+                            Content="Register" />
                     </StackPanel>
                 </StackPanel>
             </husk:Card>

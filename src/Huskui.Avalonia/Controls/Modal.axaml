@@ -1,10 +1,13 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Thickness x:Key="ModalContentMargin">18</Thickness>
     <BoxShadows x:Key="ModalBoxShadow">0 0 4 0 #3F000000</BoxShadows>
 
-    <ControlTheme x:Key="{x:Type local:Modal}" TargetType="local:Modal">
+    <ControlTheme
+        x:Key="{x:Type local:Modal}"
+        TargetType="local:Modal">
         <Setter Property="MinHeight" Value="128" />
         <Setter Property="MinWidth" Value="256" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
@@ -14,15 +17,21 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border ClipToBounds="True" Background="{TemplateBinding Background}"
-                        BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        CornerRadius="{TemplateBinding CornerRadius}" BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}" Margin="4"
-                        BoxShadow="{StaticResource ModalBoxShadow}">
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Padding="{TemplateBinding Padding}" Foreground="{TemplateBinding Foreground}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                <Border
+                    Margin="4"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BoxShadow="{StaticResource ModalBoxShadow}"
+                    ClipToBounds="True"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Padding="{TemplateBinding Padding}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        Foreground="{TemplateBinding Foreground}" />
                 </Border>
             </ControlTemplate>
         </Setter>

@@ -1,27 +1,46 @@
-<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-                      x:Class="Huskui.Gallery.Views.RatingControlsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.RatingControlsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic Rating Control"
-                                   Description="Standard rating controls with different values">
+        <controls:ExampleContainer
+            Title="Basic Rating Control"
+            Description="Standard rating controls with different values">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Current Value" FontWeight="Bold" FontSize="14" />
-                    <TextBlock x:Name="BasicValueText" Text="3" FontSize="24" />
-                    <Button Content="Reset" Click="OnResetBasicClick" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Current Value" />
+                    <TextBlock
+                        x:Name="BasicValueText"
+                        FontSize="24"
+                        Text="3" />
+                    <Button
+                        Click="OnResetBasicClick"
+                        Content="Reset" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <StackPanel Spacing="16" Width="300">
+            <StackPanel
+                Width="300"
+                Spacing="16">
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Interactive (click to rate)" FontWeight="Bold" />
-                    <husk:RatingControl x:Name="BasicRating" Value="3" ValueChanged="OnBasicRatingChanged" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Interactive (click to rate)" />
+                    <husk:RatingControl
+                        x:Name="BasicRating"
+                        ValueChanged="OnBasicRatingChanged"
+                        Value="3" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
@@ -36,154 +55,273 @@
 
                 <StackPanel Spacing="4">
                     <TextBlock Text="Minimum = 3, Maximum = 10" />
-                    <husk:RatingControl Value="7" Minimum="3" Maximum="10" />
+                    <husk:RatingControl
+                        Maximum="10"
+                        Minimum="3"
+                        Value="7" />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Half Star Rating"
-                                   Description="Rating controls that support half-star values">
+        <controls:ExampleContainer
+            Title="Half Star Rating"
+            Description="Rating controls that support half-star values">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Half Stars" FontWeight="Bold" FontSize="14" />
-                    <TextBlock Text="Allow precise ratings like 3.5"
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Half Stars" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Allow precise ratings like 3.5"
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <StackPanel Spacing="16" Width="300">
+            <StackPanel
+                Width="300"
+                Spacing="16">
                 <StackPanel Spacing="4">
                     <TextBlock Text="Value = 2.5" />
-                    <husk:RatingControl Value="2.5" AllowHalfStars="True" />
+                    <husk:RatingControl
+                        AllowHalfStars="True"
+                        Value="2.5" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
                     <TextBlock Text="Value = 3.5" />
-                    <husk:RatingControl Value="3.5" AllowHalfStars="True" />
+                    <husk:RatingControl
+                        AllowHalfStars="True"
+                        Value="3.5" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
                     <TextBlock Text="Value = 4.5" />
-                    <husk:RatingControl Value="4.5" AllowHalfStars="True" />
+                    <husk:RatingControl
+                        AllowHalfStars="True"
+                        Value="4.5" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Interactive Half Stars" FontWeight="Bold" />
-                    <husk:RatingControl x:Name="HalfStarRating" Value="0" AllowHalfStars="True" />
-                    <TextBlock x:Name="HalfStarValueText" Text="Value: 0" FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                </StackPanel>
-            </StackPanel>
-        </controls:ExampleContainer>
-
-        <controls:ExampleContainer Title="Read-Only and Disabled"
-                                   Description="Display ratings without user interaction">
-            <StackPanel Spacing="16" Width="400">
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Read-Only (displays existing rating)" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" IsReadOnly="True" />
-                </StackPanel>
-
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Disabled" FontWeight="Bold" />
-                    <husk:RatingControl Value="3" IsEnabled="False" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Interactive Half Stars" />
+                    <husk:RatingControl
+                        x:Name="HalfStarRating"
+                        AllowHalfStars="True"
+                        Value="0" />
+                    <TextBlock
+                        x:Name="HalfStarValueText"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Value: 0" />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Custom Colors"
-                                   Description="Rating controls with custom color schemes">
-            <StackPanel Spacing="16" Width="400">
+        <controls:ExampleContainer
+            Title="Read-Only and Disabled"
+            Description="Display ratings without user interaction">
+            <StackPanel
+                Width="400"
+                Spacing="16">
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Default Yellow" FontWeight="Bold" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Read-Only (displays existing rating)" />
+                    <husk:RatingControl
+                        IsReadOnly="True"
+                        Value="4" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Disabled" />
+                    <husk:RatingControl
+                        IsEnabled="False"
+                        Value="3" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Custom Colors"
+            Description="Rating controls with custom color schemes">
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Default Yellow" />
                     <husk:RatingControl Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Red Hearts" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FilledColor="#E53935" UnfilledIcon="Heart" FilledIcon="Heart" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Red Hearts" />
+                    <husk:RatingControl
+                        FilledColor="#E53935"
+                        FilledIcon="Heart"
+                        UnfilledIcon="Heart"
+                        Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Green" FontWeight="Bold" />
-                    <husk:RatingControl Value="3" FilledColor="#43A047" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Green" />
+                    <husk:RatingControl
+                        FilledColor="#43A047"
+                        Value="3" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Blue" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FilledColor="#1E88E5" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Blue" />
+                    <husk:RatingControl
+                        FilledColor="#1E88E5"
+                        Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Purple" FontWeight="Bold" />
-                    <husk:RatingControl Value="5" FilledColor="#8E24AA" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Purple" />
+                    <husk:RatingControl
+                        FilledColor="#8E24AA"
+                        Value="5" />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Size Variations"
-                                   Description="Rating controls with different sizes">
-            <StackPanel Spacing="16" Width="400">
+        <controls:ExampleContainer
+            Title="Size Variations"
+            Description="Rating controls with different sizes">
+            <StackPanel
+                Width="400"
+                Spacing="16">
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Small (FontSize=14)" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FontSize="14" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Small (FontSize=14)" />
+                    <husk:RatingControl
+                        FontSize="14"
+                        Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Medium (FontSize=20, default)" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FontSize="20" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Medium (FontSize=20, default)" />
+                    <husk:RatingControl
+                        FontSize="20"
+                        Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Large (FontSize=28)" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FontSize="28" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Large (FontSize=28)" />
+                    <husk:RatingControl
+                        FontSize="28"
+                        Value="4" />
                 </StackPanel>
 
                 <StackPanel Spacing="4">
-                    <TextBlock Text="Extra Large (FontSize=36)" FontWeight="Bold" />
-                    <husk:RatingControl Value="4" FontSize="36" />
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Extra Large (FontSize=36)" />
+                    <husk:RatingControl
+                        FontSize="36"
+                        Value="4" />
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Product Review Example"
-                                   Description="Real-world usage in a product review card">
-            <husk:Card Padding="24" Width="450">
+        <controls:ExampleContainer
+            Title="Product Review Example"
+            Description="Real-world usage in a product review card">
+            <husk:Card
+                Width="450"
+                Padding="24">
                 <StackPanel Spacing="16">
-                    <StackPanel Orientation="Horizontal" Spacing="16">
-                        <Border Width="80" Height="80" CornerRadius="8"
-                                Background="{StaticResource ControlBackgroundBrush}">
-                            <TextBlock Text="📦" FontSize="40"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="16">
+                        <Border
+                            Width="80"
+                            Height="80"
+                            Background="{StaticResource ControlBackgroundBrush}"
+                            CornerRadius="8">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="40"
+                                Text="📦" />
                         </Border>
                         <StackPanel Spacing="4">
-                            <TextBlock Text="Awesome Product" FontSize="18" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Spacing="8">
-                                <husk:RatingControl Value="4.5" AllowHalfStars="True" IsReadOnly="True" FontSize="16" />
-                                <TextBlock Text="4.5" FontWeight="Bold" VerticalAlignment="Center" />
-                                <TextBlock Text="(2,847 reviews)"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           VerticalAlignment="Center" />
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="Bold"
+                                Text="Awesome Product" />
+                            <StackPanel
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <husk:RatingControl
+                                    AllowHalfStars="True"
+                                    FontSize="16"
+                                    IsReadOnly="True"
+                                    Value="4.5" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="4.5" />
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="(2,847 reviews)" />
                             </StackPanel>
-                            <TextBlock Text="$29.99" FontSize="16" FontWeight="Bold"
-                                       Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Foreground="{StaticResource ControlAccentForegroundBrush}"
+                                Text="$29.99" />
                         </StackPanel>
                     </StackPanel>
 
                     <husk:Divider />
 
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Write a Review" FontWeight="Bold" />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="Your Rating:" VerticalAlignment="Center" />
-                            <husk:RatingControl x:Name="ReviewRating" Value="0" FontSize="24" />
+                        <TextBlock
+                            FontWeight="Bold"
+                            Text="Write a Review" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                Text="Your Rating:" />
+                            <husk:RatingControl
+                                x:Name="ReviewRating"
+                                FontSize="24"
+                                Value="0" />
                         </StackPanel>
-                        <TextBox Watermark="Share your thoughts about this product..."
-                                 AcceptsReturn="True" TextWrapping="Wrap" MinHeight="80" />
-                        <Button Content="Submit Review" Classes="Primary" HorizontalAlignment="Right"
-                                Click="OnSubmitReviewClick" />
+                        <TextBox
+                            MinHeight="80"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Watermark="Share your thoughts about this product..." />
+                        <Button
+                            Classes="Primary"
+                            HorizontalAlignment="Right"
+                            Click="OnSubmitReviewClick"
+                            Content="Submit Review" />
                     </StackPanel>
                 </StackPanel>
             </husk:Card>

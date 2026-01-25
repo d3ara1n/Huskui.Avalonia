@@ -1,55 +1,79 @@
-﻿<husk:Modal xmlns="https://github.com/avaloniaui"
-            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-            xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-            mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="700"
-            x:Class="Huskui.Gallery.Modals.SettingsModal">
+﻿<husk:Modal
+    x:Class="Huskui.Gallery.Modals.SettingsModal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
-    <Grid RowDefinitions="Auto,*,Auto" MaxWidth="600">
+    <Grid
+        MaxWidth="600"
+        RowDefinitions="Auto,*,Auto">
 
-        <!-- Header -->
-        <Border Grid.Row="0"
-                Padding="24,16"
-                CornerRadius="8,8,0,0">
+        <!--  Header  -->
+        <Border
+            Grid.Row="0"
+            Padding="24,16"
+            CornerRadius="8,8,0,0">
             <Grid ColumnDefinitions="*,Auto">
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="12">
-                    <fi:SymbolIcon Symbol="Settings" FontSize="24" />
-                    <TextBlock Text="Application Settings"
-                               FontSize="20"
-                               FontWeight="SemiBold"
-                               VerticalAlignment="Center" />
+                <StackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <fi:SymbolIcon
+                        FontSize="24"
+                        Symbol="Settings" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Application Settings" />
                 </StackPanel>
 
-                <Button Grid.Column="1"
-                        Click="OnCloseClick">
-                    <fi:SymbolIcon Symbol="Dismiss" FontSize="{StaticResource MediumFontSize}"
-                                   HorizontalAlignment="Center" />
+                <Button
+                    Grid.Column="1"
+                    Click="OnCloseClick">
+                    <fi:SymbolIcon
+                        HorizontalAlignment="Center"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Symbol="Dismiss" />
                 </Button>
             </Grid>
         </Border>
 
-        <!-- Content -->
+        <!--  Content  -->
         <ScrollViewer Grid.Row="1">
-            <StackPanel Spacing="24" Margin="24">
+            <StackPanel
+                Margin="24"
+                Spacing="24">
 
-                <!-- General Settings -->
+                <!--  General Settings  -->
                 <husk:Card Padding="20">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="General" FontSize="16" FontWeight="SemiBold" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="General" />
 
                         <StackPanel Spacing="12">
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Language" FontWeight="Medium" />
-                                    <TextBlock Text="Choose your preferred language"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="Language" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Choose your preferred language" />
                                 </StackPanel>
-                                <ComboBox Grid.Column="1"
-                                          Width="150"
-                                          SelectedIndex="0">
+                                <ComboBox
+                                    Grid.Column="1"
+                                    Width="150"
+                                    SelectedIndex="0">
                                     <ComboBoxItem Content="English" />
                                     <ComboBoxItem Content="中文" />
                                     <ComboBoxItem Content="日本語" />
@@ -61,45 +85,62 @@
 
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Auto-save" FontWeight="Medium" />
-                                    <TextBlock Text="Automatically save changes every 5 minutes"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="Auto-save" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Automatically save changes every 5 minutes" />
                                 </StackPanel>
-                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
+                                <ToggleSwitch
+                                    Grid.Column="1"
+                                    IsChecked="True" />
                             </Grid>
 
                             <husk:Divider />
 
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Check for updates" FontWeight="Medium" />
-                                    <TextBlock Text="Automatically check for application updates"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="Check for updates" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Automatically check for application updates" />
                                 </StackPanel>
-                                <ToggleSwitch Grid.Column="1" IsChecked="True" />
+                                <ToggleSwitch
+                                    Grid.Column="1"
+                                    IsChecked="True" />
                             </Grid>
                         </StackPanel>
                     </StackPanel>
                 </husk:Card>
 
-                <!-- Appearance Settings -->
+                <!--  Appearance Settings  -->
                 <husk:Card Padding="20">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="Appearance" FontSize="16" FontWeight="SemiBold" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="Appearance" />
 
                         <StackPanel Spacing="12">
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Theme" FontWeight="Medium" />
-                                    <TextBlock Text="Choose between light, dark, or system theme"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="Theme" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Choose between light, dark, or system theme" />
                                 </StackPanel>
-                                <ComboBox Grid.Column="1"
-                                          Width="150"
-                                          SelectedIndex="0">
+                                <ComboBox
+                                    Grid.Column="1"
+                                    Width="150"
+                                    SelectedIndex="0">
                                     <ComboBoxItem Content="System" />
                                     <ComboBoxItem Content="Light" />
                                     <ComboBoxItem Content="Dark" />
@@ -110,10 +151,13 @@
 
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="High contrast" FontWeight="Medium" />
-                                    <TextBlock Text="Increase contrast for better visibility"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="High contrast" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Increase contrast for better visibility" />
                                 </StackPanel>
                                 <ToggleSwitch Grid.Column="1" />
                             </Grid>
@@ -122,18 +166,22 @@
 
                             <Grid ColumnDefinitions="*,Auto">
                                 <StackPanel Grid.Column="0">
-                                    <TextBlock Text="Font size" FontWeight="Medium" />
-                                    <TextBlock Text="Adjust the application font size"
-                                               FontSize="12"
-                                               Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock
+                                        FontWeight="Medium"
+                                        Text="Font size" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                        Text="Adjust the application font size" />
                                 </StackPanel>
-                                <Slider Grid.Column="1"
-                                        Width="150"
-                                        Minimum="12"
-                                        Maximum="18"
-                                        Value="14"
-                                        TickFrequency="1"
-                                        IsSnapToTickEnabled="True" />
+                                <Slider
+                                    Grid.Column="1"
+                                    Width="150"
+                                    IsSnapToTickEnabled="True"
+                                    Maximum="18"
+                                    Minimum="12"
+                                    TickFrequency="1"
+                                    Value="14" />
                             </Grid>
                         </StackPanel>
                     </StackPanel>
@@ -142,22 +190,27 @@
             </StackPanel>
         </ScrollViewer>
 
-        <!-- Footer -->
-        <Border Grid.Row="2"
-                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
-                Padding="24,16"
-                CornerRadius="0,0,8,8">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        Spacing="12">
-                <Button Content="Reset to Defaults"
-                        Classes="Subtle"
-                        Click="OnResetClick" />
-                <Button Content="Cancel"
-                        Click="OnCancelClick" />
-                <Button Content="Save Changes"
-                        Classes="Accent"
-                        Click="OnSaveClick" />
+        <!--  Footer  -->
+        <Border
+            Grid.Row="2"
+            Padding="24,16"
+            Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+            CornerRadius="0,0,8,8">
+            <StackPanel
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Spacing="12">
+                <Button
+                    Classes="Subtle"
+                    Click="OnResetClick"
+                    Content="Reset to Defaults" />
+                <Button
+                    Click="OnCancelClick"
+                    Content="Cancel" />
+                <Button
+                    Classes="Accent"
+                    Click="OnSaveClick"
+                    Content="Save Changes" />
             </StackPanel>
         </Border>
 

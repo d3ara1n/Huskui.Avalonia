@@ -1,20 +1,30 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <ControlTheme x:Key="{x:Type local:Frame}" TargetType="local:Frame">
+    <ControlTheme
+        x:Key="{x:Type local:Frame}"
+        TargetType="local:Frame">
         <Setter Property="Template">
             <ControlTemplate>
-                <Border HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                        Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}" ClipToBounds="{TemplateBinding ClipToBounds}">
+                <Border
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Panel>
-                        <ContentPresenter Name="{x:Static local:Frame.PART_ContentPresenter}" IsVisible="False"
-                                          Padding="{TemplateBinding Padding}" />
-                        <ContentPresenter Name="{x:Static local:Frame.PART_ContentPresenter2}"
-                                          Padding="{TemplateBinding Padding}" />
+                        <ContentPresenter
+                            Name="{x:Static local:Frame.PART_ContentPresenter}"
+                            Padding="{TemplateBinding Padding}"
+                            IsVisible="False" />
+                        <ContentPresenter
+                            Name="{x:Static local:Frame.PART_ContentPresenter2}"
+                            Padding="{TemplateBinding Padding}" />
                     </Panel>
                 </Border>
             </ControlTemplate>

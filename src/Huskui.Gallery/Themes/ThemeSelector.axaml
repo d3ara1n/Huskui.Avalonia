@@ -1,72 +1,87 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                    xmlns:models="clr-namespace:Huskui.Gallery.Models">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:models="clr-namespace:Huskui.Gallery.Models">
 
-    <ControlTheme x:Key="{x:Type controls:ThemeSelector}" TargetType="controls:ThemeSelector">
+    <ControlTheme
+        x:Key="{x:Type controls:ThemeSelector}"
+        TargetType="controls:ThemeSelector">
         <Setter Property="Template">
             <ControlTemplate>
                 <StackPanel Spacing="16">
-                    <!-- Theme Selection -->
+                    <!--  Theme Selection  -->
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Theme"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   FontSize="{StaticResource MediumFontSize}" />
-                        <ComboBox Name="PART_ThemeComboBox"
-                                  MinWidth="200">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Theme" />
+                        <ComboBox
+                            Name="PART_ThemeComboBox"
+                            MinWidth="200">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:ThemeVariantItem">
                                     <StackPanel Spacing="2">
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                        <TextBlock Text="{Binding Description}"
-                                                   FontSize="{StaticResource SmallFontSize}"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                   TextWrapping="Wrap" />
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
 
-                    <!-- Accent Color Selection -->
+                    <!--  Accent Color Selection  -->
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Accent Color"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   FontSize="{StaticResource MediumFontSize}" />
-                        <ComboBox Name="PART_AccentComboBox"
-                                  MinWidth="200">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Accent Color" />
+                        <ComboBox
+                            Name="PART_AccentComboBox"
+                            MinWidth="200">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:AccentColorItem">
                                     <StackPanel Spacing="2">
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                        <TextBlock Text="{Binding Description}"
-                                                   FontSize="{StaticResource SmallFontSize}"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                   TextWrapping="Wrap" />
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                     </StackPanel>
 
-                    <!-- Background Material Selection -->
+                    <!--  Background Material Selection  -->
                     <StackPanel Spacing="8">
-                        <TextBlock Text="Background Material"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   FontSize="{StaticResource MediumFontSize}" />
-                        <ComboBox Name="PART_BackgroundComboBox"
-                                  MinWidth="200">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Background Material" />
+                        <ComboBox
+                            Name="PART_BackgroundComboBox"
+                            MinWidth="200">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:BackgroundMaterialItem">
                                     <StackPanel Spacing="2">
-                                        <TextBlock Text="{Binding DisplayName}"
-                                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
-                                        <TextBlock Text="{Binding Description}"
-                                                   FontSize="{StaticResource SmallFontSize}"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                   TextWrapping="Wrap" />
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>

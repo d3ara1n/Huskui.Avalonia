@@ -1,34 +1,43 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
-    <ControlTheme x:Key="{x:Type local:InfiniteScrollView}" TargetType="local:InfiniteScrollView">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type local:InfiniteScrollView}"
+        TargetType="local:InfiniteScrollView">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="False" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Border" Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <ScrollViewer Name="{x:Static local:InfiniteScrollView.PART_ScrollViewer}"
-                                  ClipToBounds="{TemplateBinding ClipToBounds}"
-                                  AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
-                                  BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
-                                  HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                                  IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
-                                  IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
-                                  VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
-                                  VerticalSnapPointsType="{TemplateBinding (ScrollViewer.VerticalSnapPointsType)}"
-                                  HorizontalSnapPointsType="{TemplateBinding (ScrollViewer.HorizontalSnapPointsType)}">
+                <Border
+                    Name="Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ScrollViewer
+                        Name="{x:Static local:InfiniteScrollView.PART_ScrollViewer}"
+                        AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                        BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
+                        ClipToBounds="{TemplateBinding ClipToBounds}"
+                        HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        HorizontalSnapPointsType="{TemplateBinding (ScrollViewer.HorizontalSnapPointsType)}"
+                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                        VerticalSnapPointsType="{TemplateBinding (ScrollViewer.VerticalSnapPointsType)}">
                         <StackPanel>
-                            <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"
-                                            Margin="{TemplateBinding Padding}" />
+                            <ItemsPresenter
+                                Margin="{TemplateBinding Padding}"
+                                ItemsPanel="{TemplateBinding ItemsPanel}" />
                             <Border Name="Container">
-                                <ContentPresenter Name="{x:Static local:InfiniteScrollView.PART_PendingPresenter}"
-                                                  Content="{TemplateBinding PendingContent}" IsVisible="False"
-                                                  ContentTemplate="{TemplateBinding PendingContentTemplate}" />
+                                <ContentPresenter
+                                    Name="{x:Static local:InfiniteScrollView.PART_PendingPresenter}"
+                                    IsVisible="False"
+                                    Content="{TemplateBinding PendingContent}"
+                                    ContentTemplate="{TemplateBinding PendingContentTemplate}" />
                             </Border>
                         </StackPanel>
                     </ScrollViewer>

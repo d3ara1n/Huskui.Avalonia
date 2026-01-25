@@ -1,15 +1,23 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:fi="using:FluentIcons.Avalonia"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="using:FluentIcons.Avalonia"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel Margin="24">
                 <Menu>
                     <MenuItem Header="New" />
-                    <MenuItem Header="Open" ToggleType="Radio" IsChecked="True" />
+                    <MenuItem
+                        Header="Open"
+                        IsChecked="True"
+                        ToggleType="Radio" />
                     <Separator />
-                    <MenuItem Header="Close" ToggleType="CheckBox" IsChecked="True" InputGesture="Ctrl+C" />
+                    <MenuItem
+                        Header="Close"
+                        InputGesture="Ctrl+C"
+                        IsChecked="True"
+                        ToggleType="CheckBox" />
                 </Menu>
                 <Button Content="Hello">
                     <Button.Flyout>
@@ -18,7 +26,9 @@
                             <MenuItem Header="Remove" />
                             <MenuItem Header="Dive">
                                 <MenuItem.Items>
-                                    <MenuItem Header="Into" ToggleType="Radio" />
+                                    <MenuItem
+                                        Header="Into"
+                                        ToggleType="Radio" />
                                 </MenuItem.Items>
                             </MenuItem>
                         </MenuFlyout>
@@ -28,25 +38,30 @@
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type Menu}"
-                  TargetType="Menu">
+    <ControlTheme
+        x:Key="{x:Type Menu}"
+        TargetType="Menu">
         <Setter Property="ItemContainerTheme" Value="{StaticResource TopMenuItemTheme}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Padding="{TemplateBinding Padding}"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <ItemsPresenter Name="PART_ItemsPresenter"
-                                    ItemsPanel="{TemplateBinding ItemsPanel}"
-                                    KeyboardNavigation.TabNavigation="Continue" />
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                        KeyboardNavigation.TabNavigation="Continue" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type MenuItem}" TargetType="MenuItem">
+    <ControlTheme
+        x:Key="{x:Type MenuItem}"
+        TargetType="MenuItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
@@ -55,65 +70,101 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Border" CornerRadius="{TemplateBinding CornerRadius}"
-                        ClipToBounds="{TemplateBinding ClipToBounds}" Margin="2"
-                        Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border
+                    Name="Border"
+                    Margin="2"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition Property="Background" Easing="SineEaseOut"
-                                             Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <BrushTransition
+                                Easing="SineEaseOut"
+                                Property="Background"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Border.Transitions>
                     <Panel>
-                        <Grid ColumnDefinitions="Auto,10,*,10,Auto" Margin="{TemplateBinding Padding}">
-                            <ContentControl Grid.Column="0"
-                                            Content="{TemplateBinding Icon}" />
-                            <ContentPresenter Grid.Column="2" Name="PART_ContentPresenter"
-                                              Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              RenderTransform="{x:Null}">
+                        <Grid
+                            Margin="{TemplateBinding Padding}"
+                            ColumnDefinitions="Auto,10,*,10,Auto">
+                            <ContentControl
+                                Grid.Column="0"
+                                Content="{TemplateBinding Icon}" />
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Grid.Column="2"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                RenderTransform="{x:Null}">
                                 <ContentPresenter.Transitions>
                                     <Transitions>
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
-                                                                       Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="SineEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </ContentPresenter.Transitions>
                             </ContentPresenter>
-                            <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="6">
+                            <StackPanel
+                                Grid.Column="4"
+                                Orientation="Horizontal"
+                                Spacing="6">
                                 <Panel>
-                                    <TextBlock VerticalAlignment="Center"
-                                               Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                               Text="{TemplateBinding InputGesture,Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="{TemplateBinding InputGesture,
+                                                               Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
                                 </Panel>
 
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <fi:SymbolIcon Name="Checkbox" Symbol="CheckboxUnchecked"
-                                                   IsVisible="False"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                   FontSize="{TemplateBinding FontSize}"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Center" />
-                                    <fi:SymbolIcon Name="ExpandMark" Symbol="ChevronRight"
-                                                   IsVisible="False"
-                                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                                   FontSize="{TemplateBinding FontSize}"
-                                                   HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Spacing="6">
+                                    <fi:SymbolIcon
+                                        Name="Checkbox"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        IsVisible="False"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Symbol="CheckboxUnchecked" />
+                                    <fi:SymbolIcon
+                                        Name="ExpandMark"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center"
+                                        IsVisible="False"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Symbol="ChevronRight" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
-                        <Popup Name="PART_Popup"
-                               IsLightDismissEnabled="False"
-                               IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
-                               Placement="RightEdgeAlignedTop">
-                            <Border Margin="2,4" Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                    CornerRadius="{StaticResource SmallCornerRadius}" ClipToBounds="True">
+                        <Popup
+                            Name="PART_Popup"
+                            IsLightDismissEnabled="False"
+                            IsOpen="{TemplateBinding IsSubMenuOpen,
+                                                     Mode=TwoWay}"
+                            Placement="RightEdgeAlignedTop">
+                            <Border
+                                Margin="2,4"
+                                Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                ClipToBounds="True"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
-                                    <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
                                 </Border.Effect>
                                 <ScrollViewer>
-                                    <ItemsPresenter Name="PART_ItemsPresenter"
-                                                    Grid.IsSharedSizeScope="True"
-                                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    <ItemsPresenter
+                                        Name="PART_ItemsPresenter"
+                                        Grid.IsSharedSizeScope="True"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
                             </Border>
                         </Popup>
@@ -167,7 +218,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="TopMenuItemTheme" TargetType="MenuItem">
+    <ControlTheme
+        x:Key="TopMenuItemTheme"
+        TargetType="MenuItem">
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Padding" Value="10,6" />
@@ -175,56 +228,87 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Border" CornerRadius="{TemplateBinding CornerRadius}"
-                        ClipToBounds="{TemplateBinding ClipToBounds}" Margin="2"
-                        Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <Border
+                    Name="Border"
+                    Margin="2"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition Property="Background" Easing="SineEaseOut"
-                                             Duration="{StaticResource ControlFastestAnimationDuration}" />
+                            <BrushTransition
+                                Easing="SineEaseOut"
+                                Property="Background"
+                                Duration="{StaticResource ControlFastestAnimationDuration}" />
                         </Transitions>
                     </Border.Transitions>
                     <Panel>
-                        <Grid ColumnDefinitions="*,Auto,Auto" Margin="{TemplateBinding Padding}">
-                            <ContentPresenter Grid.Column="0" Name="PART_ContentPresenter"
-                                              Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              RenderTransform="{x:Null}">
+                        <Grid
+                            Margin="{TemplateBinding Padding}"
+                            ColumnDefinitions="*,Auto,Auto">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Grid.Column="0"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                RenderTransform="{x:Null}">
                                 <ContentPresenter.Transitions>
                                     <Transitions>
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="SineEaseOut"
-                                                                       Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="SineEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </ContentPresenter.Transitions>
                             </ContentPresenter>
 
-                            <TextBlock Grid.Column="1" x:Name="PART_InputGestureText" Margin="4,0,0,0"
-                                       VerticalAlignment="Center"
-                                       IsVisible="{Binding InputGesture,RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                       Text="{TemplateBinding InputGesture,Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
+                            <TextBlock
+                                x:Name="PART_InputGestureText"
+                                Grid.Column="1"
+                                Margin="4,0,0,0"
+                                VerticalAlignment="Center"
+                                IsVisible="{Binding InputGesture, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="{TemplateBinding InputGesture,
+                                                       Converter={x:Static local:InternalConverters.KeyGestureToString}}" />
 
-                            <fi:SymbolIcon Grid.Column="2" Name="Checkbox" Symbol="CheckboxUnchecked"
-                                           IsVisible="False" Margin="4,0,0,0"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           HorizontalAlignment="Right" VerticalAlignment="Center" />
+                            <fi:SymbolIcon
+                                Name="Checkbox"
+                                Grid.Column="2"
+                                Margin="4,0,0,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                IsVisible="False"
+                                FontSize="{TemplateBinding FontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Symbol="CheckboxUnchecked" />
                         </Grid>
-                        <Popup Name="PART_Popup"
-                               IsLightDismissEnabled="False"
-                               IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
-                               Placement="RightEdgeAlignedTop"
-                               OverlayInputPassThroughElement="{Binding $parent[Menu]}">
-                            <Border Margin="2,4" Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                    CornerRadius="{StaticResource SmallCornerRadius}" ClipToBounds="True">
+                        <Popup
+                            Name="PART_Popup"
+                            IsLightDismissEnabled="False"
+                            IsOpen="{TemplateBinding IsSubMenuOpen,
+                                                     Mode=TwoWay}"
+                            OverlayInputPassThroughElement="{Binding $parent[Menu]}"
+                            Placement="RightEdgeAlignedTop">
+                            <Border
+                                Margin="2,4"
+                                Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                ClipToBounds="True"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
-                                    <DropShadowEffect OffsetX="0" OffsetY="0" Opacity="0.2" />
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
                                 </Border.Effect>
                                 <ScrollViewer>
-                                    <ItemsPresenter Name="PART_ItemsPresenter"
-                                                    Grid.IsSharedSizeScope="True"
-                                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    <ItemsPresenter
+                                        Name="PART_ItemsPresenter"
+                                        Grid.IsSharedSizeScope="True"
+                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                                 </ScrollViewer>
                             </Border>
                         </Popup>

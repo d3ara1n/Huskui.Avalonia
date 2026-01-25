@@ -1,28 +1,42 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.StepControlsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.StepControlsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic StepControl"
-                                   Description="A simple StepControl with different states">
+        <controls:ExampleContainer
+            Title="Basic StepControl"
+            Description="A simple StepControl with different states">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Step Controls" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Next Step" Click="OnNextStepClick" />
-                    <Button Content="Previous Step" Click="OnPreviousStepClick" />
-                    <TextBlock Text="Navigate through steps to see different states."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Step Controls" />
+                    <Button
+                        Click="OnNextStepClick"
+                        Content="Next Step" />
+                    <Button
+                        Click="OnPreviousStepClick"
+                        Content="Previous Step" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Navigate through steps to see different states."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
             <StackPanel Spacing="12">
-                <husk:StepControl Name="Control" SelectedIndex="0">
+                <husk:StepControl
+                    Name="Control"
+                    SelectedIndex="0">
                     <husk:StepItem Header="Step 1">
                         <TextBlock Text="Step 1" />
                     </husk:StepItem>
@@ -49,22 +63,33 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Minimal StepControl"
-                                   Description="A minimal step indicator using dots">
+        <controls:ExampleContainer
+            Title="Minimal StepControl"
+            Description="A minimal step indicator using dots">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Minimal Theme" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Next Step" Click="OnMinimalNextStepClick" />
-                    <Button Content="Previous Step" Click="OnMinimalPreviousStepClick" />
-                    <TextBlock Text="Simple dot indicators for progress visualization."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Minimal Theme" />
+                    <Button
+                        Click="OnMinimalNextStepClick"
+                        Content="Next Step" />
+                    <Button
+                        Click="OnMinimalPreviousStepClick"
+                        Content="Previous Step" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Simple dot indicators for progress visualization."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
             <StackPanel Spacing="12">
-                <husk:StepControl Name="MinimalControl" SelectedIndex="0"
-                                  Theme="{StaticResource MinimalStepControlTheme}">
+                <husk:StepControl
+                    Name="MinimalControl"
+                    SelectedIndex="0"
+                    Theme="{StaticResource MinimalStepControlTheme}">
                     <husk:StepItem />
                     <husk:StepItem />
                     <husk:StepItem />

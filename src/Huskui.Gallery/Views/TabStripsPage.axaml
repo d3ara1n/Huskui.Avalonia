@@ -1,72 +1,98 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.TabStripsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.TabStripsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic TabStrip"
-                                   Description="Simple tab strip with different styles"
-                                   XamlCode="&lt;TabStrip&gt;&#10;    &lt;TabItem Content=&quot;Hola&quot; /&gt;&#10;&lt;/TabStrip&gt;&#10;&lt;TabStrip Theme=&quot;{StaticResource SegmentedTabStripTheme}&quot; /&gt;">
+        <controls:ExampleContainer
+            Title="Basic TabStrip"
+            Description="Simple tab strip with different styles"
+            XamlCode="&lt;TabStrip&gt;&#10;    &lt;TabItem Content=&quot;Hola&quot; /&gt;&#10;&lt;/TabStrip&gt;&#10;&lt;TabStrip Theme=&quot;{StaticResource SegmentedTabStripTheme}&quot; /&gt;">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="8">
                     <TextBlock Text="CornerRadius" />
-                    <Slider x:Name="CornerRadiusSlider"
-                            Minimum="0" Maximum="20" Value="4" />
+                    <Slider
+                        x:Name="CornerRadiusSlider"
+                        Maximum="20"
+                        Minimum="0"
+                        Value="4" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
             <StackPanel Spacing="16">
-                <TextBlock Text="Block Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TabStrip
-                    CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <TextBlock
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Block Style" />
+                <TabStrip CornerRadius="{Binding #CornerRadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
                     <TabStripItem>
                         <TextBlock>
-                            <Run Text="Hub" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Hub" />
                             <LineBreak />
-                            <Run Text="Design Center"
-                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Design Center" />
                         </TextBlock>
                     </TabStripItem>
                     <TabStripItem IsEnabled="False">
                         <TextBlock>
-                            <Run Text="Dock" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Dock" />
                             <LineBreak />
-                            <Run Text="Machine Assembler"
-                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Machine Assembler" />
                         </TextBlock>
                     </TabStripItem>
                     <TabStripItem>
                         <TextBlock>
-                            <Run Text="Socket" FontSize="{StaticResource LargeFontSize}" />
+                            <Run
+                                FontSize="{StaticResource LargeFontSize}"
+                                Text="Socket" />
                             <LineBreak />
-                            <Run Text="Power Supply"
-                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <Run
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Power Supply" />
                         </TextBlock>
                     </TabStripItem>
                 </TabStrip>
-                <TextBlock Text="Bar Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TabStrip Theme="{StaticResource SegmentedTabStripTheme}"
-                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <TextBlock
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Bar Style" />
+                <TabStrip
+                    CornerRadius="{Binding #CornerRadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Theme="{StaticResource SegmentedTabStripTheme}">
                     <TabStripItem Content="Monday" />
                     <TabStripItem Content="Tuesday" />
                     <TabStripItem Content="Wednesday" />
                     <TabStripItem Content="Thursday" />
                     <TabStripItem Content="Friday" />
                 </TabStrip>
-                <TextBlock Text="Pivot Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TabStrip Theme="{StaticResource PivotTabStripTheme}"
-                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <TextBlock
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Pivot Style" />
+                <TabStrip
+                    CornerRadius="{Binding #CornerRadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Theme="{StaticResource PivotTabStripTheme}">
                     <TabStripItem Content="Home" />
                     <TabStripItem Content="Download" />
                     <TabStripItem Content="Settings" />
                     <TabStripItem Content="About" />
                 </TabStrip>
-                <TextBlock Text="Chip Style" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                <TabStrip Theme="{StaticResource ChipTabStripTheme}"
-                          CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+                <TextBlock
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Chip Style" />
+                <TabStrip
+                    CornerRadius="{Binding #CornerRadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Theme="{StaticResource ChipTabStripTheme}">
                     <TabStripItem Content="Administrator" />
                     <TabStripItem Content="Organizer" />
                     <TabStripItem Content="Speaker" />

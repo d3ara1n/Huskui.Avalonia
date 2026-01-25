@@ -1,19 +1,38 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <ToggleButton Content="Hello World" />
-                <ToggleButton Content="Hello World" IsChecked="True" />
-                <ToggleButton Content="Hello World" IsChecked="False" IsEnabled="False" />
-                <ToggleButton Content="Hello World" IsChecked="True" IsEnabled="False" />
-                <ToggleButton Theme="{StaticResource GhostToggleButtonTheme}" Content="Hello World" IsChecked="False" />
-                <ToggleButton Theme="{StaticResource GhostToggleButtonTheme}" Content="Hello World" IsChecked="True"
-                              IsEnabled="False" />
+                <ToggleButton
+                    Content="Hello World"
+                    IsChecked="True" />
+                <ToggleButton
+                    IsEnabled="False"
+                    Content="Hello World"
+                    IsChecked="False" />
+                <ToggleButton
+                    IsEnabled="False"
+                    Content="Hello World"
+                    IsChecked="True" />
+                <ToggleButton
+                    Content="Hello World"
+                    IsChecked="False"
+                    Theme="{StaticResource GhostToggleButtonTheme}" />
+                <ToggleButton
+                    IsEnabled="False"
+                    Content="Hello World"
+                    IsChecked="True"
+                    Theme="{StaticResource GhostToggleButtonTheme}" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type ToggleButton}" TargetType="ToggleButton">
+    <ControlTheme
+        x:Key="{x:Type ToggleButton}"
+        TargetType="ToggleButton">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,9" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -120,7 +139,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="GhostToggleButtonTheme" TargetType="ToggleButton">
+    <ControlTheme
+        x:Key="GhostToggleButtonTheme"
+        TargetType="ToggleButton">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,9" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -159,13 +180,18 @@
                         </Border.Transitions>
                     </Border>
 
-                    <Grid ColumnDefinitions="Auto,*"
-                          ColumnSpacing="8"
-                          Margin="{TemplateBinding Padding}">
-                        <Border Name="Indicator" Grid.Column="0"
-                                Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                Width="5" BorderThickness="1" BorderBrush="{StaticResource ControlBorderBrush}"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
+                    <Grid
+                        Margin="{TemplateBinding Padding}"
+                        ColumnDefinitions="Auto,*"
+                        ColumnSpacing="8">
+                        <Border
+                            Name="Indicator"
+                            Grid.Column="0"
+                            Width="5"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <Border.Transitions>
                                 <Transitions>
                                     <BrushTransition
@@ -179,18 +205,19 @@
                                 </Transitions>
                             </Border.Transitions>
                         </Border>
-                        <ContentPresenter Grid.Column="1"
-                                          Name="PART_ContentPresenter"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Background="{StaticResource TransparentBrush}"
-                                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          RecognizesAccessKey="True"
-                                          TextElement.FontSize="{TemplateBinding FontSize}"
-                                          TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Column="1"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Background="{StaticResource TransparentBrush}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            RecognizesAccessKey="True"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontWeight="{TemplateBinding FontWeight}" />
                     </Grid>
                     <Border
                         x:Name="Overlay"

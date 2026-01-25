@@ -1,26 +1,43 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <Design.PreviewWith>
         <Panel Background="White">
-            <StackPanel Margin="12" HorizontalAlignment="Center" Spacing="8">
+            <StackPanel
+                Margin="12"
+                HorizontalAlignment="Center"
+                Spacing="8">
                 <local:Tag Content="Hello" />
                 <local:Tag Content="世界" />
-                <local:Tag Content="Primary" Classes="Primary" />
+                <local:Tag
+                    Classes="Primary"
+                    Content="Primary" />
                 <local:Tag Classes="Success">
-                    <StackPanel Orientation="Horizontal" Spacing="4">
-                        <Ellipse Width="6" Height="6" Fill="{Binding $parent[local:Tag].Foreground}" />
+                    <StackPanel
+                        Orientation="Horizontal"
+                        Spacing="4">
+                        <Ellipse
+                            Width="6"
+                            Height="6"
+                            Fill="{Binding $parent[local:Tag].Foreground}" />
                         <TextBlock Text="Success" />
                     </StackPanel>
                 </local:Tag>
-                <local:Tag Content="Warning" Classes="Warning" />
-                <local:Tag Content="Danger" Classes="Danger" />
+                <local:Tag
+                    Classes="Warning"
+                    Content="Warning" />
+                <local:Tag
+                    Classes="Danger"
+                    Content="Danger" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type local:Tag}" TargetType="local:Tag">
+    <ControlTheme
+        x:Key="{x:Type local:Tag}"
+        TargetType="local:Tag">
         <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlTranslucentForegroundBrush}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -31,15 +48,20 @@
         <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="PART_Border" CornerRadius="{TemplateBinding CornerRadius}"
-                        Background="{TemplateBinding Background}"
-                        BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                        ClipToBounds="True">
-                    <ContentPresenter Content="{TemplateBinding Content}" Padding="{TemplateBinding Padding}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                <Border
+                    Name="PART_Border"
+                    Background="{TemplateBinding Background}"
+                    BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="True"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ContentPresenter
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Border>
             </ControlTemplate>
         </Setter>

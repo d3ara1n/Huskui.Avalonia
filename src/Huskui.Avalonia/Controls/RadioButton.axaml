@@ -1,8 +1,14 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.PreviewWith>
-        <Grid ColumnDefinitions="*,*" Background="White">
-            <StackPanel Grid.Column="0" Margin="24" Spacing="12">
+        <Grid
+            Background="White"
+            ColumnDefinitions="*,*">
+            <StackPanel
+                Grid.Column="0"
+                Margin="24"
+                Spacing="12">
                 <RadioButton>
                     <Button Content="Check or Not" />
                 </RadioButton>
@@ -12,29 +18,42 @@
                 <RadioButton IsChecked="True">
                     <TextBlock Text="Checked" />
                 </RadioButton>
-                <RadioButton IsThreeState="True" IsChecked="{x:Null}">
+                <RadioButton
+                    IsChecked="{x:Null}"
+                    IsThreeState="True">
                     <TextBlock Text="Or Maybe?" />
                 </RadioButton>
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="24" Spacing="12">
+            <StackPanel
+                Grid.Column="1"
+                Margin="24"
+                Spacing="12">
                 <RadioButton Theme="{StaticResource AlternativeRadioButtonTheme}">
                     <Button Content="Check or Not" />
                 </RadioButton>
-                <RadioButton Theme="{StaticResource AlternativeRadioButtonTheme}" IsEnabled="False">
+                <RadioButton
+                    IsEnabled="False"
+                    Theme="{StaticResource AlternativeRadioButtonTheme}">
                     <TextBlock Text="Not" />
                 </RadioButton>
-                <RadioButton Theme="{StaticResource AlternativeRadioButtonTheme}" IsChecked="True">
+                <RadioButton
+                    IsChecked="True"
+                    Theme="{StaticResource AlternativeRadioButtonTheme}">
                     <TextBlock Text="Checked" />
                 </RadioButton>
-                <RadioButton Theme="{StaticResource AlternativeRadioButtonTheme}" IsThreeState="True"
-                             IsChecked="{x:Null}">
+                <RadioButton
+                    IsChecked="{x:Null}"
+                    IsThreeState="True"
+                    Theme="{StaticResource AlternativeRadioButtonTheme}">
                     <TextBlock Text="Or Maybe?" />
                 </RadioButton>
             </StackPanel>
         </Grid>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type RadioButton}" TargetType="RadioButton">
+    <ControlTheme
+        x:Key="{x:Type RadioButton}"
+        TargetType="RadioButton">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -43,55 +62,72 @@
         <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="6" Background="{StaticResource TransparentBrush}">
-                    <Border Grid.Column="0" Name="Box" Cursor="Hand"
-                            MinHeight="{TemplateBinding FontSize}"
-                            MinWidth="{TemplateBinding FontSize}"
-                            Height="16"
-                            Width="16"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                <Grid
+                    Background="{StaticResource TransparentBrush}"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="6">
+                    <Border
+                        Name="Box"
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        MinWidth="{TemplateBinding FontSize}"
+                        MinHeight="{TemplateBinding FontSize}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Cursor="Hand">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Border Name="Indicator" Margin="2" CornerRadius="{StaticResource FullCornerRadius}"
-                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                    RenderTransform="scale(0.0)">
+                            <Border
+                                Name="Indicator"
+                                Margin="2"
+                                Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                CornerRadius="{StaticResource FullCornerRadius}"
+                                RenderTransform="scale(0.0)">
                                 <Border.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Opacity" Easing="CubicEaseOut"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform"
-                                                                       Easing="CubicEaseOut"
-                                                                       Duration="{StaticResource ControlInstantAnimationDuration}" />
+                                        <DoubleTransition
+                                            Easing="CubicEaseOut"
+                                            Property="Opacity"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="CubicEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlInstantAnimationDuration}" />
                                     </Transitions>
                                 </Border.Transitions>
                             </Border>
                         </Panel>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Grid.Column="1"
-                                      Margin="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      IsVisible="{TemplateBinding Content,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      RecognizesAccessKey="True"
-                                      TextElement.Foreground="{TemplateBinding Foreground}"
-                                      TextElement.FontSize="{TemplateBinding FontSize}"
-                                      TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Grid.Column="1"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        IsVisible="{TemplateBinding Content,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        RecognizesAccessKey="True"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
             </ControlTemplate>
         </Setter>
@@ -131,7 +167,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="AlternativeRadioButtonTheme" TargetType="RadioButton">
+    <ControlTheme
+        x:Key="AlternativeRadioButtonTheme"
+        TargetType="RadioButton">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="2" />
@@ -139,51 +177,65 @@
         <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="6" Background="{StaticResource TransparentBrush}">
-                    <Border Grid.Column="0" Name="Box" Cursor="Hand"
-                            MinHeight="{TemplateBinding FontSize}"
-                            MinWidth="{TemplateBinding FontSize}"
-                            Height="16"
-                            Width="16"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                <Grid
+                    Background="{StaticResource TransparentBrush}"
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="6">
+                    <Border
+                        Name="Box"
+                        Grid.Column="0"
+                        Width="16"
+                        Height="16"
+                        MinWidth="{TemplateBinding FontSize}"
+                        MinHeight="{TemplateBinding FontSize}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Cursor="Hand">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="BorderBrush" Easing="SineEaseOut"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <Panel>
-                            <Border Name="Indicator" CornerRadius="{StaticResource FullCornerRadius}"
-                                    Margin="{TemplateBinding BorderThickness}"
-                                    Background="{StaticResource OverlaySolidBackgroundBrush}">
+                            <Border
+                                Name="Indicator"
+                                Margin="{TemplateBinding BorderThickness}"
+                                Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                CornerRadius="{StaticResource FullCornerRadius}">
                                 <Border.Transitions>
                                     <Transitions>
-                                        <TransformOperationsTransition Property="RenderTransform"
-                                                                       Easing="CubicEaseOut"
-                                                                       Duration="{StaticResource ControlInstantAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="CubicEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlInstantAnimationDuration}" />
                                     </Transitions>
                                 </Border.Transitions>
                             </Border>
                         </Panel>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter"
-                                      Grid.Column="1"
-                                      Margin="{TemplateBinding Padding}"
-                                      HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                      VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                      Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      IsVisible="{TemplateBinding Content,
-                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
-                                      RecognizesAccessKey="True"
-                                      TextElement.Foreground="{TemplateBinding Foreground}"
-                                      TextElement.FontSize="{TemplateBinding FontSize}"
-                                      TextElement.FontWeight="{TemplateBinding FontWeight}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Grid.Column="1"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        IsVisible="{TemplateBinding Content,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        RecognizesAccessKey="True"
+                        TextElement.FontSize="{TemplateBinding FontSize}"
+                        TextElement.FontWeight="{TemplateBinding FontWeight}"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
             </ControlTemplate>
         </Setter>

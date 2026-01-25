@@ -1,45 +1,91 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="using:System"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:sys="using:System">
     <Design.PreviewWith>
-        <Grid Width="1024" Height="340" ColumnDefinitions="*,*">
-            <TabControl Grid.Column="0" Margin="24" TabStripPlacement="Top">
+        <Grid
+            Width="1024"
+            Height="340"
+            ColumnDefinitions="*,*">
+            <TabControl
+                Grid.Column="0"
+                Margin="24"
+                TabStripPlacement="Top">
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <fi:SymbolIcon Symbol="Info" FontSize="{StaticResource MediumFontSize}" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="4">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="Info" />
                             <TextBlock Text="Fancy" />
                         </StackPanel>
                     </TabItem.Header>
                     <Button Content="Too" />
                 </TabItem>
-                <TabItem Header="Too" Classes="Primary">
+                <TabItem
+                    Classes="Primary"
+                    Header="Too">
                     <Button Content="Fancy" />
                 </TabItem>
-                <TabItem Header="Disabled" IsSelected="True" Content="The Whole World" IsEnabled="False" />
-                <TabItem Header="Hello" Theme="{StaticResource SolidTabItemTheme}">
-                    <Button Content="Peanut" Theme="{StaticResource GhostButtonTheme}" Classes="Primary"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TabItem
+                    IsEnabled="False"
+                    Content="The Whole World"
+                    Header="Disabled"
+                    IsSelected="True" />
+                <TabItem
+                    Header="Hello"
+                    Theme="{StaticResource SolidTabItemTheme}">
+                    <Button
+                        Classes="Primary"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="Peanut"
+                        Theme="{StaticResource GhostButtonTheme}" />
                 </TabItem>
-                <TabItem Header="Primary" Classes="Primary" Theme="{StaticResource SolidTabItemTheme}">
-                    <Button Content="Butter" Classes="Primary" />
+                <TabItem
+                    Classes="Primary"
+                    Header="Primary"
+                    Theme="{StaticResource SolidTabItemTheme}">
+                    <Button
+                        Classes="Primary"
+                        Content="Butter" />
                 </TabItem>
             </TabControl>
-            <TabControl Grid.Column="1" Margin="24" TabStripPlacement="Left">
+            <TabControl
+                Grid.Column="1"
+                Margin="24"
+                TabStripPlacement="Left">
                 <TabItem Header="Fancy">
                     <Button Content="Too" />
                 </TabItem>
-                <TabItem Header="Too" Classes="Primary">
+                <TabItem
+                    Classes="Primary"
+                    Header="Too">
                     <Button Content="Fancy" />
                 </TabItem>
-                <TabItem Header="Disabled" IsSelected="True" Content="The Whole World" IsEnabled="False" />
-                <TabItem Header="Hello" Theme="{StaticResource SolidTabItemTheme}">
-                    <Button Content="Peanut" Background="{StaticResource TransparentBrush}" />
+                <TabItem
+                    IsEnabled="False"
+                    Content="The Whole World"
+                    Header="Disabled"
+                    IsSelected="True" />
+                <TabItem
+                    Header="Hello"
+                    Theme="{StaticResource SolidTabItemTheme}">
+                    <Button
+                        Background="{StaticResource TransparentBrush}"
+                        Content="Peanut" />
                 </TabItem>
-                <TabItem Header="Primary" Classes="Primary" Theme="{StaticResource SolidTabItemTheme}">
-                    <Button Content="Butter" Classes="Primary" />
+                <TabItem
+                    Classes="Primary"
+                    Header="Primary"
+                    Theme="{StaticResource SolidTabItemTheme}">
+                    <Button
+                        Classes="Primary"
+                        Content="Butter" />
                 </TabItem>
             </TabControl>
         </Grid>
@@ -50,7 +96,9 @@
     <sys:Double x:Key="TabItemHighlightThickness">4</sys:Double>
     <sys:Double x:Key="TabItemHighlightMidPoint">0.4</sys:Double>
 
-    <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+    <ControlTheme
+        x:Key="{x:Type TabControl}"
+        TargetType="TabControl">
         <Setter Property="Padding" Value="{StaticResource TabContentMargin}" />
         <Setter Property="Template">
             <ControlTemplate TargetType="TabControl">
@@ -60,34 +108,35 @@
                             <ScrollViewer
                                 HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                 VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                                <ItemsPresenter Name="PART_ItemsPresenter"
-                                                ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                <ItemsPresenter
+                                    Name="PART_ItemsPresenter"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
                             </ScrollViewer>
                         </Panel>
-                        <!-- <ContentPresenter -->
-                        <!--     Name="PART_ContentPresenter" -->
-                        <!--     Padding="{TemplateBinding Padding}" -->
-                        <!--     Background="{TemplateBinding Background}" -->
-                        <!--     BackgroundSizing="{TemplateBinding BackgroundSizing}" -->
-                        <!--     BorderBrush="{TemplateBinding BorderBrush}" -->
-                        <!--     BorderThickness="{TemplateBinding BorderThickness}" -->
-                        <!--     CornerRadius="{TemplateBinding CornerRadius}" -->
-                        <!--     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" -->
-                        <!--     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" -->
-                        <!--     Content="{TemplateBinding SelectedContent}" -->
-                        <!--     ContentTemplate="{TemplateBinding SelectedContentTemplate}" /> -->
+                        <!--  <ContentPresenter  -->
+                        <!--  Name="PART_ContentPresenter"  -->
+                        <!--  Padding="{TemplateBinding Padding}"  -->
+                        <!--  Background="{TemplateBinding Background}"  -->
+                        <!--  BackgroundSizing="{TemplateBinding BackgroundSizing}"  -->
+                        <!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+                        <!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+                        <!--  CornerRadius="{TemplateBinding CornerRadius}"  -->
+                        <!--  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+                        <!--  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"  -->
+                        <!--  Content="{TemplateBinding SelectedContent}"  -->
+                        <!--  ContentTemplate="{TemplateBinding SelectedContentTemplate}" />  -->
                         <TransitioningContentControl
                             Name="PART_ContentPresenter"
                             Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Background="{TemplateBinding Background}"
                             BackgroundSizing="{TemplateBinding BackgroundSizing}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding SelectedContent}"
-                            ContentTemplate="{TemplateBinding SelectedContentTemplate}">
+                            ContentTemplate="{TemplateBinding SelectedContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
                             <TransitioningContentControl.PageTransition>
                                 <husk:TabTransition />
                             </TransitioningContentControl.PageTransition>
@@ -97,23 +146,31 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter &gt; WrapPanel">
             <Setter Property="Orientation" Value="Vertical" />
         </Style>
-        <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter > WrapPanel">
+        <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter &gt; WrapPanel">
             <Setter Property="Orientation" Value="Vertical" />
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="NeoTabControlTheme" TargetType="TabControl" BasedOn="{StaticResource {x:Type TabControl}}">
+    <ControlTheme
+        x:Key="NeoTabControlTheme"
+        BasedOn="{StaticResource {x:Type TabControl}}"
+        TargetType="TabControl">
         <Setter Property="ItemContainerTheme" Value="{StaticResource NeoTabItemTheme}" />
     </ControlTheme>
 
-    <ControlTheme x:Key="SolidTabControlTheme" TargetType="TabControl" BasedOn="{StaticResource {x:Type TabControl}}">
+    <ControlTheme
+        x:Key="SolidTabControlTheme"
+        BasedOn="{StaticResource {x:Type TabControl}}"
+        TargetType="TabControl">
         <Setter Property="ItemContainerTheme" Value="{StaticResource SolidTabItemTheme}" />
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
+    <ControlTheme
+        x:Key="{x:Type TabItem}"
+        TargetType="TabItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,6" />
         <Setter Property="Margin" Value="4" />
@@ -125,23 +182,35 @@
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Panel Name="Container" Background="{TemplateBinding Background}">
+                <Panel
+                    Name="Container"
+                    Background="{TemplateBinding Background}">
                     <Panel.Transitions>
                         <Transitions>
-                            <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                              Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            <DoubleTransition
+                                Easing="SineEaseOut"
+                                Property="Opacity"
+                                Duration="{StaticResource ControlFasterAnimationDuration}" />
                         </Transitions>
                     </Panel.Transitions>
-                    <Border x:Name="PART_Indicator" Background="{StaticResource ControlBackgroundBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="PART_Indicator"
+                        Background="{StaticResource ControlBackgroundBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition Property="Background" Easing="SineEaseIn"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <TransformOperationsTransition Property="RenderTransform" Easing="QuarticEaseInOut"
-                                                               Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseIn"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <TransformOperationsTransition
+                                    Easing="QuarticEaseInOut"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
@@ -151,14 +220,14 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         FontFamily="{TemplateBinding FontFamily}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        Foreground="{TemplateBinding Foreground}"
                         FontSize="{TemplateBinding FontSize}"
                         FontStretch="{TemplateBinding FontStretch}"
                         FontStyle="{TemplateBinding FontStyle}"
-                        ContentTemplate="{TemplateBinding HeaderTemplate}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
                         RecognizesAccessKey="True"
                         TextElement.FontSize="{TemplateBinding FontSize}"
                         TextElement.FontWeight="{TemplateBinding FontWeight}" />
@@ -179,8 +248,7 @@
 
         <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Height"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
             <Setter Property="RenderTransform" Value="scaleX(0.0)" />
         </Style>
         <Style Selector="^[TabStripPlacement=Top]:selected /template/ Border#PART_Indicator">
@@ -191,8 +259,7 @@
         </Style>
         <Style Selector="^[TabStripPlacement=Bottom] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
             <Setter Property="RenderTransform" Value="scaleX(0.0)" />
         </Style>
         <Style Selector="^[TabStripPlacement=Bottom]:selected /template/ Border#PART_Indicator">
@@ -203,8 +270,7 @@
         </Style>
         <Style Selector="^[TabStripPlacement=Left] /template/ Border#PART_Indicator">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Width"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Width" Value="{StaticResource TabItemHighlightThickness}" />
             <Setter Property="RenderTransform" Value="scaleY(0.0)" />
         </Style>
         <Style Selector="^[TabStripPlacement=Left]:selected /template/ Border#PART_Indicator">
@@ -215,8 +281,7 @@
         </Style>
         <Style Selector="^[TabStripPlacement=Right] /template/ Border#PART_Indicator">
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Width"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Width" Value="{StaticResource TabItemHighlightThickness}" />
             <Setter Property="RenderTransform" Value="scaleY(0.0)" />
         </Style>
         <Style Selector="^[TabStripPlacement=Right]:selected /template/ Border#PART_Indicator">
@@ -227,7 +292,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="NeoTabItemTheme" TargetType="TabItem">
+    <ControlTheme
+        x:Key="NeoTabItemTheme"
+        TargetType="TabItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="10,6" />
         <Setter Property="Margin" Value="2" />
@@ -237,33 +304,41 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Background="{TemplateBinding Background}">
-                    <Border Name="PART_Overlay" Background="{StaticResource ControlAccentInteractiveBackgroundBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}" Opacity="0.65">
+                    <Border
+                        Name="PART_Overlay"
+                        Background="{StaticResource ControlAccentInteractiveBackgroundBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0.65">
                         <Border.OpacityMask>
                             <SolidColorBrush Color="{StaticResource TransparentColor}" />
                         </Border.OpacityMask>
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="OpacityMask"
-                                                 Duration="{StaticResource ControlFasterAnimationDuration}"
-                                                 Easing="SineEaseIn" />
+                                <BrushTransition
+                                    Easing="SineEaseIn"
+                                    Property="OpacityMask"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <Border Name="PART_Indicator"
-                            CornerRadius="{TemplateBinding CornerRadius}"
-                            Background="{StaticResource ControlAccentInteractiveBorderBrush}">
+                    <Border
+                        Name="PART_Indicator"
+                        Background="{StaticResource ControlAccentInteractiveBorderBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <TransformOperationsTransition Property="RenderTransform"
-                                                               Duration="{StaticResource ControlFastestAnimationDuration}"
-                                                               Easing="SineEaseIn" />
+                                <TransformOperationsTransition
+                                    Easing="SineEaseIn"
+                                    Property="RenderTransform"
+                                    Duration="{StaticResource ControlFastestAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <ContentPresenter Name="PART_ContentPresenter" Content="{TemplateBinding Header}"
-                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                      Padding="{TemplateBinding Padding}" />
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Padding="{TemplateBinding Padding}"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
@@ -321,9 +396,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}"
-                                      Offset="{StaticResource TabItemHighlightMidPoint}" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="{StaticResource TabItemHighlightMidPoint}" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -332,9 +406,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="50%,100%" EndPoint="50%,0%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}"
-                                      Offset="{StaticResource TabItemHighlightMidPoint}" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="{StaticResource TabItemHighlightMidPoint}" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -343,9 +416,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="100%,50%" EndPoint="0%,50%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}"
-                                      Offset="{StaticResource TabItemHighlightMidPoint}" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="{StaticResource TabItemHighlightMidPoint}" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -354,9 +426,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}"
-                                      Offset="{StaticResource TabItemHighlightMidPoint}" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="{StaticResource TabItemHighlightMidPoint}" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -366,8 +437,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}" Offset="0" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="0" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -376,8 +447,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="50%,100%" EndPoint="50%,0%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}" Offset="0" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="0" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -386,8 +457,8 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="100%,50%" EndPoint="0%,50%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}" Offset="0" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="0" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
@@ -396,15 +467,17 @@
             <Setter Property="OpacityMask">
                 <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
                     <GradientStops>
-                        <GradientStop Color="{StaticResource TransparentColor}" Offset="0" />
-                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Offset="0" Color="{StaticResource TransparentColor}" />
+                        <GradientStop Offset="1" Color="Black" />
                     </GradientStops>
                 </LinearGradientBrush>
             </Setter>
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="SolidTabItemTheme" TargetType="TabItem">
+    <ControlTheme
+        x:Key="SolidTabItemTheme"
+        TargetType="TabItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,6" />
         <Setter Property="Margin" Value="4" />
@@ -417,17 +490,24 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel Background="{TemplateBinding Background}">
-                    <Border x:Name="PART_Indicator" Background="{StaticResource TransparentBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="PART_Indicator"
+                        Background="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition Property="Background"
-                                                 Duration="{StaticResource ControlNormalAnimationDuration}"
-                                                 Easing="SineEaseOut" />
-                                <DoubleTransition Property="Height" Easing="QuarticEaseInOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <DoubleTransition Property="Width" Easing="QuarticEaseInOut"
-                                                  Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlNormalAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="QuarticEaseInOut"
+                                    Property="Height"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="QuarticEaseInOut"
+                                    Property="Width"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
@@ -437,21 +517,23 @@
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         FontFamily="{TemplateBinding FontFamily}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        Foreground="{TemplateBinding Foreground}"
                         FontSize="{TemplateBinding FontSize}"
                         FontStretch="{TemplateBinding FontStretch}"
                         FontStyle="{TemplateBinding FontStyle}"
-                        ContentTemplate="{TemplateBinding HeaderTemplate}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
                         RecognizesAccessKey="True"
                         TextElement.FontSize="{TemplateBinding FontSize}"
                         TextElement.FontWeight="{TemplateBinding FontWeight}">
                         <ContentPresenter.Transitions>
                             <Transitions>
-                                <DoubleTransition Property="Opacity" Easing="SineEaseOut"
-                                                  Duration="{StaticResource ControlNormalAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlNormalAnimationDuration}" />
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
@@ -480,40 +562,32 @@
 
         <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Height"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Bottom] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Left] /template/ Border#PART_Indicator">
             <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Width"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Width" Value="{StaticResource TabItemHighlightThickness}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Right] /template/ Border#PART_Indicator">
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Width"
-                    Value="{StaticResource TabItemHighlightThickness}" />
+            <Setter Property="Width" Value="{StaticResource TabItemHighlightThickness}" />
         </Style>
 
         <Style Selector="^[TabStripPlacement=Top]:selected /template/ Border#PART_Indicator">
-            <Setter Property="Height"
-                    Value="{Binding Bounds.Height,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            <Setter Property="Height" Value="{Binding Bounds.Height, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Bottom]:selected /template/ Border#PART_Indicator">
-            <Setter Property="Height"
-                    Value="{Binding Bounds.Height,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            <Setter Property="Height" Value="{Binding Bounds.Height, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Left]:selected /template/ Border#PART_Indicator">
-            <Setter Property="Width"
-                    Value="{Binding Bounds.Width,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            <Setter Property="Width" Value="{Binding Bounds.Width, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Style>
         <Style Selector="^[TabStripPlacement=Right]:selected /template/ Border#PART_Indicator">
-            <Setter Property="Width"
-                    Value="{Binding Bounds.Width,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+            <Setter Property="Width" Value="{Binding Bounds.Width, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
         </Style>
 
         <Style Selector="^.Primary:pointerover /template/ Border#PART_Indicator">

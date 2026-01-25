@@ -1,10 +1,13 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <ControlTheme x:Key="{x:Type controls:ExampleContainer}" TargetType="controls:ExampleContainer">
+    <ControlTheme
+        x:Key="{x:Type controls:ExampleContainer}"
+        TargetType="controls:ExampleContainer">
         <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -12,110 +15,140 @@
         <Setter Property="Padding" Value="24" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,Auto,*,Auto">
-                        <!-- Header -->
-                        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="16">
+                        <!--  Header  -->
+                        <Grid
+                            Grid.Row="0"
+                            Margin="16"
+                            ColumnDefinitions="*,Auto">
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="{TemplateBinding Title}"
-                                           FontSize="{StaticResource LargeFontSize}"
-                                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                                           IsVisible="{Binding Title, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
-                                <TextBlock Text="{TemplateBinding Description}"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           TextWrapping="Wrap"
-                                           Margin="0,4,0,0"
-                                           IsVisible="{Binding Description, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                <TextBlock
+                                    IsVisible="{Binding Title, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="{TemplateBinding Title}" />
+                                <TextBlock
+                                    Margin="0,4,0,0"
+                                    IsVisible="{Binding Description, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="{TemplateBinding Description}"
+                                    TextWrapping="Wrap" />
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                                <!-- Options (for custom buttons like ShowCode) -->
-                                <ContentPresenter Content="{TemplateBinding Options}"
-                                                  IsVisible="{TemplateBinding Options, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <!--  Options (for custom buttons like ShowCode)  -->
+                                <ContentPresenter
+                                    IsVisible="{TemplateBinding Options,
+                                                                Converter={x:Static ObjectConverters.IsNotNull}}"
+                                    Content="{TemplateBinding Options}" />
 
-                                <!-- Enable Toggle Button -->
-                                <ToggleButton Name="PART_EnableToggle"
-                                              Theme="{StaticResource GhostToggleButtonTheme}"
-                                              VerticalAlignment="Center"
-                                              ToolTip.Tip="Toggle Enable State">
-                                    <fi:SymbolIcon Symbol="Power" FontSize="{StaticResource SmallFontSize}" />
+                                <!--  Enable Toggle Button  -->
+                                <ToggleButton
+                                    Name="PART_EnableToggle"
+                                    VerticalAlignment="Center"
+                                    Theme="{StaticResource GhostToggleButtonTheme}"
+                                    ToolTip.Tip="Toggle Enable State">
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Symbol="Power" />
                                 </ToggleButton>
 
-                                <!-- Code Toggle Button -->
-                                <ToggleButton Name="PART_CodeToggle"
-                                              Theme="{StaticResource GhostToggleButtonTheme}"
-                                              VerticalAlignment="Center"
-                                              ToolTip.Tip="Toggle Code View"
-                                              IsChecked="{Binding ShowCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}}"
-                                              IsVisible="{Binding XamlCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                    <fi:SymbolIcon Symbol="Code" FontSize="{StaticResource SmallFontSize}" />
+                                <!--  Code Toggle Button  -->
+                                <ToggleButton
+                                    Name="PART_CodeToggle"
+                                    VerticalAlignment="Center"
+                                    IsVisible="{Binding XamlCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    IsChecked="{Binding ShowCode, RelativeSource={RelativeSource AncestorType=controls:ExampleContainer}}"
+                                    Theme="{StaticResource GhostToggleButtonTheme}"
+                                    ToolTip.Tip="Toggle Code View">
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Symbol="Code" />
                                 </ToggleButton>
                             </StackPanel>
                         </Grid>
 
-                        <!-- Divider -->
+                        <!--  Divider  -->
                         <husk:Divider Grid.Row="1" />
 
-                        <!-- Content with Controls Panel -->
-                        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
-                            <!-- Main Content -->
-                            <ContentPresenter Grid.Column="0"
-                                              Name="PART_ContentContainer"
-                                              Content="{TemplateBinding Content}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Padding="{TemplateBinding Padding}" />
+                        <!--  Content with Controls Panel  -->
+                        <Grid
+                            Grid.Row="2"
+                            ColumnDefinitions="*,Auto">
+                            <!--  Main Content  -->
+                            <ContentPresenter
+                                Name="PART_ContentContainer"
+                                Grid.Column="0"
+                                Padding="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
 
-                            <!-- Controls Panel (Right Side) -->
-                            <Border Grid.Column="1"
-                                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                    BorderBrush="{StaticResource ControlBorderBrush}"
-                                    BorderThickness="1,0,0,0"
-                                    Padding="16"
-                                    Width="300"
-                                    IsVisible="{TemplateBinding Controls, Converter={x:Static ObjectConverters.IsNotNull}}">
+                            <!--  Controls Panel (Right Side)  -->
+                            <Border
+                                Grid.Column="1"
+                                Width="300"
+                                Padding="16"
+                                IsVisible="{TemplateBinding Controls,
+                                                            Converter={x:Static ObjectConverters.IsNotNull}}"
+                                Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                                BorderBrush="{StaticResource ControlBorderBrush}"
+                                BorderThickness="1,0,0,0">
                                 <ContentPresenter Content="{TemplateBinding Controls}" />
                             </Border>
                         </Grid>
 
-                        <!-- Code Section -->
-                        <Border Grid.Row="3"
-                                Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                BorderBrush="{StaticResource ControlBorderBrush}"
-                                BorderThickness="1"
-                                Margin="0,16,0,0"
-                                IsVisible="{TemplateBinding ShowCode}">
+                        <!--  Code Section  -->
+                        <Border
+                            Grid.Row="3"
+                            Margin="0,16,0,0"
+                            IsVisible="{TemplateBinding ShowCode}"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1">
                             <StackPanel>
-                                <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                        BorderBrush="{StaticResource ControlBorderBrush}"
-                                        BorderThickness="0,0,0,1"
-                                        Padding="12,8"
-                                        IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                    <TextBlock Text="XAML Code"
-                                               FontWeight="{StaticResource ControlStrongFontWeight}"
-                                               FontSize="{StaticResource SmallFontSize}" />
+                                <Border
+                                    Padding="12,8"
+                                    IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                                    BorderBrush="{StaticResource ControlBorderBrush}"
+                                    BorderThickness="0,0,0,1">
+                                    <TextBlock
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Text="XAML Code" />
                                 </Border>
-                                <controls:CodeViewer Code="{TemplateBinding XamlCode}"
-                                                     Language="xml"
-                                                     IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                <controls:CodeViewer
+                                    IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    Code="{TemplateBinding XamlCode}"
+                                    Language="xml" />
 
-                                <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                        BorderBrush="{StaticResource ControlBorderBrush}"
-                                        BorderThickness="0,1,0,1"
-                                        Padding="12,8"
-                                        IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                                    <TextBlock Text="C# Code"
-                                               FontWeight="{StaticResource ControlStrongFontWeight}"
-                                               FontSize="{StaticResource SmallFontSize}" />
+                                <Border
+                                    Padding="12,8"
+                                    IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                                    BorderBrush="{StaticResource ControlBorderBrush}"
+                                    BorderThickness="0,1,0,1">
+                                    <TextBlock
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Text="C# Code" />
                                 </Border>
-                                <controls:CodeViewer Code="{TemplateBinding CSharpCode}"
-                                                     Language="csharp"
-                                                     CornerRadius="{TemplateBinding CornerRadius,Converter={x:Static husk:CornerRadiusConverters.Lower}}"
-                                                     IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                <controls:CodeViewer
+                                    IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                    Code="{TemplateBinding CSharpCode}"
+                                    CornerRadius="{TemplateBinding CornerRadius,
+                                                                   Converter={x:Static husk:CornerRadiusConverters.Lower}}"
+                                    Language="csharp" />
                             </StackPanel>
                         </Border>
                     </Grid>

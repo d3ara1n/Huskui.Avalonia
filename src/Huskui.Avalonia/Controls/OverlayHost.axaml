@@ -1,9 +1,13 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <Design.PreviewWith>
-        <Panel Background="White" Width="800" Height="600">
+        <Panel
+            Width="800"
+            Height="600"
+            Background="White">
             <local:OverlayHost>
                 <local:OverlayItem Background="Yellow" />
                 <local:OverlayItem Background="Brown" />
@@ -11,7 +15,9 @@
                 <local:OverlayItem Background="DeepSkyBlue" />
                 <local:OverlayItem Background="Olive">
                     <Panel>
-                        <Border BorderThickness="4" BorderBrush="Coral" />
+                        <Border
+                            BorderBrush="Coral"
+                            BorderThickness="4" />
                         <StackPanel>
                             <TextBlock Text="Hello" />
                             <Button Content="World" />
@@ -22,15 +28,19 @@
         </Panel>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="{x:Type local:OverlayHost}" TargetType="local:OverlayHost">
+    <ControlTheme
+        x:Key="{x:Type local:OverlayHost}"
+        TargetType="local:OverlayHost">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <Border Name="{x:Static local:OverlayHost.PART_SmokeMask}" Opacity="0"
-                            IsHitTestVisible="False"
-                            Background="{StaticResource OverlaySmokeBackgroundBrush}">
+                    <Border
+                        Name="{x:Static local:OverlayHost.PART_SmokeMask}"
+                        IsHitTestVisible="False"
+                        Background="{StaticResource OverlaySmokeBackgroundBrush}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
                                 <DoubleTransition
@@ -40,11 +50,13 @@
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <ItemsControl Name="{x:Static local:OverlayHost.PART_ItemsPresenter}"
-                                  ItemsSource="{Binding Items,Mode=OneWay,RelativeSource={RelativeSource TemplatedParent}}"
-                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                  Margin="{TemplateBinding Padding}" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    <ItemsControl
+                        Name="{x:Static local:OverlayHost.PART_ItemsPresenter}"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ItemsPanel="{TemplateBinding ItemsPanel}"
+                        ItemsSource="{Binding Items, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                 </Panel>
             </ControlTemplate>
         </Setter>

@@ -1,63 +1,77 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
 
-    <ControlTheme x:Key="{x:Type controls:CodeViewer}" TargetType="controls:CodeViewer">
+    <ControlTheme
+        x:Key="{x:Type controls:CodeViewer}"
+        TargetType="controls:CodeViewer">
         <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,*">
-                        <!-- Header with copy button -->
-                        <Border Grid.Row="0"
-                                Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                BorderBrush="{StaticResource ControlBorderBrush}"
-                                BorderThickness="0,0,0,1"
-                                Padding="12,8"
-                                IsVisible="{TemplateBinding ShowCopyButton}">
+                        <!--  Header with copy button  -->
+                        <Border
+                            Grid.Row="0"
+                            Padding="12,8"
+                            IsVisible="{TemplateBinding ShowCopyButton}"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="0,0,0,1">
                             <Grid ColumnDefinitions="*,Auto">
-                                <TextBlock Grid.Column="0"
-                                           Text="{TemplateBinding Language}"
-                                           FontSize="{StaticResource SmallFontSize}"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           VerticalAlignment="Center" />
-                                <Button Grid.Column="1"
-                                        Name="PART_CopyButton"
-                                        Theme="{StaticResource GhostButtonTheme}"
-                                        Classes="Small"
-                                        ToolTip.Tip="Copy to Clipboard">
-                                    <fi:SymbolIcon Symbol="Copy" FontSize="{StaticResource SmallFontSize}" />
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="{TemplateBinding Language}" />
+                                <Button
+                                    Name="PART_CopyButton"
+                                    Classes="Small"
+                                    Grid.Column="1"
+                                    Theme="{StaticResource GhostButtonTheme}"
+                                    ToolTip.Tip="Copy to Clipboard">
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Symbol="Copy" />
                                 </Button>
                             </Grid>
                         </Border>
 
-                        <!-- Code content -->
-                        <ScrollViewer Grid.Row="1"
-                                      HorizontalScrollBarVisibility="Auto"
-                                      VerticalScrollBarVisibility="Auto">
-                            <Grid ColumnDefinitions="Auto,*" Margin="12">
-                                <!-- Line numbers -->
-                                <TextBlock Grid.Column="0"
-                                           Name="PART_LineNumbers"
-                                           FontSize="{StaticResource SmallFontSize}"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           VerticalAlignment="Top"
-                                           Margin="0,0,12,0"
-                                           IsVisible="{TemplateBinding ShowLineNumbers}" />
+                        <!--  Code content  -->
+                        <ScrollViewer
+                            Grid.Row="1"
+                            HorizontalScrollBarVisibility="Auto"
+                            VerticalScrollBarVisibility="Auto">
+                            <Grid
+                                Margin="12"
+                                ColumnDefinitions="Auto,*">
+                                <!--  Line numbers  -->
+                                <TextBlock
+                                    Name="PART_LineNumbers"
+                                    Grid.Column="0"
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Top"
+                                    IsVisible="{TemplateBinding ShowLineNumbers}"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
 
-                                <!-- Code text -->
-                                <TextBlock Grid.Column="1"
-                                           Name="PART_CodeText"
-                                           FontSize="{StaticResource SmallFontSize}"
-                                           Text="{TemplateBinding Code}"
-                                           TextWrapping="NoWrap"
-                                           VerticalAlignment="Top" />
+                                <!--  Code text  -->
+                                <TextBlock
+                                    Name="PART_CodeText"
+                                    Grid.Column="1"
+                                    VerticalAlignment="Top"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Text="{TemplateBinding Code}"
+                                    TextWrapping="NoWrap" />
                             </Grid>
                         </ScrollViewer>
                     </Grid>

@@ -1,99 +1,130 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-             xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-             x:Class="Huskui.Gallery.Views.HomePage">
+﻿<UserControl
+    x:Class="Huskui.Gallery.Views.HomePage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <ScrollViewer>
-        <StackPanel Margin="48" Spacing="32" MaxWidth="800">
-            <!-- Welcome Section -->
+        <StackPanel
+            MaxWidth="800"
+            Margin="48"
+            Spacing="32">
+            <!--  Welcome Section  -->
             <StackPanel Spacing="16">
-                <TextBlock Text="Welcome to Huskui Gallery"
-                           Classes="WelcomeTitle" />
-                <TextBlock Text="Explore the comprehensive collection of Huskui.Avalonia controls and components"
-                           Classes="WelcomeSubtitle"
-                           TextWrapping="Wrap" />
+                <TextBlock
+                    Classes="WelcomeTitle"
+                    Text="Welcome to Huskui Gallery" />
+                <TextBlock
+                    Classes="WelcomeSubtitle"
+                    Text="Explore the comprehensive collection of Huskui.Avalonia controls and components"
+                    TextWrapping="Wrap" />
             </StackPanel>
 
-            <!-- Features Grid -->
-            <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*" RowSpacing="24" ColumnSpacing="24">
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
-                           Text="Features"
-                           FontSize="{StaticResource LargeFontSize}"
-                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                           Margin="0,0,0,16" />
+            <!--  Features Grid  -->
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="24"
+                RowDefinitions="Auto,*"
+                RowSpacing="24">
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,0,16"
+                    FontSize="{StaticResource LargeFontSize}"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Features" />
 
-                <!-- Rich Components -->
-                <Border Grid.Row="1" Grid.Column="0" Classes="FeatureCard">
+                <!--  Rich Components  -->
+                <Border
+                    Classes="FeatureCard"
+                    Grid.Row="1"
+                    Grid.Column="0">
                     <StackPanel Spacing="16">
-                        <fi:SymbolIcon Symbol="ControlButton"
-                                       FontSize="32"
-                                       Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                        <fi:SymbolIcon
+                            FontSize="32"
+                            Foreground="{StaticResource ControlAccentForegroundBrush}"
+                            Symbol="ControlButton" />
                         <StackPanel Spacing="8">
-                            <TextBlock Text="Rich Component Library"
-                                       FontSize="{StaticResource LargeFontSize}"
-                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
                             <TextBlock
-                                Text="Comprehensive set of UI components including buttons, cards, info bars, and more"
+                                FontSize="{StaticResource LargeFontSize}"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Rich Component Library" />
+                            <TextBlock
                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Comprehensive set of UI components including buttons, cards, info bars, and more"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
 
-                <!-- Theming Support -->
-                <Border Grid.Row="1" Grid.Column="1" Classes="FeatureCard">
+                <!--  Theming Support  -->
+                <Border
+                    Classes="FeatureCard"
+                    Grid.Row="1"
+                    Grid.Column="1">
                     <StackPanel Spacing="16">
-                        <fi:SymbolIcon Symbol="ColorBackground"
-                                       FontSize="32"
-                                       Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                        <fi:SymbolIcon
+                            FontSize="32"
+                            Foreground="{StaticResource ControlAccentForegroundBrush}"
+                            Symbol="ColorBackground" />
                         <StackPanel Spacing="8">
-                            <TextBlock Text="Advanced Theming"
-                                       FontSize="{StaticResource LargeFontSize}"
-                                       FontWeight="{StaticResource ControlStrongFontWeight}" />
                             <TextBlock
-                                Text="Built-in support for light/dark themes with customizable accent colors and corner styles"
+                                FontSize="{StaticResource LargeFontSize}"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Advanced Theming" />
+                            <TextBlock
                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Built-in support for light/dark themes with customizable accent colors and corner styles"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </Grid>
 
-            <!-- Quick Start -->
+            <!--  Quick Start  -->
             <StackPanel Spacing="24">
-                <TextBlock Text="Quick Start"
-                           FontSize="{StaticResource LargeFontSize}"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock
+                    FontSize="{StaticResource LargeFontSize}"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Quick Start" />
 
                 <husk:Card Padding="24">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="Getting Started with Huskui.Avalonia"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Getting Started with Huskui.Avalonia" />
 
-                        <TextBlock Text="1. Install the NuGet package:"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="1. Install the NuGet package:" />
 
-                        <Border Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                BorderBrush="{StaticResource ControlBorderBrush}"
-                                BorderThickness="1"
-                                CornerRadius="{StaticResource SmallCornerRadius}"
-                                Padding="12">
-                            <TextBlock Text="dotnet add package Huskui.Avalonia"
-                                       FontSize="{StaticResource SmallFontSize}" />
+                        <Border
+                            Padding="12"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Text="dotnet add package Huskui.Avalonia" />
                         </Border>
 
-                        <TextBlock Text="2. Add the theme to your App.axaml:"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="2. Add the theme to your App.axaml:" />
 
-                        <Border Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                                BorderBrush="{StaticResource ControlBorderBrush}"
-                                BorderThickness="1"
-                                CornerRadius="{StaticResource SmallCornerRadius}"
-                                Padding="12">
+                        <Border
+                            Padding="12"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <TextBlock FontSize="{StaticResource SmallFontSize}">
                                 <Run Text="xmlns:husk=&quot;https://github.com/d3ara1n/Huskui.Avalonia&quot;" />
                                 <LineBreak />
@@ -106,17 +137,19 @@
                             </TextBlock>
                         </Border>
 
-                        <TextBlock Text="3. Start using Huskui controls in your views!"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="3. Start using Huskui controls in your views!" />
                     </StackPanel>
                 </husk:Card>
             </StackPanel>
 
-            <!-- Navigation Help -->
+            <!--  Navigation Help  -->
             <StackPanel Spacing="16">
-                <TextBlock Text="Navigation"
-                           FontSize="{StaticResource LargeFontSize}"
-                           FontWeight="{StaticResource ControlStrongFontWeight}" />
+                <TextBlock
+                    FontSize="{StaticResource LargeFontSize}"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Navigation" />
 
                 <husk:InfoBar Header="Explore the Gallery">
                     <TextBlock TextWrapping="Wrap">
@@ -127,26 +160,40 @@
                 </husk:InfoBar>
             </StackPanel>
 
-            <!-- Footer -->
+            <!--  Footer  -->
             <StackPanel Spacing="16">
                 <husk:Divider />
                 <Grid ColumnDefinitions="*,Auto">
-                    <StackPanel Grid.Column="0" Spacing="4">
-                        <TextBlock Text="Huskui.Avalonia Gallery"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}" />
-                        <TextBlock Text="A modern UI component library for Avalonia"
-                                   FontSize="{StaticResource SmallFontSize}"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <StackPanel
+                        Grid.Column="0"
+                        Spacing="4">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Huskui.Avalonia Gallery" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="A modern UI component library for Avalonia" />
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
-                        <HyperlinkButton Theme="{StaticResource GhostButtonTheme}"
-                                         ToolTip.Tip="GitHub Repository"
-                                         NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia">
-                            <fi:SymbolIcon Symbol="Open" FontSize="{StaticResource MediumFontSize}" />
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="8">
+                        <HyperlinkButton
+                            NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="GitHub Repository">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="Open" />
                         </HyperlinkButton>
-                        <HyperlinkButton Theme="{StaticResource GhostButtonTheme}"
-                                         ToolTip.Tip="Documentation" NavigateUri="https://docs.avaloniaui.net/">
-                            <fi:SymbolIcon Symbol="Document" FontSize="{StaticResource MediumFontSize}" />
+                        <HyperlinkButton
+                            NavigateUri="https://docs.avaloniaui.net/"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="Documentation">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="Document" />
                         </HyperlinkButton>
                     </StackPanel>
                 </Grid>

@@ -1,29 +1,40 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                    xmlns:viewModels="clr-namespace:Huskui.Gallery.ViewModels"
-                    xmlns:gallery="clr-namespace:Huskui.Gallery"
-                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
-    <ControlTheme x:Key="{x:Type controls:ControlPage}" TargetType="controls:ControlPage">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:gallery="clr-namespace:Huskui.Gallery"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:viewModels="clr-namespace:Huskui.Gallery.ViewModels">
+    <ControlTheme
+        x:Key="{x:Type controls:ControlPage}"
+        TargetType="controls:ControlPage">
         <Setter Property="Template">
             <ControlTemplate>
                 <ScrollViewer>
-                    <DockPanel Margin="48" VerticalSpacing="32" HorizontalAlignment="Center" MinWidth="800">
-                        <!-- Page Header -->
-                        <StackPanel DockPanel.Dock="Top" Spacing="8">
+                    <DockPanel
+                        MinWidth="800"
+                        Margin="48"
+                        HorizontalAlignment="Center"
+                        VerticalSpacing="32">
+                        <!--  Page Header  -->
+                        <StackPanel
+                            DockPanel.Dock="Top"
+                            Spacing="8">
                             <TextBlock
-                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Title,FallbackValue={x:Null}}"
                                 FontSize="28"
-                                FontWeight="{StaticResource ControlStrongFontWeight}" />
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Title, FallbackValue={x:Null}}" />
                             <TextBlock
-                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Description,FallbackValue={x:Null}}"
                                 FontSize="{StaticResource LargeFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
-                            <ItemsControl
-                                ItemsSource="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Tags,FallbackValue={x:Null}}">
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Description, FallbackValue={x:Null}}" />
+                            <ItemsControl ItemsSource="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Tags, FallbackValue={x:Null}}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal" LineSpacing="6" ItemSpacing="6" />
+                                        <WrapPanel
+                                            ItemSpacing="6"
+                                            LineSpacing="6"
+                                            Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
@@ -33,8 +44,9 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </StackPanel>
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </DockPanel>
                 </ScrollViewer>
             </ControlTemplate>

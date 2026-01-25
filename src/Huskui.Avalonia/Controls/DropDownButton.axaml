@@ -1,6 +1,7 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel>
@@ -10,7 +11,9 @@
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type DropDownButton}" TargetType="DropDownButton">
+    <ControlTheme
+        x:Key="{x:Type DropDownButton}"
+        TargetType="DropDownButton">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="14,9" />
@@ -43,19 +46,23 @@
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <Grid ColumnDefinitions="*,Auto" Margin="{TemplateBinding Padding}" ColumnSpacing="6">
-                        <ContentPresenter Grid.Column="0"
-                                          Name="PART_ContentPresenter"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Background="{StaticResource TransparentBrush}"
-                                          BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          CornerRadius="{TemplateBinding CornerRadius}"
-                                          RecognizesAccessKey="True"
-                                          TextElement.FontSize="{TemplateBinding FontSize}"
-                                          TextElement.FontWeight="{TemplateBinding FontWeight}">
+                    <Grid
+                        Margin="{TemplateBinding Padding}"
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="6">
+                        <ContentPresenter
+                            Name="PART_ContentPresenter"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Background="{StaticResource TransparentBrush}"
+                            BackgroundSizing="{TemplateBinding BackgroundSizing}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            RecognizesAccessKey="True"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontWeight="{TemplateBinding FontWeight}">
                             <ContentPresenter.Transitions>
                                 <Transitions>
                                     <DoubleTransition
@@ -65,11 +72,15 @@
                                 </Transitions>
                             </ContentPresenter.Transitions>
                         </ContentPresenter>
-                        <fi:SymbolIcon Grid.Column="1" Symbol="ChevronDown"
-                                       FontSize="{TemplateBinding FontSize}" />
+                        <fi:SymbolIcon
+                            Grid.Column="1"
+                            FontSize="{TemplateBinding FontSize}"
+                            Symbol="ChevronDown" />
                     </Grid>
-                    <Border x:Name="Indicator" Background="{StaticResource TransparentBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
+                    <Border
+                        x:Name="Indicator"
+                        Background="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition

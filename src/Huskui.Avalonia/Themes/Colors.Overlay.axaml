@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
-            <!-- Black -->
+            <!--  Black  -->
             <Color x:Key="Overlay1Color">#0d000000</Color>
             <Color x:Key="Overlay2Color">#1a000000</Color>
             <Color x:Key="Overlay3Color">#26000000</Color>
@@ -17,7 +18,7 @@
             <Color x:Key="Overlay12Color">#f2000000</Color>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <!-- White -->
+            <!--  White  -->
             <Color x:Key="Overlay1Color">#0dffffff</Color>
             <Color x:Key="Overlay2Color">#1affffff</Color>
             <Color x:Key="Overlay3Color">#26ffffff</Color>

@@ -5,17 +5,23 @@
     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel>
-            <StackPanel Margin="24" Spacing="12">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <local:ButtonGroup>
                     <Button Content="访问" />
                     <Button>
-                        <fi:SymbolIcon Symbol="Copy" FontSize="{StaticResource MediumFontSize}" />
+                        <fi:SymbolIcon
+                            FontSize="{StaticResource MediumFontSize}"
+                            Symbol="Copy" />
                     </Button>
                 </local:ButtonGroup>
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type local:ButtonGroup}" TargetType="local:ButtonGroup">
+    <ControlTheme
+        x:Key="{x:Type local:ButtonGroup}"
+        TargetType="local:ButtonGroup">
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="ItemContainerTheme" Value="{StaticResource ButtonGroupItemTheme}" />
@@ -28,18 +34,23 @@
         </Setter>
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Padding="{TemplateBinding Padding}"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                    <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                <Border
+                    Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ItemsPresenter
+                        Name="PART_ItemsPresenter"
+                        ItemsPanel="{TemplateBinding ItemsPanel}" />
                 </Border>
             </ControlTemplate>
         </Setter>
     </ControlTheme>
 
-    <ControlTheme x:Key="ButtonGroupItemTheme" TargetType="Button">
+    <ControlTheme
+        x:Key="ButtonGroupItemTheme"
+        TargetType="Button">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Padding" Value="6,4" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -51,10 +62,14 @@
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="CornerRadius">
             <MultiBinding Converter="{x:Static local:CornerRadiusConverters.ToInnerRadiusMulti}">
-                <Binding Path="CornerRadius"
-                         RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ButtonGroup}" />
-                <Binding Path="Padding"
-                         RelativeSource="{RelativeSource FindAncestor, AncestorType=local:ButtonGroup}" />
+                <Binding
+                    Path="CornerRadius"
+                    RelativeSource="{RelativeSource FindAncestor,
+                                                    AncestorType=local:ButtonGroup}" />
+                <Binding
+                    Path="Padding"
+                    RelativeSource="{RelativeSource FindAncestor,
+                                                    AncestorType=local:ButtonGroup}" />
             </MultiBinding>
         </Setter>
         <Setter Property="Template">

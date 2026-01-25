@@ -1,7 +1,8 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="using:FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="using:FluentIcons.Avalonia"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel Margin="24">
@@ -17,7 +18,9 @@
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type SplitButton}" TargetType="SplitButton">
+    <ControlTheme
+        x:Key="{x:Type SplitButton}"
+        TargetType="SplitButton">
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
@@ -30,42 +33,54 @@
         <Setter Property="Padding" Value="14,9" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="1">
-                    <Button x:Name="PART_PrimaryButton" Grid.Column="0"
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    ColumnSpacing="1">
+                    <Button
+                        x:Name="PART_PrimaryButton"
+                        Grid.Column="0"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness,
+                                                          Converter={x:Static local:ThicknessConverters.WithoutRight}}"
+                        Command="{TemplateBinding Command}"
+                        CommandParameter="{TemplateBinding CommandParameter}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        CornerRadius="{TemplateBinding CornerRadius,
+                                                       Converter={x:Static local:CornerRadiusConverters.Left}}"
+                        Focusable="False"
+                        FontFamily="{TemplateBinding FontFamily}"
+                        FontSize="{TemplateBinding FontSize}"
+                        FontWeight="{TemplateBinding FontWeight}"
+                        Foreground="{TemplateBinding Foreground}"
+                        KeyboardNavigation.IsTabStop="False" />
+                    <Button
+                        x:Name="PART_SecondaryButton"
+                        Grid.Column="1"
+                        Padding="4,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness,
+                                                          Converter={x:Static local:ThicknessConverters.WithoutLeft}}"
+                        CornerRadius="{TemplateBinding CornerRadius,
+                                                       Converter={x:Static local:CornerRadiusConverters.Right}}"
+                        Focusable="False"
+                        Foreground="{TemplateBinding Foreground}"
+                        KeyboardNavigation.IsTabStop="False">
+                        <fi:SymbolIcon
+                            Width="{TemplateBinding FontSize}"
                             Foreground="{TemplateBinding Foreground}"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="{TemplateBinding BorderThickness, Converter={x:Static local:ThicknessConverters.WithoutRight}}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Command="{TemplateBinding Command}"
-                            CommandParameter="{TemplateBinding CommandParameter}"
-                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static local:CornerRadiusConverters.Left}}"
-                            FontFamily="{TemplateBinding FontFamily}"
-                            FontSize="{TemplateBinding FontSize}"
-                            FontWeight="{TemplateBinding FontWeight}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Padding="{TemplateBinding Padding}"
-                            Focusable="False"
-                            KeyboardNavigation.IsTabStop="False" />
-                    <Button x:Name="PART_SecondaryButton" Grid.Column="1"
-                            Foreground="{TemplateBinding Foreground}"
-                            Background="{TemplateBinding Background}"
-                            BorderThickness="{TemplateBinding BorderThickness, Converter={x:Static local:ThicknessConverters.WithoutLeft}}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static local:CornerRadiusConverters.Right}}"
-                            Padding="4,0"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Focusable="False"
-                            KeyboardNavigation.IsTabStop="False">
-                        <fi:SymbolIcon Width="{TemplateBinding FontSize}"
-                                       Symbol="ChevronDown" Foreground="{TemplateBinding Foreground}" />
+                            Symbol="ChevronDown" />
                     </Button>
                 </Grid>
             </ControlTemplate>

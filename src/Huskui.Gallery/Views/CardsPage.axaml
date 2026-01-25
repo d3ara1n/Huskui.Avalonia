@@ -1,156 +1,202 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="800"
-                      x:Class="Huskui.Gallery.Views.CardsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.CardsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <!-- Basic Card -->
-        <controls:ExampleContainer Title="Basic Card"
-                                   Description="Simple card container with content"
-                                   XamlCode="&lt;husk:Card Padding=&quot;24&quot;&gt;&#10;    &lt;TextBlock Text=&quot;Card content goes here&quot; /&gt;&#10;&lt;/husk:Card&gt;">
-            <husk:Card Padding="24" MaxWidth="400">
+        <!--  Basic Card  -->
+        <controls:ExampleContainer
+            Title="Basic Card"
+            Description="Simple card container with content"
+            XamlCode="&lt;husk:Card Padding=&quot;24&quot;&gt;&#10;    &lt;TextBlock Text=&quot;Card content goes here&quot; /&gt;&#10;&lt;/husk:Card&gt;">
+            <husk:Card
+                MaxWidth="400"
+                Padding="24">
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Simple Card"
-                               FontWeight="{StaticResource ControlStrongFontWeight}"
-                               FontSize="{StaticResource LargeFontSize}" />
                     <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Simple Card" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                         Text="This is a basic card component that can contain any content. Cards are great for grouping related information and creating visual hierarchy."
-                        TextWrapping="Wrap"
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </husk:Card>
         </controls:ExampleContainer>
 
-        <!-- Card with Header -->
-        <controls:ExampleContainer Title="Card with Header and Actions"
-                                   Description="Card with header section and action buttons"
-                                   XamlCode="&lt;husk:Card&gt;&#10;    &lt;StackPanel&gt;&#10;        &lt;!-- Header --&gt;&#10;        &lt;Grid ColumnDefinitions=&quot;*,Auto&quot; Margin=&quot;24,24,24,16&quot;&gt;&#10;            &lt;TextBlock Text=&quot;Card Title&quot; /&gt;&#10;            &lt;Button Content=&quot;Action&quot; /&gt;&#10;        &lt;/Grid&gt;&#10;        &lt;!-- Content --&gt;&#10;        &lt;TextBlock Text=&quot;Content&quot; Margin=&quot;24,0,24,24&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/husk:Card&gt;">
-            <husk:Card Padding="24" MaxWidth="400">
+        <!--  Card with Header  -->
+        <controls:ExampleContainer
+            Title="Card with Header and Actions"
+            Description="Card with header section and action buttons"
+            XamlCode="&lt;husk:Card&gt;&#10;    &lt;StackPanel&gt;&#10;        &lt;!-- Header --&gt;&#10;        &lt;Grid ColumnDefinitions=&quot;*,Auto&quot; Margin=&quot;24,24,24,16&quot;&gt;&#10;            &lt;TextBlock Text=&quot;Card Title&quot; /&gt;&#10;            &lt;Button Content=&quot;Action&quot; /&gt;&#10;        &lt;/Grid&gt;&#10;        &lt;!-- Content --&gt;&#10;        &lt;TextBlock Text=&quot;Content&quot; Margin=&quot;24,0,24,24&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/husk:Card&gt;">
+            <husk:Card
+                MaxWidth="400"
+                Padding="24">
                 <StackPanel Spacing="16">
-                    <!-- Header -->
+                    <!--  Header  -->
                     <Grid ColumnDefinitions="*,Auto">
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="Project Status"
-                                       FontWeight="{StaticResource ControlStrongFontWeight}"
-                                       FontSize="{StaticResource LargeFontSize}" />
-                            <TextBlock Text="Last updated 2 hours ago"
-                                       FontSize="{StaticResource SmallFontSize}"
-                                       Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <TextBlock
+                                FontSize="{StaticResource LargeFontSize}"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Project Status" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Last updated 2 hours ago" />
                         </StackPanel>
-                        <Button Grid.Column="1"
-                                Theme="{StaticResource GhostButtonTheme}"
-                                ToolTip.Tip="More options">
-                            <fi:SymbolIcon Symbol="MoreHorizontal" FontSize="{StaticResource MediumFontSize}" />
+                        <Button
+                            Grid.Column="1"
+                            Theme="{StaticResource GhostButtonTheme}"
+                            ToolTip.Tip="More options">
+                            <fi:SymbolIcon
+                                FontSize="{StaticResource MediumFontSize}"
+                                Symbol="MoreHorizontal" />
                         </Button>
                     </Grid>
 
-                    <!-- Divider -->
+                    <!--  Divider  -->
                     <husk:Divider />
 
-                    <!-- Content -->
+                    <!--  Content  -->
                     <StackPanel Spacing="12">
                         <TextBlock
                             Text="The project is progressing well with 85% completion rate. All major milestones have been achieved on schedule."
                             TextWrapping="Wrap" />
 
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <husk:Tag Content="In Progress" Classes="Primary" />
-                            <husk:Tag Content="High Priority" Classes="Warning" />
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
+                            <husk:Tag
+                                Classes="Primary"
+                                Content="In Progress" />
+                            <husk:Tag
+                                Classes="Warning"
+                                Content="High Priority" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </husk:Card>
         </controls:ExampleContainer>
 
-        <!-- Card Grid -->
-        <controls:ExampleContainer Title="Card Grid Layout"
-                                   Description="Multiple cards in a responsive grid"
-                                   XamlCode="&lt;Grid ColumnDefinitions=&quot;*,*,*&quot; ColumnSpacing=&quot;16&quot;&gt;&#10;    &lt;husk:Card Grid.Column=&quot;0&quot;&gt;...&lt;/husk:Card&gt;&#10;    &lt;husk:Card Grid.Column=&quot;1&quot;&gt;...&lt;/husk:Card&gt;&#10;    &lt;husk:Card Grid.Column=&quot;2&quot;&gt;...&lt;/husk:Card&gt;&#10;&lt;/Grid&gt;">
-            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="16">
-                <!-- Card 1 -->
-                <husk:Card Grid.Column="0" Padding="20">
+        <!--  Card Grid  -->
+        <controls:ExampleContainer
+            Title="Card Grid Layout"
+            Description="Multiple cards in a responsive grid"
+            XamlCode="&lt;Grid ColumnDefinitions=&quot;*,*,*&quot; ColumnSpacing=&quot;16&quot;&gt;&#10;    &lt;husk:Card Grid.Column=&quot;0&quot;&gt;...&lt;/husk:Card&gt;&#10;    &lt;husk:Card Grid.Column=&quot;1&quot;&gt;...&lt;/husk:Card&gt;&#10;    &lt;husk:Card Grid.Column=&quot;2&quot;&gt;...&lt;/husk:Card&gt;&#10;&lt;/Grid&gt;">
+            <Grid
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="16">
+                <!--  Card 1  -->
+                <husk:Card
+                    Grid.Column="0"
+                    Padding="20">
                     <StackPanel Spacing="12">
-                        <fi:SymbolIcon Symbol="Document"
-                                       FontSize="32"
-                                       Foreground="{StaticResource ControlAccentForegroundBrush}"
-                                       HorizontalAlignment="Center" />
-                        <TextBlock Text="Documents"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="24 files"
-                                   FontSize="{StaticResource SmallFontSize}"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                   HorizontalAlignment="Center" />
+                        <fi:SymbolIcon
+                            HorizontalAlignment="Center"
+                            FontSize="32"
+                            Foreground="{StaticResource ControlAccentForegroundBrush}"
+                            Symbol="Document" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Documents" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="24 files" />
                     </StackPanel>
                 </husk:Card>
 
-                <!-- Card 2 -->
-                <husk:Card Grid.Column="1" Padding="20">
+                <!--  Card 2  -->
+                <husk:Card
+                    Grid.Column="1"
+                    Padding="20">
                     <StackPanel Spacing="12">
-                        <fi:SymbolIcon Symbol="Image"
-                                       FontSize="32"
-                                       Foreground="{StaticResource ControlSuccessForegroundBrush}"
-                                       HorizontalAlignment="Center" />
-                        <TextBlock Text="Images"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="156 files"
-                                   FontSize="{StaticResource SmallFontSize}"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                   HorizontalAlignment="Center" />
+                        <fi:SymbolIcon
+                            HorizontalAlignment="Center"
+                            FontSize="32"
+                            Foreground="{StaticResource ControlSuccessForegroundBrush}"
+                            Symbol="Image" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Images" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="156 files" />
                     </StackPanel>
                 </husk:Card>
 
-                <!-- Card 3 -->
-                <husk:Card Grid.Column="2" Padding="20">
+                <!--  Card 3  -->
+                <husk:Card
+                    Grid.Column="2"
+                    Padding="20">
                     <StackPanel Spacing="12">
-                        <fi:SymbolIcon Symbol="Video"
-                                       FontSize="32"
-                                       Foreground="{StaticResource ControlWarningForegroundBrush}"
-                                       HorizontalAlignment="Center" />
-                        <TextBlock Text="Videos"
-                                   FontWeight="{StaticResource ControlStrongFontWeight}"
-                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="8 files"
-                                   FontSize="{StaticResource SmallFontSize}"
-                                   Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                   HorizontalAlignment="Center" />
+                        <fi:SymbolIcon
+                            HorizontalAlignment="Center"
+                            FontSize="32"
+                            Foreground="{StaticResource ControlWarningForegroundBrush}"
+                            Symbol="Video" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Videos" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="8 files" />
                     </StackPanel>
                 </husk:Card>
             </Grid>
         </controls:ExampleContainer>
 
-        <!-- Interactive Card -->
-        <controls:ExampleContainer Title="Interactive Card"
-                                   Description="Clickable card with hover effects">
+        <!--  Interactive Card  -->
+        <controls:ExampleContainer
+            Title="Interactive Card"
+            Description="Clickable card with hover effects">
             <husk:Card Padding="0">
                 <Button Theme="{StaticResource GhostButtonTheme}">
                     <StackPanel Spacing="16">
                         <Grid ColumnDefinitions="Auto,*,Auto">
-                            <fi:SymbolIcon Grid.Column="0"
-                                           Symbol="Settings"
-                                           FontSize="{StaticResource LargeFontSize}"
-                                           Foreground="{StaticResource ControlAccentForegroundBrush}"
-                                           VerticalAlignment="Center" />
-                            <StackPanel Grid.Column="1" Margin="16,0">
-                                <TextBlock Text="Settings"
-                                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                                           FontSize="{StaticResource LargeFontSize}" />
-                                <TextBlock Text="Configure application preferences"
-                                           FontSize="{StaticResource SmallFontSize}"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource LargeFontSize}"
+                                Foreground="{StaticResource ControlAccentForegroundBrush}"
+                                Symbol="Settings" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="16,0">
+                                <TextBlock
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="Settings" />
+                                <TextBlock
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Configure application preferences" />
                             </StackPanel>
-                            <fi:SymbolIcon Grid.Column="2"
-                                           Symbol="ChevronRight"
-                                           FontSize="{StaticResource MediumFontSize}"
-                                           Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                           VerticalAlignment="Center" />
+                            <fi:SymbolIcon
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource MediumFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Symbol="ChevronRight" />
                         </Grid>
                     </StackPanel>
                 </Button>

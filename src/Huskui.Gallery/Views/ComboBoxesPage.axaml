@@ -1,32 +1,47 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.ComboBoxesPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ComboBoxesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic ComboBoxes"
-                                   Description="Dropdown selection controls with different configurations">
+        <controls:ExampleContainer
+            Title="Basic ComboBoxes"
+            Description="Dropdown selection controls with different configurations">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Selection Controls" FontWeight="Bold" FontSize="14" />
-                    <Button Content="Clear Selection" Click="OnClearSelectionClick" />
-                    <Button Content="Reset to Defaults" Click="OnResetSelectionClick" />
-                    <TextBlock Text="Clear all selections or reset to default values."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Selection Controls" />
+                    <Button
+                        Click="OnClearSelectionClick"
+                        Content="Clear Selection" />
+                    <Button
+                        Click="OnResetSelectionClick"
+                        Content="Reset to Defaults" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Clear all selections or reset to default values."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <StackPanel Spacing="16" Width="300">
+            <StackPanel
+                Width="300"
+                Spacing="16">
                 <StackPanel Spacing="8">
                     <TextBlock Text="Countries" />
-                    <ComboBox x:Name="CountryCombo"
-                              SelectedIndex="0">
+                    <ComboBox
+                        x:Name="CountryCombo"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="United States" />
                         <ComboBoxItem Content="Canada" />
                         <ComboBoxItem Content="United Kingdom" />
@@ -39,8 +54,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Programming Languages" />
-                    <ComboBox x:Name="LanguageCombo"
-                              SelectedIndex="2">
+                    <ComboBox
+                        x:Name="LanguageCombo"
+                        SelectedIndex="2">
                         <ComboBoxItem Content="C#" />
                         <ComboBoxItem Content="JavaScript" />
                         <ComboBoxItem Content="Python" />
@@ -53,8 +69,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="With Watermark" />
-                    <ComboBox x:Name="WatermarkCombo"
-                              PlaceholderText="Select an option...">
+                    <ComboBox
+                        x:Name="WatermarkCombo"
+                        PlaceholderText="Select an option...">
                         <ComboBoxItem Content="Option 1" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -63,9 +80,12 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="ComboBox Styles"
-                                   Description="Different visual styles for dropdown controls">
-            <StackPanel Spacing="16" Width="300">
+        <controls:ExampleContainer
+            Title="ComboBox Styles"
+            Description="Different visual styles for dropdown controls">
+            <StackPanel
+                Width="300"
+                Spacing="16">
                 <StackPanel Spacing="8">
                     <TextBlock Text="Default Style" />
                     <ComboBox SelectedIndex="0">
@@ -77,7 +97,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Ghost Style" />
-                    <ComboBox Theme="{StaticResource GhostComboBoxTheme}" SelectedIndex="0">
+                    <ComboBox
+                        SelectedIndex="0"
+                        Theme="{StaticResource GhostComboBoxTheme}">
                         <ComboBoxItem Content="Ghost ComboBox" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -86,7 +108,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Primary Style" />
-                    <ComboBox Classes="Primary" SelectedIndex="0">
+                    <ComboBox
+                        Classes="Primary"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="Primary ComboBox" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -95,7 +119,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Success Style" />
-                    <ComboBox Classes="Success" SelectedIndex="0">
+                    <ComboBox
+                        Classes="Success"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="Success ComboBox" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -104,7 +130,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Warning Style" />
-                    <ComboBox Classes="Warning" SelectedIndex="0">
+                    <ComboBox
+                        Classes="Warning"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="Warning ComboBox" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -113,7 +141,9 @@
 
                 <StackPanel Spacing="8">
                     <TextBlock Text="Error Style" />
-                    <ComboBox Classes="Error" SelectedIndex="0">
+                    <ComboBox
+                        Classes="Error"
+                        SelectedIndex="0">
                         <ComboBoxItem Content="Error ComboBox" />
                         <ComboBoxItem Content="Option 2" />
                         <ComboBoxItem Content="Option 3" />
@@ -122,11 +152,17 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Settings Form Example"
-                                   Description="ComboBoxes in a practical settings interface">
-            <husk:Card Padding="24" Width="400">
+        <controls:ExampleContainer
+            Title="Settings Form Example"
+            Description="ComboBoxes in a practical settings interface">
+            <husk:Card
+                Width="400"
+                Padding="24">
                 <StackPanel Spacing="20">
-                    <TextBlock Text="Application Settings" FontSize="18" FontWeight="Bold" />
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Application Settings" />
 
                     <husk:Divider />
 
@@ -175,9 +211,14 @@
 
                     <husk:Divider />
 
-                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
                         <Button Content="Reset to Defaults" />
-                        <Button Content="Apply Settings" Classes="Primary" />
+                        <Button
+                            Classes="Primary"
+                            Content="Apply Settings" />
                     </StackPanel>
                 </StackPanel>
             </husk:Card>

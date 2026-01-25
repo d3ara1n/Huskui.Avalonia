@@ -1,9 +1,12 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia"
-                    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <ControlTheme x:Key="{x:Type local:Drawer}" TargetType="local:Drawer">
+    <ControlTheme
+        x:Key="{x:Type local:Drawer}"
+        TargetType="local:Drawer">
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -13,92 +16,110 @@
         <Setter Property="MinHeight" Value="100" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static local:CornerRadiusConverters.Upper}}"
-                        BoxShadow="0 0 20 0 #20000000">
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BoxShadow="0 0 20 0 #20000000"
+                    CornerRadius="{TemplateBinding CornerRadius,
+                                                   Converter={x:Static local:CornerRadiusConverters.Upper}}">
                     <Grid RowDefinitions="Auto,*">
-                        <!-- Header -->
-                        <Grid Grid.Row="0"
-                              Height="{TemplateBinding HeaderHeight}"
-                              Background="Transparent"
-                              VerticalAlignment="Center"
-                              ColumnDefinitions="Auto,*,Auto,Auto" Margin="12,0" ColumnSpacing="12">
+                        <!--  Header  -->
+                        <Grid
+                            Grid.Row="0"
+                            Height="{TemplateBinding HeaderHeight}"
+                            Margin="12,0"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            ColumnDefinitions="Auto,*,Auto,Auto"
+                            ColumnSpacing="12">
 
-                            <!-- Drag Handle Icon -->
+                            <!--  Drag Handle Icon  -->
 
 
-                            <Border Grid.Column="0" Name="{x:Static local:Drawer.PART_Handle}"
-                                    Padding="6,4"
-                                    VerticalAlignment="Center"
-                                    Background="Transparent"
-                                    Cursor="SizeAll">
+                            <Border
+                                Name="{x:Static local:Drawer.PART_Handle}"
+                                Grid.Column="0"
+                                Padding="6,4"
+                                VerticalAlignment="Center"
+                                Background="Transparent"
+                                Cursor="SizeAll">
                                 <fi:SymbolIcon
-                                    Symbol="ReOrderDotsVertical"
-                                    FontSize="{StaticResource MediumFontSize}" />
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="ReOrderDotsVertical" />
                             </Border>
 
-                            <!-- Title -->
-                            <TextBlock Grid.Column="1"
-                                       Text="{TemplateBinding Title}"
-                                       Margin="12,0"
-                                       VerticalAlignment="Center"
-                                       FontWeight="{StaticResource ControlStrongFontWeight}"
-                                       IsHitTestVisible="False" />
+                            <!--  Title  -->
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="12,0"
+                                VerticalAlignment="Center"
+                                IsHitTestVisible="False"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="{TemplateBinding Title}" />
 
-                            <!-- Toggle Button -->
+                            <!--  Toggle Button  -->
                             <ToggleButton
                                 Grid.Column="2"
                                 Padding="12,0"
-                                IsChecked="{TemplateBinding IsOpen,Mode=TwoWay}"
+                                IsChecked="{TemplateBinding IsOpen,
+                                                            Mode=TwoWay}"
                                 Theme="{StaticResource GhostButtonTheme}">
-                                <fi:SymbolIcon Name="ToggleIcon" Symbol="ChevronDown"
-                                               FontSize="{StaticResource SmallFontSize}" />
+                                <fi:SymbolIcon
+                                    Name="ToggleIcon"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="ChevronDown" />
                             </ToggleButton>
 
-                            <!-- Close Button -->
-                            <Button Name="{x:Static local:Drawer.PART_CloseButton}"
-                                    Grid.Column="3"
-                                    Theme="{StaticResource GhostButtonTheme}"
-                                    Padding="12,0">
-                                <fi:SymbolIcon Symbol="Dismiss" FontSize="{StaticResource SmallFontSize}" />
+                            <!--  Close Button  -->
+                            <Button
+                                Name="{x:Static local:Drawer.PART_CloseButton}"
+                                Grid.Column="3"
+                                Padding="12,0"
+                                Theme="{StaticResource GhostButtonTheme}">
+                                <fi:SymbolIcon
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="Dismiss" />
                             </Button>
                         </Grid>
 
-                        <!-- Content -->
-                        <ContentPresenter Grid.Row="1"
-                                          Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          Margin="{TemplateBinding Padding}" />
+                        <!--  Content  -->
+                        <ContentPresenter
+                            Grid.Row="1"
+                            Margin="{TemplateBinding Padding}"
+                            Background="{StaticResource OverlaySolidBackgroundBrush}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
 
-                        <!-- Resize Handles -->
-                        <Border Grid.Row="0"
-                                Name="{x:Static local:Drawer.PART_ResizeLeft}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Stretch"
-                                Width="4"
-                                Background="Transparent"
-                                Cursor="SizeWestEast"
-                                Grid.RowSpan="2" />
+                        <!--  Resize Handles  -->
+                        <Border
+                            Name="{x:Static local:Drawer.PART_ResizeLeft}"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Width="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            Cursor="SizeWestEast" />
 
-                        <Border Grid.Row="0"
-                                Name="{x:Static local:Drawer.PART_ResizeRight}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Stretch"
-                                Width="4"
-                                Background="Transparent"
-                                Cursor="SizeWestEast"
-                                Grid.RowSpan="2" />
+                        <Border
+                            Name="{x:Static local:Drawer.PART_ResizeRight}"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Width="4"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            Cursor="SizeWestEast" />
 
-                        <Border Grid.Row="0"
-                                Name="{x:Static local:Drawer.PART_ResizeTop}"
-                                VerticalAlignment="Top"
-                                HorizontalAlignment="Stretch"
-                                Height="4"
-                                Background="Transparent"
-                                Cursor="SizeNorthSouth" />
+                        <Border
+                            Name="{x:Static local:Drawer.PART_ResizeTop}"
+                            Grid.Row="0"
+                            Height="4"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            Cursor="SizeNorthSouth" />
                     </Grid>
                 </Border>
             </ControlTemplate>

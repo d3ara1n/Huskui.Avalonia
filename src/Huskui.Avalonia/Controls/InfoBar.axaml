@@ -1,22 +1,44 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
-        <Panel Background="White" Width="256">
-            <StackPanel Margin="24" Spacing="12">
+        <Panel
+            Width="256"
+            Background="White">
+            <StackPanel
+                Margin="24"
+                Spacing="12">
                 <local:InfoBar Content="Here is some text." />
-                <local:InfoBar Header="Hello" Content="Here is some text." />
-                <local:InfoBar Header="Hello"
-                               Content="Here is some text but very very looooooooooooooooooooooooooooooooong."
-                               IsEnabled="False" />
-                <local:InfoBar Classes="Primary" Header="Hello" Content="Here is some text." />
-                <local:InfoBar Classes="Success" Header="Hello" Content="Here is some text." />
-                <local:InfoBar Classes="Warning" Header="Hello" Content="Here is some text." />
-                <local:InfoBar Classes="Danger" Header="Hello" Content="Here is some text." />
+                <local:InfoBar
+                    Content="Here is some text."
+                    Header="Hello" />
+                <local:InfoBar
+                    IsEnabled="False"
+                    Content="Here is some text but very very looooooooooooooooooooooooooooooooong."
+                    Header="Hello" />
+                <local:InfoBar
+                    Classes="Primary"
+                    Content="Here is some text."
+                    Header="Hello" />
+                <local:InfoBar
+                    Classes="Success"
+                    Content="Here is some text."
+                    Header="Hello" />
+                <local:InfoBar
+                    Classes="Warning"
+                    Content="Here is some text."
+                    Header="Hello" />
+                <local:InfoBar
+                    Classes="Danger"
+                    Content="Here is some text."
+                    Header="Hello" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
-    <ControlTheme x:Key="{x:Type local:InfoBar}" TargetType="local:InfoBar">
+    <ControlTheme
+        x:Key="{x:Type local:InfoBar}"
+        TargetType="local:InfoBar">
         <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="4,1,1,1" />
@@ -24,17 +46,27 @@
         <Setter Property="Padding" Value="12" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border Name="Border" Background="{TemplateBinding Background}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        ClipToBounds="True"
-                        BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                    <StackPanel Margin="{TemplateBinding Padding}" Spacing="6">
-                        <ContentPresenter DockPanel.Dock="Top" Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                          IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}"
-                                          FontWeight="{StaticResource ControlStrongFontWeight}" />
-                        <ContentPresenter Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" TextWrapping="Wrap" />
+                <Border
+                    Name="Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="True"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <StackPanel
+                        Margin="{TemplateBinding Padding}"
+                        Spacing="6">
+                        <ContentPresenter
+                            IsVisible="{TemplateBinding Header,
+                                                        Converter={x:Static ObjectConverters.IsNotNull}}"
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding HeaderTemplate}"
+                            DockPanel.Dock="Top"
+                            FontWeight="{StaticResource ControlStrongFontWeight}" />
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            TextWrapping="Wrap" />
                     </StackPanel>
                 </Border>
             </ControlTemplate>

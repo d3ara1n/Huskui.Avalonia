@@ -3,7 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <ControlTheme x:Key="{x:Type local:AppWindow}" TargetType="local:AppWindow">
+    <ControlTheme
+        x:Key="{x:Type local:AppWindow}"
+        TargetType="local:AppWindow">
         <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}" />
         <Setter Property="TransparencyBackgroundFallback" Value="{StaticResource WindowBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -12,17 +14,24 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
-                    <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
-                    <ExperimentalAcrylicBorder Name="PART_AcrylicMaterial" IsHitTestVisible="False" IsVisible="False">
+                    <Border
+                        Name="PART_TransparencyFallback"
+                        IsHitTestVisible="False" />
+                    <ExperimentalAcrylicBorder
+                        Name="PART_AcrylicMaterial"
+                        IsVisible="False"
+                        IsHitTestVisible="False">
                         <ExperimentalAcrylicBorder.Material>
                             <ExperimentalAcrylicMaterial
                                 BackgroundSource="Digger"
+                                MaterialOpacity="0.65"
                                 TintColor="{DynamicResource SolidColor}"
-                                TintOpacity="1"
-                                MaterialOpacity="0.65" />
+                                TintOpacity="1" />
                         </ExperimentalAcrylicBorder.Material>
                     </ExperimentalAcrylicBorder>
-                    <Border Background="{TemplateBinding Background}" IsHitTestVisible="False">
+                    <Border
+                        IsHitTestVisible="False"
+                        Background="{TemplateBinding Background}">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition
@@ -91,10 +100,13 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}">
                                 <ContentPresenter.Transitions>
                                     <Transitions>
-                                        <EffectTransition Property="Effect"
-                                                          Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition Property="RenderTransform" Easing="CubicEaseOut"
-                                                                       Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <EffectTransition
+                                            Property="Effect"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                        <TransformOperationsTransition
+                                            Easing="CubicEaseOut"
+                                            Property="RenderTransform"
+                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
                                     </Transitions>
                                 </ContentPresenter.Transitions>
                             </ContentPresenter>
@@ -121,8 +133,7 @@
             <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         </Style>
 
-        <Style
-            Selector="^local|AppWindow[ActualTransparencyLevel=AcrylicBlur] /template/ ExperimentalAcrylicBorder#PART_AcrylicMaterial">
+        <Style Selector="^local|AppWindow[ActualTransparencyLevel=AcrylicBlur] /template/ ExperimentalAcrylicBorder#PART_AcrylicMaterial">
             <Setter Property="IsVisible" Value="True" />
         </Style>
     </ControlTheme>

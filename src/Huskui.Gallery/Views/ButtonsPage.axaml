@@ -1,131 +1,256 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-                      x:Class="Huskui.Gallery.Views.ButtonsPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ButtonsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <!-- Basic Buttons -->
-        <controls:ExampleContainer Title="Basic Button Styles"
-                                   Description="Standard button with different visual styles">
-            <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
-                  ColumnSpacing="12" RowSpacing="12">
+        <!--  Basic Buttons  -->
+        <controls:ExampleContainer
+            Title="Basic Button Styles"
+            Description="Standard button with different visual styles">
+            <Grid
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="12"
+                RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+                RowSpacing="12">
 
-                <!-- Default Theme -->
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Default"
-                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                           HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Grid.Column="0" Content="Default" />
-                <Button Grid.Row="2" Grid.Column="0" Content="Primary" Classes="Primary" />
-                <Button Grid.Row="3" Grid.Column="0" Content="Success" Classes="Success" />
-                <Button Grid.Row="4" Grid.Column="0" Content="Warning" Classes="Warning" />
-                <Button Grid.Row="5" Grid.Column="0" Content="Danger" Classes="Danger" />
+                <!--  Default Theme  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Default" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Content="Default" />
+                <Button
+                    Classes="Primary"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="Primary" />
+                <Button
+                    Classes="Success"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Content="Success" />
+                <Button
+                    Classes="Warning"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Content="Warning" />
+                <Button
+                    Classes="Danger"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Content="Danger" />
 
-                <!-- Outline Theme -->
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="Outline"
-                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                           HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Grid.Column="1" Content="Default"
-                        Theme="{StaticResource OutlineButtonTheme}" />
-                <Button Grid.Row="2" Grid.Column="1" Content="Primary" Classes="Primary"
-                        Theme="{StaticResource OutlineButtonTheme}" />
-                <Button Grid.Row="3" Grid.Column="1" Content="Success" Classes="Success"
-                        Theme="{StaticResource OutlineButtonTheme}" />
-                <Button Grid.Row="4" Grid.Column="1" Content="Warning" Classes="Warning"
-                        Theme="{StaticResource OutlineButtonTheme}" />
-                <Button Grid.Row="5" Grid.Column="1" Content="Danger" Classes="Danger"
-                        Theme="{StaticResource OutlineButtonTheme}" />
+                <!--  Outline Theme  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Outline" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="Default"
+                    Theme="{StaticResource OutlineButtonTheme}" />
+                <Button
+                    Classes="Primary"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Content="Primary"
+                    Theme="{StaticResource OutlineButtonTheme}" />
+                <Button
+                    Classes="Success"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Content="Success"
+                    Theme="{StaticResource OutlineButtonTheme}" />
+                <Button
+                    Classes="Warning"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Content="Warning"
+                    Theme="{StaticResource OutlineButtonTheme}" />
+                <Button
+                    Classes="Danger"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Content="Danger"
+                    Theme="{StaticResource OutlineButtonTheme}" />
 
-                <!-- Ghost Theme -->
-                <TextBlock Grid.Row="0" Grid.Column="2" Text="Ghost"
-                           FontWeight="{StaticResource ControlStrongFontWeight}"
-                           HorizontalAlignment="Center" />
-                <Button Grid.Row="1" Grid.Column="2" Content="Default"
-                        Theme="{StaticResource GhostButtonTheme}" />
-                <Button Grid.Row="2" Grid.Column="2" Content="Primary" Classes="Primary"
-                        Theme="{StaticResource GhostButtonTheme}" />
-                <Button Grid.Row="3" Grid.Column="2" Content="Success" Classes="Success"
-                        Theme="{StaticResource GhostButtonTheme}" />
-                <Button Grid.Row="4" Grid.Column="2" Content="Warning" Classes="Warning"
-                        Theme="{StaticResource GhostButtonTheme}" />
-                <Button Grid.Row="5" Grid.Column="2" Content="Danger" Classes="Danger"
-                        Theme="{StaticResource GhostButtonTheme}" />
+                <!--  Ghost Theme  -->
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Ghost" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Content="Default"
+                    Theme="{StaticResource GhostButtonTheme}" />
+                <Button
+                    Classes="Primary"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Content="Primary"
+                    Theme="{StaticResource GhostButtonTheme}" />
+                <Button
+                    Classes="Success"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Content="Success"
+                    Theme="{StaticResource GhostButtonTheme}" />
+                <Button
+                    Classes="Warning"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Content="Warning"
+                    Theme="{StaticResource GhostButtonTheme}" />
+                <Button
+                    Classes="Danger"
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Content="Danger"
+                    Theme="{StaticResource GhostButtonTheme}" />
             </Grid>
         </controls:ExampleContainer>
 
-        <!-- Button Sizes -->
-        <controls:ExampleContainer Title="Button Sizes"
-                                   Description="Buttons in different sizes">
-            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
-                <Button Content="Small" Classes="Small Primary" />
-                <Button Content="Default" Classes="Primary" />
-                <Button Content="Large" Classes="Large Primary" />
+        <!--  Button Sizes  -->
+        <controls:ExampleContainer
+            Title="Button Sizes"
+            Description="Buttons in different sizes">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="12">
+                <Button
+                    Classes="Small Primary"
+                    Content="Small" />
+                <Button
+                    Classes="Primary"
+                    Content="Default" />
+                <Button
+                    Classes="Large Primary"
+                    Content="Large" />
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Buttons with Icons -->
-        <controls:ExampleContainer Title="Buttons with Icons"
-                                   Description="Buttons containing icons and text"
-                                   XamlCode="&lt;Button&gt;&#10;    &lt;husk:IconLabel Icon=&quot;Save&quot; Text=&quot;Save&quot; /&gt;&#10;&lt;/Button&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+        <!--  Buttons with Icons  -->
+        <controls:ExampleContainer
+            Title="Buttons with Icons"
+            Description="Buttons containing icons and text"
+            XamlCode="&lt;Button&gt;&#10;    &lt;husk:IconLabel Icon=&quot;Save&quot; Text=&quot;Save&quot; /&gt;&#10;&lt;/Button&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="12">
                 <Button>
-                    <husk:IconLabel Icon="Save" Text="Save" />
+                    <husk:IconLabel
+                        Icon="Save"
+                        Text="Save" />
                 </Button>
                 <Button Classes="Primary">
-                    <husk:IconLabel Icon="Add" Text="Add New" />
+                    <husk:IconLabel
+                        Icon="Add"
+                        Text="Add New" />
                 </Button>
                 <Button Theme="{StaticResource OutlineButtonTheme}">
-                    <husk:IconLabel Icon="Edit" Text="Edit" />
+                    <husk:IconLabel
+                        Icon="Edit"
+                        Text="Edit" />
                 </Button>
                 <Button Classes="Danger">
-                    <husk:IconLabel Icon="Delete" Text="Delete" />
+                    <husk:IconLabel
+                        Icon="Delete"
+                        Text="Delete" />
                 </Button>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Icon Only Buttons -->
-        <controls:ExampleContainer Title="Icon Only Buttons"
-                                   Description="Compact buttons with only icons"
-                                   XamlCode="&lt;Button ToolTip.Tip=&quot;Settings&quot;&gt;&#10;    &lt;fi:SymbolIcon Symbol=&quot;Settings&quot; /&gt;&#10;&lt;/Button&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Center">
+        <!--  Icon Only Buttons  -->
+        <controls:ExampleContainer
+            Title="Icon Only Buttons"
+            Description="Compact buttons with only icons"
+            XamlCode="&lt;Button ToolTip.Tip=&quot;Settings&quot;&gt;&#10;    &lt;fi:SymbolIcon Symbol=&quot;Settings&quot; /&gt;&#10;&lt;/Button&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="8">
                 <Button ToolTip.Tip="Settings">
-                    <fi:SymbolIcon Symbol="Settings" FontSize="{StaticResource MediumFontSize}" />
+                    <fi:SymbolIcon
+                        FontSize="{StaticResource MediumFontSize}"
+                        Symbol="Settings" />
                 </Button>
-                <Button ToolTip.Tip="Search" Classes="Primary">
-                    <fi:SymbolIcon Symbol="Search" FontSize="{StaticResource MediumFontSize}" />
+                <Button
+                    Classes="Primary"
+                    ToolTip.Tip="Search">
+                    <fi:SymbolIcon
+                        FontSize="{StaticResource MediumFontSize}"
+                        Symbol="Search" />
                 </Button>
-                <Button ToolTip.Tip="More" Theme="{StaticResource GhostButtonTheme}">
-                    <fi:SymbolIcon Symbol="MoreHorizontal" FontSize="{StaticResource MediumFontSize}" />
+                <Button
+                    Theme="{StaticResource GhostButtonTheme}"
+                    ToolTip.Tip="More">
+                    <fi:SymbolIcon
+                        FontSize="{StaticResource MediumFontSize}"
+                        Symbol="MoreHorizontal" />
                 </Button>
-                <Button ToolTip.Tip="Close" Classes="Danger">
-                    <fi:SymbolIcon Symbol="Dismiss" FontSize="{StaticResource MediumFontSize}" />
+                <Button
+                    Classes="Danger"
+                    ToolTip.Tip="Close">
+                    <fi:SymbolIcon
+                        FontSize="{StaticResource MediumFontSize}"
+                        Symbol="Dismiss" />
                 </Button>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Button States -->
-        <controls:ExampleContainer Title="Button States"
-                                   Description="Buttons in different states"
-                                   XamlCode="&lt;Button Content=&quot;Enabled&quot; /&gt;&#10;&lt;Button Content=&quot;Disabled&quot; IsEnabled=&quot;False&quot; /&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+        <!--  Button States  -->
+        <controls:ExampleContainer
+            Title="Button States"
+            Description="Buttons in different states"
+            XamlCode="&lt;Button Content=&quot;Enabled&quot; /&gt;&#10;&lt;Button Content=&quot;Disabled&quot; IsEnabled=&quot;False&quot; /&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="12">
                 <Button Content="Enabled" />
-                <Button Content="Disabled" IsEnabled="False" />
+                <Button
+                    IsEnabled="False"
+                    Content="Disabled" />
                 <Button Classes="Primary">
-                    <husk:IconLabel Icon="ArrowClockwise" Text="Loading..." />
+                    <husk:IconLabel
+                        Icon="ArrowClockwise"
+                        Text="Loading..." />
                 </Button>
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Split and Dropdown Buttons -->
-        <controls:ExampleContainer Title="Split and Dropdown Buttons"
-                                   Description="Buttons with additional actions"
-                                   XamlCode="&lt;SplitButton Content=&quot;Save&quot;&gt;&#10;    &lt;SplitButton.Flyout&gt;&#10;        &lt;MenuFlyout&gt;&#10;            &lt;MenuItem Header=&quot;Save As...&quot; /&gt;&#10;        &lt;/MenuFlyout&gt;&#10;    &lt;/SplitButton.Flyout&gt;&#10;&lt;/SplitButton&gt;">
-            <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
+        <!--  Split and Dropdown Buttons  -->
+        <controls:ExampleContainer
+            Title="Split and Dropdown Buttons"
+            Description="Buttons with additional actions"
+            XamlCode="&lt;SplitButton Content=&quot;Save&quot;&gt;&#10;    &lt;SplitButton.Flyout&gt;&#10;        &lt;MenuFlyout&gt;&#10;            &lt;MenuItem Header=&quot;Save As...&quot; /&gt;&#10;        &lt;/MenuFlyout&gt;&#10;    &lt;/SplitButton.Flyout&gt;&#10;&lt;/SplitButton&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="12">
                 <SplitButton Content="Save">
                     <SplitButton.Flyout>
                         <MenuFlyout>
@@ -150,31 +275,47 @@
             </StackPanel>
         </controls:ExampleContainer>
 
-        <!-- Button Groups -->
-        <controls:ExampleContainer Title="Button Groups"
-                                   Description="Grouped buttons for related actions">
+        <!--  Button Groups  -->
+        <controls:ExampleContainer
+            Title="Button Groups"
+            Description="Grouped buttons for related actions">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="CornerRadius" FontWeight="{StaticResource ControlStrongFontWeight}" />
-                    <Slider Name="CornerRadiusSlider" Minimum="0" Maximum="20" Value="4" />
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="CornerRadius" />
+                    <Slider
+                        Name="CornerRadiusSlider"
+                        Maximum="20"
+                        Minimum="0"
+                        Value="4" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
-            <husk:ButtonGroup
-                CornerRadius="{Binding #CornerRadiusSlider.Value,Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
+            <husk:ButtonGroup CornerRadius="{Binding #CornerRadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}">
                 <Button>
-                    <husk:IconLabel Icon="ArrowUndo" Text="Undo" />
+                    <husk:IconLabel
+                        Icon="ArrowUndo"
+                        Text="Undo" />
                 </Button>
                 <Button>
-                    <husk:IconLabel Icon="ArrowRedo" Text="Redo" />
+                    <husk:IconLabel
+                        Icon="ArrowRedo"
+                        Text="Redo" />
                 </Button>
                 <Button>
-                    <husk:IconLabel Icon="Edit" Text="Edit" />
+                    <husk:IconLabel
+                        Icon="Edit"
+                        Text="Edit" />
                 </Button>
                 <Button>
-                    <husk:IconLabel Icon="Copy" Text="Copy" />
+                    <husk:IconLabel
+                        Icon="Copy"
+                        Text="Copy" />
                 </Button>
                 <Button>
-                    <husk:IconLabel Icon="ClipboardPaste" Text="Paste" />
+                    <husk:IconLabel
+                        Icon="ClipboardPaste"
+                        Text="Paste" />
                 </Button>
             </husk:ButtonGroup>
         </controls:ExampleContainer>

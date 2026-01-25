@@ -1,12 +1,19 @@
-﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="using:System">
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="using:System">
     <Design.PreviewWith>
-        <Panel Background="White" Width="256" Height="256">
+        <Panel
+            Width="256"
+            Height="256"
+            Background="White">
             <ScrollViewer HorizontalScrollBarVisibility="Visible">
                 <StackPanel>
                     <TextBlock Text="Top" />
-                    <Panel Height="512" Width="512" Background="Aqua" />
+                    <Panel
+                        Width="512"
+                        Height="512"
+                        Background="Aqua" />
                     <TextBlock Text="Bottom" />
                 </StackPanel>
             </ScrollViewer>
@@ -16,7 +23,9 @@
     <sys:Double x:Key="ScrollBarCompatThickness">2</sys:Double>
     <sys:Double x:Key="ScrollBarThickness">8</sys:Double>
 
-    <ControlTheme x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
+    <ControlTheme
+        x:Key="{x:Type ScrollBar}"
+        TargetType="ScrollBar">
         <Setter Property="Cursor" Value="Arrow" />
         <Setter Property="ShowDelay" Value="0" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
@@ -27,49 +36,62 @@
             <Setter Property="Margin" Value="1" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Border Name="Background" Background="{TemplateBinding Background}">
+                    <Border
+                        Name="Background"
+                        Background="{TemplateBinding Background}">
                         <Grid ColumnDefinitions="Auto,*,Auto">
-                            <RepeatButton Name="PART_LineUpButton"
-                                          Grid.Column="0"
-                                          MinWidth="{StaticResource ScrollBarThickness}"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"
-                                          Focusable="False">
-                                <Path Data="M 4 0 L 4 8 L 0 4 Z" Fill="{TemplateBinding Foreground}" />
+                            <RepeatButton
+                                Name="PART_LineUpButton"
+                                Grid.Column="0"
+                                MinWidth="{StaticResource ScrollBarThickness}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Focusable="False">
+                                <Path
+                                    Data="M 4 0 L 4 8 L 0 4 Z"
+                                    Fill="{TemplateBinding Foreground}" />
                             </RepeatButton>
-                            <Track Grid.Column="1"
-                                   Maximum="{TemplateBinding Maximum}"
-                                   Minimum="{TemplateBinding Minimum}"
-                                   Orientation="{TemplateBinding Orientation}"
-                                   ViewportSize="{TemplateBinding ViewportSize}"
-                                   DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                   Value="{TemplateBinding Value,
-                                             Mode=TwoWay}"
-                                   Height="{StaticResource ScrollBarThickness}"
-                                   VerticalAlignment="Bottom">
+                            <Track
+                                Grid.Column="1"
+                                Height="{StaticResource ScrollBarThickness}"
+                                VerticalAlignment="Bottom"
+                                DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Minimum="{TemplateBinding Minimum}"
+                                Orientation="{TemplateBinding Orientation}"
+                                ViewportSize="{TemplateBinding ViewportSize}"
+                                Value="{TemplateBinding Value,
+                                                        Mode=TwoWay}">
                                 <Track.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Height" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                        <DoubleTransition
+                                            Easing="SineEaseOut"
+                                            Property="Height"
+                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </Track.Transitions>
                                 <Track.DecreaseButton>
-                                    <RepeatButton Name="PART_PageUpButton"
-                                                  Focusable="False" />
+                                    <RepeatButton
+                                        Name="PART_PageUpButton"
+                                        Focusable="False" />
                                 </Track.DecreaseButton>
                                 <Track.IncreaseButton>
-                                    <RepeatButton Name="PART_PageDownButton"
-                                                  Focusable="False" />
+                                    <RepeatButton
+                                        Name="PART_PageDownButton"
+                                        Focusable="False" />
                                 </Track.IncreaseButton>
                                 <Thumb Name="thumb" />
                             </Track>
-                            <RepeatButton Name="PART_LineDownButton"
-                                          Grid.Column="2"
-                                          MinWidth="{StaticResource ScrollBarThickness}"
-                                          VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"
-                                          Focusable="False">
-                                <Path Data="M 0 0 L 4 4 L 0 8 Z" Fill="{TemplateBinding Foreground}" />
+                            <RepeatButton
+                                Name="PART_LineDownButton"
+                                Grid.Column="2"
+                                MinWidth="{StaticResource ScrollBarThickness}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Focusable="False">
+                                <Path
+                                    Data="M 0 0 L 4 4 L 0 8 Z"
+                                    Fill="{TemplateBinding Foreground}" />
                             </RepeatButton>
                         </Grid>
                     </Border>
@@ -90,50 +112,68 @@
             <Setter Property="Width" Value="{StaticResource ScrollBarThickness}" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Border Name="Background" Background="{TemplateBinding Background}">
+                    <Border
+                        Name="Background"
+                        Background="{TemplateBinding Background}">
                         <Grid RowDefinitions="Auto,*,Auto">
-                            <RepeatButton Name="PART_LineUpButton"
-                                          Grid.Row="0"
-                                          MinHeight="{StaticResource ScrollBarThickness}"
-                                          HorizontalAlignment="Center"
-                                          Focusable="False">
-                                <Path Data="M 0 4 L 8 4 L 4 0 Z" Fill="{TemplateBinding Foreground}"
-                                      VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <RepeatButton
+                                Name="PART_LineUpButton"
+                                Grid.Row="0"
+                                MinHeight="{StaticResource ScrollBarThickness}"
+                                HorizontalAlignment="Center"
+                                Focusable="False">
+                                <Path
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Data="M 0 4 L 8 4 L 4 0 Z"
+                                    Fill="{TemplateBinding Foreground}" />
                             </RepeatButton>
-                            <Track Grid.Row="1"
-                                   IsDirectionReversed="True"
-                                   Maximum="{TemplateBinding Maximum}"
-                                   Minimum="{TemplateBinding Minimum}"
-                                   Orientation="{TemplateBinding Orientation}"
-                                   ViewportSize="{TemplateBinding ViewportSize}"
-                                   DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                   Value="{TemplateBinding Value,Mode=TwoWay}"
-                                   Width="{StaticResource ScrollBarThickness}"
-                                   HorizontalAlignment="Right">
+                            <Track
+                                Grid.Row="1"
+                                Width="{StaticResource ScrollBarThickness}"
+                                HorizontalAlignment="Right"
+                                DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                IsDirectionReversed="True"
+                                Maximum="{TemplateBinding Maximum}"
+                                Minimum="{TemplateBinding Minimum}"
+                                Orientation="{TemplateBinding Orientation}"
+                                ViewportSize="{TemplateBinding ViewportSize}"
+                                Value="{TemplateBinding Value,
+                                                        Mode=TwoWay}">
                                 <Track.Transitions>
                                     <Transitions>
-                                        <DoubleTransition Property="Width" Easing="SineEaseOut"
-                                                          Duration="{StaticResource ControlFastestAnimationDuration}" />
+                                        <DoubleTransition
+                                            Easing="SineEaseOut"
+                                            Property="Width"
+                                            Duration="{StaticResource ControlFastestAnimationDuration}" />
                                     </Transitions>
                                 </Track.Transitions>
                                 <Track.DecreaseButton>
-                                    <RepeatButton Name="PART_PageUpButton"
-                                                  Focusable="False" Background="{StaticResource TransparentBrush}" />
+                                    <RepeatButton
+                                        Name="PART_PageUpButton"
+                                        Background="{StaticResource TransparentBrush}"
+                                        Focusable="False" />
                                 </Track.DecreaseButton>
                                 <Track.IncreaseButton>
-                                    <RepeatButton Name="PART_PageDownButton"
-                                                  Focusable="False" Background="{StaticResource TransparentBrush}" />
+                                    <RepeatButton
+                                        Name="PART_PageDownButton"
+                                        Background="{StaticResource TransparentBrush}"
+                                        Focusable="False" />
                                 </Track.IncreaseButton>
                                 <Thumb />
                             </Track>
-                            <RepeatButton Name="PART_LineDownButton"
-                                          Grid.Row="2"
-                                          MinHeight="{StaticResource ScrollBarThickness}"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Focusable="False">
-                                <Path Data="M 0 0 L 4 4 L 8 0 Z" Fill="{TemplateBinding Foreground}"
-                                      VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <RepeatButton
+                                Name="PART_LineDownButton"
+                                Grid.Row="2"
+                                MinHeight="{StaticResource ScrollBarThickness}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Focusable="False">
+                                <Path
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Data="M 0 0 L 4 4 L 8 0 Z"
+                                    Fill="{TemplateBinding Foreground}" />
                             </RepeatButton>
                         </Grid>
                     </Border>
@@ -153,8 +193,10 @@
         <Style Selector="^ /template/ RepeatButton">
             <Setter Property="Template">
                 <ControlTemplate>
-                    <ContentPresenter Background="{TemplateBinding Background}" Content="{TemplateBinding Content}"
-                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <ContentPresenter
+                        Background="{TemplateBinding Background}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </ControlTemplate>
             </Setter>
         </Style>
@@ -164,7 +206,9 @@
             <Setter Property="Background" Value="{TemplateBinding Foreground}" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Border CornerRadius="{TemplateBinding CornerRadius}" Background="{TemplateBinding Background}" />
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}" />
                 </ControlTemplate>
             </Setter>
         </Style>

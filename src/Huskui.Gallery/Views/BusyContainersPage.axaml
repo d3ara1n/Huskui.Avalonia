@@ -1,24 +1,42 @@
-﻿<controls:ControlPage xmlns="https://github.com/avaloniaui"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-                      xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
-                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                      x:Class="Huskui.Gallery.Views.BusyContainersPage">
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.BusyContainersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
 
     <StackPanel Spacing="32">
 
-        <controls:ExampleContainer Title="Basic Busy Container"
-                                   Description="Container that shows loading state with blur effect">
-            <Grid ColumnDefinitions="*,16,*" RowDefinitions="Auto,16,Auto">
-                <StackPanel Grid.Column="0" Grid.Row="0" Spacing="8">
-                    <TextBlock Text="Normal State" FontWeight="Bold" />
-                    <husk:BusyContainer IsBusy="False" Height="120" Width="200">
-                        <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                CornerRadius="8" Padding="16">
+        <controls:ExampleContainer
+            Title="Basic Busy Container"
+            Description="Container that shows loading state with blur effect">
+            <Grid
+                ColumnDefinitions="*,16,*"
+                RowDefinitions="Auto,16,Auto">
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Spacing="8">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Normal State" />
+                    <husk:BusyContainer
+                        Width="200"
+                        Height="120"
+                        IsBusy="False">
+                        <Border
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            CornerRadius="8">
                             <StackPanel Spacing="8">
-                                <TextBlock Text="Content is visible" FontWeight="Bold" />
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Content is visible" />
                                 <TextBlock Text="All interactions are enabled" />
                                 <Button Content="Click me" />
                             </StackPanel>
@@ -26,13 +44,25 @@
                     </husk:BusyContainer>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" Grid.Row="0" Spacing="8">
-                    <TextBlock Text="Busy State" FontWeight="Bold" />
-                    <husk:BusyContainer IsBusy="True" Height="120" Width="200">
-                        <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                CornerRadius="8" Padding="16">
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Spacing="8">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Busy State" />
+                    <husk:BusyContainer
+                        Width="200"
+                        Height="120"
+                        IsBusy="True">
+                        <Border
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            CornerRadius="8">
                             <StackPanel Spacing="8">
-                                <TextBlock Text="Content is blurred" FontWeight="Bold" />
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Content is blurred" />
                                 <TextBlock Text="Interactions are blocked" />
                                 <Button Content="Can't click" />
                             </StackPanel>
@@ -42,14 +72,27 @@
             </Grid>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Custom Pending Content"
-                                   Description="Showing custom loading indicators">
-            <Grid ColumnDefinitions="*,16,*" RowDefinitions="Auto,16,Auto">
-                <StackPanel Grid.Column="0" Grid.Row="0" Spacing="8">
-                    <TextBlock Text="Default Loading" FontWeight="Bold" />
-                    <husk:BusyContainer IsBusy="True" Height="120" Width="200">
-                        <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                CornerRadius="8" Padding="16">
+        <controls:ExampleContainer
+            Title="Custom Pending Content"
+            Description="Showing custom loading indicators">
+            <Grid
+                ColumnDefinitions="*,16,*"
+                RowDefinitions="Auto,16,Auto">
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Spacing="8">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Default Loading" />
+                    <husk:BusyContainer
+                        Width="200"
+                        Height="120"
+                        IsBusy="True">
+                        <Border
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            CornerRadius="8">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Loading data..." />
                                 <ProgressBar IsIndeterminate="True" />
@@ -58,17 +101,35 @@
                     </husk:BusyContainer>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" Grid.Row="0" Spacing="8">
-                    <TextBlock Text="Custom Loading" FontWeight="Bold" />
-                    <husk:BusyContainer IsBusy="True" Height="120" Width="200">
+                <StackPanel
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Spacing="8">
+                    <TextBlock
+                        FontWeight="Bold"
+                        Text="Custom Loading" />
+                    <husk:BusyContainer
+                        Width="200"
+                        Height="120"
+                        IsBusy="True">
                         <husk:BusyContainer.PendingContent>
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-                                <ProgressBar IsIndeterminate="True" Width="100" Height="4" />
-                                <TextBlock Text="Processing..." HorizontalAlignment="Center" />
+                            <StackPanel
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                                <ProgressBar
+                                    Width="100"
+                                    Height="4"
+                                    IsIndeterminate="True" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Text="Processing..." />
                             </StackPanel>
                         </husk:BusyContainer.PendingContent>
-                        <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                CornerRadius="8" Padding="16">
+                        <Border
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            CornerRadius="8">
                             <StackPanel Spacing="8">
                                 <TextBlock Text="Content behind" />
                                 <Button Content="Hidden button" />
@@ -79,19 +140,35 @@
             </Grid>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Form Example"
-                                   Description="Common use case for form submission">
-            <husk:BusyContainer x:Name="FormContainer" IsBusy="False" Width="300">
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="Common use case for form submission">
+            <husk:BusyContainer
+                x:Name="FormContainer"
+                Width="300"
+                IsBusy="False">
                 <husk:BusyContainer.PendingContent>
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="12">
-                        <ProgressBar IsIndeterminate="True" Width="120" Height="4" />
-                        <TextBlock Text="Submitting form..." HorizontalAlignment="Center" FontWeight="Bold" />
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="12">
+                        <ProgressBar
+                            Width="120"
+                            Height="4"
+                            IsIndeterminate="True" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontWeight="Bold"
+                            Text="Submitting form..." />
                     </StackPanel>
                 </husk:BusyContainer.PendingContent>
 
                 <husk:Card Padding="24">
                     <StackPanel Spacing="16">
-                        <TextBlock Text="User Registration" FontSize="18" FontWeight="Bold" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="User Registration" />
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Name" />
@@ -105,44 +182,74 @@
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Password" />
-                            <TextBox Watermark="Enter password" PasswordChar="*" />
+                            <TextBox
+                                PasswordChar="*"
+                                Watermark="Enter password" />
                         </StackPanel>
 
-                        <Button Content="Submit" Classes="Primary" Click="OnSubmitClick" />
+                        <Button
+                            Classes="Primary"
+                            Click="OnSubmitClick"
+                            Content="Submit" />
                     </StackPanel>
                 </husk:Card>
             </husk:BusyContainer>
         </controls:ExampleContainer>
 
-        <controls:ExampleContainer Title="Interactive Demo"
-                                   Description="Toggle busy state to see the effect">
+        <controls:ExampleContainer
+            Title="Interactive Demo"
+            Description="Toggle busy state to see the effect">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
-                    <TextBlock Text="Controls" FontWeight="Bold" FontSize="14" />
-                    <ToggleButton x:Name="BusyToggle"
-                                  Content="Toggle Busy"
-                                  IsChecked="{Binding #DemoContainer.IsBusy}" />
-                    <TextBlock Text="Toggle the busy state to see the blur effect and loading indicator."
-                               TextWrapping="Wrap"
-                               FontSize="12"
-                               Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Controls" />
+                    <ToggleButton
+                        x:Name="BusyToggle"
+                        Content="Toggle Busy"
+                        IsChecked="{Binding #DemoContainer.IsBusy}" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Toggle the busy state to see the blur effect and loading indicator."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:BusyContainer x:Name="DemoContainer" IsBusy="False" Height="150" Width="300">
+            <husk:BusyContainer
+                x:Name="DemoContainer"
+                Width="300"
+                Height="150"
+                IsBusy="False">
                 <husk:BusyContainer.PendingContent>
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8">
-                        <ProgressBar IsIndeterminate="True" Width="100" Height="4" />
-                        <TextBlock Text="Loading content..." HorizontalAlignment="Center" />
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="8">
+                        <ProgressBar
+                            Width="100"
+                            Height="4"
+                            IsIndeterminate="True" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="Loading content..." />
                     </StackPanel>
                 </husk:BusyContainer.PendingContent>
 
-                <Border Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                        CornerRadius="8" Padding="20">
+                <Border
+                    Padding="20"
+                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                    CornerRadius="8">
                     <StackPanel Spacing="12">
-                        <TextBlock Text="Interactive Content" FontSize="16" FontWeight="Bold" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Interactive Content" />
                         <TextBlock Text="This content will be blurred when busy state is active." />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Spacing="8">
                             <Button Content="Button 1" />
                             <Button Content="Button 2" />
                             <Button Content="Button 3" />
