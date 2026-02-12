@@ -7,7 +7,7 @@ namespace Huskui.Avalonia.Transitions;
 public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase(duration)
 {
     // 使用更长的持续时间以获得更优雅的动画效果，类似现代 Web 应用
-    public PageSlideTransition() : this(TimeSpan.FromMilliseconds(450)) { }
+    public PageSlideTransition() : this(TimeSpan.FromMilliseconds(297)) { }
     public DirectionFrom Direction { get; set; } = DirectionFrom.Right;
 
     protected override void Cleanup(Visual? from, Visual? to)

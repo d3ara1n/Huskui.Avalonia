@@ -50,6 +50,7 @@
         <Style Selector="^">
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="Opacity" Value="0.0" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(-30px) scaleX(0.90)" /> -->
                 <Setter Property="RenderTransform" Value="translateY(-30px) scaleX(0.90)" />
             </Style>
         </Style>
@@ -57,6 +58,7 @@
         <Style Selector="^[Distance=0]">
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="Opacity" Value="1.0" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(0px) scaleX(1.0)" /> -->
                 <Setter Property="RenderTransform" Value="translateY(0px) scaleX(1.0)" />
             </Style>
         </Style>
@@ -64,28 +66,32 @@
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="IsEnabled" Value="False" />
                 <Setter Property="Opacity" Value="0.8" />
-                <Setter Property="RenderTransform" Value="translateY(-6px) scaleX(0.98)" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(-6px) scaleX(0.98)" /> -->
+                <Setter Property="RenderTransform" Value="translateY(-6px)" />
             </Style>
         </Style>
         <Style Selector="^[Distance=2]">
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="IsEnabled" Value="False" />
                 <Setter Property="Opacity" Value="0.6" />
-                <Setter Property="RenderTransform" Value="translateY(-12px) scaleX(0.96)" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(-12px) scaleX(0.96)" /> -->
+                <Setter Property="RenderTransform" Value="translateY(-12px)" />
             </Style>
         </Style>
         <Style Selector="^[Distance=3]">
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="IsEnabled" Value="False" />
                 <Setter Property="Opacity" Value="0.4" />
-                <Setter Property="RenderTransform" Value="translateY(-18px) scaleX(0.94)" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(-18px) scaleX(0.94)" /> -->
+                <Setter Property="RenderTransform" Value="translateY(-18px)" />
             </Style>
         </Style>
         <Style Selector="^[Distance=4]">
             <Style Selector="^ /template/ LayoutTransformControl#TransformRoot">
                 <Setter Property="IsEnabled" Value="False" />
                 <Setter Property="Opacity" Value="0.2" />
-                <Setter Property="RenderTransform" Value="translateY(-24px) scaleX(0.92)" />
+                <!-- <Setter Property="RenderTransform" Value="translateY(-24px) scaleX(0.92)" /> -->
+                <Setter Property="RenderTransform" Value="translateY(-24px)" />
             </Style>
         </Style>
     </ControlTheme>
