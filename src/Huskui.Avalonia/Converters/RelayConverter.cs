@@ -65,7 +65,7 @@ public class RelayConverter : IValueConverter
             return compare == value;
         }
 
-        if (targetType == null || (targetType == compare.GetType() && targetType == value.GetType()))
+        if (targetType == compare.GetType() && targetType == value.GetType())
             // Default direct object comparison or we're all the proper type
         {
             return compare.Equals(value);
@@ -82,9 +82,9 @@ public class RelayConverter : IValueConverter
 
         // Neither of our two values matches the type so
         // we'll convert both to a String and try and coerce it to the proper type.
-        var compareBase = ConvertValue(targetType, compare);
-
-        var valueBase = ConvertValue(targetType, value);
+        var typeBase = targetType ?? compare.GetType();
+        var compareBase = targetType == null ? compare : ConvertValue(typeBase, compare);
+        var valueBase = ConvertValue(typeBase, value);
 
         return compareBase.Equals(valueBase);
     }
