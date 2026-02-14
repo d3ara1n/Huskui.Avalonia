@@ -15,4 +15,8 @@ public static class ObjectConverters
 
     public static IValueConverter IsNot { get; } =
         new RelayConverter((v, p) => v is not null && p is Type type ? v.GetType() != type : v);
+
+    public static IValueConverter IsNotNull { get; } = new RelayConverter((v, _) => v is not null);
+
+    public static IValueConverter IsNull { get; } = new RelayConverter((v, _) => v is null);
 }

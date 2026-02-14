@@ -48,16 +48,16 @@ public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase
         // 位移 + 缩放动画
         from
            .Animation(new CubicEaseIn())
-           .AddFrame(0d, [
-               (translateProperty, 0d),
-               (ScaleTransform.ScaleXProperty, 1.0d),
-               (ScaleTransform.ScaleYProperty, 1.0d)
-           ])
-           .AddFrame(0.45d, [
-               (translateProperty, exitDistance),
-               (ScaleTransform.ScaleXProperty, 0.95d),
-               (ScaleTransform.ScaleYProperty, 0.95d)
-           ]);
+           .AddFrame(0d,
+            [
+                (translateProperty, 0d), (ScaleTransform.ScaleXProperty, 1.0d), (ScaleTransform.ScaleYProperty, 1.0d)
+            ])
+           .AddFrame(0.45d,
+            [
+                (translateProperty, exitDistance),
+                (ScaleTransform.ScaleXProperty, 0.95d),
+                (ScaleTransform.ScaleYProperty, 0.95d)
+            ]);
 
         // 透明度动画（分离以获得更精细的控制）
         from
@@ -71,7 +71,7 @@ public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase
 
         // 位移动画 - 使用延迟让新页面在旧页面开始退出后再进入
         to
-           .Animation(new SplineEasing(0.4, 0.0, 0.2, 1.0))
+           .Animation(new SplineEasing(0.4, 0.0, 0.2))
            .WithDelay(TimeSpan.FromMilliseconds(100))
            .AddFrame(0d, [(translateProperty, translateDistance)])
            .AddFrame(1d, [(translateProperty, 0d)]);
@@ -87,13 +87,7 @@ public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase
         to
            .Animation(new CubicEaseOut())
            .WithDelay(TimeSpan.FromMilliseconds(100))
-           .AddFrame(0d, [
-               (ScaleTransform.ScaleXProperty, 1.02d),
-               (ScaleTransform.ScaleYProperty, 1.02d)
-           ])
-           .AddFrame(1d, [
-               (ScaleTransform.ScaleXProperty, 1.0d),
-               (ScaleTransform.ScaleYProperty, 1.0d)
-           ]);
+           .AddFrame(0d, [(ScaleTransform.ScaleXProperty, 1.02d), (ScaleTransform.ScaleYProperty, 1.02d)])
+           .AddFrame(1d, [(ScaleTransform.ScaleXProperty, 1.0d), (ScaleTransform.ScaleYProperty, 1.0d)]);
     }
 }
