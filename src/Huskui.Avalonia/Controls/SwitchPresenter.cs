@@ -24,8 +24,8 @@ public class SwitchPresenter : TemplatedControl
                                                                   (o, v) => o.Value = v,
                                                                   defaultBindingMode: BindingMode.OneWay);
 
-    public static readonly DirectProperty<SwitchPresenter, Type> TargetTypeProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, Type>(nameof(TargetType),
+    public static readonly DirectProperty<SwitchPresenter, Type?> TargetTypeProperty =
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, Type?>(nameof(TargetType),
                                                                o => o.TargetType,
                                                                (o, v) => o.TargetType = v,
                                                                defaultBindingMode: BindingMode.OneTime);
@@ -64,11 +64,11 @@ public class SwitchPresenter : TemplatedControl
         }
     }
 
-    public Type TargetType
+    public Type? TargetType
     {
         get;
         set => SetAndRaise(TargetTypeProperty, ref field, value);
-    } = typeof(object);
+    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
