@@ -26,9 +26,9 @@ public class SwitchPresenter : TemplatedControl
 
     public static readonly DirectProperty<SwitchPresenter, Type?> TargetTypeProperty =
         AvaloniaProperty.RegisterDirect<SwitchPresenter, Type?>(nameof(TargetType),
-                                                               o => o.TargetType,
-                                                               (o, v) => o.TargetType = v,
-                                                               defaultBindingMode: BindingMode.OneTime);
+                                                                o => o.TargetType,
+                                                                (o, v) => o.TargetType = v,
+                                                                defaultBindingMode: BindingMode.OneTime);
 
     public static readonly StyledProperty<object?> ContentProperty =
         AvaloniaProperty.Register<SwitchPresenter, object?>(nameof(Content));

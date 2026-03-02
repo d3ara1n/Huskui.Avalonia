@@ -46,11 +46,11 @@
                                                            Converter={x:Static local:CornerRadiusConverters.Upper}}">
                             <DockPanel Margin="{StaticResource ToastHeaderlessContentMargin}">
                                 <Button
+                                    DockPanel.Dock="Right"
                                     Padding="8"
                                     VerticalAlignment="Top"
                                     Command="{Binding Dismiss, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                     CornerRadius="{StaticResource FullCornerRadius}"
-                                    DockPanel.Dock="Right"
                                     IsCancel="True"
                                     Theme="{StaticResource OutlineButtonTheme}">
                                     <fi:SymbolIcon

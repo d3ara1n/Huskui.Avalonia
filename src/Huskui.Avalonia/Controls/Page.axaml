@@ -64,11 +64,11 @@
                                 VerticalAlignment="Top"
                                 IsVisible="{TemplateBinding IsHeaderVisible}">
                                 <Button
+                                    DockPanel.Dock="Left"
                                     Margin="0,0,12,0"
                                     IsVisible="{TemplateBinding IsBackButtonVisible}"
                                     Command="{Binding $parent[local:Frame].GoBackCommand}"
-                                    CornerRadius="{StaticResource SmallCornerRadius}"
-                                    DockPanel.Dock="Left">
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
                                     <fi:SymbolIcon
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
