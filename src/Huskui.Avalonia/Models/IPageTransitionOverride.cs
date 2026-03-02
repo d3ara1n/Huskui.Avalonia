@@ -1,4 +1,4 @@
-﻿using Avalonia.Animation;
+using Avalonia.Animation;
 
 namespace Huskui.Avalonia.Models;
 

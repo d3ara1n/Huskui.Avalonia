@@ -42,9 +42,9 @@
 
                 <!--  Rich Components  -->
                 <Border
-                    Classes="FeatureCard"
                     Grid.Row="1"
-                    Grid.Column="0">
+                    Grid.Column="0"
+                    Classes="FeatureCard">
                     <StackPanel Spacing="16">
                         <fi:SymbolIcon
                             FontSize="32"
@@ -65,9 +65,9 @@
 
                 <!--  Theming Support  -->
                 <Border
-                    Classes="FeatureCard"
                     Grid.Row="1"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    Classes="FeatureCard">
                     <StackPanel Spacing="16">
                         <fi:SymbolIcon
                             FontSize="32"

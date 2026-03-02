@@ -57,11 +57,11 @@
                         Margin="{TemplateBinding Padding}"
                         Spacing="6">
                         <ContentPresenter
+                            DockPanel.Dock="Top"
                             IsVisible="{TemplateBinding Header,
                                                         Converter={x:Static ObjectConverters.IsNotNull}}"
                             Content="{TemplateBinding Header}"
                             ContentTemplate="{TemplateBinding HeaderTemplate}"
-                            DockPanel.Dock="Top"
                             FontWeight="{StaticResource ControlStrongFontWeight}" />
                         <ContentPresenter
                             Content="{TemplateBinding Content}"

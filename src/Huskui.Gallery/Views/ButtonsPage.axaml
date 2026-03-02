@@ -35,24 +35,24 @@
                     Grid.Column="0"
                     Content="Default" />
                 <Button
-                    Classes="Primary"
                     Grid.Row="2"
                     Grid.Column="0"
+                    Classes="Primary"
                     Content="Primary" />
                 <Button
-                    Classes="Success"
                     Grid.Row="3"
                     Grid.Column="0"
+                    Classes="Success"
                     Content="Success" />
                 <Button
-                    Classes="Warning"
                     Grid.Row="4"
                     Grid.Column="0"
+                    Classes="Warning"
                     Content="Warning" />
                 <Button
-                    Classes="Danger"
                     Grid.Row="5"
                     Grid.Column="0"
+                    Classes="Danger"
                     Content="Danger" />
 
                 <!--  Outline Theme  -->
@@ -68,27 +68,27 @@
                     Content="Default"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
-                    Classes="Primary"
                     Grid.Row="2"
                     Grid.Column="1"
+                    Classes="Primary"
                     Content="Primary"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
-                    Classes="Success"
                     Grid.Row="3"
                     Grid.Column="1"
+                    Classes="Success"
                     Content="Success"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
-                    Classes="Warning"
                     Grid.Row="4"
                     Grid.Column="1"
+                    Classes="Warning"
                     Content="Warning"
                     Theme="{StaticResource OutlineButtonTheme}" />
                 <Button
-                    Classes="Danger"
                     Grid.Row="5"
                     Grid.Column="1"
+                    Classes="Danger"
                     Content="Danger"
                     Theme="{StaticResource OutlineButtonTheme}" />
 
@@ -105,27 +105,27 @@
                     Content="Default"
                     Theme="{StaticResource GhostButtonTheme}" />
                 <Button
-                    Classes="Primary"
                     Grid.Row="2"
                     Grid.Column="2"
+                    Classes="Primary"
                     Content="Primary"
                     Theme="{StaticResource GhostButtonTheme}" />
                 <Button
-                    Classes="Success"
                     Grid.Row="3"
                     Grid.Column="2"
+                    Classes="Success"
                     Content="Success"
                     Theme="{StaticResource GhostButtonTheme}" />
                 <Button
-                    Classes="Warning"
                     Grid.Row="4"
                     Grid.Column="2"
+                    Classes="Warning"
                     Content="Warning"
                     Theme="{StaticResource GhostButtonTheme}" />
                 <Button
-                    Classes="Danger"
                     Grid.Row="5"
                     Grid.Column="2"
+                    Classes="Danger"
                     Content="Danger"
                     Theme="{StaticResource GhostButtonTheme}" />
             </Grid>

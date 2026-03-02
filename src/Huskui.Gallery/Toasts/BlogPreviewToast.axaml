@@ -204,8 +204,8 @@
                     </StackPanel>
 
                     <Button
-                        Classes="Accent"
                         Grid.Column="1"
+                        Classes="Accent"
                         Click="OnReadFullClick"
                         Content="Read Full Article" />
                 </Grid>

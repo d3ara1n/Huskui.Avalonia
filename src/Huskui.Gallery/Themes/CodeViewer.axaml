@@ -35,8 +35,8 @@
                                     Text="{TemplateBinding Language}" />
                                 <Button
                                     Name="PART_CopyButton"
-                                    Classes="Small"
                                     Grid.Column="1"
+                                    Classes="Small"
                                     Theme="{StaticResource GhostButtonTheme}"
                                     ToolTip.Tip="Copy to Clipboard">
                                     <fi:SymbolIcon

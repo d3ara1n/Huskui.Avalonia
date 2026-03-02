@@ -237,8 +237,8 @@
                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                 Text="Huskui.Avalonia" />
                             <Button
-                                Classes="Small"
                                 Grid.Column="1"
+                                Classes="Small"
                                 Margin="0,0,8,0"
                                 Command="{Binding ToggleThemeCommand}"
                                 Theme="{StaticResource GhostButtonTheme}"
@@ -248,8 +248,8 @@
                                     Symbol="WeatherMoon" />
                             </Button>
                             <Button
-                                Classes="Small"
                                 Grid.Column="2"
+                                Classes="Small"
                                 Command="{Binding ToggleSettingsCommand}"
                                 Theme="{StaticResource GhostButtonTheme}"
                                 ToolTip.Tip="Settings">

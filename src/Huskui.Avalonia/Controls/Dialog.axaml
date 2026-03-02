@@ -60,8 +60,8 @@
                             ColumnDefinitions="*,*"
                             ColumnSpacing="8">
                             <Button
-                                Classes="Primary"
                                 Grid.Column="0"
+                                Classes="Primary"
                                 IsVisible="{TemplateBinding IsPrimaryButtonVisible}"
                                 Command="{Binding PrimaryCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                 IsDefault="True">

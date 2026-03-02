@@ -1,4 +1,4 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Collections;
 using Huskui.Avalonia.Converters;
 
@@ -10,7 +10,7 @@ public class SwitchCases : AvaloniaList<SwitchCase>
     internal SwitchCase? EvaluateCases(object? value, Type? targetType)
     {
         if (Count == 0)
-            // If we have no cases, then we can't match anything.
+        // If we have no cases, then we can't match anything.
         {
             return null;
         }

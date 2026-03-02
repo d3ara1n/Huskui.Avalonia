@@ -50,8 +50,8 @@
                     Content="FluentIcons for Avalonia"
                     NavigateUri="https://github.com/davidxuang/FluentIcons" />
                 <HyperlinkButton
-                    IsEnabled="False"
                     Classes.Dashed="{Binding #DashedToggle.IsChecked}"
+                    IsEnabled="False"
                     Content="Disabled Link"
                     NavigateUri="https://example.com" />
             </StackPanel>

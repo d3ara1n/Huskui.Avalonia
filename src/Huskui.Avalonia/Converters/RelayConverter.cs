@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Avalonia.Data.Converters;
 
 namespace Huskui.Avalonia.Converters;
@@ -66,7 +66,7 @@ public class RelayConverter : IValueConverter
         }
 
         if (targetType == compare.GetType() && targetType == value.GetType())
-            // Default direct object comparison or we're all the proper type
+        // Default direct object comparison or we're all the proper type
         {
             return compare.Equals(value);
         }

@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+using System.Windows.Input;
 
 namespace Huskui.Avalonia.Models;
 
@@ -12,9 +12,9 @@ internal class DummyCommand : ICommand
 
     public void Execute(object? parameter) { }
 
-    #pragma warning disable 67
+#pragma warning disable 67
     public event EventHandler? CanExecuteChanged;
-    #pragma warning restore 67
+#pragma warning restore 67
 
     #endregion
 }
