@@ -60,6 +60,7 @@
             <ControlTemplate>
                 <Panel>
                     <ContentPresenter
+                        Name="PART_ContentPresenter"
                         Padding="{TemplateBinding Padding}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -92,6 +93,9 @@
         <Style Selector="^:pressed /template/ Border#Indicator">
             <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
         </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
     </ControlTheme>
 
     <Thickness x:Key="ExpanderHeaderMargin">12,8</Thickness>
@@ -107,7 +111,7 @@
         <Setter Property="Background" Value="{StaticResource ControlInteractiveBackgroundBrush}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <DockPanel>
+                <DockPanel Name="Root">
                     <ToggleButton
                         Name="Toggle"
                         Padding="{StaticResource ExpanderHeaderMargin}"
@@ -152,6 +156,9 @@
             </ControlTemplate>
         </Setter>
 
+        <Style Selector="^:disabled /template/ DockPanel#Root">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
 
         <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
             <Setter Property="Symbol" Value="Add" />
