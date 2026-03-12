@@ -47,13 +47,19 @@
                                 Text="{TemplateBinding Message}"
                                 TextWrapping="WrapWithOverflow" />
                         </StackPanel>
-                        <ContentPresenter
-                            Name="PART_ContentPresenter"
+                        <ScrollViewer
                             Grid.Row="2"
-                            Margin="18,18,18,0"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Foreground="{TemplateBinding Foreground}" />
+                            AllowAutoHide="{TemplateBinding ScrollViewer.AllowAutoHide}"
+                            BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                            <ContentPresenter
+                                Name="PART_ContentPresenter"
+                                Margin="18,18,18,0"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Foreground="{TemplateBinding Foreground}" />
+                        </ScrollViewer>
                         <Grid
                             Grid.Row="3"
                             Margin="18"
