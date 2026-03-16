@@ -23,17 +23,25 @@ public class Drawer : ContentControl
     public const string PART_CloseButton = nameof(PART_CloseButton);
     public const string PART_ToggleStateButton = nameof(PART_ToggleStateButton);
 
-    public static readonly StyledProperty<bool> IsOpenProperty =
-        AvaloniaProperty.Register<Drawer, bool>(nameof(IsOpen), true);
+    public static readonly StyledProperty<bool> IsOpenProperty = AvaloniaProperty.Register<
+        Drawer,
+        bool
+    >(nameof(IsOpen), true);
 
-    public static readonly StyledProperty<double> OffsetXProperty =
-        AvaloniaProperty.Register<Drawer, double>(nameof(OffsetX));
+    public static readonly StyledProperty<double> OffsetXProperty = AvaloniaProperty.Register<
+        Drawer,
+        double
+    >(nameof(OffsetX));
 
-    public static readonly StyledProperty<string?> TitleProperty =
-        AvaloniaProperty.Register<Drawer, string?>(nameof(Title));
+    public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<
+        Drawer,
+        string?
+    >(nameof(Title));
 
-    public static readonly StyledProperty<double> HeaderHeightProperty =
-        AvaloniaProperty.Register<Drawer, double>(nameof(HeaderHeight), 42d);
+    public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
+        Drawer,
+        double
+    >(nameof(HeaderHeight), 42d);
 
     private DrawerPanel? _drawerPanel;
 
@@ -82,7 +90,6 @@ public class Drawer : ContentControl
         InvalidateMeasure();
     }
 
-
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -112,21 +119,24 @@ public class Drawer : ContentControl
 
         if (_resizeLeft != null)
         {
-            _resizeLeft.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingLeft);
+            _resizeLeft.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingLeft);
             _resizeLeft.PointerMoved += OnResizePointerMoved;
             _resizeLeft.PointerReleased += OnResizePointerReleased;
         }
 
         if (_resizeRight != null)
         {
-            _resizeRight.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingRight);
+            _resizeRight.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingRight);
             _resizeRight.PointerMoved += OnResizePointerMoved;
             _resizeRight.PointerReleased += OnResizePointerReleased;
         }
 
         if (_resizeTop != null)
         {
-            _resizeTop.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingTop);
+            _resizeTop.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingTop);
             _resizeTop.PointerMoved += OnResizePointerMoved;
             _resizeTop.PointerReleased += OnResizePointerReleased;
         }
@@ -180,7 +190,11 @@ public class Drawer : ContentControl
         }
     }
 
-    private void OnResizePointerPressed(object? sender, PointerPressedEventArgs e, ref bool resizingFlag)
+    private void OnResizePointerPressed(
+        object? sender,
+        PointerPressedEventArgs e,
+        ref bool resizingFlag
+    )
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {

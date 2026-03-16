@@ -10,22 +10,29 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":loading", ":finished", ":failed")]
 public class Page : HeaderedContentControl
 {
-    public static readonly StyledProperty<bool> CanGoBackProperty =
-        AvaloniaProperty.Register<Page, bool>(nameof(CanGoBack));
+    public static readonly StyledProperty<bool> CanGoBackProperty = AvaloniaProperty.Register<
+        Page,
+        bool
+    >(nameof(CanGoBack));
 
     public static readonly DirectProperty<Page, bool> IsHeaderVisibleProperty =
-        AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsHeaderVisible),
-                                                    o => o.IsHeaderVisible,
-                                                    (o, v) => o.IsHeaderVisible = v);
+        AvaloniaProperty.RegisterDirect<Page, bool>(
+            nameof(IsHeaderVisible),
+            o => o.IsHeaderVisible,
+            (o, v) => o.IsHeaderVisible = v
+        );
 
     public static readonly DirectProperty<Page, bool> IsBackButtonVisibleProperty =
-        AvaloniaProperty.RegisterDirect<Page, bool>(nameof(IsBackButtonVisible),
-                                                    o => o.IsBackButtonVisible,
-                                                    (o, v) => o.IsBackButtonVisible = v);
+        AvaloniaProperty.RegisterDirect<Page, bool>(
+            nameof(IsBackButtonVisible),
+            o => o.IsBackButtonVisible,
+            (o, v) => o.IsBackButtonVisible = v
+        );
 
-    public static readonly StyledProperty<BoxShadows> BoxShadowProperty =
-        AvaloniaProperty.Register<Page, BoxShadows>(nameof(BoxShadow));
-
+    public static readonly StyledProperty<BoxShadows> BoxShadowProperty = AvaloniaProperty.Register<
+        Page,
+        BoxShadows
+    >(nameof(BoxShadow));
 
     private readonly CancellationTokenSource _cancellationTokenSource = new();
     public CancellationToken LifetimeToken => _cancellationTokenSource.Token;
@@ -57,7 +64,6 @@ public class Page : HeaderedContentControl
     } = true;
 
     protected override Type StyleKeyOverride => typeof(Page);
-
 
     protected override async void OnLoaded(RoutedEventArgs e)
     {

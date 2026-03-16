@@ -7,7 +7,8 @@ namespace Huskui.Avalonia.Transitions;
 public class FocusOnTransition(TimeSpan? duration = null, DirectionFrom? direction = null)
     : PageTransitionBase(duration)
 {
-    public FocusOnTransition() : this(null) { }
+    public FocusOnTransition()
+        : this(null) { }
 
     public DirectionFrom Direction { get; set; } = direction ?? DirectionFrom.Bottom;
 
@@ -27,33 +28,42 @@ public class FocusOnTransition(TimeSpan? duration = null, DirectionFrom? directi
         {
             DirectionFrom.Right or DirectionFrom.Left => TranslateTransform.XProperty,
             DirectionFrom.Top or DirectionFrom.Bottom => TranslateTransform.YProperty,
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException(),
         };
-        var translateFrom = Direction switch
-        {
-            DirectionFrom.Left => -parent.Bounds.Width,
-            DirectionFrom.Right => parent.Bounds.Width,
-            DirectionFrom.Top => -parent.Bounds.Height,
-            DirectionFrom.Bottom => parent.Bounds.Height,
-            _ => throw new ArgumentOutOfRangeException()
-        }
-                          / 4;
+        var translateFrom =
+            Direction switch
+            {
+                DirectionFrom.Left => -parent.Bounds.Width,
+                DirectionFrom.Right => parent.Bounds.Width,
+                DirectionFrom.Top => -parent.Bounds.Height,
+                DirectionFrom.Bottom => parent.Bounds.Height,
+                _ => throw new ArgumentOutOfRangeException(),
+            } / 4;
 
-        from.Animation().AddFrame(0d, [(Visual.OpacityProperty, 1d)]).AddFrame(1d, [(Visual.OpacityProperty, 0d)]);
+        from.Animation()
+            .AddFrame(0d, [(Visual.OpacityProperty, 1d)])
+            .AddFrame(1d, [(Visual.OpacityProperty, 0d)]);
 
-        to
-           .Animation(new SineEaseOut())
-           .AddFrame(0d,
-            [
-                (ScaleTransform.ScaleXProperty, 1.1d),
-                (ScaleTransform.ScaleYProperty, 1.1d),
-                (translateProperty, translateFrom)
-            ])
-           .AddFrame(1d,
-            [
-                (ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d), (translateProperty, 0)
-            ]);
+        to.Animation(new SineEaseOut())
+            .AddFrame(
+                0d,
+                [
+                    (ScaleTransform.ScaleXProperty, 1.1d),
+                    (ScaleTransform.ScaleYProperty, 1.1d),
+                    (translateProperty, translateFrom),
+                ]
+            )
+            .AddFrame(
+                1d,
+                [
+                    (ScaleTransform.ScaleXProperty, 1d),
+                    (ScaleTransform.ScaleYProperty, 1d),
+                    (translateProperty, 0),
+                ]
+            );
 
-        to.Animation().AddFrame(0d, [(Visual.OpacityProperty, 0d)]).AddFrame(1d, [(Visual.OpacityProperty, 1d)]);
+        to.Animation()
+            .AddFrame(0d, [(Visual.OpacityProperty, 0d)])
+            .AddFrame(1d, [(Visual.OpacityProperty, 1d)]);
     }
 }

@@ -9,26 +9,40 @@ namespace Huskui.Gallery.Controls;
 /// </summary>
 public class ExampleContainer : ContentControl
 {
-    public static readonly StyledProperty<string> TitleProperty =
-        AvaloniaProperty.Register<ExampleContainer, string>(nameof(Title), string.Empty);
+    public static readonly StyledProperty<string> TitleProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        string
+    >(nameof(Title), string.Empty);
 
-    public static readonly StyledProperty<string> DescriptionProperty =
-        AvaloniaProperty.Register<ExampleContainer, string>(nameof(Description), string.Empty);
+    public static readonly StyledProperty<string> DescriptionProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        string
+    >(nameof(Description), string.Empty);
 
-    public static readonly StyledProperty<string> XamlCodeProperty =
-        AvaloniaProperty.Register<ExampleContainer, string>(nameof(XamlCode), string.Empty);
+    public static readonly StyledProperty<string> XamlCodeProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        string
+    >(nameof(XamlCode), string.Empty);
 
-    public static readonly StyledProperty<string> CSharpCodeProperty =
-        AvaloniaProperty.Register<ExampleContainer, string>(nameof(CSharpCode), string.Empty);
+    public static readonly StyledProperty<string> CSharpCodeProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        string
+    >(nameof(CSharpCode), string.Empty);
 
-    public static readonly StyledProperty<bool> ShowCodeProperty =
-        AvaloniaProperty.Register<ExampleContainer, bool>(nameof(ShowCode));
+    public static readonly StyledProperty<bool> ShowCodeProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        bool
+    >(nameof(ShowCode));
 
-    public static readonly StyledProperty<object?> OptionsProperty =
-        AvaloniaProperty.Register<ExampleContainer, object?>(nameof(Options));
+    public static readonly StyledProperty<object?> OptionsProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        object?
+    >(nameof(Options));
 
-    public static readonly StyledProperty<object?> ControlsProperty =
-        AvaloniaProperty.Register<ExampleContainer, object?>(nameof(Controls));
+    public static readonly StyledProperty<object?> ControlsProperty = AvaloniaProperty.Register<
+        ExampleContainer,
+        object?
+    >(nameof(Controls));
 
     public string Title
     {

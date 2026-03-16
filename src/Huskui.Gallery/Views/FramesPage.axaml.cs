@@ -10,10 +10,14 @@ namespace Huskui.Gallery.Views;
 
 public partial class FramesPage : ControlPage
 {
-    public static readonly DirectProperty<FramesPage, TransitionInfo> SelectedTransitionInfoProperty =
-        AvaloniaProperty.RegisterDirect<FramesPage, TransitionInfo>(nameof(SelectedTransitionInfo),
-                                                                    o => o.SelectedTransitionInfo,
-                                                                    (o, v) => o.SelectedTransitionInfo = v);
+    public static readonly DirectProperty<
+        FramesPage,
+        TransitionInfo
+    > SelectedTransitionInfoProperty = AvaloniaProperty.RegisterDirect<FramesPage, TransitionInfo>(
+        nameof(SelectedTransitionInfo),
+        o => o.SelectedTransitionInfo,
+        (o, v) => o.SelectedTransitionInfo = v
+    );
 
     public FramesPage()
     {
@@ -27,7 +31,7 @@ public partial class FramesPage : ControlPage
         new(new PageCoverOverTransition()),
         new(new FocusOnTransition()),
         new(new TabTransition()),
-        new(new PopUpTransition())
+        new(new PopUpTransition()),
     ];
 
     public TransitionInfo SelectedTransitionInfo

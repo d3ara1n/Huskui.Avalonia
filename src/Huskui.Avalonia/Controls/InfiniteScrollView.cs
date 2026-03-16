@@ -21,7 +21,9 @@ public class InfiniteScrollView : ItemsControl
         AvaloniaProperty.Register<InfiniteScrollView, object?>(nameof(PendingContent));
 
     public static readonly StyledProperty<IDataTemplate?> PendingContentTemplateProperty =
-        AvaloniaProperty.Register<InfiniteScrollView, IDataTemplate?>(nameof(PendingContentTemplate));
+        AvaloniaProperty.Register<InfiniteScrollView, IDataTemplate?>(
+            nameof(PendingContentTemplate)
+        );
 
     private ContentPresenter? _pendingPresenter;
 
@@ -91,14 +93,16 @@ public class InfiniteScrollView : ItemsControl
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        if (!_updatingSafe
-         && _scrollViewer != null
-         && _pendingPresenter != null
-         && _scrollViewer.Offset.Y > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height)
+        if (
+            !_updatingSafe
+            && _scrollViewer != null
+            && _pendingPresenter != null
+            && _scrollViewer.Offset.Y
+                > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height
+        )
         {
             _ = UpdateAsync();
         }
-
 
         return base.ArrangeOverride(finalSize);
     }
@@ -110,8 +114,11 @@ public class InfiniteScrollView : ItemsControl
             return;
         }
 
-        if (!_updatingSafe
-         && _scrollViewer.Offset.Y > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height)
+        if (
+            !_updatingSafe
+            && _scrollViewer.Offset.Y
+                > _scrollViewer.ScrollBarMaximum.Y - _pendingPresenter.Bounds.Height
+        )
         {
             _ = UpdateAsync();
         }

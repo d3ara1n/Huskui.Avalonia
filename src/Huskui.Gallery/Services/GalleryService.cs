@@ -54,7 +54,7 @@ public class GalleryService : IGalleryService
                     Description = "Interactive button controls with various styles and states",
                     Icon = Symbol.Button,
                     PageType = typeof(ButtonsPage),
-                    Tags = ["button", "click", "action"]
+                    Tags = ["button", "click", "action"],
                 },
                 new()
                 {
@@ -62,7 +62,7 @@ public class GalleryService : IGalleryService
                     Description = "Button controls with dropdown menus for additional actions",
                     Icon = Symbol.ChevronDown,
                     PageType = typeof(DropDownButtonsPage),
-                    Tags = ["dropdown", "button", "menu", "flyout", "actions"]
+                    Tags = ["dropdown", "button", "menu", "flyout", "actions"],
                 },
                 new()
                 {
@@ -70,7 +70,7 @@ public class GalleryService : IGalleryService
                     Description = "Link-style buttons for navigation and external references",
                     Icon = Symbol.Link,
                     PageType = typeof(HyperlinkButtonsPage),
-                    Tags = ["hyperlink", "link", "navigation", "url", "inline"]
+                    Tags = ["hyperlink", "link", "navigation", "url", "inline"],
                 },
                 new()
                 {
@@ -78,7 +78,7 @@ public class GalleryService : IGalleryService
                     Description = "Single selection controls for mutually exclusive options",
                     Icon = Symbol.RadioButton,
                     PageType = typeof(RadioButtonsPage),
-                    Tags = ["radio", "button", "selection", "exclusive", "group"]
+                    Tags = ["radio", "button", "selection", "exclusive", "group"],
                 },
                 new()
                 {
@@ -86,7 +86,7 @@ public class GalleryService : IGalleryService
                     Description = "Informational message components with different severity levels",
                     Icon = Symbol.Info,
                     PageType = typeof(InfoBarsPage),
-                    Tags = ["info", "message", "notification"]
+                    Tags = ["info", "message", "notification"],
                 },
                 new()
                 {
@@ -94,7 +94,7 @@ public class GalleryService : IGalleryService
                     Description = "Small labels for categorization and metadata",
                     Icon = Symbol.Tag,
                     PageType = typeof(TagsPage),
-                    Tags = ["tag", "label", "category"]
+                    Tags = ["tag", "label", "category"],
                 },
                 new()
                 {
@@ -102,15 +102,16 @@ public class GalleryService : IGalleryService
                     Description = "Combined icon and text labels for enhanced visual communication",
                     Icon = Symbol.Icons,
                     PageType = typeof(IconLabelsPage),
-                    Tags = ["icon", "label", "text", "fluent"]
+                    Tags = ["icon", "label", "text", "fluent"],
                 },
                 new()
                 {
                     Title = "HighlightBlocks",
-                    Description = "Emphasized content blocks for important information and callouts",
+                    Description =
+                        "Emphasized content blocks for important information and callouts",
                     Icon = Symbol.Highlight,
                     PageType = typeof(HighlightBlocksPage),
-                    Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"]
+                    Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"],
                 },
                 new()
                 {
@@ -118,9 +119,9 @@ public class GalleryService : IGalleryService
                     Description = "Visual separators for organizing and structuring content layout",
                     Icon = Symbol.Line,
                     PageType = typeof(DividersPage),
-                    Tags = ["divider", "separator", "line", "section"]
-                }
-            ]
+                    Tags = ["divider", "separator", "line", "section"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -141,25 +142,27 @@ public class GalleryService : IGalleryService
                     Description = "Container components for grouping and organizing content",
                     Icon = Symbol.RectangleLandscape,
                     PageType = typeof(CardsPage),
-                    Tags = ["card", "container", "content"]
+                    Tags = ["card", "container", "content"],
                 },
                 new()
                 {
                     Title = "BusyContainers",
-                    Description = "Loading state containers with visual feedback for async operations",
+                    Description =
+                        "Loading state containers with visual feedback for async operations",
                     Icon = Symbol.ArrowClockwise,
                     PageType = typeof(BusyContainersPage),
-                    Tags = ["busy", "loading", "container", "blur", "progress"]
+                    Tags = ["busy", "loading", "container", "blur", "progress"],
                 },
                 new()
                 {
                     Title = "SkeletonContainers",
-                    Description = "Loading placeholders that mimic content structure during data fetching",
+                    Description =
+                        "Loading placeholders that mimic content structure during data fetching",
                     Icon = Symbol.RectangleLandscape,
                     PageType = typeof(SkeletonContainersPage),
-                    Tags = ["skeleton", "loading", "placeholder", "shimmer"]
-                }
-            ]
+                    Tags = ["skeleton", "loading", "placeholder", "shimmer"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -180,7 +183,7 @@ public class GalleryService : IGalleryService
                     Description = "Pop-up containers for displaying content.",
                     Icon = Symbol.Layer,
                     PageType = typeof(FlyoutsPage),
-                    Tags = ["flyout", "popup", "menu", "overlay"]
+                    Tags = ["flyout", "popup", "menu", "overlay"],
                 },
                 new()
                 {
@@ -188,7 +191,7 @@ public class GalleryService : IGalleryService
                     Description = "Display informational tooltips on hover.",
                     Icon = Symbol.TooltipQuote,
                     PageType = typeof(ToolTipsPage),
-                    Tags = ["tooltip", "tip", "info", "hover"]
+                    Tags = ["tooltip", "tip", "info", "hover"],
                 },
                 new()
                 {
@@ -196,31 +199,34 @@ public class GalleryService : IGalleryService
                     Description = "Heavy-weight content viewers that slide up from the bottom",
                     Icon = Symbol.SlideText,
                     PageType = typeof(ToastsPage),
-                    Tags = ["toast", "content", "preview", "bottom", "heavy"]
+                    Tags = ["toast", "content", "preview", "bottom", "heavy"],
                 },
                 new()
                 {
                     Title = "Modals",
-                    Description = "Modal containers for complex user interactions and extended workflows",
+                    Description =
+                        "Modal containers for complex user interactions and extended workflows",
                     Icon = Symbol.RectangleLandscape,
                     PageType = typeof(ModalsPage),
-                    Tags = ["modal", "long", "interaction", "settings", "profile"]
+                    Tags = ["modal", "long", "interaction", "settings", "profile"],
                 },
                 new()
                 {
                     Title = "Dialogs",
-                    Description = "Modal dialogs for user input collection and binary decision making",
+                    Description =
+                        "Modal dialogs for user input collection and binary decision making",
                     Icon = Symbol.Chat,
                     PageType = typeof(DialogsPage),
-                    Tags = ["dialog", "confirmation", "input", "binary", "choice"]
+                    Tags = ["dialog", "confirmation", "input", "binary", "choice"],
                 },
                 new()
                 {
                     Title = "Growls",
-                    Description = "Status feedback notifications for user awareness and system updates",
+                    Description =
+                        "Status feedback notifications for user awareness and system updates",
                     Icon = Symbol.Alert,
                     PageType = typeof(GrowlsPage),
-                    Tags = ["notification", "alert", "message", "status", "feedback"]
+                    Tags = ["notification", "alert", "message", "status", "feedback"],
                 },
                 new()
                 {
@@ -228,9 +234,9 @@ public class GalleryService : IGalleryService
                     Description = "Floating drawer that can be dragged, resized, and collapsed",
                     Icon = Symbol.PanelBottom,
                     PageType = typeof(DrawerPage),
-                    Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"]
-                }
-            ]
+                    Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -248,12 +254,13 @@ public class GalleryService : IGalleryService
                 new()
                 {
                     Title = "FlexWrapPanels",
-                    Description = "Flexible wrapping layout panels for responsive content arrangement",
+                    Description =
+                        "Flexible wrapping layout panels for responsive content arrangement",
                     Icon = Symbol.LayoutRowTwoSplitBottom,
                     PageType = typeof(FlexWrapPanelsPage),
-                    Tags = ["flex", "wrap", "responsive", "dynamic", "panel"]
-                }
-            ]
+                    Tags = ["flex", "wrap", "responsive", "dynamic", "panel"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -274,7 +281,7 @@ public class GalleryService : IGalleryService
                     Description = "Binary toggle controls for on/off settings and preferences",
                     Icon = Symbol.ToggleRight,
                     PageType = typeof(ToggleSwitchesPage),
-                    Tags = ["toggle", "switch", "boolean", "settings"]
+                    Tags = ["toggle", "switch", "boolean", "settings"],
                 },
                 new()
                 {
@@ -282,15 +289,16 @@ public class GalleryService : IGalleryService
                     Description = "Text input controls for single-line and multi-line text entry",
                     Icon = Symbol.TextBulletListSquare,
                     PageType = typeof(TextBoxesPage),
-                    Tags = ["textbox", "input", "text", "validation", "form"]
+                    Tags = ["textbox", "input", "text", "validation", "form"],
                 },
                 new()
                 {
                     Title = "ComboBoxes",
-                    Description = "Dropdown selection controls for choosing from predefined options",
+                    Description =
+                        "Dropdown selection controls for choosing from predefined options",
                     Icon = Symbol.ChevronDown,
                     PageType = typeof(ComboBoxesPage),
-                    Tags = ["combobox", "dropdown", "select", "picker"]
+                    Tags = ["combobox", "dropdown", "select", "picker"],
                 },
                 new()
                 {
@@ -298,7 +306,7 @@ public class GalleryService : IGalleryService
                     Description = "Binary selection controls for multiple choice options",
                     Icon = Symbol.CheckboxChecked,
                     PageType = typeof(CheckBoxesPage),
-                    Tags = ["checkbox", "check", "selection", "boolean", "three-state"]
+                    Tags = ["checkbox", "check", "selection", "boolean", "three-state"],
                 },
                 new()
                 {
@@ -306,9 +314,9 @@ public class GalleryService : IGalleryService
                     Description = "Star-based rating controls for user feedback and reviews",
                     Icon = Symbol.Star,
                     PageType = typeof(RatingControlsPage),
-                    Tags = ["rating", "star", "review", "feedback", "score"]
-                }
-            ]
+                    Tags = ["rating", "star", "review", "feedback", "score"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -329,7 +337,7 @@ public class GalleryService : IGalleryService
                     Description = "Tab containers for content organization",
                     Icon = Symbol.Tab,
                     PageType = typeof(TabControlsPage),
-                    Tags = ["list", "tab", "navigation", "vertical", "switcher"]
+                    Tags = ["list", "tab", "navigation", "vertical", "switcher"],
                 },
                 new()
                 {
@@ -337,9 +345,9 @@ public class GalleryService : IGalleryService
                     Description = "Navigation containers for page transitions and routing",
                     Icon = Symbol.Navigation,
                     PageType = typeof(FramesPage),
-                    Tags = ["frame", "navigation", "page", "transition"]
-                }
-            ]
+                    Tags = ["frame", "navigation", "page", "transition"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -360,7 +368,7 @@ public class GalleryService : IGalleryService
                     Description = "Vertical list containers with different configurations",
                     Icon = Symbol.List,
                     PageType = typeof(ListBoxesPage),
-                    Tags = ["list", "box", "vertical", "content"]
+                    Tags = ["list", "box", "vertical", "content"],
                 },
                 new()
                 {
@@ -368,7 +376,7 @@ public class GalleryService : IGalleryService
                     Description = "Horizontal tab containers for content organization",
                     Icon = Symbol.Tab,
                     PageType = typeof(TabStripsPage),
-                    Tags = ["list", "tab", "vertical", "switcher"]
+                    Tags = ["list", "tab", "vertical", "switcher"],
                 },
                 new()
                 {
@@ -376,9 +384,9 @@ public class GalleryService : IGalleryService
                     Description = "Stepped navigation controls for multi-step workflows",
                     Icon = Symbol.Navigation,
                     PageType = typeof(StepControlsPage),
-                    Tags = ["step", "navigation", "workflow", "wizard"]
-                }
-            ]
+                    Tags = ["step", "navigation", "workflow", "wizard"],
+                },
+            ],
         };
 
         Categories.Add(category);
@@ -388,7 +396,10 @@ public class GalleryService : IGalleryService
     {
         var category = new GalleryCategory
         {
-            Name = "Media", Description = "Media and graphics components", Icon = Symbol.Image, Items = []
+            Name = "Media",
+            Description = "Media and graphics components",
+            Icon = Symbol.Image,
+            Items = [],
         };
 
         Categories.Add(category);

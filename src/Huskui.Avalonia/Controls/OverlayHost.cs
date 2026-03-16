@@ -25,33 +25,45 @@ public class OverlayHost : TemplatedControl
     public const string PART_SmokeMask = nameof(PART_SmokeMask);
 
     public static readonly DirectProperty<OverlayHost, bool> IsPresentProperty =
-        AvaloniaProperty.RegisterDirect<OverlayHost, bool>(nameof(IsPresent),
-                                                           o => o.IsPresent,
-                                                           (o, v) => o.IsPresent = v);
-
+        AvaloniaProperty.RegisterDirect<OverlayHost, bool>(
+            nameof(IsPresent),
+            o => o.IsPresent,
+            (o, v) => o.IsPresent = v
+        );
 
     public static readonly StyledProperty<IPageTransition> TransitionProperty =
-        AvaloniaProperty.Register<OverlayHost, IPageTransition>(nameof(Transition),
-                                                                new PageCoverOverTransition(null,
-                                                                    DirectionFrom.Bottom));
+        AvaloniaProperty.Register<OverlayHost, IPageTransition>(
+            nameof(Transition),
+            new PageCoverOverTransition(null, DirectionFrom.Bottom)
+        );
 
-    public static readonly StyledProperty<int> ItemCountProperty =
-        AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
+    public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
+        OverlayHost,
+        int
+    >(nameof(ItemCount));
 
     public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<bool>> IsPresentChangedEvent =
-        RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(nameof(IsPresentChanged),
-                                                                                    RoutingStrategies.Bubble);
+        RoutedEvent.Register<OverlayHost, PropertyChangedRoutedEventArgs<bool>>(
+            nameof(IsPresentChanged),
+            RoutingStrategies.Bubble
+        );
 
     public static readonly RoutedEvent<MaskPointerPressedEventArgs> MaskPointerPressedEvent =
-        RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(nameof(MaskPointerPressed),
-                                                                       RoutingStrategies.Bubble);
+        RoutedEvent.Register<OverlayHost, MaskPointerPressedEventArgs>(
+            nameof(MaskPointerPressed),
+            RoutingStrategies.Bubble
+        );
 
     public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
-        RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(nameof(DismissRequested),
-                                                                     RoutingStrategies.Bubble);
+        RoutedEvent.Register<OverlayItem, DismissRequestedEventArgs>(
+            nameof(DismissRequested),
+            RoutingStrategies.Bubble
+        );
 
-    public static readonly StyledProperty<ITemplate> ItemsPanelProperty =
-        AvaloniaProperty.Register<OverlayHost, ITemplate>(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
+    public static readonly StyledProperty<ITemplate> ItemsPanelProperty = AvaloniaProperty.Register<
+        OverlayHost,
+        ITemplate
+    >(nameof(ItemsPanel), new FuncTemplate<Panel>(() => new()));
 
     private readonly Queue<OverlayItem> _toDismiss = [];
 
@@ -138,10 +150,14 @@ public class OverlayHost : TemplatedControl
         if (change.Property == IsPresentProperty)
         {
             PseudoClasses.Set(":present", change.GetNewValue<bool>());
-            RaiseEvent(new PropertyChangedRoutedEventArgs<bool>(IsPresentChangedEvent,
-                                                                this,
-                                                                change.GetOldValue<bool>(),
-                                                                change.GetNewValue<bool>()));
+            RaiseEvent(
+                new PropertyChangedRoutedEventArgs<bool>(
+                    IsPresentChangedEvent,
+                    this,
+                    change.GetOldValue<bool>(),
+                    change.GetNewValue<bool>()
+                )
+            );
         }
     }
 
@@ -164,27 +180,28 @@ public class OverlayHost : TemplatedControl
             {
                 var transition = item.Transition ?? Transition;
                 transition
-                   .Start(item, null, true, CancellationToken.None)
-                   .ContinueWith(_ =>
-                                 {
-                                     for (var i = 0; i < Items.IndexOf(item); i++)
-                                     {
-                                         if (Items[i] is { } inner)
-                                         {
-                                             inner.Distance--;
-                                         }
-                                     }
+                    .Start(item, null, true, CancellationToken.None)
+                    .ContinueWith(
+                        _ =>
+                        {
+                            for (var i = 0; i < Items.IndexOf(item); i++)
+                            {
+                                if (Items[i] is { } inner)
+                                {
+                                    inner.Distance--;
+                                }
+                            }
 
-
-                                     LogicalChildren.Remove(item);
-                                     Items.Remove(item);
-                                     ItemCount = Items.Count;
-                                     if (Items.Count == 0)
-                                     {
-                                         IsPresent = false;
-                                     }
-                                 },
-                                 TaskScheduler.FromCurrentSynchronizationContext());
+                            LogicalChildren.Remove(item);
+                            Items.Remove(item);
+                            ItemCount = Items.Count;
+                            if (Items.Count == 0)
+                            {
+                                IsPresent = false;
+                            }
+                        },
+                        TaskScheduler.FromCurrentSynchronizationContext()
+                    );
             }
         }
 
@@ -218,7 +235,7 @@ public class OverlayHost : TemplatedControl
         {
             OverlayItem it => it,
             Visual visual => VisualExtensions.FindAncestorOfType<OverlayItem>(visual),
-            _ => null
+            _ => null,
         };
         if (item is not null && !_toDismiss.Contains(item))
         {
@@ -261,7 +278,8 @@ public class OverlayHost : TemplatedControl
 
     #region Nested type: DismissRequestedEventArgs
 
-    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
+    public class DismissRequestedEventArgs(object? source = null)
+        : RoutedEventArgs(DismissRequestedEvent, source)
     {
         public OverlayItem? Container { get; set; }
     }

@@ -15,13 +15,18 @@ public class OverlayItem : ContentControl
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
     public static readonly DirectProperty<OverlayItem, int> DistanceProperty =
-        AvaloniaProperty.RegisterDirect<OverlayItem, int>(nameof(Distance), o => o.Distance, (o, v) => o.Distance = v);
+        AvaloniaProperty.RegisterDirect<OverlayItem, int>(
+            nameof(Distance),
+            o => o.Distance,
+            (o, v) => o.Distance = v
+        );
 
     public static readonly DirectProperty<OverlayItem, IPageTransition?> TransitionProperty =
-        AvaloniaProperty.RegisterDirect<OverlayItem, IPageTransition?>(nameof(Transition),
-                                                                       o => o.Transition,
-                                                                       (o, v) => o.Transition = v);
-
+        AvaloniaProperty.RegisterDirect<OverlayItem, IPageTransition?>(
+            nameof(Transition),
+            o => o.Transition,
+            (o, v) => o.Transition = v
+        );
 
     public IPageTransition? Transition
     {
@@ -49,12 +54,14 @@ public class OverlayItem : ContentControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == ContentProperty && change.NewValue is IPageTransitionOverride @override)
+        if (
+            change.Property == ContentProperty
+            && change.NewValue is IPageTransitionOverride @override
+        )
         {
             Transition = @override.TransitionOverride;
         }
     }
-
 
     protected override void OnLoaded(RoutedEventArgs e)
     {

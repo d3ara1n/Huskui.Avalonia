@@ -13,7 +13,10 @@ public partial class CategoryGroupViewModel : ObservableObject
     private readonly ReadOnlyObservableCollection<GalleryItem> _allItems;
     private readonly GalleryCategory _category;
 
-    public CategoryGroupViewModel(GalleryCategory category, ReadOnlyObservableCollection<GalleryItem> allItems)
+    public CategoryGroupViewModel(
+        GalleryCategory category,
+        ReadOnlyObservableCollection<GalleryItem> allItems
+    )
     {
         _category = category;
         _allItems = allItems;

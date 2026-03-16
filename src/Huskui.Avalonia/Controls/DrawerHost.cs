@@ -13,15 +13,16 @@ public class DrawerHost : TemplatedControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
 
-    public static readonly StyledProperty<int> ItemCountProperty =
-        AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
+    public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
+        OverlayHost,
+        int
+    >(nameof(ItemCount));
 
     public int ItemCount
     {
         get => GetValue(ItemCountProperty);
         set => SetValue(ItemCountProperty, value);
     }
-
 
     [Content]
     public AvaloniaList<Drawer> Items { get; } = [];

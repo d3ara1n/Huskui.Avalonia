@@ -21,7 +21,8 @@ public partial class StepControlsPage : ControlPage
         }
     }
 
-    private void OnMinimalNextStepClick(object? sender, RoutedEventArgs e) => MinimalControl.SelectedIndex++;
+    private void OnMinimalNextStepClick(object? sender, RoutedEventArgs e) =>
+        MinimalControl.SelectedIndex++;
 
     private void OnMinimalPreviousStepClick(object? sender, RoutedEventArgs e)
     {

@@ -10,14 +10,15 @@ namespace Huskui.Avalonia;
 
 public class HuskuiTheme : Styles
 {
-    public static readonly StyledProperty<AccentColor> AccentProperty =
-        AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent));
+    public static readonly StyledProperty<AccentColor> AccentProperty = AvaloniaProperty.Register<
+        HuskuiTheme,
+        AccentColor
+    >(nameof(Accent));
 
-    public static readonly StyledProperty<CornerStyle> CornerProperty =
-        AvaloniaProperty.Register<HuskuiTheme, CornerStyle>(nameof(Corner),
-                                                            CornerStyle.Normal,
-                                                            defaultBindingMode: BindingMode.OneWay);
-
+    public static readonly StyledProperty<CornerStyle> CornerProperty = AvaloniaProperty.Register<
+        HuskuiTheme,
+        CornerStyle
+    >(nameof(Corner), CornerStyle.Normal, defaultBindingMode: BindingMode.OneWay);
 
     public HuskuiTheme()
     {
@@ -50,32 +51,33 @@ public class HuskuiTheme : Styles
             var color = change.GetNewValue<AccentColor>();
 
             var source = $"avares://Huskui.Avalonia/Themes/Colors.Accent.{color}.axaml";
-            Resources.MergedDictionaries[1] = color is AccentColor.System
-                                                  ? GenerateSystemAccentColorResourceDictionary()
-                                                  : new ResourceInclude(new Uri("avares://Huskui.Avalonia",
-                                                                                    UriKind.Absolute))
-                                                  {
-                                                      Source = new(source, UriKind.Absolute)
-                                                  };
+            Resources.MergedDictionaries[1] =
+                color is AccentColor.System
+                    ? GenerateSystemAccentColorResourceDictionary()
+                    : new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
+                    {
+                        Source = new(source, UriKind.Absolute),
+                    };
         }
 
         if (change.Property == CornerProperty)
         {
             var corner = change.GetNewValue<CornerStyle>();
             var source = $"avares://Huskui.Avalonia/Themes/CornerRadius.{corner}.axaml";
-            Resources.MergedDictionaries[0] =
-                new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
-                {
-                    Source = new(source, UriKind.Absolute)
-                };
+            Resources.MergedDictionaries[0] = new ResourceInclude(
+                new Uri("avares://Huskui.Avalonia", UriKind.Absolute)
+            )
+            {
+                Source = new(source, UriKind.Absolute),
+            };
         }
     }
 
     private ResourceDictionary GenerateSystemAccentColorResourceDictionary()
     {
         var systemAccent = Application.Current is { PlatformSettings: { } platformSettings }
-                               ? platformSettings.GetColorValues().AccentColor1
-                               : Color.FromRgb(0x00, 0x90, 0xFF);
+            ? platformSettings.GetColorValues().AccentColor1
+            : Color.FromRgb(0x00, 0x90, 0xFF);
 
         var lightScale = RadixColorGenerator.GenerateLightScale(systemAccent);
         var darkScale = RadixColorGenerator.GenerateDarkScale(systemAccent);

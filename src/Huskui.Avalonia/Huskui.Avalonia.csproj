@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -33,13 +32,18 @@
     </ItemGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
     <!-- Include files needed for NuGet packaging -->
     <ItemGroup>
-        <None Include="Assets\icon.png" Pack="true" PackagePath="\" Condition="Exists('Assets\icon.png')"/>
-        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+        <None
+            Include="Assets\icon.png"
+            Pack="true"
+            PackagePath="\"
+            Condition="Exists('Assets\icon.png')"
+        />
+        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <!-- Source Link for better debugging experience -->
@@ -48,7 +52,11 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4"/>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.200" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
+        <PackageReference
+            Include="Microsoft.SourceLink.GitHub"
+            Version="10.0.200"
+            PrivateAssets="All"
+        />
     </ItemGroup>
 </Project>

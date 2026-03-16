@@ -9,29 +9,39 @@ namespace Huskui.Avalonia.Controls;
 public class SwitchPresenter : TemplatedControl
 {
     public static readonly DirectProperty<SwitchPresenter, SwitchCases> CasesProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCases>(nameof(Cases),
-                                                                      o => o.Cases,
-                                                                      (o, v) => o.Cases = v);
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCases>(
+            nameof(Cases),
+            o => o.Cases,
+            (o, v) => o.Cases = v
+        );
 
     public static readonly DirectProperty<SwitchPresenter, SwitchCase?> CurrentCaseProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCase?>(nameof(CurrentCase),
-                                                                      o => o.CurrentCase,
-                                                                      (o, v) => o.CurrentCase = v);
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCase?>(
+            nameof(CurrentCase),
+            o => o.CurrentCase,
+            (o, v) => o.CurrentCase = v
+        );
 
     public static readonly DirectProperty<SwitchPresenter, object?> ValueProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, object?>(nameof(Value),
-                                                                  o => o.Value,
-                                                                  (o, v) => o.Value = v,
-                                                                  defaultBindingMode: BindingMode.OneWay);
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, object?>(
+            nameof(Value),
+            o => o.Value,
+            (o, v) => o.Value = v,
+            defaultBindingMode: BindingMode.OneWay
+        );
 
     public static readonly DirectProperty<SwitchPresenter, Type?> TargetTypeProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, Type?>(nameof(TargetType),
-                                                                o => o.TargetType,
-                                                                (o, v) => o.TargetType = v,
-                                                                defaultBindingMode: BindingMode.OneTime);
+        AvaloniaProperty.RegisterDirect<SwitchPresenter, Type?>(
+            nameof(TargetType),
+            o => o.TargetType,
+            (o, v) => o.TargetType = v,
+            defaultBindingMode: BindingMode.OneTime
+        );
 
-    public static readonly StyledProperty<object?> ContentProperty =
-        AvaloniaProperty.Register<SwitchPresenter, object?>(nameof(Content));
+    public static readonly StyledProperty<object?> ContentProperty = AvaloniaProperty.Register<
+        SwitchPresenter,
+        object?
+    >(nameof(Content));
 
     public object? Content
     {

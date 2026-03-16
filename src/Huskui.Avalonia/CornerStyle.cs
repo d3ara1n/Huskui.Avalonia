@@ -1,3 +1,7 @@
 namespace Huskui.Avalonia;
 
-public enum CornerStyle { None, Normal }
+public enum CornerStyle
+{
+    None,
+    Normal,
+}

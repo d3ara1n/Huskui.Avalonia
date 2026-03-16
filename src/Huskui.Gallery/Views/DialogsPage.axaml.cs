@@ -39,7 +39,7 @@ public partial class DialogsPage : ControlPage
             Content = "Do you want to save your changes before closing?",
             PrimaryText = "Save",
             SecondaryText = "Don't Save",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -59,7 +59,7 @@ public partial class DialogsPage : ControlPage
             Content = "Are you sure you want to exit? Any unsaved work will be lost.",
             PrimaryText = "Exit",
             SecondaryText = "Cancel",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -99,7 +99,9 @@ public partial class DialogsPage : ControlPage
             // 使用Growl提示用户输入的邮箱
             var notification = new GrowlItem
             {
-                Level = GrowlLevel.Success, Title = "Email Confirmed", Content = $"You entered: {email}"
+                Level = GrowlLevel.Success,
+                Title = "Email Confirmed",
+                Content = $"You entered: {email}",
             };
             appWindow.PopGrowl(notification);
         }
@@ -108,7 +110,9 @@ public partial class DialogsPage : ControlPage
             // 用户点击了Cancel或关闭
             var notification = new GrowlItem
             {
-                Level = GrowlLevel.Information, Title = "Input Cancelled", Content = "Email input was cancelled"
+                Level = GrowlLevel.Information,
+                Title = "Input Cancelled",
+                Content = "Email input was cancelled",
             };
             appWindow.PopGrowl(notification);
         }
@@ -130,12 +134,13 @@ public partial class DialogsPage : ControlPage
                 Spacing = 8,
                 Children =
                 {
-                    new TextBlock { Text = "Folder name:" }, new TextBox { Watermark = "Enter folder name" }
-                }
+                    new TextBlock { Text = "Folder name:" },
+                    new TextBox { Watermark = "Enter folder name" },
+                },
             },
             PrimaryText = "Create",
             SecondaryText = "Cancel",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -159,12 +164,12 @@ public partial class DialogsPage : ControlPage
                 {
                     new TextBlock { Text = "Enter a new password for this document:" },
                     new TextBox { Watermark = "Password", PasswordChar = '•' },
-                    new TextBox { Watermark = "Confirm password", PasswordChar = '•' }
-                }
+                    new TextBox { Watermark = "Confirm password", PasswordChar = '•' },
+                },
             },
             PrimaryText = "Set Password",
             SecondaryText = "Cancel",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -184,7 +189,7 @@ public partial class DialogsPage : ControlPage
             Content = "You have unsaved changes in this document. What would you like to do?",
             PrimaryText = "Save Changes",
             SecondaryText = "Discard Changes",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -201,10 +206,11 @@ public partial class DialogsPage : ControlPage
         var dialog = new Dialog
         {
             Title = "File Already Exists",
-            Content = "A file named 'report.pdf' already exists in this location. Do you want to replace it?",
+            Content =
+                "A file named 'report.pdf' already exists in this location. Do you want to replace it?",
             PrimaryText = "Replace",
             SecondaryText = "Keep Both",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);
@@ -221,10 +227,11 @@ public partial class DialogsPage : ControlPage
         var dialog = new Dialog
         {
             Title = "Permanent Action",
-            Content = "This will permanently delete all items in the Recycle Bin. This action cannot be undone.",
+            Content =
+                "This will permanently delete all items in the Recycle Bin. This action cannot be undone.",
             PrimaryText = "Empty Recycle Bin",
             SecondaryText = "Cancel",
-            IsPrimaryButtonVisible = true
+            IsPrimaryButtonVisible = true,
         };
 
         appWindow.PopDialog(dialog);

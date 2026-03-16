@@ -10,8 +10,10 @@ public class ProgressRing : RangeBase
 {
     public const string PART_Indicator = nameof(PART_Indicator);
 
-    public static readonly StyledProperty<bool> IsIndeterminateProperty =
-        AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsIndeterminate));
+    public static readonly StyledProperty<bool> IsIndeterminateProperty = AvaloniaProperty.Register<
+        ProgressRing,
+        bool
+    >(nameof(IsIndeterminate));
 
     public static readonly StyledProperty<bool> ShowProgressTextProperty =
         AvaloniaProperty.Register<ProgressRing, bool>(nameof(ShowProgressText));
@@ -19,8 +21,10 @@ public class ProgressRing : RangeBase
     public static readonly StyledProperty<string> ProgressTextFormatProperty =
         AvaloniaProperty.Register<ProgressRing, string>(nameof(ProgressTextFormat), "{1:0}%");
 
-    public static readonly StyledProperty<double> StrokeWidthProperty =
-        AvaloniaProperty.Register<ProgressRing, double>(nameof(StrokeWidth), 4);
+    public static readonly StyledProperty<double> StrokeWidthProperty = AvaloniaProperty.Register<
+        ProgressRing,
+        double
+    >(nameof(StrokeWidth), 4);
 
     public static readonly StyledProperty<double> TrackStrokeWidthProperty =
         AvaloniaProperty.Register<ProgressRing, double>(nameof(TrackStrokeWidth));
@@ -28,9 +32,11 @@ public class ProgressRing : RangeBase
     public static readonly StyledProperty<Thickness> TrackPaddingProperty =
         AvaloniaProperty.Register<ProgressRing, Thickness>(nameof(TrackPadding));
 
-
     public static readonly DirectProperty<ProgressRing, double> PercentageProperty =
-        AvaloniaProperty.RegisterDirect<ProgressRing, double>(nameof(Percentage), o => o.Percentage);
+        AvaloniaProperty.RegisterDirect<ProgressRing, double>(
+            nameof(Percentage),
+            o => o.Percentage
+        );
 
     public static readonly DirectProperty<ProgressRing, double> AngleProperty =
         AvaloniaProperty.RegisterDirect<ProgressRing, double>(nameof(Angle), o => o.Angle);
@@ -92,10 +98,12 @@ public class ProgressRing : RangeBase
             PseudoClasses.Set(":indeterminate", change.GetNewValue<bool>());
         }
 
-        if (change.Property == ValueProperty
-         || change.Property == MinimumProperty
-         || change.Property == MaximumProperty
-         || change.Property == IsIndeterminateProperty)
+        if (
+            change.Property == ValueProperty
+            || change.Property == MinimumProperty
+            || change.Property == MaximumProperty
+            || change.Property == IsIndeterminateProperty
+        )
         {
             UpdateIndicator();
         }
@@ -110,7 +118,10 @@ public class ProgressRing : RangeBase
 
     private void UpdateIndicator()
     {
-        var percent = Math.Abs(Maximum - Minimum) < double.Epsilon ? 1.0 : (Value - Minimum) / (Maximum - Minimum);
+        var percent =
+            Math.Abs(Maximum - Minimum) < double.Epsilon
+                ? 1.0
+                : (Value - Minimum) / (Maximum - Minimum);
 
         Percentage = percent * 100;
 

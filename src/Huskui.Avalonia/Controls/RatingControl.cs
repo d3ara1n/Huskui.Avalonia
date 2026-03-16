@@ -16,38 +16,63 @@ public class RatingControl : RangeBase
 {
     public const string PART_StarsPanel = nameof(PART_StarsPanel);
 
-    public static readonly StyledProperty<bool> IsReadOnlyProperty =
-        AvaloniaProperty.Register<RatingControl, bool>(nameof(IsReadOnly));
+    public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<
+        RatingControl,
+        bool
+    >(nameof(IsReadOnly));
 
-    public static readonly StyledProperty<bool> IsClearEnabledProperty =
-        AvaloniaProperty.Register<RatingControl, bool>(nameof(IsClearEnabled), true);
+    public static readonly StyledProperty<bool> IsClearEnabledProperty = AvaloniaProperty.Register<
+        RatingControl,
+        bool
+    >(nameof(IsClearEnabled), true);
 
-    public static readonly StyledProperty<bool> AllowHalfStarsProperty =
-        AvaloniaProperty.Register<RatingControl, bool>(nameof(AllowHalfStars));
+    public static readonly StyledProperty<bool> AllowHalfStarsProperty = AvaloniaProperty.Register<
+        RatingControl,
+        bool
+    >(nameof(AllowHalfStars));
 
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<RatingControl, double>(nameof(Spacing), 2d);
+    public static readonly StyledProperty<double> SpacingProperty = AvaloniaProperty.Register<
+        RatingControl,
+        double
+    >(nameof(Spacing), 2d);
 
-    public static readonly StyledProperty<Symbol> FilledIconProperty =
-        AvaloniaProperty.Register<RatingControl, Symbol>(nameof(FilledIcon), Symbol.Star);
+    public static readonly StyledProperty<Symbol> FilledIconProperty = AvaloniaProperty.Register<
+        RatingControl,
+        Symbol
+    >(nameof(FilledIcon), Symbol.Star);
 
-    public static readonly StyledProperty<Symbol> UnfilledIconProperty =
-        AvaloniaProperty.Register<RatingControl, Symbol>(nameof(UnfilledIcon), Symbol.Star);
+    public static readonly StyledProperty<Symbol> UnfilledIconProperty = AvaloniaProperty.Register<
+        RatingControl,
+        Symbol
+    >(nameof(UnfilledIcon), Symbol.Star);
 
-    public static readonly StyledProperty<IBrush?> FilledColorProperty =
-        AvaloniaProperty.Register<RatingControl, IBrush?>(nameof(FilledColor));
+    public static readonly StyledProperty<IBrush?> FilledColorProperty = AvaloniaProperty.Register<
+        RatingControl,
+        IBrush?
+    >(nameof(FilledColor));
 
     public static readonly StyledProperty<IBrush?> UnfilledColorProperty =
         AvaloniaProperty.Register<RatingControl, IBrush?>(nameof(UnfilledColor));
 
     public static readonly DirectProperty<RatingControl, double> PreviewValueProperty =
-        AvaloniaProperty.RegisterDirect<RatingControl, double>(nameof(PreviewValue), o => o.PreviewValue);
+        AvaloniaProperty.RegisterDirect<RatingControl, double>(
+            nameof(PreviewValue),
+            o => o.PreviewValue
+        );
 
     public static readonly DirectProperty<RatingControl, bool> IsPreviewingProperty =
-        AvaloniaProperty.RegisterDirect<RatingControl, bool>(nameof(IsPreviewing), o => o.IsPreviewing);
+        AvaloniaProperty.RegisterDirect<RatingControl, bool>(
+            nameof(IsPreviewing),
+            o => o.IsPreviewing
+        );
 
-    public static readonly DirectProperty<RatingControl, ObservableCollection<RatingStar>> StarsProperty =
-        AvaloniaProperty.RegisterDirect<RatingControl, ObservableCollection<RatingStar>>(nameof(Stars), o => o.Stars);
+    public static readonly DirectProperty<
+        RatingControl,
+        ObservableCollection<RatingStar>
+    > StarsProperty = AvaloniaProperty.RegisterDirect<
+        RatingControl,
+        ObservableCollection<RatingStar>
+    >(nameof(Stars), o => o.Stars);
 
     private ItemsControl? _starsPanel;
 
@@ -139,9 +164,11 @@ public class RatingControl : RangeBase
             UpdateStarsCollection();
         }
 
-        if (change.Property == ValueProperty
-         || change.Property == PreviewValueProperty
-         || change.Property == IsPreviewingProperty)
+        if (
+            change.Property == ValueProperty
+            || change.Property == PreviewValueProperty
+            || change.Property == IsPreviewingProperty
+        )
         {
             UpdateStarStates();
         }
@@ -239,8 +266,10 @@ public class RatingControl : RangeBase
         foreach (var star in Stars)
         {
             var threshold = star.Index + 1;
-            star.FillState = displayValue >= threshold ? RatingStarFillState.Full :
-                             displayValue > star.Index ? RatingStarFillState.Half : RatingStarFillState.Empty;
+            star.FillState =
+                displayValue >= threshold ? RatingStarFillState.Full
+                : displayValue > star.Index ? RatingStarFillState.Half
+                : RatingStarFillState.Empty;
         }
     }
 }

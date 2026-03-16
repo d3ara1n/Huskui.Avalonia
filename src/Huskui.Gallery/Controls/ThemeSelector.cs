@@ -106,7 +106,10 @@ public class ThemeSelector : TemplatedControl
         _backgroundComboBox.ItemsSource = BackgroundMaterialItem.All;
         _backgroundComboBox.SelectionChanged += (_, _) =>
         {
-            if (_backgroundComboBox.SelectedItem is BackgroundMaterialItem item && _themeService != null)
+            if (
+                _backgroundComboBox.SelectedItem is BackgroundMaterialItem item
+                && _themeService != null
+            )
             {
                 _themeService.SetBackground(item.Material);
             }
@@ -123,22 +126,27 @@ public class ThemeSelector : TemplatedControl
         // Update theme selection
         if (_themeComboBox != null)
         {
-            var currentTheme = ThemeVariantItem.All.FirstOrDefault(t => t.Variant == _themeService.CurrentTheme);
+            var currentTheme = ThemeVariantItem.All.FirstOrDefault(t =>
+                t.Variant == _themeService.CurrentTheme
+            );
             _themeComboBox.SelectedItem = currentTheme;
         }
 
         // Update accent selection
         if (_accentComboBox != null)
         {
-            var currentAccent = AccentColorItem.All.FirstOrDefault(a => a.Color == _themeService.CurrentAccent);
+            var currentAccent = AccentColorItem.All.FirstOrDefault(a =>
+                a.Color == _themeService.CurrentAccent
+            );
             _accentComboBox.SelectedItem = currentAccent;
         }
 
         // Update background selection
         if (_backgroundComboBox != null)
         {
-            var currentBackground =
-                BackgroundMaterialItem.All.FirstOrDefault(b => b.Material == _themeService.CurrentBackground);
+            var currentBackground = BackgroundMaterialItem.All.FirstOrDefault(b =>
+                b.Material == _themeService.CurrentBackground
+            );
             _backgroundComboBox.SelectedItem = currentBackground;
         }
     }

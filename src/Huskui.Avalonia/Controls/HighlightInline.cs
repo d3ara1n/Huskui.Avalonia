@@ -13,11 +13,15 @@ public class HighlightInline : InlineUIContainer
     public static readonly StyledProperty<string> TextProperty =
         HighlightBlock.TextProperty.AddOwner<HighlightInline>();
 
-    public static readonly StyledProperty<bool> IsShortcutProperty =
-        AvaloniaProperty.Register<HighlightInline, bool>(nameof(IsShortcut));
+    public static readonly StyledProperty<bool> IsShortcutProperty = AvaloniaProperty.Register<
+        HighlightInline,
+        bool
+    >(nameof(IsShortcut));
 
-    public static readonly StyledProperty<bool> IsPrimaryProperty =
-        AvaloniaProperty.Register<HighlightInline, bool>(nameof(IsPrimary));
+    public static readonly StyledProperty<bool> IsPrimaryProperty = AvaloniaProperty.Register<
+        HighlightInline,
+        bool
+    >(nameof(IsPrimary));
 
     private readonly HighlightBlock _highlightBlock;
 

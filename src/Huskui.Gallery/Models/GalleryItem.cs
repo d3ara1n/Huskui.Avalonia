@@ -50,5 +50,5 @@ public partial class GalleryItem : ObservableObject
 
     public bool MatchesSearch(string searchTerm) =>
         string.IsNullOrWhiteSpace(searchTerm)
-     || SearchText.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase);
+        || SearchText.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase);
 }

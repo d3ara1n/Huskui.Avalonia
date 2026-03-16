@@ -36,7 +36,6 @@ public partial class ModalsPage : ControlPage
         appWindow.PopModal(modal);
     }
 
-
     private void OnShowProjectWizardClick(object? sender, RoutedEventArgs e)
     {
         var appWindow = GetAppWindow();

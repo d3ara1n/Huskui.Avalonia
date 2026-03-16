@@ -90,7 +90,10 @@ public class ThemeService : IThemeService
     private void UpdateWindowBackground()
     {
         // Update main window TransparencyLevelHint based on selected material
-        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        if (
+            Application.Current?.ApplicationLifetime
+            is IClassicDesktopStyleApplicationLifetime desktop
+        )
         {
             var mainWindow = desktop.MainWindow;
             if (mainWindow != null)
@@ -101,7 +104,7 @@ public class ThemeService : IThemeService
                     BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
                     BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
                     BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
-                    _ => WindowTransparencyLevel.None
+                    _ => WindowTransparencyLevel.None,
                 };
 
                 mainWindow.TransparencyLevelHint = [transparencyLevel];

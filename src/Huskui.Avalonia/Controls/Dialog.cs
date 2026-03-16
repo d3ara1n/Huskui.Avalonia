@@ -9,33 +9,47 @@ namespace Huskui.Avalonia.Controls;
 
 public class Dialog : HeaderedContentControl
 {
-    public static readonly StyledProperty<string> PrimaryTextProperty =
-        AvaloniaProperty.Register<Dialog, string>(nameof(PrimaryText));
+    public static readonly StyledProperty<string> PrimaryTextProperty = AvaloniaProperty.Register<
+        Dialog,
+        string
+    >(nameof(PrimaryText));
 
-    public static readonly StyledProperty<string> SecondaryTextProperty =
-        AvaloniaProperty.Register<Dialog, string>(nameof(SecondaryText));
+    public static readonly StyledProperty<string> SecondaryTextProperty = AvaloniaProperty.Register<
+        Dialog,
+        string
+    >(nameof(SecondaryText));
 
+    public static readonly StyledProperty<string> MessageProperty = AvaloniaProperty.Register<
+        Dialog,
+        string
+    >(nameof(Message));
 
-    public static readonly StyledProperty<string> MessageProperty =
-        AvaloniaProperty.Register<Dialog, string>(nameof(Message));
-
-    public static readonly StyledProperty<string> TitleProperty =
-        AvaloniaProperty.Register<Dialog, string>(nameof(Title));
+    public static readonly StyledProperty<string> TitleProperty = AvaloniaProperty.Register<
+        Dialog,
+        string
+    >(nameof(Title));
 
     public static readonly DirectProperty<Dialog, OverlayItem?> ContainerProperty =
-        AvaloniaProperty.RegisterDirect<Dialog, OverlayItem?>(nameof(Container),
-                                                              o => o.Container,
-                                                              (o, v) => o.Container = v);
+        AvaloniaProperty.RegisterDirect<Dialog, OverlayItem?>(
+            nameof(Container),
+            o => o.Container,
+            (o, v) => o.Container = v
+        );
 
     public static readonly DirectProperty<Dialog, object?> ResultProperty =
-        AvaloniaProperty.RegisterDirect<Dialog, object?>(nameof(Result), o => o.Result, (o, v) => o.Result = v);
+        AvaloniaProperty.RegisterDirect<Dialog, object?>(
+            nameof(Result),
+            o => o.Result,
+            (o, v) => o.Result = v
+        );
 
     public static readonly StyledProperty<bool> IsPrimaryButtonVisibleProperty =
         AvaloniaProperty.Register<Dialog, bool>(nameof(IsPrimaryButtonVisible));
 
-    public static readonly RoutedEvent ConfirmRequestedEvent =
-        RoutedEvent.Register<Dialog, ConfirmRequestedEventArgs>(nameof(ConfirmRequested), RoutingStrategies.Bubble);
-
+    public static readonly RoutedEvent ConfirmRequestedEvent = RoutedEvent.Register<
+        Dialog,
+        ConfirmRequestedEventArgs
+    >(nameof(ConfirmRequested), RoutingStrategies.Bubble);
 
     public readonly TaskCompletionSource<bool> CompletionSource = new();
 
@@ -86,7 +100,6 @@ public class Dialog : HeaderedContentControl
             (PrimaryCommand as InternalCommand)?.OnCanExecuteChanged();
         }
     }
-
 
     public OverlayItem? Container
     {

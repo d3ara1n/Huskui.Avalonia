@@ -6,18 +6,25 @@ namespace Huskui.Avalonia.Controls;
 
 public class IconLabel : TemplatedControl
 {
-    public static readonly StyledProperty<Symbol> IconProperty =
-        AvaloniaProperty.Register<IconLabel, Symbol>(nameof(Icon));
+    public static readonly StyledProperty<Symbol> IconProperty = AvaloniaProperty.Register<
+        IconLabel,
+        Symbol
+    >(nameof(Icon));
 
-    public static readonly StyledProperty<string> TextProperty =
-        AvaloniaProperty.Register<IconLabel, string>(nameof(Text));
+    public static readonly StyledProperty<string> TextProperty = AvaloniaProperty.Register<
+        IconLabel,
+        string
+    >(nameof(Text));
 
-    public static readonly StyledProperty<IconVariant> VariantProperty =
-        AvaloniaProperty.Register<IconLabel, IconVariant>(nameof(Variant));
+    public static readonly StyledProperty<IconVariant> VariantProperty = AvaloniaProperty.Register<
+        IconLabel,
+        IconVariant
+    >(nameof(Variant));
 
-
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<IconLabel, double>(nameof(Spacing), 4d);
+    public static readonly StyledProperty<double> SpacingProperty = AvaloniaProperty.Register<
+        IconLabel,
+        double
+    >(nameof(Spacing), 4d);
 
     public Symbol Icon
     {

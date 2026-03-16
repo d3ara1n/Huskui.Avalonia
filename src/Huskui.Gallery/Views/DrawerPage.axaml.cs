@@ -25,8 +25,8 @@ public partial class DrawerPage : ControlPage
                 {
                     Text = "This is the content of the drawer.",
                     VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center,
-                    HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center
-                }
+                    HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
+                },
             };
             window.PopDrawer(drawer);
         }

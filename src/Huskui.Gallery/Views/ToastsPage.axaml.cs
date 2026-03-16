@@ -24,7 +24,6 @@ public partial class ToastsPage : ControlPage
         appWindow.PopToast(toast);
     }
 
-
     private void OnShowProductDetailsClick(object? sender, RoutedEventArgs e)
     {
         var appWindow = GetAppWindow();

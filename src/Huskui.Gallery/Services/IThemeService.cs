@@ -27,7 +27,7 @@ public enum BackgroundMaterial
     /// <summary>
     ///     Transparent background
     /// </summary>
-    Transparent
+    Transparent,
 }
 
 /// <summary>

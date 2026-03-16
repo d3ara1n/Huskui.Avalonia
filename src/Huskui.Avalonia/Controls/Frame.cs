@@ -23,25 +23,31 @@ public class Frame : TemplatedControl
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
     public const string PART_ContentPresenter2 = nameof(PART_ContentPresenter2);
 
+    public static readonly StyledProperty<object?> ContentProperty = AvaloniaProperty.Register<
+        Frame,
+        object?
+    >(nameof(Content));
 
-    public static readonly StyledProperty<object?> ContentProperty =
-        AvaloniaProperty.Register<Frame, object?>(nameof(Content));
-
-    public static readonly StyledProperty<int> HistoryCountProperty =
-        AvaloniaProperty.Register<Frame, int>(nameof(HistoryCount));
+    public static readonly StyledProperty<int> HistoryCountProperty = AvaloniaProperty.Register<
+        Frame,
+        int
+    >(nameof(HistoryCount));
 
     public static readonly StyledProperty<IPageTransition> DefaultTransitionProperty =
-        AvaloniaProperty.Register<Frame, IPageTransition>(nameof(DefaultTransition),
-                                                          TransitioningContentControl.PageTransitionProperty
-                                                             .GetDefaultValue(typeof(TransitioningContentControl))
-                                                       ?? new CrossFade(TimeSpan.FromMilliseconds(197)));
+        AvaloniaProperty.Register<Frame, IPageTransition>(
+            nameof(DefaultTransition),
+            TransitioningContentControl.PageTransitionProperty.GetDefaultValue(
+                typeof(TransitioningContentControl)
+            ) ?? new CrossFade(TimeSpan.FromMilliseconds(197))
+        );
 
-    public static readonly StyledProperty<bool> CanGoBackProperty =
-        AvaloniaProperty.Register<Frame, bool>(nameof(CanGoBack));
+    public static readonly StyledProperty<bool> CanGoBackProperty = AvaloniaProperty.Register<
+        Frame,
+        bool
+    >(nameof(CanGoBack));
 
     public static readonly StyledProperty<bool> CanGoBackOutOfStackProperty =
         AvaloniaProperty.Register<Frame, bool>(nameof(CanGoBackOutOfStack));
-
 
     private readonly InternalCommand _goBackCommand;
 
@@ -107,8 +113,9 @@ public class Frame : TemplatedControl
 
     public void Navigate(Type page, object? parameter, IPageTransition? transition)
     {
-        var content = PageActivator(page, parameter)
-                   ?? throw new InvalidOperationException($"Activating {page.Name} gets null page model");
+        var content =
+            PageActivator(page, parameter)
+            ?? throw new InvalidOperationException($"Activating {page.Name} gets null page model");
         var old = CanGoBack;
         if (_currentFrame is not null)
         {
@@ -125,7 +132,8 @@ public class Frame : TemplatedControl
     {
         if (_history.TryPop(out var frame))
         {
-            var content = PageActivator(frame.Page, frame.Parameter) ?? throw new ArgumentNullException();
+            var content =
+                PageActivator(frame.Page, frame.Parameter) ?? throw new ArgumentNullException();
             UpdateContent(content, _currentFrame?.Transition ?? DefaultTransition, true);
             _currentFrame = frame;
         }
@@ -178,31 +186,36 @@ public class Frame : TemplatedControl
 
             // content == null 时短路到 (current, target)，即不切换
             //  否则应用 reverse 规则
-            var (outPresenter, inPresenter) = content != null && reverse
-                                                  ? (targetPresenter, currentPresenter)
-                                                  : (currentPresenter, targetPresenter);
+            var (outPresenter, inPresenter) =
+                content != null && reverse
+                    ? (targetPresenter, currentPresenter)
+                    : (currentPresenter, targetPresenter);
             transition
-               .Start(outPresenter, inPresenter, !reverse, cancel.Token)
-               .ContinueWith(_ =>
-                             {
-                                 if (cancel.IsCancellationRequested)
-                                 {
-                                     return;
-                                 }
+                .Start(outPresenter, inPresenter, !reverse, cancel.Token)
+                .ContinueWith(
+                    _ =>
+                    {
+                        if (cancel.IsCancellationRequested)
+                        {
+                            return;
+                        }
 
-                                 (currentPresenter.IsVisible, targetPresenter.IsVisible) = (false, content != null);
-                                 currentPresenter.Content = null;
+                        (currentPresenter.IsVisible, targetPresenter.IsVisible) = (
+                            false,
+                            content != null
+                        );
+                        currentPresenter.Content = null;
 
-                                 // NOTE: ContentControl.Content 改变会移除 from.Content 自 LogicalChildren，这会导致 from.Content 的 StaticResource 全部失效
-                                 //  因此要放在动画结束 from 退出时对 Content 进行设置
-                                 Content = targetPresenter.Content;
-                             },
-                             TaskScheduler.FromCurrentSynchronizationContext());
+                        // NOTE: ContentControl.Content 改变会移除 from.Content 自 LogicalChildren，这会导致 from.Content 的 StaticResource 全部失效
+                        //  因此要放在动画结束 from 退出时对 Content 进行设置
+                        Content = targetPresenter.Content;
+                    },
+                    TaskScheduler.FromCurrentSynchronizationContext()
+                );
         }
 
         return rv;
     }
-
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {

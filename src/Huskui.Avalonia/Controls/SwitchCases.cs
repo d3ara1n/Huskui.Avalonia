@@ -15,7 +15,10 @@ public class SwitchCases : AvaloniaList<SwitchCase>
             return null;
         }
 
-        return this.FirstOrDefault(@case => RelayConverter.CompareValues(value, @case.Value, targetType))
-            ?? this.FirstOrDefault(x => x.Value == AvaloniaProperty.UnsetValue) ?? this.FirstOrDefault();
+        return this.FirstOrDefault(@case =>
+                RelayConverter.CompareValues(value, @case.Value, targetType)
+            )
+            ?? this.FirstOrDefault(x => x.Value == AvaloniaProperty.UnsetValue)
+            ?? this.FirstOrDefault();
     }
 }

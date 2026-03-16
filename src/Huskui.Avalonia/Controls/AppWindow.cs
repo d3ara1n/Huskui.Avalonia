@@ -22,9 +22,11 @@ public class AppWindow : Window
     public const string PART_DrawerHost = nameof(PART_DrawerHost);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
-        AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),
-                                                         o => o.IsMaximized,
-                                                         (o, v) => o.IsMaximized = v);
+        AvaloniaProperty.RegisterDirect<AppWindow, bool>(
+            nameof(IsMaximized),
+            o => o.IsMaximized,
+            (o, v) => o.IsMaximized = v
+        );
 
     private OverlayHost? _dialogHost;
 
@@ -135,11 +137,13 @@ public class AppWindow : Window
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
 
-        PseudoClasses.Set(":obstructed",
-                          _toastHost.IsPresent
-                       || _sidebarHost.IsPresent
-                       || _modalHost.IsPresent
-                       || _dialogHost.IsPresent);
+        PseudoClasses.Set(
+            ":obstructed",
+            _toastHost.IsPresent
+                || _sidebarHost.IsPresent
+                || _modalHost.IsPresent
+                || _dialogHost.IsPresent
+        );
     }
 
     public void PopToast(Toast toast)

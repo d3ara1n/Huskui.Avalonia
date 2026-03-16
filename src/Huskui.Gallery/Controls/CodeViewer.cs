@@ -9,17 +9,25 @@ namespace Huskui.Gallery.Controls;
 /// </summary>
 public class CodeViewer : TemplatedControl
 {
-    public static readonly StyledProperty<string> CodeProperty =
-        AvaloniaProperty.Register<CodeViewer, string>(nameof(Code), string.Empty);
+    public static readonly StyledProperty<string> CodeProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        string
+    >(nameof(Code), string.Empty);
 
-    public static readonly StyledProperty<string> LanguageProperty =
-        AvaloniaProperty.Register<CodeViewer, string>(nameof(Language), "xml");
+    public static readonly StyledProperty<string> LanguageProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        string
+    >(nameof(Language), "xml");
 
-    public static readonly StyledProperty<bool> ShowLineNumbersProperty =
-        AvaloniaProperty.Register<CodeViewer, bool>(nameof(ShowLineNumbers), true);
+    public static readonly StyledProperty<bool> ShowLineNumbersProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        bool
+    >(nameof(ShowLineNumbers), true);
 
-    public static readonly StyledProperty<bool> ShowCopyButtonProperty =
-        AvaloniaProperty.Register<CodeViewer, bool>(nameof(ShowCopyButton), true);
+    public static readonly StyledProperty<bool> ShowCopyButtonProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        bool
+    >(nameof(ShowCopyButton), true);
 
     public string Code
     {

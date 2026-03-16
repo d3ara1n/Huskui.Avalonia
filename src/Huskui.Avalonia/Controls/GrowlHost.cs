@@ -15,21 +15,29 @@ namespace Huskui.Avalonia.Controls;
 public class GrowlHost : TemplatedControl
 {
     public static readonly StyledProperty<HorizontalAlignment> HorizontalContentAlignmentProperty =
-        AvaloniaProperty.Register<GrowlHost, HorizontalAlignment>(nameof(HorizontalContentAlignment));
+        AvaloniaProperty.Register<GrowlHost, HorizontalAlignment>(
+            nameof(HorizontalContentAlignment)
+        );
 
     public static readonly StyledProperty<VerticalAlignment> VerticalContentAlignmentProperty =
         AvaloniaProperty.Register<GrowlHost, VerticalAlignment>(nameof(VerticalContentAlignment));
 
-
-    public static readonly StyledProperty<int> ItemCountProperty =
-        AvaloniaProperty.Register<OverlayHost, int>(nameof(ItemCount));
+    public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
+        OverlayHost,
+        int
+    >(nameof(ItemCount));
 
     public static readonly StyledProperty<ITemplate<Panel?>> ItemsPanelProperty =
-        AvaloniaProperty.Register<OverlayHost, ITemplate<Panel?>>(nameof(ItemsPanel),
-                                                                  new FuncTemplate<Panel?>(() => new StackPanel()));
+        AvaloniaProperty.Register<OverlayHost, ITemplate<Panel?>>(
+            nameof(ItemsPanel),
+            new FuncTemplate<Panel?>(() => new StackPanel())
+        );
 
     public static readonly StyledProperty<IPageTransition> TransitionProperty =
-        AvaloniaProperty.Register<GrowlHost, IPageTransition>(nameof(Transition), new GrowlTransition());
+        AvaloniaProperty.Register<GrowlHost, IPageTransition>(
+            nameof(Transition),
+            new GrowlTransition()
+        );
 
     public HorizontalAlignment HorizontalContentAlignment
     {
@@ -85,7 +93,6 @@ public class GrowlHost : TemplatedControl
         }
     }
 
-
     public void Pop(GrowlItem item)
     {
         Items.Add(item);
@@ -97,14 +104,16 @@ public class GrowlHost : TemplatedControl
 
     public void Dismiss(GrowlItem item) =>
         Transition
-           .Start(item, null, true, CancellationToken.None)
-           .ContinueWith(_ =>
-                         {
-                             {
-                                 LogicalChildren.Remove(item);
-                                 Items.Remove(item);
-                                 ItemCount = Items.Count;
-                             }
-                         },
-                         TaskScheduler.FromCurrentSynchronizationContext());
+            .Start(item, null, true, CancellationToken.None)
+            .ContinueWith(
+                _ =>
+                {
+                    {
+                        LogicalChildren.Remove(item);
+                        Items.Remove(item);
+                        ItemCount = Items.Count;
+                    }
+                },
+                TaskScheduler.FromCurrentSynchronizationContext()
+            );
 }

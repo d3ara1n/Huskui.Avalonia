@@ -5,8 +5,10 @@ namespace Huskui.Avalonia.Controls;
 
 public class ConstrainedBox : ContentControl
 {
-    public static readonly StyledProperty<string> AspectRatioProperty =
-        AvaloniaProperty.Register<ConstrainedBox, string>(nameof(AspectRatio), "1:1");
+    public static readonly StyledProperty<string> AspectRatioProperty = AvaloniaProperty.Register<
+        ConstrainedBox,
+        string
+    >(nameof(AspectRatio), "1:1");
 
     public string AspectRatio
     {

@@ -1,6 +1,3 @@
 ﻿namespace Huskui.Avalonia.Controls;
 
-public class TagBox
-{
-    
-}
+public class TagBox { }

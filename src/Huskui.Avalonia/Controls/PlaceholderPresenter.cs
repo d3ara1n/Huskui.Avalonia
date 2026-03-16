@@ -14,11 +14,15 @@ public class PlaceholderPresenter : TemplatedControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
-    public static readonly StyledProperty<object?> PlaceholderProperty =
-        AvaloniaProperty.Register<PlaceholderPresenter, object?>(nameof(Placeholder));
+    public static readonly StyledProperty<object?> PlaceholderProperty = AvaloniaProperty.Register<
+        PlaceholderPresenter,
+        object?
+    >(nameof(Placeholder));
 
-    public static readonly StyledProperty<object?> SourceProperty =
-        AvaloniaProperty.Register<PlaceholderPresenter, object?>(nameof(Source));
+    public static readonly StyledProperty<object?> SourceProperty = AvaloniaProperty.Register<
+        PlaceholderPresenter,
+        object?
+    >(nameof(Source));
 
     public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
         AvaloniaProperty.Register<PlaceholderPresenter, IDataTemplate?>(nameof(SourceTemplate));
@@ -72,7 +76,6 @@ public class PlaceholderPresenter : TemplatedControl
 
         var source = Source;
         var template = SourceTemplate;
-
 
         if (_contentPresenter.Content is ILogical oldLogical)
         {
