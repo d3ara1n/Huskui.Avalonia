@@ -10,7 +10,7 @@ namespace Huskui.Avalonia.Controls;
 public class StepItem : HeaderedContentControl, ISelectable
 {
     public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty
-       .AddOwner<ListBoxItem>();
+       .AddOwner<StepItem>();
 
     public static readonly StyledProperty<bool> IsCompletedProperty =
         AvaloniaProperty.Register<StepItem, bool>(nameof(IsCompleted));
