@@ -315,8 +315,8 @@
                         <TextBox
                             MinHeight="80"
                             AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            Watermark="Share your thoughts about this product..." />
+                            PlaceholderText="Share your thoughts about this product..."
+                            TextWrapping="Wrap" />
                         <Button
                             Classes="Primary"
                             HorizontalAlignment="Right"

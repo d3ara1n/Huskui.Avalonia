@@ -67,16 +67,16 @@
                     <StackPanel Spacing="16">
                         <husk:Divider Content="Personal Information" />
                         <StackPanel Spacing="8">
-                            <TextBox Watermark="First Name" />
-                            <TextBox Watermark="Last Name" />
-                            <TextBox Watermark="Email Address" />
+                            <TextBox PlaceholderText="First Name" />
+                            <TextBox PlaceholderText="Last Name" />
+                            <TextBox PlaceholderText="Email Address" />
                         </StackPanel>
 
                         <husk:Divider Content="Contact Details" />
                         <StackPanel Spacing="8">
-                            <TextBox Watermark="Phone Number" />
-                            <TextBox Watermark="Address" />
-                            <TextBox Watermark="City" />
+                            <TextBox PlaceholderText="Phone Number" />
+                            <TextBox PlaceholderText="Address" />
+                            <TextBox PlaceholderText="City" />
                         </StackPanel>
 
                         <husk:Divider Content="Preferences" />

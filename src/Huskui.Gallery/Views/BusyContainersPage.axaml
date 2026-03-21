@@ -172,19 +172,19 @@
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Name" />
-                            <TextBox Watermark="Enter your name" />
+                            <TextBox PlaceholderText="Enter your name" />
                         </StackPanel>
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Email" />
-                            <TextBox Watermark="Enter your email" />
+                            <TextBox PlaceholderText="Enter your email" />
                         </StackPanel>
 
                         <StackPanel Spacing="8">
                             <TextBlock Text="Password" />
                             <TextBox
                                 PasswordChar="*"
-                                Watermark="Enter password" />
+                                PlaceholderText="Enter password" />
                         </StackPanel>
 
                         <Button

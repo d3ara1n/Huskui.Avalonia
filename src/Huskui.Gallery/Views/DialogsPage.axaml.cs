@@ -135,7 +135,7 @@ public partial class DialogsPage : ControlPage
                 Children =
                 {
                     new TextBlock { Text = "Folder name:" },
-                    new TextBox { Watermark = "Enter folder name" },
+                    new TextBox { PlaceholderText = "Enter folder name" },
                 },
             },
             PrimaryText = "Create",
@@ -163,8 +163,8 @@ public partial class DialogsPage : ControlPage
                 Children =
                 {
                     new TextBlock { Text = "Enter a new password for this document:" },
-                    new TextBox { Watermark = "Password", PasswordChar = '•' },
-                    new TextBox { Watermark = "Confirm password", PasswordChar = '•' },
+                    new TextBox { PlaceholderText = "Password", PasswordChar = '•' },
+                    new TextBox { PlaceholderText = "Confirm password", PasswordChar = '•' },
                 },
             },
             PrimaryText = "Set Password",

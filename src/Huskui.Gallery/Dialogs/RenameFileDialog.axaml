@@ -90,8 +90,8 @@
 
             <TextBox
                 x:Name="FileNameTextBox"
-                Text="document"
-                Watermark="Enter new filename" />
+                PlaceholderText="Enter new filename"
+                Text="document" />
 
             <StackPanel
                 Orientation="Horizontal"

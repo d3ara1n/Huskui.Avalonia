@@ -49,12 +49,12 @@
                     <TextBlock Text="With Watermark" />
                     <TextBox
                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
-                        Watermark="Enter your name..." />
+                        PlaceholderText="Enter your name..." />
                 </StackPanel>
                 <TextBlock Text="With Inner Content" />
                 <TextBox
                     IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
-                    Watermark="Enter your name...">
+                    PlaceholderText="Enter your name...">
                     <TextBox.InnerLeftContent>
                         <DockPanel>
                             <husk:Divider
@@ -83,7 +83,7 @@
                     <TextBox
                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
                         PasswordChar="*"
-                        Watermark="Enter password..." />
+                        PlaceholderText="Enter password..." />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
@@ -133,7 +133,7 @@
                         <TextBlock Text="First Name *" />
                         <TextBox
                             x:Name="FirstNameBox"
-                            Watermark="Enter first name" />
+                            PlaceholderText="Enter first name" />
                         <TextBlock
                             IsVisible="{Binding #ValidationToggle.IsChecked}"
                             FontSize="12"
@@ -145,7 +145,7 @@
                         <TextBlock Text="Email *" />
                         <TextBox
                             x:Name="EmailBox"
-                            Watermark="Enter email address" />
+                            PlaceholderText="Enter email address" />
                         <TextBlock
                             IsVisible="{Binding #ValidationToggle.IsChecked}"
                             FontSize="12"
@@ -158,7 +158,7 @@
                         <TextBox
                             x:Name="PasswordBox"
                             PasswordChar="*"
-                            Watermark="Enter password" />
+                            PlaceholderText="Enter password" />
                         <TextBlock
                             IsVisible="{Binding #ValidationToggle.IsChecked}"
                             FontSize="12"
@@ -172,7 +172,7 @@
                             x:Name="BioBox"
                             Height="80"
                             AcceptsReturn="True"
-                            Watermark="Tell us about yourself..." />
+                            PlaceholderText="Tell us about yourself..." />
                     </StackPanel>
 
                     <StackPanel

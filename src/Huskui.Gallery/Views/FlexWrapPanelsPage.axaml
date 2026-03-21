@@ -306,7 +306,7 @@
                             <TextBlock
                                 FontSize="12"
                                 Text="First Name" />
-                            <TextBox Watermark="Enter first name" />
+                            <TextBox PlaceholderText="Enter first name" />
                         </StackPanel>
 
                         <StackPanel
@@ -315,7 +315,7 @@
                             <TextBlock
                                 FontSize="12"
                                 Text="Last Name" />
-                            <TextBox Watermark="Enter last name" />
+                            <TextBox PlaceholderText="Enter last name" />
                         </StackPanel>
 
                         <StackPanel
@@ -324,7 +324,7 @@
                             <TextBlock
                                 FontSize="12"
                                 Text="Email Address" />
-                            <TextBox Watermark="Enter email address" />
+                            <TextBox PlaceholderText="Enter email address" />
                         </StackPanel>
 
                         <StackPanel
@@ -333,7 +333,7 @@
                             <TextBlock
                                 FontSize="12"
                                 Text="Phone" />
-                            <TextBox Watermark="Enter phone number" />
+                            <TextBox PlaceholderText="Enter phone number" />
                         </StackPanel>
 
                         <StackPanel
@@ -355,7 +355,7 @@
                             <TextBlock
                                 FontSize="12"
                                 Text="Zip Code" />
-                            <TextBox Watermark="Enter zip code" />
+                            <TextBox PlaceholderText="Enter zip code" />
                         </StackPanel>
                     </husk:FlexWrapPanel>
 

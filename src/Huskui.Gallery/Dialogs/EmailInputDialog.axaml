@@ -26,8 +26,8 @@
             <TextBox
                 x:Name="EmailTextBox"
                 KeyDown="OnEmailTextBoxKeyDown"
-                Text="{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}"
-                Watermark="example@domain.com" />
+                PlaceholderText="example@domain.com"
+                Text="{Binding Result, RelativeSource={RelativeSource AncestorType=husk:Dialog}}" />
         </StackPanel>
 
         <!--  Validation Message  -->
