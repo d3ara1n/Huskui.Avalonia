@@ -24,6 +24,6 @@ internal class Program
             })
            .With(new FontManagerOptions { DefaultFamilyName = "fonts:Manrope#Manrope" })
            .UsePlatformDetect()
-           .WithDeveloperTools()
-           .LogToTextWriter(Console.Out);
+           .LogToTextWriter(Console.Out)
+           .WithDeveloperTools();
 }
