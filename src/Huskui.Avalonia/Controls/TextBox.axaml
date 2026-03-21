@@ -11,9 +11,9 @@
                 Margin="24"
                 Spacing="20">
                 <TextBox
+                    PlaceholderText="12"
                     Text="Test 测试 Test 0123456789"
-                    UseFloatingWatermark="True"
-                    Watermark="12">
+                    UseFloatingWatermark="True">
                     <TextBox.InnerLeftContent>
                         <StackPanel Orientation="Horizontal">
                             <fi:SymbolIcon
@@ -42,21 +42,21 @@
                 </TextBox>
                 <TextBox
                     IsEnabled="False"
-                    Watermark="Disabled" />
+                    PlaceholderText="Disabled" />
                 <TextBox
                     IsEnabled="True"
-                    UseFloatingWatermark="True"
-                    Watermark="Enabled" />
+                    PlaceholderText="Enabled"
+                    UseFloatingWatermark="True" />
                 <TextBox
                     IsEnabled="True"
+                    PlaceholderText="Enabled"
                     Theme="{StaticResource UnderlineTextBoxTheme}"
-                    UseFloatingWatermark="True"
-                    Watermark="Enabled" />
+                    UseFloatingWatermark="True" />
                 <TextBox
                     IsEnabled="True"
+                    PlaceholderText="Enabled"
                     Theme="{StaticResource FieldTextBoxTheme}"
-                    UseFloatingWatermark="True"
-                    Watermark="Enabled" />
+                    UseFloatingWatermark="True" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>

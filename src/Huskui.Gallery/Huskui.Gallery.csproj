@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
-        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <LangVersion>preview</LangVersion>
         <AssemblyTitle>Huskui Gallery</AssemblyTitle>
         <AssemblyDescription>A comprehensive gallery showcasing Huskui.Avalonia controls</AssemblyDescription>
@@ -13,13 +12,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.3.12" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.3.12" />
-        <PackageReference Include="Avalonia.Diagnostics" Version="11.3.12">
-            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
-            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
-        </PackageReference>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Avalonia" Version="12.0.0-rc1" />
+        <PackageReference Include="Avalonia.Desktop" Version="12.0.0-rc1" />
+        <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.0-beta3" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
         <PackageReference Include="FluentIcons.Avalonia" Version="2.0.321" />
         <PackageReference Include="HotAvalonia" Version="3.1.0">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
