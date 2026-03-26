@@ -7,7 +7,7 @@
     <ControlTheme
         x:Key="{x:Type local:Drawer}"
         TargetType="local:Drawer">
-        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
@@ -27,13 +27,15 @@
                             Grid.Row="0"
                             Height="{TemplateBinding HeaderHeight}"
                             Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness,
+                                                              Converter={x:Static local:ThicknessConverters.WithoutBottom}}"
                             CornerRadius="{TemplateBinding CornerRadius,
                                                            Converter={x:Static local:CornerRadiusConverters.Upper}}"
                             Focusable="True">
                             <Grid
                                 Margin="12,0"
-                                ColumnDefinitions="Auto,*,Auto,Auto"
-                                ColumnSpacing="8">
+                                ColumnDefinitions="Auto,*,Auto,Auto">
 
                                 <!--  Drag Handle Icon  -->
                                 <Border
@@ -75,6 +77,8 @@
                                     Name="{x:Static local:Drawer.PART_CloseButton}"
                                     Grid.Column="3"
                                     Padding="12,0"
+                                    IsVisible="{TemplateBinding IsDismissable}"
+                                    Command="{Binding DismissCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource SmallFontSize}"

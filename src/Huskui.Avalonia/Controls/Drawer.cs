@@ -1,9 +1,12 @@
+using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -11,7 +14,6 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_ResizeLeft, typeof(Control))]
 [TemplatePart(PART_ResizeRight, typeof(Control))]
 [TemplatePart(PART_ResizeTop, typeof(Control))]
-[TemplatePart(PART_CloseButton, typeof(Button))]
 [TemplatePart(PART_ToggleStateButton, typeof(Button))]
 [PseudoClasses(":open", ":dragging", ":resizing")]
 public class Drawer : ContentControl
@@ -38,6 +40,11 @@ public class Drawer : ContentControl
         string?
     >(nameof(Title));
 
+    public static readonly StyledProperty<bool> IsDismissableProperty = AvaloniaProperty.Register<
+        Drawer,
+        bool
+    >(nameof(IsDismissable), true);
+
     public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
         Drawer,
         double
@@ -55,9 +62,16 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
+    private Button? _closeButton;
     private double? _expandedHeight;
 
     static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
+
+    public Drawer() => DismissCommand = new InternalCommand(Dismiss);
+
+    public bool IsDismissed { get; internal set; }
+
+    public ICommand DismissCommand { get; }
 
     public bool IsOpen
     {
@@ -75,6 +89,12 @@ public class Drawer : ContentControl
     {
         get => GetValue(TitleProperty);
         set => SetValue(TitleProperty, value);
+    }
+
+    public bool IsDismissable
+    {
+        get => GetValue(IsDismissableProperty);
+        set => SetValue(IsDismissableProperty, value);
     }
 
     public double HeaderHeight
@@ -123,6 +143,8 @@ public class Drawer : ContentControl
     {
         base.OnApplyTemplate(e);
 
+        UnregisterHandlers();
+
         _header = e.NameScope.Find<Control>(PART_Handle);
         _resizeLeft = e.NameScope.Find<Control>(PART_ResizeLeft);
         _resizeRight = e.NameScope.Find<Control>(PART_ResizeRight);
@@ -160,7 +182,47 @@ public class Drawer : ContentControl
             _resizeTop.PointerReleased += OnResizePointerReleased;
         }
 
+
         UpdatePseudoClasses();
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        UnregisterHandlers();
+    }
+
+    private void UnregisterHandlers()
+    {
+        if (_header != null)
+        {
+            _header.PointerPressed -= OnHeaderPointerPressed;
+            _header.PointerMoved -= OnHandlePointerMoved;
+            _header.PointerReleased -= OnHandlePointerReleased;
+        }
+
+        if (_resizeLeft != null)
+        {
+            _resizeLeft.PointerMoved -= OnResizePointerMoved;
+            _resizeLeft.PointerReleased -= OnResizePointerReleased;
+        }
+
+        if (_resizeRight != null)
+        {
+            _resizeRight.PointerMoved -= OnResizePointerMoved;
+            _resizeRight.PointerReleased -= OnResizePointerReleased;
+        }
+
+        if (_resizeTop != null)
+        {
+            _resizeTop.PointerMoved -= OnResizePointerMoved;
+            _resizeTop.PointerReleased -= OnResizePointerReleased;
+        }
+
+        if (_closeButton != null)
+        {
+            _closeButton.Click -= OnCloseButtonClick;
+        }
     }
 
     private void UpdatePseudoClasses()
@@ -168,6 +230,13 @@ public class Drawer : ContentControl
         PseudoClasses.Set(":open", IsOpen);
         PseudoClasses.Set(":dragging", _isDragging);
         PseudoClasses.Set(":resizing", _isResizingLeft || _isResizingRight || _isResizingTop);
+    }
+
+
+    protected override void OnGotFocus(FocusChangedEventArgs e)
+    {
+        base.OnGotFocus(e);
+        BringToFront();
     }
 
     private void OnHeaderPointerPressed(object? sender, PointerPressedEventArgs e)
@@ -275,6 +344,24 @@ public class Drawer : ContentControl
             e.Pointer.Capture(null);
             e.Handled = true;
         }
+    }
+
+    private void OnCloseButtonClick(object? sender, RoutedEventArgs e)
+    {
+        Dismiss();
+        e.Handled = true;
+    }
+
+    public void BringToFront()
+    {
+        var args = new DrawerHost.BringToFrontRequestedEventArgs(this) { Drawer = this };
+        RaiseEvent(args);
+    }
+
+    public void Dismiss()
+    {
+        var args = new DrawerHost.DismissRequestedEventArgs(this) { Drawer = this };
+        RaiseEvent(args);
     }
 
     protected override Size MeasureOverride(Size availableSize)

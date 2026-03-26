@@ -19,8 +19,6 @@ public partial class DrawerPage : ControlPage
             var drawer = new Drawer
             {
                 Title = "New Drawer",
-                Width = 400,
-                Height = 300,
                 Content = new TextBlock
                 {
                     Text = "This is the content of the drawer.",

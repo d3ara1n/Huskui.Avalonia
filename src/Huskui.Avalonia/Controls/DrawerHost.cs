@@ -3,7 +3,9 @@ using Avalonia.Collections;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
+using Avalonia.Interactivity;
 using Avalonia.Metadata;
+using Avalonia.VisualTree;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -14,9 +16,21 @@ public class DrawerHost : TemplatedControl
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
 
     public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
-        OverlayHost,
+        DrawerHost,
         int
     >(nameof(ItemCount));
+
+    public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
+        RoutedEvent.Register<Drawer, DismissRequestedEventArgs>(
+            nameof(DismissRequested),
+            RoutingStrategies.Bubble
+        );
+
+    public static readonly RoutedEvent<BringToFrontRequestedEventArgs> BringToFrontRequestedEvent =
+        RoutedEvent.Register<Drawer, BringToFrontRequestedEventArgs>(
+            nameof(BringToFrontRequested),
+            RoutingStrategies.Bubble
+        );
 
     public int ItemCount
     {
@@ -26,6 +40,20 @@ public class DrawerHost : TemplatedControl
 
     [Content]
     public AvaloniaList<Drawer> Items { get; } = [];
+
+    public event EventHandler<DismissRequestedEventArgs>? DismissRequested
+    {
+        add => AddHandler(DismissRequestedEvent, value);
+        remove => RemoveHandler(DismissRequestedEvent, value);
+    }
+
+    public event EventHandler<BringToFrontRequestedEventArgs>? BringToFrontRequested
+    {
+        add => AddHandler(BringToFrontRequestedEvent, value);
+        remove => RemoveHandler(BringToFrontRequestedEvent, value);
+    }
+
+    protected override Type StyleKeyOverride => typeof(DrawerHost);
 
     public void Pop(Drawer drawer)
     {
@@ -52,8 +80,121 @@ public class DrawerHost : TemplatedControl
         drawer.Height = height;
         drawer.Width = width;
         drawer.OffsetX = (Bounds.Width - width) / 2;
+        drawer.IsDismissed = false;
+
         Items.Add(drawer);
         ItemCount = Items.Count;
         LogicalChildren.Add(drawer);
+        UpdatePresentPseudoClass();
+    }
+
+    public void Dismiss(object control)
+    {
+        var drawer = control switch
+        {
+            Drawer it => it,
+            Visual visual => visual.FindAncestorOfType<Drawer>(),
+            _ => null,
+        };
+
+        if (drawer is null)
+        {
+            return;
+        }
+
+        if (Items.Remove(drawer))
+        {
+            drawer.IsDismissed = true;
+            LogicalChildren.Remove(drawer);
+            ItemCount = Items.Count;
+            UpdatePresentPseudoClass();
+        }
+    }
+
+    public void Dismiss()
+    {
+        if (Items is [.., { } last])
+        {
+            Dismiss(last);
+        }
+    }
+
+    public void BringToFront(object control)
+    {
+        var drawer = control switch
+        {
+            Drawer it => it,
+            Visual visual => visual.FindAncestorOfType<Drawer>(),
+            _ => null,
+        };
+
+        if (drawer is null)
+        {
+            return;
+        }
+
+        var max = 0;
+        foreach (var item in Items)
+        {
+            if (item.ZIndex > max) max = item.ZIndex;
+            item.ZIndex--;
+        }
+        drawer.ZIndex = max;
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        AddHandler(DismissRequestedEvent, DismissRequestedHandler);
+        AddHandler(BringToFrontRequestedEvent, BringToFrontRequestedHandler);
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        RemoveHandler(DismissRequestedEvent, DismissRequestedHandler);
+        RemoveHandler(BringToFrontRequestedEvent, BringToFrontRequestedHandler);
+    }
+
+    private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e)
+    {
+        if (e.Drawer != null)
+        {
+            Dismiss(e.Drawer);
+            e.Handled = true;
+        }
+    }
+
+    private void BringToFrontRequestedHandler(object? sender, BringToFrontRequestedEventArgs e)
+    {
+        if (e.Drawer != null)
+        {
+            BringToFront(e.Drawer);
+            e.Handled = true;
+        }
+    }
+
+    private void UpdatePresentPseudoClass()
+    {
+        if (Items.Count > 0)
+        {
+            PseudoClasses.Add(":present");
+        }
+        else
+        {
+            PseudoClasses.Remove(":present");
+        }
+    }
+
+    public class DismissRequestedEventArgs(object? source = null)
+        : RoutedEventArgs(DismissRequestedEvent, source)
+    {
+        public Drawer? Drawer { get; set; }
+    }
+
+    public class BringToFrontRequestedEventArgs(object? source = null)
+        : RoutedEventArgs(BringToFrontRequestedEvent, source)
+    {
+        public Drawer? Drawer { get; set; }
     }
 }
