@@ -62,7 +62,6 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
-    private Button? _closeButton;
     private double? _expandedHeight;
 
     static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
@@ -217,11 +216,6 @@ public class Drawer : ContentControl
         {
             _resizeTop.PointerMoved -= OnResizePointerMoved;
             _resizeTop.PointerReleased -= OnResizePointerReleased;
-        }
-
-        if (_closeButton != null)
-        {
-            _closeButton.Click -= OnCloseButtonClick;
         }
     }
 

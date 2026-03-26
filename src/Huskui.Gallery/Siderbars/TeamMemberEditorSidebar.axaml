@@ -1,0 +1,150 @@
+<husk:Sidebar
+    x:Class="Huskui.Gallery.Siderbars.TeamMemberEditorSidebar"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="420"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Grid
+            Grid.Row="0"
+            Margin="0,0,0,12"
+            ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="Edit Member Information" />
+                <TextBlock
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="For quick management of project collaborators"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                Click="OnCloseClick">
+                <fi:SymbolIcon Symbol="Dismiss" />
+            </Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel
+                Margin="0,0,0,12"
+                Spacing="14">
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Basic Information" />
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            ColumnSpacing="8"
+                            RowDefinitions="Auto,Auto"
+                            RowSpacing="8">
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="First Name" />
+                                <TextBox Text="Lena" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Last Name" />
+                                <TextBox Text="Wang" />
+                            </StackPanel>
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Email" />
+                                <TextBox Text="lena.wang@polymerium.dev" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Role &amp; Permissions" />
+                        <Grid
+                            ColumnDefinitions="*,*"
+                            ColumnSpacing="8">
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Role" />
+                                <ComboBox SelectedIndex="1">
+                                    <ComboBoxItem>Guest</ComboBoxItem>
+                                    <ComboBoxItem>Developer</ComboBoxItem>
+                                    <ComboBoxItem>Maintainer</ComboBoxItem>
+                                    <ComboBoxItem>Administrator</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Team" />
+                                <ComboBox SelectedIndex="0">
+                                    <ComboBoxItem>Platform Team</ComboBoxItem>
+                                    <ComboBoxItem>Growth Team</ComboBoxItem>
+                                    <ComboBoxItem>Infrastructure Team</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                        </Grid>
+                        <CheckBox Content="Allow production deployment" />
+                        <CheckBox
+                            Content="Allow member management"
+                            IsChecked="True" />
+                        <CheckBox
+                            Content="Receive high-priority alerts"
+                            IsChecked="True" />
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:InfoBar Classes="Success">
+                    <husk:InfoBar.Header>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Recommendation" />
+                    </husk:InfoBar.Header>
+                    <TextBlock
+                        Text="If production deployment is enabled, also enable two-person approval."
+                        TextWrapping="Wrap" />
+                </husk:InfoBar>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="*,Auto,Auto"
+            ColumnSpacing="8">
+            <TextBlock
+                VerticalAlignment="Center"
+                FontSize="12"
+                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                Text="Last modified: Today 16:20 · by Kevin" />
+            <Button
+                Grid.Column="1"
+                Click="OnCloseClick"
+                Content="Cancel" />
+            <Button
+                Grid.Column="2"
+                Classes="Accent"
+                Click="OnSaveClick"
+                Content="Save Changes" />
+        </Grid>
+    </Grid>
+</husk:Sidebar>

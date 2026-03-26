@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Linq;
 using FluentIcons.Common;
 using Huskui.Gallery.Models;
@@ -235,6 +235,14 @@ public class GalleryService : IGalleryService
                     Icon = Symbol.PanelBottom,
                     PageType = typeof(DrawerPage),
                     Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"],
+                },
+                new()
+                {
+                    Title = "Sidebars",
+                    Description = "Sliding side panels for contextual content and quick actions",
+                    Icon = Symbol.PanelRight,
+                    PageType = typeof(SidebarsPage),
+                    Tags = ["sidebar", "panel", "overlay", "slide", "contextual"],
                 },
             ],
         };

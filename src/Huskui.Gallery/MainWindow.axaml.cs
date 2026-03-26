@@ -41,12 +41,12 @@ public partial class MainWindow : AppWindow
             catch (Exception ex)
             {
                 // Show error page or fallback content
-                // _contentFrame?.Content = new TextBlock
-                // {
-                //     Text = $"Error loading page: {ex.Message}",
-                //     HorizontalAlignment = HorizontalAlignment.Center,
-                //     VerticalAlignment = VerticalAlignment.Center
-                // };
+                _contentFrame?.Content = new TextBlock
+                {
+                    Text = $"Error loading page: {ex.Message}",
+                    HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
+                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center
+                };
             }
         }
         else

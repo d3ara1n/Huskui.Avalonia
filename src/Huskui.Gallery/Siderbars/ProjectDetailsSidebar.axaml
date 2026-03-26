@@ -1,0 +1,110 @@
+<husk:Sidebar
+    x:Class="Huskui.Gallery.Siderbars.ProjectDetailsSidebar"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="360"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border
+            Grid.Row="0"
+            Padding="0,0,0,12"
+            BorderBrush="{DynamicResource DividerStrokeColorDefaultBrush}"
+            BorderThickness="0,0,0,1">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Text="Project Details" />
+                    <TextBlock
+                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                        Text="PRJ-2034 · Infrastructure Upgrade"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+                <Button
+                    Grid.Column="1"
+                    Click="OnCloseClick">
+                    <fi:SymbolIcon Symbol="Dismiss" />
+                </Button>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel
+                Margin="0,12,0,12"
+                Spacing="14">
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Progress Overview" />
+                        <ProgressBar
+                            Maximum="100"
+                            Minimum="0"
+                            Value="68" />
+                        <Grid ColumnDefinitions="*,*">
+                            <StackPanel>
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Due Date" />
+                                <TextBlock Text="2026-04-12" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                    Text="Owner" />
+                                <TextBlock Text="Wendy Zhang" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Key Milestones" />
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="✅ Architecture review completed" />
+                            <TextBlock Text="✅ Risk assessment completed" />
+                            <TextBlock Text="🟡 Staged rollout in progress" />
+                            <TextBlock Text="⬜ Full rollout" />
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:InfoBar Classes="Warning">
+                    <husk:InfoBar.Header>
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Note" />
+                    </husk:InfoBar.Header>
+                    <TextBlock
+                        Text="A database migration rehearsal is required this week to avoid conflicts with the release window."
+                        TextWrapping="Wrap" />
+                </husk:InfoBar>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel
+            Grid.Row="2"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal"
+            Spacing="8">
+            <Button
+                Click="OnCloseClick"
+                Content="Handle Later" />
+            <Button
+                Classes="Accent"
+                Click="OnOpenProjectClick"
+                Content="Open Project" />
+        </StackPanel>
+    </Grid>
+</husk:Sidebar>

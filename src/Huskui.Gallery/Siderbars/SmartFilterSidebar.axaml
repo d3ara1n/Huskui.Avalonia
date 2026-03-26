@@ -1,0 +1,122 @@
+<husk:Sidebar
+    x:Class="Huskui.Gallery.Siderbars.SmartFilterSidebar"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="380"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Grid
+            Grid.Row="0"
+            Margin="0,0,0,12"
+            ColumnDefinitions="*,Auto">
+            <StackPanel Spacing="4">
+                <TextBlock
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Text="Smart Filter" />
+                <TextBlock
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="For order list / report filtering"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                Click="OnCloseClick">
+                <fi:SymbolIcon Symbol="Dismiss" />
+            </Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel
+                Margin="0,0,0,12"
+                Spacing="14">
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Keywords" />
+                        <TextBox PlaceholderText="Customer / Order ID / Owner" />
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Status" />
+                        <WrapPanel
+                            Margin="0,4,0,0"
+                            Orientation="Horizontal">
+                            <ToggleButton IsChecked="True">In Progress</ToggleButton>
+                            <ToggleButton>Pending Review</ToggleButton>
+                            <ToggleButton IsChecked="True">Completed</ToggleButton>
+                            <ToggleButton>Cancelled</ToggleButton>
+                        </WrapPanel>
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Amount Range" />
+                        <Grid
+                            ColumnDefinitions="*,Auto,*"
+                            ColumnSpacing="8">
+                            <TextBox PlaceholderText="Minimum" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="-" />
+                            <TextBox
+                                Grid.Column="2"
+                                PlaceholderText="Maximum" />
+                        </Grid>
+                    </StackPanel>
+                </husk:Card>
+
+                <husk:Card Padding="12">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontWeight="SemiBold"
+                            Text="Advanced Options" />
+                        <CheckBox
+                            Content="High priority only"
+                            IsChecked="True" />
+                        <CheckBox Content="Include archived data" />
+                        <CheckBox Content="Risk-tagged only" />
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid
+            Grid.Row="2"
+            ColumnDefinitions="Auto,*,Auto,Auto"
+            ColumnSpacing="8">
+            <Button
+                Click="OnResetClick"
+                Content="Reset" />
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                FontSize="12"
+                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                Text="Estimated results: 248 items" />
+            <Button
+                Grid.Column="2"
+                Click="OnCloseClick"
+                Content="Cancel" />
+            <Button
+                Grid.Column="3"
+                Classes="Accent"
+                Click="OnApplyClick"
+                Content="Apply Filters" />
+        </Grid>
+    </Grid>
+</husk:Sidebar>

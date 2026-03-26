@@ -1,0 +1,153 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.SidebarsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Business Details Sidebar"
+            Description="Used to present entity details, status, and next actions without interrupting the main workflow.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Details Scenario" />
+                    <Button
+                        Click="OnShowProjectDetailsClick"
+                        Content="Open Project Details Sidebar" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Commonly used for quick viewing and handling of tickets, projects, and orders."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="420"
+                Spacing="16">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="10">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Why Sidebar" />
+                        <TextBlock
+                            Text="Ideal for a main-page plus side-context pattern to reduce page hopping and keep task continuity."
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Can carry richer content than Dialog while avoiding a full Modal flow."
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Filter &amp; Search Sidebar"
+            Description="Designed for frequent list filtering with quick apply, cancel, and reset actions.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Filtering Scenario" />
+                    <Button
+                        Click="OnShowSmartFilterClick"
+                        Content="Open Smart Filter Sidebar" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Suitable for order centers, audit logs, and alert lists that require combined filters."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="460"
+                Spacing="12">
+                <husk:Card Padding="16">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Text="Filter Sidebar Recommendations" />
+                        <TextBlock Text="• Keep Apply and Reset fixed in the bottom action area" />
+                        <TextBlock Text="• Put high-frequency filters on top and place low-frequency ones under advanced options" />
+                        <TextBlock Text="• Provide estimated result counts to reduce trial-and-error" />
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Editing Form Sidebar"
+            Description="Used for member info, settings, and medium editing tasks with in-context completion.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Editing Scenario" />
+                    <Button
+                        Click="OnShowTeamMemberEditorClick"
+                        Content="Open Member Editor Sidebar" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Best for medium-complexity edits without breaking the current browsing context."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="600"
+                Spacing="16">
+                <husk:Card Padding="20">
+                    <StackPanel Spacing="16">
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="Sidebar Best Practices" />
+
+                        <StackPanel Spacing="12">
+                            <StackPanel Spacing="4">
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Foreground="Green"
+                                    Text="✅ Do" />
+                                <TextBlock Text="• Use clear titles to indicate the current context" />
+                                <TextBlock Text="• Fix primary and secondary actions at the bottom for better reachability" />
+                                <TextBlock Text="• Keep feedback consistent with data on the main page" />
+                                <TextBlock Text="• Provide scrollable regions for complex content" />
+                            </StackPanel>
+
+                            <husk:Divider />
+
+                            <StackPanel Spacing="4">
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Foreground="Red"
+                                    Text="❌ Don't" />
+                                <TextBlock Text="• Do not treat Sidebar as a full page replacement" />
+                                <TextBlock Text="• Avoid stacking too many workflow steps in one sidebar" />
+                                <TextBlock Text="• Avoid missing explicit close/cancel exits" />
+                                <TextBlock Text="• Do not replace Dialog in critical confirmation scenarios" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </husk:Card>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
