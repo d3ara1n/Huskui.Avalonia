@@ -367,5 +367,8 @@ FodyWeavers.xsd
 
 appsettings.*.json
 build/
+
+# AI tooling
 plans/
+.kiro/
 .alma-snapshots
