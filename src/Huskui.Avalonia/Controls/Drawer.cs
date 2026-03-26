@@ -55,6 +55,7 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
+    private double? _expandedHeight;
 
     static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
 
@@ -86,8 +87,26 @@ public class Drawer : ContentControl
 
     private void OnIsOpenChanged(AvaloniaPropertyChangedEventArgs e)
     {
+        if (e.GetNewValue<bool>())
+        {
+            if (_expandedHeight.HasValue)
+            {
+                Height = _expandedHeight.Value;
+            }
+        }
+        else
+        {
+            if (!double.IsNaN(Height))
+            {
+                _expandedHeight = Height;
+            }
+            Height = HeaderHeight;
+        }
         UpdatePseudoClasses();
         InvalidateMeasure();
+        InvalidateArrange();
+        _drawerPanel?.InvalidateArrange();
+
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -208,44 +227,39 @@ public class Drawer : ContentControl
 
     private void OnResizePointerMoved(object? sender, PointerEventArgs e)
     {
-        if ((_isResizingLeft || _isResizingRight || _isResizingTop) && Parent is Visual parent)
+        if ((_isResizingLeft || _isResizingRight || _isResizingTop) && Parent is Control parentControl)
         {
-            var currentPoint = e.GetPosition(parent);
+            var currentPoint = e.GetPosition(parentControl);
             var delta = currentPoint - _lastPoint;
-
+            var parentWidth = parentControl.Bounds.Width;
+            var parentHeight = parentControl.Bounds.Height;
             if (_isResizingLeft)
             {
+                var maxWidth = Math.Max(MinWidth, Width + OffsetX);
                 var newWidth = Width - delta.X;
-                if (newWidth > MinWidth)
-                {
-                    Width = newWidth;
-                    OffsetX += delta.X;
-                }
+                newWidth = Math.Clamp(newWidth, MinWidth, maxWidth);
+                var actualDelta = Width - newWidth;
+                Width = newWidth;
+                OffsetX += actualDelta;
             }
             else if (_isResizingRight)
             {
+                var maxWidth = Math.Max(MinWidth, parentWidth - OffsetX);
                 var newWidth = Width + delta.X;
-                if (newWidth > MinWidth)
-                {
-                    Width = newWidth;
-                }
+                newWidth = Math.Clamp(newWidth, MinWidth, maxWidth);
+                Width = newWidth;
             }
-            else if (_isResizingTop && IsOpen) // Only allow height resize when open
+            else if (_isResizingTop && IsOpen)
             {
+                var minOpenHeight = Math.Max(HeaderHeight, 100);
+                var maxHeight = Math.Max(minOpenHeight, parentHeight);
                 var newHeight = Height - delta.Y;
-                if (newHeight > MinHeight)
-                {
-                    Height = newHeight;
-                }
+                newHeight = Math.Clamp(newHeight, minOpenHeight, maxHeight);
+                Height = newHeight;
+                _expandedHeight = newHeight;
             }
-
             _lastPoint = currentPoint;
-
-            if (Parent is Control parentControl)
-            {
-                parentControl.InvalidateArrange();
-            }
-
+            parentControl.InvalidateArrange();
             e.Handled = true;
         }
     }
@@ -273,7 +287,9 @@ public class Drawer : ContentControl
             // Let's force the desired size to be Width x HeaderHeight
 
             // We need to call base.MeasureOverride to ensure children are measured
-            base.MeasureOverride(availableSize);
+
+            // No, we don't mesaure its children
+            // base.MeasureOverride(availableSize);
 
             return new(Width, HeaderHeight);
         }

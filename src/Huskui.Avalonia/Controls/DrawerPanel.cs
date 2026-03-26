@@ -21,39 +21,47 @@ public class DrawerPanel : Panel
         {
             if (child is Drawer drawer)
             {
-                var desiredSize = child.DesiredSize;
-
-                // Clamp OffsetX to ensure the drawer stays within the host bounds horizontally
+                var hostWidth = finalSize.Width;
+                var hostHeight = finalSize.Height;
+                // 先取 Drawer 当前想要的尺寸
+                var width = drawer.Width;
+                var height = drawer.Height;
                 var x = drawer.OffsetX;
-
-                // Ensure the drawer doesn't go off the left edge
-                if (x < 0)
-                {
-                    x = 0;
-                }
-
-                // Ensure the drawer doesn't go off the right edge
-                if (x + desiredSize.Width > finalSize.Width)
-                {
-                    x = finalSize.Width - desiredSize.Width;
-                }
-
-                // Double check left edge in case the drawer is wider than the host
-                if (x < 0)
-                {
-                    x = 0;
-                }
-
-                // Update drawer's OffsetX if we clamped it, so it stays in sync
-                if (Math.Abs(x - drawer.OffsetX) > 1)
-                {
+                // 如果 Width/Height 是 NaN，就退回到 DesiredSize
+                if (double.IsNaN(width))
+                    width = drawer.DesiredSize.Width;
+                if (double.IsNaN(height))
+                    height = drawer.DesiredSize.Height;
+                // 基础最小值
+                var minWidth = drawer.MinWidth;
+                var minHeight = drawer.IsOpen
+                    ? Math.Max(drawer.HeaderHeight, drawer.MinHeight)
+                    : drawer.HeaderHeight;
+                // 基础最大值：不能超过宿主大小
+                var maxWidth = hostWidth;
+                var maxHeight = drawer.IsOpen
+                    ? hostHeight
+                    : drawer.HeaderHeight;
+                // 如果宿主比 Min 还小，允许降到宿主大小，避免死锁
+                minWidth = Math.Min(minWidth, maxWidth);
+                minHeight = Math.Min(minHeight, maxHeight);
+                // 先钳制尺寸
+                width = Clamp(width, minWidth, maxWidth);
+                height = Clamp(height, minHeight, maxHeight);
+                // 再钳制 X，确保整个 Drawer 在宿主范围内
+                x = Clamp(x, 0, Math.Max(0, hostWidth - width));
+                // Y 永远贴底
+                var y = hostHeight - height;
+                if (y < 0)
+                    y = 0;
+                // 把钳制后的结果写回去，保持控件状态一致
+                if (Math.Abs(drawer.OffsetX - x) > 0.1)
                     drawer.SetCurrentValue(Drawer.OffsetXProperty, x);
-                }
-
-                // Anchor to bottom
-                var y = finalSize.Height - desiredSize.Height;
-
-                child.Arrange(new(x, y, desiredSize.Width, desiredSize.Height));
+                if (!double.IsNaN(drawer.Width) && Math.Abs(drawer.Width - width) > 0.1)
+                    drawer.Width = width;
+                if (!double.IsNaN(drawer.Height) && Math.Abs(drawer.Height - height) > 0.1)
+                    drawer.Height = height;
+                drawer.Arrange(new Rect(x, y, width, height));
             }
             else
             {
@@ -63,5 +71,13 @@ public class DrawerPanel : Panel
         }
 
         return finalSize;
+    }
+    private static double Clamp(double value, double min, double max)
+    {
+        if (value < min)
+            return min;
+        if (value > max)
+            return max;
+        return value;
     }
 }

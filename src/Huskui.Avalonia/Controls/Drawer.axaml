@@ -13,7 +13,6 @@
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="MinWidth" Value="200" />
-        <Setter Property="MinHeight" Value="100" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -87,6 +86,8 @@
                         <ContentPresenter
                             Grid.Row="1"
                             Margin="{TemplateBinding Padding}"
+                            IsVisible="{TemplateBinding IsOpen,
+                                                        Mode=OneWay}"
                             Background="{StaticResource OverlaySolidBackgroundBrush}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
