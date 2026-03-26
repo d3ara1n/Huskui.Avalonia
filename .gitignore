@@ -367,3 +367,5 @@ FodyWeavers.xsd
 
 appsettings.*.json
 build/
+plans/
+.alma-snapshots
