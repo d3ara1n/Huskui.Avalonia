@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Animation;
 using Avalonia.Collections;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
@@ -6,6 +7,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.Metadata;
 using Avalonia.VisualTree;
+using Huskui.Avalonia.Transitions;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -14,6 +16,12 @@ namespace Huskui.Avalonia.Controls;
 public class DrawerHost : TemplatedControl
 {
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
+
+    public static readonly StyledProperty<IPageTransition> TransitionProperty =
+        AvaloniaProperty.Register<DrawerHost, IPageTransition>(
+            nameof(Transition),
+            new DrawerTransition()
+        );
 
     public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
         DrawerHost,
@@ -31,6 +39,15 @@ public class DrawerHost : TemplatedControl
             nameof(BringToFrontRequested),
             RoutingStrategies.Bubble
         );
+
+    private readonly Queue<Drawer> _toDismiss = [];
+    private readonly Queue<Drawer> _toPops = [];
+
+    public IPageTransition Transition
+    {
+        get => GetValue(TransitionProperty);
+        set => SetValue(TransitionProperty, value);
+    }
 
     public int ItemCount
     {
@@ -54,6 +71,43 @@ public class DrawerHost : TemplatedControl
     }
 
     protected override Type StyleKeyOverride => typeof(DrawerHost);
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var rv = base.ArrangeOverride(finalSize);
+
+        if (_toPops.Count > 0)
+        {
+            while (_toPops.TryDequeue(out var drawer))
+            {
+                Transition.Start(null, drawer, true, CancellationToken.None);
+            }
+        }
+
+        if (_toDismiss.Count > 0)
+        {
+            while (_toDismiss.TryDequeue(out var drawer))
+            {
+                Transition
+                    .Start(drawer, null, true, CancellationToken.None)
+                    .ContinueWith(
+                        _ =>
+                        {
+                            if (Items.Remove(drawer))
+                            {
+                                drawer.IsDismissed = true;
+                                LogicalChildren.Remove(drawer);
+                                ItemCount = Items.Count;
+                                UpdatePresentPseudoClass();
+                            }
+                        },
+                        TaskScheduler.FromCurrentSynchronizationContext()
+                    );
+            }
+        }
+
+        return rv;
+    }
 
     public void Pop(Drawer drawer)
     {
@@ -86,6 +140,9 @@ public class DrawerHost : TemplatedControl
         ItemCount = Items.Count;
         LogicalChildren.Add(drawer);
         UpdatePresentPseudoClass();
+
+        _toPops.Enqueue(drawer);
+        InvalidateArrange();
     }
 
     public void Dismiss(object control)
@@ -97,18 +154,13 @@ public class DrawerHost : TemplatedControl
             _ => null,
         };
 
-        if (drawer is null)
+        if (drawer is null || !Items.Contains(drawer) || _toDismiss.Contains(drawer))
         {
             return;
         }
 
-        if (Items.Remove(drawer))
-        {
-            drawer.IsDismissed = true;
-            LogicalChildren.Remove(drawer);
-            ItemCount = Items.Count;
-            UpdatePresentPseudoClass();
-        }
+        _toDismiss.Enqueue(drawer);
+        InvalidateArrange();
     }
 
     public void Dismiss()

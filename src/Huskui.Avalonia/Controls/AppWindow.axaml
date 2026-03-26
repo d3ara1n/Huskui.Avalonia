@@ -67,7 +67,11 @@
                                     </Transitions>
                                 </ContentPresenter.Transitions>
                             </ContentPresenter>
-                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}" />
+                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}">
+                                <local:DrawerHost.Transition>
+                                    <local:DrawerTransition />
+                                </local:DrawerHost.Transition>
+                            </local:DrawerHost>
                             <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}">
                                 <local:OverlayHost.Transition>
                                     <local:SlideUpTransition />
