@@ -8,7 +8,7 @@
         x:Key="{x:Type local:Drawer}"
         TargetType="local:Drawer">
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Padding" Value="0" />
@@ -17,79 +17,87 @@
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    BoxShadow="0 0 20 0 #20000000"
-                    CornerRadius="{TemplateBinding CornerRadius,
-                                                   Converter={x:Static local:CornerRadiusConverters.Upper}}">
-                    <Grid RowDefinitions="Auto,*">
+                    Name="Chrome"
+                    BoxShadow="0 0 4 0 #3F000000">
+                    <Grid
+                        Margin="2"
+                        RowDefinitions="Auto,*">
                         <!--  Header  -->
-                        <Grid
+                        <Border
+                            Name="Header"
                             Grid.Row="0"
                             Height="{TemplateBinding HeaderHeight}"
-                            Margin="12,0"
-                            VerticalAlignment="Center"
-                            Background="Transparent"
-                            ColumnDefinitions="Auto,*,Auto,Auto"
-                            ColumnSpacing="12">
-
-                            <!--  Drag Handle Icon  -->
-
-
-                            <Border
-                                Name="{x:Static local:Drawer.PART_Handle}"
-                                Grid.Column="0"
-                                Padding="6,4"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                Cursor="SizeAll">
-                                <fi:SymbolIcon
-                                    FontSize="{StaticResource MediumFontSize}"
-                                    Symbol="ReOrderDotsVertical" />
-                            </Border>
-
-                            <!--  Title  -->
-                            <TextBlock
-                                Grid.Column="1"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{TemplateBinding CornerRadius,
+                                                           Converter={x:Static local:CornerRadiusConverters.Upper}}"
+                            Focusable="True">
+                            <Grid
                                 Margin="12,0"
-                                VerticalAlignment="Center"
-                                IsHitTestVisible="False"
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="{TemplateBinding Title}" />
+                                ColumnDefinitions="Auto,*,Auto,Auto"
+                                ColumnSpacing="8">
 
-                            <!--  Toggle Button  -->
-                            <ToggleButton
-                                Grid.Column="2"
-                                Padding="12,0"
-                                IsChecked="{TemplateBinding IsOpen,
-                                                            Mode=TwoWay}"
-                                Theme="{StaticResource GhostButtonTheme}">
-                                <fi:SymbolIcon
-                                    Name="ToggleIcon"
-                                    FontSize="{StaticResource SmallFontSize}"
-                                    Symbol="ChevronDown" />
-                            </ToggleButton>
+                                <!--  Drag Handle Icon  -->
+                                <Border
+                                    Name="{x:Static local:Drawer.PART_Handle}"
+                                    Grid.Column="0"
+                                    Padding="6,4"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    Cursor="SizeAll">
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource MediumFontSize}"
+                                        Symbol="ReOrderDotsVertical" />
+                                </Border>
 
-                            <!--  Close Button  -->
-                            <Button
-                                Name="{x:Static local:Drawer.PART_CloseButton}"
-                                Grid.Column="3"
-                                Padding="12,0"
-                                Theme="{StaticResource GhostButtonTheme}">
-                                <fi:SymbolIcon
-                                    FontSize="{StaticResource SmallFontSize}"
-                                    Symbol="Dismiss" />
-                            </Button>
-                        </Grid>
+                                <!--  Title  -->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    VerticalAlignment="Center"
+                                    IsHitTestVisible="False"
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="{TemplateBinding Title}" />
+
+                                <!--  Toggle Button  -->
+                                <ToggleButton
+                                    Grid.Column="2"
+                                    Padding="12,0"
+                                    IsChecked="{TemplateBinding IsOpen,
+                                                                Mode=TwoWay}"
+                                    Theme="{StaticResource GhostButtonTheme}">
+                                    <fi:SymbolIcon
+                                        Name="ToggleIcon"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Symbol="ChevronDown" />
+                                </ToggleButton>
+
+                                <!--  Close Button  -->
+                                <Button
+                                    Name="{x:Static local:Drawer.PART_CloseButton}"
+                                    Grid.Column="3"
+                                    Padding="12,0"
+                                    Theme="{StaticResource GhostButtonTheme}">
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Symbol="Dismiss" />
+                                </Button>
+                            </Grid>
+                        </Border>
 
                         <!--  Content  -->
-                        <ContentPresenter
+                        <Border
+                            Name="Content"
                             Grid.Row="1"
-                            Margin="{TemplateBinding Padding}"
-                            Background="{StaticResource OverlaySolidBackgroundBrush}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            Background="{StaticResource FlyoutBackgroundBrush}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness,
+                                                              Converter={x:Static local:ThicknessConverters.Horizontal}}"
+                            Focusable="True">
+                            <ContentPresenter
+                                Margin="{TemplateBinding Padding}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Border>
 
                         <!--  Resize Handles  -->
                         <Border
@@ -135,6 +143,13 @@
             <Style Selector="^ /template/ fi|SymbolIcon#ToggleIcon">
                 <Setter Property="Symbol" Value="ChevronUp" />
             </Style>
+        </Style>
+
+        <Style Selector="^:focus-within /template/ Border#Header">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:focus-within /template/ Border#Content">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentBorderBrush}" />
         </Style>
 
     </ControlTheme>
