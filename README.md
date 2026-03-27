@@ -52,6 +52,18 @@ dotnet run --project src/Huskui.Gallery
 > battle-tested, so
 > please feel confident using it in your projects!
 
+> **Documentation**: This project changes frequently, and with limited maintainer bandwidth, we are currently
+> unable to create and continuously maintain full documentation for every control.
+>
+> If you need help using specific controls, please use this workflow:
+>
+> 1. Download (or clone) the source code.
+> 2. Ask Claude:
+>
+>    ```text
+>    Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
+>    ```
+
 ## Getting Started
 
 ### Prerequisites
