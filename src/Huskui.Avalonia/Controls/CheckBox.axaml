@@ -67,7 +67,7 @@
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
-                        <Panel>
+                        <Panel Name="IndicatorContainer">
                             <Border
                                 Name="Indicator"
                                 Margin="2"
@@ -142,6 +142,9 @@
             <Style Selector="^ /template/ Border#Indicator">
                 <Setter Property="RenderTransform" Value="scale(1.0)" />
                 <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+            </Style>
+            <Style Selector="^ /template/ Panel#IndicatorContainer">
+                <Setter Property="RenderTransform" Value="rotate(45deg)" />
             </Style>
 
             <Style Selector="^:pointerover /template/ Border#Indicator">

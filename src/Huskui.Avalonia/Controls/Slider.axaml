@@ -131,26 +131,27 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="{TemplateBinding CornerRadius}">
-                                <Ellipse
+                                <Border
                                     Name="Knob"
-                                    Fill="{StaticResource OverlaySolidBackgroundBrush}">
-                                    <Ellipse.Transitions>
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                    CornerRadius="{TemplateBinding CornerRadius}">
+                                    <Border.Transitions>
                                         <Transitions>
                                             <TransformOperationsTransition
                                                 Easing="CubicEaseOut"
                                                 Property="RenderTransform"
                                                 Duration="{StaticResource ControlInstantAnimationDuration}" />
                                         </Transitions>
-                                    </Ellipse.Transitions>
-                                </Ellipse>
+                                    </Border.Transitions>
+                                </Border>
                             </Border>
                         </ControlTemplate>
                     </Setter>
 
-                    <Style Selector="^:pointerover /template/ Ellipse#Knob">
+                    <Style Selector="^:pointerover /template/ Border#Knob">
                         <Setter Property="RenderTransform" Value="scale(1.1)" />
                     </Style>
-                    <Style Selector="^:pressed /template/ Ellipse#Knob">
+                    <Style Selector="^:pressed /template/ Border#Knob">
                         <Setter Property="RenderTransform" Value="scale(0.9)" />
                     </Style>
                 </ControlTheme>
