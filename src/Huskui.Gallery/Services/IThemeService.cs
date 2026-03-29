@@ -46,6 +46,11 @@ public interface IThemeService
     AccentColor CurrentAccent { get; }
 
     /// <summary>
+    ///     Gets the current corner style
+    /// </summary>
+    CornerStyle CurrentCorner { get; }
+
+    /// <summary>
     ///     Gets the current background material
     /// </summary>
     BackgroundMaterial CurrentBackground { get; }
@@ -66,6 +71,12 @@ public interface IThemeService
     /// </summary>
     /// <param name="accent">The accent color to set</param>
     void SetAccent(AccentColor accent);
+
+    /// <summary>
+    ///     Sets the corner style
+    /// </summary>
+    /// <param name="corner">The corner style to set</param>
+    void SetCorner(CornerStyle corner);
 
     /// <summary>
     ///     Sets the background material

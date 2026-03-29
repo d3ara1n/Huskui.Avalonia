@@ -18,6 +18,7 @@ public class ThemeSelector : TemplatedControl
 
     private ComboBox? _accentComboBox;
     private ComboBox? _backgroundComboBox;
+    private ComboBox? _cornerComboBox;
     private ComboBox? _themeComboBox;
     private IThemeService? _themeService;
 
@@ -33,10 +34,12 @@ public class ThemeSelector : TemplatedControl
 
         _themeComboBox = e.NameScope.Find("PART_ThemeComboBox") as ComboBox;
         _accentComboBox = e.NameScope.Find("PART_AccentComboBox") as ComboBox;
+        _cornerComboBox = e.NameScope.Find("PART_CornerComboBox") as ComboBox;
         _backgroundComboBox = e.NameScope.Find("PART_BackgroundComboBox") as ComboBox;
 
         SetupThemeComboBox();
         SetupAccentComboBox();
+        SetupCornerComboBox();
         SetupBackgroundComboBox();
         UpdateCurrentSelections();
     }
@@ -96,6 +99,23 @@ public class ThemeSelector : TemplatedControl
         };
     }
 
+    private void SetupCornerComboBox()
+    {
+        if (_cornerComboBox == null)
+        {
+            return;
+        }
+
+        _cornerComboBox.ItemsSource = CornerStyleItem.All;
+        _cornerComboBox.SelectionChanged += (_, _) =>
+        {
+            if (_cornerComboBox.SelectedItem is CornerStyleItem item && _themeService != null)
+            {
+                _themeService.SetCorner(item.Style);
+            }
+        };
+    }
+
     private void SetupBackgroundComboBox()
     {
         if (_backgroundComboBox == null)
@@ -139,6 +159,15 @@ public class ThemeSelector : TemplatedControl
                 a.Color == _themeService.CurrentAccent
             );
             _accentComboBox.SelectedItem = currentAccent;
+        }
+
+        // Update corner selection
+        if (_cornerComboBox != null)
+        {
+            var currentCorner = CornerStyleItem.All.FirstOrDefault(c =>
+                c.Style == _themeService.CurrentCorner
+            );
+            _cornerComboBox.SelectedItem = currentCorner;
         }
 
         // Update background selection

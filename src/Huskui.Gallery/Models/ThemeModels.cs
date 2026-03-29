@@ -41,6 +41,18 @@ public record AccentColorItem(string DisplayName, string Description, AccentColo
 }
 
 /// <summary>
+///     User-friendly corner style item
+/// </summary>
+public record CornerStyleItem(string DisplayName, string Description, CornerStyle Style)
+{
+    public static readonly CornerStyleItem[] All =
+    [
+        new("Normal", "Rounded corners with smooth curves", CornerStyle.Normal),
+        new("None", "Sharp corners with no rounding", CornerStyle.None),
+    ];
+}
+
+/// <summary>
 ///     User-friendly background material item
 /// </summary>
 public record BackgroundMaterialItem(

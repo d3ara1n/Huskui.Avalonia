@@ -18,6 +18,8 @@ public class ThemeService : IThemeService
 
     public AccentColor CurrentAccent { get; private set; } = AccentColor.System;
 
+    public CornerStyle CurrentCorner { get; private set; } = CornerStyle.Normal;
+
     public BackgroundMaterial CurrentBackground { get; private set; } = BackgroundMaterial.Mica;
 
     public event EventHandler? ThemeChanged;
@@ -51,6 +53,18 @@ public class ThemeService : IThemeService
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void SetCorner(CornerStyle corner)
+    {
+        if (CurrentCorner == corner)
+        {
+            return;
+        }
+
+        CurrentCorner = corner;
+        UpdateHuskuiTheme();
+        ThemeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     public void SetBackground(BackgroundMaterial background)
     {
         if (CurrentBackground == background)
@@ -75,12 +89,12 @@ public class ThemeService : IThemeService
     {
         if (Application.Current?.Styles is { } styles)
         {
-            // Find and update the HuskuiTheme
             foreach (var t in styles)
             {
                 if (t is HuskuiTheme huskuiTheme)
                 {
                     huskuiTheme.Accent = CurrentAccent;
+                    huskuiTheme.Corner = CurrentCorner;
                     break;
                 }
             }

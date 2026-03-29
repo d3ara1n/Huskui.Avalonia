@@ -62,6 +62,32 @@
                         </ComboBox>
                     </StackPanel>
 
+                    <!--  Corner Style Selection  -->
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Corner Style" />
+                        <ComboBox
+                            Name="PART_CornerComboBox"
+                            MinWidth="200">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:CornerStyleItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
                     <!--  Background Material Selection  -->
                     <StackPanel Spacing="8">
                         <TextBlock
