@@ -47,6 +47,7 @@ public record CornerStyleItem(string DisplayName, string Description, CornerStyl
 {
     public static readonly CornerStyleItem[] All =
     [
+        new("Large", "Extra radius for enthusiast", CornerStyle.Large),
         new("Normal", "Rounded corners with smooth curves", CornerStyle.Normal),
         new("None", "Sharp corners with no rounding", CornerStyle.None),
     ];
