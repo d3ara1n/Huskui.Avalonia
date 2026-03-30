@@ -63,7 +63,7 @@ public class HuskuiTheme : Styles
         if (change.Property == CornerProperty)
         {
             var corner = change.GetNewValue<CornerStyle>();
-            var source = $"avares://Huskui.Avalonia/Themes/CornerRadius.{corner}.axaml";
+            var source = $"avares://Huskui.Avalonia/Themes/CornerRadii.{corner}.axaml";
             Resources.MergedDictionaries[0] = new ResourceInclude(
                 new Uri("avares://Huskui.Avalonia", UriKind.Absolute)
             )

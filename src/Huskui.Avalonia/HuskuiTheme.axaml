@@ -5,9 +5,9 @@
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="/Themes/CornerRadius.Normal.axaml" />
+                <ResourceInclude Source="/Themes/CornerRadii.Normal.axaml" />
                 <ResourceInclude Source="/Themes/Colors.Accent.Neutral.axaml" />
-                <ResourceInclude Source="/Themes/CornerRadius.axaml" />
+                <ResourceInclude Source="/Themes/CornerRadii.axaml" />
                 <ResourceInclude Source="/Themes/Colors.axaml" />
                 <ResourceInclude Source="/Themes/Basics.axaml" />
                 <ResourceInclude Source="/Themes/FontSize.axaml" />
