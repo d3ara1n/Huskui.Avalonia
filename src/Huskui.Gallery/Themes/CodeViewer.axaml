@@ -69,6 +69,7 @@
                                     Name="PART_CodeText"
                                     Grid.Column="1"
                                     VerticalAlignment="Top"
+                                    FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                     FontSize="{StaticResource SmallFontSize}"
                                     Text="{TemplateBinding Code}"
                                     TextWrapping="NoWrap" />

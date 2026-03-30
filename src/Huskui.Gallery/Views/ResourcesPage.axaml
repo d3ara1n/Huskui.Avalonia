@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="800"
     d:DesignWidth="800"
+    IsBackButtonVisible="False"
     mc:Ignorable="d">
 
     <ScrollViewer>

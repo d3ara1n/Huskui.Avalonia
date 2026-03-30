@@ -423,11 +423,19 @@ public class GalleryService : IGalleryService
             Icon = Symbol.Document,
             Items =
             [
-                new()
-                {
-                    Title = "Resource Usage Notes",
-                    Description = "How Brush/CornerRadius resources and resource binding extensions work",
-                    Icon = Symbol.ColorBackground,
+                 new()
+                 {
+                     Title = "Converters",
+                     Description = "Overview of Huskui converter patterns, families, and practical XAML usage",
+                     Icon = Symbol.DataHistogram,
+                     PageType = typeof(ConvertersPage),
+                     Tags = ["converter", "multibinding", "relay", "string", "number", "cornerradius", "thickness"],
+                 },
+                 new()
+                 {
+                     Title = "Resource Usage Notes",
+                     Description = "How Brush/CornerRadius resources and resource binding extensions work",
+                     Icon = Symbol.ColorBackground,
                     PageType = typeof(ResourcesPage),
                     Tags = ["resource", "brush", "cornerradius", "staticresource", "dynamicresource", "binding"],
                 },
