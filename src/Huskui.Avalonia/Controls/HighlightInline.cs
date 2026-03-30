@@ -4,14 +4,12 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Controls;
 
-/// <summary>
-///     An inline element that displays a HighlightBlock with proper baseline alignment.
-///     Use this instead of HighlightBlock when embedding in TextBlock with other text.
-/// </summary>
 public class HighlightInline : InlineUIContainer
 {
-    public static readonly StyledProperty<string> TextProperty =
-        HighlightBlock.TextProperty.AddOwner<HighlightInline>();
+    public static readonly StyledProperty<string> TextProperty = AvaloniaProperty.Register<
+        HighlightInline,
+        string
+    >(nameof(Text));
 
     public static readonly StyledProperty<bool> IsShortcutProperty = AvaloniaProperty.Register<
         HighlightInline,
@@ -58,27 +56,8 @@ public class HighlightInline : InlineUIContainer
         base.OnPropertyChanged(change);
 
         if (change.Property == IsShortcutProperty)
-        {
-            UpdateClasses();
-        }
+            _highlightBlock.Classes.Set("Shortcut", IsShortcut);
         else if (change.Property == IsPrimaryProperty)
-        {
-            UpdateClasses();
-        }
-    }
-
-    private void UpdateClasses()
-    {
-        _highlightBlock.Classes.Clear();
-
-        if (IsShortcut)
-        {
-            _highlightBlock.Classes.Add("Shortcut");
-        }
-
-        if (IsPrimary)
-        {
-            _highlightBlock.Classes.Add("Primary");
-        }
+            _highlightBlock.Classes.Set("Primary", IsPrimary);
     }
 }
