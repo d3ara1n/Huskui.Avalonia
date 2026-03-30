@@ -218,7 +218,7 @@
                                 Text="&#x2718; Broken — converter receives a DynamicResource descriptor" />
                             <TextBlock
                                 FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;Border CornerRadius=&quot;{Binding Source={StaticResource MediumCornerRadius}, Converter={x:Static husk:CornerRadiusConverters.Lower}}&quot; /&gt;"
+                                Text="&lt;Border CornerRadius=&quot;{Binding Source={StaticResource MediumCornerRadius}, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
                                 TextWrapping="Wrap" />
 
                             <TextBlock
@@ -228,7 +228,7 @@
                                 Text="&#x2714; Fixed — converter receives the actual CornerRadius value" />
                             <TextBlock
                                 FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;Border CornerRadius=&quot;{husk:StaticResourceBinding MediumCornerRadius, Converter={x:Static husk:CornerRadiusConverters.Lower}}&quot; /&gt;"
+                                Text="&lt;Border CornerRadius=&quot;{husk:StaticResourceBinding MediumCornerRadius, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
                                 TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>

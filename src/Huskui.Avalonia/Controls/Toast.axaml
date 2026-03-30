@@ -16,7 +16,7 @@
         <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
         <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />
         <Setter Property="Margin" Value="12,32,12,0" />
-        <Setter Property="CornerRadius" Value="{Binding Source={StaticResource LargeCornerRadius}, Converter={x:Static local:CornerRadiusConverters.Upper}}" />
+        <Setter Property="CornerRadius" Value="{Binding Source={StaticResource LargeCornerRadius}, Converter={x:Static local:CornerRadiusConverters.Top}}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="Template">
@@ -43,7 +43,7 @@
                             VerticalAlignment="Top"
                             IsVisible="{TemplateBinding IsHeaderVisible}"
                             CornerRadius="{TemplateBinding CornerRadius,
-                                                           Converter={x:Static local:CornerRadiusConverters.Upper}}">
+                                                           Converter={x:Static local:CornerRadiusConverters.Top}}">
                             <DockPanel Margin="{StaticResource ToastHeaderlessContentMargin}">
                                 <Button
                                     DockPanel.Dock="Right"

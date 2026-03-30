@@ -31,7 +31,7 @@
                             BorderThickness="{TemplateBinding BorderThickness,
                                                               Converter={x:Static local:ThicknessConverters.WithoutBottom}}"
                             CornerRadius="{TemplateBinding CornerRadius,
-                                                           Converter={x:Static local:CornerRadiusConverters.Upper}}"
+                                                           Converter={x:Static local:CornerRadiusConverters.Top}}"
                             Focusable="True">
                             <Grid
                                 Margin="12,0"

@@ -147,7 +147,7 @@
                                     IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                     Code="{TemplateBinding CSharpCode}"
                                     CornerRadius="{TemplateBinding CornerRadius,
-                                                                   Converter={x:Static husk:CornerRadiusConverters.Lower}}"
+                                                                   Converter={x:Static husk:CornerRadiusConverters.Bottom}}"
                                     Language="csharp" />
                             </StackPanel>
                         </Border>

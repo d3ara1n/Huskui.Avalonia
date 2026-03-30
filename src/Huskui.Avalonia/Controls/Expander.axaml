@@ -177,11 +177,11 @@
             </Style>
             <Style Selector="^:expanded">
                 <Style Selector="^ /template/ ToggleButton#Toggle">
-                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Lower}}" />
+                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Bottom}}" />
                     <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:ThicknessConverters.WithoutTop}}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Upper}}" />
+                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Top}}" />
                     <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:ThicknessConverters.WithoutBottom}}" />
                 </Style>
             </Style>
@@ -196,11 +196,11 @@
             </Style>
             <Style Selector="^:expanded">
                 <Style Selector="^ /template/ ToggleButton#Toggle">
-                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Upper}}" />
+                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Top}}" />
                     <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:ThicknessConverters.WithoutBottom}}" />
                 </Style>
                 <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Lower}}" />
+                    <Setter Property="CornerRadius" Value="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:CornerRadiusConverters.Bottom}}" />
                     <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:ThicknessConverters.WithoutTop}}" />
                 </Style>
             </Style>

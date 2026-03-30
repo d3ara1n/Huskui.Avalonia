@@ -119,7 +119,7 @@
                                 <ProgressBar
                                     DockPanel.Dock="Bottom"
                                     IsVisible="{TemplateBinding IsProgressBarVisible}"
-                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static local:CornerRadiusConverters.Lower}}"
+                                    CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static local:CornerRadiusConverters.Bottom}}"
                                     IsIndeterminate="{TemplateBinding IsProgressIndeterminate}"
                                     Maximum="{TemplateBinding ProgressMaximum}"
                                     Value="{TemplateBinding Progress}" />
