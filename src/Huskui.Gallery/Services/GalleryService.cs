@@ -30,6 +30,7 @@ public class GalleryService : IGalleryService
         CreateNavigationCategory();
         CreateCollectionsCategory();
         CreateMediaCategory();
+        CreateDocumentsCategory();
 
         foreach (var item in Categories.SelectMany(c => c.Items))
         {
@@ -408,6 +409,29 @@ public class GalleryService : IGalleryService
             Description = "Media and graphics components",
             Icon = Symbol.Image,
             Items = [],
+        };
+
+        Categories.Add(category);
+    }
+
+    private void CreateDocumentsCategory()
+    {
+        var category = new GalleryCategory
+        {
+            Name = "Documents",
+            Description = "Usage guides and reference documents",
+            Icon = Symbol.Document,
+            Items =
+            [
+                new()
+                {
+                    Title = "Resource Usage Notes",
+                    Description = "How Brush/CornerRadius resources and resource binding extensions work",
+                    Icon = Symbol.ColorBackground,
+                    PageType = typeof(ResourcesPage),
+                    Tags = ["resource", "brush", "cornerradius", "staticresource", "dynamicresource", "binding"],
+                },
+            ],
         };
 
         Categories.Add(category);
