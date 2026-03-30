@@ -6,6 +6,7 @@ using Avalonia.Data.Converters;
 using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.MarkupExtensions;
 using Huskui.Avalonia.Converters;
+
 namespace Huskui.Avalonia.MarkupExtensions;
 
 public class DynamicResourceBindingExtension : MarkupExtension
@@ -27,7 +28,7 @@ public class DynamicResourceBindingExtension : MarkupExtension
         return new MultiBinding
         {
             Bindings = [binding],
-            Converter = new ResourceConverter(Converter, ConverterParameter)
+            Converter = new ResourceConverter(Converter, ConverterParameter),
         };
     }
 }

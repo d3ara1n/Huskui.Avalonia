@@ -28,7 +28,7 @@ public class StaticResourceBindingExtension : MarkupExtension
         return new MultiBinding
         {
             Bindings = [(BindingBase)binding!],
-            Converter = new ResourceConverter(Converter, ConverterParameter)
+            Converter = new ResourceConverter(Converter, ConverterParameter),
         };
     }
 }

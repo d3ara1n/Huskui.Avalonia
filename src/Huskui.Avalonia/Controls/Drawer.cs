@@ -125,7 +125,6 @@ public class Drawer : ContentControl
         InvalidateMeasure();
         InvalidateArrange();
         _drawerPanel?.InvalidateArrange();
-
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -181,7 +180,6 @@ public class Drawer : ContentControl
             _resizeTop.PointerReleased += OnResizePointerReleased;
         }
 
-
         UpdatePseudoClasses();
     }
 
@@ -225,7 +223,6 @@ public class Drawer : ContentControl
         PseudoClasses.Set(":dragging", _isDragging);
         PseudoClasses.Set(":resizing", _isResizingLeft || _isResizingRight || _isResizingTop);
     }
-
 
     protected override void OnGotFocus(FocusChangedEventArgs e)
     {
@@ -290,7 +287,10 @@ public class Drawer : ContentControl
 
     private void OnResizePointerMoved(object? sender, PointerEventArgs e)
     {
-        if ((_isResizingLeft || _isResizingRight || _isResizingTop) && Parent is Control parentControl)
+        if (
+            (_isResizingLeft || _isResizingRight || _isResizingTop)
+            && Parent is Control parentControl
+        )
         {
             var currentPoint = e.GetPosition(parentControl);
             var delta = currentPoint - _lastPoint;

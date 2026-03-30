@@ -11,4 +11,3 @@ public partial class TeamMemberEditorSidebar : Sidebar
 
     private void OnSaveClick(object? sender, RoutedEventArgs e) => Dismiss();
 }
-

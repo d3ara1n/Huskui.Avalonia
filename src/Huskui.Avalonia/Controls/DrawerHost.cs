@@ -188,7 +188,8 @@ public class DrawerHost : TemplatedControl
         var max = 0;
         foreach (var item in Items)
         {
-            if (item.ZIndex > max) max = item.ZIndex;
+            if (item.ZIndex > max)
+                max = item.ZIndex;
             item.ZIndex--;
         }
         drawer.ZIndex = max;

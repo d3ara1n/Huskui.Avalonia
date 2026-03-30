@@ -39,9 +39,7 @@ public class DrawerPanel : Panel
                     : drawer.HeaderHeight;
                 // 基础最大值：不能超过宿主大小
                 var maxWidth = hostWidth;
-                var maxHeight = drawer.IsOpen
-                    ? hostHeight
-                    : drawer.HeaderHeight;
+                var maxHeight = drawer.IsOpen ? hostHeight : drawer.HeaderHeight;
                 // 如果宿主比 Min 还小，允许降到宿主大小，避免死锁
                 minWidth = Math.Min(minWidth, maxWidth);
                 minHeight = Math.Min(minHeight, maxHeight);
@@ -72,6 +70,7 @@ public class DrawerPanel : Panel
 
         return finalSize;
     }
+
     private static double Clamp(double value, double min, double max)
     {
         if (value < min)

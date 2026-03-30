@@ -4,5 +4,5 @@ public enum CornerStyle
 {
     None,
     Normal,
-    Large
+    Large,
 }

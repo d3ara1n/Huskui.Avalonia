@@ -45,7 +45,7 @@ public partial class MainWindow : AppWindow
                 {
                     Text = $"Error loading page: {ex.Message}",
                     HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
-                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center
+                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center,
                 };
             }
         }

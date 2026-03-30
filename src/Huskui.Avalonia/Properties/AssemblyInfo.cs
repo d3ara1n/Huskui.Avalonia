@@ -15,4 +15,7 @@ using Avalonia.Metadata;
     "Huskui.Avalonia.Transitions"
 )]
 [assembly: XmlnsDefinition("https://github.com/d3ara1n/Huskui.Avalonia", "Huskui.Avalonia.Models")]
-[assembly: XmlnsDefinition("https://github.com/d3ara1n/Huskui.Avalonia", "Huskui.Avalonia.MarkupExtensions")]
+[assembly: XmlnsDefinition(
+    "https://github.com/d3ara1n/Huskui.Avalonia",
+    "Huskui.Avalonia.MarkupExtensions"
+)]
