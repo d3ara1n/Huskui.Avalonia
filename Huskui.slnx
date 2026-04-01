@@ -4,7 +4,8 @@
         <File Path=".editorconfig" />
         <File Path="README.md" />
     </Folder>
-    <Project Path="src\Huskui.Avalonia\Huskui.Avalonia.csproj" Type="Classic C#" />
-    <Project Path="src\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj" Type="Classic C#" />
-    <Project Path="src\Huskui.Gallery\Huskui.Gallery.csproj" Type="Classic C#" />
+    <Project Path="src\Huskui.Avalonia\Huskui.Avalonia.csproj" Type="C#" />
+    <Project Path="src/Huskui.Avalonia.Code/Huskui.Avalonia.Code.csproj" />
+    <Project Path="src\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj" Type="C#" />
+    <Project Path="src\Huskui.Gallery\Huskui.Gallery.csproj" Type="C#" />
 </Solution>

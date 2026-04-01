@@ -1,16 +1,25 @@
 <Styles
-xmlns="https://github.com/avaloniaui"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style Selector="Run.Markdown.Literal.Bold">
         <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style Selector="Run.Markdown.Literal.Italic">
         <Setter Property="FontStyle" Value="Italic" />
     </Style>
-     <Style Selector="Run.Markdown.Literal.Strikethrough">
+    <Style Selector="Run.Markdown.Literal.Deleted">
         <Setter Property="TextDecorations" Value="Strikethrough" />
     </Style>
-     <Style Selector="Run.Markdown.Literal.Highlighted">
+    <Style Selector="Run.Markdown.Literal.Underlined">
+        <Setter Property="TextDecorations" Value="Underline" />
+    </Style>
+    <Style Selector="Run.Markdown.Literal.Highlighted">
         <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+    </Style>
+    <Style Selector="Run.Markdown.Literal.Subscripted">
+        <Setter Property="BaselineAlignment" Value="Subscript" />
+    </Style>
+    <Style Selector="Run.Markdown.Literal.Superscripted">
+        <Setter Property="BaselineAlignment" Value="Superscript" />
     </Style>
 </Styles>

@@ -10,7 +10,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input.Platform;
 using Huskui.Avalonia.Models;
 
-namespace Huskui.Avalonia.Controls;
+namespace Huskui.Avalonia.Code.Controls;
 
 [TemplatePart(PART_CodeText, typeof(SelectableTextBlock))]
 public class CodeViewer : TemplatedControl

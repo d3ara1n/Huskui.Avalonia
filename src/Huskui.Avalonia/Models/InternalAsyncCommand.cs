@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Huskui.Avalonia.Models;
 
-internal class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
+public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
 {
     #region ICommand Members
 

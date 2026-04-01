@@ -57,6 +57,9 @@ public partial class MarkdownViewerPage : ControlPage
         ## Ordered Lists
 
         1. First item
+            1. First in First
+                1. First in First in First
+                    1. Even More First
         2. Second item
         3. Third item
 
@@ -68,6 +71,7 @@ public partial class MarkdownViewerPage : ControlPage
           - Nested item A
           - Nested item B
             - Deeper nesting
+                - Deepest nesting
 
         ## ListExtras — Lettered Lists
 
@@ -78,9 +82,9 @@ public partial class MarkdownViewerPage : ControlPage
         ## Task List
 
         - [x] Render headings
-        - [x] Render emphasis (bold, italic, strikethrough)
-        - [x] Render inline code
-        - [ ] Render fenced code blocks
+        - [x] Render emphasis (**bold**, *italic*, ~~strikethrough~~)
+        - [x] Render `inline code`
+        - [ ] Render ```fenced code blocks```
         - [ ] Render images
         - [ ] Render tables
         - [ ] Render blockquotes
@@ -121,7 +125,7 @@ public partial class MarkdownViewerPage : ControlPage
 
         ## Image
 
-        ![Avalonia Logo](https://avaloniaui.net/img/logo/avalonia-logo.png)
+        ![JetBrains](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png)
 
         ## Math (Raw LaTeX — requires Math extension)
 
@@ -162,5 +166,4 @@ public partial class MarkdownViewerPage : ControlPage
         InitializeComponent();
         Viewer.Markdown = SampleMarkdown;
     }
-
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
     <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
   </ItemGroup>
 

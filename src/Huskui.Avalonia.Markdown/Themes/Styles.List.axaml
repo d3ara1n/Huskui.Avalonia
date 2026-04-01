@@ -1,0 +1,7 @@
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style Selector="DockPanel.Markdown.List.Item">
+        <Setter Property="Margin" Value="8,0,0,0" />
+    </Style>
+</Styles>

@@ -1,16 +1,11 @@
 <Styles
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="/Controls/MarkdownViewer.axaml" />
+                <ResourceInclude Source="/Controls/CodeViewer.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>
-
-    <StyleInclude Source="/Themes/Styles.Heading.axaml" />
-    <StyleInclude Source="/Themes/Styles.Paragraph.axaml" />
-    <StyleInclude Source="/Themes/Styles.List.axaml" />
 </Styles>
