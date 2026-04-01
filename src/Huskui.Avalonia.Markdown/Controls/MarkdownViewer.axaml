@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme x:Key="{x:Type husk:MarkdownViewer}" TargetType="husk:MarkdownViewer">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ScrollViewer AllowAutoHide="{TemplateBinding ScrollViewer.AllowAutoHide}" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                              VerticalSnapPointsType="{TemplateBinding ScrollViewer.VerticalSnapPointsType}" VerticalSnapPointsAlignment="{TemplateBinding ScrollViewer.VerticalSnapPointsAlignment}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                              HorizontalSnapPointsType="{TemplateBinding ScrollViewer.HorizontalSnapPointsType}" HorizontalSnapPointsAlignment="{TemplateBinding ScrollViewer.HorizontalSnapPointsAlignment}">
+                    <StackPanel Name="{x:Static husk:MarkdownViewer.PART_LayoutContainer}"/>
+                </ScrollViewer>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

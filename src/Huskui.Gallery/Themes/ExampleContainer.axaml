@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
@@ -127,7 +127,7 @@
                                         FontWeight="{StaticResource ControlStrongFontWeight}"
                                         Text="XAML Code" />
                                 </Border>
-                                <controls:CodeViewer
+                                <husk:CodeViewer
                                     IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                     Code="{TemplateBinding XamlCode}"
                                     Language="xml" />
@@ -143,7 +143,7 @@
                                         FontWeight="{StaticResource ControlStrongFontWeight}"
                                         Text="C# Code" />
                                 </Border>
-                                <controls:CodeViewer
+                                <husk:CodeViewer
                                     IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                     Code="{TemplateBinding CSharpCode}"
                                     CornerRadius="{TemplateBinding CornerRadius,

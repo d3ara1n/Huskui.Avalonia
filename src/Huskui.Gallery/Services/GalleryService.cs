@@ -30,6 +30,7 @@ public class GalleryService : IGalleryService
         CreateNavigationCategory();
         CreateCollectionsCategory();
         CreateMediaCategory();
+        CreateExtensionCategory();
         CreateDocumentsCategory();
 
         foreach (var item in Categories.SelectMany(c => c.Items))
@@ -414,6 +415,30 @@ public class GalleryService : IGalleryService
         Categories.Add(category);
     }
 
+    private void CreateExtensionCategory()
+    {
+        var category = new GalleryCategory()
+        {
+            Name = "Extensions",
+            Description = "Extension controls",
+            Icon = Symbol.PuzzlePiece,
+            Items =
+            [
+                new()
+                {
+                    Title = "MarkdownViewer",
+                    Description =
+                        "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",
+                    Icon = Symbol.Document,
+                    PageType = typeof(MarkdownViewerPage),
+                    Tags = ["markdown", "viewer", "render", "document", "extension", "markdig"],
+                },
+            ],
+        };
+
+        Categories.Add(category);
+    }
+
     private void CreateDocumentsCategory()
     {
         var category = new GalleryCategory
@@ -423,21 +448,40 @@ public class GalleryService : IGalleryService
             Icon = Symbol.Document,
             Items =
             [
-                 new()
-                 {
-                     Title = "Converters",
-                     Description = "Overview of Huskui converter patterns, families, and practical XAML usage",
-                     Icon = Symbol.DataHistogram,
-                     PageType = typeof(ConvertersPage),
-                     Tags = ["converter", "multibinding", "relay", "string", "number", "cornerradius", "thickness"],
-                 },
-                 new()
-                 {
-                     Title = "Resource Usage Notes",
-                     Description = "How Brush/CornerRadius resources and resource binding extensions work",
-                     Icon = Symbol.ColorBackground,
+                new()
+                {
+                    Title = "Converters",
+                    Description =
+                        "Overview of Huskui converter patterns, families, and practical XAML usage",
+                    Icon = Symbol.DataHistogram,
+                    PageType = typeof(ConvertersPage),
+                    Tags =
+                    [
+                        "converter",
+                        "multibinding",
+                        "relay",
+                        "string",
+                        "number",
+                        "cornerradius",
+                        "thickness",
+                    ],
+                },
+                new()
+                {
+                    Title = "Resource Usage Notes",
+                    Description =
+                        "How Brush/CornerRadius resources and resource binding extensions work",
+                    Icon = Symbol.ColorBackground,
                     PageType = typeof(ResourcesPage),
-                    Tags = ["resource", "brush", "cornerradius", "staticresource", "dynamicresource", "binding"],
+                    Tags =
+                    [
+                        "resource",
+                        "brush",
+                        "cornerradius",
+                        "staticresource",
+                        "dynamicresource",
+                        "binding",
+                    ],
                 },
             ],
         };

@@ -1,0 +1,23 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.MarkdownViewerPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Markdown Rendering"
+            Description="MarkdownViewer from Huskui.Avalonia.Markdown — renders common markdown syntax including headings, emphasis, code, lists, and links"
+            XamlCode="&lt;husk:MarkdownViewer Markdown=&quot;...&quot; /&gt;">
+            <husk:MarkdownViewer Name="Viewer" />
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

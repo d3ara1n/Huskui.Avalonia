@@ -1,3 +1,4 @@
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -5,6 +6,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Markup.Xaml.Styling;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Huskui.Avalonia.Attributes;
 
 namespace Huskui.Avalonia;
 
@@ -24,10 +26,19 @@ public class HuskuiTheme : Styles
     {
         AvaloniaXamlLoader.Load(this);
 
+        // Manual Initialize
         if (Accent == AccentColor.System)
         {
             Resources.MergedDictionaries[1] = GenerateSystemAccentColorResourceDictionary();
         }
+        // Load Extensions
+        LoadExtensionResources();
+        AppDomain.CurrentDomain.AssemblyLoad += OnExtensionAssemblyLoaded;
+    }
+
+    ~HuskuiTheme()
+    {
+        AppDomain.CurrentDomain.AssemblyLoad -= OnExtensionAssemblyLoaded;
     }
 
     public AccentColor Accent
@@ -101,5 +112,40 @@ public class HuskuiTheme : Styles
         systemColorDict.ThemeDictionaries.Add(ThemeVariant.Dark, darkDict);
 
         return systemColorDict;
+    }
+
+    private void LoadExtensionResources()
+    {
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            TryMergeResource(assembly);
+        }
+    }
+
+    private void OnExtensionAssemblyLoaded(object? sender, AssemblyLoadEventArgs args)
+    {
+        TryMergeResource(args.LoadedAssembly);
+    }
+
+    private void TryMergeResource(Assembly assembly)
+    {
+        var attributes = assembly.GetCustomAttributes<HuskuiExtensionAttribute>();
+        foreach (var attr in attributes)
+        {
+            try
+            {
+                var uri = new Uri(attr.BundleUri, UriKind.Absolute);
+                var include = new StyleInclude(uri)
+                {
+                    Source = uri,
+                };
+                Add(include);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"[Huskui] Failed to load extension resources from {assembly.GetName().Name}: {ex.Message}");
+            }
+        }
     }
 }

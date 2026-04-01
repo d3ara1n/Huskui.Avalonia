@@ -1,0 +1,78 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fi="using:FluentIcons.Avalonia"
+                    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+    x:Key="{x:Type husk:CodeViewer}"
+    TargetType="husk:CodeViewer">
+        <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid RowDefinitions="Auto,*">
+                        <!--  Header with copy button  -->
+                        <Border
+                        Grid.Row="0"
+                        Padding="12,8"
+                        IsVisible="{TemplateBinding IsCopyButtonVisible}"
+                        Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="{TemplateBinding Language}" />
+                                <Button
+                                Grid.Column="1"
+                                Classes="Small"
+                                Theme="{StaticResource GhostButtonTheme}"
+                                Command="{Binding CopyCodeCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                    <fi:SymbolIcon
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Symbol="Copy" />
+                                </Button>
+                            </Grid>
+                        </Border>
+
+                        <!--  Code content  -->
+                        <ScrollViewer
+                        Grid.Row="1"
+                        HorizontalScrollBarVisibility="Auto"
+                        VerticalScrollBarVisibility="Auto">
+                            <Grid
+                            Margin="12"
+                            ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                <!--  Line numbers  -->
+                                <TextBlock
+                                Grid.Column="0"
+                                VerticalAlignment="Top"
+                                IsVisible="{TemplateBinding IsLineNumbersVisible}"
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+
+                                <!--  Code text  -->
+                                <SelectableTextBlock
+                                Name="PART_CodeText"
+                                Grid.Column="1"
+                                VerticalAlignment="Top"
+                                FontFamily="Cascadia Code, Consolas, Courier New, monospace"
+                                FontSize="{StaticResource SmallFontSize}"
+                                TextWrapping="NoWrap" />
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>
