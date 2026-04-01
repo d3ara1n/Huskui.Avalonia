@@ -7,4 +7,7 @@
     <sys:Double x:Key="MediumFontSize">13</sys:Double>
     <sys:Double x:Key="LargeFontSize">17</sys:Double>
     <sys:Double x:Key="ExtraLargeFontSize">25</sys:Double>
+    <sys:Double x:Key="ExtraExtraLargeFontSize">33</sys:Double>
+    <sys:Double x:Key="ExtraExtraLargeFontSize">49</sys:Double>
+    <sys:Double x:Key="ExtraExtraLargeFontSize">65</sys:Double>
 </ResourceDictionary>
