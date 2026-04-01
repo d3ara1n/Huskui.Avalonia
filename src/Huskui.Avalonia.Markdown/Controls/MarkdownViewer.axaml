@@ -5,6 +5,8 @@
     <ControlTheme
         x:Key="{x:Type husk:MarkdownViewer}"
         TargetType="husk:MarkdownViewer">
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="Template">
             <ControlTemplate>
                 <ScrollViewer

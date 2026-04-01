@@ -335,8 +335,8 @@ public class MarkdownViewer : TemplatedControl
                         var linkBtn = new HyperlinkButton();
                         linkBtn.NavigateUri =
                             link.Url is not null
-                            || Uri.IsWellFormedUriString(link.Url, UriKind.RelativeOrAbsolute)
-                                ? new Uri(link.Url)
+                            && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
+                                ? new Uri(link.Url, UriKind.Absolute)
                                 : null;
                         var label = new TextBlock();
                         var labelInlines = new InlineCollection();
