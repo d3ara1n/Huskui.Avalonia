@@ -1,23 +1,23 @@
-<Styles
-  xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-  <Style Selector="TextBlock.Markdown.Heading1">
-    <Setter Property="FontSize" Value="{StaticResource ExtraExtraLargeFontSize}" />
-  </Style>
-  <Style Selector="TextBlock.Markdown.Heading2">
-    <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
-  </Style>
-  <Style Selector="TextBlock.Markdown.Heading3">
-    <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
-  </Style>
-  <Style Selector="TextBlock.Markdown.Heading4">
-    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
-  </Style>
-  <Style Selector="TextBlock.Markdown.Heading5">
-    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
-  </Style>
-  <Style Selector="TextBlock.Markdown.Heading6">
-    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
-  </Style>
+    <Style Selector="TextBlock.Markdown.Heading1">
+        <Setter Property="FontSize" Value="{StaticResource ExtraExtraLargeFontSize}" />
+    </Style>
+    <Style Selector="TextBlock.Markdown.Heading2">
+        <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
+    </Style>
+    <Style Selector="TextBlock.Markdown.Heading3">
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+    </Style>
+    <Style Selector="TextBlock.Markdown.Heading4">
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+    </Style>
+    <Style Selector="TextBlock.Markdown.Heading5">
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+    </Style>
+    <Style Selector="TextBlock.Markdown.Heading6">
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+    </Style>
 </Styles>

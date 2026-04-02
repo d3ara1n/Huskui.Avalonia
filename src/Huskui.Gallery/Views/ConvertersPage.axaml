@@ -1,53 +1,53 @@
-<husk:Page
-x:Class="Huskui.Gallery.Views.ConvertersPage"
-xmlns="https://github.com/avaloniaui"
-xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-xmlns:controls="using:Huskui.Gallery.Controls"
-xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-d:DesignHeight="900"
-d:DesignWidth="900"
-IsBackButtonVisible="False"
-mc:Ignorable="d">
+﻿<husk:Page
+    x:Class="Huskui.Gallery.Views.ConvertersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="900"
+    d:DesignWidth="900"
+    IsBackButtonVisible="False"
+    mc:Ignorable="d">
 
     <ScrollViewer>
         <StackPanel
-        MaxWidth="800"
-        Margin="48"
-        HorizontalAlignment="Center"
-        Spacing="32">
+            MaxWidth="800"
+            Margin="48"
+            HorizontalAlignment="Center"
+            Spacing="32">
 
             <StackPanel Spacing="12">
                 <TextBlock
-                FontSize="28"
-                FontWeight="{StaticResource ControlStrongFontWeight}"
-                Text="Converters" />
+                    FontSize="28"
+                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                    Text="Converters" />
 
                 <TextBlock
-                FontSize="{StaticResource LargeFontSize}"
-                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                Text="How Huskui approaches converters, when to use RelayConverter and RelayMultiConverter, and how the built-in converter families help shape practical XAML."
-                TextWrapping="Wrap" />
+                    FontSize="{StaticResource LargeFontSize}"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="How Huskui approaches converters, when to use RelayConverter and RelayMultiConverter, and how the built-in converter families help shape practical XAML."
+                    TextWrapping="Wrap" />
             </StackPanel>
 
             <Border
-            Padding="24"
-            Background="{StaticResource CardBackgroundBrush}"
-            BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1"
-            CornerRadius="{StaticResource MediumCornerRadius}">
+                Padding="24"
+                Background="{StaticResource CardBackgroundBrush}"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
                 <StackPanel Spacing="16">
                     <StackPanel Spacing="4">
                         <TextBlock
-                        FontSize="{StaticResource LargeFontSize}"
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="Converter Philosophy" />
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Converter Philosophy" />
                         <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="Small, reusable transforms that keep markup expressive and local to the UI layer."
-                        TextWrapping="Wrap" />
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Small, reusable transforms that keep markup expressive and local to the UI layer."
+                            TextWrapping="Wrap" />
                     </StackPanel>
 
                     <TextBlock TextWrapping="Wrap">
@@ -57,39 +57,39 @@ mc:Ignorable="d">
                     </TextBlock>
 
                     <TextBlock
-                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                    Text="This keeps view models clean, reduces one-off code-behind, and makes common UI transforms easy to share across the library."
-                    TextWrapping="Wrap" />
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="This keeps view models clean, reduces one-off code-behind, and makes common UI transforms easy to share across the library."
+                        TextWrapping="Wrap" />
 
                     <husk:InfoBar Header="Rule of thumb">
                         <TextBlock
-                        Text="If a transformation only exists to make XAML bind cleanly or shape visual values such as strings, numbers, Thickness, or CornerRadius, a converter is usually the right fit."
-                        TextWrapping="Wrap" />
+                            Text="If a transformation only exists to make XAML bind cleanly or shape visual values such as strings, numbers, Thickness, or CornerRadius, a converter is usually the right fit."
+                            TextWrapping="Wrap" />
                     </husk:InfoBar>
                 </StackPanel>
             </Border>
 
             <Border
-            Padding="24"
-            Background="{StaticResource CardBackgroundBrush}"
-            BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1"
-            CornerRadius="{StaticResource MediumCornerRadius}">
+                Padding="24"
+                Background="{StaticResource CardBackgroundBrush}"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
                 <StackPanel Spacing="20">
                     <StackPanel Spacing="4">
                         <TextBlock
-                        FontSize="{StaticResource LargeFontSize}"
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="RelayConverter and RelayMultiConverter" />
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="RelayConverter and RelayMultiConverter" />
                         <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="The two building blocks behind most Huskui converter helpers."
-                        TextWrapping="Wrap" />
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="The two building blocks behind most Huskui converter helpers."
+                            TextWrapping="Wrap" />
                     </StackPanel>
 
                     <WrapPanel
-                    ItemSpacing="8"
-                    Orientation="Horizontal">
+                        ItemSpacing="8"
+                        Orientation="Horizontal">
                         <husk:Tag Content="Single value" />
                         <husk:Tag Content="MultiBinding" />
                         <husk:Tag Content="Reusable static instances" />
@@ -107,135 +107,135 @@ mc:Ignorable="d">
                     </TextBlock>
 
                     <Border
-                    Padding="16"
-                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                    BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{StaticResource SmallCornerRadius}">
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="12">
                             <TextBlock
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="Basic implementation examples" />
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Basic implementation examples" />
                             <husk:CodeViewer
-                            Code="public static class DemoConverters&#x0a;{&#x0a;    public static IValueConverter HasValue { get; } =&#x0a;        new RelayConverter(value =&gt; value is not null);&#x0a;&#x0a;    public static IMultiValueConverter JoinName { get; } =&#x0a;        new RelayMultiConverter(values =&gt; $&quot;{values[0]} {values[1]}&quot;.Trim());&#x0a;}"
-                            Language="csharp" />
+                                Code="public static class DemoConverters&#x0a;{&#x0a;    public static IValueConverter HasValue { get; } =&#x0a;        new RelayConverter(value =&gt; value is not null);&#x0a;&#x0a;    public static IMultiValueConverter JoinName { get; } =&#x0a;        new RelayMultiConverter(values =&gt; $&quot;{values[0]} {values[1]}&quot;.Trim());&#x0a;}"
+                                Language="csharp" />
                         </StackPanel>
                     </Border>
 
                     <Border
-                    Padding="16"
-                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                    BorderBrush="{StaticResource ControlBorderBrush}"
-                    BorderThickness="1"
-                    CornerRadius="{StaticResource SmallCornerRadius}">
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="12">
                             <TextBlock
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="Basic XAML usage" />
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Basic XAML usage" />
                             <husk:CodeViewer
-                            Code="&lt;TextBlock Text=&quot;{Binding UserName, Converter={x:Static husk:StringConverters.ToUpper}}&quot; /&gt;&#x0a;&#x0a;&lt;Border&gt;&#x0a;    &lt;Border.CornerRadius&gt;&#x0a;        &lt;MultiBinding Converter=&quot;{x:Static husk:CornerRadiusConverters.TopBottomCombinedMulti}&quot;&gt;&#x0a;            &lt;Binding Path=&quot;HeaderRadius&quot; /&gt;&#x0a;            &lt;Binding Path=&quot;FooterRadius&quot; /&gt;&#x0a;        &lt;/MultiBinding&gt;&#x0a;    &lt;/Border.CornerRadius&gt;&#x0a;&lt;/Border&gt;"
-                            Language="xml" />
+                                Code="&lt;TextBlock Text=&quot;{Binding UserName, Converter={x:Static husk:StringConverters.ToUpper}}&quot; /&gt;&#x0a;&#x0a;&lt;Border&gt;&#x0a;    &lt;Border.CornerRadius&gt;&#x0a;        &lt;MultiBinding Converter=&quot;{x:Static husk:CornerRadiusConverters.TopBottomCombinedMulti}&quot;&gt;&#x0a;            &lt;Binding Path=&quot;HeaderRadius&quot; /&gt;&#x0a;            &lt;Binding Path=&quot;FooterRadius&quot; /&gt;&#x0a;        &lt;/MultiBinding&gt;&#x0a;    &lt;/Border.CornerRadius&gt;&#x0a;&lt;/Border&gt;"
+                                Language="xml" />
                         </StackPanel>
                     </Border>
                 </StackPanel>
             </Border>
 
             <Border
-            Padding="24"
-            Background="{StaticResource CardBackgroundBrush}"
-            BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1"
-            CornerRadius="{StaticResource MediumCornerRadius}">
+                Padding="24"
+                Background="{StaticResource CardBackgroundBrush}"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
                 <StackPanel Spacing="16">
                     <StackPanel Spacing="4">
                         <TextBlock
-                        FontSize="{StaticResource LargeFontSize}"
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="Built-in Converter Families" />
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Built-in Converter Families" />
                         <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="Use the family that matches the kind of value you are shaping."
-                        TextWrapping="Wrap" />
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Use the family that matches the kind of value you are shaping."
+                            TextWrapping="Wrap" />
                     </StackPanel>
 
                     <Grid
-                    ColumnDefinitions="*,*"
-                    ColumnSpacing="16"
-                    RowDefinitions="Auto,Auto"
-                    RowSpacing="16">
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="16"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="16">
                         <Border
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <StackPanel Spacing="8">
                                 <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="StringConverters" />
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="StringConverters" />
                                 <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Case transforms, matching helpers, and string-oriented presentation checks."
-                                TextWrapping="Wrap" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Case transforms, matching helpers, and string-oriented presentation checks."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 
                         <Border
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <StackPanel Spacing="8">
                                 <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="NumberConverters" />
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="NumberConverters" />
                                 <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Boolean checks for zero, non-zero, positive, and negative numeric states."
-                                TextWrapping="Wrap" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Boolean checks for zero, non-zero, positive, and negative numeric states."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 
                         <Border
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <StackPanel Spacing="8">
                                 <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="CornerRadiusConverters" />
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="CornerRadiusConverters" />
                                 <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Extract, trim, merge, or derive corner radii for segmented surfaces and layered containers."
-                                TextWrapping="Wrap" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Extract, trim, merge, or derive corner radii for segmented surfaces and layered containers."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
 
                         <Border
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="16"
+                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}">
                             <StackPanel Spacing="8">
                                 <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="ThicknessConverters" />
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="ThicknessConverters" />
                                 <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Remove edges, isolate axes, convert doubles, or scale spacing for borders and padding."
-                                TextWrapping="Wrap" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Remove edges, isolate axes, convert doubles, or scale spacing for borders and padding."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -243,64 +243,64 @@ mc:Ignorable="d">
             </Border>
 
             <Border
-            Padding="24"
-            Background="{StaticResource CardBackgroundBrush}"
-            BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1"
-            CornerRadius="{StaticResource MediumCornerRadius}">
+                Padding="24"
+                Background="{StaticResource CardBackgroundBrush}"
+                BorderBrush="{StaticResource ControlBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
                 <StackPanel Spacing="20">
                     <StackPanel Spacing="4">
                         <TextBlock
-                        FontSize="{StaticResource LargeFontSize}"
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="Practical XAML Examples" />
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Practical XAML Examples" />
                         <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="Patterns you can copy into real views and templates."
-                        TextWrapping="Wrap" />
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Patterns you can copy into real views and templates."
+                            TextWrapping="Wrap" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
                         <TextBlock
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="StringConverters" />
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="StringConverters" />
                         <husk:CodeViewer
-                        Code="&lt;TextBlock&#x0a;    Text=&quot;{Binding StatusText, Converter={x:Static husk:StringConverters.ToUpper}}&quot; /&gt;&#x0a;&#x0a;&lt;ToggleButton&#x0a;    IsChecked=&quot;{Binding SelectedFilter, Converter={x:Static husk:StringConverters.Match}, ConverterParameter=All}&quot; /&gt;"
-                        Language="xml" />
+                            Code="&lt;TextBlock&#x0a;    Text=&quot;{Binding StatusText, Converter={x:Static husk:StringConverters.ToUpper}}&quot; /&gt;&#x0a;&#x0a;&lt;ToggleButton&#x0a;    IsChecked=&quot;{Binding SelectedFilter, Converter={x:Static husk:StringConverters.Match}, ConverterParameter=All}&quot; /&gt;"
+                            Language="xml" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
                         <TextBlock
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="NumberConverters" />
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="NumberConverters" />
                         <husk:CodeViewer
-                        Code="&lt;husk:InfoBar&#x0a;    Classes=&quot;Warning&quot;&#x0a;    IsVisible=&quot;{Binding RetryCount, Converter={x:Static husk:NumberConverters.IsPositive}}&quot;&#x0a;    Header=&quot;Retry in progress&quot; /&gt;&#x0a;&#x0a;&lt;Button&#x0a;    Content=&quot;Submit&quot;&#x0a;    IsEnabled=&quot;{Binding PendingItems, Converter={x:Static husk:NumberConverters.IsNonZero}}&quot; /&gt;"
-                        Language="xml" />
+                            Code="&lt;husk:InfoBar&#x0a;    Classes=&quot;Warning&quot;&#x0a;    IsVisible=&quot;{Binding RetryCount, Converter={x:Static husk:NumberConverters.IsPositive}}&quot;&#x0a;    Header=&quot;Retry in progress&quot; /&gt;&#x0a;&#x0a;&lt;Button&#x0a;    Content=&quot;Submit&quot;&#x0a;    IsEnabled=&quot;{Binding PendingItems, Converter={x:Static husk:NumberConverters.IsNonZero}}&quot; /&gt;"
+                            Language="xml" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
                         <TextBlock
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="CornerRadiusConverters" />
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="CornerRadiusConverters" />
                         <husk:CodeViewer
-                        Code="&lt;Border&#x0a;    Background=&quot;{StaticResource CardBackgroundBrush}&quot;&#x0a;    CornerRadius=&quot;{Binding PanelRadius, Converter={x:Static husk:CornerRadiusConverters.Top}}&quot; /&gt;&#x0a;&#x0a;&lt;husk:ButtonGroup&#x0a;    CornerRadius=&quot;{Binding #RadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}&quot; /&gt;"
-                        Language="xml" />
+                            Code="&lt;Border&#x0a;    Background=&quot;{StaticResource CardBackgroundBrush}&quot;&#x0a;    CornerRadius=&quot;{Binding PanelRadius, Converter={x:Static husk:CornerRadiusConverters.Top}}&quot; /&gt;&#x0a;&#x0a;&lt;husk:ButtonGroup&#x0a;    CornerRadius=&quot;{Binding #RadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}&quot; /&gt;"
+                            Language="xml" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
                         <TextBlock
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="ThicknessConverters" />
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="ThicknessConverters" />
                         <husk:CodeViewer
-                        Code="&lt;Border&#x0a;    BorderBrush=&quot;{StaticResource ControlBorderBrush}&quot;&#x0a;    BorderThickness=&quot;{Binding CardBorderThickness, Converter={x:Static husk:ThicknessConverters.WithoutBottom}}&quot; /&gt;&#x0a;&#x0a;&lt;StackPanel&#x0a;    Margin=&quot;{Binding SpacingScale, Converter={x:Static husk:ThicknessConverters.DividedBy}, ConverterParameter=2}&quot; /&gt;"
-                        Language="xml" />
+                            Code="&lt;Border&#x0a;    BorderBrush=&quot;{StaticResource ControlBorderBrush}&quot;&#x0a;    BorderThickness=&quot;{Binding CardBorderThickness, Converter={x:Static husk:ThicknessConverters.WithoutBottom}}&quot; /&gt;&#x0a;&#x0a;&lt;StackPanel&#x0a;    Margin=&quot;{Binding SpacingScale, Converter={x:Static husk:ThicknessConverters.DividedBy}, ConverterParameter=2}&quot; /&gt;"
+                            Language="xml" />
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <husk:InfoBar
-            Classes="Warning"
-            Header="Resource binding caveat">
+                Classes="Warning"
+                Header="Resource binding caveat">
                 <StackPanel Spacing="8">
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="When you combine a forwarded resource with a converter through " />
@@ -314,8 +314,8 @@ mc:Ignorable="d">
                         <husk:HighlightInline Text="husk:DynamicResourceBinding" />
                         <Run Text=" patterns, see the existing " />
                         <Run
-                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                        Text="Resource Usage Notes" />
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Resource Usage Notes" />
                         <Run Text=" page in Documents." />
                     </TextBlock>
                 </StackPanel>

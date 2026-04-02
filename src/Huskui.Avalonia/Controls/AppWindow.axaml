@@ -45,7 +45,9 @@
                             </Transitions>
                         </Border.Transitions>
                     </Border>
-                    <Panel Margin="{TemplateBinding WindowDecorationMargin}" />
+                    <Panel
+                        Margin="{TemplateBinding WindowDecorationMargin}"
+                        Background="Transparent" />
                     <VisualLayerManager>
                         <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
                             <ContentPresenter
