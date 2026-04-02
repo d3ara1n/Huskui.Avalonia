@@ -135,16 +135,14 @@ public class HuskuiTheme : Styles
             try
             {
                 var uri = new Uri(attr.BundleUri, UriKind.Absolute);
-                var include = new StyleInclude(uri)
-                {
-                    Source = uri,
-                };
+                var include = new StyleInclude(uri) { Source = uri };
                 Add(include);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(
-                    $"[Huskui] Failed to load extension resources from {assembly.GetName().Name}: {ex.Message}");
+                    $"[Huskui] Failed to load extension resources from {assembly.GetName().Name}: {ex.Message}"
+                );
             }
         }
     }

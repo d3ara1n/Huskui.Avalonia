@@ -35,7 +35,11 @@
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.201" PrivateAssets="All" />
+        <PackageReference
+            Include="Microsoft.SourceLink.GitHub"
+            Version="10.0.201"
+            PrivateAssets="All"
+        />
     </ItemGroup>
 
     <ItemGroup>
@@ -44,10 +48,15 @@
 
     <!-- Include files needed for NuGet packaging -->
     <ItemGroup>
-        <None Include="Assets\icon.png" Pack="true" PackagePath="\" Condition="Exists('Assets\icon.png')" />
+        <None
+            Include="Assets\icon.png"
+            Pack="true"
+            PackagePath="\"
+            Condition="Exists('Assets\icon.png')"
+        />
         <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Attributes\" />
+        <Folder Include="Attributes\" />
     </ItemGroup>
 </Project>

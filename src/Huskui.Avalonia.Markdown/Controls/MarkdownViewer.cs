@@ -14,6 +14,7 @@ using Avalonia.Styling;
 using Huskui.Avalonia.Code.Controls;
 using Huskui.Avalonia.Controls;
 using Markdig;
+using Markdig.Extensions.Alerts;
 using Markdig.Extensions.TaskLists;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
@@ -31,6 +32,7 @@ public class MarkdownViewer : TemplatedControl
     {
         markdownPipeline = new MarkdownPipelineBuilder()
             .UseAutoLinks()
+            .UseAlertBlocks()
             .UseTaskLists()
             .UseEmphasisExtras()
             .UseGridTables()
@@ -128,7 +130,7 @@ public class MarkdownViewer : TemplatedControl
         {
             case HeadingBlock heading:
                 {
-                    var rv = new TextBlock();
+                    var rv = SpawnText();
                     rv.Inlines = RenderInlines(heading.Inline);
                     rv.Classes.Set($"Heading{heading.Level}", true);
                     control = rv;
@@ -136,7 +138,7 @@ public class MarkdownViewer : TemplatedControl
                 break;
             case ParagraphBlock paragraph:
                 {
-                    var rv = new TextBlock();
+                    var rv = SpawnText();
                     rv.Inlines = RenderInlines(paragraph.Inline);
                     rv.Classes.Set("Paragraph", true);
                     control = rv;
@@ -174,14 +176,14 @@ public class MarkdownViewer : TemplatedControl
                             stack.Children.Add(inner);
                         }
                     }
-                    var header = new TextBlock();
-                    header.Text =
+                    var bullet = SpawnText();
+                    bullet.Text =
                         $"{(context.ListOrdered ? GenerateOrderedListHead(context.ListDepth, context.ListIndex) : GenerateUnorderedListHead(context.ListDepth))}.";
-                    DockPanel.SetDock(header, Dock.Left);
-                    dock.Children.Add(header);
+                    DockPanel.SetDock(bullet, Dock.Left);
+                    dock.Children.Add(bullet);
                     dock.Children.Add(stack);
-                    header.Classes.Set("List", true);
-                    header.Classes.Set("Header", true);
+                    bullet.Classes.Set("List", true);
+                    bullet.Classes.Set("Bullet", true);
                     dock.Classes.Set("List", true);
                     dock.Classes.Set("Item", true);
                     stack.Classes.Set("List", true);
@@ -211,6 +213,20 @@ public class MarkdownViewer : TemplatedControl
                             container.Children.Add(content);
                         }
                     }
+                    if (quote is AlertBlock alert)
+                    {
+                        rv.Header = alert.Kind.ToString();
+                        rv.Classes.Set(
+                            alert.Kind.ToString().ToUpper() switch
+                            {
+                                "TIP" => "Success",
+                                "WARNING" => "Warning",
+                                "CAUTION" => "Danger",
+                                _ => "Primary",
+                            },
+                            true
+                        );
+                    }
                     rv.Content = container;
                     rv.Classes.Set("Quote", true);
                     control = rv;
@@ -219,13 +235,16 @@ public class MarkdownViewer : TemplatedControl
             case ThematicBreakBlock:
                 {
                     var rv = new Divider() { Orientation = Orientation.Horizontal };
-                    rv.Classes.Set("Divider", true);
+                    rv.Classes.Set("Rule", true);
                     control = rv;
                 }
                 break;
             default:
                 {
-                    control = new TextBlock() { Text = block.ToString() };
+                    var rv = SpawnText();
+                    rv.Text = block.ToString();
+                    rv.Classes.Set("Unknown", true);
+                    control = rv;
                 }
                 break;
         }
@@ -270,9 +289,17 @@ public class MarkdownViewer : TemplatedControl
     {
         switch (inline)
         {
-            case LiteralInline lit:
+            case LiteralInline:
+            case HtmlEntityInline:
                 {
-                    var run = new Run(lit.Content.ToString());
+                    var run = new Run(
+                        inline switch
+                        {
+                            LiteralInline it => it.Content.ToString(),
+                            HtmlEntityInline it => it.Transcoded.ToString(),
+                            _ => inline.ToString(),
+                        }
+                    );
                     run.Classes.Set("Literal", true);
                     run.Classes.Set("Bold", context.Bold);
                     run.Classes.Set("Italic", context.Italic);
@@ -294,7 +321,10 @@ public class MarkdownViewer : TemplatedControl
                     context.Highlighted |= em is { DelimiterChar: '=', DelimiterCount: 2 };
                     context.Subscripted |= em is { DelimiterChar: '~', DelimiterCount: 1 };
                     context.Superscripted |= em is { DelimiterChar: '^', DelimiterCount: 1 };
-                    BuildInline(em.FirstChild, inlines, context);
+                    foreach (var innerInline in em)
+                    {
+                        BuildInline(innerInline, inlines, context);
+                    }
                 }
                 break;
             case TaskList task:
@@ -319,14 +349,6 @@ public class MarkdownViewer : TemplatedControl
                     {
                         var image = new Image();
                         ImageLoader.SetSource(image, link.Url);
-                        if (!string.IsNullOrEmpty(link.Label))
-                        {
-                            ToolTip.SetTip(image, link.Label);
-                        }
-                        if (!string.IsNullOrEmpty(link.Url))
-                        {
-                            ToolTip.SetTip(image, link.Url);
-                        }
                         // Already marked .Markdown
                         inlines.Add(image);
                     }
@@ -338,11 +360,14 @@ public class MarkdownViewer : TemplatedControl
                             && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
                                 ? new Uri(link.Url, UriKind.Absolute)
                                 : null;
-                        var label = new TextBlock();
-                        var labelInlines = new InlineCollection();
+                        var label = SpawnText();
                         if (link.FirstChild is not null)
                         {
-                            BuildInline(link.FirstChild, labelInlines, context);
+                            var labelInlines = new InlineCollection();
+                            foreach (var child in link)
+                            {
+                                BuildInline(child, labelInlines, context);
+                            }
                             label.Inlines = labelInlines;
                         }
                         else
@@ -365,6 +390,20 @@ public class MarkdownViewer : TemplatedControl
                     }
                 }
                 break;
+            case LineBreakInline:
+                {
+                    var rv = new LineBreak();
+                    inlines.Add(rv);
+                }
+                break;
+            default:
+                {
+                    var text = SpawnText();
+                    text.Text = inline.ToString();
+                    text.Classes.Set("Unknown", true);
+                    inlines.Add(text);
+                }
+                break;
         }
     }
 
@@ -372,6 +411,9 @@ public class MarkdownViewer : TemplatedControl
 
     private DockPanel SpawnDock() =>
         new DockPanel() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
+
+    // 不能是 SelectableTextBlock 因为会吃掉内部 HyperlinkButton 的交互
+    private TextBlock SpawnText() => new TextBlock() { TextWrapping = TextWrapping.Wrap };
 
     private char GenerateUnorderedListHead(int depth) =>
         depth switch

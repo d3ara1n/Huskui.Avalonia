@@ -1,24 +1,48 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+        <PackageId>Huskui.Avalonia.Markdown</PackageId>
+        <Authors>d3ara1n</Authors>
+        <Company>d3ara1n</Company>
+        <Product>Huskui.Avalonia.Markdown</Product>
+        <Description>Markdown rendering extension for Huskui.Avalonia, converting Markdown text to native Avalonia controls using Markdig.</Description>
+        <PackageTags>avalonia;markdown;markdig;ui;controls;huskui</PackageTags>
+        <PackageProjectUrl>https://github.com/d3ara1n/Huskui.Avalonia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/d3ara1n/Huskui.Avalonia</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <Title>Huskui.Avalonia.Markdown</Title>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
-    <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
+        <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.7.0" />
-    <PackageReference Include="Markdig" Version="1.1.2" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.7.0" />
+        <PackageReference Include="Markdig" Version="1.1.2" />
+        <PackageReference Include="GitVersion.MsBuild" Version="6.7.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference
+            Include="Microsoft.SourceLink.GitHub"
+            Version="10.0.201"
+            PrivateAssets="All"
+        />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 </Project>

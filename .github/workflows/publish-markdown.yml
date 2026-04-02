@@ -39,7 +39,7 @@ jobs:
 
             -   name: Pack NuGet package
                 run: |
-                    dotnet pack src/Huskui.Avalonia/Huskui.Avalonia.csproj \
+                    dotnet pack src/Huskui.Avalonia.Markdown/Huskui.Avalonia.Markdown.csproj \
                       --configuration Release \
                       --output ./publish
 

@@ -143,21 +143,37 @@ public static class CornerRadiusConverters
             }
         );
 
-    public static IMultiValueConverter TopBottomCombinedMulti { get; } = new RelayMultiConverter((v, _, _) =>
-    {
-        if (v is [CornerRadius upper, CornerRadius lower])
-        {
-            return new CornerRadius(upper.TopLeft, upper.TopRight, lower.BottomLeft, lower.BottomRight);
-        }
-        return new CornerRadius(0);
-    });
+    public static IMultiValueConverter TopBottomCombinedMulti { get; } =
+        new RelayMultiConverter(
+            (v, _, _) =>
+            {
+                if (v is [CornerRadius upper, CornerRadius lower])
+                {
+                    return new CornerRadius(
+                        upper.TopLeft,
+                        upper.TopRight,
+                        lower.BottomLeft,
+                        lower.BottomRight
+                    );
+                }
+                return new CornerRadius(0);
+            }
+        );
 
-    public static IMultiValueConverter LeftRightConbinedMulti { get; } = new RelayMultiConverter((v, _, _) =>
-    {
-        if (v is [CornerRadius left, CornerRadius right])
-        {
-            return new CornerRadius(left.TopLeft, right.TopRight, left.BottomLeft, right.BottomRight);
-        }
-        return new CornerRadius(0);
-    });
+    public static IMultiValueConverter LeftRightConbinedMulti { get; } =
+        new RelayMultiConverter(
+            (v, _, _) =>
+            {
+                if (v is [CornerRadius left, CornerRadius right])
+                {
+                    return new CornerRadius(
+                        left.TopLeft,
+                        right.TopRight,
+                        left.BottomLeft,
+                        right.BottomRight
+                    );
+                }
+                return new CornerRadius(0);
+            }
+        );
 }

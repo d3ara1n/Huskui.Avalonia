@@ -11,11 +11,15 @@ public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = n
 
     private bool _isRunning;
     public event EventHandler? CanExecuteChanged;
+
     public bool CanExecute() => !_isRunning && (canExecute?.Invoke() ?? true);
+
     bool ICommand.CanExecute(object? parameter) => CanExecute();
+
     public async Task ExecuteAsync()
     {
-        if (!CanExecute()) return;
+        if (!CanExecute())
+            return;
         _isRunning = true;
         OnCanExecuteChanged();
         try
@@ -28,6 +32,7 @@ public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = n
             OnCanExecuteChanged();
         }
     }
+
     void ICommand.Execute(object? parameter) => _ = ExecuteAsync();
 
     #endregion

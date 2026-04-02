@@ -1,3 +1,7 @@
+using System.IO;
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
 using Huskui.Avalonia.Markdown.Controls;
 using Huskui.Gallery.Controls;
 
@@ -119,6 +123,7 @@ public partial class MarkdownViewerPage : ControlPage
 
         ## Blockquote
 
+        > [!NOTE]
         > This is a blockquote. It can contain **formatted** text and `code`.
         >
         > > Nested blockquote with *italic* and ~~strikethrough~~.
@@ -165,5 +170,35 @@ public partial class MarkdownViewerPage : ControlPage
     {
         InitializeComponent();
         Viewer.Markdown = SampleMarkdown;
+    }
+
+    private async void LoadFileButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel is null)
+            return;
+
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(
+            new FilePickerOpenOptions
+            {
+                Title = "Select a Markdown file",
+                AllowMultiple = false,
+                FileTypeFilter =
+                [
+                    new FilePickerFileType("Markdown")
+                    {
+                        Patterns = ["*.md", "*.markdown", "*.mdown", "*.mkd"],
+                    },
+                    new FilePickerFileType("All Files") { Patterns = ["*"] },
+                ],
+            }
+        );
+
+        if (files is not { Count: > 0 })
+            return;
+
+        await using var stream = await files[0].OpenReadAsync();
+        using var reader = new StreamReader(stream);
+        Viewer.Markdown = await reader.ReadToEndAsync();
     }
 }

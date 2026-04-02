@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
@@ -8,11 +5,13 @@ using Avalonia.Controls.Documents;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input.Platform;
+using ColorCode;
+using Huskui.Avalonia.Code.Highlighting;
 using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Code.Controls;
 
-[TemplatePart(PART_CodeText, typeof(SelectableTextBlock))]
+[TemplatePart(PART_CodeText, typeof(TextBlock))]
 public class CodeViewer : TemplatedControl
 {
     public const string PART_CodeText = nameof(PART_CodeText);
@@ -68,7 +67,36 @@ public class CodeViewer : TemplatedControl
 
     public ICommand CopyCodeCommand { get; }
 
-    private SelectableTextBlock? _codeTextBlock;
+    private TextBlock? _codeTextBlock;
+    private static readonly AvaloniaInlineFormatter formatter = new();
+
+    private static ILanguage? ResolveLanguage(string language)
+    {
+        if (string.IsNullOrWhiteSpace(language))
+            return null;
+
+        var lang = Languages.FindById(language);
+        if (lang is not null)
+            return lang;
+
+        foreach (var known in Languages.All)
+        {
+            if (known.HasAlias(language))
+                return known;
+        }
+
+        return language.ToLowerInvariant() switch
+        {
+            "cs" or "csharp" => Languages.CSharp,
+            "js" => Languages.JavaScript,
+            "ts" or "tsx" => Languages.Typescript,
+            "py" => Languages.Python,
+            "xaml" or "axaml" or "html" => Languages.Xml,
+            "fs" or "fsharp" => Languages.FSharp,
+            "md" => Languages.Markdown,
+            _ => null,
+        };
+    }
 
     private async Task CopyCode()
     {
@@ -87,7 +115,7 @@ public class CodeViewer : TemplatedControl
     {
         base.OnApplyTemplate(e);
 
-        _codeTextBlock = e.NameScope.Find<SelectableTextBlock>(PART_CodeText);
+        _codeTextBlock = e.NameScope.Find<TextBlock>(PART_CodeText);
 
         SyncContent();
     }
@@ -96,7 +124,11 @@ public class CodeViewer : TemplatedControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == CodeProperty || change.Property == InlinesProperty)
+        if (
+            change.Property == CodeProperty
+            || change.Property == InlinesProperty
+            || change.Property == LanguageProperty
+        )
         {
             SyncContent();
         }
@@ -107,15 +139,28 @@ public class CodeViewer : TemplatedControl
         if (_codeTextBlock is null)
             return;
 
-
         if (Inlines is { Count: > 0 })
         {
             _codeTextBlock.Inlines = Inlines;
         }
+        else if (!string.IsNullOrEmpty(Code))
+        {
+            var language = ResolveLanguage(Language);
+
+            if (language is not null)
+            {
+                var inlines = formatter.FormatInlines(Code, language);
+                _codeTextBlock.Inlines = inlines;
+            }
+            else
+            {
+                _codeTextBlock.Inlines = null;
+                _codeTextBlock.Text = Code;
+            }
+        }
         else
         {
             _codeTextBlock.Inlines = null;
-
             _codeTextBlock.Text = Code;
         }
     }
