@@ -1,0 +1,16 @@
+<ResourceDictionary
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ControlTheme
+    x:Key="{x:Type SelectableTextBlock}"
+    TargetType="SelectableTextBlock">
+    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+    <Setter Property="SelectionBrush" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+    <Setter Property="SelectionForegroundBrush" Value="{StaticResource ControlReversedForegroundBrush}" />
+    <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+
+    <Style Selector="^:disabled /template/ Border#PART_Border">
+      <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>
