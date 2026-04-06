@@ -1,5 +1,18 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type husk:TimelineControl}"
+        TargetType="husk:TimelineControl">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel>
+                    <husk:Tag Content="{TemplateBinding NowContent}" />
+                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    <husk:Tag Content="{TemplateBinding PastContent}" />
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

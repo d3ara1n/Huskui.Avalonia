@@ -1,5 +1,69 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type husk:TimelineItem}"
+        TargetType="husk:TimelineItem">
+        <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid
+                    ColumnDefinitions="Auto,*"
+                    ColumnSpacing="12">
+                    <!--  Timeline indicator column  -->
+                    <Grid
+                        Grid.Column="0"
+                        RowDefinitions="*,Auto,*">
+                        <!--  Top connector line  -->
+                        <Rectangle
+                            Grid.Row="0"
+                            Width="2"
+                            HorizontalAlignment="Center"
+                            Fill="{StaticResource ControlBorderBrush}" />
+
+                        <!--  Header  -->
+                        <husk:SwitchPresenter
+                            Grid.Row="1"
+                            Value="{TemplateBinding Header,
+                                                    Converter={x:Static ObjectConverters.IsNotNull}}">
+                            <husk:SwitchCase Value="{x:True}">
+                                <ContentPresenter
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}" />
+                            </husk:SwitchCase>
+                            <husk:SwitchCase Value="{x:False}">
+                                <Border
+                                    Width="24"
+                                    Height="24"
+                                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                                    CornerRadius="{StaticResource FullCornerRadius}" />
+                            </husk:SwitchCase>
+                        </husk:SwitchPresenter>
+
+                        <!--  Bottom connector line  -->
+                        <Rectangle
+                            Grid.Row="2"
+                            Width="2"
+                            HorizontalAlignment="Center"
+                            Fill="{StaticResource ControlBorderBrush}" />
+                    </Grid>
+
+                    <!--  Content column  -->
+                    <Border
+                        Grid.Column="1"
+                        Margin="0,3"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>
