@@ -100,6 +100,9 @@
         x:Key="{x:Type TabControl}"
         TargetType="TabControl">
         <Setter Property="Padding" Value="{StaticResource TabContentMargin}" />
+        <Setter Property="PageTransition">
+            <husk:TabTransition />
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate TargetType="TabControl">
                 <Border>
@@ -136,11 +139,8 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Content="{TemplateBinding SelectedContent}"
                             ContentTemplate="{TemplateBinding SelectedContentTemplate}"
-                            CornerRadius="{TemplateBinding CornerRadius}">
-                            <TransitioningContentControl.PageTransition>
-                                <husk:TabTransition />
-                            </TransitioningContentControl.PageTransition>
-                        </TransitioningContentControl>
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            PageTransition="{TemplateBinding PageTransition}" />
                     </DockPanel>
                 </Border>
             </ControlTemplate>
