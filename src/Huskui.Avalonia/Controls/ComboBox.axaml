@@ -64,17 +64,42 @@
                                         Name="PlaceholderTextBlock"
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        IsVisible="{TemplateBinding SelectionBoxItem,
-                                                                    Converter={x:Static ObjectConverters.IsNull}}"
                                         Foreground="{TemplateBinding PlaceholderForeground}"
                                         Text="{TemplateBinding PlaceholderText}"
-                                        TextTrimming="CharacterEllipsis" />
+                                        TextTrimming="CharacterEllipsis">
+                                        <TextBlock.IsVisible>
+                                            <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                                <Binding
+                                                    Converter="{x:Static ObjectConverters.IsNull}"
+                                                    Path="SelectionBoxItem"
+                                                    RelativeSource="{RelativeSource TemplatedParent}" />
+                                                <Binding
+                                                    Path="!IsEditable"
+                                                    RelativeSource="{RelativeSource TemplatedParent}" />
+                                            </MultiBinding>
+                                        </TextBlock.IsVisible>
+                                    </TextBlock>
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding IsEditable,
+                                                                    Converter={x:Static BoolConverters.Not}}"
                                         Content="{TemplateBinding SelectionBoxItem}"
                                         ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <TextBox
+                                        Name="PART_EditableTextBox"
+                                        Padding="0"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding IsEditable}"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
+                                        PlaceholderText="{TemplateBinding PlaceholderText}"
+                                        Text="{TemplateBinding Text,
+                                                               Mode=TwoWay}"
+                                        Theme="{StaticResource EmbeddedTextBoxTheme}" />
                                 </Panel>
                                 <fi:SymbolIcon
                                     Grid.Column="2"
@@ -141,6 +166,12 @@
 
         <Style Selector="^:disabled /template/ Border#Border">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^[IsEditable=true]">
+            <Setter Property="Cursor" Value="IBeam" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         </Style>
     </ControlTheme>
 
@@ -273,17 +304,41 @@
                                         Name="PlaceholderTextBlock"
                                         HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                        IsVisible="{TemplateBinding SelectionBoxItem,
-                                                                    Converter={x:Static ObjectConverters.IsNull}}"
                                         Foreground="{TemplateBinding PlaceholderForeground}"
                                         Text="{TemplateBinding PlaceholderText}"
-                                        TextTrimming="CharacterEllipsis" />
+                                        TextTrimming="CharacterEllipsis">
+                                        <TextBlock.IsVisible>
+                                            <MultiBinding Converter="{x:Static BoolConverters.And}">
+                                                <Binding
+                                                    Converter="{x:Static ObjectConverters.IsNull}"
+                                                    Path="SelectionBoxItem"
+                                                    RelativeSource="{RelativeSource TemplatedParent}" />
+                                                <Binding
+                                                    Path="!IsEditable"
+                                                    RelativeSource="{RelativeSource TemplatedParent}" />
+                                            </MultiBinding>
+                                        </TextBlock.IsVisible>
+                                    </TextBlock>
                                     <ContentPresenter
                                         Name="PART_ContentPresenter"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding IsEditable,
+                                                                    Converter={x:Static BoolConverters.Not}}"
                                         Content="{TemplateBinding SelectionBoxItem}"
                                         ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <TextBox
+                                        Name="PART_EditableTextBox"
+                                        Padding="0"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        IsVisible="{TemplateBinding IsEditable}"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Foreground="{TemplateBinding Foreground}"
+                                        PlaceholderText="{TemplateBinding PlaceholderText}"
+                                        Text="{TemplateBinding Text,
+                                                               Mode=TwoWay}" />
                                 </Panel>
                                 <fi:SymbolIcon
                                     Grid.Column="2"
@@ -330,6 +385,12 @@
 
         <Style Selector="^:disabled /template/ Border#Border">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^[IsEditable=true]">
+            <Setter Property="Cursor" Value="IBeam" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
