@@ -22,11 +22,13 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     BoxShadow="{TemplateBinding BoxShadow}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <ContentPresenter
                         Margin="{TemplateBinding Padding}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        ClipToBounds="{TemplateBinding ClipToBounds}"
                         Content="{TemplateBinding Content}"
                         ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Border>
