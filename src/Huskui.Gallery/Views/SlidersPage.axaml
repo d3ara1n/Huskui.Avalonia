@@ -1,0 +1,343 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.SlidersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic Horizontal Sliders"
+            Description="Standard horizontal sliders with different values and ranges">
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Value = 0 (default)" />
+                    <Slider
+                        Maximum="100"
+                        Minimum="0"
+                        Value="0" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Value = 50" />
+                    <Slider
+                        Maximum="100"
+                        Minimum="0"
+                        Value="50" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Value = 100 (maximum)" />
+                    <Slider
+                        Maximum="100"
+                        Minimum="0"
+                        Value="100" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Custom range: 10 – 50, Value = 25" />
+                    <Slider
+                        Maximum="50"
+                        Minimum="10"
+                        Value="25" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Vertical Sliders"
+            Description="Vertically oriented sliders for side-by-side layouts">
+            <StackPanel
+                HorizontalAlignment="Left"
+                Orientation="Horizontal"
+                Spacing="32">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="25" />
+                    <Slider
+                        Height="120"
+                        Maximum="100"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        Value="25" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="50" />
+                    <Slider
+                        Height="120"
+                        Maximum="100"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        Value="50" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="75" />
+                    <Slider
+                        Height="120"
+                        Maximum="100"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        Value="75" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Text="100" />
+                    <Slider
+                        Height="120"
+                        Maximum="100"
+                        Minimum="0"
+                        Orientation="Vertical"
+                        Value="100" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Tick Marks"
+            Description="Sliders with tick marks at regular intervals using TickFrequency and TickPlacement">
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="TickPlacement = BottomRight, TickFrequency = 10" />
+                    <Slider
+                        IsSnapToTickEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        TickFrequency="10"
+                        TickPlacement="BottomRight"
+                        Value="40" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="TickPlacement = TopLeft, TickFrequency = 10" />
+                    <Slider
+                        IsSnapToTickEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        TickFrequency="10"
+                        TickPlacement="TopLeft"
+                        Value="60" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="TickPlacement = Outside, TickFrequency = 20" />
+                    <Slider
+                        IsSnapToTickEnabled="True"
+                        Maximum="100"
+                        Minimum="0"
+                        TickFrequency="20"
+                        TickPlacement="Outside"
+                        Value="40" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Interactive Slider"
+            Description="Drag the slider to see the value update in real time">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Current Value" />
+                    <TextBlock
+                        x:Name="InteractiveValueText"
+                        FontSize="24"
+                        Text="50" />
+                    <Button
+                        Click="OnResetInteractiveClick"
+                        Content="Reset" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <Slider
+                    x:Name="InteractiveSlider"
+                    Maximum="100"
+                    Minimum="0"
+                    ValueChanged="OnInteractiveSliderValueChanged"
+                    Value="50" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Disabled State"
+            Description="A disabled slider with dimmed appearance">
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="IsEnabled = False, Value = 70" />
+                    <Slider
+                        IsEnabled="False"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="70" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="IsEnabled = False with tick marks" />
+                    <Slider
+                        IsEnabled="False"
+                        Maximum="100"
+                        Minimum="0"
+                        TickFrequency="10"
+                        TickPlacement="BottomRight"
+                        Value="30" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Direction Reversed"
+            Description="Sliders with IsDirectionReversed to flip the fill direction">
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Normal direction, Value = 40" />
+                    <Slider
+                        Maximum="100"
+                        Minimum="0"
+                        Value="40" />
+                </StackPanel>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="IsDirectionReversed = True, Value = 40" />
+                    <Slider
+                        IsDirectionReversed="True"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="40" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Media Player Settings"
+            Description="Real-world example: a media player settings card using sliders for volume, brightness, and playback speed">
+            <husk:Card
+                Width="480"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Media Player" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Volume" />
+                                <TextBlock
+                                    x:Name="VolumeText"
+                                    HorizontalAlignment="Right"
+                                    Text="75%" />
+                            </Grid>
+                            <Slider
+                                x:Name="VolumeSlider"
+                                Maximum="100"
+                                Minimum="0"
+                                ValueChanged="OnVolumeChanged"
+                                Value="75" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Brightness" />
+                                <TextBlock
+                                    x:Name="BrightnessText"
+                                    HorizontalAlignment="Right"
+                                    Text="50%" />
+                            </Grid>
+                            <Slider
+                                x:Name="BrightnessSlider"
+                                Maximum="100"
+                                Minimum="0"
+                                ValueChanged="OnBrightnessChanged"
+                                Value="50" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Playback Speed" />
+                                <TextBlock
+                                    x:Name="SpeedText"
+                                    HorizontalAlignment="Right"
+                                    Text="1.0x" />
+                            </Grid>
+                            <Slider
+                                x:Name="SpeedSlider"
+                                Maximum="30"
+                                Minimum="5"
+                                ValueChanged="OnSpeedChanged"
+                                Value="10" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <Grid>
+                                <TextBlock
+                                    FontWeight="Bold"
+                                    Text="Seek Position" />
+                                <TextBlock
+                                    x:Name="SeekText"
+                                    HorizontalAlignment="Right"
+                                    Text="2:30 / 5:00" />
+                            </Grid>
+                            <Slider
+                                x:Name="SeekSlider"
+                                Maximum="300"
+                                Minimum="0"
+                                ValueChanged="OnSeekChanged"
+                                Value="150" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button
+                            Click="OnResetMediaClick"
+                            Content="Reset to Defaults" />
+                        <Button
+                            Classes="Primary"
+                            Content="Apply" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

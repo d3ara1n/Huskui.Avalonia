@@ -7,7 +7,17 @@
                 Margin="24"
                 Spacing="12">
                 <Slider
-                    Width="128"
+                    Width="200"
+                    Value="50" />
+                <Slider
+                    Width="200"
+                    TickFrequency="10"
+                    TickPlacement="BottomRight"
+                    Value="50" />
+                <Slider
+                    Width="200"
+                    TickFrequency="10"
+                    TickPlacement="Outside"
                     Value="50" />
                 <Slider
                     Height="128"
@@ -24,9 +34,35 @@
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Panel Name="Container">
+                    <Grid Name="Container">
+                        <Grid.Styles>
+                            <Style Selector="TickBar">
+                                <Setter Property="ReservedSpace" Value="{Binding #PART_Track.Thumb.Bounds}" />
+                            </Style>
+                        </Grid.Styles>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TickBar
+                            Name="TopTickBar"
+                            Grid.Row="0"
+                            Height="4"
+                            Margin="0,0,0,4"
+                            VerticalAlignment="Bottom"
+                            IsVisible="False"
+                            Fill="{StaticResource ControlSecondaryForegroundBrush}"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Horizontal"
+                            Placement="Top"
+                            TickFrequency="{TemplateBinding Slider.TickFrequency}"
+                            Ticks="{TemplateBinding Ticks}" />
                         <Track
                             Name="PART_Track"
+                            Grid.Row="1"
                             Margin="{TemplateBinding Padding}"
                             IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                             Maximum="{TemplateBinding Maximum}"
@@ -56,17 +92,65 @@
                                 Width="18"
                                 Height="18" />
                         </Track>
-                    </Panel>
+                        <TickBar
+                            Name="BottomTickBar"
+                            Grid.Row="2"
+                            Height="4"
+                            Margin="0,4,0,0"
+                            VerticalAlignment="Top"
+                            IsVisible="False"
+                            Fill="{StaticResource ControlSecondaryForegroundBrush}"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Horizontal"
+                            Placement="Bottom"
+                            TickFrequency="{TemplateBinding Slider.TickFrequency}"
+                            Ticks="{TemplateBinding Ticks}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter>
+
+            <Style Selector="^[IsDirectionReversed=True] /template/ RepeatButton#PART_DecreaseButton">
+                <Setter Property="Margin" Value="-4,0,0,0" />
+            </Style>
+            <Style Selector="^[IsDirectionReversed=True] /template/ RepeatButton#PART_IncreaseButton">
+                <Setter Property="Margin" Value="0,0,-4,0" />
+            </Style>
         </Style>
         <Style Selector="^:vertical">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Template">
                 <ControlTemplate>
-                    <Panel Name="Container">
+                    <Grid Name="Container">
+                        <Grid.Styles>
+                            <Style Selector="TickBar">
+                                <Setter Property="ReservedSpace" Value="{Binding #PART_Track.Thumb.Bounds}" />
+                            </Style>
+                        </Grid.Styles>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TickBar
+                            Name="LeftTickBar"
+                            Grid.Column="0"
+                            Width="4"
+                            Margin="0,0,4,0"
+                            HorizontalAlignment="Right"
+                            IsVisible="False"
+                            Fill="{StaticResource ControlSecondaryForegroundBrush}"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Vertical"
+                            Placement="Left"
+                            TickFrequency="{TemplateBinding Slider.TickFrequency}"
+                            Ticks="{TemplateBinding Ticks}" />
                         <Track
                             Name="PART_Track"
+                            Grid.Column="1"
                             Margin="{TemplateBinding Padding}"
                             IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                             Maximum="{TemplateBinding Maximum}"
@@ -96,9 +180,44 @@
                                 Width="18"
                                 Height="18" />
                         </Track>
-                    </Panel>
+                        <TickBar
+                            Name="RightTickBar"
+                            Grid.Column="2"
+                            Width="4"
+                            Margin="4,0,0,0"
+                            HorizontalAlignment="Left"
+                            IsVisible="False"
+                            Fill="{StaticResource ControlSecondaryForegroundBrush}"
+                            IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                            Maximum="{TemplateBinding Maximum}"
+                            Minimum="{TemplateBinding Minimum}"
+                            Orientation="Vertical"
+                            Placement="Right"
+                            TickFrequency="{TemplateBinding Slider.TickFrequency}"
+                            Ticks="{TemplateBinding Ticks}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter>
+
+            <Style Selector="^[IsDirectionReversed=True] /template/ RepeatButton#PART_DecreaseButton">
+                <Setter Property="Margin" Value="0,0,0,-4" />
+            </Style>
+            <Style Selector="^[IsDirectionReversed=True] /template/ RepeatButton#PART_IncreaseButton">
+                <Setter Property="Margin" Value="0,-4,0,0" />
+            </Style>
+        </Style>
+
+        <Style Selector="^[TickPlacement=TopLeft] /template/ TickBar#TopTickBar,                          ^[TickPlacement=Outside] /template/ TickBar#TopTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^[TickPlacement=TopLeft] /template/ TickBar#LeftTickBar,                          ^[TickPlacement=Outside] /template/ TickBar#LeftTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^[TickPlacement=BottomRight] /template/ TickBar#BottomTickBar,                          ^[TickPlacement=Outside] /template/ TickBar#BottomTickBar">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^[TickPlacement=BottomRight] /template/ TickBar#RightTickBar,                          ^[TickPlacement=Outside] /template/ TickBar#RightTickBar">
+            <Setter Property="IsVisible" Value="True" />
         </Style>
 
         <Style Selector="^:disabled">
@@ -158,7 +277,7 @@
             </Setter>
         </Style>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
+        <Style Selector="^:disabled /template/ Grid#Container">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
     </ControlTheme>

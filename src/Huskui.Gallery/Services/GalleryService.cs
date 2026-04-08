@@ -326,6 +326,14 @@ public class GalleryService : IGalleryService
                     PageType = typeof(RatingControlsPage),
                     Tags = ["rating", "star", "review", "feedback", "score"],
                 },
+                new()
+                {
+                    Title = "Sliders",
+                    Description = "Range selection controls for continuous value adjustment",
+                    Icon = Symbol.ArrowSync,
+                    PageType = typeof(SlidersPage),
+                    Tags = ["slider", "range", "track", "value", "thumb"],
+                },
             ],
         };
 
