@@ -1,5 +1,3 @@
-using System;
-
 namespace Huskui.Avalonia.Attributes;
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]

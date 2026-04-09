@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Avalonia.Styling;
 
 namespace Huskui.Avalonia.Controls;
 

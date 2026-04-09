@@ -2,7 +2,6 @@ using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-using Huskui.Avalonia.Markdown.Controls;
 using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;
