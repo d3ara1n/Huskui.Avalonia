@@ -134,7 +134,6 @@
                             <Border
                                 Margin="2,4"
                                 Background="{StaticResource FlyoutBackgroundBrush}"
-                                ClipToBounds="True"
                                 CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
                                     <DropShadowEffect

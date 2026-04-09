@@ -12,7 +12,6 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="Padding" Value="{StaticResource FlyoutContentMargin}" />
-        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -21,7 +20,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    ClipToBounds="False"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Effect>
                         <DropShadowEffect
@@ -58,7 +57,6 @@
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="ClipToBounds" Value="True" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -67,7 +65,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    ClipToBounds="False"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Effect>
                         <DropShadowEffect
