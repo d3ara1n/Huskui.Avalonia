@@ -1,0 +1,233 @@
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.AutoCompleteBoxesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:Huskui.Gallery.Views"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic AutoComplete"
+            Description="Search-first inputs with suggestion lists and embedded actions">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Search Helpers" />
+                    <Button
+                        Click="OnClearInputsClick"
+                        Content="Clear Inputs" />
+                    <Button
+                        Click="OnResetExamplesClick"
+                        Content="Reset Examples" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Try typing city names or people. The suggestions reuse Huskui input and popup styling."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Starts With Search" />
+                    <AutoCompleteBox
+                        x:Name="CitySearchBox"
+                        FilterMode="StartsWith"
+                        MinimumPrefixLength="0"
+                        PlaceholderText="Search a city...">
+                        <AutoCompleteBox.InnerLeftContent>
+                            <DockPanel>
+                                <husk:Divider
+                                    DockPanel.Dock="Right"
+                                    Orientation="Vertical" />
+                                <fi:SymbolIcon
+                                    Margin="12,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="Search" />
+                            </DockPanel>
+                        </AutoCompleteBox.InnerLeftContent>
+                    </AutoCompleteBox>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Contains Search With Clear Action" />
+                    <AutoCompleteBox
+                        x:Name="MemberSearchBox"
+                        FilterMode="Contains"
+                        MinimumPrefixLength="0"
+                        PlaceholderText="Search by member or team...">
+                        <AutoCompleteBox.InnerLeftContent>
+                            <DockPanel>
+                                <husk:Divider
+                                    DockPanel.Dock="Right"
+                                    Orientation="Vertical" />
+                                <fi:SymbolIcon
+                                    Margin="12,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="PeopleSearch" />
+                            </DockPanel>
+                        </AutoCompleteBox.InnerLeftContent>
+                        <AutoCompleteBox.InnerRightContent>
+                            <Button Click="OnClearMemberSearchClick">
+                                <fi:SymbolIcon
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="Dismiss" />
+                            </Button>
+                        </AutoCompleteBox.InnerRightContent>
+                    </AutoCompleteBox>
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Text Completion Enabled" />
+                    <AutoCompleteBox
+                        x:Name="LanguageSearchBox"
+                        FilterMode="Contains"
+                        IsTextCompletionEnabled="True"
+                        MinimumPrefixLength="1"
+                        PlaceholderText="Type a programming language" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Object Suggestions"
+            Description="Use ValueMemberBinding and item templates with richer suggestion content">
+            <StackPanel
+                Width="440"
+                Spacing="12">
+                <TextBlock Text="Product Search" />
+                <AutoCompleteBox
+                    x:Name="ProductSearchBox"
+                    FilterMode="Contains"
+                    MinimumPrefixLength="0"
+                    PlaceholderText="Search products by name...">
+                    <AutoCompleteBox.ValueMemberBinding>
+                        <Binding
+                            x:DataType="views:ProductSuggestion"
+                            Path="Name" />
+                    </AutoCompleteBox.ValueMemberBinding>
+                    <AutoCompleteBox.ItemTemplate>
+                        <DataTemplate x:DataType="views:ProductSuggestion">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="12">
+                                <StackPanel Spacing="2">
+                                    <TextBlock
+                                        FontWeight="SemiBold"
+                                        Text="{Binding Name}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="{Binding Category}" />
+                                </StackPanel>
+                                <Border
+                                    Grid.Column="1"
+                                    Padding="8,4"
+                                    Background="{StaticResource OverlayHalfBackgroundBrush}"
+                                    CornerRadius="999">
+                                    <TextBlock
+                                        FontSize="12"
+                                        Text="{Binding PriceLabel}" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </AutoCompleteBox.ItemTemplate>
+                </AutoCompleteBox>
+                <TextBlock
+                    x:Name="ProductSelectionText"
+                    FontSize="12"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Selected product: none"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="AutoCompleteBox fits into the same Huskui form language as TextBox">
+            <husk:Card
+                Width="420"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Workspace Invite" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Workspace *" />
+                            <AutoCompleteBox
+                                x:Name="WorkspaceSearchBox"
+                                FilterMode="Contains"
+                                MinimumPrefixLength="0"
+                                PlaceholderText="Find a workspace..." />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Role Template" />
+                            <AutoCompleteBox
+                                x:Name="RoleSearchBox"
+                                FilterMode="Contains"
+                                MinimumPrefixLength="0"
+                                PlaceholderText="Choose a role template..." />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Invitee" />
+                            <AutoCompleteBox
+                                x:Name="InviteeSearchBox"
+                                FilterMode="Contains"
+                                MinimumPrefixLength="0"
+                                PlaceholderText="Search existing directory users...">
+                                <AutoCompleteBox.InnerLeftContent>
+                                    <DockPanel>
+                                        <husk:Divider
+                                            DockPanel.Dock="Right"
+                                            Orientation="Vertical" />
+                                        <fi:SymbolIcon
+                                            Margin="12,0"
+                                            VerticalAlignment="Center"
+                                            FontSize="{StaticResource MediumFontSize}"
+                                            Symbol="Mail" />
+                                    </DockPanel>
+                                </AutoCompleteBox.InnerLeftContent>
+                            </AutoCompleteBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button
+                            Click="OnClearFormClick"
+                            Content="Reset" />
+                        <Button
+                            Classes="Primary"
+                            Content="Send Invite" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

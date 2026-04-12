@@ -287,6 +287,15 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
+                    Title = "AutoCompleteBoxes",
+                    Description =
+                        "Search input controls with inline suggestions and text completion",
+                    Icon = Symbol.Search,
+                    PageType = typeof(AutoCompleteBoxesPage),
+                    Tags = ["autocomplete", "search", "suggestion", "input", "lookup"],
+                },
+                new()
+                {
                     Title = "ToggleSwitches",
                     Description = "Binary toggle controls for on/off settings and preferences",
                     Icon = Symbol.ToggleRight,

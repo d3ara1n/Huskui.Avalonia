@@ -93,6 +93,7 @@
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                         IsVisible="{TemplateBinding IsEditable}"
+                                        DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
                                         FontSize="{TemplateBinding FontSize}"
                                         Foreground="{TemplateBinding Foreground}"
                                         PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
