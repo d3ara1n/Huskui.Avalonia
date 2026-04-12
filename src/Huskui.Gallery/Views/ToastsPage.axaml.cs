@@ -10,29 +10,32 @@ public partial class ToastsPage : ControlPage
 {
     public ToastsPage() => InitializeComponent();
 
-    private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
 
     private void OnShowBlogPreviewClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var toast = new BlogPreviewToast();
-        appWindow.PopToast(toast);
+        appSurface.PopToast(toast);
     }
 
     private void OnShowProductDetailsClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var toast = new ProductDetailsToast();
-        appWindow.PopToast(toast);
+        appSurface.PopToast(toast);
     }
 }

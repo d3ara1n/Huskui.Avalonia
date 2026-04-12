@@ -10,38 +10,41 @@ public partial class SidebarsPage : ControlPage
 {
     public SidebarsPage() => InitializeComponent();
 
-    private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
 
     private void OnShowProjectDetailsClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
-        appWindow.PopSidebar(new ProjectDetailsSidebar());
+        appSurface.PopSidebar(new ProjectDetailsSidebar());
     }
 
     private void OnShowSmartFilterClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
-        appWindow.PopSidebar(new SmartFilterSidebar());
+        appSurface.PopSidebar(new SmartFilterSidebar());
     }
 
     private void OnShowTeamMemberEditorClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
-        appWindow.PopSidebar(new TeamMemberEditorSidebar());
+        appSurface.PopSidebar(new TeamMemberEditorSidebar());
     }
 }

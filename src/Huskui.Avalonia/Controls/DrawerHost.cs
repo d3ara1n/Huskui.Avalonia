@@ -111,8 +111,9 @@ public class DrawerHost : TemplatedControl
 
     public void Pop(Drawer drawer)
     {
-        var height = Bounds.Height * 2 / 3;
-        var width = Bounds.Width * 1 / 2;
+        var isLandscape = Bounds.Width >= Bounds.Height;
+        var width = Bounds.Width * (isLandscape ? 1d / 2d : 2d / 3d);
+        var height = Bounds.Height * (isLandscape ? 2d / 3d : 1d / 2d);
         if (height > drawer.MaxHeight)
         {
             height = drawer.MaxHeight;

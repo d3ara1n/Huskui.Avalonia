@@ -11,24 +11,27 @@ public partial class DialogsPage : ControlPage
 {
     public DialogsPage() => InitializeComponent();
 
-    private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
 
     private void OnShowDeleteConfirmClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var dialog = new DeleteConfirmationDialog();
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowSaveConfirmClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -42,13 +45,13 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowExitConfirmClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -62,25 +65,25 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowRenameDialogClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var dialog = new RenameFileDialog();
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private async void OnShowEmailInputClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -88,7 +91,7 @@ public partial class DialogsPage : ControlPage
         var dialog = new EmailInputDialog();
 
         // 显示Dialog并等待用户操作
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
 
         // 等待Dialog完成
         if (await dialog.CompletionSource.Task)
@@ -103,7 +106,7 @@ public partial class DialogsPage : ControlPage
                 Title = "Email Confirmed",
                 Content = $"You entered: {email}",
             };
-            appWindow.PopGrowl(notification);
+            appSurface.PopGrowl(notification);
         }
         else
         {
@@ -114,14 +117,14 @@ public partial class DialogsPage : ControlPage
                 Title = "Input Cancelled",
                 Content = "Email input was cancelled",
             };
-            appWindow.PopGrowl(notification);
+            appSurface.PopGrowl(notification);
         }
     }
 
     private void OnShowCreateFolderClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -143,13 +146,13 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowPasswordDialogClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -172,13 +175,13 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowUnsavedChangesClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -192,13 +195,13 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowOverwriteDialogClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -213,13 +216,13 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 
     private void OnShowPermanentActionClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -234,6 +237,6 @@ public partial class DialogsPage : ControlPage
             IsPrimaryButtonVisible = true,
         };
 
-        appWindow.PopDialog(dialog);
+        appSurface.PopDialog(dialog);
     }
 }

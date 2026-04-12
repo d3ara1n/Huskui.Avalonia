@@ -48,84 +48,17 @@
                     <Panel
                         Margin="{TemplateBinding WindowDecorationMargin}"
                         Background="Transparent" />
-                    <VisualLayerManager>
-                        <Panel Margin="{Binding $parent[Window].OffScreenMargin}">
-                            <ContentPresenter
-                                Name="ContentPresenter"
-                                Margin="{TemplateBinding Padding}"
-                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Content="{TemplateBinding Content}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}">
-                                <ContentPresenter.Transitions>
-                                    <Transitions>
-                                        <EffectTransition
-                                            Property="Effect"
-                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                        <TransformOperationsTransition
-                                            Easing="CubicEaseOut"
-                                            Property="RenderTransform"
-                                            Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                    </Transitions>
-                                </ContentPresenter.Transitions>
-                            </ContentPresenter>
-                            <local:DrawerHost Name="{x:Static local:AppWindow.PART_DrawerHost}">
-                                <local:DrawerHost.Transition>
-                                    <local:DrawerTransition />
-                                </local:DrawerHost.Transition>
-                            </local:DrawerHost>
-                            <local:OverlayHost Name="{x:Static local:AppWindow.PART_ToastHost}">
-                                <local:OverlayHost.Transition>
-                                    <local:SlideUpTransition />
-                                </local:OverlayHost.Transition>
-                            </local:OverlayHost>
-                            <local:OverlayHost
-                                Name="{x:Static local:AppWindow.PART_SidebarHost}"
-                                HorizontalContentAlignment="Right">
-                                <local:OverlayHost.Transition>
-                                    <local:SidebarTransition />
-                                </local:OverlayHost.Transition>
-                            </local:OverlayHost>
-                            <local:OverlayHost
-                                Name="{x:Static local:AppWindow.PART_ModalHost}"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center">
-                                <local:OverlayHost.Transition>
-                                    <local:ModalTransition />
-                                </local:OverlayHost.Transition>
-                            </local:OverlayHost>
-                            <local:OverlayHost
-                                Name="{x:Static local:AppWindow.PART_DialogHost}"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center">
-                                <local:OverlayHost.Transition>
-                                    <local:ScaleInTransition />
-                                </local:OverlayHost.Transition>
-                            </local:OverlayHost>
-                            <local:GrowlHost
-                                Name="{x:Static local:AppWindow.PART_GrowlHost}"
-                                Margin="18,12"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                HorizontalContentAlignment="Right">
-                                <local:GrowlHost.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Spacing="2" />
-                                    </ItemsPanelTemplate>
-                                </local:GrowlHost.ItemsPanel>
-                            </local:GrowlHost>
-                        </Panel>
-                    </VisualLayerManager>
+                    <local:AppSurface
+                        Name="{x:Static local:AppWindow.PART_AppSurface}"
+                        Margin="{Binding $parent[Window].OffScreenMargin}"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
                 </Panel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^:obstructed /template/ ContentPresenter#ContentPresenter">
-            <Setter Property="Effect">
-                <BlurEffect />
-            </Setter>
-            <Setter Property="RenderTransform" Value="scale(0.98)" />
-        </Style>
 
         <Style Selector="^local|AppWindow[ActualTransparencyLevel=Mica][IsActive=True]">
             <Setter Property="Background" Value="{StaticResource TransparentBrush}" />

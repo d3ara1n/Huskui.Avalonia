@@ -11,12 +11,15 @@ public partial class GrowlsPage : ControlPage
 {
     public GrowlsPage() => InitializeComponent();
 
-    private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
 
     private void OnShowInfoGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -28,13 +31,13 @@ public partial class GrowlsPage : ControlPage
             Content = "This is an informational notification message.",
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowSuccessGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -46,13 +49,13 @@ public partial class GrowlsPage : ControlPage
             Content = "Operation completed successfully!",
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowWarningGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -64,13 +67,13 @@ public partial class GrowlsPage : ControlPage
             Content = "Please review your settings before proceeding.",
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowDangerGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -82,13 +85,13 @@ public partial class GrowlsPage : ControlPage
             Content = "An error occurred while processing your request.",
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowActionGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -103,13 +106,13 @@ public partial class GrowlsPage : ControlPage
         notification.Actions.Add(new() { Text = "Extend" });
         notification.Actions.Add(new() { Text = "Logout" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowProgressGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -125,13 +128,13 @@ public partial class GrowlsPage : ControlPage
 
         notification.Actions.Add(new() { Text = "Cancel" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowRichGrowlClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -146,13 +149,13 @@ public partial class GrowlsPage : ControlPage
         notification.Actions.Add(new() { Text = "Reply" });
         notification.Actions.Add(new() { Text = "Call" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnClearAllGrowlsClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -164,13 +167,13 @@ public partial class GrowlsPage : ControlPage
             Content = "All notifications have been dismissed.",
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowFileOperationClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -185,13 +188,13 @@ public partial class GrowlsPage : ControlPage
         notification.Actions.Add(new() { Text = "Open" });
         notification.Actions.Add(new() { Text = "Show in Folder" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowSystemStatusClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -205,13 +208,13 @@ public partial class GrowlsPage : ControlPage
 
         notification.Actions.Add(new() { Text = "Power Settings" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowUserActionClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -225,13 +228,13 @@ public partial class GrowlsPage : ControlPage
                 + DateTime.Now.ToString("HH:mm:ss"),
         };
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 
     private void OnShowBackgroundTaskClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
@@ -245,6 +248,6 @@ public partial class GrowlsPage : ControlPage
 
         notification.Actions.Add(new() { Text = "View Details" });
 
-        appWindow.PopGrowl(notification);
+        appSurface.PopGrowl(notification);
     }
 }

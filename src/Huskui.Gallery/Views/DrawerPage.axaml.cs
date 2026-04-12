@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.VisualTree;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Controls;
 
@@ -10,10 +9,15 @@ public partial class DrawerPage : ControlPage
 {
     public DrawerPage() => InitializeComponent();
 
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
+
     private void OpenDrawer_OnClick(object? sender, RoutedEventArgs e)
     {
-        var window = this.FindAncestorOfType<AppWindow>();
-        if (window != null)
+        var appSurface = GetAppSurface();
+        if (appSurface != null)
         {
             var drawer = new Drawer
             {
@@ -25,7 +29,7 @@ public partial class DrawerPage : ControlPage
                     HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
                 },
             };
-            window.PopDrawer(drawer);
+            appSurface.PopDrawer(drawer);
         }
     }
 }

@@ -1,0 +1,89 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+
+    <ControlTheme
+        x:Key="{x:Type local:AppSurface}"
+        TargetType="local:AppSurface">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <VisualLayerManager>
+                    <Panel>
+                        <ContentPresenter
+                            Name="ContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}">
+                            <ContentPresenter.Transitions>
+                                <Transitions>
+                                    <EffectTransition
+                                        Property="Effect"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                    <TransformOperationsTransition
+                                        Easing="CubicEaseOut"
+                                        Property="RenderTransform"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                </Transitions>
+                            </ContentPresenter.Transitions>
+                        </ContentPresenter>
+                        <local:DrawerHost Name="{x:Static local:AppSurface.PART_DrawerHost}">
+                            <local:DrawerHost.Transition>
+                                <local:DrawerTransition />
+                            </local:DrawerHost.Transition>
+                        </local:DrawerHost>
+                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_ToastHost}">
+                            <local:OverlayHost.Transition>
+                                <local:SlideUpTransition />
+                            </local:OverlayHost.Transition>
+                        </local:OverlayHost>
+                        <local:OverlayHost
+                            Name="{x:Static local:AppSurface.PART_SidebarHost}"
+                            HorizontalContentAlignment="Right">
+                            <local:OverlayHost.Transition>
+                                <local:SidebarTransition />
+                            </local:OverlayHost.Transition>
+                        </local:OverlayHost>
+                        <local:OverlayHost
+                            Name="{x:Static local:AppSurface.PART_ModalHost}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center">
+                            <local:OverlayHost.Transition>
+                                <local:ModalTransition />
+                            </local:OverlayHost.Transition>
+                        </local:OverlayHost>
+                        <local:OverlayHost
+                            Name="{x:Static local:AppSurface.PART_DialogHost}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center">
+                            <local:OverlayHost.Transition>
+                                <local:ScaleInTransition />
+                            </local:OverlayHost.Transition>
+                        </local:OverlayHost>
+                        <local:GrowlHost
+                            Name="{x:Static local:AppSurface.PART_GrowlHost}"
+                            Margin="18,12"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            HorizontalContentAlignment="Right">
+                            <local:GrowlHost.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="2" />
+                                </ItemsPanelTemplate>
+                            </local:GrowlHost.ItemsPanel>
+                        </local:GrowlHost>
+                    </Panel>
+                </VisualLayerManager>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:obstructed /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Effect">
+                <BlurEffect />
+            </Setter>
+            <Setter Property="RenderTransform" Value="scale(0.98)" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

@@ -10,41 +10,44 @@ public partial class ModalsPage : ControlPage
 {
     public ModalsPage() => InitializeComponent();
 
-    private AppWindow? GetAppWindow() => TopLevel.GetTopLevel(this) as AppWindow;
+    private AppSurface? GetAppSurface() =>
+        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
+            ? accessor.GetAppSurface()
+            : null;
 
     private void OnShowSettingsModalClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var modal = new SettingsModal();
-        appWindow.PopModal(modal);
+        appSurface.PopModal(modal);
     }
 
     private void OnShowProfileModalClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var modal = new UserProfileModal();
-        appWindow.PopModal(modal);
+        appSurface.PopModal(modal);
     }
 
     private void OnShowProjectWizardClick(object? sender, RoutedEventArgs e)
     {
-        var appWindow = GetAppWindow();
-        if (appWindow == null)
+        var appSurface = GetAppSurface();
+        if (appSurface == null)
         {
             return;
         }
 
         var modal = new ProjectWizardModal();
-        appWindow.PopModal(modal);
+        appSurface.PopModal(modal);
     }
 }
