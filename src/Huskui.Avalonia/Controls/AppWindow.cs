@@ -6,7 +6,7 @@ using Avalonia.Controls.Primitives;
 namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_AppSurface, typeof(AppSurface))]
-public class AppWindow : Window, IAppSurfaceAccessor
+public class AppWindow : Window
 {
     public const string PART_AppSurface = nameof(PART_AppSurface);
 
@@ -26,6 +26,8 @@ public class AppWindow : Window, IAppSurfaceAccessor
         get;
         set => SetAndRaise(IsMaximizedProperty, ref field, value);
     }
+
+    public AppSurface? AppSurface => _appSurface;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -67,8 +69,6 @@ public class AppWindow : Window, IAppSurfaceAccessor
         BeginMoveDrag(e.Inner);
         e.Handled = true;
     }
-
-    public AppSurface? GetAppSurface() => _appSurface;
 
     public void PopToast(Toast toast)
     {

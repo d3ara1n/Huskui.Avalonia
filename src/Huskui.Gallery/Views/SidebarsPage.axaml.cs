@@ -10,10 +10,7 @@ public partial class SidebarsPage : ControlPage
 {
     public SidebarsPage() => InitializeComponent();
 
-    private AppSurface? GetAppSurface() =>
-        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
-            ? accessor.GetAppSurface()
-            : null;
+    private AppSurface? GetAppSurface() => AppSurface.GetAppSurface(this);
 
     private void OnShowProjectDetailsClick(object? sender, RoutedEventArgs e)
     {

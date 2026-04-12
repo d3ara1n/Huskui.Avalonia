@@ -1,79 +1,114 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"editor.formatOnSave": true,
-		"axaml.selectedSolution": "c:\\Users\\d3ara\\Projects\\Polymerium\\submodules\\Huskui.Avalonia\\Huskui.slnx",
-		"cSpell.words": [
-			"Avalonia",
-			"axaml",
-			"Huskui",
-			"Siderbars"
-		]
-	},
-	"extensions": {
-		"recommendations": [
-			"dabbinavo.xaml-styler"
-		]
-	},
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [
-			{
-				"name": "Huskui.Gallery",
-				"type": "coreclr",
-				"request": "launch",
-				"preLaunchTask": "build",
-				"program": "${workspaceFolder}/src/Huskui.Gallery/bin/Debug/net10.0/Huskui.Gallery.dll",
-				"args": [],
-				"cwd": "${workspaceFolder}/src/Huskui.Gallery/bin/Debug/net10.0",
-				"console": "internalConsole",
-				"stopAtEntry": false
-			},
-		]
-	},
-	"tasks": {
-		"version": "2.0.0",
-		"tasks": [
-			{
-				"label": "build",
-				"command": "dotnet",
-				"type": "process",
-				"args": [
-					"build",
-					"${workspaceFolder}/src/Huskui.Gallery/Huskui.Gallery.csproj",
-					"/property:GenerateFullPaths=true",
-					"/consoleloggerparameters:NoSummary;ForceNoAlign"
-				],
-				"problemMatcher": "$msCompile"
-			},
-			{
-				"label": "publish",
-				"command": "dotnet",
-				"type": "process",
-				"args": [
-					"publish",
-					"${workspaceFolder}/src/Huskui.Gallery/Huskui.Gallery.csproj",
-					"/property:GenerateFullPaths=true",
-					"/consoleloggerparameters:NoSummary;ForceNoAlign"
-				],
-				"problemMatcher": "$msCompile"
-			},
-			{
-				"label": "watch",
-				"command": "dotnet",
-				"type": "process",
-				"args": [
-					"watch",
-					"run",
-					"--project",
-					"${workspaceFolder}/src/Huskui.Gallery/Huskui.Gallery.csproj"
-				],
-				"problemMatcher": "$msCompile"
-			}
-		]
-	}
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.formatOnSave": true,
+        "axaml.selectedSolution": "c:\\Users\\d3ara\\Projects\\Polymerium\\submodules\\Huskui.Avalonia\\Huskui.slnx",
+        "cSpell.words": [
+            "Avalonia",
+            "axaml",
+            "Huskui",
+            "Siderbars"
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "dabbinavo.xaml-styler"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Huskui.Gallery.Desktop",
+                "type": "coreclr",
+                "request": "launch",
+                "preLaunchTask": "build desktop",
+                "program": "${workspaceFolder}/src/Huskui.Gallery.Desktop/bin/Debug/net10.0/Huskui.Gallery.Desktop.dll",
+                "args": [],
+                "cwd": "${workspaceFolder}/src/Huskui.Gallery.Desktop/bin/Debug/net10.0",
+                "console": "internalConsole",
+                "stopAtEntry": false
+            },
+            {
+                "name": "Huskui.Gallery.Browser",
+                "type": "msedge",
+                "request": "launch",
+                "preLaunchTask": "watch browser",
+                "url": "http://localhost:5076",
+                "webRoot": "${workspaceFolder}",
+            },
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "build desktop",
+                "command": "dotnet",
+                "type": "process",
+                "args": [
+                    "build",
+                    "${workspaceFolder}/src/Huskui.Gallery.Desktop/Huskui.Gallery.Desktop.csproj",
+                    "/property:GenerateFullPaths=true",
+                    "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                ],
+                "problemMatcher": "$msCompile"
+            },
+            {
+                "label": "build browser",
+                "command": "dotnet",
+                "type": "process",
+                "args": [
+                    "build",
+                    "${workspaceFolder}/src/Huskui.Gallery.Browser/Huskui.Gallery.Browser.csproj",
+                    "/property:GenerateFullPaths=true",
+                    "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                ],
+                "problemMatcher": "$msCompile"
+            },
+            {
+                "label": "publish browser",
+                "command": "dotnet",
+                "type": "process",
+                "args": [
+                    "publish",
+                    "${workspaceFolder}/src/Huskui.Gallery.Browser/Huskui.Gallery.Browser.csproj",
+                    "/property:GenerateFullPaths=true",
+                    "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                ],
+                "problemMatcher": "$msCompile"
+            },
+            {
+                "label": "watch browser",
+                "command": "dotnet",
+                "type": "process",
+                "args": [
+                    "watch",
+                    "run",
+                    "--project",
+                    "${workspaceFolder}/src/Huskui.Gallery.Browser/Huskui.Gallery.Browser.csproj",
+                    "--urls",
+                    "http://localhost:5076"
+                ],
+                "isBackground": true,
+                "problemMatcher": {
+                    "owner": "custom",
+                    "fileLocation": "absolute",
+                    "pattern": {
+                        "regexp": "^(.*)$",
+                        "message": 1
+                    },
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": "dotnet watch",
+                        "endsPattern": "Now listening on:\\s+http://localhost:5076"
+                    }
+                }
+            }
+        ]
+    }
 }

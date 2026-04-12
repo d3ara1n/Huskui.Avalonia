@@ -23,12 +23,12 @@
                             <TextBlock
                                 FontSize="28"
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Title, FallbackValue={x:Null}}" />
+                                Text="{Binding $parent[gallery:AppView].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Title, FallbackValue={x:Null}}" />
                             <TextBlock
                                 FontSize="{StaticResource LargeFontSize}"
                                 Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Description, FallbackValue={x:Null}}" />
-                            <ItemsControl ItemsSource="{Binding $parent[gallery:MainWindow].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Tags, FallbackValue={x:Null}}">
+                                Text="{Binding $parent[gallery:AppView].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Description, FallbackValue={x:Null}}" />
+                            <ItemsControl ItemsSource="{Binding $parent[gallery:AppView].((viewModels:MainWindowViewModel)DataContext).SelectedItem.Tags, FallbackValue={x:Null}}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel

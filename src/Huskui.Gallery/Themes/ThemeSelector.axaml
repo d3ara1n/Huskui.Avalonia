@@ -89,7 +89,9 @@
                     </StackPanel>
 
                     <!--  Background Material Selection  -->
-                    <StackPanel Spacing="8">
+                    <StackPanel
+                        IsVisible="{TemplateBinding ShowBackgroundSelector}"
+                        Spacing="8">
                         <TextBlock
                             FontSize="{StaticResource MediumFontSize}"
                             FontWeight="{StaticResource ControlStrongFontWeight}"

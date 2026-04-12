@@ -11,10 +11,7 @@ public partial class DialogsPage : ControlPage
 {
     public DialogsPage() => InitializeComponent();
 
-    private AppSurface? GetAppSurface() =>
-        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
-            ? accessor.GetAppSurface()
-            : null;
+    private AppSurface? GetAppSurface() => AppSurface.GetAppSurface(this);
 
     private void OnShowDeleteConfirmClick(object? sender, RoutedEventArgs e)
     {

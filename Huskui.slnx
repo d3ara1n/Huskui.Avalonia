@@ -8,4 +8,7 @@
     <Project Path="src/Huskui.Avalonia.Code/Huskui.Avalonia.Code.csproj" />
     <Project Path="src\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj" Type="C#" />
     <Project Path="src\Huskui.Gallery\Huskui.Gallery.csproj" Type="C#" />
+    <Project Path="src\Huskui.Gallery.Desktop\Huskui.Gallery.Desktop.csproj" Type="C#" />
+    <Project Path="src\Huskui.Gallery.Browser\Huskui.Gallery.Browser.csproj" Type="C#" />
+    <Project Path="src\Huskui.Gallery.Android\Huskui.Gallery.Android.csproj" Type="C#" />
 </Solution>

@@ -1,0 +1,67 @@
+﻿<husk:AppWindow
+    x:Class="Huskui.Gallery.Desktop.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:gallery="clr-namespace:Huskui.Gallery;assembly=Huskui.Gallery"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:Huskui.Gallery.ViewModels;assembly=Huskui.Gallery"
+    Title="Huskui Gallery"
+    MinWidth="800"
+    MinHeight="600"
+    d:DesignHeight="800"
+    d:DesignWidth="1200"
+    x:DataType="vm:MainWindowViewModel"
+    ExtendClientAreaTitleBarHeightHint="44"
+    TransparencyLevelHint="Mica, None"
+    mc:Ignorable="d">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="New" />
+                <MenuItem Header="Open" />
+                <MenuItem Header="Save" />
+                <Separator />
+                <MenuItem Header="Exit" />
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem
+                    Header="Undo"
+                    InputGesture="Ctrl+Z" />
+                <MenuItem
+                    Header="Redo"
+                    InputGesture="Ctrl+Shift+Z" />
+                <Separator />
+                <MenuItem
+                    Header="Cut"
+                    InputGesture="Ctrl+X" />
+                <MenuItem
+                    Header="Copy"
+                    InputGesture="Ctrl+C" />
+                <MenuItem
+                    Header="Paste"
+                    InputGesture="Ctrl+V" />
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="Zoom In" />
+                <MenuItem Header="Zoom Out" />
+                <MenuItem Header="Fit">
+                    <MenuItem Header="Fit to Canvas" />
+                    <MenuItem Header="Fit to Page" />
+                    <MenuItem Header="Fit to Window" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem
+                Header="About"
+                InputGesture="Ctrl+Shift+A" />
+            <MenuItem
+                Header="Connected"
+                IsChecked="True"
+                ToggleType="CheckBox" />
+        </Menu>
+
+        <gallery:AppView />
+    </DockPanel>
+</husk:AppWindow>

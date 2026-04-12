@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
@@ -28,6 +29,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         IGalleryService galleryService,
         INavigationService navigationService,
         IThemeService themeService,
+        ISettingsViewFactory settingsViewFactory,
         IServiceProvider serviceProvider
     )
     {
@@ -35,6 +37,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         NavigationService = navigationService;
         ThemeService = themeService;
         _serviceProvider = serviceProvider;
+        SettingsView = settingsViewFactory.CreateSettingsView();
 
         NavigationService.NavigationChanged += OnNavigationChanged;
 
@@ -91,6 +94,8 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
     public IThemeService ThemeService { get; }
 
+    public Control SettingsView { get; }
+
     public INavigationService NavigationService { get; }
 
     public Frame.PageActivatorDelegate PageActivator => ActivatePage;
@@ -116,7 +121,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
     private object? ActivatePage(Type view, object? parameter)
     {
-        if (!view.IsAssignableTo(typeof(Page)))
+        if (!view.IsAssignableTo(typeof(Avalonia.Controls.Page)))
         {
             throw new ArgumentOutOfRangeException(
                 nameof(view),
@@ -128,7 +133,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         var name = view.FullName!.Replace("View", "ViewModel", StringComparison.Ordinal);
         var type = Type.GetType(name);
 
-        var page = Activator.CreateInstance(view) as Page;
+        var page = Activator.CreateInstance(view) as Avalonia.Controls.Page;
 
         if (page is not null && type is not null)
         {

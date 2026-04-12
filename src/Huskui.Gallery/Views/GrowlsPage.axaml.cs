@@ -11,10 +11,7 @@ public partial class GrowlsPage : ControlPage
 {
     public GrowlsPage() => InitializeComponent();
 
-    private AppSurface? GetAppSurface() =>
-        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
-            ? accessor.GetAppSurface()
-            : null;
+    private AppSurface? GetAppSurface() => AppSurface.GetAppSurface(this);
 
     private void OnShowInfoGrowlClick(object? sender, RoutedEventArgs e)
     {

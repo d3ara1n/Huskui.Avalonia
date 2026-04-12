@@ -16,6 +16,9 @@ public class ThemeSelector : TemplatedControl
     public static readonly StyledProperty<IThemeService?> ThemeServiceProperty =
         AvaloniaProperty.Register<ThemeSelector, IThemeService?>(nameof(ThemeService));
 
+    public static readonly StyledProperty<bool> ShowBackgroundSelectorProperty =
+        AvaloniaProperty.Register<ThemeSelector, bool>(nameof(ShowBackgroundSelector), true);
+
     private ComboBox? _accentComboBox;
     private ComboBox? _backgroundComboBox;
     private ComboBox? _cornerComboBox;
@@ -26,6 +29,12 @@ public class ThemeSelector : TemplatedControl
     {
         get => GetValue(ThemeServiceProperty);
         set => SetValue(ThemeServiceProperty, value);
+    }
+
+    public bool ShowBackgroundSelector
+    {
+        get => GetValue(ShowBackgroundSelectorProperty);
+        set => SetValue(ShowBackgroundSelectorProperty, value);
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)

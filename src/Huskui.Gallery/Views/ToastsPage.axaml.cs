@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Controls;
@@ -10,10 +10,7 @@ public partial class ToastsPage : ControlPage
 {
     public ToastsPage() => InitializeComponent();
 
-    private AppSurface? GetAppSurface() =>
-        TopLevel.GetTopLevel(this) is IAppSurfaceAccessor accessor
-            ? accessor.GetAppSurface()
-            : null;
+    private AppSurface? GetAppSurface() => AppSurface.GetAppSurface(this);
 
     private void OnShowBlogPreviewClick(object? sender, RoutedEventArgs e)
     {

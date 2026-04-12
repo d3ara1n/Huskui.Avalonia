@@ -12,7 +12,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_GrowlHost, typeof(GrowlHost))]
 [TemplatePart(PART_DrawerHost, typeof(DrawerHost))]
 [PseudoClasses(":obstructed")]
-public class AppSurface : ContentControl, IAppSurfaceAccessor
+public class AppSurface : ContentControl
 {
     public const string PART_ToastHost = nameof(PART_ToastHost);
     public const string PART_SidebarHost = nameof(PART_SidebarHost);
@@ -32,7 +32,20 @@ public class AppSurface : ContentControl, IAppSurfaceAccessor
 
     public event EventHandler<OverlayHost.MaskPointerPressedEventArgs>? MaskPointerPressed;
 
-    public AppSurface? GetAppSurface() => this;
+    public static AppSurface? GetAppSurface(Control control)
+    {
+        ArgumentNullException.ThrowIfNull(control);
+
+        for (var current = control; current != null; current = current.Parent as Control)
+        {
+            if (current is AppSurface appSurface)
+            {
+                return appSurface;
+            }
+        }
+
+        return TopLevel.GetTopLevel(control) is AppWindow appWindow ? appWindow.AppSurface : null;
+    }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
