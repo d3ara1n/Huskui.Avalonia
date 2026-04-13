@@ -24,7 +24,9 @@
                     Click="LoadFileButton_OnClick"
                     Content="Load My Markdown" />
             </controls:ExampleContainer.Options>
-            <husk:MarkdownViewer Name="Viewer" />
+            <husk:MarkdownViewer
+                Name="Viewer"
+                FrontMatterRender="Pretty" />
         </controls:ExampleContainer>
 
     </StackPanel>

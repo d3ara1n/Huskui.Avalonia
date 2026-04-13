@@ -8,9 +8,11 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using Huskui.Avalonia.Code.Controls;
 using Huskui.Avalonia.Controls;
+using Huskui.Avalonia.Markdown.Models;
 using Markdig;
 using Markdig.Extensions.Alerts;
 using Markdig.Extensions.TaskLists;
+using Markdig.Extensions.Yaml;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
 
@@ -29,6 +31,7 @@ public class MarkdownViewer : TemplatedControl
             .UseAutoLinks()
             .UseAlertBlocks()
             .UseTaskLists()
+            .UseYamlFrontMatter()
             .UseEmphasisExtras()
             .UseGridTables()
             .UsePipeTables()
@@ -60,6 +63,18 @@ public class MarkdownViewer : TemplatedControl
         set => SetValue(SpacingProperty, value);
     }
 
+    public static readonly StyledProperty<FrontMatterRenderMethods> FrontMatterRenderProperty =
+        AvaloniaProperty.Register<MarkdownViewer, FrontMatterRenderMethods>(
+            nameof(FrontMatterRender),
+            FrontMatterRenderMethods.Ignore
+        );
+
+    public FrontMatterRenderMethods FrontMatterRender
+    {
+        get => GetValue(FrontMatterRenderProperty);
+        set => SetValue(FrontMatterRenderProperty, value);
+    }
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         _container = e.NameScope.Find<ScrollViewer>(PART_LayoutContainer);
@@ -71,9 +86,13 @@ public class MarkdownViewer : TemplatedControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == MarkdownProperty)
+        if (
+            change.Property == MarkdownProperty
+            || change.Property == FrontMatterRenderProperty
+            || change.Property == SpacingProperty
+        )
         {
-            Render(change.GetNewValue<string>());
+            Render(Markdown);
         }
     }
 
@@ -184,6 +203,29 @@ public class MarkdownViewer : TemplatedControl
                     stack.Classes.Set("List", true);
                     stack.Classes.Set("Item", true);
                     control = dock;
+                }
+                break;
+            case YamlFrontMatterBlock yaml:
+                {
+                    switch (FrontMatterRender)
+                    {
+                        case FrontMatterRenderMethods.Plain:
+                            var bar = new InfoBar();
+                            bar.Content = yaml.Lines.ToString();
+                            bar.Classes.Set("FrontMatter", true);
+                            control = bar;
+                            break;
+                        case FrontMatterRenderMethods.Pretty:
+                            var viewer = new CodeViewer();
+                            viewer.Language = "yaml";
+                            viewer.Code = yaml.Lines.ToString();
+                            viewer.Classes.Set("FrontMatter", true);
+                            control = viewer;
+                            break;
+                        default:
+                            control = null;
+                            break;
+                    }
                 }
                 break;
             case CodeBlock code:

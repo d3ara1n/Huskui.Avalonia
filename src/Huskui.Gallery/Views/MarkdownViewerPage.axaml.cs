@@ -9,6 +9,14 @@ namespace Huskui.Gallery.Views;
 public partial class MarkdownViewerPage : ControlPage
 {
     private const string SampleMarkdown = """
+        ---
+        title: Hello
+        author: Alice
+        tags:
+          - avalonia
+          - markdown
+        ---
+
         # Markdown Viewer Showcase
 
         This is a **MarkdownViewer** component from `Huskui.Avalonia.Markdown`. It is *not* a built-in control, but an extension library component.
@@ -159,6 +167,7 @@ public partial class MarkdownViewerPage : ControlPage
         > - `UseAutoLinks()` — automatic URL detection
         > - `UseTaskLists()` — `- [x]` / `- [ ]` checkboxes
         > - `UseEmphasisExtras()` — `~sub~`, `^super^`, `++ins++`, `==mark==`
+        > - `UseYamlFrontMatter()` - markdown metadata
         > - `UseGridTables()` — grid-style tables
         > - `UsePipeTables()` — pipe-style tables
         > - `UseListExtras()` — lettered (`a.`, `b.`) lists
