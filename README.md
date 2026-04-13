@@ -46,7 +46,8 @@ To run the Gallery:
 dotnet run --project src/Huskui.Gallery
 ```
 
-> **Note**: The Gallery application and this README documentation were created entirely by AI to showcase the
+> [!NOTE]
+> The Gallery application and this README documentation were created entirely by AI to showcase the
 > Huskui.Avalonia library. However, the core Huskui.Avalonia control library itself was lovingly crafted by humans (you
 > can tell because there are virtually no comments in the library code 😅). The library is production-ready and
 > battle-tested, so
@@ -70,8 +71,8 @@ If you need help understanding or using specific controls, AI-assisted developme
      Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
      ```
 
-   - If you are a Z.AI Coding Plan user, use the [zread.ai](https://zread.ai/d3ara1n/Huskui.Avalonia) MCP to inspect the repository, read source files, and ask
-     targeted questions about component usage and implementation details.
+> [!TIP]
+> If you are a Z.AI Coding Plan user, use the [zread.ai](https://zread.ai/d3ara1n/Huskui.Avalonia) official [MCP](https://docs.z.ai/devpack/mcp/zread-mcp-server) to inspect the repository, read source files, and ask targeted questions about component usage and implementation details.
 
 Helpful prompt ideas:
 
