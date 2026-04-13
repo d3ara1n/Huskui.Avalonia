@@ -312,6 +312,14 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "TagBoxes",
+                    Description = "Multi-select text inputs that combine inline tags with searchable suggestions",
+                    Icon = Symbol.Tag,
+                    PageType = typeof(TagBoxesPage),
+                    Tags = ["tagbox", "tag", "input", "multi-select", "autocomplete"],
+                },
+                new()
+                {
                     Title = "ComboBoxes",
                     Description =
                         "Dropdown selection controls for choosing from predefined options",

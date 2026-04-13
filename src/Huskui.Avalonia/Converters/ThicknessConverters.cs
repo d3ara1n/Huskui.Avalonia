@@ -45,6 +45,46 @@ public static class ThicknessConverters
                 }
         );
 
+    public static IValueConverter Left { get; } =
+        new RelayConverter(
+            (v, _) =>
+                v switch
+                {
+                    Thickness it => new Thickness(it.Left, 0d, 0d, 0d),
+                    _ => v,
+                }
+        );
+
+    public static IValueConverter Top { get; } =
+        new RelayConverter(
+            (v, _) =>
+                v switch
+                {
+                    Thickness it => new Thickness(0, it.Top, 0d, 0d),
+                    _ => v,
+                }
+        );
+
+    public static IValueConverter Right { get; } =
+        new RelayConverter(
+            (v, _) =>
+                v switch
+                {
+                    Thickness it => new Thickness(0d, 0d, it.Right, 0d),
+                    _ => v,
+                }
+        );
+
+    public static IValueConverter Bottom { get; } =
+        new RelayConverter(
+            (v, _) =>
+                v switch
+                {
+                    Thickness it => new Thickness(0d, 0d, 0d, it.Bottom),
+                    _ => v,
+                }
+        );
+
     public static IValueConverter Vertical { get; } =
         new RelayConverter(
             (v, _) =>

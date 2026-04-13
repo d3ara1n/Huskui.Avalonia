@@ -73,10 +73,8 @@
                             </Border.Transitions>
                             <TextBox
                                 Name="PART_TextBox"
-                                Margin="0"
                                 Padding="{TemplateBinding Padding}"
                                 Background="Transparent"
-                                BorderThickness="0"
                                 CaretIndex="{TemplateBinding CaretIndex,
                                                              Mode=TwoWay}"
                                 ClearSelectionOnLostFocus="{TemplateBinding ClearSelectionOnLostFocus}"

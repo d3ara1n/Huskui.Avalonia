@@ -1,0 +1,184 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="using:FluentIcons.Avalonia"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+    <ControlTheme
+        x:Key="{x:Type local:TagBox}"
+        TargetType="local:TagBox">
+        <Setter Property="Background" Value="{StaticResource OverlayInteractiveBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+        <Setter Property="PlaceholderForeground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+        <Setter Property="MaxDropDownHeight" Value="336" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DataValidationErrors>
+                    <Panel>
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="Background"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                </Transitions>
+                            </Border.Transitions>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <ItemsControl
+                                    Margin="{Binding Padding, Converter={x:Static local:ThicknessConverters.Left}, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                    VerticalAlignment="Center"
+                                    IsVisible="{Binding DisplayedSelectedItems.Count, Converter={x:Static local:NumberConverters.IsNonZero}, RelativeSource={RelativeSource TemplatedParent}}"
+                                    ItemsSource="{Binding DisplayedSelectedItems, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel
+                                                Orientation="Horizontal"
+                                                Spacing="4" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:Tag Padding="0">
+                                                <DockPanel>
+                                                    <Button
+                                                        DockPanel.Dock="Right"
+                                                        Padding="4,0"
+                                                        Background="Transparent"
+                                                        BorderBrush="Transparent"
+                                                        Command="{Binding $parent[local:TagBox].RemoveTagCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Theme="{StaticResource GhostButtonTheme}">
+                                                        <Button.CornerRadius>
+                                                            <MultiBinding Converter="{x:Static local:CornerRadiusConverters.ToInnerRadiusMulti}">
+                                                                <Binding
+                                                                    Path="CornerRadius"
+                                                                    RelativeSource="{RelativeSource AncestorType={x:Type local:Tag},
+                                                                                                    Mode=FindAncestor}" />
+                                                                <Binding
+                                                                    Path="Padding"
+                                                                    RelativeSource="{RelativeSource AncestorType={x:Type local:Tag},
+                                                                                                    Mode=FindAncestor}" />
+                                                            </MultiBinding>
+                                                        </Button.CornerRadius>
+                                                        <fi:SymbolIcon
+                                                            FontSize="{StaticResource SmallFontSize}"
+                                                            Symbol="Dismiss" />
+                                                    </Button>
+                                                    <TextBlock
+                                                        Margin="6,2"
+                                                        VerticalAlignment="Center"
+                                                        Text="{Binding}" />
+                                                </DockPanel>
+                                            </local:Tag>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                                <TextBox
+                                    Name="PART_TextBox"
+                                    Grid.Column="1"
+                                    Padding="{TemplateBinding Padding}"
+                                    Background="Transparent"
+                                    DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
+                                    PlaceholderText="{TemplateBinding PlaceholderText}"
+                                    Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    Theme="{StaticResource EmbeddedTextBoxTheme}" />
+                            </Grid>
+                        </Border>
+
+                        <Border
+                            x:Name="PART_GlowBorder"
+                            BorderBrush="{StaticResource TransparentBrush}"
+                            BorderThickness="2"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <BrushTransition
+                                        Easing="SineEaseOut"
+                                        Property="BorderBrush"
+                                        Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
+
+                        <Popup
+                            Name="PART_Popup"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            PlacementTarget="{TemplateBinding}"
+                            WindowManagerAddShadowHint="False">
+                            <Border
+                                Margin="2,4"
+                                Background="{StaticResource FlyoutBackgroundBrush}"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
+                                </Border.Effect>
+                                <ListBox
+                                    Name="PART_SelectingItemsControl"
+                                    ItemContainerTheme="{StaticResource AutoCompleteSuggestionItemTheme}"
+                                    ScrollViewer.IsScrollChainingEnabled="False"
+                                    Theme="{StaticResource AutoCompleteSuggestionListTheme}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="local:TagBoxSuggestion">
+                                            <Grid
+                                                ColumnDefinitions="*,Auto"
+                                                ColumnSpacing="12">
+                                                <TextBlock Text="{Binding Text}" />
+                                                <fi:SymbolIcon
+                                                    Grid.Column="1"
+                                                    IsVisible="{Binding IsCustom}"
+                                                    FontSize="{StaticResource MediumFontSize}"
+                                                    Symbol="Edit" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
+                        </Popup>
+                    </Panel>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:focus-within /template/ Border#PART_GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
+        </Style>
+
+        <Style Selector="^:focus-within /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pointerover:not(:focus-within):not(:dropdownopen) /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:dropdownopen /template/ Border#PART_GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
+        </Style>
+
+        <Style Selector="^:dropdownopen /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#PART_Border">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

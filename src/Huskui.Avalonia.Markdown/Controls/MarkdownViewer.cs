@@ -157,7 +157,6 @@ public class MarkdownViewer : TemplatedControl
                 {
                     var panel = SpawnStack();
                     context.ListOrdered = list.IsOrdered;
-                    // 遇到第一个 ListBlock 时 -1 + 1 => 0
                     context.ListDepth++;
                     context.ListIndex = 0;
                     foreach (var item in list)
