@@ -1,0 +1,230 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.CodeViewerPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1100"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Extension overview" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="CodeViewer adds a polished read-only code surface to Huskui apps without extra theme wiring."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="The control ships in the " />
+                    <husk:HighlightInline Text="Huskui.Avalonia.Code" />
+                    <Run Text=" extension package and reuses the shared " />
+                    <husk:HighlightInline Text="husk:" />
+                    <Run Text=" namespace. Once the assembly is loaded, Huskui merges the extension theme automatically through the built-in extension mechanism." />
+                </TextBlock>
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    LineSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag Content="Syntax highlighting" />
+                    <husk:Tag Content="Copy action" />
+                    <husk:Tag Content="Shared namespace" />
+                    <husk:Tag Content="Theme auto-load" />
+                </WrapPanel>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Install into an existing Huskui app" />
+                        <husk:CodeViewer x:Name="InstallCodeViewer" Language="bash" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <controls:ExampleContainer
+            Title="Primary showcase"
+            Description="Default chrome includes a language label, copy button, scrollable content area, and syntax-colored tokens."
+            XamlCode="&lt;husk:CodeViewer&#x0a;    Language=&quot;csharp&quot;&#x0a;    Code=&quot;public sealed class EditorCommand&#x0a;{&#x0a;    public required string Id { get; init; }&#x0a;    public required string Label { get; init; }&#x0a;}&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Use the default variant when code should feel like a featured part of the page rather than a small inline detail."
+                    TextWrapping="Wrap" />
+                <husk:CodeViewer x:Name="PrimaryCodeViewer" Language="csharp" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Compact embedded snippet"
+            Description="Hide viewer chrome when code is only supporting surrounding copy or documentation."
+            XamlCode="&lt;husk:CodeViewer&#x0a;    Language=&quot;axaml&quot;&#x0a;    IsCopyButtonVisible=&quot;False&quot;&#x0a;    IsLineNumbersVisible=&quot;False&quot;&#x0a;    Code=&quot;&amp;lt;husk:Tag Content=&amp;quot;Copied&amp;quot; /&amp;gt;&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="This layout works well inside cards, guides, API notes, or side-by-side comparison blocks."
+                    TextWrapping="Wrap" />
+                <husk:CodeViewer
+                    x:Name="CompactCodeViewer"
+                    IsCopyButtonVisible="False"
+                    IsLineNumbersVisible="False"
+                    Language="axaml" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="20">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Language coverage and fallback" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="CodeViewer accepts ColorCode language identifiers, common aliases such as cs/axaml/ts, and falls back to plain text when no highlighter is found."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="16">
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="10">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Alias: axaml -> XML" />
+                            <husk:CodeViewer x:Name="AxamlCodeViewer" Language="axaml" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="10">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Structured data: json" />
+                            <husk:CodeViewer x:Name="JsonCodeViewer" Language="json" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="10">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Documentation: markdown" />
+                            <husk:CodeViewer x:Name="MarkdownCodeViewer" Language="md" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="10">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Fallback: plain text" />
+                            <husk:CodeViewer x:Name="FallbackCodeViewer" Language="custom-log" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="20">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Usage patterns" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="A minimal setup is enough for documentation pages, inspector panes, changelogs, or generated source previews."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16">
+                    <StackPanel Grid.Column="0" Spacing="12">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="XAML" />
+                        <husk:CodeViewer x:Name="UsageXamlCodeViewer" Language="xml" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Spacing="12">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="C#" />
+                        <husk:CodeViewer x:Name="UsageCSharpCodeViewer" Language="csharp" />
+                    </StackPanel>
+                </Grid>
+
+                <husk:InfoBar Header="Good fit">
+                    <TextBlock
+                        Text="Reach for CodeViewer when users need to inspect, compare, copy, or learn from source text. Keep using regular text blocks when the content is explanatory prose rather than code."
+                        TextWrapping="Wrap" />
+                </husk:InfoBar>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</controls:ControlPage>

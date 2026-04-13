@@ -16,13 +16,13 @@
             Title="Markdown Rendering"
             Description="MarkdownViewer from Huskui.Avalonia.Markdown — renders common markdown syntax including headings, emphasis, code, lists, and links"
             XamlCode="&lt;husk:MarkdownViewer Markdown=&quot;...&quot; /&gt;">
-            <controls:ExampleContainer.Controls>
+            <controls:ExampleContainer.Options>
                 <Button
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Click="LoadFileButton_OnClick"
                     Content="Load My Markdown" />
-            </controls:ExampleContainer.Controls>
+            </controls:ExampleContainer.Options>
             <husk:MarkdownViewer Name="Viewer" />
         </controls:ExampleContainer>
 

@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
         <ProjectReference Include="..\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj" />
         <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
     </ItemGroup>

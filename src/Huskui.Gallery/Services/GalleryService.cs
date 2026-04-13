@@ -443,6 +443,15 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
+                    Title = "CodeViewer",
+                    Description =
+                        "Syntax-highlighted code presentation control from Huskui.Avalonia.Code extension library",
+                    Icon = Symbol.Code,
+                    PageType = typeof(CodeViewerPage),
+                    Tags = ["code", "viewer", "syntax", "highlight", "extension", "colorcode"],
+                },
+                new()
+                {
                     Title = "MarkdownViewer",
                     Description =
                         "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",
