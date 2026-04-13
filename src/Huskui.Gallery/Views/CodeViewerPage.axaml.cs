@@ -51,14 +51,14 @@ public partial class CodeViewerPage : ControlPage
           "fileName": "CodeViewerPage.axaml",
           "language": "csharp",
           "copyButton": true,
-          "highlighting": "ColorCode"
+          "highlighting": "TextMate"
         }
         """;
 
     private const string MarkdownSnippet = """
         ## Viewer tips
 
-        - Use `cs`, `axaml`, `ts`, or full ColorCode ids.
+        - Use `cs`, `axaml`, `ts`, `bash`, or common file-style aliases.
         - Keep the default header when users may copy snippets.
         - Disable chrome for compact guide sections.
         """;

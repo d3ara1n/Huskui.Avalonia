@@ -1,6 +1,6 @@
 # Huskui.Avalonia.Code
 
-A syntax-highlighted code viewer extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia), powered by [ColorCode.Core](https://github.com/CommunityToolkit/ColorCode).
+A syntax-highlighted code viewer extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia), powered by TextMate grammars with a lightweight inline renderer.
 
 ## Relationship to Huskui.Avalonia
 
@@ -81,49 +81,54 @@ var viewer = new CodeViewer
 
 ## Language Support
 
-`CodeViewer` uses [ColorCode.Core](https://github.com/CommunityToolkit/ColorCode) for syntax highlighting. Languages are resolved in the following order:
-
-1. `Languages.FindById()` — direct ColorCode language ID lookup
-2. `Languages.All` → `HasAlias()` — alias-based lookup
-3. Built-in convenience aliases (see table below)
+`CodeViewer` uses TextMate grammars through `TextMateSharp.Grammars`. Languages are resolved through built-in aliases and file-extension-style mappings, then fall back to plain text if no grammar is available.
 
 ### Supported Languages
 
 | Language | Identifiers |
 |----------|------------|
+| Bash | `bash`, `sh`, `shell`, `zsh` |
 | C# | `csharp`, `cs` |
 | C++ | `cpp` |
+| C | `c` |
 | CSS | `css` |
 | F# | `fsharp`, `fs` |
 | HTML | `html` |
 | Java | `java` |
 | JavaScript | `javascript`, `js` |
+| JSON | `json` |
 | Markdown | `markdown`, `md` |
+| Less | `less` |
+| Lua | `lua` |
 | PHP | `php` |
 | PowerShell | `powershell`, `ps1` |
 | Python | `python`, `py` |
+| Rust | `rust`, `rs` |
+| SCSS | `scss` |
 | SQL | `sql` |
 | TypeScript | `typescript`, `ts`, `tsx` |
 | XML | `xml`, `xaml`, `axaml` |
+| YAML | `yaml`, `yml` |
+| Visual Basic | `visualbasic`, `vb` |
 | ASP.NET | `aspx` |
 | CoffeeScript | `coffeescript` |
 | Ruby | `ruby` |
 
-> **Note**: The full list of supported languages depends on `ColorCode.Core`. If a language is not recognized, the code is rendered as plain text without syntax highlighting.
+> **Note**: The full list of supported languages depends on the bundled TextMate grammars. If a language is not recognized, the code is rendered as plain text without syntax highlighting.
 
 ## Features
 
-- **Syntax Highlighting** — ColorCode-based tokenization with dark theme styling
-- **Line Numbers(WIP)** — Optional line number gutter
+- **Syntax Highlighting** — TextMate-based tokenization with Huskui Radix light/dark token themes
+- **Line Numbers** — Optional lightweight line number gutter
 - **Copy to Clipboard** — Header bar with language label and copy button
-- **Selectable Text** — Code content is rendered in a `SelectableTextBlock` for easy text selection
+- **Lightweight Rendering** — Code content is rendered as Avalonia inlines without embedding an editor control
 - **Custom Inlines** — Override rendering by providing your own `InlineCollection`
 - **Monospace Font** — Defaults to `Cascadia Code, Consolas, Courier New, monospace`
 
 ## Dependencies
 
 - [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia) — Core control library (required)
-- [ColorCode.Core](https://github.com/CommunityToolkit/ColorCode) — Syntax highlighting engine
+- [TextMateSharp.Grammars](https://github.com/danipen/TextMateSharp) — Bundled grammars and themes
 
 ## License
 

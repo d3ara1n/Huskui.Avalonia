@@ -111,7 +111,7 @@
                         Text="Language coverage and fallback" />
                     <TextBlock
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="CodeViewer accepts ColorCode language identifiers, common aliases such as cs/axaml/ts, and falls back to plain text when no highlighter is found."
+                        Text="CodeViewer accepts TextMate-backed language aliases such as cs/axaml/ts/bash and falls back to plain text when no grammar is found."
                         TextWrapping="Wrap" />
                 </StackPanel>
 

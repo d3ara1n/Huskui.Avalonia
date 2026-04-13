@@ -1,4 +1,4 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fi="using:FluentIcons.Avalonia"
@@ -18,7 +18,6 @@
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,*">
-                        <!--  Header with copy button  -->
                         <Border
                             Grid.Row="0"
                             Padding="12,8"
@@ -45,7 +44,6 @@
                             </Grid>
                         </Border>
 
-                        <!--  Code content  -->
                         <ScrollViewer
                             Grid.Row="1"
                             HorizontalScrollBarVisibility="Auto"
@@ -54,15 +52,17 @@
                                 Margin="12"
                                 ColumnDefinitions="Auto,*"
                                 ColumnSpacing="12">
-                                <!--  Line numbers  -->
                                 <TextBlock
+                                    Name="PART_LineNumbers"
                                     Grid.Column="0"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding IsLineNumbersVisible}"
+                                    FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                     FontSize="{StaticResource SmallFontSize}"
-                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    TextAlignment="Right"
+                                    TextWrapping="NoWrap" />
 
-                                <!--  Code text  -->
                                 <TextBlock
                                     Name="PART_CodeText"
                                     Grid.Column="1"

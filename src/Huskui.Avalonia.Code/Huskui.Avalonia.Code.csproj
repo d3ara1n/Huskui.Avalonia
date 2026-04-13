@@ -8,8 +8,8 @@
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
         <Product>Huskui.Avalonia.Code</Product>
-        <Description>Syntax-highlighted code viewer extension for Huskui.Avalonia, powered by ColorCode.Core.</Description>
-        <PackageTags>avalonia;code;syntax-highlighting;colorcode;ui;controls;huskui</PackageTags>
+        <Description>Syntax-highlighted code viewer extension for Huskui.Avalonia, powered by TextMate grammars.</Description>
+        <PackageTags>avalonia;code;syntax-highlighting;textmate;ui;controls;huskui</PackageTags>
         <PackageProjectUrl>https://github.com/d3ara1n/Huskui.Avalonia</PackageProjectUrl>
         <RepositoryUrl>https://github.com/d3ara1n/Huskui.Avalonia</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ColorCode.Core" Version="2.0.15" />
+        <PackageReference Include="TextMateSharp.Grammars" Version="2.0.3" />
         <PackageReference Include="GitVersion.MsBuild" Version="6.7.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
