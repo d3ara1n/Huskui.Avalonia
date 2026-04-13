@@ -35,7 +35,11 @@ public partial class TagBoxesPage : ControlPage
         "ux-review",
     ];
 
-    private readonly ObservableCollection<string> _releaseLabels = ["release-candidate", "blocking"];
+    private readonly ObservableCollection<string> _releaseLabels =
+    [
+        "release-candidate",
+        "blocking",
+    ];
 
     private readonly ObservableCollection<string> _teamOptions =
     [
@@ -61,7 +65,12 @@ public partial class TagBoxesPage : ControlPage
         "XAML",
     ];
 
-    private readonly ObservableCollection<string> _technologySelections = ["Avalonia", "Huskui", "XAML"];
+    private readonly ObservableCollection<string> _technologySelections =
+    [
+        "Avalonia",
+        "Huskui",
+        "XAML",
+    ];
 
     public TagBoxesPage()
     {
@@ -93,7 +102,8 @@ public partial class TagBoxesPage : ControlPage
         UpdateFormSelectionText();
     }
 
-    private void OnClearBasicClick(object? sender, RoutedEventArgs e) => _technologySelections.Clear();
+    private void OnClearBasicClick(object? sender, RoutedEventArgs e) =>
+        _technologySelections.Clear();
 
     private void OnResetBasicClick(object? sender, RoutedEventArgs e)
     {
@@ -125,16 +135,18 @@ public partial class TagBoxesPage : ControlPage
 
     private void UpdateTechnologySelectionText()
     {
-        TechnologySelectionText.Text = _technologySelections.Count == 0
-            ? "Selected tags: none"
-            : $"Selected tags: {string.Join(", ", _technologySelections)}";
+        TechnologySelectionText.Text =
+            _technologySelections.Count == 0
+                ? "Selected tags: none"
+                : $"Selected tags: {string.Join(", ", _technologySelections)}";
     }
 
     private void UpdateReleaseSelectionText()
     {
-        ReleaseSelectionText.Text = _releaseLabels.Count == 0
-            ? "Release labels: none"
-            : $"Release labels: {string.Join(", ", _releaseLabels)}";
+        ReleaseSelectionText.Text =
+            _releaseLabels.Count == 0
+                ? "Release labels: none"
+                : $"Release labels: {string.Join(", ", _releaseLabels)}";
     }
 
     private void UpdateFormSelectionText()
