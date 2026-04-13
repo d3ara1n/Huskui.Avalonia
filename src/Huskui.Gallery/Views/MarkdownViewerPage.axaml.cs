@@ -152,7 +152,7 @@ public partial class MarkdownViewerPage : ControlPage
 
         ---
 
-        ## Mixed Content
+        ## Mixed **Content**: [Url](https://example.com) & `Code`
 
         > **Note**: The `MarkdownViewer` uses [Markdig](https://github.com/xoofx/markdig) as its parsing engine with the following pipeline extensions enabled:
         >

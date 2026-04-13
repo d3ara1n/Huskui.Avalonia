@@ -18,8 +18,9 @@
             XamlCode="&lt;husk:MarkdownViewer Markdown=&quot;...&quot; /&gt;">
             <controls:ExampleContainer.Options>
                 <Button
+                    Classes="Small"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Click="LoadFileButton_OnClick"
                     Content="Load My Markdown" />
             </controls:ExampleContainer.Options>
