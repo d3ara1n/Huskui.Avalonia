@@ -52,24 +52,41 @@ dotnet run --project src/Huskui.Gallery
 > battle-tested, so
 > please feel confident using it in your projects!
 
-> **Documentation**: This project changes frequently, and with limited maintainer bandwidth, we are currently
-> unable to create and continuously maintain full documentation for every control.
->
-> If you need help using specific controls, please use this workflow:
->
-> 1. Download (or clone) the source code.
-> 2. Ask Claude:
->
->    ```text
->    Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
->    ```
+## Documentation
+
+This project changes frequently, and with limited maintainer bandwidth, we are currently unable to create and
+continuously maintain full documentation for every control.
+
+If you need help understanding or using specific controls, AI-assisted development can help you get productive faster.
+
+### AI-assisted workflow
+
+1. Download or clone the source code.
+2. Use one of the following approaches:
+
+   - Ask Claude:
+
+     ```text
+     Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
+     ```
+
+   - If you are a Z.AI Coding Plan user, use the [zread.ai](https://zread.ai/d3ara1n/Huskui.Avalonia) MCP to inspect the repository, read source files, and ask
+     targeted questions about component usage and implementation details.
+
+Helpful prompt ideas:
+
+- Explain what this control is for and when to use it.
+- Compare two similar controls and highlight their differences.
+- Show a minimal usage example for a specific control.
+- Trace which themes, styles, and supporting classes a control depends on.
+- Summarize the public API of a control from the source code.
 
 ## Getting Started
 
 ### Prerequisites
 
-- .NET 9.0 or later
-- Avalonia UI 11.3.0 or later
+- .NET 10.0 or later
+- Avalonia UI 12.0 or later
 
 ### Installation
 
@@ -95,7 +112,7 @@ dotnet run --project src/Huskui.Gallery
 </Application>
 ```
 
-2. Use Huskui components in your views:
+1. Use Huskui components in your views:
 
 ```xml
 <husk:AppWindow xmlns="https://github.com/avaloniaui"
