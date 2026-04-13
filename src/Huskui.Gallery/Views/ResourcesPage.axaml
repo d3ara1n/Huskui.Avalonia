@@ -1,264 +1,258 @@
-﻿<husk:Page
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.ResourcesPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Huskui.Gallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="800"
     d:DesignWidth="800"
-    IsBackButtonVisible="False"
     mc:Ignorable="d">
 
-    <ScrollViewer>
-        <StackPanel
-            MaxWidth="800"
-            Margin="48"
-            HorizontalAlignment="Center"
-            Spacing="32">
+    <StackPanel Spacing="32">
 
-            <StackPanel Spacing="8">
+        <StackPanel Spacing="8">
+            <TextBlock
+                FontSize="28"
+                FontWeight="{StaticResource ControlStrongFontWeight}"
+                Text="Resource Usage Notes" />
+            <TextBlock
+                FontSize="{StaticResource LargeFontSize}"
+                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                Text="Understanding how Huskui theme resources are structured and how to consume them correctly in your application."
+                TextWrapping="Wrap" />
+        </StackPanel>
+
+        <!--  Section 1: DynamicResource forwarding  -->
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="StaticResource References Are Theme-Reactive" />
+                </StackPanel>
+
                 <TextBlock
-                    FontSize="28"
-                    FontWeight="{StaticResource ControlStrongFontWeight}"
-                    Text="Resource Usage Notes" />
-                <TextBlock
-                    FontSize="{StaticResource LargeFontSize}"
                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                    Text="Understanding how Huskui theme resources are structured and how to consume them correctly in your application."
-                    TextWrapping="Wrap" />
-            </StackPanel>
+                    TextWrapping="Wrap">
+                    <Run Text="Huskui defines its theme resources — brushes, corner radii, and other tokens — using " />
+                    <Run
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="DynamicResource forwarding" />
+                    <Run Text=" under the hood. This means that even though you reference them with " />
+                    <husk:HighlightInline Text="{}{StaticResource ...}" />
+                    <Run Text=", the resolved value retains its dynamic nature and will update automatically when the active theme changes." />
+                </TextBlock>
 
-            <!--  Section 1: DynamicResource forwarding  -->
-            <Border
-                Padding="24"
-                Background="{StaticResource CardBackgroundBrush}"
-                BorderBrush="{StaticResource ControlBorderBrush}"
-                BorderThickness="1"
-                CornerRadius="{StaticResource MediumCornerRadius}">
-                <StackPanel Spacing="16">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="For example, " />
+                    <husk:HighlightInline Text="MediumCornerRadius" />
+                    <Run Text=" is defined as a " />
+                    <husk:HighlightInline Text="DynamicResource" />
+                    <Run Text=" that forwards to a concrete " />
+                    <husk:HighlightInline Text="StaticMediumCornerRadius" />
+                    <Run Text=" value, which can be swapped out by a different corner-radius variant (None, Normal, Large). Similarly, brush resources like " />
+                    <husk:HighlightInline Text="ControlBackgroundBrush" />
+                    <Run Text=" are " />
+                    <husk:HighlightInline Text="SolidColorBrush" />
+                    <Run Text=" instances whose " />
+                    <husk:HighlightInline Text="Color" />
+                    <Run Text=" property references a dynamic theme color. In both cases, " />
+                    <Run
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="a plain StaticResource lookup is all you need" />
+                    <Run Text="." />
+                </TextBlock>
+
+                <husk:Divider />
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag
+                        Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
+                        Content="Usage"
+                        Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                </WrapPanel>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="&lt;!-- No need for DynamicResource in your markup --&gt;"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="&lt;Border CornerRadius=&quot;{StaticResource MediumCornerRadius}&quot; /&gt;"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="&lt;TextBlock Foreground=&quot;{StaticResource ControlSecondaryForegroundBrush}&quot; /&gt;"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!--  Section 2: Binding + Converter caveat  -->
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <Border
+                        Padding="8,4"
+                        Background="{StaticResource ControlWarningBackgroundBrush}"
+                        CornerRadius="12">
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Foreground="White"
+                            Text="CAVEAT" />
+                    </Border>
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Using Resources as Binding Source with Converters" />
+                </StackPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="Because the StaticResource-to-DynamicResource forwarding described above is handled at the XAML compiler level, writing " />
+                    <husk:HighlightInline Text="Binding Source={StaticResource ...}" />
+                    <Run Text=" against a forwarded resource causes the compiler to emit a " />
+                    <husk:HighlightInline Text="DynamicResource" />
+                    <Run Text=" node as the binding source instead of a plain value. When Avalonia's binding engine then feeds this dynamic-resource node into a converter, the converter receives the " />
+                    <Run
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="resource descriptor object" />
+                    <Run Text=" rather than the actual resolved value — producing incorrect results or runtime errors." />
+                </TextBlock>
+
+                <husk:Divider />
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag
+                        Background="{StaticResource ControlSuccessTranslucentFullBackgroundBrush}"
+                        Content="Solution"
+                        Foreground="{StaticResource ControlSuccessForegroundBrush}" />
+                </WrapPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="Huskui ships two markup extensions to address this:" />
+                </TextBlock>
+
+                <StackPanel
+                    Margin="8,0,0,0"
+                    Spacing="12">
                     <StackPanel Spacing="4">
                         <TextBlock
-                            FontSize="{StaticResource LargeFontSize}"
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="StaticResource References Are Theme-Reactive" />
-                    </StackPanel>
-
-                    <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        TextWrapping="Wrap">
-                        <Run Text="Huskui defines its theme resources — brushes, corner radii, and other tokens — using " />
-                        <Run
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="DynamicResource forwarding" />
-                        <Run Text=" under the hood. This means that even though you reference them with " />
-                        <husk:HighlightInline Text="{}{StaticResource ...}" />
-                        <Run Text=", the resolved value retains its dynamic nature and will update automatically when the active theme changes." />
-                    </TextBlock>
-
-                    <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        TextWrapping="Wrap">
-                        <Run Text="For example, " />
-                        <husk:HighlightInline Text="MediumCornerRadius" />
-                        <Run Text=" is defined as a " />
-                        <husk:HighlightInline Text="DynamicResource" />
-                        <Run Text=" that forwards to a concrete " />
-                        <husk:HighlightInline Text="StaticMediumCornerRadius" />
-                        <Run Text=" value, which can be swapped out by a different corner-radius variant (None, Normal, Large). Similarly, brush resources like " />
-                        <husk:HighlightInline Text="ControlBackgroundBrush" />
-                        <Run Text=" are " />
-                        <husk:HighlightInline Text="SolidColorBrush" />
-                        <Run Text=" instances whose " />
-                        <husk:HighlightInline Text="Color" />
-                        <Run Text=" property references a dynamic theme color. In both cases, " />
-                        <Run
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="a plain StaticResource lookup is all you need" />
-                        <Run Text="." />
-                    </TextBlock>
-
-                    <husk:Divider />
-
-                    <WrapPanel
-                        ItemSpacing="8"
-                        Orientation="Horizontal">
-                        <husk:Tag
-                            Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
-                            Content="Usage"
-                            Foreground="{StaticResource ControlAccentForegroundBrush}" />
-                    </WrapPanel>
-
-                    <Border
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
-                        <StackPanel Spacing="8">
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;!-- No need for DynamicResource in your markup --&gt;"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;Border CornerRadius=&quot;{StaticResource MediumCornerRadius}&quot; /&gt;"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;TextBlock Foreground=&quot;{StaticResource ControlSecondaryForegroundBrush}&quot; /&gt;"
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </Border>
-
-            <!--  Section 2: Binding + Converter caveat  -->
-            <Border
-                Padding="24"
-                Background="{StaticResource CardBackgroundBrush}"
-                BorderBrush="{StaticResource ControlBorderBrush}"
-                BorderThickness="1"
-                CornerRadius="{StaticResource MediumCornerRadius}">
-                <StackPanel Spacing="16">
-                    <StackPanel
-                        Orientation="Horizontal"
-                        Spacing="12">
-                        <Border
-                            Padding="8,4"
-                            Background="{StaticResource ControlWarningBackgroundBrush}"
-                            CornerRadius="12">
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Foreground="White"
-                                Text="CAVEAT" />
-                        </Border>
+                            Text="husk:StaticResourceBinding"
+                            TextWrapping="Wrap" />
                         <TextBlock
-                            VerticalAlignment="Center"
-                            FontSize="{StaticResource LargeFontSize}"
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="Using Resources as Binding Source with Converters" />
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Resolves the resource via StaticResource, then wraps the result in a MultiBinding so the converter receives the properly resolved value. Use this when the resource key you are referencing is itself a DynamicResource-forwarded token (e.g. the CornerRadius resources)."
+                            TextWrapping="Wrap" />
                     </StackPanel>
-
-                    <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        TextWrapping="Wrap">
-                        <Run Text="Because the StaticResource-to-DynamicResource forwarding described above is handled at the XAML compiler level, writing " />
-                        <husk:HighlightInline Text="Binding Source={StaticResource ...}" />
-                        <Run Text=" against a forwarded resource causes the compiler to emit a " />
-                        <husk:HighlightInline Text="DynamicResource" />
-                        <Run Text=" node as the binding source instead of a plain value. When Avalonia's binding engine then feeds this dynamic-resource node into a converter, the converter receives the " />
-                        <Run
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="resource descriptor object" />
-                        <Run Text=" rather than the actual resolved value — producing incorrect results or runtime errors." />
-                    </TextBlock>
-
-                    <husk:Divider />
-
-                    <WrapPanel
-                        ItemSpacing="8"
-                        Orientation="Horizontal">
-                        <husk:Tag
-                            Background="{StaticResource ControlSuccessTranslucentFullBackgroundBrush}"
-                            Content="Solution"
-                            Foreground="{StaticResource ControlSuccessForegroundBrush}" />
-                    </WrapPanel>
-
-                    <TextBlock
-                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        TextWrapping="Wrap">
-                        <Run Text="Huskui ships two markup extensions to address this:" />
-                    </TextBlock>
-
-                    <StackPanel
-                        Margin="8,0,0,0"
-                        Spacing="12">
-                        <StackPanel Spacing="4">
-                            <TextBlock
-                                Text="husk:StaticResourceBinding"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Resolves the resource via StaticResource, then wraps the result in a MultiBinding so the converter receives the properly resolved value. Use this when the resource key you are referencing is itself a DynamicResource-forwarded token (e.g. the CornerRadius resources)."
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                        <StackPanel Spacing="4">
-                            <TextBlock
-                                Text="husk:DynamicResourceBinding"
-                                TextWrapping="Wrap" />
-                            <TextBlock
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Same mechanism but resolves via DynamicResource. Use this when you would otherwise write Binding Source={DynamicResource ...} with a converter."
-                                TextWrapping="Wrap" />
-                        </StackPanel>
+                    <StackPanel Spacing="4">
+                        <TextBlock
+                            Text="husk:DynamicResourceBinding"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Same mechanism but resolves via DynamicResource. Use this when you would otherwise write Binding Source={DynamicResource ...} with a converter."
+                            TextWrapping="Wrap" />
                     </StackPanel>
-
-                    <WrapPanel
-                        ItemSpacing="8"
-                        Orientation="Horizontal">
-                        <husk:Tag
-                            Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
-                            Content="Before &amp; After"
-                            Foreground="{StaticResource ControlAccentForegroundBrush}" />
-                    </WrapPanel>
-
-                    <Border
-                        Padding="16"
-                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                        BorderBrush="{StaticResource ControlBorderBrush}"
-                        BorderThickness="1"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
-                        <StackPanel Spacing="12">
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Foreground="{StaticResource ControlDangerForegroundBrush}"
-                                Text="&#x2718; Broken — converter receives a DynamicResource descriptor" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;Border CornerRadius=&quot;{Binding Source={StaticResource MediumCornerRadius}, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
-                                TextWrapping="Wrap" />
-
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Foreground="{StaticResource ControlSuccessForegroundBrush}"
-                                Text="&#x2714; Fixed — converter receives the actual CornerRadius value" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Text="&lt;Border CornerRadius=&quot;{husk:StaticResourceBinding MediumCornerRadius, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Border>
-
-                    <husk:InfoBar
-                        Classes="Warning"
-                        Header="When do I need this?">
-                        <StackPanel Spacing="8">
-                            <TextBlock
-                                Text="These extensions are only necessary when you pair a resource lookup with a converter through Binding. A standalone StaticResource or DynamicResource assignment (without Binding) works as expected."
-                                TextWrapping="Wrap" />
-                            <TextBlock TextWrapping="Wrap">
-                                <Run Text="If the resource you are referencing is " />
-                                <Run
-                                    FontWeight="{StaticResource ControlStrongFontWeight}"
-                                    Text="not" />
-                                <Run Text=" a forwarded DynamicResource — for example, a plain double or a Brush defined directly — then " />
-                                <husk:HighlightInline Text="Binding Source={StaticResource ...}" />
-                                <Run Text=" is safe and does not need replacement." />
-                            </TextBlock>
-                            <TextBlock
-                                Text="These extensions cannot replace Binding with RelativeSource or ElementName, because those binding modes do not involve resource resolution and are unaffected by the forwarding mechanism."
-                                TextWrapping="Wrap" />
-                        </StackPanel>
-                    </husk:InfoBar>
                 </StackPanel>
-            </Border>
 
-        </StackPanel>
-    </ScrollViewer>
+                <WrapPanel
+                    ItemSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag
+                        Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
+                        Content="Before &amp; After"
+                        Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                </WrapPanel>
 
-</husk:Page>
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Foreground="{StaticResource ControlDangerForegroundBrush}"
+                            Text="&#x2718; Broken — converter receives a DynamicResource descriptor" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="&lt;Border CornerRadius=&quot;{Binding Source={StaticResource MediumCornerRadius}, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
+                            TextWrapping="Wrap" />
+
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Foreground="{StaticResource ControlSuccessForegroundBrush}"
+                            Text="&#x2714; Fixed — converter receives the actual CornerRadius value" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Text="&lt;Border CornerRadius=&quot;{husk:StaticResourceBinding MediumCornerRadius, Converter={x:Static husk:CornerRadiusConverters.Bottom}}&quot; /&gt;"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <husk:InfoBar
+                    Classes="Warning"
+                    Header="When do I need this?">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            Text="These extensions are only necessary when you pair a resource lookup with a converter through Binding. A standalone StaticResource or DynamicResource assignment (without Binding) works as expected."
+                            TextWrapping="Wrap" />
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="If the resource you are referencing is " />
+                            <Run
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="not" />
+                            <Run Text=" a forwarded DynamicResource — for example, a plain double or a Brush defined directly — then " />
+                            <husk:HighlightInline Text="Binding Source={StaticResource ...}" />
+                            <Run Text=" is safe and does not need replacement." />
+                        </TextBlock>
+                        <TextBlock
+                            Text="These extensions cannot replace Binding with RelativeSource or ElementName, because those binding modes do not involve resource resolution and are unaffected by the forwarding mechanism."
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </husk:InfoBar>
+            </StackPanel>
+        </Border>
+
+    </StackPanel>
+
+</controls:ControlPage>

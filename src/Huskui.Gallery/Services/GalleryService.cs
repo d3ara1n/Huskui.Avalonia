@@ -467,7 +467,7 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
-                    Title = "Converters",
+                    Title = "Builtin Converters",
                     Description =
                         "Overview of Huskui converter patterns, families, and practical XAML usage",
                     Icon = Symbol.DataHistogram,
@@ -481,6 +481,24 @@ public class GalleryService : IGalleryService
                         "number",
                         "cornerradius",
                         "thickness",
+                    ],
+                },
+                new()
+                {
+                    Title = "Overlay AppSurface Usage",
+                    Description =
+                        "How AppSurface should be hosted on desktop, browser, and mobile so Huskui overlays can render",
+                    Icon = Symbol.Layer,
+                    PageType = typeof(OverlayAppSurfacePage),
+                    Tags =
+                    [
+                        "overlay",
+                        "appsurface",
+                        "appwindow",
+                        "browser",
+                        "mobile",
+                        "dialog",
+                        "modal",
                     ],
                 },
                 new()

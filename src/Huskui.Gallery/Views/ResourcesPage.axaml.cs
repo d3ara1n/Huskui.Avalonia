@@ -1,8 +1,8 @@
-using Huskui.Avalonia.Controls;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;
 
-public partial class ResourcesPage : Page
+public partial class ResourcesPage : ControlPage
 {
     public ResourcesPage() => InitializeComponent();
 }

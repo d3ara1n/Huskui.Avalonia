@@ -20,7 +20,9 @@
             x:DataType="models:GalleryItem">
             <Grid
                 Margin="4"
-                ColumnDefinitions="Auto,*,Auto">
+                Background="Transparent"
+                ColumnDefinitions="Auto,*,Auto"
+                ToolTip.Tip="{Binding Description}">
                 <fi:SymbolIcon
                     Grid.Column="0"
                     Margin="0,0,12,0"
