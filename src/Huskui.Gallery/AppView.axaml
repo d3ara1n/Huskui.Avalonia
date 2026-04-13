@@ -173,12 +173,13 @@
                     BorderBrush="{StaticResource ControlBorderBrush}"
                     BorderThickness="0,1,0,0">
                     <Grid ColumnDefinitions="*,Auto,Auto">
-                        <TextBlock
+                        <HyperlinkButton
                             Grid.Column="0"
                             VerticalAlignment="Center"
+                            Content="Huskui.Avalonia"
                             FontSize="{StaticResource SmallFontSize}"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                            Text="Huskui.Avalonia" />
+                            NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
                         <Button
                             Grid.Column="1"
                             Classes="Small"

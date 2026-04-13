@@ -130,11 +130,6 @@ public class MarkdownViewer : TemplatedControl
         public int ListDepth { get; set; }
 
         public int ListIndex { get; set; }
-
-        public BlockContext()
-        {
-            ListDepth = -1;
-        }
     }
 
     private Control? RenderBlock(Block block, BlockContext context = default)
@@ -455,10 +450,13 @@ public class MarkdownViewer : TemplatedControl
     private char GenerateUnorderedListHead(int depth) =>
         depth switch
         {
-            0 => '●',
-            1 => '○',
-            2 => '■',
-            _ => '□',
+            1 => '●',
+            2 => '○',
+            3 => '■',
+            4 => '□',
+            5 => '◆',
+            6 => '♢',
+            _ => '‥',
         };
 
     private string GenerateOrderedListHead(int depth, int index)
