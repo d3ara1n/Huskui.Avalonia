@@ -1,4 +1,4 @@
-<controls:ControlPage
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.CodeViewerPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -57,7 +57,9 @@
                         <TextBlock
                             FontWeight="{StaticResource ControlStrongFontWeight}"
                             Text="Install into an existing Huskui app" />
-                        <husk:CodeViewer x:Name="InstallCodeViewer" Language="bash" />
+                        <husk:CodeViewer
+                            x:Name="InstallCodeViewer"
+                            Language="bash" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -72,7 +74,9 @@
                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                     Text="Use the default variant when code should feel like a featured part of the page rather than a small inline detail."
                     TextWrapping="Wrap" />
-                <husk:CodeViewer x:Name="PrimaryCodeViewer" Language="csharp" />
+                <husk:CodeViewer
+                    x:Name="PrimaryCodeViewer"
+                    Language="csharp" />
             </StackPanel>
         </controls:ExampleContainer>
 
@@ -127,8 +131,10 @@
                         <StackPanel Spacing="10">
                             <TextBlock
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="Alias: axaml -> XML" />
-                            <husk:CodeViewer x:Name="AxamlCodeViewer" Language="axaml" />
+                                Text="Alias: axaml -&gt; XML" />
+                            <husk:CodeViewer
+                                x:Name="AxamlCodeViewer"
+                                Language="axaml" />
                         </StackPanel>
                     </Border>
 
@@ -144,7 +150,9 @@
                             <TextBlock
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
                                 Text="Structured data: json" />
-                            <husk:CodeViewer x:Name="JsonCodeViewer" Language="json" />
+                            <husk:CodeViewer
+                                x:Name="JsonCodeViewer"
+                                Language="json" />
                         </StackPanel>
                     </Border>
 
@@ -160,7 +168,9 @@
                             <TextBlock
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
                                 Text="Documentation: markdown" />
-                            <husk:CodeViewer x:Name="MarkdownCodeViewer" Language="md" />
+                            <husk:CodeViewer
+                                x:Name="MarkdownCodeViewer"
+                                Language="md" />
                         </StackPanel>
                     </Border>
 
@@ -176,7 +186,9 @@
                             <TextBlock
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
                                 Text="Fallback: plain text" />
-                            <husk:CodeViewer x:Name="FallbackCodeViewer" Language="custom-log" />
+                            <husk:CodeViewer
+                                x:Name="FallbackCodeViewer"
+                                Language="custom-log" />
                         </StackPanel>
                     </Border>
                 </Grid>
@@ -204,18 +216,26 @@
                 <Grid
                     ColumnDefinitions="*,*"
                     ColumnSpacing="16">
-                    <StackPanel Grid.Column="0" Spacing="12">
+                    <StackPanel
+                        Grid.Column="0"
+                        Spacing="12">
                         <TextBlock
                             FontWeight="{StaticResource ControlStrongFontWeight}"
                             Text="XAML" />
-                        <husk:CodeViewer x:Name="UsageXamlCodeViewer" Language="xml" />
+                        <husk:CodeViewer
+                            x:Name="UsageXamlCodeViewer"
+                            Language="xml" />
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Spacing="12">
+                    <StackPanel
+                        Grid.Column="1"
+                        Spacing="12">
                         <TextBlock
                             FontWeight="{StaticResource ControlStrongFontWeight}"
                             Text="C#" />
-                        <husk:CodeViewer x:Name="UsageCSharpCodeViewer" Language="csharp" />
+                        <husk:CodeViewer
+                            x:Name="UsageCSharpCodeViewer"
+                            Language="csharp" />
                     </StackPanel>
                 </Grid>
 

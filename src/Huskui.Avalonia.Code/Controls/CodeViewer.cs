@@ -5,6 +5,7 @@ using Avalonia.Controls.Documents;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input.Platform;
+using Avalonia.Styling;
 using ColorCode;
 using Huskui.Avalonia.Code.Highlighting;
 using Huskui.Avalonia.Models;
@@ -68,7 +69,12 @@ public class CodeViewer : TemplatedControl
     public ICommand CopyCodeCommand { get; }
 
     private TextBlock? _codeTextBlock;
-    private static readonly AvaloniaInlineFormatter formatter = new();
+    private static readonly AvaloniaInlineFormatter LightFormatter = new(
+        CodeViewerStyleDictionaries.Light
+    );
+    private static readonly AvaloniaInlineFormatter DarkFormatter = new(
+        CodeViewerStyleDictionaries.Dark
+    );
 
     private static ILanguage? ResolveLanguage(string language)
     {
@@ -109,7 +115,16 @@ public class CodeViewer : TemplatedControl
     public CodeViewer()
     {
         CopyCodeCommand = new InternalAsyncCommand(CopyCode);
+        ActualThemeVariantChanged += SyncContentProxy;
     }
+
+    ~CodeViewer()
+    {
+        ActualThemeVariantChanged -= SyncContentProxy;
+    }
+
+    private AvaloniaInlineFormatter GetFormatter() =>
+        ActualThemeVariant == ThemeVariant.Dark ? DarkFormatter : LightFormatter;
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -134,6 +149,8 @@ public class CodeViewer : TemplatedControl
         }
     }
 
+    private void SyncContentProxy(object? sender, EventArgs args) => SyncContent();
+
     private void SyncContent()
     {
         if (_codeTextBlock is null)
@@ -149,7 +166,8 @@ public class CodeViewer : TemplatedControl
 
             if (language is not null)
             {
-                var inlines = formatter.FormatInlines(Code, language);
+                var inlines = GetFormatter().FormatInlines(Code, language);
+                _codeTextBlock.Text = null;
                 _codeTextBlock.Inlines = inlines;
             }
             else

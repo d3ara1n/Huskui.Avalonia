@@ -4,7 +4,8 @@ namespace Huskui.Gallery.Views;
 
 public partial class CodeViewerPage : ControlPage
 {
-    private const string InstallSnippet = "dotnet add package Huskui.Avalonia\ndotnet add package Huskui.Avalonia.Code";
+    private const string InstallSnippet =
+        "dotnet add package Huskui.Avalonia\ndotnet add package Huskui.Avalonia.Code";
 
     private const string PrimarySnippet = """
         public sealed record EditorCommand(string Id, string Label, bool IsEnabled);

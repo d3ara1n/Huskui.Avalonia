@@ -14,7 +14,7 @@ public class AvaloniaInlineFormatter : CodeColorizerBase
     private readonly Dictionary<string, ISolidColorBrush> _brushCache = [];
 
     public AvaloniaInlineFormatter()
-        : this(StyleDictionary.DefaultDark) { }
+        : this(CodeViewerStyleDictionaries.Dark) { }
 
     public AvaloniaInlineFormatter(StyleDictionary styles)
         : base(styles, null) { }
