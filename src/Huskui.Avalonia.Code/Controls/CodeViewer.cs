@@ -94,12 +94,20 @@ public class CodeViewer : TemplatedControl
         return language.ToLowerInvariant() switch
         {
             "cs" or "csharp" => Languages.CSharp,
-            "js" => Languages.JavaScript,
-            "ts" or "tsx" => Languages.Typescript,
-            "py" => Languages.Python,
-            "xaml" or "axaml" or "html" => Languages.Xml,
             "fs" or "fsharp" => Languages.FSharp,
-            "md" => Languages.Markdown,
+            "java" => Languages.Java,
+            "js" or "javascript" => Languages.JavaScript,
+            "ts" or "tsx" or "typescript" => Languages.Typescript,
+            "py" or "python" => Languages.Python,
+            "xml" or "xaml" or "axaml" => Languages.Xml,
+            "md" or "markdown" => Languages.Markdown,
+            "c" or "cpp" => Languages.Cpp,
+            "html" => Languages.Html,
+            "css" => Languages.Css,
+            "ps1" or "powershell" => Languages.PowerShell,
+            "sql" => Languages.Sql,
+            "php" => Languages.Php,
+            "vb" or "visualbasic" => Languages.VbDotNet,
             _ => null,
         };
     }
