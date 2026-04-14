@@ -27,19 +27,15 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" />
-        <PackageReference Include="FluentIcons.Avalonia" Version="2.1.323" />
+        <PackageReference Include="FluentIcons.Avalonia" />
 
         <!-- Source Link for better debugging experience -->
-        <PackageReference Include="GitVersion.MsBuild" Version="6.7.0">
+        <PackageReference Include="GitVersion.MsBuild">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-        <PackageReference
-            Include="Microsoft.SourceLink.GitHub"
-            Version="10.0.201"
-            PrivateAssets="All"
-        />
+        <PackageReference Include="JetBrains.Annotations" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

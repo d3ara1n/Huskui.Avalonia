@@ -9,10 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="Avalonia" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-        <PackageReference Include="FluentIcons.Avalonia" Version="2.1.323" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.5" />
-        <PackageReference Include="DynamicData" Version="9.4.31" />
+        <PackageReference Include="CommunityToolkit.Mvvm" />
+        <PackageReference Include="FluentIcons.Avalonia" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="DynamicData" />
     </ItemGroup>
 
     <ItemGroup>

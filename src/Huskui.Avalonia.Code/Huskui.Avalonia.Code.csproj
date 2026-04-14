@@ -28,16 +28,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="TextMateSharp.Grammars" Version="2.0.3" />
-        <PackageReference Include="GitVersion.MsBuild" Version="6.7.0">
+        <PackageReference Include="TextMateSharp.Grammars" />
+        <PackageReference Include="GitVersion.MsBuild">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference
-            Include="Microsoft.SourceLink.GitHub"
-            Version="10.0.201"
-            PrivateAssets="All"
-        />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
