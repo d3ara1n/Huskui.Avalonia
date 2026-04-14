@@ -26,8 +26,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="12.0.0" />
-        <PackageReference Include="FluentIcons.Avalonia" Version="2.0.321" />
+        <PackageReference Include="Avalonia" />
+        <PackageReference Include="FluentIcons.Avalonia" Version="2.1.323" />
 
         <!-- Source Link for better debugging experience -->
         <PackageReference Include="GitVersion.MsBuild" Version="6.7.0">
