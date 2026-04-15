@@ -39,8 +39,8 @@
                     <ScrollViewer
                         Name="PART_ScrollViewer"
                         BringIntoViewOnFocusChange="False"
-                        HorizontalScrollBarVisibility="Hidden"
-                        VerticalScrollBarVisibility="Hidden">
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Disabled">
                         <ItemsPresenter
                             Name="PART_ItemsPresenter"
                             Margin="{TemplateBinding Padding}"
@@ -70,8 +70,8 @@
                     <ScrollViewer
                         Name="PART_ScrollViewer"
                         BringIntoViewOnFocusChange="False"
-                        HorizontalScrollBarVisibility="Hidden"
-                        VerticalScrollBarVisibility="Hidden">
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Disabled">
                         <ItemsPresenter
                             Name="PART_ItemsPresenter"
                             Margin="{TemplateBinding Padding}"
