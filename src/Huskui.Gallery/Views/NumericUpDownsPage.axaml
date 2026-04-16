@@ -76,6 +76,18 @@
                         PlaceholderText="Month"
                         Value="12" />
                 </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Simple Theme" />
+                    <NumericUpDown
+                        ClipValueToMinMax="True"
+                        Increment="1"
+                        Maximum="99"
+                        Minimum="0"
+                        PlaceholderText="Tap to edit"
+                        Theme="{StaticResource SimpleNumericUpDownTheme}"
+                        Value="24" />
+                </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
 
@@ -196,7 +208,7 @@
                         <StackPanel Spacing="8">
                             <TextBlock Text="Seats" />
                             <NumericUpDown
-                        x:Name="SeatsNumericUpDown"
+                                x:Name="SeatsNumericUpDown"
                                 ClipValueToMinMax="True"
                                 Increment="1"
                                 Maximum="500"
@@ -207,7 +219,7 @@
                         <StackPanel Spacing="8">
                             <TextBlock Text="Monthly API Calls (thousands)" />
                             <NumericUpDown
-                        x:Name="UsageNumericUpDown"
+                                x:Name="UsageNumericUpDown"
                                 ClipValueToMinMax="True"
                                 Increment="5"
                                 Maximum="200"
@@ -218,7 +230,7 @@
                         <StackPanel Spacing="8">
                             <TextBlock Text="Discount" />
                             <NumericUpDown
-                        x:Name="DiscountNumericUpDown"
+                                x:Name="DiscountNumericUpDown"
                                 ClipValueToMinMax="True"
                                 FormatString="F0"
                                 Increment="1"
