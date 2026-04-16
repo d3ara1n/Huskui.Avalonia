@@ -304,6 +304,15 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "NumericUpDowns",
+                    Description =
+                        "Numeric input controls with built-in step actions and Huskui field styling",
+                    Icon = Symbol.ChevronUpDown,
+                    PageType = typeof(NumericUpDownsPage),
+                    Tags = ["numericupdown", "number", "stepper", "input", "numeric"],
+                },
+                new()
+                {
                     Title = "TextBoxes",
                     Description = "Text input controls for single-line and multi-line text entry",
                     Icon = Symbol.TextBulletListSquare,

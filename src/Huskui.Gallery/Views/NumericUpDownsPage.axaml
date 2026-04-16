@@ -1,0 +1,311 @@
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.NumericUpDownsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="900"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Basic NumericUpDowns"
+            Description="Numeric inputs follow the same field language as TextBox, with compact step actions for quick adjustments.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Value Actions" />
+                    <Button
+                        Click="OnClearValuesClick"
+                        Content="Clear Values" />
+                    <Button
+                        Click="OnResetValuesClick"
+                        Content="Reset Samples" />
+                    <TextBlock
+                        x:Name="BasicStateText"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Default" />
+                    <NumericUpDown
+                        x:Name="DefaultNumericUpDown"
+                        PlaceholderText="Enter a value"
+                        Value="42" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Constrained Range" />
+                    <NumericUpDown
+                        x:Name="RangeNumericUpDown"
+                        ClipValueToMinMax="True"
+                        Increment="5"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="35" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Decimal Formatting" />
+                    <NumericUpDown
+                        x:Name="DecimalNumericUpDown"
+                        FormatString="F2"
+                        Increment="0.25"
+                        PlaceholderText="0.00"
+                        Value="12.5" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Clipped To Bounds" />
+                    <NumericUpDown
+                        x:Name="ClippedNumericUpDown"
+                        ClipValueToMinMax="True"
+                        Increment="1"
+                        Maximum="12"
+                        Minimum="1"
+                        PlaceholderText="Month"
+                        Value="12" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="States And Behavior"
+            Description="NumericUpDown supports read-only, disabled, nullable, aligned, and constrained numeric entry patterns.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Behavior Helpers" />
+                    <Button
+                        Click="OnSeedNullableClick"
+                        Content="Fill Nullable Field" />
+                    <Button
+                        Click="OnResetBehaviorClick"
+                        Content="Reset States" />
+                    <TextBlock
+                        x:Name="BehaviorStateText"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <Grid
+                Width="520"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="20"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Nullable With Placeholder" />
+                    <NumericUpDown
+                        x:Name="NullableNumericUpDown"
+                        PlaceholderText="Optional threshold" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="1"
+                    Spacing="8">
+                    <TextBlock Text="Right-Aligned Currency" />
+                    <NumericUpDown
+                        x:Name="CurrencyNumericUpDown"
+                        FormatString="F0"
+                        Increment="250"
+                        PlaceholderText="Budget"
+                        TextAlignment="Right"
+                        Value="4250" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Spacing="8">
+                    <TextBlock Text="Read-Only Derived Value" />
+                    <NumericUpDown
+                        FormatString="F1"
+                        IsReadOnly="True"
+                        Value="98.6" />
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Spacing="8">
+                    <TextBlock Text="Disabled Archived Value" />
+                    <NumericUpDown
+                        IsEnabled="False"
+                        Increment="50"
+                        Value="600" />
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Live Pricing Calculator"
+            Description="A realistic example where several NumericUpDown controls drive a compact pricing summary in real time.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Summary" />
+                    <TextBlock
+                        x:Name="PricingSeatsText"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="PricingUsageText"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="PricingTotalText"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        TextWrapping="Wrap" />
+                    <Button
+                        Click="OnResetPricingClick"
+                        Content="Reset Calculator" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <husk:Card
+                Width="460"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Team Workspace Plan" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Seats" />
+                            <NumericUpDown
+                        x:Name="SeatsNumericUpDown"
+                                ClipValueToMinMax="True"
+                                Increment="1"
+                                Maximum="500"
+                                Minimum="1"
+                                Value="12" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Monthly API Calls (thousands)" />
+                            <NumericUpDown
+                        x:Name="UsageNumericUpDown"
+                                ClipValueToMinMax="True"
+                                Increment="5"
+                                Maximum="200"
+                                Minimum="0"
+                                Value="40" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Discount" />
+                            <NumericUpDown
+                        x:Name="DiscountNumericUpDown"
+                                ClipValueToMinMax="True"
+                                FormatString="F0"
+                                Increment="1"
+                                Maximum="30"
+                                Minimum="0"
+                                Value="10" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Border
+                        Padding="16"
+                        Background="{StaticResource OverlayHalfBackgroundBrush}"
+                        CornerRadius="16">
+                        <StackPanel Spacing="6">
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Preview" />
+                            <TextBlock
+                                x:Name="PricingPreviewText"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="NumericUpDown works as a compact quantitative field inside Huskui forms.">
+            <husk:Card
+                Width="420"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Inventory Rule" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Minimum Stock" />
+                            <NumericUpDown
+                                ClipValueToMinMax="True"
+                                Increment="5"
+                                Maximum="500"
+                                Minimum="0"
+                                Value="25" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Reorder Quantity" />
+                            <NumericUpDown
+                                ClipValueToMinMax="True"
+                                Increment="10"
+                                Maximum="1000"
+                                Minimum="0"
+                                Value="100" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Alert Threshold" />
+                            <NumericUpDown
+                                ClipValueToMinMax="True"
+                                FormatString="F1"
+                                Increment="0.5"
+                                Maximum="100"
+                                Minimum="0"
+                                Value="15.5" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button Content="Cancel" />
+                        <Button
+                            Classes="Primary"
+                            Content="Save Rule" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

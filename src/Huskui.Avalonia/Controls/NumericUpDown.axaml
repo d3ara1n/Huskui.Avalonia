@@ -1,0 +1,198 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+    <Design.PreviewWith>
+        <Panel
+            Width="300"
+            Background="White">
+            <StackPanel
+                Margin="24"
+                Spacing="20">
+                <NumericUpDown
+                    PlaceholderText="Enter a number"
+                    Value="42" />
+                <NumericUpDown
+                    ClipValueToMinMax="True"
+                    Increment="5"
+                    Maximum="100"
+                    Minimum="0"
+                    Value="65" />
+                <NumericUpDown
+                    FormatString="F2"
+                    Increment="0.25"
+                    PlaceholderText="0.00"
+                    Value="12.5" />
+                <NumericUpDown
+                    IsEnabled="False"
+                    Value="8" />
+            </StackPanel>
+        </Panel>
+    </Design.PreviewWith>
+
+    <ControlTheme
+        x:Key="InlineNumericUpDownSpinnerTheme"
+        TargetType="ButtonSpinner">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="*,Auto">
+                    <ContentPresenter
+                        Grid.Column="0"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                    <Border
+                        x:Name="PART_SpinnerHost"
+                        Grid.Column="1"
+                        BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                        BorderThickness="1,0,0,0">
+                        <Grid
+                            Width="40"
+                            RowDefinitions="*,*">
+                            <Grid.Styles>
+                                <Style Selector="Button">
+                                    <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
+                                    <Setter Property="CornerRadius" Value="0" />
+                                    <Setter Property="IsTabStop" Value="False" />
+                                    <Setter Property="Padding" Value="0" />
+                                </Style>
+                            </Grid.Styles>
+
+                            <Button Name="PART_IncreaseButton">
+                                <fi:SymbolIcon
+                                    FontSize="12"
+                                    Symbol="ChevronUp" />
+                            </Button>
+
+                            <Button
+                                Name="PART_DecreaseButton"
+                                Grid.Row="1">
+                                <fi:SymbolIcon
+                                    FontSize="12"
+                                    Symbol="ChevronDown" />
+                            </Button>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[ShowButtonSpinner=false] /template/ Border#PART_SpinnerHost">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme
+        x:Key="{x:Type NumericUpDown}"
+        TargetType="NumericUpDown">
+        <Setter Property="Cursor" Value="Ibeam" />
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="PlaceholderForeground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource OverlayInteractiveBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border
+                        x:Name="PART_Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+
+                        <ButtonSpinner
+                            Name="PART_Spinner"
+                            AllowSpin="{TemplateBinding AllowSpin}"
+                            ButtonSpinnerLocation="{TemplateBinding ButtonSpinnerLocation}"
+                            ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}"
+                            Theme="{StaticResource InlineNumericUpDownSpinnerTheme}">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <Grid.Styles>
+                                    <Style Selector="ContentPresenter Button">
+                                        <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
+                                        <Setter Property="Padding" Value="8,4" />
+                                        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+                                        <Setter Property="Margin" Value="2" />
+                                    </Style>
+                                </Grid.Styles>
+
+                                <ContentPresenter
+                                    Grid.Column="0"
+                                    Content="{TemplateBinding InnerLeftContent}"
+                                    Foreground="{TemplateBinding PlaceholderForeground}" />
+
+                                <TextBox
+                                    Name="PART_TextBox"
+                                    Grid.Column="1"
+                                    Padding="{TemplateBinding Padding}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Background="Transparent"
+                                    FontSize="{TemplateBinding FontSize}"
+                                    Foreground="{TemplateBinding Foreground}"
+                                    IsReadOnly="{TemplateBinding IsReadOnly}"
+                                    PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
+                                    PlaceholderText="{TemplateBinding PlaceholderText}"
+                                    Text="{TemplateBinding Text,
+                                                           Mode=TwoWay}"
+                                    TextAlignment="{TemplateBinding TextAlignment}"
+                                    Theme="{StaticResource EmbeddedTextBoxTheme}" />
+
+                                <ContentPresenter
+                                    Grid.Column="2"
+                                    Content="{TemplateBinding InnerRightContent}"
+                                    Foreground="{TemplateBinding PlaceholderForeground}" />
+                            </Grid>
+                        </ButtonSpinner>
+                    </Border>
+
+                    <Border
+                        x:Name="PART_GlowBorder"
+                        BorderBrush="{StaticResource TransparentBrush}"
+                        BorderThickness="2"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:focus-within /template/ Border#PART_GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
+        </Style>
+
+        <Style Selector="^:focus-within /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pointerover:not(:focus-within) /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#PART_Border">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
