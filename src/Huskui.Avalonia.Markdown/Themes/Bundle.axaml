@@ -14,4 +14,5 @@
     <StyleInclude Source="/Themes/Styles.Paragraph.axaml" />
     <StyleInclude Source="/Themes/Styles.List.axaml" />
     <StyleInclude Source="/Themes/Styles.FrontMatter.axaml" />
+    <StyleInclude Source="/Themes/Styles.Code.axaml" />
 </Styles>

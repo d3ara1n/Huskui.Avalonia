@@ -33,7 +33,7 @@
         TargetType="local:HighlightBlock">
         <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlSecondaryForegroundBrush}" />
-        <Setter Property="Padding" Value="6,0" />
+        <Setter Property="Padding" Value="4,0" />
         <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />

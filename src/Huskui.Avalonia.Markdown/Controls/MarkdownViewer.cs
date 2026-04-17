@@ -297,6 +297,10 @@ public class MarkdownViewer : TemplatedControl
         foreach (var child in inlines)
         {
             child.Classes.Set("Markdown", true);
+            if (child is InlineUIContainer container && container.Child is { } inner)
+            {
+                inner.Classes.Set("Markdown", true);
+            }
         }
         return inlines;
     }
@@ -380,7 +384,6 @@ public class MarkdownViewer : TemplatedControl
                     {
                         var image = new Image();
                         ImageLoader.SetSource(image, link.Url);
-                        // Already marked .Markdown
                         inlines.Add(image);
                     }
                     else
