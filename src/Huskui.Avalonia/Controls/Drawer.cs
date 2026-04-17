@@ -30,17 +30,15 @@ public class Drawer : ContentControl
         bool
     >(nameof(IsExpanded), true);
 
-    public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
-        RoutedEvent.Register<Drawer, RoutedEventArgs>(
-            nameof(Expanded),
-            RoutingStrategies.Bubble
-        );
+    public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent = RoutedEvent.Register<
+        Drawer,
+        RoutedEventArgs
+    >(nameof(Expanded), RoutingStrategies.Bubble);
 
-    public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
-        RoutedEvent.Register<Drawer, RoutedEventArgs>(
-            nameof(Collapsed),
-            RoutingStrategies.Bubble
-        );
+    public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent = RoutedEvent.Register<
+        Drawer,
+        RoutedEventArgs
+    >(nameof(Collapsed), RoutingStrategies.Bubble);
 
     public static readonly StyledProperty<double> OffsetXProperty = AvaloniaProperty.Register<
         Drawer,
@@ -57,10 +55,8 @@ public class Drawer : ContentControl
         bool
     >(nameof(IsDismissable), true);
 
-    public static readonly StyledProperty<bool> IsToggleButtonVisibleProperty = AvaloniaProperty.Register<
-        Drawer,
-        bool
-    >(nameof(IsToggleButtonVisible), true);
+    public static readonly StyledProperty<bool> IsToggleButtonVisibleProperty =
+        AvaloniaProperty.Register<Drawer, bool>(nameof(IsToggleButtonVisible), true);
 
     public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
         Drawer,
