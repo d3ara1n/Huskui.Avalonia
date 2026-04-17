@@ -19,6 +19,7 @@ public partial class DrawerPage : ControlPage
             var drawer = new Drawer
             {
                 Title = "New Drawer",
+                IsToggleButtonVisible = ShowToggle.IsChecked ?? false,
                 Content = new TextBlock
                 {
                     Text = "This is the content of the drawer.",

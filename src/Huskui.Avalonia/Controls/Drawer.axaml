@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
@@ -63,7 +63,8 @@
                                 <ToggleButton
                                     Grid.Column="2"
                                     Padding="12,0"
-                                    IsChecked="{TemplateBinding IsOpen,
+                                    IsVisible="{TemplateBinding IsToggleButtonVisible}"
+                                    IsChecked="{TemplateBinding IsExpanded,
                                                                 Mode=TwoWay}"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
@@ -98,7 +99,7 @@
                             Focusable="True">
                             <ContentPresenter
                                 Margin="{TemplateBinding Padding}"
-                                IsVisible="{TemplateBinding IsOpen,
+                                IsVisible="{TemplateBinding IsExpanded,
                                                             Mode=OneWay}"
                                 Content="{TemplateBinding Content}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}" />
@@ -138,13 +139,13 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:open">
+        <Style Selector="^:expanded">
             <Style Selector="^ /template/ fi|SymbolIcon#ToggleIcon">
                 <Setter Property="Symbol" Value="ChevronDown" />
             </Style>
         </Style>
 
-        <Style Selector="^:not(:open)">
+        <Style Selector="^:not(:expanded)">
             <Style Selector="^ /template/ fi|SymbolIcon#ToggleIcon">
                 <Setter Property="Symbol" Value="ChevronUp" />
             </Style>
