@@ -1,4 +1,4 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
@@ -63,6 +63,7 @@
                                 <ToggleButton
                                     Grid.Column="2"
                                     Padding="12,0"
+                                    IsVisible="{TemplateBinding ShowToggleButton}"
                                     IsChecked="{TemplateBinding IsOpen,
                                                                 Mode=TwoWay}"
                                     Theme="{StaticResource GhostButtonTheme}">

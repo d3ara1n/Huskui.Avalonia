@@ -1,4 +1,4 @@
-﻿<controls:ControlPage
+<controls:ControlPage
     x:Class="Huskui.Gallery.Views.DrawerPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -19,8 +19,14 @@
 
             <StackPanel>
                 <Button
+                    Margin="5"
                     Click="OpenDrawer_OnClick"
                     Content="Open New Drawer" />
+                <ToggleButton
+                    x:Name="ShowToggle"
+                    Margin="5"
+                    Content="Show Toggle Button"
+                    IsChecked="True" />
             </StackPanel>
         </controls:ExampleContainer>
     </StackPanel>

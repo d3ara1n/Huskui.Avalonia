@@ -45,10 +45,17 @@ public class Drawer : ContentControl
         bool
     >(nameof(IsDismissable), true);
 
+    public static readonly StyledProperty<bool> ShowToggleButtonProperty = AvaloniaProperty.Register<
+        Drawer,
+        bool
+    >(nameof(ShowToggleButton), true);
+
     public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
         Drawer,
         double
     >(nameof(HeaderHeight), 42d);
+
+    public EventHandler OnClosed;
 
     private DrawerPanel? _drawerPanel;
 
@@ -94,6 +101,12 @@ public class Drawer : ContentControl
     {
         get => GetValue(IsDismissableProperty);
         set => SetValue(IsDismissableProperty, value);
+    }
+
+    public bool ShowToggleButton
+    {
+        get => GetValue(ShowToggleButtonProperty);
+        set => SetValue(ShowToggleButtonProperty, value);
     }
 
     public double HeaderHeight
@@ -343,6 +356,8 @@ public class Drawer : ContentControl
     private void OnCloseButtonClick(object? sender, RoutedEventArgs e)
     {
         Dismiss();
+        OnClosed?.Invoke(this, e);
+
         e.Handled = true;
     }
 
