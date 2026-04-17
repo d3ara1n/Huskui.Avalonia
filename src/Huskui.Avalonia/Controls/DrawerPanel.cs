@@ -34,12 +34,12 @@ public class DrawerPanel : Panel
                     height = drawer.DesiredSize.Height;
                 // 基础最小值
                 var minWidth = drawer.MinWidth;
-                var minHeight = drawer.IsOpen
+                var minHeight = drawer.IsExpanded
                     ? Math.Max(drawer.HeaderHeight, drawer.MinHeight)
                     : drawer.HeaderHeight;
                 // 基础最大值：不能超过宿主大小
                 var maxWidth = hostWidth;
-                var maxHeight = drawer.IsOpen ? hostHeight : drawer.HeaderHeight;
+                var maxHeight = drawer.IsExpanded ? hostHeight : drawer.HeaderHeight;
                 // 如果宿主比 Min 还小，允许降到宿主大小，避免死锁
                 minWidth = Math.Min(minWidth, maxWidth);
                 minHeight = Math.Min(minHeight, maxHeight);

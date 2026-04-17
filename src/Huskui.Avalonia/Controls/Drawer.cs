@@ -15,7 +15,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_ResizeRight, typeof(Control))]
 [TemplatePart(PART_ResizeTop, typeof(Control))]
 [TemplatePart(PART_ToggleStateButton, typeof(Button))]
-[PseudoClasses(":open", ":dragging", ":resizing")]
+[PseudoClasses(":expanded", ":dragging", ":resizing")]
 public class Drawer : ContentControl
 {
     public const string PART_Handle = nameof(PART_Handle);
@@ -25,10 +25,10 @@ public class Drawer : ContentControl
     public const string PART_CloseButton = nameof(PART_CloseButton);
     public const string PART_ToggleStateButton = nameof(PART_ToggleStateButton);
 
-    public static readonly StyledProperty<bool> IsOpenProperty = AvaloniaProperty.Register<
+    public static readonly StyledProperty<bool> IsExpandedProperty = AvaloniaProperty.Register<
         Drawer,
         bool
-    >(nameof(IsOpen), true);
+    >(nameof(IsExpanded), true);
 
     public static readonly StyledProperty<double> OffsetXProperty = AvaloniaProperty.Register<
         Drawer,
@@ -45,17 +45,15 @@ public class Drawer : ContentControl
         bool
     >(nameof(IsDismissable), true);
 
-    public static readonly StyledProperty<bool> ShowToggleButtonProperty = AvaloniaProperty.Register<
+    public static readonly StyledProperty<bool> IsToggleButtonVisibleProperty = AvaloniaProperty.Register<
         Drawer,
         bool
-    >(nameof(ShowToggleButton), true);
+    >(nameof(IsToggleButtonVisible), true);
 
     public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
         Drawer,
         double
     >(nameof(HeaderHeight), 42d);
-
-    public event EventHandler? OnClosed;
 
     private DrawerPanel? _drawerPanel;
 
@@ -79,10 +77,10 @@ public class Drawer : ContentControl
 
     public ICommand DismissCommand { get; }
 
-    public bool IsOpen
+    public bool IsExpanded
     {
-        get => GetValue(IsOpenProperty);
-        set => SetValue(IsOpenProperty, value);
+        get => GetValue(IsExpandedProperty);
+        set => SetValue(IsExpandedProperty, value);
     }
 
     public double OffsetX
@@ -103,10 +101,10 @@ public class Drawer : ContentControl
         set => SetValue(IsDismissableProperty, value);
     }
 
-    public bool ShowToggleButton
+    public bool IsToggleButtonVisible
     {
-        get => GetValue(ShowToggleButtonProperty);
-        set => SetValue(ShowToggleButtonProperty, value);
+        get => GetValue(IsToggleButtonVisibleProperty);
+        set => SetValue(IsToggleButtonVisibleProperty, value);
     }
 
     public double HeaderHeight
@@ -117,7 +115,7 @@ public class Drawer : ContentControl
 
     protected override Type StyleKeyOverride => typeof(Drawer);
 
-    private void OnIsOpenChanged(AvaloniaPropertyChangedEventArgs e)
+    private void OnIsExpandedChanged(AvaloniaPropertyChangedEventArgs e)
     {
         if (e.GetNewValue<bool>())
         {
@@ -144,9 +142,9 @@ public class Drawer : ContentControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == IsOpenProperty)
+        if (change.Property == IsExpandedProperty)
         {
-            OnIsOpenChanged(change);
+            OnIsExpandedChanged(change);
         }
     }
 
@@ -232,7 +230,7 @@ public class Drawer : ContentControl
 
     private void UpdatePseudoClasses()
     {
-        PseudoClasses.Set(":open", IsOpen);
+        PseudoClasses.Set(":expanded", IsExpanded);
         PseudoClasses.Set(":dragging", _isDragging);
         PseudoClasses.Set(":resizing", _isResizingLeft || _isResizingRight || _isResizingTop);
     }
@@ -325,7 +323,7 @@ public class Drawer : ContentControl
                 newWidth = Math.Clamp(newWidth, MinWidth, maxWidth);
                 Width = newWidth;
             }
-            else if (_isResizingTop && IsOpen)
+            else if (_isResizingTop && IsExpanded)
             {
                 var minOpenHeight = Math.Max(HeaderHeight, 100);
                 var maxHeight = Math.Max(minOpenHeight, parentHeight);
@@ -353,14 +351,6 @@ public class Drawer : ContentControl
         }
     }
 
-    private void OnCloseButtonClick(object? sender, RoutedEventArgs e)
-    {
-        Dismiss();
-        OnClosed?.Invoke(this, e);
-
-        e.Handled = true;
-    }
-
     public void BringToFront()
     {
         var args = new DrawerHost.BringToFrontRequestedEventArgs(this) { Drawer = this };
@@ -375,9 +365,9 @@ public class Drawer : ContentControl
 
     protected override Size MeasureOverride(Size availableSize)
     {
-        if (!IsOpen)
+        if (!IsExpanded)
         {
-            // When closed, height is restricted to HeaderHeight
+            // When collapsed, height is restricted to HeaderHeight
             // We still measure content but don't give it space?
             // Or we just force Height to HeaderHeight?
             // Let's force the desired size to be Width x HeaderHeight
