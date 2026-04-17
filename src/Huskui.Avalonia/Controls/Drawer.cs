@@ -30,6 +30,18 @@ public class Drawer : ContentControl
         bool
     >(nameof(IsExpanded), true);
 
+    public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
+        RoutedEvent.Register<Drawer, RoutedEventArgs>(
+            nameof(Expanded),
+            RoutingStrategies.Bubble
+        );
+
+    public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
+        RoutedEvent.Register<Drawer, RoutedEventArgs>(
+            nameof(Collapsed),
+            RoutingStrategies.Bubble
+        );
+
     public static readonly StyledProperty<double> OffsetXProperty = AvaloniaProperty.Register<
         Drawer,
         double
@@ -83,6 +95,18 @@ public class Drawer : ContentControl
         set => SetValue(IsExpandedProperty, value);
     }
 
+    public event EventHandler<RoutedEventArgs>? Expanded
+    {
+        add => AddHandler(ExpandedEvent, value);
+        remove => RemoveHandler(ExpandedEvent, value);
+    }
+
+    public event EventHandler<RoutedEventArgs>? Collapsed
+    {
+        add => AddHandler(CollapsedEvent, value);
+        remove => RemoveHandler(CollapsedEvent, value);
+    }
+
     public double OffsetX
     {
         get => GetValue(OffsetXProperty);
@@ -117,7 +141,15 @@ public class Drawer : ContentControl
 
     private void OnIsExpandedChanged(AvaloniaPropertyChangedEventArgs e)
     {
-        if (e.GetNewValue<bool>())
+        var wasExpanded = e.GetOldValue<bool>();
+        var isExpanded = e.GetNewValue<bool>();
+
+        if (wasExpanded == isExpanded)
+        {
+            return;
+        }
+
+        if (isExpanded)
         {
             if (_expandedHeight.HasValue)
             {
@@ -136,7 +168,20 @@ public class Drawer : ContentControl
         InvalidateMeasure();
         InvalidateArrange();
         _drawerPanel?.InvalidateArrange();
+
+        if (isExpanded)
+        {
+            OnExpanded(new RoutedEventArgs(ExpandedEvent, this));
+        }
+        else
+        {
+            OnCollapsed(new RoutedEventArgs(CollapsedEvent, this));
+        }
     }
+
+    protected virtual void OnExpanded(RoutedEventArgs e) => RaiseEvent(e);
+
+    protected virtual void OnCollapsed(RoutedEventArgs e) => RaiseEvent(e);
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
