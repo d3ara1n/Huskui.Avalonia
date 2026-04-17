@@ -2,6 +2,7 @@
     <Folder Name="/Misc/">
         <File Path=".gitignore" />
         <File Path=".editorconfig" />
+        <File Path="Directory.Packages.props" />
         <File Path="LICENSE" />
         <File Path="README.md" />
     </Folder>
