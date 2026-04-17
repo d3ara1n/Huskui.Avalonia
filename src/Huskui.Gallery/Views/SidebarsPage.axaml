@@ -41,6 +41,9 @@
                             FontWeight="Bold"
                             Text="Why Sidebar" />
                         <TextBlock
+                            Text="Sidebar is a modal overlay hosted through OverlayHost and presented as a side panel for contextual details and medium-complexity editing."
+                            TextWrapping="Wrap" />
+                        <TextBlock
                             Text="Ideal for a main-page plus side-context pattern to reduce page hopping and keep task continuity."
                             TextWrapping="Wrap" />
                         <TextBlock

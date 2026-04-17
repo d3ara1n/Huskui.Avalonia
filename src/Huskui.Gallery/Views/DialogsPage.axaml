@@ -50,6 +50,9 @@
                             FontWeight="Bold"
                             Text="Dialog Purpose" />
                         <TextBlock
+                            Text="Dialog is a modal overlay hosted through OverlayHost, intended for focused confirmation and simple input tasks."
+                            TextWrapping="Wrap" />
+                        <TextBlock
                             Text="Dialogs are designed for pure user input collection with binary choices. They only have PrimaryCommand (positive/affirmative) and SecondaryCommand (negative/cancel) actions."
                             TextWrapping="Wrap" />
                         <TextBlock

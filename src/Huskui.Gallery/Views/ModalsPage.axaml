@@ -44,6 +44,9 @@
                             FontWeight="Bold"
                             Text="Modal Purpose" />
                         <TextBlock
+                            Text="Modal is the general-purpose modal overlay form hosted through OverlayHost for extended workflows and complex interaction content."
+                            TextWrapping="Wrap" />
+                        <TextBlock
                             Text="Modals are designed for long, complex interactions that require the user's full attention. Unlike dialogs, they cannot be dismissed by clicking outside or pressing Escape."
                             TextWrapping="Wrap" />
                         <TextBlock

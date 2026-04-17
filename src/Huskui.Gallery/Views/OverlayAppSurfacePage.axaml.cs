@@ -5,11 +5,31 @@ namespace Huskui.Gallery.Views;
 public partial class OverlayAppSurfacePage : ControlPage
 {
     private const string DocumentMarkdown = """
-        # Overlay usage across platforms
+        # Overlay system architecture
 
-        `AppSurface` is the overlay-capable root in Huskui. It owns the internal hosts used by dialogs, modals, sidebars, toasts, growls, and drawers.
+        `AppSurface` is the root container of Huskui's overlay and floating-layer system. It owns all hosts used to present floating UI above the main content.
 
-        If a view is not inside an `AppSurface`, calling `PopDialog(...)`, `PopModal(...)`, or similar APIs has nowhere to render.
+        ## Host responsibilities
+
+        `AppSurface` contains multiple host types with different responsibilities:
+
+        - `OverlayHost`: the shared host for **modal overlay controls**
+          - `Dialog`
+          - `Modal`
+          - `Sidebar`
+          - `Toast`
+        - `GrowlHost`: the dedicated host for **non-modal growl notifications**
+        - `DrawerHost`: the dedicated host for **non-modal drawers**
+
+        In other words:
+
+        - modal overlays are hosted by `OverlayHost`
+        - non-modal floating controls use their own specialized hosts
+        - `AppSurface` is the root that coordinates all of them
+
+        Modal overlays share a common host because they temporarily obstruct the current interaction flow. Non-modal floating controls do not participate in the same interaction model, so they use specialized hosts with behavior tailored to their own UX patterns.
+
+        If a view is not inside an `AppSurface`, calling `PopDialog(...)`, `PopModal(...)`, `PopGrowl(...)`, or similar APIs has nowhere to render.
 
         ## Desktop: use `AppWindow`
 
@@ -46,7 +66,7 @@ public partial class OverlayAppSurfacePage : ControlPage
 
         ## Showing an overlay from a page or control
 
-        Resolve the nearest surface from the visual tree, then pop the overlay from that surface.
+        Resolve the nearest surface from the visual tree, then pop the floating control from that surface.
 
         ```csharp
         using Huskui.Avalonia.Controls;
@@ -86,7 +106,7 @@ public partial class OverlayAppSurfacePage : ControlPage
 
         ## Quick rule of thumb
 
-        If you want Huskui overlays to work, make sure the visible app tree is hosted by `AppSurface`.
+        If you want Huskui floating layers to work, make sure the visible app tree is hosted by `AppSurface`.
 
         - Desktop: `AppWindow` gives you that automatically.
         - Browser/mobile: wrap the root view in `AppSurface` yourself.

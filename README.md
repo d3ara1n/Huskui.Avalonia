@@ -38,15 +38,17 @@ Inspired by [ParkUI](https://park-ui.com/) and built with the [Radix Colors](htt
 
 Huskui.Avalonia includes the following components:
 
-- **AppWindow**: Enhanced window with built-in support for overlays, toasts, modals, and notifications
+- **AppWindow**: Enhanced window with a built-in `AppSurface` for overlays, floating panels, and notifications
 - **Card**: Container for grouping related content with consistent styling
 - **InfoBar**: Informational message bars with different severity levels
 - **Tag**: Compact labels for categorization and metadata
 - **IconLabel**: Combined icon and text label with FluentIcons integration
 - **Frame**: Navigation container with transition animations
 - **HighlightBlock**: Text highlighting for code snippets and keyboard shortcuts
-- **GrowlHost** and **GrowlItem**: Toast notification system
-- **OverlayHost** and **Modals/Dialogs/Drawers/Toasts**: Overlay management system
+- **AppSurface**: Root container for the entire overlay and floating-layer system
+- **OverlayHost** and **Dialogs/Modals/Sidebars/Toasts**: Shared host for modal overlay controls
+- **GrowlHost** and **GrowlItem**: Dedicated non-modal host for transient notification feedback
+- **DrawerHost** and **Drawer**: Dedicated non-modal host for draggable and resizable drawer panels
 - **SkeletonContainer**: Loading placeholder for content
 - **BusyContainer**: Container with loading state management
 - **LazyContainer**: Component for deferred loading of content

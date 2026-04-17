@@ -41,6 +41,9 @@
                             FontWeight="Bold"
                             Text="Toast Purpose" />
                         <TextBlock
+                            Text="Toast is a modal overlay hosted through OverlayHost and presented from the bottom for large content preview, not a lightweight notification."
+                            TextWrapping="Wrap" />
+                        <TextBlock
                             Text="Toasts are heavy-weight content viewers that slide up from the bottom, like a piece of toast popping up. They're even more substantial than modals and are used for content preview without navigation."
                             TextWrapping="Wrap" />
                         <TextBlock
