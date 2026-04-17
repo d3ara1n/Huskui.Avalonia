@@ -1,10 +1,27 @@
 # Huskui.Avalonia
 
-Huskui.Avalonia is a modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed to
-provide a comprehensive set of customizable controls for building beautiful cross-platform desktop applications.
-Inspired by [ParkUI](https://park-ui.com/) and using the [Radix Colors](https://www.radix-ui.com/colors) palette.
+<div align="center">
+
+A modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed for beautiful cross-platform desktop applications.
+
+Inspired by [ParkUI](https://park-ui.com/) and built with the [Radix Colors](https://www.radix-ui.com/colors) palette.
+
+[![NuGet](https://img.shields.io/nuget/v/Huskui.Avalonia?logo=nuget&label=NuGet)](https://www.nuget.org/packages/Huskui.Avalonia)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/Huskui.Avalonia?logo=nuget&label=Downloads)](https://www.nuget.org/packages/Huskui.Avalonia)
+![Avalonia](https://img.shields.io/badge/Avalonia-12.0.x-8b5cf6?logo=avalonia)
+![.NET](https://img.shields.io/badge/.NET-net8.0%20%7C%20net10.0-512BD4?logo=dotnet)
+[![License](https://img.shields.io/github/license/d3ara1n/Huskui.Avalonia)](LICENSE)
+
+</div>
 
 ![Screenshot](assets/screenshots.png)
+
+## Compatibility
+
+- **NuGet package**: `Huskui.Avalonia`
+- **Target frameworks**: `net8.0`, `net10.0`
+- **Avalonia requirement**: `12.0.x`
+- **License**: MIT
 
 ## Features
 
@@ -86,12 +103,14 @@ Helpful prompt ideas:
 
 ### Prerequisites
 
-- .NET 10.0 or later
-- Avalonia UI 12.0 or later
+- .NET `8.0` or `10.0`
+- Avalonia UI `12.0.x`
 
 ### Installation
 
-`dotnet add package Huskui.Avalonia`
+```bash
+dotnet add package Huskui.Avalonia
+```
 
 ### Basic Usage
 

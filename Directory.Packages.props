@@ -4,7 +4,7 @@
         <AvaloniaVersion>12.0.0</AvaloniaVersion>
     </PropertyGroup>
     <ItemGroup>
-        <PackageVersion Include="Avalonia" Version="12.0.1" />
+        <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)" />
         <PackageVersion Include="Avalonia.Android" Version="$(AvaloniaVersion)" />
         <PackageVersion Include="Avalonia.Browser" Version="$(AvaloniaVersion)" />
         <PackageVersion Include="Avalonia.Desktop" Version="$(AvaloniaVersion)" />
