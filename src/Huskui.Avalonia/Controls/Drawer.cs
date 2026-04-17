@@ -55,7 +55,7 @@ public class Drawer : ContentControl
         double
     >(nameof(HeaderHeight), 42d);
 
-    public EventHandler OnClosed;
+    public event EventHandler? OnClosed;
 
     private DrawerPanel? _drawerPanel;
 
