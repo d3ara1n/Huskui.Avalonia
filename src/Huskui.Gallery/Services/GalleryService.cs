@@ -175,7 +175,8 @@ public class GalleryService : IGalleryService
         var category = new GalleryCategory
         {
             Name = "Overlays",
-            Description = "AppSurface-rooted floating layers with modal overlays and dedicated non-modal hosts",
+            Description =
+                "AppSurface-rooted floating layers with modal overlays and dedicated non-modal hosts",
             Icon = Symbol.Layer,
             Items =
             [
