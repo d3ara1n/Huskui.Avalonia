@@ -114,12 +114,8 @@
                     x:Name="ProductSearchBox"
                     FilterMode="Contains"
                     MinimumPrefixLength="0"
-                    PlaceholderText="Search products by name...">
-                    <AutoCompleteBox.ValueMemberBinding>
-                        <Binding
-                            x:DataType="views:ProductSuggestion"
-                            Path="Name" />
-                    </AutoCompleteBox.ValueMemberBinding>
+                    PlaceholderText="Search products by name..."
+                    ValueMemberBinding="{Binding Name, x:DataType=views:ProductSuggestion}">
                     <AutoCompleteBox.ItemTemplate>
                         <DataTemplate x:DataType="views:ProductSuggestion">
                             <Grid
@@ -137,6 +133,7 @@
                                 <Border
                                     Grid.Column="1"
                                     Padding="8,4"
+                                    VerticalAlignment="Center"
                                     Background="{StaticResource OverlayHalfBackgroundBrush}"
                                     CornerRadius="999">
                                     <TextBlock
