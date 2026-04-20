@@ -11,7 +11,6 @@
         <ResourceInclude Source="/Controls/BusyContainer.axaml" />
         <ResourceInclude Source="/Controls/Card.axaml" />
         <ResourceInclude Source="/Controls/Carousel.axaml" />
-        <ResourceInclude Source="/Controls/PipsPager.axaml" />
         <ResourceInclude Source="/Controls/CheckBox.axaml" />
         <ResourceInclude Source="/Controls/ComboBox.axaml" />
         <ResourceInclude Source="/Controls/Dialog.axaml" />
@@ -42,6 +41,7 @@
         <ResourceInclude Source="/Controls/OverlayHost.axaml" />
         <ResourceInclude Source="/Controls/OverlayItem.axaml" />
         <ResourceInclude Source="/Controls/Page.axaml" />
+        <ResourceInclude Source="/Controls/PipsPager.axaml" />
         <ResourceInclude Source="/Controls/PlaceholderPresenter.axaml" />
         <ResourceInclude Source="/Controls/Popup.axaml" />
         <ResourceInclude Source="/Controls/ProgressBar.axaml" />
@@ -70,5 +70,6 @@
         <ResourceInclude Source="/Controls/ToggleSplitButton.axaml" />
         <ResourceInclude Source="/Controls/ToggleSwitch.axaml" />
         <ResourceInclude Source="/Controls/ToolTip.axaml" />
+        <ResourceInclude Source="/Controls/VariableContainer.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

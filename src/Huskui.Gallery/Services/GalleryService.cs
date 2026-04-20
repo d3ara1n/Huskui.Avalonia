@@ -164,6 +164,15 @@ public class GalleryService : IGalleryService
                     PageType = typeof(SkeletonContainersPage),
                     Tags = ["skeleton", "loading", "placeholder", "shimmer"],
                 },
+                new()
+                {
+                    Title = "VariableContainer",
+                    Description =
+                        "Reusable content container whose wrapper can be fully customized through Template",
+                    Icon = Symbol.LayerDiagonal,
+                    PageType = typeof(VariableContainerPage),
+                    Tags = ["template", "contentcontrol", "switchpresenter", "container", "wrapper"],
+                },
             ],
         };
 
