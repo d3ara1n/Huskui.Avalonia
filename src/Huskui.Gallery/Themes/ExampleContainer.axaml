@@ -110,39 +110,12 @@
                         <!--  Code Section  -->
                         <Border
                             Grid.Row="3"
-                            Margin="0,16,0,0"
-                            IsVisible="{TemplateBinding ShowCode}"
-                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
-                            BorderBrush="{StaticResource ControlBorderBrush}"
-                            BorderThickness="1">
+                            IsVisible="{TemplateBinding ShowCode}">
                             <StackPanel>
-                                <Border
-                                    Padding="12,8"
-                                    IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                    BorderBrush="{StaticResource ControlBorderBrush}"
-                                    BorderThickness="0,0,0,1">
-                                    <TextBlock
-                                        FontSize="{StaticResource SmallFontSize}"
-                                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                                        Text="XAML Code" />
-                                </Border>
                                 <husk:CodeViewer
                                     IsVisible="{Binding XamlCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                     Code="{TemplateBinding XamlCode}"
                                     Language="xml" />
-
-                                <Border
-                                    Padding="12,8"
-                                    IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
-                                    Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
-                                    BorderBrush="{StaticResource ControlBorderBrush}"
-                                    BorderThickness="0,1,0,1">
-                                    <TextBlock
-                                        FontSize="{StaticResource SmallFontSize}"
-                                        FontWeight="{StaticResource ControlStrongFontWeight}"
-                                        Text="C# Code" />
-                                </Border>
                                 <husk:CodeViewer
                                     IsVisible="{Binding CSharpCode, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
                                     Code="{TemplateBinding CSharpCode}"
