@@ -14,7 +14,9 @@
                     BackgroundSizing="{TemplateBinding BackgroundSizing}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding CornerRadius}" />
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Content="{TemplateBinding CurrentContent}"
+                    ContentTemplate="{TemplateBinding CurrentContentTemplate}" />
             </ControlTemplate>
         </Setter>
     </ControlTheme>
