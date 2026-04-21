@@ -3,12 +3,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
     <ControlTheme
-        x:Key="{x:Type local:PlaceholderPresenter}"
-        TargetType="local:PlaceholderPresenter">
+        x:Key="{x:Type local:PlaceholderContainer}"
+        TargetType="local:PlaceholderContainer">
         <Setter Property="Template">
             <ControlTemplate>
                 <ContentPresenter
-                    Name="{x:Static local:PlaceholderPresenter.PART_ContentPresenter}"
+                    Name="{x:Static local:PlaceholderContainer.PART_ContentPresenter}"
                     Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     BackgroundSizing="{TemplateBinding BackgroundSizing}"

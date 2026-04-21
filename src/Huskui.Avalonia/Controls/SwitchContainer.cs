@@ -6,32 +6,32 @@ using Avalonia.Metadata;
 
 namespace Huskui.Avalonia.Controls;
 
-public class SwitchPresenter : TemplatedControl
+public class SwitchContainer : TemplatedControl
 {
-    public static readonly DirectProperty<SwitchPresenter, SwitchCases> CasesProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCases>(
+    public static readonly DirectProperty<SwitchContainer, SwitchCases> CasesProperty =
+        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCases>(
             nameof(Cases),
             o => o.Cases,
             (o, v) => o.Cases = v
         );
 
-    public static readonly DirectProperty<SwitchPresenter, SwitchCase?> CurrentCaseProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, SwitchCase?>(
+    public static readonly DirectProperty<SwitchContainer, SwitchCase?> CurrentCaseProperty =
+        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCase?>(
             nameof(CurrentCase),
             o => o.CurrentCase,
             (o, v) => o.CurrentCase = v
         );
 
-    public static readonly DirectProperty<SwitchPresenter, object?> ValueProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, object?>(
+    public static readonly DirectProperty<SwitchContainer, object?> ValueProperty =
+        AvaloniaProperty.RegisterDirect<SwitchContainer, object?>(
             nameof(Value),
             o => o.Value,
             (o, v) => o.Value = v,
             defaultBindingMode: BindingMode.OneWay
         );
 
-    public static readonly DirectProperty<SwitchPresenter, Type?> TargetTypeProperty =
-        AvaloniaProperty.RegisterDirect<SwitchPresenter, Type?>(
+    public static readonly DirectProperty<SwitchContainer, Type?> TargetTypeProperty =
+        AvaloniaProperty.RegisterDirect<SwitchContainer, Type?>(
             nameof(TargetType),
             o => o.TargetType,
             (o, v) => o.TargetType = v,
@@ -39,7 +39,7 @@ public class SwitchPresenter : TemplatedControl
         );
 
     public static readonly StyledProperty<object?> ContentProperty = AvaloniaProperty.Register<
-        SwitchPresenter,
+        SwitchContainer,
         object?
     >(nameof(Content));
 

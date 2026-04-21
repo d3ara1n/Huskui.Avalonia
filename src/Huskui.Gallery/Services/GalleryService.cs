@@ -166,12 +166,21 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "SwitchContainer",
+                    Description =
+                        "Conditional content container that swaps rendered branches based on the current value",
+                    Icon = Symbol.BranchFork,
+                    PageType = typeof(SwitchContainerPage),
+                    Tags = ["switchcontainer", "switch", "case", "content", "state", "container"],
+                },
+                new()
+                {
                     Title = "VariableContainer",
                     Description =
                         "Reusable content container whose wrapper can be fully customized through Template",
                     Icon = Symbol.LayerDiagonal,
                     PageType = typeof(VariableContainerPage),
-                    Tags = ["template", "contentcontrol", "switchpresenter", "container", "wrapper"],
+                    Tags = ["template", "contentcontrol", "switchcontainer", "container", "wrapper"],
                 },
             ],
         };

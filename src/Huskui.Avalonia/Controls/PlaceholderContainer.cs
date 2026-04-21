@@ -10,22 +10,22 @@ using Avalonia.Metadata;
 namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_ContentPresenter, typeof(ContentPresenter))]
-public class PlaceholderPresenter : TemplatedControl
+public class PlaceholderContainer : TemplatedControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
     public static readonly StyledProperty<object?> PlaceholderProperty = AvaloniaProperty.Register<
-        PlaceholderPresenter,
+        PlaceholderContainer,
         object?
     >(nameof(Placeholder));
 
     public static readonly StyledProperty<object?> SourceProperty = AvaloniaProperty.Register<
-        PlaceholderPresenter,
+        PlaceholderContainer,
         object?
     >(nameof(Source));
 
     public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
-        AvaloniaProperty.Register<PlaceholderPresenter, IDataTemplate?>(nameof(SourceTemplate));
+        AvaloniaProperty.Register<PlaceholderContainer, IDataTemplate?>(nameof(SourceTemplate));
 
     private ContentPresenter? _contentPresenter;
 

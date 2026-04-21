@@ -168,7 +168,7 @@
 
                                                     </MultiBinding>
                                                 </ToggleButton.IsVisible>
-                                                <local:SwitchPresenter
+                                                <local:SwitchContainer
                                                     TargetType="x:Boolean"
                                                     Value="{TemplateBinding IsExpanded}">
                                                     <local:SwitchCase Value="{x:False}">
@@ -181,7 +181,7 @@
                                                             FontSize="9"
                                                             Symbol="ChevronUp" />
                                                     </local:SwitchCase>
-                                                </local:SwitchPresenter>
+                                                </local:SwitchContainer>
                                             </ToggleButton>
                                             <Button
                                                 Padding="4"

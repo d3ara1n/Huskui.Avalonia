@@ -25,7 +25,7 @@
                             Fill="{StaticResource ControlBorderBrush}" />
 
                         <!--  Header  -->
-                        <husk:SwitchPresenter
+                        <husk:SwitchContainer
                             Grid.Row="1"
                             Value="{TemplateBinding Header,
                                                     Converter={x:Static ObjectConverters.IsNotNull}}">
@@ -41,7 +41,7 @@
                                     Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                                     CornerRadius="{StaticResource FullCornerRadius}" />
                             </husk:SwitchCase>
-                        </husk:SwitchPresenter>
+                        </husk:SwitchContainer>
 
                         <!--  Bottom connector line  -->
                         <Rectangle

@@ -13,18 +13,6 @@
 
     <StackPanel Spacing="32">
 
-        <StackPanel Spacing="8">
-            <TextBlock
-                FontSize="28"
-                FontWeight="{StaticResource ControlStrongFontWeight}"
-                Text="VariableContainer" />
-            <TextBlock
-                FontSize="{StaticResource LargeFontSize}"
-                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                Text="Use VariableContainer when the outer shell needs to be heavily customized, but the inner Content should still be written once and reused through VariableContainerPresenter." 
-                TextWrapping="Wrap" />
-        </StackPanel>
-
         <controls:ExampleContainer
             Title="Reusable Wrapper Template"
             Description="Template supplies the outer chrome while Content stays in the normal Content slot. VariableContainerPresenter is the reusable placeholder for that content."
@@ -41,7 +29,7 @@
                                         Text="Template-defined wrapper" />
                                     <TextBlock
                                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                        Text="The card, header and spacing come from Template. The body below is normal Content." 
+                                        Text="The card, header and spacing come from Template. The body below is normal Content."
                                         TextWrapping="Wrap" />
                                 </StackPanel>
 
@@ -68,17 +56,17 @@
                             Content="Template-bound" />
                     </WrapPanel>
                     <Button
-                        HorizontalAlignment="Left"
                         Classes="Primary"
+                        HorizontalAlignment="Left"
                         Content="Primary action" />
                 </StackPanel>
             </husk:VariableContainer>
         </controls:ExampleContainer>
 
         <controls:ExampleContainer
-            Title="SwitchPresenter Container Variants"
+            Title="SwitchContainer Variants"
             Description="The outer container changes with a value, but the shared content is still declared once. Each shell variant just drops in VariableContainerPresenter."
-            XamlCode="&lt;ComboBox x:Name=&quot;ModePicker&quot; SelectedIndex=&quot;0&quot;&gt;&#10;    &lt;ComboBoxItem Content=&quot;Card&quot; /&gt;&#10;    &lt;ComboBoxItem Content=&quot;Outlined&quot; /&gt;&#10;    &lt;ComboBoxItem Content=&quot;Accent&quot; /&gt;&#10;&lt;/ComboBox&gt;&#10;&#10;&lt;husk:VariableContainer&gt;&#10;    &lt;husk:VariableContainer.Template&gt;&#10;        &lt;ControlTemplate TargetType=&quot;husk:VariableContainer&quot;&gt;&#10;            &lt;husk:SwitchPresenter Value=&quot;{Binding #ModePicker.SelectedIndex}&quot;&gt;&#10;                &lt;husk:SwitchCase Value=&quot;0&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;                &lt;husk:SwitchCase Value=&quot;1&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;                &lt;husk:SwitchCase Value=&quot;2&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;            &lt;/husk:SwitchPresenter&gt;&#10;        &lt;/ControlTemplate&gt;&#10;    &lt;/husk:VariableContainer.Template&gt;&#10;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;...shared content...&lt;/StackPanel&gt;&#10;&lt;/husk:VariableContainer&gt;">
+            XamlCode="&lt;ComboBox x:Name=&quot;ModePicker&quot; SelectedIndex=&quot;0&quot;&gt;&#10;    &lt;ComboBoxItem Content=&quot;Card&quot; /&gt;&#10;    &lt;ComboBoxItem Content=&quot;Outlined&quot; /&gt;&#10;    &lt;ComboBoxItem Content=&quot;Accent&quot; /&gt;&#10;&lt;/ComboBox&gt;&#10;&#10;&lt;husk:VariableContainer&gt;&#10;    &lt;husk:VariableContainer.Template&gt;&#10;        &lt;ControlTemplate TargetType=&quot;husk:VariableContainer&quot;&gt;&#10;            &lt;husk:SwitchContainer Value=&quot;{Binding #ModePicker.SelectedIndex}&quot;&gt;&#10;                &lt;husk:SwitchCase Value=&quot;0&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;                &lt;husk:SwitchCase Value=&quot;1&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;                &lt;husk:SwitchCase Value=&quot;2&quot;&gt;...&lt;husk:VariableContainerPresenter /&gt;...&lt;/husk:SwitchCase&gt;&#10;            &lt;/husk:SwitchContainer&gt;&#10;        &lt;/ControlTemplate&gt;&#10;    &lt;/husk:VariableContainer.Template&gt;&#10;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;...shared content...&lt;/StackPanel&gt;&#10;&lt;/husk:VariableContainer&gt;">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -95,7 +83,7 @@
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="SwitchPresenter changes only the wrapper. Each variant contains VariableContainerPresenter, which automatically resolves the shared content from the nearest VariableContainer."
+                        Text="SwitchContainer changes only the wrapper. Each variant contains VariableContainerPresenter, which automatically resolves the shared content from the nearest VariableContainer."
                         TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
@@ -103,7 +91,7 @@
             <husk:VariableContainer>
                 <husk:VariableContainer.Template>
                     <ControlTemplate TargetType="husk:VariableContainer">
-                        <husk:SwitchPresenter Value="{Binding #VariantPicker.SelectedIndex}">
+                        <husk:SwitchContainer Value="{Binding #VariantPicker.SelectedIndex}">
                             <husk:SwitchCase Value="0">
                                 <husk:Card Padding="20">
                                     <StackPanel Spacing="16">
@@ -146,7 +134,9 @@
                                     BorderBrush="{StaticResource ControlAccentBorderBrush}"
                                     BorderThickness="1"
                                     CornerRadius="{StaticResource LargeCornerRadius}">
-                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                                    <Grid
+                                        ColumnDefinitions="Auto,*"
+                                        ColumnSpacing="16">
                                         <Border
                                             Width="44"
                                             Height="44"
@@ -177,12 +167,14 @@
                                     </Grid>
                                 </Border>
                             </husk:SwitchCase>
-                        </husk:SwitchPresenter>
+                        </husk:SwitchContainer>
                     </ControlTemplate>
                 </husk:VariableContainer.Template>
 
                 <StackPanel Spacing="14">
-                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                    <Grid
+                        ColumnDefinitions="Auto,*"
+                        ColumnSpacing="12">
                         <Border
                             Width="56"
                             Height="56"
@@ -197,7 +189,9 @@
                                 Text="VC" />
                         </Border>
 
-                        <StackPanel Grid.Column="1" Spacing="2">
+                        <StackPanel
+                            Grid.Column="1"
+                            Spacing="2">
                             <TextBlock
                                 FontSize="16"
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -215,7 +209,7 @@
                         <husk:Tag Content="Shared content" />
                         <husk:Tag
                             Classes="Primary"
-                            Content="SwitchPresenter" />
+                            Content="SwitchContainer" />
                         <husk:Tag
                             Classes="Success"
                             Content="VariableContainerPresenter" />
@@ -227,8 +221,8 @@
                         TextWrapping="Wrap" />
 
                     <Button
-                        HorizontalAlignment="Left"
                         Classes="Primary"
+                        HorizontalAlignment="Left"
                         Content="Shared action" />
                 </StackPanel>
             </husk:VariableContainer>

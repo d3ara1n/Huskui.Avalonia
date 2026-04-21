@@ -39,12 +39,12 @@
                     <Grid
                         Grid.Row="0"
                         ColumnDefinitions="*,Auto,*">
-                        <husk:SwitchPresenter
+                        <husk:SwitchContainer
                             Grid.Column="0"
                             Height="4"
                             IsVisible="{TemplateBinding IsFirst,
                                                         Converter={x:Static BoolConverters.Not}}">
-                            <husk:SwitchPresenter.Value>
+                            <husk:SwitchContainer.Value>
                                 <MultiBinding Converter="{x:Static BoolConverters.Or}">
                                     <Binding
                                         Path="IsSelected"
@@ -53,15 +53,15 @@
                                         Path="IsCompleted"
                                         RelativeSource="{RelativeSource TemplatedParent}" />
                                 </MultiBinding>
-                            </husk:SwitchPresenter.Value>
+                            </husk:SwitchContainer.Value>
                             <husk:SwitchCase Value="{x:True}">
                                 <Border Background="{StaticResource ControlAccentBorderBrush}" />
                             </husk:SwitchCase>
                             <husk:SwitchCase Value="{x:False}">
                                 <Border Background="{StaticResource ControlBorderBrush}" />
                             </husk:SwitchCase>
-                        </husk:SwitchPresenter>
-                        <husk:SwitchPresenter
+                        </husk:SwitchContainer>
+                        <husk:SwitchContainer
                             Grid.Column="1"
                             Width="32"
                             Height="32"
@@ -94,8 +94,8 @@
                                                                Converter={x:Static husk:InternalConverters.ToDisplayIndex}}" />
                                 </Border>
                             </husk:SwitchCase>
-                        </husk:SwitchPresenter>
-                        <husk:SwitchPresenter
+                        </husk:SwitchContainer>
+                        <husk:SwitchContainer
                             Grid.Column="2"
                             Height="4"
                             IsVisible="{TemplateBinding IsLast,
@@ -107,7 +107,7 @@
                             <husk:SwitchCase Value="{x:False}">
                                 <Border Background="{StaticResource ControlBorderBrush}" />
                             </husk:SwitchCase>
-                        </husk:SwitchPresenter>
+                        </husk:SwitchContainer>
                     </Grid>
                     <Panel
                         Grid.Row="1"

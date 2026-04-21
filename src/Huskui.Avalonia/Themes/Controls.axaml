@@ -42,7 +42,7 @@
         <ResourceInclude Source="/Controls/OverlayItem.axaml" />
         <ResourceInclude Source="/Controls/Page.axaml" />
         <ResourceInclude Source="/Controls/PipsPager.axaml" />
-        <ResourceInclude Source="/Controls/PlaceholderPresenter.axaml" />
+        <ResourceInclude Source="/Controls/PlaceholderContainer.axaml" />
         <ResourceInclude Source="/Controls/Popup.axaml" />
         <ResourceInclude Source="/Controls/ProgressBar.axaml" />
         <ResourceInclude Source="/Controls/ProgressRing.axaml" />
@@ -56,7 +56,7 @@
         <ResourceInclude Source="/Controls/SplitButton.axaml" />
         <ResourceInclude Source="/Controls/StepControl.axaml" />
         <ResourceInclude Source="/Controls/StepItem.axaml" />
-        <ResourceInclude Source="/Controls/SwitchPresenter.axaml" />
+        <ResourceInclude Source="/Controls/SwitchContainer.axaml" />
         <ResourceInclude Source="/Controls/TabControl.axaml" />
         <ResourceInclude Source="/Controls/TabStrip.axaml" />
         <ResourceInclude Source="/Controls/Tag.axaml" />
