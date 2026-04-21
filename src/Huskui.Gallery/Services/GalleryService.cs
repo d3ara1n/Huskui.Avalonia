@@ -180,7 +180,14 @@ public class GalleryService : IGalleryService
                         "Reusable content container whose wrapper can be fully customized through Template",
                     Icon = Symbol.LayerDiagonal,
                     PageType = typeof(VariableContainerPage),
-                    Tags = ["template", "contentcontrol", "switchcontainer", "container", "wrapper"],
+                    Tags =
+                    [
+                        "template",
+                        "contentcontrol",
+                        "switchcontainer",
+                        "container",
+                        "wrapper",
+                    ],
                 },
             ],
         };
