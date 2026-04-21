@@ -1,0 +1,186 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.SwitchContainerPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="900"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="State-Based Content"
+            Description="Bind Value to any state source and let each SwitchCase render a different layout.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Document State" />
+                    <ComboBox
+                        x:Name="DocumentStatePicker"
+                        SelectedIndex="0">
+                        <ComboBoxItem Content="Draft" />
+                        <ComboBoxItem Content="Review" />
+                        <ComboBoxItem Content="Published" />
+                    </ComboBox>
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="SwitchContainer swaps the entire body without extra visibility toggles or converters."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <husk:SwitchContainer
+                TargetType="x:Int32"
+                Value="{Binding #DocumentStatePicker.SelectedIndex}">
+                <husk:SwitchCase Value="0">
+                    <husk:Card Padding="20">
+                        <StackPanel Spacing="12">
+                            <husk:Tag
+                                Classes="Warning"
+                                Content="Draft" />
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Draft content is still in progress" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Writers can keep editing structure, copy, and examples before sending the page for review."
+                                TextWrapping="Wrap" />
+                            <ProgressBar Value="38" />
+                        </StackPanel>
+                    </husk:Card>
+                </husk:SwitchCase>
+
+                <husk:SwitchCase Value="1">
+                    <Border
+                        Padding="20"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource LargeCornerRadius}">
+                        <StackPanel Spacing="12">
+                            <husk:Tag
+                                Classes="Primary"
+                                Content="In review" />
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Reviewers are checking content quality" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="This branch can show review notes, pending checks, or approval actions without affecting the other states."
+                                TextWrapping="Wrap" />
+                            <WrapPanel
+                                ItemSpacing="8"
+                                Orientation="Horizontal">
+                                <Button Content="Request changes" />
+                                <Button
+                                    Classes="Primary"
+                                    Content="Approve" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </husk:SwitchCase>
+
+                <husk:SwitchCase Value="2">
+                    <Border
+                        Padding="20"
+                        Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource LargeCornerRadius}">
+                        <StackPanel Spacing="12">
+                            <husk:Tag
+                                Classes="Success"
+                                Content="Published" />
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="The page is live" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Published state can expose live metrics, post-publish actions, and success feedback in a dedicated shell."
+                                TextWrapping="Wrap" />
+                            <WrapPanel
+                                ItemSpacing="8"
+                                Orientation="Horizontal">
+                                <husk:Tag Content="1.2k visits" />
+                                <husk:Tag Content="14 comments" />
+                                <husk:Tag Content="3 shares" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Border>
+                </husk:SwitchCase>
+            </husk:SwitchContainer>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Fallback Case"
+            Description="Leave SwitchCase.Value unset to define the default branch when no explicit value matches.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Status Keyword" />
+                    <TextBox
+                        x:Name="StatusKeywordBox"
+                        PlaceholderText="success, warning, danger"
+                        Text="success" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Try an unknown value like archived to trigger the fallback case."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <husk:SwitchContainer Value="{Binding #StatusKeywordBox.Text}">
+                <husk:SwitchCase Value="success">
+                    <husk:InfoBar
+                        Classes="Success"
+                        Content="Everything matched the success branch and the container rendered the green confirmation layout."
+                        Header="Operation succeeded" />
+                </husk:SwitchCase>
+
+                <husk:SwitchCase Value="warning">
+                    <husk:InfoBar
+                        Classes="Warning"
+                        Content="Warnings can surface a different template with richer guidance or actions."
+                        Header="Attention required" />
+                </husk:SwitchCase>
+
+                <husk:SwitchCase Value="danger">
+                    <husk:InfoBar
+                        Classes="Danger"
+                        Content="Error states can render their own body without wrapping everything in multiple conditional controls."
+                        Header="Action failed" />
+                </husk:SwitchCase>
+
+                <husk:SwitchCase>
+                    <husk:Card Padding="20">
+                        <StackPanel Spacing="10">
+                            <TextBlock
+                                FontSize="18"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Fallback branch" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="No explicit SwitchCase matched the current value, so the default case was used instead."
+                                TextWrapping="Wrap" />
+                            <TextBlock Text="Known values: success, warning, danger" />
+                        </StackPanel>
+                    </husk:Card>
+                </husk:SwitchCase>
+            </husk:SwitchContainer>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
