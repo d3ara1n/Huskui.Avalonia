@@ -77,7 +77,7 @@ public class PlaceholderPresenter : TemplatedControl
         var source = Source;
         var template = SourceTemplate;
 
-        if (_contentPresenter.Content is ILogical oldLogical)
+        if (_contentPresenter.Child is ILogical oldLogical)
         {
             LogicalChildren.Remove(oldLogical);
         }
@@ -93,7 +93,7 @@ public class PlaceholderPresenter : TemplatedControl
             _contentPresenter.Content = Placeholder;
         }
 
-        if (_contentPresenter.Content is ILogical newLogical)
+        if (_contentPresenter.Child is ILogical newLogical)
         {
             LogicalChildren.Add(newLogical);
         }
