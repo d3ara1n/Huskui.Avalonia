@@ -4,6 +4,7 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
+using Avalonia.Data;
 using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 
@@ -27,6 +28,25 @@ public class PlaceholderPresenter : TemplatedControl
     public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
         AvaloniaProperty.Register<PlaceholderPresenter, IDataTemplate?>(nameof(SourceTemplate));
 
+    public static readonly DirectProperty<PlaceholderPresenter, object?> CurrentContentProperty =
+        AvaloniaProperty.RegisterDirect<PlaceholderPresenter, object?>(
+            nameof(CurrentContent),
+            o => o.CurrentContent,
+            (o, v) => o.CurrentContent = v,
+            defaultBindingMode: BindingMode.OneWayToSource
+        );
+
+    public static readonly DirectProperty<PlaceholderPresenter, IDataTemplate?>
+        CurrentContentTemplateProperty = AvaloniaProperty.RegisterDirect<
+            PlaceholderPresenter,
+            IDataTemplate?
+        >(
+            nameof(CurrentContentTemplate),
+            o => o.CurrentContentTemplate,
+            (o, v) => o.CurrentContentTemplate = v,
+            defaultBindingMode: BindingMode.OneWayToSource
+        );
+
     private ContentPresenter? _contentPresenter;
 
     [Content]
@@ -48,54 +68,89 @@ public class PlaceholderPresenter : TemplatedControl
         set => SetValue(SourceTemplateProperty, value);
     }
 
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    public object? CurrentContent
     {
-        base.OnApplyTemplate(e);
+        get;
+        private set => SetAndRaise(CurrentContentProperty, ref field, value);
+    }
 
-        _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
-
-        UpdateContent();
+    public IDataTemplate? CurrentContentTemplate
+    {
+        get;
+        private set => SetAndRaise(CurrentContentTemplateProperty, ref field, value);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == SourceProperty || change.Property == SourceTemplateProperty)
+        if (
+            change.Property == SourceProperty
+            || change.Property == SourceTemplateProperty
+            || change.Property == PlaceholderProperty
+        )
         {
-            if (_contentPresenter != null)
+            UpdateCurrentContent();
+        }
+    }
+
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    {
+        base.OnApplyTemplate(e);
+
+        UnregisterContentPresenterHandlers();
+        _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
+        RegisterContentPresenterHandlers();
+    }
+
+    private void RegisterContentPresenterHandlers()
+    {
+        if (_contentPresenter != null)
+        {
+            _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
+        }
+    }
+
+    private void UnregisterContentPresenterHandlers()
+    {
+        if (_contentPresenter != null)
+        {
+            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
+        }
+    }
+
+    private void ContentPresenterOnPropertyChanged(
+        object? sender,
+        AvaloniaPropertyChangedEventArgs e
+    )
+    {
+        if (e.Property == ContentPresenter.ChildProperty)
+        {
+            if (e.OldValue is ILogical oldChild)
             {
-                UpdateContent();
+                LogicalChildren.Remove(oldChild);
+            }
+
+            if (e.NewValue is ILogical newChild)
+            {
+                LogicalChildren.Add(newChild);
             }
         }
     }
 
-    private void UpdateContent()
+    private void UpdateCurrentContent()
     {
-        ArgumentNullException.ThrowIfNull(_contentPresenter);
-
         var source = Source;
-        var template = SourceTemplate;
-
-        if (_contentPresenter.Content is ILogical oldLogical)
-        {
-            LogicalChildren.Remove(oldLogical);
-        }
 
         if (source != null)
         {
-            _contentPresenter.ContentTemplate = template;
-            _contentPresenter.Content = source;
+            CurrentContentTemplate = SourceTemplate;
+            CurrentContent = source;
         }
         else
         {
-            _contentPresenter.ContentTemplate = null;
-            _contentPresenter.Content = Placeholder;
-        }
-
-        if (_contentPresenter.Content is ILogical newLogical)
-        {
-            LogicalChildren.Add(newLogical);
+            CurrentContentTemplate = null;
+            CurrentContent = Placeholder;
         }
     }
 }
