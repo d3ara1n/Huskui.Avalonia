@@ -1,0 +1,60 @@
+name: Publish Code NuGet Package
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+permissions:
+    contents: write
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
+
+            -   name: Setup .NET
+                uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: 10.0
+
+            -   name: Install GitVersion
+                uses: GitTools/actions/gitversion/setup@v3.2.1
+                with:
+                    versionSpec: '6.x'
+
+            -   name: Run GitVersion
+                id: gitversion
+                uses: GitTools/actions/gitversion/execute@v3.2.1
+                with:
+                    useConfigFile: true
+
+            -   name: Install git-cliff
+                run: |
+                    cargo install git-cliff
+
+            -   name: Generate changelog
+                run: git-cliff --latest -o ./RELEASE_NOTES.md
+
+            -   name: Pack NuGet package
+                run: |
+                    RELEASE_NOTES=$(cat ./RELEASE_NOTES.md)
+                    dotnet pack src/Huskui.Avalonia.Mvvm/Huskui.Avalonia.Mvvm.csproj \
+                      --configuration Release \
+                      --output ./publish \
+                      -p:PackageReleaseNotes="$RELEASE_NOTES"
+
+            -   name: Publish to NuGet
+                run: |
+                    dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+
+                env:
+                    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
