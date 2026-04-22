@@ -487,6 +487,15 @@ public class GalleryService : IGalleryService
             [
                 new()
                 {
+                    Title = "Mvvm",
+                    Description =
+                        "Overview of the Huskui.Avalonia.Mvvm extension for activation, lifecycle binding, and view state",
+                    Icon = Symbol.BranchFork,
+                    PageType = typeof(MvvmPage),
+                    Tags = ["mvvm", "activation", "lifecycle", "state", "extension", "viewmodel"],
+                },
+                new()
+                {
                     Title = "CodeViewer",
                     Description =
                         "Syntax-highlighted code presentation control from Huskui.Avalonia.Code extension library",
