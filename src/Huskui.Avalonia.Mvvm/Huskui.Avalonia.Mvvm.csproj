@@ -31,6 +31,8 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
     </ItemGroup>
 
@@ -40,6 +42,10 @@
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
     </ItemGroup>
 
 </Project>

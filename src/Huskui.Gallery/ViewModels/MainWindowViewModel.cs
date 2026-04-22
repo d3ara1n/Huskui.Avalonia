@@ -140,7 +140,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
             var viewModel = ActivatorUtilities.CreateInstance(_serviceProvider, type);
 
             page.DataContext = viewModel;
-            ViewModelAttachableMixin.Attach(page);
+            ViewModelMixin.Attach(page);
         }
 
         return page;
