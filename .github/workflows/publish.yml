@@ -1,4 +1,4 @@
-name: Publish NuGet Package
+name: Publish Controls NuGet Package
 
 on:
     push:
