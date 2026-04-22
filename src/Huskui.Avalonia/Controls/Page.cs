@@ -1,13 +1,10 @@
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 
 namespace Huskui.Avalonia.Controls;
 
-[PseudoClasses(":loading", ":finished", ":failed")]
 public class Page : HeaderedContentControl
 {
     public static readonly StyledProperty<bool> CanGoBackProperty = AvaloniaProperty.Register<
@@ -34,9 +31,6 @@ public class Page : HeaderedContentControl
         BoxShadows
     >(nameof(BoxShadow));
 
-    private readonly CancellationTokenSource _cancellationTokenSource = new();
-    public CancellationToken LifetimeToken => _cancellationTokenSource.Token;
-
     public BoxShadows BoxShadow
     {
         get => GetValue(BoxShadowProperty);
@@ -48,8 +42,6 @@ public class Page : HeaderedContentControl
         get;
         set => SetAndRaise(IsBackButtonVisibleProperty, ref field, value);
     } = true;
-
-    public IPageModel? Model { get; set; }
 
     public bool CanGoBack
     {
@@ -64,50 +56,4 @@ public class Page : HeaderedContentControl
     } = true;
 
     protected override Type StyleKeyOverride => typeof(Page);
-
-    protected override async void OnLoaded(RoutedEventArgs e)
-    {
-        base.OnLoaded(e);
-        if (!Design.IsDesignMode)
-        {
-            if (Model is not null)
-            {
-                SetState(true);
-                try
-                {
-                    await Model.InitializeAsync();
-                    SetState(false, true);
-                }
-                catch
-                {
-                    SetState(false, false, true);
-                }
-            }
-        }
-    }
-
-    protected override async void OnUnloaded(RoutedEventArgs e)
-    {
-        base.OnUnloaded(e);
-
-        if (!Design.IsDesignMode)
-        {
-            if (!_cancellationTokenSource.IsCancellationRequested)
-            {
-                await _cancellationTokenSource.CancelAsync();
-            }
-
-            if (Model is not null)
-            {
-                await Model.DeinitializeAsync();
-            }
-        }
-    }
-
-    private void SetState(bool loading = false, bool finished = false, bool failed = false)
-    {
-        PseudoClasses.Set(":loading", loading);
-        PseudoClasses.Set(":finished", finished);
-        PseudoClasses.Set(":failed", failed);
-    }
 }

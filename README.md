@@ -54,6 +54,19 @@ Huskui.Avalonia includes the following components:
 - **LazyContainer**: Component for deferred loading of content
 - And many more...
 
+## Extensions
+
+Huskui.Avalonia offers optional extension libraries that extend the core functionality:
+
+| Package | Description |
+|---------|-------------|
+| [Huskui.Avalonia.Code](src/Huskui.Avalonia.Code/README.md) | Syntax-highlighted code viewer powered by TextMate grammars |
+| [Huskui.Avalonia.Markdown](src/Huskui.Avalonia.Markdown/README.md) | Markdown-to-native-Avalonia rendering powered by Markdig |
+| [Huskui.Avalonia.Mvvm](src/Huskui.Avalonia.Mvvm/README.md) | MVVM lifecycle helpers — decouple your ViewModels from UI controls |
+
+> [!WARNING]
+> If you were using `IPageModel` and `Page.Model` for ViewModel lifecycle management, this API has been **removed** in 1.0.0. Please refer to the [Huskui.Avalonia.Mvvm README](src/Huskui.Avalonia.Mvvm/README.md) for the new `IViewModel` + `ViewModelAttachableMixin` approach.
+
 ## Gallery
 
 Explore all components and their features in the interactive Gallery application included in this repository. The

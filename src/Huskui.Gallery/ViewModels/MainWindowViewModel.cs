@@ -8,15 +8,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
 using DynamicData.Binding;
-using Huskui.Avalonia;
 using Huskui.Avalonia.Controls;
+using Huskui.Avalonia.Mvvm.Mixins;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Gallery.ViewModels;
 
-public partial class MainWindowViewModel : ObservableObject, IDisposable
+public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
     // DynamicData collections
     private readonly SourceList<GalleryItem> _allItemsSource = new();
@@ -30,8 +30,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         INavigationService navigationService,
         IThemeService themeService,
         ISettingsViewFactory settingsViewFactory,
-        IServiceProvider serviceProvider
-    )
+        IServiceProvider serviceProvider)
     {
         _galleryService = galleryService;
         NavigationService = navigationService;
@@ -45,21 +44,20 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         _allItemsSource.AddRange(_galleryService.AllItems);
 
         // Setup reactive search
-        var searchTextObservable = this.WhenPropertyChanged(x => x.SearchText)
-            .Select(x => x.Value ?? string.Empty)
-            .Throttle(TimeSpan.FromMilliseconds(300))
-            .DistinctUntilChanged();
+        var searchTextObservable = this
+                                  .WhenPropertyChanged(x => x.SearchText)
+                                  .Select(x => x.Value ?? string.Empty)
+                                  .Throttle(TimeSpan.FromMilliseconds(300))
+                                  .DistinctUntilChanged();
 
         // Create filtered collection based on search text
         var searchSubscription = _allItemsSource
-            .Connect()
-            .Filter(
-                searchTextObservable.Select<string, Func<GalleryItem, bool>>(searchText =>
-                    item => string.IsNullOrWhiteSpace(searchText) || item.MatchesSearch(searchText)
-                )
-            )
-            .Bind(out _searchResults)
-            .Subscribe();
+                                .Connect()
+                                .Filter(searchTextObservable.Select<string, Func<GalleryItem, bool>>(searchText =>
+                                            item => string.IsNullOrWhiteSpace(searchText)
+                                                 || item.MatchesSearch(searchText)))
+                                .Bind(out _searchResults)
+                                .Subscribe();
 
         _disposables.Add(searchSubscription);
 
@@ -77,8 +75,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     }
 
     [ObservableProperty]
-    public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } =
-        new();
+    public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } = new();
 
     [ObservableProperty]
     public partial bool IsSearchActive { get; set; }
@@ -123,11 +120,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
     {
         if (!view.IsAssignableTo(typeof(Avalonia.Controls.Page)))
         {
-            throw new ArgumentOutOfRangeException(
-                nameof(view),
-                view,
-                "Parameter view must be derived from Page"
-            );
+            throw new ArgumentOutOfRangeException(nameof(view), view, "Parameter view must be derived from Page");
         }
 
         var name = view.FullName!.Replace("View", "ViewModel", StringComparison.Ordinal);
@@ -139,22 +132,15 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         {
             if (!type.IsAssignableTo(typeof(ObservableObject)))
             {
-                throw new ArgumentOutOfRangeException(
-                    nameof(view),
-                    type,
-                    $"{view.Name} was bound to a view model which is not derived from ObservableObject"
-                );
+                throw new ArgumentOutOfRangeException(nameof(view),
+                                                      type,
+                                                      $"{view.Name} was bound to a view model which is not derived from ObservableObject");
             }
 
             var viewModel = ActivatorUtilities.CreateInstance(_serviceProvider, type);
 
             page.DataContext = viewModel;
-
-            if (viewModel is IPageModel pageModel)
-            {
-                pageModel.PageToken = page.LifetimeToken;
-                page.Model = pageModel;
-            }
+            ViewModelAttachableMixin.Attach(page);
         }
 
         return page;
@@ -241,10 +227,8 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
 
     private void OnCategoryGroupPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
-        if (
-            e.PropertyName == nameof(CategoryGroupViewModel.SelectedItem)
-            && sender is CategoryGroupViewModel categoryGroup
-        )
+        if (e.PropertyName == nameof(CategoryGroupViewModel.SelectedItem)
+         && sender is CategoryGroupViewModel categoryGroup)
         {
             if (categoryGroup.SelectedItem != null)
             {
@@ -263,8 +247,7 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
         }
     }
 
-    private void OnNavigationChanged(object? sender, GalleryItem? item) =>
-        UpdateSelectedItemFromNavigation();
+    private void OnNavigationChanged(object? sender, GalleryItem? item) => UpdateSelectedItemFromNavigation();
 
     private void UpdateSelectedItemFromNavigation()
     {
