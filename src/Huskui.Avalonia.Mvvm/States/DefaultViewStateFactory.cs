@@ -6,6 +6,8 @@ public sealed class DefaultViewStateFactory : IViewStateKeyFactory
     {
         var assemblyName = owner.Assembly.GetName().FullName;
         var typeName = owner.FullName ?? owner.Name;
-        return partitionKey != null ? $"{assemblyName}|{typeName}|{partitionKey}" : $"{assemblyName}|{typeName}";
+        return partitionKey != null
+            ? $"{assemblyName}|{typeName}|{partitionKey}"
+            : $"{assemblyName}|{typeName}";
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="io.github.d3ara1n.huskui.gallery"
-          android:versionCode="1"
-          android:versionName="1.0">
-  <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="36" />
-  <uses-permission android:name="android.permission.INTERNET" />
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.d3ara1n.huskui.gallery"
+    android:versionCode="1"
+    android:versionName="1.0"
+>
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="36" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-  <application android:label="Huskui Gallery"
-               android:icon="@drawable/icon" />
+    <application android:label="Huskui Gallery" android:icon="@drawable/icon" />
 </manifest>

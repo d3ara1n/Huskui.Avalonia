@@ -10,13 +10,13 @@ public static class StateRegistrationBuilderExtensions
         public StateRegistrationBuilder WithInMemoryPersistence() =>
             builder.WithStatePersistence<NullStatePersistence>();
 
-        public StateRegistrationBuilder WithStatePersistence<T>() where T : IViewStatePersistence =>
-            builder.WithStatePersistence(typeof(T));
+        public StateRegistrationBuilder WithStatePersistence<T>()
+            where T : IViewStatePersistence => builder.WithStatePersistence(typeof(T));
 
-        public StateRegistrationBuilder WithKeyFactory<T>() where T : IViewStateKeyFactory =>
-            builder.WithKeyFactory(typeof(T));
+        public StateRegistrationBuilder WithKeyFactory<T>()
+            where T : IViewStateKeyFactory => builder.WithKeyFactory(typeof(T));
 
-        public StateRegistrationBuilder WithStateManager<T>() where T : IViewStateManager =>
-            builder.WithManager(typeof(T));
+        public StateRegistrationBuilder WithStateManager<T>()
+            where T : IViewStateManager => builder.WithManager(typeof(T));
     }
 }

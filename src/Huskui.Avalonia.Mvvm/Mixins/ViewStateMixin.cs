@@ -10,7 +10,8 @@ public static class ViewStateMixin
 {
     private static readonly ConditionalWeakTable<Control, Store> Stores = new();
 
-    public static void Attach<T>(T control, IViewStateManager manager) where T : Control
+    public static void Attach<T>(T control, IViewStateManager manager)
+        where T : Control
     {
         var store = Stores.GetValue(control, _ => new());
         if (store.IsAttached)

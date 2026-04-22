@@ -6,5 +6,6 @@ namespace Huskui.Avalonia.Mvvm.Mixins;
 
 public static class FrameActivationMixin
 {
-    public static void Install(Frame frame, IViewActivator activator) => frame.PageActivator = activator.Activate;
+    public static void Install(Frame frame, IViewActivator activator) =>
+        frame.PageActivator = activator.Activate;
 }

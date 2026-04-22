@@ -20,9 +20,10 @@ internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) :
         }
 
         var loaded = persistence.Load(key, stateType);
-        var value = loaded
-                 ?? Activator.CreateInstance(stateType)
-                 ?? throw new InvalidOperationException($"Cannot create {stateType.FullName}.");
+        var value =
+            loaded
+            ?? Activator.CreateInstance(stateType)
+            ?? throw new InvalidOperationException($"Cannot create {stateType.FullName}.");
         _entries[key] = new(stateType, value);
         return value;
     }
