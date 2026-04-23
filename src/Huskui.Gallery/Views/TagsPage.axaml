@@ -21,6 +21,9 @@
                     <ToggleButton
                         x:Name="StatusStyleToggle"
                         Content="Status Style" />
+                    <ToggleButton
+                        x:Name="OutlineStyleToggle"
+                        Content="Outline Style" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
@@ -34,26 +37,31 @@
                     Orientation="Horizontal"
                     Spacing="8">
                     <husk:Tag
+                        Classes.Outline="{Binding #OutlineStyleToggle.IsChecked}"
                         Classes.Small="{Binding #SmallSizeToggle.IsChecked}"
                         Classes.Status="{Binding #StatusStyleToggle.IsChecked}"
                         Content="Default" />
                     <husk:Tag
                         Classes="Primary"
+                        Classes.Outline="{Binding #OutlineStyleToggle.IsChecked}"
                         Classes.Small="{Binding #SmallSizeToggle.IsChecked}"
                         Classes.Status="{Binding #StatusStyleToggle.IsChecked}"
                         Content="Primary" />
                     <husk:Tag
                         Classes="Success"
+                        Classes.Outline="{Binding #OutlineStyleToggle.IsChecked}"
                         Classes.Small="{Binding #SmallSizeToggle.IsChecked}"
                         Classes.Status="{Binding #StatusStyleToggle.IsChecked}"
                         Content="Success" />
                     <husk:Tag
                         Classes="Warning"
+                        Classes.Outline="{Binding #OutlineStyleToggle.IsChecked}"
                         Classes.Small="{Binding #SmallSizeToggle.IsChecked}"
                         Classes.Status="{Binding #StatusStyleToggle.IsChecked}"
                         Content="Warning" />
                     <husk:Tag
                         Classes="Danger"
+                        Classes.Outline="{Binding #OutlineStyleToggle.IsChecked}"
                         Classes.Small="{Binding #SmallSizeToggle.IsChecked}"
                         Classes.Status="{Binding #StatusStyleToggle.IsChecked}"
                         Content="Danger" />
