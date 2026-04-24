@@ -39,25 +39,17 @@
                                 <local:SlideUpTransition />
                             </local:OverlayHost.Transition>
                         </local:OverlayHost>
-                        <local:OverlayHost
-                            Name="{x:Static local:AppSurface.PART_SidebarHost}"
-                            HorizontalContentAlignment="Right">
+                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_SidebarHost}">
                             <local:OverlayHost.Transition>
                                 <local:SidebarTransition />
                             </local:OverlayHost.Transition>
                         </local:OverlayHost>
-                        <local:OverlayHost
-                            Name="{x:Static local:AppSurface.PART_ModalHost}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center">
+                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_ModalHost}">
                             <local:OverlayHost.Transition>
                                 <local:ModalTransition />
                             </local:OverlayHost.Transition>
                         </local:OverlayHost>
-                        <local:OverlayHost
-                            Name="{x:Static local:AppSurface.PART_DialogHost}"
-                            HorizontalContentAlignment="Center"
-                            VerticalContentAlignment="Center">
+                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_DialogHost}">
                             <local:OverlayHost.Transition>
                                 <local:ScaleInTransition />
                             </local:OverlayHost.Transition>

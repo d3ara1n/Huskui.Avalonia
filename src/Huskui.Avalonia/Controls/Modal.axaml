@@ -9,6 +9,8 @@
         x:Key="{x:Type local:Modal}"
         TargetType="local:Modal">
         <Setter Property="MinHeight" Value="128" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="MinWidth" Value="256" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource LargeCornerRadius}" />

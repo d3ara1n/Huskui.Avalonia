@@ -12,6 +12,7 @@
         x:Key="{x:Type local:Sidebar}"
         TargetType="local:Sidebar">
         <Setter Property="MinWidth" Value="256" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Padding" Value="{StaticResource SidebarContentMargin}" />

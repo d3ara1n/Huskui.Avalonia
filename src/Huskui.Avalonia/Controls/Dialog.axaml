@@ -6,6 +6,8 @@
         x:Key="{x:Type local:Dialog}"
         TargetType="local:Dialog">
         <Setter Property="Container" Value="{Binding $parent[local:OverlayItem], Mode=OneWay}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="128" />
         <Setter Property="MinWidth" Value="256" />
         <Setter Property="Background" Value="{StaticResource FlyoutBackgroundBrush}" />
