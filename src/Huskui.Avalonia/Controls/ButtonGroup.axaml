@@ -92,14 +92,19 @@
                         TextElement.FontWeight="{TemplateBinding FontWeight}" />
                     <Border
                         x:Name="Indicator"
-                        Background="{StaticResource TransparentBrush}"
+                        Background="{StaticResource OverlayHalfBackgroundBrush}"
                         BackgroundSizing="{TemplateBinding BackgroundSizing}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
                                 <BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
@@ -109,7 +114,7 @@
         </Setter>
 
         <Style Selector="^:pointerover /template/ Border#Indicator">
-            <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
 
         <Style Selector="^:pressed /template/ Border#Indicator">
@@ -118,6 +123,55 @@
 
         <Style Selector="^:disabled /template/ Panel#Container">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^.Primary">
+            <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
+
+            <Style Selector="^ /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}" />
+
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.Success">
+            <Setter Property="Foreground" Value="{StaticResource ControlSuccessForegroundBrush}" />
+
+            <Style Selector="^ /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlSuccessTranslucentHalfBackgroundBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlSuccessTranslucentFullBackgroundBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.Warning">
+            <Setter Property="Foreground" Value="{StaticResource ControlWarningForegroundBrush}" />
+
+            <Style Selector="^ /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlWarningTranslucentHalfBackgroundBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlWarningTranslucentFullBackgroundBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^.Danger">
+            <Setter Property="Foreground" Value="{StaticResource ControlDangerForegroundBrush}" />
+
+            <Style Selector="^ /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlDangerTranslucentHalfBackgroundBrush}" />
+            </Style>
+
+            <Style Selector="^:pressed /template/ Border#Indicator">
+                <Setter Property="Background" Value="{StaticResource ControlDangerTranslucentFullBackgroundBrush}" />
+            </Style>
         </Style>
     </ControlTheme>
 </ResourceDictionary>
