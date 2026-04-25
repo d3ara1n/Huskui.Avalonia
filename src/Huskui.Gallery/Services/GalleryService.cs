@@ -580,6 +580,24 @@ public class GalleryService : IGalleryService
                         "binding",
                     ],
                 },
+                new()
+                {
+                    Title = "Brush Resource Keys",
+                    Description =
+                        "Categorized reference for theme brush keys with live previews, copy buttons, and naming notes",
+                    Icon = Symbol.Color,
+                    PageType = typeof(BrushResourceKeysPage),
+                    Tags =
+                    [
+                        "brush",
+                        "resource",
+                        "theme",
+                        "color",
+                        "overlay",
+                        "foreground",
+                        "background",
+                    ],
+                },
             ],
         };
 

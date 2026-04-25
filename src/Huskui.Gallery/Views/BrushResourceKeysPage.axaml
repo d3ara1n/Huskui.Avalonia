@@ -1,0 +1,286 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.BrushResourceKeysPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:Huskui.Gallery.Views"
+    d:DesignHeight="900"
+    d:DesignWidth="1100"
+    x:DataType="views:BrushResourceKeysPage"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Naming pattern" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Most Huskui brush tokens follow OwnerVariantStatePropertyBrush. Read them left-to-right: who owns the brush, which semantic palette it belongs to, whether it is interactive/translucent/reversed, and whether it is meant for background, border, or foreground work."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    LineSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag Content="57 keys" />
+                    <husk:Tag Content="Live theme preview" />
+                    <husk:Tag Content="Copy-ready" />
+                    <husk:Tag Content="Based on Themes/Colors.axaml" />
+                </WrapPanel>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="16">
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="6">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Interactive" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Hover, pressed, selected, or otherwise active surfaces and strokes."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="6">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Translucent Half / Full" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Static tint layers. Half is lighter, Full is stronger. In Colors.axaml these are intentionally documented as static fills rather than general animated-state brushes."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="6">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Reversed / Solid / Smoke / Mask" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="These are special overlay names. Reversed flips polarity through the Layover palette, Solid gives an opaque panel surface, Smoke is the dimming curtain, and Mask is the heavier modal scrim."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="6">
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="White / Black helpers" />
+                            <TextBlock
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="These are semantic extremes, not hard-coded #FFF/#000 promises. They map through theme tokens so content can keep the intended contrast role across light and dark themes."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <ItemsControl ItemsSource="{Binding Sections}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="views:BrushSection">
+                    <Border
+                        Margin="0,0,0,24"
+                        Padding="24"
+                        Background="{StaticResource CardBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource MediumCornerRadius}">
+                        <StackPanel Spacing="16">
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="16">
+                                <StackPanel
+                                    Grid.Column="0"
+                                    Spacing="6">
+                                    <TextBlock
+                                        FontSize="{StaticResource LargeFontSize}"
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Text="{Binding Title}" />
+                                    <TextBlock
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="{Binding Description}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+
+                                <husk:Tag
+                                    Grid.Column="1"
+                                    VerticalAlignment="Top"
+                                    Content="{Binding CountLabel}" />
+                            </Grid>
+
+                            <Border
+                                Padding="12"
+                                IsVisible="{Binding NamingNote, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                                BorderBrush="{StaticResource ControlBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
+                                <TextBlock
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="{Binding NamingNote}"
+                                    TextWrapping="Wrap" />
+                            </Border>
+
+                            <ItemsControl ItemsSource="{Binding Items}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel
+                                            ItemSpacing="16"
+                                            LineSpacing="16"
+                                            Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="views:BrushEntry">
+                                        <Border
+                                            Width="320"
+                                            Padding="16"
+                                            Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                                            BorderBrush="{StaticResource ControlBorderBrush}"
+                                            BorderThickness="1"
+                                            CornerRadius="{StaticResource MediumCornerRadius}">
+                                            <StackPanel Spacing="12">
+                                                <Grid
+                                                    ColumnDefinitions="*,Auto"
+                                                    ColumnSpacing="12">
+                                                    <StackPanel
+                                                        Grid.Column="0"
+                                                        Spacing="4">
+                                                        <TextBlock
+                                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                                            Text="{Binding Key}"
+                                                            TextWrapping="Wrap" />
+                                                        <TextBlock
+                                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                            Text="{Binding Role}"
+                                                            TextWrapping="Wrap" />
+                                                    </StackPanel>
+
+                                                    <Button
+                                                        Grid.Column="1"
+                                                        Click="CopyKeyButton_OnClick"
+                                                        Content="Copy key"
+                                                        Tag="{Binding Key}"
+                                                        Theme="{StaticResource GhostButtonTheme}" />
+                                                </Grid>
+
+                                                <Grid
+                                                    ColumnDefinitions="*,*,*"
+                                                    ColumnSpacing="8">
+                                                    <Border
+                                                        Height="52"
+                                                        Background="{Binding PreviewBrush}"
+                                                        BorderBrush="{StaticResource ControlBorderBrush}"
+                                                        BorderThickness="1"
+                                                        CornerRadius="{StaticResource SmallCornerRadius}" />
+                                                    <Border
+                                                        Grid.Column="1"
+                                                        Height="52"
+                                                        Background="{StaticResource CardBackgroundBrush}"
+                                                        BorderBrush="{Binding PreviewBrush}"
+                                                        BorderThickness="2"
+                                                        CornerRadius="{StaticResource SmallCornerRadius}" />
+                                                    <Border
+                                                        Grid.Column="2"
+                                                        Height="52"
+                                                        Background="{StaticResource CardBackgroundBrush}"
+                                                        BorderBrush="{StaticResource ControlBorderBrush}"
+                                                        BorderThickness="1"
+                                                        CornerRadius="{StaticResource SmallCornerRadius}">
+                                                        <TextBlock
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Foreground="{Binding PreviewBrush}"
+                                                            Text="Aa" />
+                                                    </Border>
+                                                </Grid>
+
+                                                <StackPanel Spacing="6">
+                                                    <TextBlock
+                                                        FontSize="{StaticResource SmallFontSize}"
+                                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                        Text="{Binding Source}"
+                                                        TextWrapping="Wrap" />
+                                                    <TextBlock
+                                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                        Text="{Binding Usage}"
+                                                        TextWrapping="Wrap" />
+                                                </StackPanel>
+
+                                                <Border
+                                                    Padding="10"
+                                                    IsVisible="{Binding Note, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                    Background="{StaticResource CardBackgroundBrush}"
+                                                    BorderBrush="{StaticResource ControlBorderBrush}"
+                                                    BorderThickness="1"
+                                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                                    <TextBlock
+                                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                                        Text="{Binding Note}"
+                                                        TextWrapping="Wrap" />
+                                                </Border>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+    </StackPanel>
+
+</controls:ControlPage>
