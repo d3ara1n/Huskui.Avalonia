@@ -28,21 +28,23 @@ public class MarkdownViewer : TemplatedControl
     static MarkdownViewer()
     {
         markdownPipeline = new MarkdownPipelineBuilder()
-                          .UseAutoLinks()
-                          .UseAlertBlocks()
-                          .UseTaskLists()
-                          .UseYamlFrontMatter()
-                          .UseEmphasisExtras()
-                          .UseGridTables()
-                          .UsePipeTables()
-                          .UseListExtras()
-                          .Build();
+            .UseAutoLinks()
+            .UseAlertBlocks()
+            .UseTaskLists()
+            .UseYamlFrontMatter()
+            .UseEmphasisExtras()
+            .UseGridTables()
+            .UsePipeTables()
+            .UseListExtras()
+            .Build();
     }
 
     private ScrollViewer? _container;
 
-    public static readonly StyledProperty<string?> MarkdownProperty =
-        AvaloniaProperty.Register<MarkdownViewer, string?>(nameof(Markdown));
+    public static readonly StyledProperty<string?> MarkdownProperty = AvaloniaProperty.Register<
+        MarkdownViewer,
+        string?
+    >(nameof(Markdown));
 
     public string? Markdown
     {
@@ -50,8 +52,10 @@ public class MarkdownViewer : TemplatedControl
         set => SetValue(MarkdownProperty, value);
     }
 
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<MarkdownViewer, double>(nameof(Spacing), 4);
+    public static readonly StyledProperty<double> SpacingProperty = AvaloniaProperty.Register<
+        MarkdownViewer,
+        double
+    >(nameof(Spacing), 4);
 
     public double Spacing
     {
@@ -60,8 +64,10 @@ public class MarkdownViewer : TemplatedControl
     }
 
     public static readonly StyledProperty<FrontMatterRenderMethods> FrontMatterRenderProperty =
-        AvaloniaProperty.Register<MarkdownViewer, FrontMatterRenderMethods>(nameof(FrontMatterRender),
-                                                                            FrontMatterRenderMethods.Ignore);
+        AvaloniaProperty.Register<MarkdownViewer, FrontMatterRenderMethods>(
+            nameof(FrontMatterRender),
+            FrontMatterRenderMethods.Ignore
+        );
 
     public FrontMatterRenderMethods FrontMatterRender
     {
@@ -80,9 +86,11 @@ public class MarkdownViewer : TemplatedControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == MarkdownProperty
-         || change.Property == FrontMatterRenderProperty
-         || change.Property == SpacingProperty)
+        if (
+            change.Property == MarkdownProperty
+            || change.Property == FrontMatterRenderProperty
+            || change.Property == SpacingProperty
+        )
         {
             Render(Markdown);
         }
@@ -130,148 +138,150 @@ public class MarkdownViewer : TemplatedControl
         switch (block)
         {
             case HeadingBlock heading:
-            {
-                var rv = SpawnText();
-                rv.Inlines = RenderInlines(heading.Inline);
-                rv.Classes.Set($"Heading{heading.Level}", true);
-                control = rv;
-            }
+                {
+                    var rv = SpawnText();
+                    rv.Inlines = RenderInlines(heading.Inline);
+                    rv.Classes.Set($"Heading{heading.Level}", true);
+                    control = rv;
+                }
                 break;
             case ParagraphBlock paragraph:
-            {
-                var rv = SpawnText();
-                rv.Inlines = RenderInlines(paragraph.Inline);
-                rv.Classes.Set("Paragraph", true);
-                control = rv;
-            }
+                {
+                    var rv = SpawnText();
+                    rv.Inlines = RenderInlines(paragraph.Inline);
+                    rv.Classes.Set("Paragraph", true);
+                    control = rv;
+                }
                 break;
             case ListBlock list:
-            {
-                var panel = SpawnStack();
-                context.ListOrdered = list.IsOrdered;
-                context.ListDepth++;
-                context.ListIndex = 0;
-                foreach (var item in list)
                 {
-                    context.ListIndex++;
-                    var inner = RenderBlock(item, context);
-                    if (inner != null)
+                    var panel = SpawnStack();
+                    context.ListOrdered = list.IsOrdered;
+                    context.ListDepth++;
+                    context.ListIndex = 0;
+                    foreach (var item in list)
                     {
-                        panel.Children.Add(inner);
+                        context.ListIndex++;
+                        var inner = RenderBlock(item, context);
+                        if (inner != null)
+                        {
+                            panel.Children.Add(inner);
+                        }
                     }
-                }
 
-                panel.Classes.Set("List", true);
-                control = panel;
-            }
+                    panel.Classes.Set("List", true);
+                    control = panel;
+                }
                 break;
             case ListItemBlock listItem:
-            {
-                var stack = SpawnStack();
-                var dock = SpawnDock();
-                foreach (var item in listItem)
                 {
-                    var inner = RenderBlock(item, context);
-                    if (inner != null)
+                    var stack = SpawnStack();
+                    var dock = SpawnDock();
+                    foreach (var item in listItem)
                     {
-                        stack.Children.Add(inner);
+                        var inner = RenderBlock(item, context);
+                        if (inner != null)
+                        {
+                            stack.Children.Add(inner);
+                        }
                     }
-                }
 
-                var bullet = SpawnText();
-                bullet.Text = context.ListOrdered
-                                  ? GenerateOrderedListHead(context.ListDepth, context.ListIndex)
-                                  : GenerateUnorderedListHead(context.ListDepth);
-                DockPanel.SetDock(bullet, Dock.Left);
-                dock.Children.Add(bullet);
-                dock.Children.Add(stack);
-                bullet.Classes.Set("List", true);
-                bullet.Classes.Set("Bullet", true);
-                dock.Classes.Set("List", true);
-                dock.Classes.Set("Item", true);
-                stack.Classes.Set("List", true);
-                stack.Classes.Set("Item", true);
-                control = dock;
-            }
+                    var bullet = SpawnText();
+                    bullet.Text = context.ListOrdered
+                        ? GenerateOrderedListHead(context.ListDepth, context.ListIndex)
+                        : GenerateUnorderedListHead(context.ListDepth);
+                    DockPanel.SetDock(bullet, Dock.Left);
+                    dock.Children.Add(bullet);
+                    dock.Children.Add(stack);
+                    bullet.Classes.Set("List", true);
+                    bullet.Classes.Set("Bullet", true);
+                    dock.Classes.Set("List", true);
+                    dock.Classes.Set("Item", true);
+                    stack.Classes.Set("List", true);
+                    stack.Classes.Set("Item", true);
+                    control = dock;
+                }
                 break;
             case YamlFrontMatterBlock yaml:
-            {
-                switch (FrontMatterRender)
                 {
-                    case FrontMatterRenderMethods.Plain:
-                        var bar = new InfoBar();
-                        bar.Content = yaml.Lines.ToString();
-                        bar.Classes.Set("FrontMatter", true);
-                        control = bar;
-                        break;
-                    case FrontMatterRenderMethods.Pretty:
-                        var viewer = new CodeViewer();
-                        viewer.Language = "yaml";
-                        viewer.Code = yaml.Lines.ToString();
-                        viewer.Classes.Set("FrontMatter", true);
-                        control = viewer;
-                        break;
-                    default:
-                        control = null;
-                        break;
-                }
-            }
-                break;
-            case CodeBlock code:
-            {
-                var rv = new CodeViewer();
-                rv.Code = code.Lines.ToString() ?? string.Empty;
-                if (code is FencedCodeBlock fenced)
-                    rv.Language = fenced.Info ?? string.Empty;
-                rv.Classes.Set("Code", true);
-                control = rv;
-            }
-                break;
-            case QuoteBlock quote:
-            {
-                var rv = new InfoBar();
-                var container = SpawnStack();
-                foreach (var child in quote)
-                {
-                    var content = RenderBlock(child, context);
-                    if (content is not null)
+                    switch (FrontMatterRender)
                     {
-                        container.Children.Add(content);
+                        case FrontMatterRenderMethods.Plain:
+                            var bar = new InfoBar();
+                            bar.Content = yaml.Lines.ToString();
+                            bar.Classes.Set("FrontMatter", true);
+                            control = bar;
+                            break;
+                        case FrontMatterRenderMethods.Pretty:
+                            var viewer = new CodeViewer();
+                            viewer.Language = "yaml";
+                            viewer.Code = yaml.Lines.ToString();
+                            viewer.Classes.Set("FrontMatter", true);
+                            control = viewer;
+                            break;
+                        default:
+                            control = null;
+                            break;
                     }
                 }
-
-                if (quote is AlertBlock alert)
+                break;
+            case CodeBlock code:
                 {
-                    rv.Header = alert.Kind.ToString();
-                    rv.Classes.Set(alert.Kind.ToString().ToUpper() switch
-                                   {
-                                       "TIP" => "Success",
-                                       "WARNING" => "Warning",
-                                       "CAUTION" => "Danger",
-                                       _ => "Primary",
-                                   },
-                                   true);
+                    var rv = new CodeViewer();
+                    rv.Code = code.Lines.ToString() ?? string.Empty;
+                    if (code is FencedCodeBlock fenced)
+                        rv.Language = fenced.Info ?? string.Empty;
+                    rv.Classes.Set("Code", true);
+                    control = rv;
                 }
+                break;
+            case QuoteBlock quote:
+                {
+                    var rv = new InfoBar();
+                    var container = SpawnStack();
+                    foreach (var child in quote)
+                    {
+                        var content = RenderBlock(child, context);
+                        if (content is not null)
+                        {
+                            container.Children.Add(content);
+                        }
+                    }
 
-                rv.Content = container;
-                rv.Classes.Set("Quote", true);
-                control = rv;
-            }
+                    if (quote is AlertBlock alert)
+                    {
+                        rv.Header = alert.Kind.ToString();
+                        rv.Classes.Set(
+                            alert.Kind.ToString().ToUpper() switch
+                            {
+                                "TIP" => "Success",
+                                "WARNING" => "Warning",
+                                "CAUTION" => "Danger",
+                                _ => "Primary",
+                            },
+                            true
+                        );
+                    }
+
+                    rv.Content = container;
+                    rv.Classes.Set("Quote", true);
+                    control = rv;
+                }
                 break;
             case ThematicBreakBlock:
-            {
-                var rv = new Divider() { Orientation = Orientation.Horizontal };
-                rv.Classes.Set("Rule", true);
-                control = rv;
-            }
+                {
+                    var rv = new Divider() { Orientation = Orientation.Horizontal };
+                    rv.Classes.Set("Rule", true);
+                    control = rv;
+                }
                 break;
             default:
-            {
-                var rv = SpawnText();
-                rv.Text = block.ToString();
-                rv.Classes.Set("Unknown", true);
-                control = rv;
-            }
+                {
+                    var rv = SpawnText();
+                    rv.Text = block.ToString();
+                    rv.Classes.Set("Unknown", true);
+                    control = rv;
+                }
                 break;
         }
 
@@ -316,126 +326,136 @@ public class MarkdownViewer : TemplatedControl
     private void BuildInline(
         Markdig.Syntax.Inlines.Inline inline,
         InlineCollection inlines,
-        EmphasisContext context = default)
+        EmphasisContext context = default
+    )
     {
         switch (inline)
         {
             case LiteralInline:
             case HtmlEntityInline:
-            {
-                var run = new Run(inline switch
                 {
-                    LiteralInline it => it.Content.ToString(),
-                    HtmlEntityInline it => it.Transcoded.ToString(),
-                    _ => inline.ToString(),
-                });
-                run.Classes.Set("Literal", true);
-                run.Classes.Set("Bold", context.Bold);
-                run.Classes.Set("Italic", context.Italic);
-                run.Classes.Set("Deleted", context.Deleted);
-                run.Classes.Set("Underlined", context.Underlined);
-                run.Classes.Set("Highlighted", context.Highlighted);
-                run.Classes.Set("Subscripted", context.Subscripted);
-                run.Classes.Set("Superscripted", context.Superscripted);
+                    var run = new Run(
+                        inline switch
+                        {
+                            LiteralInline it => it.Content.ToString(),
+                            HtmlEntityInline it => it.Transcoded.ToString(),
+                            _ => inline.ToString(),
+                        }
+                    );
+                    run.Classes.Set("Literal", true);
+                    run.Classes.Set("Bold", context.Bold);
+                    run.Classes.Set("Italic", context.Italic);
+                    run.Classes.Set("Deleted", context.Deleted);
+                    run.Classes.Set("Underlined", context.Underlined);
+                    run.Classes.Set("Highlighted", context.Highlighted);
+                    run.Classes.Set("Subscripted", context.Subscripted);
+                    run.Classes.Set("Superscripted", context.Superscripted);
 
-                inlines.Add(run);
-            }
+                    inlines.Add(run);
+                }
                 break;
             case EmphasisInline em when em.FirstChild is not null:
-            {
-                context.Bold |= em is { DelimiterChar: '*', DelimiterCount: 2 };
-                context.Italic |= em is { DelimiterChar: '*', DelimiterCount: 1 };
-                context.Deleted |= em is { DelimiterChar: '~', DelimiterCount: 2 };
-                context.Underlined |= em is { DelimiterChar: '+', DelimiterCount: 2 };
-                context.Highlighted |= em is { DelimiterChar: '=', DelimiterCount: 2 };
-                context.Subscripted |= em is { DelimiterChar: '~', DelimiterCount: 1 };
-                context.Superscripted |= em is { DelimiterChar: '^', DelimiterCount: 1 };
-                foreach (var innerInline in em)
                 {
-                    BuildInline(innerInline, inlines, context);
+                    context.Bold |= em is { DelimiterChar: '*', DelimiterCount: 2 };
+                    context.Italic |= em is { DelimiterChar: '*', DelimiterCount: 1 };
+                    context.Deleted |= em is { DelimiterChar: '~', DelimiterCount: 2 };
+                    context.Underlined |= em is { DelimiterChar: '+', DelimiterCount: 2 };
+                    context.Highlighted |= em is { DelimiterChar: '=', DelimiterCount: 2 };
+                    context.Subscripted |= em is { DelimiterChar: '~', DelimiterCount: 1 };
+                    context.Superscripted |= em is { DelimiterChar: '^', DelimiterCount: 1 };
+                    foreach (var innerInline in em)
+                    {
+                        BuildInline(innerInline, inlines, context);
+                    }
                 }
-            }
                 break;
             case TaskList task:
-            {
-                var rv = new CheckBox() { IsChecked = task.Checked, IsEnabled = false };
-                inlines.Add(rv);
-            }
+                {
+                    var rv = new CheckBox() { IsChecked = task.Checked, IsEnabled = false };
+                    inlines.Add(rv);
+                }
                 break;
             case CodeInline code:
-            {
-                var rv = new HighlightInline() { Text = code.Content };
-                inlines.Add(rv);
-            }
+                {
+                    var rv = new HighlightInline() { Text = code.Content };
+                    inlines.Add(rv);
+                }
                 break;
             case LinkInline link:
-            {
-                if (link.IsImage && link.Url is not null && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute))
                 {
-                    var image = new Image();
-                    ImageLoader.SetSource(image, link.Url);
-                    inlines.Add(image);
-                }
-                else
-                {
-                    var linkBtn = new HyperlinkButton();
-                    linkBtn.NavigateUri = link.Url is not null && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
-                                              ? new Uri(link.Url, UriKind.Absolute)
-                                              : null;
-                    var label = SpawnText();
-                    if (link.FirstChild is not null)
+                    if (
+                        link.IsImage
+                        && link.Url is not null
+                        && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
+                    )
                     {
-                        var labelInlines = new InlineCollection();
-                        foreach (var child in link)
-                        {
-                            BuildInline(child, labelInlines, context);
-                        }
-
-                        label.Inlines = labelInlines;
+                        var image = new Image();
+                        ImageLoader.SetSource(image, link.Url);
+                        inlines.Add(image);
                     }
                     else
                     {
-                        label.Text = link.Url;
+                        var linkBtn = new HyperlinkButton();
+                        linkBtn.NavigateUri =
+                            link.Url is not null
+                            && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
+                                ? new Uri(link.Url, UriKind.Absolute)
+                                : null;
+                        var label = SpawnText();
+                        if (link.FirstChild is not null)
+                        {
+                            var labelInlines = new InlineCollection();
+                            foreach (var child in link)
+                            {
+                                BuildInline(child, labelInlines, context);
+                            }
+
+                            label.Inlines = labelInlines;
+                        }
+                        else
+                        {
+                            label.Text = link.Url;
+                        }
+
+                        label.Classes.Set("Hyperlink", true);
+
+                        if (!string.IsNullOrEmpty(link.Label))
+                        {
+                            ToolTip.SetTip(linkBtn, link.Label);
+                        }
+
+                        if (!string.IsNullOrEmpty(link.Url))
+                        {
+                            ToolTip.SetTip(linkBtn, link.Url);
+                        }
+
+                        linkBtn.Content = label;
+                        linkBtn.Classes.Set("Hyperlink", true);
+                        inlines.Add(linkBtn);
                     }
-
-                    label.Classes.Set("Hyperlink", true);
-
-                    if (!string.IsNullOrEmpty(link.Label))
-                    {
-                        ToolTip.SetTip(linkBtn, link.Label);
-                    }
-
-                    if (!string.IsNullOrEmpty(link.Url))
-                    {
-                        ToolTip.SetTip(linkBtn, link.Url);
-                    }
-
-                    linkBtn.Content = label;
-                    linkBtn.Classes.Set("Hyperlink", true);
-                    inlines.Add(linkBtn);
                 }
-            }
                 break;
             case LineBreakInline:
-            {
-                var rv = new LineBreak();
-                inlines.Add(rv);
-            }
+                {
+                    var rv = new LineBreak();
+                    inlines.Add(rv);
+                }
                 break;
             default:
-            {
-                var text = SpawnText();
-                text.Text = inline.ToString();
-                text.Classes.Set("Unknown", true);
-                inlines.Add(text);
-            }
+                {
+                    var text = SpawnText();
+                    text.Text = inline.ToString();
+                    text.Classes.Set("Unknown", true);
+                    inlines.Add(text);
+                }
                 break;
         }
     }
 
     private Panel SpawnStack() => new StackPanel() { Spacing = Spacing };
 
-    private DockPanel SpawnDock() => new DockPanel() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
+    private DockPanel SpawnDock() =>
+        new DockPanel() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
 
     // 不能是 SelectableTextBlock 因为会吃掉内部 HyperlinkButton 的交互
     private TextBlock SpawnText() => new TextBlock() { TextWrapping = TextWrapping.Wrap };
