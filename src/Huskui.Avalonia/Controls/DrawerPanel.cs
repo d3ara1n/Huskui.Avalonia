@@ -59,7 +59,7 @@ public class DrawerPanel : Panel
                     drawer.Width = width;
                 if (!double.IsNaN(drawer.Height) && Math.Abs(drawer.Height - height) > 0.1)
                     drawer.Height = height;
-                drawer.Arrange(new Rect(x, y, width, height));
+                drawer.Arrange(new(x, y, width, height));
             }
             else
             {

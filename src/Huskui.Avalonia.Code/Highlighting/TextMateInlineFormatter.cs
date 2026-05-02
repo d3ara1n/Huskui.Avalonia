@@ -24,7 +24,7 @@ internal sealed class TextMateInlineFormatter
 
     public InlineCollection? FormatInlines(string sourceCode, string scopeName, IRawTheme theme)
     {
-        registry ??= new Registry(_registryOptions);
+        registry ??= new(_registryOptions);
         registry.SetTheme(theme);
 
         var grammar = registry.LoadGrammar(scopeName);

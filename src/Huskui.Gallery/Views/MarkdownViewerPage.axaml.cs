@@ -187,17 +187,17 @@ public partial class MarkdownViewerPage : ControlPage
             return;
 
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(
-            new FilePickerOpenOptions
+            new()
             {
                 Title = "Select a Markdown file",
                 AllowMultiple = false,
                 FileTypeFilter =
                 [
-                    new FilePickerFileType("Markdown")
+                    new("Markdown")
                     {
                         Patterns = ["*.md", "*.markdown", "*.mdown", "*.mkd"],
                     },
-                    new FilePickerFileType("All Files") { Patterns = ["*"] },
+                    new("All Files") { Patterns = ["*"] },
                 ],
             }
         );

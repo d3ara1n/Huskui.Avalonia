@@ -454,11 +454,10 @@ public class MarkdownViewer : TemplatedControl
 
     private Panel SpawnStack() => new StackPanel() { Spacing = Spacing };
 
-    private DockPanel SpawnDock() =>
-        new DockPanel() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
+    private DockPanel SpawnDock() => new() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
 
     // 不能是 SelectableTextBlock 因为会吃掉内部 HyperlinkButton 的交互
-    private TextBlock SpawnText() => new TextBlock() { TextWrapping = TextWrapping.Wrap };
+    private TextBlock SpawnText() => new() { TextWrapping = TextWrapping.Wrap };
 
     private string GenerateUnorderedListHead(int depth) =>
         depth switch

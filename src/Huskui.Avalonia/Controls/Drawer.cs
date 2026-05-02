@@ -167,11 +167,11 @@ public class Drawer : ContentControl
 
         if (isExpanded)
         {
-            OnExpanded(new RoutedEventArgs(ExpandedEvent, this));
+            OnExpanded(new(ExpandedEvent, this));
         }
         else
         {
-            OnCollapsed(new RoutedEventArgs(CollapsedEvent, this));
+            OnCollapsed(new(CollapsedEvent, this));
         }
     }
 
