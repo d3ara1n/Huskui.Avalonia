@@ -36,6 +36,7 @@
         <ResourceInclude Source="/Controls/Modal.axaml" />
         <ResourceInclude Source="/Controls/NumericUpDown.axaml" />
         <ResourceInclude Source="/Controls/GridSplitter.axaml" />
+        <ResourceInclude Source="/Controls/GroupBox.axaml" />
         <ResourceInclude Source="/Controls/GrowlHost.axaml" />
         <ResourceInclude Source="/Controls/GrowlItem.axaml" />
         <ResourceInclude Source="/Controls/OverlayHost.axaml" />
