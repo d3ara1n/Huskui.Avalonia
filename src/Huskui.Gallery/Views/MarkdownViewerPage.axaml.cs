@@ -193,10 +193,7 @@ public partial class MarkdownViewerPage : ControlPage
                 AllowMultiple = false,
                 FileTypeFilter =
                 [
-                    new("Markdown")
-                    {
-                        Patterns = ["*.md", "*.markdown", "*.mdown", "*.mkd"],
-                    },
+                    new("Markdown") { Patterns = ["*.md", "*.markdown", "*.mdown", "*.mkd"] },
                     new("All Files") { Patterns = ["*"] },
                 ],
             }

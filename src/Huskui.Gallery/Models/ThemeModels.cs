@@ -1,4 +1,4 @@
-﻿using Avalonia.Styling;
+using Avalonia.Styling;
 using Huskui.Avalonia;
 using Huskui.Gallery.Services;
 

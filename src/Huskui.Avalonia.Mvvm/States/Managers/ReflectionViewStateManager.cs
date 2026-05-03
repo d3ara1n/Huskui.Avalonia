@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.States.Managers;
+namespace Huskui.Avalonia.Mvvm.States.Managers;
 
 public sealed class ReflectionViewStateManager(
     IViewStateStore store,

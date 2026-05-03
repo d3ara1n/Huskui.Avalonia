@@ -1,4 +1,4 @@
-﻿using Huskui.Avalonia.Mvvm.States;
+using Huskui.Avalonia.Mvvm.States;
 using Huskui.Avalonia.Mvvm.States.Persistences;
 
 namespace Huskui.Avalonia.Mvvm;

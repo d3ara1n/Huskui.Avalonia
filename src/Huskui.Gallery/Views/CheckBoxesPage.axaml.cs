@@ -1,4 +1,4 @@
-﻿using Avalonia.Interactivity;
+using Avalonia.Interactivity;
 using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;

@@ -1,4 +1,4 @@
-﻿using Avalonia.Metadata;
+using Avalonia.Metadata;
 using Huskui.Avalonia.Attributes;
 
 [assembly: HuskuiExtension("avares://Huskui.Avalonia.Code/Themes/Bundle.axaml")]

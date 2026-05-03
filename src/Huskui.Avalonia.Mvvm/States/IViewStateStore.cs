@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.States;
+namespace Huskui.Avalonia.Mvvm.States;
 
 public interface IViewStateStore
 {

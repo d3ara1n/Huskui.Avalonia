@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.Activation;
+namespace Huskui.Avalonia.Mvvm.Activation;
 
 public interface IViewContext
 {

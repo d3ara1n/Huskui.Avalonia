@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.States;
+namespace Huskui.Avalonia.Mvvm.States;
 
 internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) : IViewStateStore
 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Huskui.Gallery.Models;
 
 namespace Huskui.Gallery.Services;

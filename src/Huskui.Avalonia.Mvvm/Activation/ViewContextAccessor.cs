@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.Activation;
+namespace Huskui.Avalonia.Mvvm.Activation;
 
 internal sealed class ViewContextAccessor : IViewContextAccessor
 {

@@ -1,4 +1,4 @@
-﻿using Huskui.Gallery.Controls;
+using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;
 

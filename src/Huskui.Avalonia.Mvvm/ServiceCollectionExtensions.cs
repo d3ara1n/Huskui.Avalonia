@@ -1,4 +1,4 @@
-﻿using Huskui.Avalonia.Mvvm.Activation;
+using Huskui.Avalonia.Mvvm.Activation;
 using Huskui.Avalonia.Mvvm.Models;
 using Huskui.Avalonia.Mvvm.States;
 using Microsoft.Extensions.DependencyInjection;

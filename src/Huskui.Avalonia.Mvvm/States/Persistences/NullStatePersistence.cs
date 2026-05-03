@@ -1,4 +1,4 @@
-﻿namespace Huskui.Avalonia.Mvvm.States.Persistences;
+namespace Huskui.Avalonia.Mvvm.States.Persistences;
 
 public class NullStatePersistence : IViewStatePersistence
 {
