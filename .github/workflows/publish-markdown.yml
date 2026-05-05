@@ -21,6 +21,37 @@ jobs:
                 with:
                     fetch-depth: 0
 
+            -   name: Check for changes
+                id: check_changes
+                run: |
+                    CURRENT_TAG="${GITHUB_REF#refs/tags/}"
+                    PREV_TAG=$(git tag --sort=version:refname | grep -B1 "^${CURRENT_TAG}$" | head -1)
+
+                    if [ -z "$PREV_TAG" ]; then
+                        echo "No previous tag found. Proceeding with publish."
+                        echo "has_changes=true" >> "$GITHUB_OUTPUT"
+                        exit 0
+                    fi
+
+                    PATHS=(
+                        "src/Huskui.Avalonia.Markdown/"
+                        "src/Huskui.Avalonia.Code/"
+                        "src/Huskui.Avalonia/"
+                        "Directory.Packages.props"
+                        "GitVersion.yml"
+                    )
+
+                    CHANGED=$(git diff --name-only "$PREV_TAG" "$CURRENT_TAG" -- "${PATHS[@]}")
+
+                    if [ -z "$CHANGED" ]; then
+                        echo "has_changes=false" >> "$GITHUB_OUTPUT"
+                        echo "::notice::No changes in Huskui.Avalonia.Markdown since $PREV_TAG. Skipping publish."
+                    else
+                        echo "has_changes=true" >> "$GITHUB_OUTPUT"
+                        echo "Changes detected since $PREV_TAG:"
+                        echo "$CHANGED"
+                    fi
+
             -   name: Setup .NET
                 uses: actions/setup-dotnet@v4
                 with:
@@ -38,13 +69,16 @@ jobs:
                     useConfigFile: true
 
             -   name: Install git-cliff
+                if: steps.check_changes.outputs.has_changes == 'true'
                 run: |
                     cargo install git-cliff
 
             -   name: Generate changelog
+                if: steps.check_changes.outputs.has_changes == 'true'
                 run: git-cliff --latest --include-path "src/Huskui.Avalonia.Markdown/**" -o ./RELEASE_NOTES.md
 
             -   name: Pack NuGet package
+                if: steps.check_changes.outputs.has_changes == 'true'
                 run: |
                     RELEASE_NOTES=$(cat ./RELEASE_NOTES.md)
                     dotnet pack src/Huskui.Avalonia.Markdown/Huskui.Avalonia.Markdown.csproj \
@@ -53,6 +87,7 @@ jobs:
                       -p:PackageReleaseNotes="$RELEASE_NOTES"
 
             -   name: Publish to NuGet
+                if: steps.check_changes.outputs.has_changes == 'true'
                 run: |
                     dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
