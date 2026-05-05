@@ -23,7 +23,7 @@ public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateMan
 
         var view = (Control?)Activator.CreateInstance(viewType);
 
-        if (view is not null)
+        if (view is not null && modelType is not null)
         {
             var scope = provider.CreateScope();
             var factory = scope.ServiceProvider.GetRequiredService<IViewContextAccessor>();
