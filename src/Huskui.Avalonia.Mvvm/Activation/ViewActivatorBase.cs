@@ -25,7 +25,7 @@ public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateMan
 
         if (view is not null)
         {
-            using var scope = provider.CreateScope();
+            var scope = provider.CreateScope();
             var factory = scope.ServiceProvider.GetRequiredService<IViewContextAccessor>();
             factory.Parameter = parameter;
 
@@ -34,7 +34,7 @@ public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateMan
                 modelType
             );
             view.DataContext = viewModel;
-            ViewModelMixin.Attach(view);
+            ViewModelMixin.Attach(view, scope);
             ViewStateMixin.Attach(view, stateManager);
         }
 

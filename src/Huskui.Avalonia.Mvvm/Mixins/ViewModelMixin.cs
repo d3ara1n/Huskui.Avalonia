@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Styling;
 using Huskui.Avalonia.Mvvm.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Avalonia.Mvvm.Mixins;
 
@@ -14,19 +15,20 @@ public static class ViewModelMixin
 {
     private static readonly ConditionalWeakTable<Control, Store> Stores = new();
 
-    public static void Attach<T>(T self)
+    public static void Attach<T>(T control, IServiceScope? scope = null)
         where T : Control
     {
-        var store = Stores.GetValue(self, _ => new());
+        var store = Stores.GetValue(control, _ => new());
         if (store.IsAttached)
         {
             return;
         }
 
-        self.Loaded += OnLoaded;
-        self.Unloaded += OnUnloaded;
-        self.DataContextChanged += OnDataContextChanged;
+        control.Loaded += OnLoaded;
+        control.Unloaded += OnUnloaded;
+        control.DataContextChanged += OnDataContextChanged;
         store.IsAttached = true;
+        store.AttachedScope = scope;
     }
 
     private static async void OnLoaded(object? sender, RoutedEventArgs e)
@@ -87,6 +89,8 @@ public static class ViewModelMixin
             {
                 store.AttachedViewModel = null;
                 await DeinitializeAsync(currentViewModel);
+                store.AttachedScope?.Dispose();
+                store.AttachedScope = null;
                 SetState(control);
             }
 
@@ -169,6 +173,7 @@ public static class ViewModelMixin
         public SemaphoreSlim Gate { get; } = new(1, 1);
         public CancellationTokenSource TokenSource { get; private set; } = new();
         public IViewModel? AttachedViewModel { get; set; }
+        public IServiceScope? AttachedScope { get; set; }
 
         public CancellationToken ReplaceTokenSource()
         {

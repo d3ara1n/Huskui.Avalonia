@@ -1,4 +1,4 @@
-name: Publish Code NuGet Package
+name: Publish Mvvm NuGet Package
 
 on:
     push:
@@ -42,7 +42,7 @@ jobs:
                     cargo install git-cliff
 
             -   name: Generate changelog
-                run: git-cliff --latest -o ./RELEASE_NOTES.md
+                run: git-cliff --latest --include-path "src/Huskui.Avalonia.Mvvm/**" -o ./RELEASE_NOTES.md
 
             -   name: Pack NuGet package
                 run: |
