@@ -171,6 +171,7 @@ public sealed class GrowlItem : ContentControl
 
         _dismissCommand.OnCanExecuteChanged();
 
+        _cts.Dispose();
         RaiseEvent(new DismissRequestedEventArgs(this));
     }
 
