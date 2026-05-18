@@ -41,13 +41,15 @@
                 <StackPanel Spacing="8">
                     <TextBlock Text="Default TextBox" />
                     <TextBox
+                        Classes="Clearable"
                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
                         Text="Sample text" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">
-                    <TextBlock Text="With Watermark" />
+                    <TextBlock Text="With Placeholder" />
                     <TextBox
+                        Classes="Clearable"
                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
                         PlaceholderText="Enter your name..." />
                 </StackPanel>
@@ -89,10 +91,83 @@
                 <StackPanel Spacing="8">
                     <TextBlock Text="Multiline TextBox" />
                     <TextBox
+                        Classes="Multiline Clearable"
                         Height="80"
-                        AcceptsReturn="True"
                         IsReadOnly="{Binding #ReadOnlyToggle.IsChecked}"
                         Text="This is a multiline text box.&#x0a;You can enter multiple lines of text here." />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Pseudo Classes"
+            Description="TextBox supports .Clearable and .Multiline pseudo classes for quick styling">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Available Classes" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text=".Clearable — Shows a clear button when the TextBox is not empty and not read-only."
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text=".Multiline — Enables AcceptsReturn and sets TextWrapping to Wrap for multi-line input."
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Both classes can be combined: Classes=&quot;Clearable Multiline&quot;"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <StackPanel
+                Width="400"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text=".Clearable" />
+                    <TextBox
+                        Classes="Clearable"
+                        PlaceholderText="Type something to see the clear button..." />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text=".Multiline" />
+                    <TextBox
+                        Classes="Multiline"
+                        Height="80"
+                        PlaceholderText="Press Enter to add new lines..." />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text=".Clearable .Multiline" />
+                    <TextBox
+                        Classes="Clearable Multiline"
+                        Height="80"
+                        PlaceholderText="Combines both behaviors..." />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text=".Clearable + InnerRightContent" />
+                    <TextBox
+                        Classes="Clearable"
+                        Text="Clearable with custom right content">
+                        <TextBox.InnerRightContent>
+                            <StackPanel Orientation="Horizontal">
+                                <husk:Divider Orientation="Vertical" />
+                                <fi:SymbolIcon
+                                    Margin="12,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource MediumFontSize}"
+                                    Symbol="Search" />
+                            </StackPanel>
+                        </TextBox.InnerRightContent>
+                    </TextBox>
                 </StackPanel>
             </StackPanel>
         </controls:ExampleContainer>
@@ -133,6 +208,7 @@
                         <TextBlock Text="First Name *" />
                         <TextBox
                             x:Name="FirstNameBox"
+                            Classes="Clearable"
                             PlaceholderText="Enter first name" />
                         <TextBlock
                             IsVisible="{Binding #ValidationToggle.IsChecked}"
@@ -145,6 +221,7 @@
                         <TextBlock Text="Email *" />
                         <TextBox
                             x:Name="EmailBox"
+                            Classes="Clearable"
                             PlaceholderText="Enter email address" />
                         <TextBlock
                             IsVisible="{Binding #ValidationToggle.IsChecked}"
@@ -157,6 +234,7 @@
                         <TextBlock Text="Password *" />
                         <TextBox
                             x:Name="PasswordBox"
+                            Classes="Clearable"
                             PasswordChar="*"
                             PlaceholderText="Enter password" />
                         <TextBlock
@@ -170,8 +248,8 @@
                         <TextBlock Text="Bio (Optional)" />
                         <TextBox
                             x:Name="BioBox"
+                            Classes="Clearable Multiline"
                             Height="80"
-                            AcceptsReturn="True"
                             PlaceholderText="Tell us about yourself..." />
                     </StackPanel>
 
