@@ -347,6 +347,15 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "TimePickers",
+                    Description =
+                        "Time selection controls using Avalonia's built-in picker with Huskui field styling",
+                    Icon = Symbol.Clock,
+                    PageType = typeof(TimePickersPage),
+                    Tags = ["timepicker", "time", "picker", "input", "schedule"],
+                },
+                new()
+                {
                     Title = "TextBoxes",
                     Description = "Text input controls for single-line and multi-line text entry",
                     Icon = Symbol.TextBulletListSquare,

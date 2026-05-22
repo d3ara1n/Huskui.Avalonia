@@ -1,0 +1,129 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.TimePickersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="720"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Basic TimePickers"
+            Description="Avalonia's built-in TimePicker styled with Huskui field colors, focus glow, and compact picker flyout.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Default 12-Hour Clock" />
+                    <TimePicker />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="24-Hour Clock" />
+                    <TimePicker
+                        ClockIdentifier="24HourClock"
+                        SelectedTime="09:30" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="15-Minute Increment" />
+                    <TimePicker
+                        ClockIdentifier="24HourClock"
+                        MinuteIncrement="15"
+                        SelectedTime="14:45" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Seconds And States"
+            Description="The style preserves TimePicker features such as seconds, disabled state, and validation presentation.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="With Seconds" />
+                    <TimePicker
+                        ClockIdentifier="24HourClock"
+                        SecondIncrement="5"
+                        UseSeconds="True"
+                        SelectedTime="16:40:25" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Disabled" />
+                    <TimePicker
+                        IsEnabled="False"
+                        SelectedTime="08:00" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Compact Form Width" />
+                    <TimePicker
+                        Width="220"
+                        ClockIdentifier="24HourClock"
+                        MinuteIncrement="30"
+                        SelectedTime="18:30" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="TimePicker now follows the same visual language as TextBox, ComboBox, and NumericUpDown inside forms.">
+            <husk:Card
+                Width="420"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Office Hours" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Start Time" />
+                            <TimePicker
+                                ClockIdentifier="24HourClock"
+                                MinuteIncrement="15"
+                                SelectedTime="09:00" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="End Time" />
+                            <TimePicker
+                                ClockIdentifier="24HourClock"
+                                MinuteIncrement="15"
+                                SelectedTime="18:00" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Reminder" />
+                            <TimePicker
+                                ClockIdentifier="24HourClock"
+                                MinuteIncrement="5"
+                                SelectedTime="17:45" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button Content="Cancel" />
+                        <Button
+                            Classes="Primary"
+                            Content="Save Hours" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

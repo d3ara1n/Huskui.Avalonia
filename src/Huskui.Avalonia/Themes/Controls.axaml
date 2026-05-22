@@ -63,6 +63,7 @@
         <ResourceInclude Source="/Controls/Tag.axaml" />
         <ResourceInclude Source="/Controls/TagBox.axaml" />
         <ResourceInclude Source="/Controls/TextBox.axaml" />
+        <ResourceInclude Source="/Controls/TimePicker.axaml" />
         <ResourceInclude Source="/Controls/TimelineControl.axaml" />
         <ResourceInclude Source="/Controls/TimelineItem.axaml" />
         <ResourceInclude Source="/Controls/TransitioningContentControl.axaml" />
