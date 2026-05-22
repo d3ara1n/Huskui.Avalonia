@@ -4,12 +4,11 @@
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <Design.PreviewWith>
-        <Border
-            Background="{StaticResource WindowBackgroundBrush}">
+        <Border Background="{StaticResource WindowBackgroundBrush}">
             <StackPanel Orientation="Horizontal">
                 <StackPanel
-                    Margin="24"
                     Width="120"
+                    Margin="24"
                     Spacing="12">
                     <GroupBox Header="Hello">
                         World
@@ -36,38 +35,46 @@
                     </GroupBox>
                 </StackPanel>
                 <StackPanel
-                    Margin="24"
                     Width="120"
+                    Margin="24"
                     Spacing="12">
-                    <GroupBox Theme="{StaticResource CardGroupBoxTheme}" Header="Hello">
+                    <GroupBox
+                        Header="Hello"
+                        Theme="{StaticResource CardGroupBoxTheme}">
                         World
                     </GroupBox>
                 </StackPanel>
                 <StackPanel
-                    Margin="24"
                     Width="120"
+                    Margin="24"
                     Spacing="12">
-                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}" Header="Hello">
+                    <GroupBox
+                        Header="Hello"
+                        Theme="{StaticResource CascadeGroupBoxTheme}">
                         World
                     </GroupBox>
-                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
-                              Classes="Primary"
-                              Header="Hello">
+                    <GroupBox
+                        Classes="Primary"
+                        Header="Hello"
+                        Theme="{StaticResource CascadeGroupBoxTheme}">
                         World
                     </GroupBox>
-                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
-                              Classes="Success"
-                              Header="Hello">
+                    <GroupBox
+                        Classes="Success"
+                        Header="Hello"
+                        Theme="{StaticResource CascadeGroupBoxTheme}">
                         World
                     </GroupBox>
-                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
-                              Classes="Warning"
-                              Header="Hello">
+                    <GroupBox
+                        Classes="Warning"
+                        Header="Hello"
+                        Theme="{StaticResource CascadeGroupBoxTheme}">
                         World
                     </GroupBox>
-                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
-                              Classes="Danger"
-                              Header="Hello">
+                    <GroupBox
+                        Classes="Danger"
+                        Header="Hello"
+                        Theme="{StaticResource CascadeGroupBoxTheme}">
                         World
                     </GroupBox>
                 </StackPanel>
@@ -130,7 +137,9 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme x:Key="CardGroupBoxTheme" TargetType="GroupBox">
+    <ControlTheme
+        x:Key="CardGroupBoxTheme"
+        TargetType="GroupBox">
         <Setter Property="CornerRadius" Value="{StaticResource LargeCornerRadius}" />
         <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
         <Setter Property="Padding" Value="{StaticResource CardContentMargin}" />
@@ -144,18 +153,23 @@
                     ClipToBounds="{TemplateBinding ClipToBounds}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,*">
-                        <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="{TemplateBinding BorderBrush}"
-                                Padding="12,8">
-                            <ContentPresenter Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Border
+                            Grid.Row="0"
+                            Padding="12,8"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="0,0,0,1">
+                            <ContentPresenter
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
                         </Border>
-                        <ContentPresenter Grid.Row="1"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          ClipToBounds="{TemplateBinding ClipToBounds}"
-                                          Content="{TemplateBinding Content}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter
+                            Grid.Row="1"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
                     </Grid>
                 </Border>
             </ControlTemplate>
@@ -177,19 +191,24 @@
                     ClipToBounds="{TemplateBinding ClipToBounds}"
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Grid RowDefinitions="Auto,*">
-                        <ContentPresenter Grid.Row="0" Padding="12,8" Content="{TemplateBinding Header}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <ContentPresenter Grid.Row="1"
-                                          Padding="{TemplateBinding Padding}"
-                                          Margin="3,0,3,3"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          ClipToBounds="{TemplateBinding ClipToBounds}"
-                                          Content="{TemplateBinding Content}"
-                                          Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                          ContentTemplate="{TemplateBinding ContentTemplate}"
-                                          CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToInnerRadius}, ConverterParameter=3}">
-                        </ContentPresenter>
+                        <ContentPresenter
+                            Grid.Row="0"
+                            Padding="12,8"
+                            Content="{TemplateBinding Header}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter
+                            Grid.Row="1"
+                            Margin="3,0,3,3"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Background="{StaticResource OverlaySolidBackgroundBrush}"
+                            ClipToBounds="{TemplateBinding ClipToBounds}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CornerRadius="{TemplateBinding CornerRadius,
+                                                           Converter={x:Static husk:CornerRadiusConverters.ToInnerRadius},
+                                                           ConverterParameter=3}" />
                     </Grid>
                 </Border>
             </ControlTemplate>

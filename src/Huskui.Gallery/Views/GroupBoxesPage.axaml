@@ -1,4 +1,4 @@
-<controls:ControlPage
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.GroupBoxesPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -67,12 +67,14 @@
             XamlCode="&lt;GroupBox Theme=&quot;{StaticResource CardGroupBoxTheme}&quot; Header=&quot;Panel Title&quot;&gt;&#10;    &lt;!-- content --&gt;&#10;&lt;/GroupBox&gt;">
             <GroupBox
                 MaxWidth="500"
-                Theme="{StaticResource CardGroupBoxTheme}"
-                Header="Server Statistics">
+                Header="Server Statistics"
+                Theme="{StaticResource CardGroupBoxTheme}">
                 <Grid
                     ColumnDefinitions="*,*,*"
                     ColumnSpacing="16">
-                    <StackPanel Grid.Column="0" Spacing="4">
+                    <StackPanel
+                        Grid.Column="0"
+                        Spacing="4">
                         <TextBlock
                             FontSize="{StaticResource LargeFontSize}"
                             FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -82,7 +84,9 @@
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                             Text="Requests" />
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Spacing="4">
+                    <StackPanel
+                        Grid.Column="1"
+                        Spacing="4">
                         <TextBlock
                             FontSize="{StaticResource LargeFontSize}"
                             FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -92,7 +96,9 @@
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                             Text="Avg Latency" />
                     </StackPanel>
-                    <StackPanel Grid.Column="2" Spacing="4">
+                    <StackPanel
+                        Grid.Column="2"
+                        Spacing="4">
                         <TextBlock
                             FontSize="{StaticResource LargeFontSize}"
                             FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -113,62 +119,82 @@
             XamlCode="&lt;GroupBox Theme=&quot;{StaticResource CascadeGroupBoxTheme}&quot; Header=&quot;Section&quot;&gt;&#10;    &lt;!-- content --&gt;&#10;&lt;/GroupBox&gt;">
             <StackPanel Spacing="12">
                 <GroupBox
-                    Theme="{StaticResource CascadeGroupBoxTheme}"
-                    Header="Account Settings">
+                    Header="Account Settings"
+                    Theme="{StaticResource CascadeGroupBoxTheme}">
                     <StackPanel Spacing="8">
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                            <fi:SymbolIcon Grid.Column="0"
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
                                 VerticalAlignment="Center"
                                 Symbol="Person" />
-                            <TextBlock Grid.Column="1"
+                            <TextBlock
+                                Grid.Column="1"
                                 VerticalAlignment="Center"
                                 Text="Profile information and avatar" />
                         </Grid>
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                            <fi:SymbolIcon Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Symbol="LockClosed" />
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Text="Password and two-factor authentication" />
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Symbol="LockClosed" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Password and two-factor authentication" />
                         </Grid>
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                            <fi:SymbolIcon Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Symbol="Mail" />
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Text="Email notifications and preferences" />
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Symbol="Mail" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Email notifications and preferences" />
                         </Grid>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox
                     Classes="Primary"
-                    Theme="{StaticResource CascadeGroupBoxTheme}"
-                    Header="Network">
+                    Header="Network"
+                    Theme="{StaticResource CascadeGroupBoxTheme}">
                     <StackPanel Spacing="8">
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                            <fi:SymbolIcon Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Symbol="Navigation" />
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Text="Connected - Stable" />
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Symbol="Navigation" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Connected - Stable" />
                         </Grid>
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                            <fi:SymbolIcon Grid.Column="0"
-                                           VerticalAlignment="Center"
-                                           Symbol="Settings" />
-                            <TextBlock Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Text="Region: East Asia" />
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="8">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Symbol="Settings" />
+                            <TextBlock
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Region: East Asia" />
                         </Grid>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox
                     Classes="Warning"
-                    Theme="{StaticResource CascadeGroupBoxTheme}"
-                    Header="Storage">
+                    Header="Storage"
+                    Theme="{StaticResource CascadeGroupBoxTheme}">
                     <StackPanel Spacing="8">
                         <TextBlock Text="3.2 GB of 10 GB used" />
                         <ProgressBar Value="32" />
@@ -176,9 +202,11 @@
                 </GroupBox>
                 <GroupBox
                     Classes="Danger"
-                    Theme="{StaticResource CascadeGroupBoxTheme}"
-                    Header="Alerts">
-                    <TextBlock Text="2 critical issues require your attention" TextWrapping="Wrap" />
+                    Header="Alerts"
+                    Theme="{StaticResource CascadeGroupBoxTheme}">
+                    <TextBlock
+                        Text="2 critical issues require your attention"
+                        TextWrapping="Wrap" />
                 </GroupBox>
             </StackPanel>
         </controls:ExampleContainer>
@@ -188,7 +216,9 @@
             Title="Form Layout with GroupBox"
             Description="Practical form layout using GroupBox to organize related input fields"
             XamlCode="&lt;GroupBox Header=&quot;Personal Information&quot;&gt;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;&#10;        &lt;TextBox PlaceholderText=&quot;Full Name&quot; /&gt;&#10;        &lt;TextBox PlaceholderText=&quot;Email&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/GroupBox&gt;">
-            <StackPanel Spacing="16" MaxWidth="500">
+            <StackPanel
+                MaxWidth="500"
+                Spacing="16">
                 <GroupBox Header="Personal Information">
                     <StackPanel Spacing="12">
                         <TextBox PlaceholderText="Full Name" />
@@ -202,7 +232,9 @@
                     <StackPanel Spacing="12">
                         <ToggleSwitch Content="Enable notifications" />
                         <ToggleSwitch Content="Dark mode" />
-                        <ToggleSwitch Content="Auto-save drafts" IsChecked="True" />
+                        <ToggleSwitch
+                            Content="Auto-save drafts"
+                            IsChecked="True" />
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
@@ -225,9 +257,15 @@
                         Classes="Success"
                         Header="Database">
                         <StackPanel Spacing="8">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Connection: Active" />
-                                <husk:Tag Grid.Column="1"
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="8">
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="Connection: Active" />
+                                <husk:Tag
+                                    Grid.Column="1"
                                     Classes="Success"
                                     Content="Healthy" />
                             </Grid>
@@ -241,11 +279,17 @@
                         Classes="Warning"
                         Header="Cache">
                         <StackPanel Spacing="8">
-                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Hit ratio: 87%" />
-                                <husk:Tag Grid.Column="1"
-                                          Classes="Warning"
-                                          Content="Degraded" />
+                            <Grid
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="8">
+                                <TextBlock
+                                    Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    Text="Hit ratio: 87%" />
+                                <husk:Tag
+                                    Grid.Column="1"
+                                    Classes="Warning"
+                                    Content="Degraded" />
                             </Grid>
                             <TextBlock
                                 FontSize="{StaticResource SmallFontSize}"
