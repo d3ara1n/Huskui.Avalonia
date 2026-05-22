@@ -4,33 +4,75 @@
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <Design.PreviewWith>
-        <StackPanel
-            Width="120"
-            Spacing="12">
-            <GroupBox Header="Hello">
-                World
-            </GroupBox>
-            <GroupBox
-                Classes="Primary"
-                Header="Hello">
-                World
-            </GroupBox>
-            <GroupBox
-                Classes="Success"
-                Header="Hello">
-                World
-            </GroupBox>
-            <GroupBox
-                Classes="Warning"
-                Header="Hello">
-                World
-            </GroupBox>
-            <GroupBox
-                Classes="Danger"
-                Header="Hello">
-                World
-            </GroupBox>
-        </StackPanel>
+        <Border
+            Background="{StaticResource WindowBackgroundBrush}">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel
+                    Margin="24"
+                    Width="120"
+                    Spacing="12">
+                    <GroupBox Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox
+                        Classes="Primary"
+                        Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox
+                        Classes="Success"
+                        Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox
+                        Classes="Warning"
+                        Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox
+                        Classes="Danger"
+                        Header="Hello">
+                        World
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel
+                    Margin="24"
+                    Width="120"
+                    Spacing="12">
+                    <GroupBox Theme="{StaticResource CardGroupBoxTheme}" Header="Hello">
+                        World
+                    </GroupBox>
+                </StackPanel>
+                <StackPanel
+                    Margin="24"
+                    Width="120"
+                    Spacing="12">
+                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}" Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
+                              Classes="Primary"
+                              Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
+                              Classes="Success"
+                              Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
+                              Classes="Warning"
+                              Header="Hello">
+                        World
+                    </GroupBox>
+                    <GroupBox Theme="{StaticResource CascadeGroupBoxTheme}"
+                              Classes="Danger"
+                              Header="Hello">
+                        World
+                    </GroupBox>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Design.PreviewWith>
 
 
@@ -84,6 +126,89 @@
         </Style>
         <Style Selector="^.Danger">
             <Setter Property="Background" Value="{StaticResource ControlDangerTranslucentFullBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDangerBorderBrush}" />
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme x:Key="CardGroupBoxTheme" TargetType="GroupBox">
+        <Setter Property="CornerRadius" Value="{StaticResource LargeCornerRadius}" />
+        <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+        <Setter Property="Padding" Value="{StaticResource CardContentMargin}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid RowDefinitions="Auto,*">
+                        <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="12,8">
+                            <ContentPresenter Content="{TemplateBinding Header}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Border>
+                        <ContentPresenter Grid.Row="1"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          ClipToBounds="{TemplateBinding ClipToBounds}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme
+        x:Key="CascadeGroupBoxTheme"
+        TargetType="GroupBox">
+        <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <Grid RowDefinitions="Auto,*">
+                        <ContentPresenter Grid.Row="0" Padding="12,8" Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentPresenter Grid.Row="1"
+                                          Padding="{TemplateBinding Padding}"
+                                          Margin="3,0,3,3"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          ClipToBounds="{TemplateBinding ClipToBounds}"
+                                          Content="{TemplateBinding Content}"
+                                          Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToInnerRadius}, ConverterParameter=3}">
+                        </ContentPresenter>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^.Primary">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentBorderBrush}" />
+        </Style>
+        <Style Selector="^.Success">
+            <Setter Property="Background" Value="{StaticResource ControlSuccessBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlSuccessBorderBrush}" />
+        </Style>
+        <Style Selector="^.Warning">
+            <Setter Property="Background" Value="{StaticResource ControlWarningBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlWarningBorderBrush}" />
+        </Style>
+        <Style Selector="^.Danger">
+            <Setter Property="Background" Value="{StaticResource ControlDangerBackgroundBrush}" />
             <Setter Property="BorderBrush" Value="{StaticResource ControlDangerBorderBrush}" />
         </Style>
     </ControlTheme>
