@@ -148,6 +148,14 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "GroupBoxes",
+                    Description = "Labeled containers with header bar for grouping related content and forms",
+                    Icon = Symbol.Group,
+                    PageType = typeof(GroupBoxesPage),
+                    Tags = ["groupbox", "group", "container", "header", "form", "section"],
+                },
+                new()
+                {
                     Title = "BusyContainers",
                     Description =
                         "Loading state containers with visual feedback for async operations",

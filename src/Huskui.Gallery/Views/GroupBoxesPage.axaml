@@ -1,0 +1,320 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.GroupBoxesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1200"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <!--  Default GroupBox Variants  -->
+        <controls:ExampleContainer
+            Title="Default GroupBox Variants"
+            Description="GroupBox with colored header bar using semantic classes: Primary, Success, Warning, Danger"
+            XamlCode="&lt;GroupBox Header=&quot;Information&quot;&gt;...&lt;/GroupBox&gt;&#10;&lt;GroupBox Classes=&quot;Primary&quot; Header=&quot;Primary&quot;&gt;...&lt;/GroupBox&gt;&#10;&lt;GroupBox Classes=&quot;Success&quot; Header=&quot;Success&quot;&gt;...&lt;/GroupBox&gt;&#10;&lt;GroupBox Classes=&quot;Warning&quot; Header=&quot;Warning&quot;&gt;...&lt;/GroupBox&gt;&#10;&lt;GroupBox Classes=&quot;Danger&quot; Header=&quot;Danger&quot;&gt;...&lt;/GroupBox&gt;">
+            <StackPanel Spacing="12">
+                <GroupBox Header="Information">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Default style with neutral colors for general content grouping."
+                        TextWrapping="Wrap" />
+                </GroupBox>
+                <GroupBox
+                    Classes="Primary"
+                    Header="Primary">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Accent color variant for primary actions or featured sections."
+                        TextWrapping="Wrap" />
+                </GroupBox>
+                <GroupBox
+                    Classes="Success"
+                    Header="Success">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Green variant for completed or positive status sections."
+                        TextWrapping="Wrap" />
+                </GroupBox>
+                <GroupBox
+                    Classes="Warning"
+                    Header="Warning">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Yellow variant for caution or important notices."
+                        TextWrapping="Wrap" />
+                </GroupBox>
+                <GroupBox
+                    Classes="Danger"
+                    Header="Danger">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Red variant for errors or destructive action sections."
+                        TextWrapping="Wrap" />
+                </GroupBox>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Card GroupBox Theme  -->
+        <controls:ExampleContainer
+            Title="Card GroupBox Theme"
+            Description="Card-style GroupBox with a flat header separator, suitable for dashboard panels"
+            XamlCode="&lt;GroupBox Theme=&quot;{StaticResource CardGroupBoxTheme}&quot; Header=&quot;Panel Title&quot;&gt;&#10;    &lt;!-- content --&gt;&#10;&lt;/GroupBox&gt;">
+            <GroupBox
+                MaxWidth="500"
+                Theme="{StaticResource CardGroupBoxTheme}"
+                Header="Server Statistics">
+                <Grid
+                    ColumnDefinitions="*,*,*"
+                    ColumnSpacing="16">
+                    <StackPanel Grid.Column="0" Spacing="4">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="1,284" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Requests" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="4">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="42ms" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Avg Latency" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Spacing="4">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="99.9%" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Uptime" />
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+        </controls:ExampleContainer>
+
+        <!--  Cascade GroupBox Theme  -->
+        <controls:ExampleContainer
+            Title="Cascade GroupBox Theme"
+            Description="Cascade-style GroupBox with an indented inner content area, also supports semantic color classes"
+            XamlCode="&lt;GroupBox Theme=&quot;{StaticResource CascadeGroupBoxTheme}&quot; Header=&quot;Section&quot;&gt;&#10;    &lt;!-- content --&gt;&#10;&lt;/GroupBox&gt;">
+            <StackPanel Spacing="12">
+                <GroupBox
+                    Theme="{StaticResource CascadeGroupBoxTheme}"
+                    Header="Account Settings">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <fi:SymbolIcon Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Symbol="Person" />
+                            <TextBlock Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Text="Profile information and avatar" />
+                        </Grid>
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <fi:SymbolIcon Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Symbol="LockClosed" />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="Password and two-factor authentication" />
+                        </Grid>
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <fi:SymbolIcon Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Symbol="Mail" />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="Email notifications and preferences" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Classes="Primary"
+                    Theme="{StaticResource CascadeGroupBoxTheme}"
+                    Header="Network">
+                    <StackPanel Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <fi:SymbolIcon Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Symbol="Navigation" />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="Connected - Stable" />
+                        </Grid>
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                            <fi:SymbolIcon Grid.Column="0"
+                                           VerticalAlignment="Center"
+                                           Symbol="Settings" />
+                            <TextBlock Grid.Column="1"
+                                       VerticalAlignment="Center"
+                                       Text="Region: East Asia" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Classes="Warning"
+                    Theme="{StaticResource CascadeGroupBoxTheme}"
+                    Header="Storage">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="3.2 GB of 10 GB used" />
+                        <ProgressBar Value="32" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Classes="Danger"
+                    Theme="{StaticResource CascadeGroupBoxTheme}"
+                    Header="Alerts">
+                    <TextBlock Text="2 critical issues require your attention" TextWrapping="Wrap" />
+                </GroupBox>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Form Layout with GroupBox  -->
+        <controls:ExampleContainer
+            Title="Form Layout with GroupBox"
+            Description="Practical form layout using GroupBox to organize related input fields"
+            XamlCode="&lt;GroupBox Header=&quot;Personal Information&quot;&gt;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;&#10;        &lt;TextBox PlaceholderText=&quot;Full Name&quot; /&gt;&#10;        &lt;TextBox PlaceholderText=&quot;Email&quot; /&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/GroupBox&gt;">
+            <StackPanel Spacing="16" MaxWidth="500">
+                <GroupBox Header="Personal Information">
+                    <StackPanel Spacing="12">
+                        <TextBox PlaceholderText="Full Name" />
+                        <TextBox PlaceholderText="Email Address" />
+                        <TextBox PlaceholderText="Phone Number" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Classes="Primary"
+                    Header="Preferences">
+                    <StackPanel Spacing="12">
+                        <ToggleSwitch Content="Enable notifications" />
+                        <ToggleSwitch Content="Dark mode" />
+                        <ToggleSwitch Content="Auto-save drafts" IsChecked="True" />
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Nested GroupBoxes  -->
+        <controls:ExampleContainer
+            Title="Nested GroupBoxes"
+            Description="GroupBoxes can be nested to create hierarchical content structures"
+            XamlCode="&lt;GroupBox Header=&quot;Application&quot;&gt;&#10;    &lt;GroupBox Header=&quot;Advanced&quot;&gt;&#10;        ...&#10;    &lt;/GroupBox&gt;&#10;&lt;/GroupBox&gt;">
+            <GroupBox
+                MaxWidth="500"
+                Header="Application Configuration">
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Manage application-wide settings and configure subsystems."
+                        TextWrapping="Wrap" />
+                    <GroupBox
+                        Classes="Success"
+                        Header="Database">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Connection: Active" />
+                                <husk:Tag Grid.Column="1"
+                                    Classes="Success"
+                                    Content="Healthy" />
+                            </Grid>
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="PostgreSQL 16.2 - 42 tables, 1.2M rows" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox
+                        Classes="Warning"
+                        Header="Cache">
+                        <StackPanel Spacing="8">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                                <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Hit ratio: 87%" />
+                                <husk:Tag Grid.Column="1"
+                                          Classes="Warning"
+                                          Content="Degraded" />
+                            </Grid>
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Redis 7.0 - Consider increasing max memory" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </GroupBox>
+        </controls:ExampleContainer>
+
+        <!--  Side-by-side GroupBoxes  -->
+        <controls:ExampleContainer
+            Title="Side-by-side GroupBoxes"
+            Description="GroupBoxes arranged in a grid for dashboard-like layouts"
+            XamlCode="&lt;Grid ColumnDefinitions=&quot;*,*&quot; ColumnSpacing=&quot;16&quot;&gt;&#10;    &lt;GroupBox Grid.Column=&quot;0&quot; Header=&quot;CPU&quot;&gt;...&lt;/GroupBox&gt;&#10;    &lt;GroupBox Grid.Column=&quot;1&quot; Header=&quot;Memory&quot;&gt;...&lt;/GroupBox&gt;&#10;&lt;/Grid&gt;">
+            <Grid
+                ColumnDefinitions="*,*,*"
+                ColumnSpacing="16">
+                <GroupBox
+                    Grid.Column="0"
+                    Classes="Primary"
+                    Header="CPU">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="34%" />
+                        <ProgressBar Value="34" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="4 cores @ 3.2 GHz" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Grid.Column="1"
+                    Classes="Success"
+                    Header="Memory">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="62%" />
+                        <ProgressBar Value="62" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="9.9 GB / 16 GB" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox
+                    Grid.Column="2"
+                    Classes="Warning"
+                    Header="Disk">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="78%" />
+                        <ProgressBar Value="78" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="390 GB / 500 GB" />
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
