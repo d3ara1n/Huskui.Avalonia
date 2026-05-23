@@ -17,8 +17,6 @@
             <StaticResource
                 x:Key="SolidColor"
                 ResourceKey="Gray1Color" />
-            <!--  👆 两个极端 👆  -->
-
             <StaticResource
                 x:Key="FlyoutColor"
                 ResourceKey="Gray1Color" />
@@ -45,12 +43,10 @@
             <Color x:Key="TransparentColor">#00000000</Color>
             <StaticResource
                 x:Key="SolidColor"
-                ResourceKey="Gray1Color" />
-            <!--  👆 不准动 👆  -->
-
+                ResourceKey="Gray2Color" />
             <StaticResource
                 x:Key="FlyoutColor"
-                ResourceKey="Gray2Color" />
+                ResourceKey="Gray3Color" />
             <StaticResource
                 x:Key="LayerColor"
                 ResourceKey="Black5Color" />
@@ -114,7 +110,7 @@
         Color="{DynamicResource Overlay2Color}" />
     <SolidColorBrush
         x:Key="OverlaySolidBackgroundBrush"
-        Color="{DynamicResource Gray1Color}" />
+        Color="{DynamicResource SolidColor}" />
     <SolidColorBrush
         x:Key="OverlaySmokeBackgroundBrush"
         Color="{DynamicResource SmokeColor}" />
