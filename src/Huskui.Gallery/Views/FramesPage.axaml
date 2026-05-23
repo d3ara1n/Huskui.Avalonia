@@ -8,14 +8,277 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Huskui.Gallery.Models"
     xmlns:views="clr-namespace:Huskui.Gallery.Views"
-    d:DesignHeight="450"
+    d:DesignHeight="900"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <StackPanel Spacing="32">
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="What is Frame?" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Huskui's navigation host that manages a history stack and animates between pages."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="Frame is Huskui's own navigation host. Internally it holds two ContentPresenters and cross-fades between them using pluggable " />
+                    <husk:HighlightInline Text="IPageTransition" />
+                    <Run Text=" implementations. Every call to " />
+                    <husk:HighlightInline Text="Navigate" />
+                    <Run Text=" pushes the current page onto a history stack, and " />
+                    <husk:HighlightInline Text="GoBack" />
+                    <Run Text=" pops it." />
+                </TextBlock>
+
+                <husk:InfoBar Header="Don't confuse with Avalonia 12's NavigationPage / Page">
+                    <StackPanel Spacing="8">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="Avalonia 12 introduced a " />
+                            <husk:HighlightInline Text="NavigationPage" />
+                            <Run Text=" system with its own " />
+                            <husk:HighlightInline Text="Avalonia.Controls.Page" />
+                            <Run Text=" base class (" />
+                            <husk:HighlightInline Text="ContentPage" />
+                            <Run Text=", " />
+                            <husk:HighlightInline Text="TabbedPage" />
+                            <Run Text=", etc.). That is a completely separate navigation stack with async Push/Pop APIs, modal support, and platform back-button integration." />
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="Huskui's " />
+                            <husk:HighlightInline Text="Huskui.Avalonia.Controls.Page" />
+                            <Run Text=" is a " />
+                            <husk:HighlightInline Text="HeaderedContentControl" />
+                            <Run Text=" with a built-in header bar, back button, and ScrollViewer — it is " />
+                            <Run FontWeight="{StaticResource ControlStrongFontWeight}" Text="not" />
+                            <Run Text=" the same type. When writing pages for Huskui's Frame, inherit from " />
+                            <husk:HighlightInline Text="Huskui.Avalonia.Controls.Page" />
+                            <Run Text=" (or " />
+                            <husk:HighlightInline Text="ControlPage" />
+                            <Run Text=" in the Gallery), not Avalonia 12's Page." />
+                        </TextBlock>
+                    </StackPanel>
+                </husk:InfoBar>
+            </StackPanel>
+        </Border>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Navigate and GoBack" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="The core API for page navigation."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="Call " />
+                    <husk:HighlightInline Text="Navigate(typeof(MyPage), parameter, transition)" />
+                    <Run Text=" to push a new page. The page type is instantiated by " />
+                    <husk:HighlightInline Text="PageActivator" />
+                    <Run Text=", the parameter becomes the page's " />
+                    <husk:HighlightInline Text="DataContext" />
+                    <Run Text=", and the optional transition overrides " />
+                    <husk:HighlightInline Text="DefaultTransition" />
+                    <Run Text=" (CrossFade by default)." />
+                </TextBlock>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="Call " />
+                    <husk:HighlightInline Text="GoBack()" />
+                    <Run Text=" to pop the history stack and re-activate the previous page. " />
+                    <husk:HighlightInline Text="CanGoBack" />
+                    <Run Text=" is true when the stack is non-empty. Set " />
+                    <husk:HighlightInline Text="CanGoBackOutOfStack" />
+                    <Run Text=" to also allow going back when the stack is empty — this clears the Frame content entirely. " />
+                    <husk:HighlightInline Text="HistoryCount" />
+                    <Run Text=" reflects the current stack depth." />
+                </TextBlock>
+
+                <husk:Divider />
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag
+                        Background="{StaticResource ControlAccentTranslucentFullBackgroundBrush}"
+                        Content="Usage"
+                        Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                </WrapPanel>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="XAML" />
+                        <husk:CodeViewer
+                            Code="&lt;husk:Frame x:Name=&quot;Root&quot; /&gt;"
+                            Language="xml" />
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="C#" />
+                        <husk:CodeViewer
+                            Code="Root.Navigate(typeof(MyPage), parameter, transition);&#x0a;Root.GoBack();"
+                            Language="csharp" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="PageActivator" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Customize how pages are created and wired up."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="By default, " />
+                    <husk:HighlightInline Text="Frame.PageActivator" />
+                    <Run Text=" uses " />
+                    <husk:HighlightInline Text="Activator.CreateInstance" />
+                    <Run Text=" and sets " />
+                    <husk:HighlightInline Text="DataContext" />
+                    <Run Text=" to the parameter. Replace it with a custom " />
+                    <husk:HighlightInline Text="PageActivatorDelegate" />
+                    <Run Text=" to integrate DI containers, resolve ViewModels, or run any setup logic when a page is created." />
+                </TextBlock>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource SmallFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Custom PageActivator with DI" />
+                        <husk:CodeViewer
+                            Code="frame.PageActivator = (type, parameter) =&gt;&#x0a;{&#x0a;    var page = Activator.CreateInstance(type) as Page;&#x0a;    var vm = _serviceProvider.GetRequiredService(viewModelType);&#x0a;    page.DataContext = vm;&#x0a;    return page;&#x0a;};"
+                            Language="csharp" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Built-in Transitions" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Huskui ships several page transition animations."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    LineSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag Content="PageCoverOver" />
+                    <husk:Tag Content="FocusOn" />
+                    <husk:Tag Content="Tab" />
+                    <husk:Tag Content="PopUp" />
+                    <husk:Tag Content="CrossFade (default)" />
+                </WrapPanel>
+
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap">
+                    <Run Text="All transitions live in the " />
+                    <husk:HighlightInline Text="Huskui.Avalonia.Transitions" />
+                    <Run Text=" namespace and implement " />
+                    <husk:HighlightInline Text="IPageTransition" />
+                    <Run Text=". Pass them to " />
+                    <husk:HighlightInline Text="Navigate" />
+                    <Run Text=" as the third argument; when omitted, " />
+                    <husk:HighlightInline Text="DefaultTransition" />
+                    <Run Text=" (CrossFade) is used." />
+                </TextBlock>
+
+                <husk:InfoBar
+                    Classes="Warning"
+                    Header="Not compatible with Avalonia's built-in transitions">
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="Huskui's Frame expects transitions from " />
+                        <husk:HighlightInline Text="Huskui.Avalonia.Transitions" />
+                        <Run Text=" only (those ending in " />
+                        <husk:HighlightInline Text="Transition" />
+                        <Run Text=" — e.g. " />
+                        <husk:HighlightInline Text="PageCoverOverTransition" />
+                        <Run Text="). Using Avalonia's own " />
+                        <husk:HighlightInline Text="IPageTransition" />
+                        <Run Text=" implementations (such as " />
+                        <husk:HighlightInline Text="PageSlide" />
+                        <Run Text=" or " />
+                        <husk:HighlightInline Text="CrossFade" />
+                        <Run Text=" from " />
+                        <husk:HighlightInline Text="Avalonia.Animation" />
+                        <Run Text=") will produce unexpected results because Huskui's Frame drives the animation through a two-presenter swap cycle that Avalonia's transitions are not designed for." />
+                    </TextBlock>
+                </husk:InfoBar>
+            </StackPanel>
+        </Border>
+
         <controls:ExampleContainer
-            Title="Basic Frame"
+            Title="Interactive demo"
             Padding="0"
-            Description="Navigating between pages with transitions">
+            Description="Navigate between pages with different transition styles.">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <ComboBox
@@ -47,5 +310,6 @@
                     ClipToBounds="False" />
             </Border>
         </controls:ExampleContainer>
+
     </StackPanel>
 </controls:ControlPage>
