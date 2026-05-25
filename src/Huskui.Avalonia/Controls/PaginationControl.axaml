@@ -49,6 +49,46 @@
                         <Button Command="{Binding $parent[local:PaginationControl].GoToNext}">
                             <fi:SymbolIcon Symbol="ChevronRight" />
                         </Button>
+
+                        <Popup
+                            Name="PART_QuickJumperPopup"
+                            IsLightDismissEnabled="True"
+                            Placement="Top"
+                            WindowManagerAddShadowHint="False">
+                            <Border
+                                Width="180"
+                                Margin="2,4"
+                                Padding="12"
+                                Background="{StaticResource FlyoutBackgroundBrush}"
+                                BorderBrush="{StaticResource ControlBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="{StaticResource SmallCornerRadius}">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
+                                </Border.Effect>
+                                <StackPanel Spacing="10">
+                                    <TextBlock
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="Jump to page" />
+                                    <NumericUpDown
+                                        Name="PART_QuickJumperInput"
+                                        ClipValueToMinMax="True"
+                                        FormatString="F0"
+                                        Minimum="1"
+                                        PlaceholderText="Page"
+                                        ShowButtonSpinner="False" />
+                                    <Button
+                                        Name="PART_QuickJumperButton"
+                                        HorizontalAlignment="Stretch"
+                                        Classes="Primary"
+                                        Content="Go" />
+                                </StackPanel>
+                            </Border>
+                        </Popup>
                     </StackPanel>
                 </Border>
             </ControlTemplate>

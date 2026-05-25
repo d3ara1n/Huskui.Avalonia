@@ -16,6 +16,9 @@ public class PaginationControl : TemplatedControl
     private const int MAX_VISIBLE_PAGE_COUNT = 7;
 
     private ItemsControl? _itemsControl;
+    private Popup? _quickJumperPopup;
+    private NumericUpDown? _quickJumperInput;
+    private Button? _quickJumperButton;
     private bool _updating;
 
     public PaginationControl()
@@ -89,7 +92,22 @@ public class PaginationControl : TemplatedControl
 
         ClearPageItems();
 
+        if (_quickJumperInput is not null)
+            _quickJumperInput.KeyDown -= OnQuickJumperInputKeyDown;
+
+        if (_quickJumperButton is not null)
+            _quickJumperButton.Click -= OnQuickJumperButtonClick;
+
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
+        _quickJumperPopup = e.NameScope.Find<Popup>("PART_QuickJumperPopup");
+        _quickJumperInput = e.NameScope.Find<NumericUpDown>("PART_QuickJumperInput");
+        _quickJumperButton = e.NameScope.Find<Button>("PART_QuickJumperButton");
+
+        if (_quickJumperInput is not null)
+            _quickJumperInput.KeyDown += OnQuickJumperInputKeyDown;
+
+        if (_quickJumperButton is not null)
+            _quickJumperButton.Click += OnQuickJumperButtonClick;
 
         Refresh(updatePageCount: true);
     }
@@ -106,8 +124,59 @@ public class PaginationControl : TemplatedControl
 
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
-        if (e.Source is PaginationItem { PageIndex: not ELLIPSIS_PAGE_INDEX } item)
-            GoToPage(item.PageIndex);
+        if (e.Source is not PaginationItem item)
+            return;
+
+        e.Handled = true;
+
+        if (item.PageIndex == ELLIPSIS_PAGE_INDEX)
+        {
+            OpenQuickJumper(item);
+            return;
+        }
+
+        GoToPage(item.PageIndex);
+    }
+
+    private void OnQuickJumperButtonClick(object? sender, RoutedEventArgs e) => CommitQuickJump();
+
+    private void OnQuickJumperInputKeyDown(object? sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            CommitQuickJump();
+            e.Handled = true;
+        }
+        else if (e.Key == Key.Escape)
+        {
+            _quickJumperPopup?.IsOpen = false;
+            e.Handled = true;
+        }
+    }
+
+    private void OpenQuickJumper(PaginationItem placementTarget)
+    {
+        if (_quickJumperPopup is null || _quickJumperInput is null)
+            return;
+
+        _quickJumperInput.Maximum = Math.Max(1, PageCount);
+
+        _quickJumperInput.Value = PageIndex + 1;
+        _quickJumperPopup.PlacementTarget = placementTarget;
+        _quickJumperPopup.IsOpen = true;
+        _quickJumperInput.Focus();
+    }
+
+    private void CommitQuickJump()
+    {
+        if (_quickJumperInput?.Value is { } value)
+        {
+            var maxPage = Math.Max(1, PageCount);
+            var displayPage = decimal.ToInt32(Math.Clamp(value, 1, maxPage));
+            GoToPage(displayPage - 1);
+        }
+
+        _quickJumperPopup?.IsOpen = false;
     }
 
     private int ComputePageCount() =>
@@ -126,6 +195,7 @@ public class PaginationControl : TemplatedControl
 
             PageIndex = CoercePageIndex(PageIndex);
             UpdatePageItems();
+            _quickJumperInput?.Maximum = Math.Max(1, PageCount);
         }
         finally
         {
@@ -211,6 +281,6 @@ public class PaginationControl : TemplatedControl
     {
         item.PageIndex = pageIndex;
         item.IsCurrent = pageIndex == PageIndex;
-        item.IsEnabled = pageIndex != ELLIPSIS_PAGE_INDEX;
+        item.IsEnabled = true;
     }
 }
