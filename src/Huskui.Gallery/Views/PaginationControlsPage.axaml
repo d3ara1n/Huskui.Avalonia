@@ -1,0 +1,136 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.PaginationControlsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic Pagination"
+            Description="A simple pagination with default settings">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Navigation" />
+                    <Button
+                        Click="OnGoToFirst"
+                        Content="Go to First" />
+                    <Button
+                        Click="OnGoToLast"
+                        Content="Go to Last" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Use the arrow buttons or click a page number to navigate."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel Spacing="12">
+                <husk:PaginationControl
+                    x:Name="BasicPagination"
+                    TotalCount="100" />
+                <TextBlock>
+                    <Run Text="PageIndex: " />
+                    <Run Text="{Binding #BasicPagination.PageIndex}" />
+                    <Run Text=" / " />
+                    <Run Text="{Binding #BasicPagination.PageCount}" />
+                </TextBlock>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Large Dataset"
+            Description="PaginationControl with a large number of pages showing ellipsis behavior">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Jump To" />
+                    <Button
+                        Click="OnGoToPage20"
+                        Content="Go to Page 20" />
+                    <Button
+                        Click="OnGoToPage50"
+                        Content="Go to Page 50" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Ellipsis (…) appears when there are too many pages to display."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel Spacing="12">
+                <husk:PaginationControl
+                    x:Name="LargePagination"
+                    TotalCount="1000"
+                    PageSize="10" />
+                <TextBlock>
+                    <Run Text="PageIndex: " />
+                    <Run Text="{Binding #LargePagination.PageIndex}" />
+                    <Run Text=" / " />
+                    <Run Text="{Binding #LargePagination.PageCount}" />
+                </TextBlock>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Custom PageSize"
+            Description="Different page sizes change the total number of pages">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="PageSize" />
+                    <NumericUpDown
+                        x:Name="PageSizeUpDown"
+                        Maximum="100"
+                        Minimum="1"
+                        Value="25" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel Spacing="12">
+                <husk:PaginationControl
+                    x:Name="CustomPagination"
+                    TotalCount="200"
+                    PageSize="{Binding #PageSizeUpDown.Value, Mode=OneWay}" />
+                <TextBlock>
+                    <Run Text="PageIndex: " />
+                    <Run Text="{Binding #CustomPagination.PageIndex}" />
+                    <Run Text=" | PageSize: " />
+                    <Run Text="{Binding #CustomPagination.PageSize}" />
+                    <Run Text=" | PageCount: " />
+                    <Run Text="{Binding #CustomPagination.PageCount}" />
+                </TextBlock>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Disabled State"
+            Description="PaginationControl can be disabled to prevent user interaction">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <ToggleSwitch
+                        IsChecked="True"
+                        OnContent="Enabled"
+                        OffContent="Disabled"
+                        IsCheckedChanged="OnEnabledToggled" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <husk:PaginationControl
+                x:Name="DisabledPagination"
+                TotalCount="50"
+                PageSize="10" />
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

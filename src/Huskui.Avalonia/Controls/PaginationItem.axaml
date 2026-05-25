@@ -1,0 +1,71 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+
+    <ControlTheme
+        x:Key="{x:Type local:PaginationItem}"
+        TargetType="local:PaginationItem">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Padding" Value="14,9" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border
+                        Name="PageBorder"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{StaticResource ControlInteractiveBackgroundBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        IsVisible="{TemplateBinding PageIndex,
+                                                    Converter={x:Static local:ObjectConverters.NotMatch},
+                                                    ConverterParameter=-1}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Text="{TemplateBinding PageIndex,
+                                                   Converter={x:Static local:InternalConverters.ToDisplayIndex}}" />
+                    </Border>
+
+                    <TextBlock
+                        Name="EllipsisText"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsVisible="{TemplateBinding PageIndex,
+                                                    Converter={x:Static local:ObjectConverters.Match},
+                                                    ConverterParameter=-1}"
+                        Text="…" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ Border#PageBorder">
+            <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pressed /template/ Border#PageBorder">
+            <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:current /template/ Border#PageBorder">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:current /template/ Border#PageBorder TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ControlWhiteForegroundBrush}" />
+            <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        </Style>
+
+        <Style Selector="^:current:pointerover /template/ Border#PageBorder">
+            <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

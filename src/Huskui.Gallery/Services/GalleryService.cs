@@ -468,6 +468,14 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "Pagination",
+                    Description = "Page navigation controls for browsing through paged data",
+                    Icon = Symbol.ArrowSort,
+                    PageType = typeof(PaginationControlsPage),
+                    Tags = ["pagination", "page", "navigation", "data", "paging"],
+                },
+                new()
+                {
                     Title = "StepControls",
                     Description = "Stepped navigation controls for multi-step workflows",
                     Icon = Symbol.Navigation,
