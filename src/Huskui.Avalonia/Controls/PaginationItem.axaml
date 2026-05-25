@@ -1,22 +1,32 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
     xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
 
     <ControlTheme
         x:Key="{x:Type local:PaginationItem}"
         TargetType="local:PaginationItem">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Padding" Value="14,9" />
+        <Setter Property="Width" Value="{Binding $self.Bounds.Height}" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource OverlayInteractiveBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Panel>
                     <Border
                         Name="PageBorder"
                         Padding="{TemplateBinding Padding}"
-                        Background="{StaticResource ControlInteractiveBackgroundBrush}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         IsVisible="{TemplateBinding PageIndex,
                                                     Converter={x:Static local:ObjectConverters.NotMatch},
@@ -27,45 +37,92 @@
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
+                            Name="PageText"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Foreground="{TemplateBinding Foreground}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
                             Text="{TemplateBinding PageIndex,
-                                                   Converter={x:Static local:InternalConverters.ToDisplayIndex}}" />
+                                                    Converter={x:Static local:InternalConverters.ToDisplayIndex}}" />
                     </Border>
 
-                    <TextBlock
-                        Name="EllipsisText"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
+                    <Border
+                        Name="EllipsisBorder"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
                         IsVisible="{TemplateBinding PageIndex,
                                                     Converter={x:Static local:ObjectConverters.Match},
-                                                    ConverterParameter=-1}"
-                        Text="…" />
+                                                    ConverterParameter=-1}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="BorderBrush"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <TextBlock
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Text="..." />
+                    </Border>
                 </Panel>
             </ControlTemplate>
         </Setter>
 
         <Style Selector="^:pointerover /template/ Border#PageBorder">
-            <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
         </Style>
 
         <Style Selector="^:pressed /template/ Border#PageBorder">
-            <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         </Style>
 
         <Style Selector="^:current /template/ Border#PageBorder">
-            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+            <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
         </Style>
-        <Style Selector="^:current /template/ Border#PageBorder TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource ControlWhiteForegroundBrush}" />
+        <Style Selector="^:current /template/ TextBlock#PageText">
+            <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
             <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
         </Style>
 
         <Style Selector="^:current:pointerover /template/ Border#PageBorder">
-            <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
+            <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pointerover /template/ Border#EllipsisBorder">
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pressed /template/ Border#EllipsisBorder">
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#PageBorder">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#EllipsisBorder">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

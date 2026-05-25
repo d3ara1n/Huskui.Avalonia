@@ -28,9 +28,7 @@ public class PaginationControl : TemplatedControl
 
     static PaginationControl()
     {
-        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<PaginationControl>(
-            KeyboardNavigationMode.Once
-        );
+        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<PaginationControl>(KeyboardNavigationMode.Once);
     }
 
     public static readonly StyledProperty<int> TotalCountProperty =
@@ -162,6 +160,7 @@ public class PaginationControl : TemplatedControl
         _quickJumperInput.Maximum = Math.Max(1, PageCount);
 
         _quickJumperInput.Value = PageIndex + 1;
+        _quickJumperInput.PlaceholderText = (PageIndex + 1).ToString();
         _quickJumperPopup.PlacementTarget = placementTarget;
         _quickJumperPopup.IsOpen = true;
         _quickJumperInput.Focus();
@@ -179,8 +178,7 @@ public class PaginationControl : TemplatedControl
         _quickJumperPopup?.IsOpen = false;
     }
 
-    private int ComputePageCount() =>
-        TotalCount > 0 && PageSize > 0 ? (TotalCount - 1) / PageSize + 1 : 0;
+    private int ComputePageCount() => TotalCount > 0 && PageSize > 0 ? (TotalCount - 1) / PageSize + 1 : 0;
 
     private int CoercePageIndex(int page) => Math.Clamp(page, 0, Math.Max(0, PageCount - 1));
 
@@ -267,9 +265,7 @@ public class PaginationControl : TemplatedControl
 
         ClearPageItems();
 
-        _itemsControl.ItemsSource = Enumerable.Range(0, count)
-            .Select(_ => new PaginationItem())
-            .ToArray();
+        _itemsControl.ItemsSource = Enumerable.Range(0, count).Select(_ => new PaginationItem()).ToArray();
     }
 
     private void ClearPageItems()

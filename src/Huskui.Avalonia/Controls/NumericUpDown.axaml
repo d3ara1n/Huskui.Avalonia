@@ -67,7 +67,7 @@
                                 </Style>
                             </Grid.Styles>
 
-                            <Button Name="PART_IncreaseButton">
+                            <Button Grid.Row="0" Name="PART_IncreaseButton">
                                 <fi:SymbolIcon
                                     FontSize="{TemplateBinding FontSize}"
                                     Symbol="ChevronUp" />
@@ -185,6 +185,7 @@
                                         <Setter Property="Theme" Value="{StaticResource GhostButtonTheme}" />
                                         <Setter Property="Padding" Value="8,4" />
                                         <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+                                        <Setter Property="Margin" Value="2" />
                                     </Style>
                                 </Grid.Styles>
 
