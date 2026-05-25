@@ -17,7 +17,7 @@
                                 RelativeSource="{RelativeSource TemplatedParent}" />
                             <Binding
                                 FallbackValue="{x:False}"
-                                Path="Source.IsInProgress"
+                                Path="Source?.IsInProgress"
                                 RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding>
                     </local:SkeletonContainer.IsLoading>
