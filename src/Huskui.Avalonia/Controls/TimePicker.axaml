@@ -29,6 +29,7 @@
     <x:Double x:Key="TimePickerFlyoutPresenterAcceptDismissHostGridHeight">34</x:Double>
     <Thickness x:Key="TimePickerHostPadding1">9,5</Thickness>
     <Thickness x:Key="TimePickerHostPadding2">3</Thickness>
+    <x:String x:Key="TimePickerHostEmptyString">- -</x:String>
 
     <ControlTheme
         x:Key="HuskTimePickerFlyoutButtonTheme"
@@ -198,7 +199,7 @@
                                         Name="PART_HourTextBlock"
                                         HorizontalAlignment="Center"
                                         Padding="{StaticResource TimePickerHostPadding1}"
-                                        Text="--" />
+                                        Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
                                 <Rectangle
@@ -231,7 +232,7 @@
                                         Name="PART_MinuteTextBlock"
                                         HorizontalAlignment="Center"
                                         Padding="{StaticResource TimePickerHostPadding1}"
-                                        Text="--" />
+                                        Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
                                 <Rectangle
@@ -264,7 +265,7 @@
                                         Name="PART_SecondTextBlock"
                                         HorizontalAlignment="Center"
                                         Padding="{StaticResource TimePickerHostPadding1}"
-                                        Text="--" />
+                                        Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
                                 <Rectangle
@@ -297,7 +298,7 @@
                                         Name="PART_PeriodTextBlock"
                                         HorizontalAlignment="Center"
                                         Padding="{StaticResource TimePickerHostPadding1}"
-                                        Text="--" />
+                                        Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
                             </Grid>
                         </Button>

@@ -3,7 +3,6 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net10.0-android</TargetFramework>
         <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
-        <Nullable>enable</Nullable>
         <ApplicationId>io.github.d3ara1n.huskui.gallery</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>

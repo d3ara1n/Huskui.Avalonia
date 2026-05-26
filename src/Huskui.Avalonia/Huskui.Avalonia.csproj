@@ -1,11 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net10.0;net8.0</TargetFrameworks>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <LangVersion>preview</LangVersion>
-
-        <!-- NuGet Package Metadata -->
         <PackageId>Huskui.Avalonia</PackageId>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
@@ -29,7 +23,6 @@
         <PackageReference Include="Avalonia" />
         <PackageReference Include="FluentIcons.Avalonia" />
 
-        <!-- Source Link for better debugging experience -->
         <PackageReference Include="GitVersion.MsBuild">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -42,7 +35,6 @@
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
-    <!-- Include files needed for NuGet packaging -->
     <ItemGroup>
         <None
             Include="Assets\icon.png"
