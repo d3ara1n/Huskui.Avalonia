@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <TargetFrameworks>net10.0</TargetFrameworks>
         <OutputType>WinExe</OutputType>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <ApplicationIcon>..\Huskui.Gallery\Assets\Icon.ico</ApplicationIcon>

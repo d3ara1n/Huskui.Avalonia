@@ -1,0 +1,124 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.DatePickersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="760"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Basic DatePickers"
+            Description="Avalonia's built-in DatePicker styled with Huskui field colors, focus glow, and compact picker flyout.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Default" />
+                    <DatePicker />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Selected Date" />
+                    <DatePicker SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Month And Year Only" />
+                    <DatePicker
+                        DayVisible="False"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="States And Ranges"
+            Description="The style preserves DatePicker features such as constrained year ranges, disabled state, and compact form widths.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Limited Year Range" />
+                    <DatePicker
+                        MaxYear="2030-12-31"
+                        MinYear="2020-01-01"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Year Only" />
+                    <DatePicker
+                        DayVisible="False"
+                        MonthVisible="False"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Disabled" />
+                    <DatePicker
+                        IsEnabled="False"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Compact Form Width" />
+                    <DatePicker
+                        Width="220"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="DatePicker follows the same visual language as TextBox, ComboBox, NumericUpDown, and TimePicker inside forms.">
+            <husk:Card
+                Width="420"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Project Timeline" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Kickoff Date" />
+                            <DatePicker SelectedDate="2026-05-26" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Review Date" />
+                            <DatePicker SelectedDate="2026-06-09" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Target Month" />
+                            <DatePicker
+                                DayVisible="False"
+                                SelectedDate="2026-07-01" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button Content="Cancel" />
+                        <Button
+                            Classes="Primary"
+                            Content="Save Timeline" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

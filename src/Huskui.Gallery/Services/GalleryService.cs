@@ -347,6 +347,15 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "DatePickers",
+                    Description =
+                        "Date selection controls using Avalonia's built-in picker with Huskui field styling",
+                    Icon = Symbol.Calendar,
+                    PageType = typeof(DatePickersPage),
+                    Tags = ["datepicker", "date", "calendar", "picker", "input", "schedule"],
+                },
+                new()
+                {
                     Title = "TimePickers",
                     Description =
                         "Time selection controls using Avalonia's built-in picker with Huskui field styling",
