@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <TargetFramework>net10.0-android</TargetFramework>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net10.0-android</TargetFrameworks>
         <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
         <ApplicationId>io.github.d3ara1n.huskui.gallery</ApplicationId>
         <ApplicationVersion>1</ApplicationVersion>

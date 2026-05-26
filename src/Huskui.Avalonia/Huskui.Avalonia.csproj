@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <TargetFrameworks>$(HuskuiTargetFrameworks)</TargetFrameworks>
         <PackageId>Huskui.Avalonia</PackageId>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
@@ -20,19 +21,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" />
-        <PackageReference Include="FluentIcons.Avalonia" />
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="FluentIcons.Avalonia"/>
 
         <PackageReference Include="GitVersion.MsBuild">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="JetBrains.Annotations" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations"/>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -42,6 +43,6 @@
             PackagePath="\"
             Condition="Exists('Assets\icon.png')"
         />
-        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
 </Project>

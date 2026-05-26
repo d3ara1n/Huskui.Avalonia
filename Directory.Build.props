@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+        <HuskuiTargetFrameworks>net8.0;net10.0</HuskuiTargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>

@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <TargetFrameworks>$(HuskuiTargetFrameworks)</TargetFrameworks>
         <PackageId>Huskui.Avalonia.Mvvm</PackageId>
         <Authors>d3ara1n</Authors>
         <Company>d3ara1n</Company>
