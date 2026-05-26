@@ -48,7 +48,7 @@
             <ControlTemplate>
                 <Panel>
                     <Border
-                        Name="PART_Background"
+                        Name="Background"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
@@ -68,7 +68,7 @@
                     </Border>
 
                     <ContentPresenter
-                        Name="PART_ContentPresenter"
+                        Name="ContentPresenter"
                         HorizontalContentAlignment="Stretch"
                         VerticalContentAlignment="Stretch"
                         Content="{TemplateBinding Content}"
@@ -77,7 +77,7 @@
                         Foreground="{TemplateBinding Foreground}" />
 
                     <Border
-                        Name="PART_Overlay"
+                        Name="Overlay"
                         Margin="4"
                         Background="{StaticResource OverlayHalfBackgroundBrush}"
                         Opacity="0"
@@ -96,11 +96,11 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:pointerover /template/ Border#PART_Overlay">
+        <Style Selector="^:pointerover /template/ Border#Overlay">
             <Setter Property="Opacity" Value="1" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#PART_Background">
+        <Style Selector="^:disabled /template/ Border#Background">
             <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
         </Style>
     </ControlTheme>
@@ -119,21 +119,28 @@
             <ControlTemplate>
                 <Panel>
                     <Border
-                        Name="PART_Background"
+                        Name="Background"
                         Margin="5,2"
                         Background="{TemplateBinding Background}"
                         CornerRadius="{TemplateBinding CornerRadius}">
+                    </Border>
+                    <Border
+                        Name="Overlay"
+                        Margin="5,2"
+                        Background="{StaticResource OverlayHalfBackgroundBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <DoubleTransition
                                     Easing="SineEaseOut"
-                                    Property="Background"
+                                    Property="Opacity"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                     </Border>
                     <ContentPresenter
-                        Name="PART_ContentPresenter"
+                        Name="ContentPresenter"
                         Padding="{TemplateBinding Padding}"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
@@ -153,20 +160,20 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:pointerover:not(:selected) /template/ Border#PART_Background">
-            <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        <Style Selector="^:pointerover:not(:selected) /template/ Border#Overlay">
+            <Setter Property="Opacity" Value="1" />
         </Style>
 
-        <Style Selector="^:pointerover:not(:selected) /template/ ContentPresenter#PART_ContentPresenter">
+        <Style Selector="^:pointerover:not(:selected) /template/ ContentPresenter#ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         </Style>
 
         <Style Selector="^:selected">
             <Setter Property="IsHitTestVisible" Value="False" />
-            <Style Selector="^ /template/ Border#PART_Background">
+            <Style Selector="^ /template/ Border#Background">
                 <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
             </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
+            <Style Selector="^ /template/ ContentPresenter#ContentPresenter">
                 <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
                 <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
             </Style>
@@ -251,7 +258,7 @@
                         </Button>
 
                         <Border
-                            Name="PART_GlowBorder"
+                            Name="GlowBorder"
                             BorderBrush="{StaticResource TransparentBrush}"
                             BorderThickness="2"
                             CornerRadius="{TemplateBinding CornerRadius}">
@@ -278,7 +285,7 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:focus-within /template/ Border#PART_GlowBorder">
+        <Style Selector="^:focus-within /template/ Border#GlowBorder">
             <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
         </Style>
 
@@ -698,7 +705,7 @@
                         </Button>
 
                         <Border
-                            Name="PART_GlowBorder"
+                            Name="GlowBorder"
                             BorderBrush="{StaticResource TransparentBrush}"
                             BorderThickness="2"
                             CornerRadius="{TemplateBinding CornerRadius}">
@@ -725,7 +732,7 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:focus-within /template/ Border#PART_GlowBorder">
+        <Style Selector="^:focus-within /template/ Border#GlowBorder">
             <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
         </Style>
 

@@ -365,6 +365,18 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "CalendarDatePicker",
+                    Description =
+                        "Date selection controls with inline calendar dropdown and Huskui field styling",
+                    Icon = Symbol.CalendarDate,
+                    PageType = typeof(CalendarDatePickerPage),
+                    Tags =
+                    [
+                        "calendardatepicker", "calendar", "date", "picker", "input", "dropdown", "schedule",
+                    ],
+                },
+                new()
+                {
                     Title = "TextBoxes",
                     Description = "Text input controls for single-line and multi-line text entry",
                     Icon = Symbol.TextBulletListSquare,

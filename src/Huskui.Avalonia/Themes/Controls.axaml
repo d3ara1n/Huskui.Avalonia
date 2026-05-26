@@ -9,6 +9,7 @@
         <ResourceInclude Source="/Controls/Button.axaml" />
         <ResourceInclude Source="/Controls/ButtonGroup.axaml" />
         <ResourceInclude Source="/Controls/BusyContainer.axaml" />
+        <ResourceInclude Source="/Controls/Calendar.axaml" />
         <ResourceInclude Source="/Controls/Card.axaml" />
         <ResourceInclude Source="/Controls/Carousel.axaml" />
         <ResourceInclude Source="/Controls/CheckBox.axaml" />

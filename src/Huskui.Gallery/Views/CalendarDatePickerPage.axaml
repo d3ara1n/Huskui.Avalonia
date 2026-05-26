@@ -1,0 +1,138 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.CalendarDatePickerPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="760"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Basic CalendarDatePicker"
+            Description="Avalonia's built-in CalendarDatePicker styled with Huskui field colors and focus glow. Combines a text box with a calendar dropdown for date selection.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Default" />
+                    <CalendarDatePicker />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Pre-selected Date" />
+                    <CalendarDatePicker SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="With Placeholder" />
+                    <CalendarDatePicker PlaceholderText="Pick a date..." />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Date Formats And Display"
+            Description="Customize the display format, selected date, and how the date appears in the text box.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Custom Display Date" />
+                    <CalendarDatePicker
+                        DisplayDate="2026-06-01"
+                        SelectedDate="2026-06-15" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="First Day Of Week Monday" />
+                    <CalendarDatePicker
+                        FirstDayOfWeek="Monday"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Compact Form Width" />
+                    <CalendarDatePicker
+                        Width="220"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="States And Ranges"
+            Description="CalendarDatePicker supports constrained date ranges, blackout dates, and disabled state.">
+            <StackPanel
+                Width="360"
+                Spacing="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Limited Date Range" />
+                    <CalendarDatePicker
+                        DisplayDateEnd="2030-12-31"
+                        DisplayDateStart="2020-01-01"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Disabled" />
+                    <CalendarDatePicker
+                        IsEnabled="False"
+                        SelectedDate="2026-05-26" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Form Example"
+            Description="CalendarDatePicker works alongside DatePicker and TimePicker in forms for event scheduling and date input.">
+            <husk:Card
+                Width="420"
+                Padding="24">
+                <StackPanel Spacing="20">
+                    <TextBlock
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Text="Event Schedule" />
+
+                    <husk:Divider />
+
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Event Date" />
+                            <CalendarDatePicker SelectedDate="2026-06-15" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Registration Deadline" />
+                            <CalendarDatePicker
+                                DisplayDateEnd="2026-06-14"
+                                SelectedDate="2026-06-01" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8">
+                            <TextBlock Text="Reminder Date" />
+                            <CalendarDatePicker
+                                PlaceholderText="Select reminder date..."
+                                SelectedDate="2026-06-10" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <husk:Divider />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="12">
+                        <Button Content="Cancel" />
+                        <Button
+                            Classes="Primary"
+                            Content="Save Event" />
+                    </StackPanel>
+                </StackPanel>
+            </husk:Card>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>
