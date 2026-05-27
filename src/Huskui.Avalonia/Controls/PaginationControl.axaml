@@ -51,7 +51,9 @@
                                 Margin="2,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" Spacing="2" />
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            Spacing="2" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
@@ -78,7 +80,7 @@
                     </Panel>
 
                     <Popup
-                        Name="PART_QuickJumperPopup"
+                        Name="{x:Static local:PaginationControl.PART_QuickJumperPopup}"
                         IsLightDismissEnabled="True"
                         Placement="Top">
                         <Border
@@ -96,21 +98,19 @@
                                     Opacity="0.2" />
                             </Border.Effect>
                             <NumericUpDown
-                                Name="PART_QuickJumperInput"
+                                Name="{x:Static local:PaginationControl.PART_QuickJumperInput}"
                                 Padding="10,7"
-                                HorizontalContentAlignment="Center"
                                 ClipValueToMinMax="True"
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
                                 FormatString="F0"
-                                Minimum="1"
-                                TextAlignment="Center">
+                                Minimum="1">
                                 <NumericUpDown.InnerRightContent>
                                     <Button
-                                        Name="PART_QuickJumperButton"
+                                        Name="{x:Static local:PaginationControl.PART_QuickJumperButton}"
+                                        Classes="Primary"
                                         Width="30"
                                         Height="28"
                                         Padding="0"
-                                        Classes="Primary"
                                         CornerRadius="{StaticResource SmallCornerRadius}">
                                         <fi:SymbolIcon
                                             FontSize="{StaticResource SmallFontSize}"

@@ -7,10 +7,16 @@ using Avalonia.Interactivity;
 
 namespace Huskui.Avalonia.Controls;
 
-[TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
+[TemplatePart(PART_ItemsControl, typeof(ItemsControl), IsRequired = true)]
+[TemplatePart(PART_QuickJumperPopup, typeof(Popup))]
+[TemplatePart(PART_QuickJumperInput, typeof(NumericUpDown))]
+[TemplatePart(PART_QuickJumperButton, typeof(Button))]
 public class PaginationControl : TemplatedControl
 {
     public const string PART_ItemsControl = nameof(PART_ItemsControl);
+    public const string PART_QuickJumperPopup = nameof(PART_QuickJumperPopup);
+    public const string PART_QuickJumperInput = nameof(PART_QuickJumperInput);
+    public const string PART_QuickJumperButton = nameof(PART_QuickJumperButton);
 
     private const int ELLIPSIS_PAGE_INDEX = -1;
     private const int MAX_VISIBLE_PAGE_COUNT = 7;
@@ -97,9 +103,9 @@ public class PaginationControl : TemplatedControl
             _quickJumperButton.Click -= OnQuickJumperButtonClick;
 
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
-        _quickJumperPopup = e.NameScope.Find<Popup>("PART_QuickJumperPopup");
-        _quickJumperInput = e.NameScope.Find<NumericUpDown>("PART_QuickJumperInput");
-        _quickJumperButton = e.NameScope.Find<Button>("PART_QuickJumperButton");
+        _quickJumperPopup = e.NameScope.Find<Popup>(PART_QuickJumperPopup);
+        _quickJumperInput = e.NameScope.Find<NumericUpDown>(PART_QuickJumperInput);
+        _quickJumperButton = e.NameScope.Find<Button>(PART_QuickJumperButton);
 
         if (_quickJumperInput is not null)
             _quickJumperInput.KeyDown += OnQuickJumperInputKeyDown;

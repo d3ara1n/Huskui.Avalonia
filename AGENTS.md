@@ -45,9 +45,18 @@
 
 - Overlay-type controls (Toast, Dialog, Drawer, etc.) expose a `Dismiss()` method that raises `DismissRequestedEvent` to bubble up to their host container. Follow this pattern for new overlay controls.
 
-- `TemplatePart` constants must be declared as `public const string` using `nameof()`:
+- `TemplatePart` requires a **three-part declaration** on the control class:
+  1. `[TemplatePart(PART_Name, typeof(ControlType))]` attribute
+  2. `public const string PART_Name = nameof(PART_Name);` constant
+  3. In XAML, reference via `Name="{x:Static local:ControlName.PART_Name}"` rather than a bare `Name="PART_Name"`
   ```csharp
-  public const string PART_ItemsControl = nameof(PART_ItemsControl);
+  [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
+  [TemplatePart(PART_QuickJumperPopup, typeof(Popup))]
+  public class PaginationControl : TemplatedControl
+  {
+      public const string PART_ItemsControl = nameof(PART_ItemsControl);
+      public const string PART_QuickJumperPopup = nameof(PART_QuickJumperPopup);
+  }
   ```
 
 ## Resource Key Naming
