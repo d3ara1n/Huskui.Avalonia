@@ -489,7 +489,7 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
-                    Title = "Pagination",
+                    Title = "PaginationControls",
                     Description = "Page navigation controls for browsing through paged data",
                     Icon = Symbol.ArrowSort,
                     PageType = typeof(PaginationControlsPage),
