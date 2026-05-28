@@ -146,6 +146,13 @@ public class Dialog : HeaderedContentControl
 
     public void Dismiss() => Cancel();
 
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        CompletionSource.TrySetResult(false);
+
+        base.OnDetachedFromVisualTree(e);
+    }
+
     #region Nested type: ConfirmRequestedEventArgs
 
     public class ConfirmRequestedEventArgs(object? source, object? result)
