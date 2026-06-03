@@ -1,93 +1,153 @@
-name: Publish Controls NuGet Package
+name: Publish
 
 on:
-    push:
-        tags:
-            - 'v*'
+  push:
+    branches: [main]
 
 permissions:
-    contents: write
+  contents: write
 
 defaults:
-    run:
-        shell: bash
+  run:
+    shell: bash
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            -   name: Checkout code
-                uses: actions/checkout@v4
-                with:
-                    fetch-depth: 0
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.version.outputs.publish }}
 
-            -   name: Check for changes
-                id: check_changes
-                run: |
-                    CURRENT_TAG="${GITHUB_REF#refs/tags/}"
-                    PREV_TAG=$(git tag --sort=version:refname | grep -B1 "^${CURRENT_TAG}$" | head -1)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-                    if [ -z "$PREV_TAG" ]; then
-                        echo "No previous tag found. Proceeding with publish."
-                        echo "has_changes=true" >> "$GITHUB_OUTPUT"
-                        exit 0
-                    fi
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0
 
-                    PATHS=(
-                        "src/Huskui.Avalonia/"
-                        "Directory.Packages.props"
-                        "GitVersion.yml"
-                    )
+      # ── Version ──────────────────────────────────────────
 
-                    CHANGED=$(git diff --name-only "$PREV_TAG" "$CURRENT_TAG" -- "${PATHS[@]}")
+      - name: Install GitVersion
+        uses: GitTools/actions/gitversion/setup@v3.2.1
+        with:
+          versionSpec: "6.x"
 
-                    if [ -z "$CHANGED" ]; then
-                        echo "has_changes=false" >> "$GITHUB_OUTPUT"
-                        echo "::notice::No changes in Huskui.Avalonia since $PREV_TAG. Skipping publish."
-                    else
-                        echo "has_changes=true" >> "$GITHUB_OUTPUT"
-                        echo "Changes detected since $PREV_TAG:"
-                        echo "$CHANGED"
-                    fi
+      - name: Calculate version
+        id: gitversion
+        uses: GitTools/actions/gitversion/execute@v3.2.1
+        with:
+          useConfigFile: true
 
-            -   name: Setup .NET
-                uses: actions/setup-dotnet@v4
-                with:
-                    dotnet-version: 10.0
+      - name: Check version
+        id: version
+        run: |
+          VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}"
 
-            -   name: Install GitVersion
-                uses: GitTools/actions/gitversion/setup@v3.2.1
-                with:
-                    versionSpec: '6.x'
+          if git rev-parse "v${VERSION}" >/dev/null 2>&1; then
+            echo "Tag v${VERSION} already exists, nothing to publish"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+            echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+            echo "New version: v${VERSION}"
+          fi
 
-            -   name: Run GitVersion
-                id: gitversion
-                uses: GitTools/actions/gitversion/execute@v3.2.1
-                with:
-                    useConfigFile: true
+      # ── Detect changed packages ──────────────────────────
 
-            -   name: Install git-cliff
-                if: steps.check_changes.outputs.has_changes == 'true'
-                run: |
-                    cargo install git-cliff
+      - name: Detect changed packages
+        if: steps.version.outputs.publish == 'true'
+        id: detect
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
 
-            -   name: Generate changelog
-                if: steps.check_changes.outputs.has_changes == 'true'
-                run: git-cliff --latest --include-path "src/Huskui.Avalonia/**" -o ./RELEASE_NOTES.md
+          # Package registry: name|csproj|watch-paths
+          # watch-paths includes the package's own src + any dependencies
+          # CONFIG_PATHS triggers rebuild for all packages
+          cat <<'EOF' > /tmp/packages.txt
+          Huskui.Avalonia         |src/Huskui.Avalonia/Huskui.Avalonia.csproj                 |src/Huskui.Avalonia/
+          Huskui.Avalonia.Code    |src/Huskui.Avalonia.Code/Huskui.Avalonia.Code.csproj       |src/Huskui.Avalonia.Code/ src/Huskui.Avalonia/
+          Huskui.Avalonia.Markdown|src/Huskui.Avalonia.Markdown/Huskui.Avalonia.Markdown.csproj|src/Huskui.Avalonia.Markdown/ src/Huskui.Avalonia/
+          Huskui.Avalonia.Mvvm    |src/Huskui.Avalonia.Mvvm/Huskui.Avalonia.Mvvm.csproj       |src/Huskui.Avalonia.Mvvm/ src/Huskui.Avalonia/
+          EOF
 
-            -   name: Pack NuGet package
-                if: steps.check_changes.outputs.has_changes == 'true'
-                run: |
-                    RELEASE_NOTES=$(cat ./RELEASE_NOTES.md)
-                    dotnet pack src/Huskui.Avalonia/Huskui.Avalonia.csproj \
-                      --configuration Release \
-                      --output ./publish \
-                      -p:PackageReleaseNotes="$RELEASE_NOTES"
+          CONFIG_PATHS="Directory.Packages.props GitVersion.yml"
+          CHANGED=""
 
-            -   name: Publish to NuGet
-                if: steps.check_changes.outputs.has_changes == 'true'
-                run: |
-                    dotnet nuget push ./publish/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+          while IFS='|' read -r name csproj watch_paths; do
+            name=$(echo "$name" | xargs)
+            csproj=$(echo "$csproj" | xargs)
+            watch_paths=$(echo "$watch_paths" | xargs)
 
-                env:
-                    NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+            if [ -z "$LAST_TAG" ]; then
+              echo "  ${name}: first publish"
+              CHANGED="${CHANGED}${name}|${csproj}\n"
+            elif git diff --name-only "$LAST_TAG" HEAD -- ${watch_paths} ${CONFIG_PATHS} | grep -q .; then
+              echo "  ${name}: changed"
+              CHANGED="${CHANGED}${name}|${csproj}\n"
+            else
+              echo "  ${name}: no changes, skipping"
+            fi
+          done < /tmp/packages.txt
+
+          if [ -z "$CHANGED" ]; then
+            echo "No packages changed"
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            printf "%b" "$CHANGED" > /tmp/changed_packages.txt
+          fi
+
+      # ── Install git-cliff ────────────────────────────────
+
+      - name: Install git-cliff
+        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
+        run: cargo install git-cliff
+
+      # ── Pack & Publish ───────────────────────────────────
+
+      - name: Pack and publish
+        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+
+          while IFS='|' read -r name csproj; do
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  📦 ${name} v${VERSION}"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+            # Changelog (scoped to this package's src directory)
+            PKG_SRC_DIR=$(dirname "$csproj")
+            git-cliff --latest --include-path "${PKG_SRC_DIR}/**" -o ./RELEASE_NOTES.md 2>/dev/null || echo "No changes" > ./RELEASE_NOTES.md
+            RELEASE_NOTES=$(cat ./RELEASE_NOTES.md)
+
+            # Pack (GitVersion.MsBuild auto-injects version)
+            dotnet pack "$csproj" \
+              --configuration Release \
+              --output ./publish \
+              -p:PackageReleaseNotes="$RELEASE_NOTES"
+
+            # Push to NuGet
+            dotnet nuget push ./publish/*.nupkg \
+              --api-key "$NUGET_API_KEY" \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
+
+            # Clean up for next package
+            rm -f ./publish/*.nupkg
+            echo "  ✅ ${name} v${VERSION}"
+          done < /tmp/changed_packages.txt
+
+      # ── Tag ──────────────────────────────────────────────
+
+      - name: Create and push tag
+        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          git tag "v${VERSION}"
+          git push origin "v${VERSION}"
+          echo "✅ Tagged v${VERSION}"
