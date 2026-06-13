@@ -5,9 +5,19 @@ using Avalonia.Controls.Primitives;
 
 namespace Huskui.Avalonia.Controls;
 
+[PseudoClasses(":windows", ":macos", ":linux")]
 [TemplatePart(PART_AppSurface, typeof(AppSurface))]
 public class AppWindow : Window
 {
+    static AppWindow()
+    {
+        if (OperatingSystem.IsWindows())
+            PseudoClasses.Set(":windows", true);
+        else if (OperatingSystem.IsMacOS())
+            PseudoClasses.Set(":macos", true);
+        else if (OperatingSystem.IsLinux())
+            PseudoClasses.Set(":linux", true);
+    }
     public const string PART_AppSurface = nameof(PART_AppSurface);
 
     public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
