@@ -28,10 +28,6 @@
     <ItemGroup>
         <PackageReference Include="AsyncImageLoader.Avalonia" />
         <PackageReference Include="Markdig" />
-        <PackageReference Include="GitVersion.MsBuild">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>
 

@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -14,9 +18,6 @@ defaults:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    outputs:
-      published: ${{ steps.version.outputs.publish }}
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,128 +27,269 @@ jobs:
         with:
           dotnet-version: 10.0
 
-      # ── Version ──────────────────────────────────────────
-
-      - name: Install GitVersion
-        uses: GitTools/actions/gitversion/setup@v3.2.1
-        with:
-          versionSpec: "6.x"
-
-      - name: Calculate version
-        id: gitversion
-        uses: GitTools/actions/gitversion/execute@v3.2.1
-        with:
-          useConfigFile: true
-
-      - name: Check version
-        id: version
-        run: |
-          VERSION="${{ steps.gitversion.outputs.majorMinorPatch }}"
-
-          if git rev-parse "v${VERSION}" >/dev/null 2>&1; then
-            echo "Tag v${VERSION} already exists, nothing to publish"
-            echo "publish=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "publish=true" >> "$GITHUB_OUTPUT"
-            echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-            echo "New version: v${VERSION}"
-          fi
-
-      # ── Detect changed packages ──────────────────────────
-
-      - name: Detect changed packages
-        if: steps.version.outputs.publish == 'true'
-        id: detect
-        run: |
-          VERSION="${{ steps.version.outputs.version }}"
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-
-          # Package registry: name|csproj|watch-paths
-          # watch-paths includes the package's own src + any dependencies
-          # CONFIG_PATHS triggers rebuild for all packages
-          cat <<'EOF' > /tmp/packages.txt
-          Huskui.Avalonia         |src/Huskui.Avalonia/Huskui.Avalonia.csproj                 |src/Huskui.Avalonia/
-          Huskui.Avalonia.Code    |src/Huskui.Avalonia.Code/Huskui.Avalonia.Code.csproj       |src/Huskui.Avalonia.Code/ src/Huskui.Avalonia/
-          Huskui.Avalonia.Markdown|src/Huskui.Avalonia.Markdown/Huskui.Avalonia.Markdown.csproj|src/Huskui.Avalonia.Markdown/ src/Huskui.Avalonia/
-          Huskui.Avalonia.Mvvm    |src/Huskui.Avalonia.Mvvm/Huskui.Avalonia.Mvvm.csproj       |src/Huskui.Avalonia.Mvvm/ src/Huskui.Avalonia/
-          EOF
-
-          CONFIG_PATHS="Directory.Packages.props GitVersion.yml"
-          CHANGED=""
-
-          while IFS='|' read -r name csproj watch_paths; do
-            name=$(echo "$name" | xargs)
-            csproj=$(echo "$csproj" | xargs)
-            watch_paths=$(echo "$watch_paths" | xargs)
-
-            if [ -z "$LAST_TAG" ]; then
-              echo "  ${name}: first publish"
-              CHANGED="${CHANGED}${name}|${csproj}\n"
-            elif git diff --name-only "$LAST_TAG" HEAD -- ${watch_paths} ${CONFIG_PATHS} | grep -q .; then
-              echo "  ${name}: changed"
-              CHANGED="${CHANGED}${name}|${csproj}\n"
-            else
-              echo "  ${name}: no changes, skipping"
-            fi
-          done < /tmp/packages.txt
-
-          if [ -z "$CHANGED" ]; then
-            echo "No packages changed"
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-            printf "%b" "$CHANGED" > /tmp/changed_packages.txt
-          fi
-
-      # ── Install git-cliff ────────────────────────────────
-
       - name: Install git-cliff
-        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
         run: cargo install git-cliff
 
-      # ── Pack & Publish ───────────────────────────────────
+      # ── Calculate versions & publish ───────────────────
 
-      - name: Pack and publish
-        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
+      - name: Calculate versions and publish
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          VERSION="${{ steps.version.outputs.version }}"
+          set -euo pipefail
 
-          while IFS='|' read -r name csproj; do
+          # ── Auto-discover packages from src/ ─────────
+          PACKAGES=()
+          for csproj in src/*/*.csproj; do
+            dir=$(basename "$(dirname "$csproj")")
+            PACKAGES+=("${dir}|${csproj}")
+          done
+
+          # ── Build dependency graph from csproj ────────
+          declare -A DEPS
+          for entry in "${PACKAGES[@]}"; do
+            IFS='|' read -r name csproj <<< "$entry"
+            dep_names=()
+            while IFS= read -r ref; do
+              # Extract referenced csproj filename, map to package name
+              ref_base=$(basename "$ref" .csproj)
+              for other in "${PACKAGES[@]}"; do
+                IFS='|' read -r other_name other_csproj <<< "$other"
+                if [[ "$ref_base" == "$other_name" ]]; then
+                  dep_names+=("$other_name")
+                fi
+              done
+            done < <(grep -oP '(?<=Include=")[^"]+\.csproj' "$csproj" 2>/dev/null | sed 's|\\|/|g')
+            DEPS["$name"]="${dep_names[*]}"
+          done
+
+          echo "── Dependency graph ──"
+          for entry in "${PACKAGES[@]}"; do
+            IFS='|' read -r name _ <<< "$entry"
+            echo "  ${name} → deps: [${DEPS[$name]}]"
+          done
+
+          # ── Topological sort ──────────────────────────
+          SORTED=()
+          visited=()
+          visit() {
+            local node="$1"
+            for v in "${visited[@]}"; do
+              [[ "$v" == "$node" ]] && return
+            done
+            visited+=("$node")
+            for dep in ${DEPS[$node]}; do
+              visit "$dep"
+            done
+            SORTED+=("$node")
+          }
+          for entry in "${PACKAGES[@]}"; do
+            IFS='|' read -r name _ <<< "$entry"
+            visit "$name"
+          done
+
+          echo "── Processing order ──"
+          for name in "${SORTED[@]}"; do
+            echo "  $name"
+          done
+
+          # ── Conventional commit parser ────────────────
+          # Returns: type|scope|breaking
+          parse_commit() {
+            local msg="$1"
+            local first_line
+            first_line=$(echo "$msg" | head -1)
+
+            if [[ "$first_line" =~ ^([a-z]+)(\(([^)]+)\))?(\!)?:\ (.+) ]]; then
+              local type="${BASH_REMATCH[1]}"
+              local scope="${BASH_REMATCH[3]}"
+              local bang="${BASH_REMATCH[4]}"
+              local breaking="false"
+
+              [[ "$bang" == "!" ]] && breaking="true"
+
+              # Also check body for BREAKING CHANGE:
+              if [[ "$breaking" == "false" ]]; then
+                local body
+                body=$(echo "$msg" | tail -n +2)
+                [[ "$body" =~ BREAKING\ CHANGE: ]] && breaking="true"
+              fi
+
+              echo "${type}|${scope:-}|${breaking}"
+            else
+              echo ""
+            fi
+          }
+
+          # ── Bump version ──────────────────────────────
+          bump_version() {
+            local version="$1"
+            local level="$2"
+            local IFS='.'
+            read -r major minor patch <<< "$version"
+
+            case "$level" in
+              major) echo "$((major + 1)).0.0" ;;
+              minor) echo "${major}.$((minor + 1)).0" ;;
+              patch) echo "${major}.${minor}.$((patch + 1))" ;;
+            esac
+          }
+
+          # ── Track publications this round ─────────────
+          declare -A PUBLISHED_VERSION  # name → version
+          declare -A PUBLISHED_TAG      # name → tag
+          TAGS_TO_PUSH=()
+
+          for name in "${SORTED[@]}"; do
             echo ""
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "  📦 ${name} v${VERSION}"
+            echo "  📦 ${name}"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-            # Changelog (scoped to this package's src directory)
-            PKG_SRC_DIR=$(dirname "$csproj")
-            git-cliff --latest --include-path "${PKG_SRC_DIR}/**" -o ./RELEASE_NOTES.md 2>/dev/null || echo "No changes" > ./RELEASE_NOTES.md
-            RELEASE_NOTES=$(cat ./RELEASE_NOTES.md)
+            # Find csproj path
+            csproj=""
+            for entry in "${PACKAGES[@]}"; do
+              IFS='|' read -r n c <<< "$entry"
+              [[ "$n" == "$name" ]] && csproj="$c"
+            done
+            pkg_src_dir=$(dirname "$csproj")
 
-            # Pack (GitVersion.MsBuild auto-injects version)
+            # ── Find last tag for this package ──────────
+            last_tag=$(git tag -l "${name}@v*" --sort=-v:refname | head -1 || true)
+
+            if [[ -z "$last_tag" ]]; then
+              echo "  ⚠️  No previous tag found for ${name}, skipping (needs initial tag)"
+              continue
+            fi
+
+            # Extract version from tag: Huskui.Avalonia@v1.2.0 → 1.2.0
+            last_version="${last_tag#*@v}"
+
+            echo "  Last tag: ${last_tag} (version: ${last_version})"
+
+            # ── Get commits since last tag ──────────────
+            has_major=false
+            has_minor=false
+            has_patch=false
+            has_direct_bump=false
+
+            while IFS= read -r commit_hash; do
+              [[ -z "$commit_hash" ]] && continue
+              msg=$(git log -1 --format="%B" "$commit_hash")
+              parsed=$(parse_commit "$msg")
+              [[ -z "$parsed" ]] && continue
+
+              IFS='|' read -r type scope breaking <<< "$parsed"
+
+              # Scope matching:
+              # - Has scope and matches this package → direct bump
+              # - No scope but touches this package's files → patch bump
+              # - Has scope but doesn't match → skip
+
+              if [[ -n "$scope" ]]; then
+                [[ "$scope" != "$name" ]] && continue
+              else
+                # No scope: check if commit touches this package's directory
+                if ! git diff-tree --no-commit-id --name-only -r "$commit_hash" -- "${pkg_src_dir}/" | grep -q .; then
+                  continue
+                fi
+              fi
+
+              has_direct_bump=true
+
+              if [[ "$breaking" == "true" ]]; then
+                has_major=true
+              elif [[ "$type" == "feat" ]]; then
+                has_minor=true
+              elif [[ "$type" == "fix" || "$type" == "perf" || "$type" == "refactor" ]]; then
+                has_patch=true
+              fi
+              # chore, docs, ci, style, test, build → no bump
+            done < <(git log --format="%H" "${last_tag}..HEAD" 2>/dev/null)
+
+            # ── Determine direct bump level ─────────────
+            direct_bump=""
+            if [[ "$has_major" == "true" ]]; then
+              direct_bump="major"
+            elif [[ "$has_minor" == "true" ]]; then
+              direct_bump="minor"
+            elif [[ "$has_patch" == "true" ]]; then
+              direct_bump="patch"
+            fi
+
+            # ── Check dependency cascade ────────────────
+            cascade_bump=""
+            for dep in ${DEPS[$name]}; do
+              if [[ -n "${PUBLISHED_VERSION[$dep]:-}" ]]; then
+                echo "  📎 Dependency ${dep} published v${PUBLISHED_VERSION[$dep]} this round → cascade patch"
+                cascade_bump="patch"
+                break
+              fi
+            done
+
+            # ── Resolve final bump ──────────────────────
+            final_bump=""
+            if [[ -n "$direct_bump" ]]; then
+              final_bump="$direct_bump"
+            elif [[ -n "$cascade_bump" ]]; then
+              final_bump="$cascade_bump"
+            fi
+
+            if [[ -z "$final_bump" ]]; then
+              echo "  ⏭️  No relevant changes, skipping"
+              continue
+            fi
+
+            # ── Calculate new version ───────────────────
+            new_version=$(bump_version "$last_version" "$final_bump")
+            new_tag="${name}@v${new_version}"
+
+            # Check if tag already exists (shouldn't, but safety)
+            if git rev-parse "$new_tag" >/dev/null 2>&1; then
+              echo "  ⏭️  Tag ${new_tag} already exists, skipping"
+              continue
+            fi
+
+            echo "  📋 ${last_version} → ${new_version} (${final_bump})"
+
+            # ── Changelog ───────────────────────────────
+            git-cliff --latest --include-path "${pkg_src_dir}/**" -o ./RELEASE_NOTES.md 2>/dev/null || echo "No changes" > ./RELEASE_NOTES.md
+            release_notes=$(cat ./RELEASE_NOTES.md)
+
+            # ── Pack & Publish ──────────────────────────
             dotnet pack "$csproj" \
               --configuration Release \
               --output ./publish \
-              -p:PackageReleaseNotes="$RELEASE_NOTES"
+              -p:Version="${new_version}" \
+              -p:PackageReleaseNotes="${release_notes}"
 
-            # Push to NuGet
             dotnet nuget push ./publish/*.nupkg \
               --api-key "$NUGET_API_KEY" \
               --source https://api.nuget.org/v3/index.json \
               --skip-duplicate
 
-            # Clean up for next package
             rm -f ./publish/*.nupkg
-            echo "  ✅ ${name} v${VERSION}"
-          done < /tmp/changed_packages.txt
 
-      # ── Tag ──────────────────────────────────────────────
+            # ── Record publication ──────────────────────
+            git tag "$new_tag"
+            TAGS_TO_PUSH+=("$new_tag")
+            PUBLISHED_VERSION["$name"]="$new_version"
+            PUBLISHED_TAG["$name"]="$new_tag"
 
-      - name: Create and push tag
-        if: steps.version.outputs.publish == 'true' && steps.detect.outputs.has_changes == 'true'
-        run: |
-          VERSION="${{ steps.version.outputs.version }}"
-          git tag "v${VERSION}"
-          git push origin "v${VERSION}"
-          echo "✅ Tagged v${VERSION}"
+            echo "  ✅ Published ${name}@v${new_version}"
+          done
+
+          # ── Push all tags ─────────────────────────────
+          if [[ ${#TAGS_TO_PUSH[@]} -gt 0 ]]; then
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  🏷️  Pushing tags"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            for tag in "${TAGS_TO_PUSH[@]}"; do
+              git push origin "$tag"
+              echo "  ✅ Pushed ${tag}"
+            done
+          else
+            echo ""
+            echo "No packages to publish this round."
+          fi

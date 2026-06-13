@@ -1,9 +1,0 @@
-mode: ContinuousDelivery
-branches:
-    main:
-        regex: ^main$
-        label: ''
-        increment: None
-        is-release-branch: true
-ignore:
-    sha: [ ]
