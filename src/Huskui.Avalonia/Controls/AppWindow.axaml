@@ -70,7 +70,7 @@
             <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         </Style>
 
-        <Style Selector="^local|AppWindow[ActualTransparencyLevel=AcrylicBlur]:not(:macos) /template/ ExperimentalAcrylicBorder#PART_AcrylicMaterial">
+        <Style Selector="^local|AppWindow[ActualTransparencyLevel=AcrylicBlur] /template/ ExperimentalAcrylicBorder#PART_AcrylicMaterial">
             <Setter Property="IsVisible" Value="True" />
         </Style>
     </ControlTheme>
