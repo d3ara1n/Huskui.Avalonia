@@ -304,6 +304,17 @@ public class GalleryService : IGalleryService
                     PageType = typeof(FlexWrapPanelsPage),
                     Tags = ["flex", "wrap", "responsive", "dynamic", "panel"],
                 },
+                new()
+                {
+                    Title = "ModalActionPanels",
+                    IsNew = true,
+                    Description =
+                        "Platform-aware action button layout that pushes the default (IsDefault) button to the correct edge per platform",
+                    Icon = Symbol.LayoutRowTwoSplitBottom,
+                    PageType = typeof(ModalActionPanelsPage),
+                    Tags =
+                        ["modal", "action", "panel", "platform", "dialog", "footer", "layout"],
+                },
             ],
         };
 

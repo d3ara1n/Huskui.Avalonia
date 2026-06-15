@@ -62,13 +62,12 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 Foreground="{TemplateBinding Foreground}" />
                         </ScrollViewer>
-                        <Grid
+                        <local:ModalActionPanel
                             Grid.Row="3"
                             Margin="18"
-                            ColumnDefinitions="*,*"
-                            ColumnSpacing="8">
+                            Layout="Fill"
+                            Spacing="8">
                             <Button
-                                Grid.Column="0"
                                 Classes="Primary"
                                 IsVisible="{TemplateBinding IsPrimaryButtonVisible}"
                                 Command="{Binding PrimaryCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
@@ -76,17 +75,11 @@
                                 <TextBlock Text="{TemplateBinding PrimaryText}" />
                             </Button>
                             <Button
-                                Grid.Column="{TemplateBinding IsPrimaryButtonVisible,
-                                                              Converter={x:Static local:InternalConverters.ButtonColumn},
-                                                              ConverterParameter=1}"
-                                Grid.ColumnSpan="{TemplateBinding IsPrimaryButtonVisible,
-                                                                  Converter={x:Static local:InternalConverters.ButtonColumnSpan},
-                                                                  ConverterParameter=2}"
                                 Command="{Binding SecondaryCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                 IsCancel="True">
                                 <TextBlock Text="{TemplateBinding SecondaryText}" />
                             </Button>
-                        </Grid>
+                        </local:ModalActionPanel>
                     </Grid>
                 </Border>
             </ControlTemplate>

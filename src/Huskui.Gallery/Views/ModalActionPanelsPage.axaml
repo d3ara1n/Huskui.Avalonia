@@ -1,0 +1,152 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ModalActionPanelsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:Huskui.Gallery.Views"
+    d:DesignHeight="800"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <!-- ============ 1. Edge：平台感知主按钮（核心交互示例） ============ -->
+        <controls:ExampleContainer
+            Title="Edge Layout — 平台感知主按钮"
+            Description="IsDefault 主按钮按平台推到边：macOS→右，Windows/Linux→左。用 PrimaryPlacement 强制方向以预览各平台效果；隐藏主按钮后整体退化为靠右（End）。">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="布局控制" />
+
+                    <StackPanel Spacing="4">
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Layout" />
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding $parent[views:ModalActionPanelsPage].LayoutOptions}"
+                            SelectedItem="{Binding #EdgePanel.Layout, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="PrimaryPlacement（仅 Edge 生效）" />
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding $parent[views:ModalActionPanelsPage].PrimaryPlacementOptions}"
+                            SelectedItem="{Binding #EdgePanel.PrimaryPlacement, Mode=TwoWay}" />
+                    </StackPanel>
+
+                    <StackPanel Spacing="4">
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Spacing" />
+                        <Slider
+                            x:Name="EdgeSpacing"
+                            IsSnapToTickEnabled="True"
+                            Maximum="24"
+                            Minimum="0"
+                            TickFrequency="2"
+                            Value="8" />
+                    </StackPanel>
+
+                    <CheckBox
+                        x:Name="ShowPrimary"
+                        Content="显示主按钮（IsDefault）"
+                        IsChecked="True" />
+
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="PrimaryPlacement=Auto 时方向由当前运行平台决定；Leading/Trailing 可强制预览。"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <!-- 模拟对话框底栏：固定宽度 + Border，让 Edge 的「边」有参照 -->
+            <Border
+                Width="520"
+                Padding="16"
+                Background="{StaticResource FlyoutBackgroundBrush}"
+                BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
+                <husk:ModalActionPanel
+                    x:Name="EdgePanel"
+                    Layout="Edge"
+                    Spacing="{Binding #EdgeSpacing.Value}">
+                    <Button
+                        Classes="Primary"
+                        Content="Confirm"
+                        IsDefault="True"
+                        IsVisible="{Binding #ShowPrimary.IsChecked}" />
+                    <Button
+                        Content="Cancel"
+                        IsCancel="True" />
+                </husk:ModalActionPanel>
+            </Border>
+        </controls:ExampleContainer>
+
+        <!-- ============ 2. Fill：对话框底栏等分（Dialog 主题所用） ============ -->
+        <controls:ExampleContainer
+            Title="Fill Layout — 对话框底栏"
+            Description="子级等分填满可用宽度（Dialog 主题即用此模式），配合 Spacing 占满整行。">
+            <Border
+                Width="520"
+                Padding="16"
+                Background="{StaticResource FlyoutBackgroundBrush}"
+                BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
+                <husk:ModalActionPanel
+                    Layout="Fill"
+                    Spacing="8">
+                    <Button
+                        Classes="Primary"
+                        Content="Confirm"
+                        IsDefault="True" />
+                    <Button
+                        Content="Cancel"
+                        IsCancel="True" />
+                </husk:ModalActionPanel>
+            </Border>
+        </controls:ExampleContainer>
+
+        <!-- ============ 3. 多动作：三个按钮的 Edge 场景 ============ -->
+        <controls:ExampleContainer
+            Title="多动作 Edge — 主按钮 + 多个次要动作"
+            Description="非 IsDefault 的子级统一摆到对边并保持文档顺序。Save(IsDefault) 去平台边，其余两个次要动作留在对边。">
+            <Border
+                Width="520"
+                Padding="16"
+                Background="{StaticResource FlyoutBackgroundBrush}"
+                BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="{StaticResource MediumCornerRadius}">
+                <husk:ModalActionPanel
+                    Layout="Edge"
+                    Spacing="8">
+                    <Button
+                        Classes="Primary"
+                        Content="Save"
+                        IsDefault="True" />
+                    <Button Content="Don't Save" />
+                    <Button
+                        Content="Cancel"
+                        IsCancel="True" />
+                </husk:ModalActionPanel>
+            </Border>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+
+</controls:ControlPage>
