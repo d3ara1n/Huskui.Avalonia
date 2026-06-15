@@ -9,7 +9,7 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_AppSurface, typeof(AppSurface))]
 public class AppWindow : Window
 {
-    static AppWindow()
+    public AppWindow()
     {
         if (OperatingSystem.IsWindows())
             PseudoClasses.Set(":windows", true);
