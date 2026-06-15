@@ -65,7 +65,7 @@
                         <local:ModalActionPanel
                             Grid.Row="3"
                             Margin="18"
-                            Layout="Fill"
+                            Layout="Stretch"
                             Spacing="8">
                             <Button
                                 Classes="Primary"

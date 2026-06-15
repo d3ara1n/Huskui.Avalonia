@@ -307,7 +307,6 @@ public class GalleryService : IGalleryService
                 new()
                 {
                     Title = "ModalActionPanels",
-                    IsNew = true,
                     Description =
                         "Platform-aware action button layout that pushes the default (IsDefault) button to the correct edge per platform",
                     Icon = Symbol.LayoutRowTwoSplitBottom,

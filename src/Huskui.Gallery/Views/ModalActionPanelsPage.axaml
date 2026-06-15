@@ -12,16 +12,16 @@
     mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <!-- ============ 1. Edge：平台感知主按钮（核心交互示例） ============ -->
+        <!-- 1. Interactive: Layout x PrimaryPlacement matrix -->
         <controls:ExampleContainer
-            Title="Edge Layout — 平台感知主按钮"
-            Description="IsDefault 主按钮按平台推到边：macOS→右，Windows/Linux→左。用 PrimaryPlacement 强制方向以预览各平台效果；隐藏主按钮后整体退化为靠右（End）。">
+            Title="Interactive — Layout and PrimaryPlacement"
+            Description="Layout aligns the button group (pure layout, no platform awareness). PrimaryPlacement decides whether the IsDefault primary sits first (Leading) or last (Trailing) in the sequence — this is the only platform-aware part. Auto follows the running platform (macOS=Trailing, others=Leading). Try each Layout: every one now reflects the platform-correct ordering.">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
                         FontSize="14"
                         FontWeight="Bold"
-                        Text="布局控制" />
+                        Text="Controls" />
 
                     <StackPanel Spacing="4">
                         <TextBlock
@@ -31,18 +31,18 @@
                         <ComboBox
                             HorizontalAlignment="Stretch"
                             ItemsSource="{Binding $parent[views:ModalActionPanelsPage].LayoutOptions}"
-                            SelectedItem="{Binding #EdgePanel.Layout, Mode=TwoWay}" />
+                            SelectedItem="{Binding #DemoPanel.Layout, Mode=TwoWay}" />
                     </StackPanel>
 
                     <StackPanel Spacing="4">
                         <TextBlock
                             FontSize="12"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                            Text="PrimaryPlacement（仅 Edge 生效）" />
+                            Text="PrimaryPlacement" />
                         <ComboBox
                             HorizontalAlignment="Stretch"
                             ItemsSource="{Binding $parent[views:ModalActionPanelsPage].PrimaryPlacementOptions}"
-                            SelectedItem="{Binding #EdgePanel.PrimaryPlacement, Mode=TwoWay}" />
+                            SelectedItem="{Binding #DemoPanel.PrimaryPlacement, Mode=TwoWay}" />
                     </StackPanel>
 
                     <StackPanel Spacing="4">
@@ -51,7 +51,7 @@
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                             Text="Spacing" />
                         <Slider
-                            x:Name="EdgeSpacing"
+                            x:Name="SpacingSlider"
                             IsSnapToTickEnabled="True"
                             Maximum="24"
                             Minimum="0"
@@ -61,29 +61,29 @@
 
                     <CheckBox
                         x:Name="ShowPrimary"
-                        Content="显示主按钮（IsDefault）"
+                        Content="Show primary (IsDefault)"
                         IsChecked="True" />
 
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="PrimaryPlacement=Auto 时方向由当前运行平台决定；Leading/Trailing 可强制预览。"
+                        Text="Tip: set PrimaryPlacement to Leading/Trailing to compare sides without switching platforms."
                         TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <!-- 模拟对话框底栏：固定宽度 + Border，让 Edge 的「边」有参照 -->
             <Border
                 Width="520"
                 Padding="16"
+                HorizontalAlignment="Center"
                 Background="{StaticResource FlyoutBackgroundBrush}"
                 BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="{StaticResource MediumCornerRadius}">
                 <husk:ModalActionPanel
-                    x:Name="EdgePanel"
-                    Layout="Edge"
-                    Spacing="{Binding #EdgeSpacing.Value}">
+                    x:Name="DemoPanel"
+                    Layout="Stretch"
+                    Spacing="{Binding #SpacingSlider.Value}">
                     <Button
                         Classes="Primary"
                         Content="Confirm"
@@ -96,19 +96,20 @@
             </Border>
         </controls:ExampleContainer>
 
-        <!-- ============ 2. Fill：对话框底栏等分（Dialog 主题所用） ============ -->
+        <!-- 2. Dialog footer (Stretch) -->
         <controls:ExampleContainer
-            Title="Fill Layout — 对话框底栏"
-            Description="子级等分填满可用宽度（Dialog 主题即用此模式），配合 Spacing 占满整行。">
+            Title="Dialog Footer — Stretch"
+            Description="The Dialog theme uses Stretch: children split the width evenly, primary ordered per platform. macOS: [Cancel | Confirm]; others: [Confirm | Cancel].">
             <Border
                 Width="520"
                 Padding="16"
+                HorizontalAlignment="Center"
                 Background="{StaticResource FlyoutBackgroundBrush}"
                 BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
                 BorderThickness="1"
                 CornerRadius="{StaticResource MediumCornerRadius}">
                 <husk:ModalActionPanel
-                    Layout="Fill"
+                    Layout="Stretch"
                     Spacing="8">
                     <Button
                         Classes="Primary"
@@ -121,13 +122,14 @@
             </Border>
         </controls:ExampleContainer>
 
-        <!-- ============ 3. 多动作：三个按钮的 Edge 场景 ============ -->
+        <!-- 3. Multi-action Edge -->
         <controls:ExampleContainer
-            Title="多动作 Edge — 主按钮 + 多个次要动作"
-            Description="非 IsDefault 的子级统一摆到对边并保持文档顺序。Save(IsDefault) 去平台边，其余两个次要动作留在对边。">
+            Title="Multi-action — Edge with three buttons"
+            Description="Edge hugs the whole group to the primary's side. Non-IsDefault children stay together in document order. Save (IsDefault) leads the group; the two secondary actions follow.">
             <Border
                 Width="520"
                 Padding="16"
+                HorizontalAlignment="Center"
                 Background="{StaticResource FlyoutBackgroundBrush}"
                 BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
                 BorderThickness="1"
