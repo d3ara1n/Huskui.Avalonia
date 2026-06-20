@@ -101,11 +101,8 @@ public class ModalActionPanel : Panel
 
         contentWidth += spacing * (visible.Count - 1);
 
-        // Stretch 模式：父级给有限宽时声明占满，否则退化为内容宽
-        var width =
-            Layout == LayoutMode.Stretch && !double.IsInfinity(availableSize.Width)
-                ? availableSize.Width
-                : contentWidth;
+        // 所有模式统一按内容宽报告期望尺寸；Stretch 在 ArrangeOverride 中处理
+        var width = contentWidth;
 
         return new(width, maxHeight);
     }
