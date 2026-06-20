@@ -369,6 +369,9 @@ appsettings.*.json
 build/
 publish/
 
+# CI-generated per-package changelog (see Directory.Build.props)
+RELEASE_NOTES.md
+
 # AI tooling
 plans/
 .kiro/

@@ -5,4 +5,12 @@
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
     </PropertyGroup>
+
+    <!-- Per-package release notes. CI writes RELEASE_NOTES.md into the
+         package directory before packing; this picks it up automatically.
+         No-op locally when the file is absent. $(MSBuildProjectDirectory)
+         has no trailing slash, so we add it explicitly. -->
+    <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/RELEASE_NOTES.md')">
+        <PackageReleaseNotes>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/RELEASE_NOTES.md'))</PackageReleaseNotes>
+    </PropertyGroup>
 </Project>

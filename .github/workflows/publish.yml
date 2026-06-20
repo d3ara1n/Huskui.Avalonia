@@ -260,15 +260,17 @@ jobs:
             echo "  📋 ${last_version} → ${new_version} (${final_bump})"
 
             # ── Changelog ───────────────────────────────
-            git-cliff --latest --include-path "${pkg_src_dir}/**" -o ./RELEASE_NOTES.md 2>/dev/null || echo "No changes" > ./RELEASE_NOTES.md
-            release_notes=$(cat ./RELEASE_NOTES.md)
+            # Written into the package directory so Directory.Build.props picks
+            # it up at pack time (see the Exists-conditioned PropertyGroup there).
+            # Passing the raw multi-line changelog via -p:PackageReleaseNotes=
+            # makes MSBuild parse "- ..." lines as switches (MSB1006).
+            git-cliff --latest --include-path "${pkg_src_dir}/**" -o "${pkg_src_dir}/RELEASE_NOTES.md" 2>/dev/null || echo "No changes" > "${pkg_src_dir}/RELEASE_NOTES.md"
 
             # ── Pack & Publish ──────────────────────────
             dotnet pack "$csproj" \
               --configuration Release \
               --output ./publish \
-              -p:Version="${new_version}" \
-              -p:PackageReleaseNotes="${release_notes}"
+              -p:Version="${new_version}"
 
             dotnet nuget push ./publish/*.nupkg \
               --api-key "$NUGET_API_KEY" \
@@ -276,6 +278,7 @@ jobs:
               --skip-duplicate
 
             rm -f ./publish/*.nupkg
+            rm -f "${pkg_src_dir}/RELEASE_NOTES.md"
 
             # ── Record publication ──────────────────────
             git tag "$new_tag"
