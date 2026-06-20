@@ -48,51 +48,9 @@ jobs:
             fi
           done
 
-          # ── Build dependency graph from csproj ────────
-          declare -A DEPS
-          for entry in "${PACKAGES[@]}"; do
-            IFS='|' read -r name csproj <<< "$entry"
-            dep_names=()
-            while IFS= read -r ref; do
-              # Extract referenced csproj filename, map to package name
-              ref_base=$(basename "$ref" .csproj)
-              for other in "${PACKAGES[@]}"; do
-                IFS='|' read -r other_name other_csproj <<< "$other"
-                if [[ "$ref_base" == "$other_name" ]]; then
-                  dep_names+=("$other_name")
-                fi
-              done
-            done < <(grep -oP '(?<=Include=")[^"]+\.csproj' "$csproj" 2>/dev/null | sed 's|\\|/|g')
-            DEPS["$name"]="${dep_names[*]}"
-          done
-
-          echo "── Dependency graph ──"
+          echo "── Discovered packages ──"
           for entry in "${PACKAGES[@]}"; do
             IFS='|' read -r name _ <<< "$entry"
-            echo "  ${name} → deps: [${DEPS[$name]}]"
-          done
-
-          # ── Topological sort ──────────────────────────
-          SORTED=()
-          visited=()
-          visit() {
-            local node="$1"
-            for v in "${visited[@]}"; do
-              [[ "$v" == "$node" ]] && return
-            done
-            visited+=("$node")
-            for dep in ${DEPS[$node]}; do
-              visit "$dep"
-            done
-            SORTED+=("$node")
-          }
-          for entry in "${PACKAGES[@]}"; do
-            IFS='|' read -r name _ <<< "$entry"
-            visit "$name"
-          done
-
-          echo "── Processing order ──"
-          for name in "${SORTED[@]}"; do
             echo "  $name"
           done
 
@@ -142,24 +100,51 @@ jobs:
             esac
           }
 
-          # ── Track publications this round ─────────────
-          declare -A PUBLISHED_VERSION  # name → version
-          declare -A PUBLISHED_TAG      # name → tag
+          # ═════════════════════════════════════════════════════════════
+          # Tag-push safety net. A tag enters TAGS_TO_PUSH ONLY after its
+          # NuGet push succeeded, so "package on NuGet" ⟺ "tag pushed".
+          # The EXIT trap runs on both success and failure: on failure it
+          # still pushes whatever tags are already recorded (exactly the
+          # already-published packages). Re-runs are safe — NuGet's
+          # --skip-duplicate and the tag-side "already exists" / up-to-date
+          # responses are both tolerated.
+          # ═════════════════════════════════════════════════════════════
           TAGS_TO_PUSH=()
 
-          for name in "${SORTED[@]}"; do
+          push_tags() {
+            if [[ ${#TAGS_TO_PUSH[@]} -eq 0 ]]; then
+              echo ""
+              echo "No tags to push."
+              return 0
+            fi
             echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "  📦 ${name}"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-            # Find csproj path
-            csproj=""
-            for entry in "${PACKAGES[@]}"; do
-              IFS='|' read -r n c <<< "$entry"
-              [[ "$n" == "$name" ]] && csproj="$c"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  🏷️  Pushing ${#TAGS_TO_PUSH[@]} tag(s)"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            for tag in "${TAGS_TO_PUSH[@]}"; do
+              if out=$(git push origin "$tag" 2>&1); then
+                echo "  ✅ Pushed ${tag}"
+              elif echo "$out" | grep -qE 'already exists|up-to-date'; then
+                echo "  ⏭️  ${tag} already on remote"
+              else
+                echo "  ❌ Failed to push ${tag}: ${out}"
+              fi
             done
+          }
+          trap push_tags EXIT
+
+          # ═══ Phase 1 — Build everything (all-or-nothing) ════════════
+          # Any failure aborts via set -e before any push happens: nothing
+          # reaches NuGet and no tags are recorded. Clean slate.
+          BUILT=()  # entries: name|version|tag|nupkg_dir
+          for entry in "${PACKAGES[@]}"; do
+            IFS='|' read -r name csproj <<< "$entry"
             pkg_src_dir=$(dirname "$csproj")
+
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  📦 ${name} (build)"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
             # ── Find last tag for this package ──────────
             last_tag=$(git tag -l "${name}@v*" --sort=-v:refname | head -1 || true)
@@ -171,14 +156,12 @@ jobs:
 
             # Extract version from tag: Huskui.Avalonia@v1.2.0 → 1.2.0
             last_version="${last_tag#*@v}"
-
             echo "  Last tag: ${last_tag} (version: ${last_version})"
 
             # ── Get commits since last tag ──────────────
             has_major=false
             has_minor=false
             has_patch=false
-            has_direct_bump=false
 
             while IFS= read -r commit_hash; do
               [[ -z "$commit_hash" ]] && continue
@@ -202,8 +185,6 @@ jobs:
                 fi
               fi
 
-              has_direct_bump=true
-
               if [[ "$breaking" == "true" ]]; then
                 has_major=true
               elif [[ "$type" == "feat" ]]; then
@@ -214,7 +195,7 @@ jobs:
               # chore, docs, ci, style, test, build → no bump
             done < <(git log --format="%H" "${last_tag}..HEAD" 2>/dev/null)
 
-            # ── Determine direct bump level ─────────────
+            # ── Resolve bump level ─────────────────────
             direct_bump=""
             if [[ "$has_major" == "true" ]]; then
               direct_bump="major"
@@ -224,40 +205,22 @@ jobs:
               direct_bump="patch"
             fi
 
-            # ── Check dependency cascade ────────────────
-            cascade_bump=""
-            for dep in ${DEPS[$name]}; do
-              if [[ -n "${PUBLISHED_VERSION[$dep]:-}" ]]; then
-                echo "  📎 Dependency ${dep} published v${PUBLISHED_VERSION[$dep]} this round → cascade patch"
-                cascade_bump="patch"
-                break
-              fi
-            done
-
-            # ── Resolve final bump ──────────────────────
-            final_bump=""
-            if [[ -n "$direct_bump" ]]; then
-              final_bump="$direct_bump"
-            elif [[ -n "$cascade_bump" ]]; then
-              final_bump="$cascade_bump"
-            fi
-
-            if [[ -z "$final_bump" ]]; then
+            if [[ -z "$direct_bump" ]]; then
               echo "  ⏭️  No relevant changes, skipping"
               continue
             fi
 
             # ── Calculate new version ───────────────────
-            new_version=$(bump_version "$last_version" "$final_bump")
+            new_version=$(bump_version "$last_version" "$direct_bump")
             new_tag="${name}@v${new_version}"
 
-            # Check if tag already exists (shouldn't, but safety)
+            # Fresh CI checkout + this tag is newly computed → should not exist.
             if git rev-parse "$new_tag" >/dev/null 2>&1; then
               echo "  ⏭️  Tag ${new_tag} already exists, skipping"
               continue
             fi
 
-            echo "  📋 ${last_version} → ${new_version} (${final_bump})"
+            echo "  📋 ${last_version} → ${new_version} (${direct_bump})"
 
             # ── Changelog ───────────────────────────────
             # Written into the package directory so Directory.Build.props picks
@@ -266,40 +229,55 @@ jobs:
             # makes MSBuild parse "- ..." lines as switches (MSB1006).
             git-cliff --latest --include-path "${pkg_src_dir}/**" -o "${pkg_src_dir}/RELEASE_NOTES.md" 2>/dev/null || echo "No changes" > "${pkg_src_dir}/RELEASE_NOTES.md"
 
-            # ── Pack & Publish ──────────────────────────
+            # ── Pack into a per-package subdir ──────────
+            pkg_out="./publish/${name}"
+            mkdir -p "$pkg_out"
             dotnet pack "$csproj" \
               --configuration Release \
-              --output ./publish \
+              --output "$pkg_out" \
               -p:Version="${new_version}"
 
-            dotnet nuget push ./publish/*.nupkg \
-              --api-key "$NUGET_API_KEY" \
-              --source https://api.nuget.org/v3/index.json \
-              --skip-duplicate
-
-            rm -f ./publish/*.nupkg
             rm -f "${pkg_src_dir}/RELEASE_NOTES.md"
 
-            # ── Record publication ──────────────────────
-            git tag "$new_tag"
-            TAGS_TO_PUSH+=("$new_tag")
-            PUBLISHED_VERSION["$name"]="$new_version"
-            PUBLISHED_TAG["$name"]="$new_tag"
-
-            echo "  ✅ Published ${name}@v${new_version}"
+            BUILT+=("${name}|${new_version}|${new_tag}|${pkg_out}")
+            echo "  ✅ Built ${name}@v${new_version}"
           done
 
-          # ── Push all tags ─────────────────────────────
-          if [[ ${#TAGS_TO_PUSH[@]} -gt 0 ]]; then
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "  🏷️  Pushing tags"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            for tag in "${TAGS_TO_PUSH[@]}"; do
-              git push origin "$tag"
-              echo "  ✅ Pushed ${tag}"
-            done
-          else
+          # ═══ Phase 2 — Publish & tag (invariant-critical) ══════════
+          # For each built package: push to NuGet, and ONLY on success create
+          # the local tag and record it. A push failure aborts (set -e); the
+          # EXIT trap then pushes whatever tags are recorded so far —
+          # exactly the already-published packages.
+          if [[ ${#BUILT[@]} -eq 0 ]]; then
             echo ""
             echo "No packages to publish this round."
+          else
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  📤 Publishing ${#BUILT[@]} package(s)"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            for entry in "${BUILT[@]}"; do
+              IFS='|' read -r name version tag pkg_out <<< "$entry"
+
+              echo ""
+              echo "  📦 ${name}@v${version}"
+
+              # Push to NuGet. Failure aborts here; trap pushes tags recorded so far.
+              dotnet nuget push "${pkg_out}"/*.nupkg \
+                --api-key "$NUGET_API_KEY" \
+                --source https://api.nuget.org/v3/index.json \
+                --skip-duplicate
+
+              # NuGet push succeeded → create tag and queue it.
+              # Fresh checkout guarantees the tag doesn't exist locally.
+              git tag "$tag"
+              TAGS_TO_PUSH+=("$tag")
+
+              echo "  ✅ Published ${name}@v${version}"
+            done
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  🎉 All packages published"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           fi
+          # EXIT trap (push_tags) pushes all recorded tags next.
