@@ -171,18 +171,18 @@ jobs:
 
               IFS='|' read -r type scope breaking <<< "$parsed"
 
-              # Scope matching:
-              # - Has scope and matches this package → direct bump
-              # - No scope but touches this package's files → patch bump
-              # - Has scope but doesn't match → skip
+              # Scope → package matching (one rule, exact):
+              #   "Core"   → the base package Huskui.Avalonia
+              #   <suffix> → the extension Huskui.Avalonia.<suffix> (e.g. "Code")
+              #   empty / anything else → matches no package, bumps nothing.
+              # Writing the full package name does NOT match — use the suffix or "Core".
 
-              if [[ -n "$scope" ]]; then
-                [[ "$scope" != "$name" ]] && continue
+              if [[ -z "$scope" ]]; then
+                continue
+              elif [[ "$scope" == "Core" ]]; then
+                [[ "$name" != "Huskui.Avalonia" ]] && continue
               else
-                # No scope: check if commit touches this package's directory
-                if ! git diff-tree --no-commit-id --name-only -r "$commit_hash" -- "${pkg_src_dir}/" | grep -q .; then
-                  continue
-                fi
+                [[ "$name" != "Huskui.Avalonia.${scope}" ]] && continue
               fi
 
               if [[ "$breaking" == "true" ]]; then
