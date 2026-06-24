@@ -86,6 +86,33 @@
             </StackPanel>
         </controls:ExampleContainer>
 
+        <controls:ExampleContainer
+            Title="Small content centering"
+            Description="When the content is smaller than the viewport and has no explicit size, ZoomView arranges it at its natural size and centers it instead of stretching it to fill the viewport."
+            XamlCode="&lt;husk:ZoomView&gt;&#x0a;    &lt;TextBlock Text=&quot;Hello&quot; /&gt;&#x0a;&lt;/husk:ZoomView&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Small content stays centered at its natural size. Pan and zoom still work; overflowed axes clamp to keep the content visible."
+                    TextWrapping="Wrap" />
+                <husk:ZoomView x:Name="SmallZoomView" Height="300">
+                    <Border
+                        Padding="24,12"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <TextBlock
+                            FontSize="{StaticResource LargeFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="small content" />
+                    </Border>
+                </husk:ZoomView>
+            </StackPanel>
+        </controls:ExampleContainer>
+
         <Border
             Padding="24"
             Background="{StaticResource CardBackgroundBrush}"
