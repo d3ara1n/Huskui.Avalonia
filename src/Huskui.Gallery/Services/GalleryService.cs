@@ -570,6 +570,15 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "ZoomView",
+                    Description =
+                        "Bounded zoom &amp; pan container with minimap, scroll bars, and fit-to-content from Huskui.Avalonia.Code",
+                    Icon = Symbol.ZoomIn,
+                    PageType = typeof(ZoomViewsPage),
+                    Tags = ["zoom", "pan", "minimap", "scroll", "viewport", "extension", "fit"],
+                },
+                new()
+                {
                     Title = "MarkdownViewer",
                     Description =
                         "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",

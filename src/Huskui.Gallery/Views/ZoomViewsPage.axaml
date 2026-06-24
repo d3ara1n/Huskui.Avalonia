@@ -1,0 +1,188 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ZoomViewsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1100"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="ZoomView · Bounded zoom &amp; pan container" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="ZoomView wraps arbitrary content in a zoomable, pannable viewport with built-in scroll bars, a minimap overview, a zoom slider, and fit-to-content buttons. It ships in the Huskui.Avalonia.Code extension package alongside CodeViewer and DiffView."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    LineSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag Content="Zoom" />
+                    <husk:Tag Content="Pan" />
+                    <husk:Tag Content="Minimap" />
+                    <husk:Tag Content="Scroll bars" />
+                    <husk:Tag Content="Fit-to-content" />
+                </WrapPanel>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Install into an existing Huskui app" />
+                        <husk:CodeViewer Language="bash" Code="dotnet add package Huskui.Avalonia.Code" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <controls:ExampleContainer
+            Title="Primary showcase"
+            Description="Wrap any visual content inside ZoomView. The built-in toolbar (bottom-right) provides zoom slider, +/- buttons, fit-to-all, and fit-to-content. Scroll bars appear when content overflows the viewport."
+            XamlCode="&lt;husk:ZoomView&gt;&#x0a;    &lt;!-- any content here --&gt;&#x0a;&lt;/husk:ZoomView&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Mouse wheel = pan (no modifier) or zoom (⌘/Ctrl). Middle-button drag = pan. The minimap in the bottom-right shows the current viewport position within the full content area."
+                    TextWrapping="Wrap" />
+                <husk:ZoomView x:Name="PrimaryZoomView" Height="420" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Image detail inspection"
+            Description="ZoomView is ideal for image viewers, graph panels, maps, or any large canvas where users need to pan and zoom. Set MinZoom and MaxZoom to constrain the range."
+            XamlCode="&lt;husk:ZoomView&#x0a;    MinZoom=&quot;0.05&quot;&#x0a;    MaxZoom=&quot;20&quot;&gt;&#x0a;    &lt;Image Source=&quot;...&quot; /&gt;&#x0a;&lt;/husk:ZoomView&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="On first arrange ZoomView fits content to the viewport. Use the slider or buttons to dive into details or pull back for an overview."
+                    TextWrapping="Wrap" />
+                <husk:ZoomView
+                    x:Name="ImageZoomView"
+                    Height="420"
+                    MinZoom="0.05"
+                    MaxZoom="20" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="20">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Bindable properties" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="ZoomView exposes read-only state bindings that consumers can use via ElementName or RelativeSource bindings."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16"
+                    RowDefinitions="Auto,Auto,Auto"
+                    RowSpacing="16">
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Zoom / ZoomX / ZoomY" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The current scale factor. Two-way bindable via Zoom; ZoomX and ZoomY are read-only and always equal (uniform scale)." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="ContentSize" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The measured size of the wrapped content, in content pixels. Useful for building external overviews." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="ViewportRect" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The visible region in content coordinates (x, y, width, height). Bind external minimaps or overlay indicators to this." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="MinZoom / MaxZoom / ZoomSpeed" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Clamp the zoom range and control the step factor for wheel zoom and +/- buttons (default 1.2)." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Methods: ZoomAt / ZoomIn / ZoomOut / FitToContent / FitToAll / Reset" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ZoomAt(double factor, double cx, double cy) zooms anchored at a content coordinate. The toolbar buttons call ZoomIn/ZoomOut/FitToContent/FitToAll. Reset returns to Matrix.Identity." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <husk:InfoBar Header="Good fit">
+            <TextBlock
+                Text="ZoomView excels in graph explorers, image viewers, map canvases, and any large-content inspection UI. For text-heavy scrolling with line wrapping, use a ScrollViewer instead — ZoomView does not virtualize or flow-wrap content."
+                TextWrapping="Wrap" />
+        </husk:InfoBar>
+    </StackPanel>
+</controls:ControlPage>
