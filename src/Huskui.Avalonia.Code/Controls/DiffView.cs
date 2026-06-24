@@ -16,7 +16,7 @@ namespace Huskui.Avalonia.Code.Controls;
 [TemplatePart(PART_ScrollViewer, typeof(ScrollViewer))]
 [TemplatePart(PART_HScrollBar, typeof(ScrollBar))]
 [TemplatePart(PART_OverviewBar, typeof(DiffOverviewBar))]
-[PseudoClasses(":overviewbar")]
+[PseudoClasses(CLASS_OVERVIEWBAR)]
 public class DiffView : TemplatedControl
 {
     public const string PART_ScrollViewer = nameof(PART_ScrollViewer);
@@ -26,6 +26,7 @@ public class DiffView : TemplatedControl
     public const double SEPARATOR_WIDTH = 1.0;
     public const double MEASURE_FONT_SIZE = 13.0;
     public const double LINE_HEIGHT = 22.0;
+    public const string CLASS_OVERVIEWBAR = ":overviewbar";
 
     private static readonly Typeface MONOSPACE_TYPEFACE = new(
         new FontFamily("Cascadia Code, Consolas, Courier New, monospace")
@@ -136,6 +137,9 @@ public class DiffView : TemplatedControl
             ScrollBarVisibility.Auto
         );
 
+    public static readonly StyledProperty<bool> IsOverviewBarVisibleProperty =
+        AvaloniaProperty.Register<DiffView, bool>(nameof(IsOverviewBarVisible));
+
     public IReadOnlyList<DiffMarker>? Markers
     {
         get => GetValue(MarkersProperty);
@@ -158,6 +162,11 @@ public class DiffView : TemplatedControl
     {
         get => GetValue(OverviewBarVisibilityProperty);
         set => SetValue(OverviewBarVisibilityProperty, value);
+    }
+
+    public bool IsOverviewBarVisible
+    {
+        get => GetValue(IsOverviewBarVisibleProperty);
     }
 
     public double HorizontalOffset
@@ -273,13 +282,22 @@ public class DiffView : TemplatedControl
             OverviewViewportRatioProperty,
             Math.Clamp(viewport.Height / Math.Max(1.0, extent.Height), 0.0, 1.0)
         );
-        PseudoClasses.Set(":overviewbar",
+        PseudoClasses.Set(CLASS_OVERVIEWBAR,
                           OverviewBarVisibility switch
                           {
                               ScrollBarVisibility.Visible => true,
                               ScrollBarVisibility.Hidden => false,
                               _ => extent.Height > viewport.Height,
                           });
+        SetCurrentValue(
+            IsOverviewBarVisibleProperty,
+            OverviewBarVisibility switch
+            {
+                ScrollBarVisibility.Visible => true,
+                ScrollBarVisibility.Hidden => false,
+                _ => extent.Height > viewport.Height,
+            }
+        );
     }
 
     private void UpdateDiff()
@@ -438,4 +456,5 @@ public class DiffView : TemplatedControl
             ChangeType.Imaginary => DiffLineKind.Empty,
             _ => DiffLineKind.Unchanged,
         };
+
 }
