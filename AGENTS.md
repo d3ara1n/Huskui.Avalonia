@@ -128,3 +128,7 @@ When in doubt, leave the comment out. The legitimate reasons to write one are na
 - **Do not commit on your own initiative.** Make all the edits you need, then stop and wait for the user to explicitly tell you to commit. Never auto-commit after editing without being asked.
 - First line follows Conventional Commits: `type(scope): description`.
 - Blank line between first line and body; body lists key changes.
+- **Scope chooses which package publishes.** The `publish.yml` workflow bumps a package only when a commit's scope resolves to it:
+  - `Core` → the base package `Huskui.Avalonia`
+  - a package suffix → `Huskui.Avalonia.<suffix>` (e.g. `Code`, `Markdown`, `Mvvm`)
+  - any other scope (including the full package name) or no scope at all → no package is bumped. `feat`/`fix`/`perf`/`refactor` bump; `ci`/`chore`/`docs`/`style`/`test`/`build` never bump.
