@@ -561,6 +561,15 @@ public class GalleryService : IGalleryService
                 },
                 new()
                 {
+                    Title = "DiffView",
+                    Description =
+                        "Side-by-side difference viewer from Huskui.Avalonia.Code with DiffPlex-based computation and overview bar",
+                    Icon = Symbol.ArrowSwap,
+                    PageType = typeof(DiffViewsPage),
+                    Tags = ["diff", "viewer", "difference", "side-by-side", "extension", "compare"],
+                },
+                new()
+                {
                     Title = "MarkdownViewer",
                     Description =
                         "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",

@@ -1,0 +1,211 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.DiffViewsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1100"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="DiffView · Side-by-side difference viewer" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="DiffView renders two-column text diffs with line numbers, change-kind coloring, gutter indicators, a scroll overview bar, and horizontal scrolling. It is powered by DiffPlex and ships in the same Huskui.Avalonia.Code extension package as CodeViewer."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="The control shares the " />
+                    <husk:HighlightInline Text="husk:" />
+                    <Run Text=" namespace and is theme-aware out of the box. No additional resource wiring is needed once the extension assembly is loaded." />
+                </TextBlock>
+
+                <WrapPanel
+                    ItemSpacing="8"
+                    LineSpacing="8"
+                    Orientation="Horizontal">
+                    <husk:Tag Content="Side-by-side diff" />
+                    <husk:Tag Content="DiffPlex" />
+                    <husk:Tag Content="Scroll overview" />
+                    <husk:Tag Content="Gutter markers" />
+                    <husk:Tag Content="Shared namespace" />
+                </WrapPanel>
+
+                <Border
+                    Padding="16"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <StackPanel Spacing="12">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Install into an existing Huskui app" />
+                        <husk:CodeViewer Language="bash" Code="dotnet add package Huskui.Avalonia.Code" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <controls:ExampleContainer
+            Title="Primary showcase"
+            Description="Default chrome renders two columns with line numbers, colored backgrounds per change kind, and an overview bar on the right."
+            XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;{Binding LiveText}&quot;&#x0a;    RightText=&quot;{Binding ImportText}&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Set LeftText and RightText; the control computes the diff internally and populates Lines, Markers, and line-count bindings automatically."
+                    TextWrapping="Wrap" />
+                <husk:DiffView
+                    x:Name="PrimaryDiffView"
+                    Height="400" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="No differences"
+            Description="When both sides are identical the gutter stays neutral and no marker dots appear in the overview bar."
+            XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;unchanged&quot;&#x0a;    RightText=&quot;unchanged&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Consumers may inspect LeftHasDifference and RightHasDifference to conditionally show a warning or success banner."
+                    TextWrapping="Wrap" />
+                <husk:DiffView
+                    x:Name="EmptyDiffView"
+                    Height="80" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Mixed changes"
+            Description="Added, removed, and modified lines carry distinct background colors and gutter indicator bars."
+            XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;{Binding OldText}&quot;&#x0a;    RightText=&quot;{Binding NewText}&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="The overview bar on the right shows colored markers at the positions of changed regions, and the scroll thumb tracks the current viewport."
+                    TextWrapping="Wrap" />
+                <husk:DiffView
+                    x:Name="VariousDiffView"
+                    Height="400" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Long lines"
+            Description="Wide content triggers a horizontal scroll bar at the bottom. Both columns scroll together."
+            XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;short line&quot;&#x0a;    RightText=&quot;this is an extremely long line that forces horizontal scrolling within the diff viewer control&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="ContentWidth automatically tracks the widest line; the horizontal scroll bar adjusts its range when the viewport resizes."
+                    TextWrapping="Wrap" />
+                <husk:DiffView
+                    Height="80"
+                    LeftText="short line"
+                    RightText="this is an extremely long line that forces horizontal scrolling within the diff viewer control" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="20">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Bindable properties" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="DiffView exposes read-only state bindings that consumers can read from ElementName or RelativeSource bindings to build surrounding UI."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="16"
+                    RowDefinitions="Auto,Auto"
+                    RowSpacing="16">
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="LeftHasDifference / RightHasDifference" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Bool: whether the left or right side has any line-level changes. Bind these to SwitchContainer to swap between identical/different banners." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="LeftLineCount / RightLineCount / TotalLineCount" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Int: line count per side plus total rows. Attach a Run binding to display &quot;23 / 47 lines&quot; beneath a header." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Lines" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ReadOnlyList of DiffLineModel: read-only output populated after SetLeftText/SetRightText. Use for programmatic inspection (e.g. jump to first change)." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                    <Border
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="16"
+                        Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="1"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <StackPanel Spacing="8">
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Markers" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ReadOnlyList of DiffMarker: aggregated change regions for the overview bar. Not typically consumed by users; exposed for custom rendering scenarios." TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <husk:InfoBar Header="Good fit">
+            <TextBlock
+                Text="DiffView excels in version-comparison workflows like file history, settings preview, dependency updates, and config change reviews. For simple two-column text layouts without diff semantics, use a regular Grid instead."
+                TextWrapping="Wrap" />
+        </husk:InfoBar>
+    </StackPanel>
+</controls:ControlPage>

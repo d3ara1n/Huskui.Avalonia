@@ -7,3 +7,13 @@ using Huskui.Avalonia.Attributes;
     "https://github.com/d3ara1n/Huskui.Avalonia",
     "Huskui.Avalonia.Code.Controls"
 )]
+
+[assembly: XmlnsDefinition(
+    "https://github.com/d3ara1n/Huskui.Avalonia",
+    "Huskui.Avalonia.Code.Models"
+)]
+
+[assembly: XmlnsDefinition(
+    "https://github.com/d3ara1n/Huskui.Avalonia",
+    "Huskui.Avalonia.Code.Converters"
+)]

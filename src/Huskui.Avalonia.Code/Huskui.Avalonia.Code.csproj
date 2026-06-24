@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="DiffPlex" />
         <PackageReference Include="TextMateSharp.Grammars" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     </ItemGroup>
