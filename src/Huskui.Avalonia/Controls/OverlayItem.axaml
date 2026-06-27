@@ -94,5 +94,9 @@
                 <Setter Property="RenderTransform" Value="translateY(-24px)" />
             </Style>
         </Style>
+
+        <Style Selector="^:dismissing /template/ LayoutTransformControl#TransformRoot">
+            <Setter Property="IsHitTestVisible" Value="False" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

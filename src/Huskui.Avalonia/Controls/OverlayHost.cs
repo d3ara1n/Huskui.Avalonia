@@ -1,3 +1,4 @@
+using System.Threading;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Collections;
@@ -70,6 +71,8 @@ public class OverlayHost : TemplatedControl
     private readonly Queue<OverlayItem> _toPops = [];
 
     private Border? _smokeMask;
+
+    private CancellationTokenSource _dismissCts = new();
 
     public IPageTransition Transition
     {
@@ -180,10 +183,12 @@ public class OverlayHost : TemplatedControl
             {
                 var transition = item.Transition ?? Transition;
                 transition
-                    .Start(item, null, true, CancellationToken.None)
+                    .Start(item, null, true, _dismissCts.Token)
                     .ContinueWith(
                         _ =>
                         {
+                            item.IsDismissing = false;
+
                             for (var i = 0; i < Items.IndexOf(item); i++)
                             {
                                 if (Items[i] is { } inner)
@@ -237,11 +242,12 @@ public class OverlayHost : TemplatedControl
             Visual visual => VisualExtensions.FindAncestorOfType<OverlayItem>(visual),
             _ => null,
         };
-        if (item is not null && !_toDismiss.Contains(item))
-        {
-            _toDismiss.Enqueue(item);
-            InvalidateArrange();
-        }
+        if (item is null || item.IsDismissing)
+            return;
+
+        item.IsDismissing = true;
+        _toDismiss.Enqueue(item);
+        InvalidateArrange();
     }
 
     public void Dismiss()
@@ -264,6 +270,9 @@ public class OverlayHost : TemplatedControl
         RemoveHandler(DismissRequestedEvent, DismissRequestedHandler);
 
         UnregisterHandlers();
+
+        _dismissCts.Cancel();
+        _dismissCts = new CancellationTokenSource();
     }
 
     private void DismissRequestedHandler(object? sender, DismissRequestedEventArgs e)

@@ -8,11 +8,13 @@ using Huskui.Avalonia.Models;
 
 namespace Huskui.Avalonia.Controls;
 
-[PseudoClasses(":active")]
+[PseudoClasses(":active", ":dismissing")]
 [TemplatePart(PART_ContentPresenter, typeof(ContentPresenter))]
 public class OverlayItem : ContentControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
+    public const string CLASS_Active = ":active";
+    public const string CLASS_Dismissing = ":dismissing";
 
     public static readonly DirectProperty<OverlayItem, int> DistanceProperty =
         AvaloniaProperty.RegisterDirect<OverlayItem, int>(
@@ -44,7 +46,22 @@ public class OverlayItem : ContentControl
                 ZIndex = -value;
             }
 
-            PseudoClasses.Set(":active", value == 0);
+            PseudoClasses.Set(CLASS_Active, value == 0);
+        }
+    }
+
+    private bool _isDismissing;
+
+    internal bool IsDismissing
+    {
+        get => _isDismissing;
+        set
+        {
+            if (_isDismissing == value)
+                return;
+
+            _isDismissing = value;
+            PseudoClasses.Set(CLASS_Dismissing, value);
         }
     }
 
