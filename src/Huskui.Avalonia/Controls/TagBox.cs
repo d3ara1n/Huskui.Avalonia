@@ -465,23 +465,10 @@ public class TagBox : TemplatedControl
 
     private void UpdateSuggestionSelection()
     {
-        if (_suggestionList == null)
-        {
-            return;
-        }
-
-        _suggestionList.SelectedIndex = _suggestions.Count > 0 ? 0 : -1;
+        _suggestionList?.SelectedIndex = _suggestions.Count > 0 ? 0 : -1;
     }
 
-    private static bool MatchesFilter(string item, string input)
-    {
-        if (string.IsNullOrEmpty(input))
-        {
-            return true;
-        }
-
-        return item.Contains(input, StringComparison.OrdinalIgnoreCase);
-    }
+    private static bool MatchesFilter(string item, string input) => string.IsNullOrEmpty(input) || item.Contains(input, StringComparison.OrdinalIgnoreCase);
 
     private static string NormalizeInput(string? value) => value?.Trim() ?? string.Empty;
 

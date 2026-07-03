@@ -8,4 +8,7 @@ public static class FrameActivationMixin
 {
     public static void Install(Frame frame, IViewActivator activator) =>
         frame.PageActivator = activator.Activate;
+
+    public static void Install(NavigationView view, IViewActivator activator) =>
+        view.PageActivator = activator.Activate;
 }

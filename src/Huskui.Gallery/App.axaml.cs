@@ -1,9 +1,9 @@
-using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Fonts;
+using Huskui.Avalonia.Mvvm;
 using Huskui.Gallery.Services;
 using Huskui.Gallery.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -68,10 +68,11 @@ public class App : Application
         var services = new ServiceCollection();
 
         // Register services
-        services.AddSingleton<IGalleryService, GalleryService>();
+        services.AddSingleton<MenuItemService>();
         services.AddSingleton<IThemeService, ThemeService>();
-        services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<ISettingsViewFactory, DesktopSettingsViewFactory>();
+        services.AddViewModelActivation<GalleryViewActivator>();
+        services.AddViewState();
 
         ConfigureHostServices?.Invoke(services);
 
@@ -81,8 +82,8 @@ public class App : Application
         ServiceProvider = services.BuildServiceProvider();
 
         // Initialize services
-        var galleryService = ServiceProvider.GetRequiredService<IGalleryService>();
-        galleryService.Initialize();
+        var menuItemService = ServiceProvider.GetRequiredService<MenuItemService>();
+        menuItemService.Initialize();
     }
 
     private static Control CreateMainView()
