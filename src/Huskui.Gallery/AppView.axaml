@@ -77,8 +77,7 @@
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0"
-                            Click="Button_OnClick"
-                            Command="{Binding TogglePaneCommand}">
+                            Click="Button_OnClick">
                             <Image
                                 Width="42"
                                 Height="42"
