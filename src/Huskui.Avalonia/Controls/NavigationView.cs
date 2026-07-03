@@ -14,12 +14,12 @@ namespace Huskui.Avalonia.Controls;
 
 [TemplatePart(PART_Frame, typeof(Frame))]
 [TemplatePart(PART_BackButton, typeof(Button))]
-[PseudoClasses(PC_PANE_COLLAPSED)]
+[PseudoClasses(CLASS_PaneCollapsed)]
 public class NavigationView : SelectingItemsControl
 {
     public const string PART_Frame = nameof(PART_Frame);
     public const string PART_BackButton = nameof(PART_BackButton);
-    public const string PC_PANE_COLLAPSED = ":pane-collapsed";
+    public const string CLASS_PaneCollapsed = ":pane-collapsed";
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
         AvaloniaProperty.Register<NavigationView, IDataTemplate?>(nameof(IconTemplate));
@@ -34,7 +34,7 @@ public class NavigationView : SelectingItemsControl
         AvaloniaProperty.Register<NavigationView, double>(nameof(PaneOpenWidth), defaultValue: 320);
 
     public static readonly StyledProperty<double> PaneClosedWidthProperty =
-        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneClosedWidth), defaultValue: 72);
+        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneClosedWidth), defaultValue: 82);
 
     public static readonly StyledProperty<object?> PaneHeaderProperty =
         AvaloniaProperty.Register<NavigationView, object?>(nameof(PaneHeader));
@@ -48,7 +48,13 @@ public class NavigationView : SelectingItemsControl
     static NavigationView() =>
         KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<NavigationView>(KeyboardNavigationMode.Once);
 
-    public NavigationView() => AddHandler(Button.ClickEvent, OnItemClicked);
+    public NavigationView()
+    {
+        AddHandler(Button.ClickEvent, OnItemClicked);
+        ContainerPrepared += (_, _) => RefreshGroupStarts();
+        ContainerIndexChanged += (_, _) => RefreshGroupStarts();
+        ContainerClearing += (_, _) => RefreshGroupStarts();
+    }
 
     public IDataTemplate? IconTemplate
     {
@@ -101,8 +107,9 @@ public class NavigationView : SelectingItemsControl
         get => _frame?.PageActivator ?? _pendingActivator;
         set
         {
+            ArgumentNullException.ThrowIfNull(value);
             _pendingActivator = value;
-            if (_frame is not null && value is not null)
+            if (_frame is not null)
                 _frame.PageActivator = value;
         }
     }
@@ -111,6 +118,7 @@ public class NavigationView : SelectingItemsControl
     private Button? _backButton;
     private Frame.PageActivatorDelegate? _pendingActivator;
     private object? _pendingSelection;
+    private (Type PageType, object? Parameter, IPageTransition? Transition)? _pendingNavigate;
     private bool _syncingSelection;
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
@@ -130,16 +138,28 @@ public class NavigationView : SelectingItemsControl
         if (!ReferenceEquals(nvi, item))
             nvi.Content = item;
 
-        // Share the view-level templates with every realized item.
         nvi[!NavigationItem.IconTemplateProperty] = this[!IconTemplateProperty];
         nvi[!ContentControl.ContentTemplateProperty] = this[!ItemTemplateProperty];
 
-        // Category grouping: the lead item of a category run shows the label.
         var category = nvi.Category;
         var isFirstOfCategory = !string.IsNullOrEmpty(category)
             && (index == 0 || Items[index - 1] is NavigationItem prev && prev.Category != category);
         nvi.MarkGroupStart(isFirstOfCategory);
         nvi.IsCollapsed = !IsPaneOpen;
+    }
+
+    private void RefreshGroupStarts()
+    {
+        foreach (var container in GetRealizedContainers().OfType<NavigationItem>())
+        {
+            var index = IndexFromContainer(container);
+            if (index < 0)
+                continue;
+            var category = container.Category;
+            var isFirst = !string.IsNullOrEmpty(category)
+                && (index == 0 || Items[index - 1] is NavigationItem prev && prev.Category != category);
+            container.MarkGroupStart(isFirst);
+        }
     }
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -157,10 +177,19 @@ public class NavigationView : SelectingItemsControl
         if (_pendingActivator is not null)
             _frame.PageActivator = _pendingActivator;
 
+        // NOTE: a deferred initial selection navigates with whatever PageActivator is current. Consumers
+        //  who two-way bind SelectedItem before load should install their IViewActivator first, otherwise
+        //  the first page is activated by Frame's default activator.
         if (_pendingSelection is { } deferred)
         {
             _pendingSelection = null;
             OnSelectedItemChanged(deferred);
+        }
+
+        if (_pendingNavigate is { } pendingNav)
+        {
+            _pendingNavigate = null;
+            Navigate(pendingNav.PageType, pendingNav.Parameter, pendingNav.Transition);
         }
     }
 
@@ -191,7 +220,7 @@ public class NavigationView : SelectingItemsControl
         else if (change.Property == IsPaneOpenProperty)
         {
             var collapsed = !change.GetNewValue<bool>();
-            PseudoClasses.Set(PC_PANE_COLLAPSED, collapsed);
+            PseudoClasses.Set(CLASS_PaneCollapsed, collapsed);
             foreach (var item in GetRealizedContainers().OfType<NavigationItem>())
                 item.IsCollapsed = collapsed;
         }
@@ -207,6 +236,12 @@ public class NavigationView : SelectingItemsControl
     /// </summary>
     public void Navigate(Type pageType, object? parameter = null, IPageTransition? transition = null)
     {
+        if (_frame is null)
+        {
+            _pendingNavigate = (pageType, parameter, transition);
+            return;
+        }
+
         _frame?.Navigate(pageType, parameter, transition);
 
         if (SelectedItem is NavigationItem { PageType: { } selectedPage } && selectedPage == pageType)

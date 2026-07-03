@@ -7,12 +7,12 @@ using Avalonia.Controls.Templates;
 
 namespace Huskui.Avalonia.Controls;
 
-[PseudoClasses(PC_SELECTED, PC_GROUP_START, PC_PANE_COLLAPSED)]
+[PseudoClasses(CLASS_Selected, CLASS_GroupStart, CLASS_Collapsed)]
 public class NavigationItem : Button, ISelectable
 {
-    public const string PC_SELECTED = ":selected";
-    public const string PC_GROUP_START = ":group-start";
-    public const string PC_PANE_COLLAPSED = ":collapsed";
+    public const string CLASS_Selected = ":selected";
+    public const string CLASS_GroupStart = ":group-start";
+    public const string CLASS_Collapsed = ":collapsed";
 
     public static readonly StyledProperty<bool> IsSelectedProperty =
         SelectingItemsControl.IsSelectedProperty.AddOwner<NavigationItem>();
@@ -79,13 +79,13 @@ public class NavigationItem : Button, ISelectable
         set => SetValue(IsCollapsedProperty, value);
     }
 
-    internal void MarkGroupStart(bool value) => PseudoClasses.Set(PC_GROUP_START, value);
+    internal void MarkGroupStart(bool value) => PseudoClasses.Set(CLASS_GroupStart, value);
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
         if (change.Property == IsCollapsedProperty)
-            PseudoClasses.Set(PC_PANE_COLLAPSED, change.GetNewValue<bool>());
+            PseudoClasses.Set(CLASS_Collapsed, change.GetNewValue<bool>());
     }
 }

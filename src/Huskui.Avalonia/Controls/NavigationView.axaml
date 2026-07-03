@@ -190,10 +190,6 @@
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0" />
         </Style>
-        <Style Selector="^:collapsed">
-            <Setter Property="(ToolTip.Tip)" Value="{Binding Content, RelativeSource={RelativeSource Self}}" />
-            <Setter Property="(ToolTip.ShowDelay)" Value="100" />
-        </Style>
 
     </ControlTheme>
 
