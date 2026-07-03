@@ -2,6 +2,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
     xmlns:local="clr-namespace:Huskui.Avalonia.Controls;assembly=Huskui.Avalonia">
 
     <ControlTheme x:Key="{x:Type husk:NavigationView}" TargetType="husk:NavigationView">
@@ -27,49 +28,34 @@
                         </Border.Transitions>
                         <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-                            <StackPanel
+                            <Grid
                                 Grid.Row="0"
-                                HorizontalAlignment="Left"
-                                Orientation="Horizontal"
-                                Spacing="2">
+                                Margin="4,6,4,0"
+                                ColumnDefinitions="Auto,*,Auto">
                                 <Button
+                                    Grid.Column="0"
                                     Name="{x:Static local:NavigationView.PART_BackButton}"
-                                    Padding="10"
+                                    Padding="8"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Classes="Small"
                                     CornerRadius="{StaticResource SmallCornerRadius}"
                                     Cursor="Hand"
                                     IsVisible="{TemplateBinding IsBackButtonVisible}"
                                     Theme="{StaticResource GhostButtonTheme}">
-                                    <Path
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Data="M14,5 L7,12 L14,19"
-                                        Stroke="{DynamicResource ControlForegroundBrush}"
-                                        StrokeThickness="2" />
+                                    <fi:SymbolIcon FontSize="{StaticResource MediumFontSize}" Symbol="ArrowLeft" />
                                 </Button>
                                 <ToggleButton
+                                    Grid.Column="2"
                                     Name="PaneToggleButton"
-                                    Padding="10"
+                                    Padding="8"
                                     Background="Transparent"
                                     BorderThickness="0"
-                                    Classes="Small"
                                     CornerRadius="{StaticResource SmallCornerRadius}"
                                     Cursor="Hand"
                                     IsChecked="{Binding IsPaneOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                                    <Path
-                                        Width="16"
-                                        Height="16"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Data="M3,6 L21,6 M3,12 L21,12 M3,18 L21,18"
-                                        Stroke="{DynamicResource ControlForegroundBrush}"
-                                        StrokeThickness="2" />
+                                    <fi:SymbolIcon Name="PaneIcon" FontSize="{StaticResource MediumFontSize}" />
                                 </ToggleButton>
-                            </StackPanel>
+                            </Grid>
 
                             <ContentPresenter
                                 Grid.Row="1"
@@ -116,6 +102,13 @@
         </Style>
         <Style Selector="^:pane-collapsed /template/ ScrollViewer">
             <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        </Style>
+
+        <Style Selector="^ /template/ ToggleButton#PaneToggleButton fi|SymbolIcon#PaneIcon">
+            <Setter Property="Symbol" Value="PanelLeftContract" />
+        </Style>
+        <Style Selector="^:pane-collapsed /template/ ToggleButton#PaneToggleButton fi|SymbolIcon#PaneIcon">
+            <Setter Property="Symbol" Value="PanelLeftExpand" />
         </Style>
 
     </ControlTheme>

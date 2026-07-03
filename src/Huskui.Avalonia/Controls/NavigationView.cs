@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -110,6 +111,7 @@ public class NavigationView : SelectingItemsControl
     private Button? _backButton;
     private Frame.PageActivatorDelegate? _pendingActivator;
     private object? _pendingSelection;
+    private bool _syncingSelection;
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
         NeedsContainer<NavigationItem>(item, out recycleKey);
@@ -195,18 +197,42 @@ public class NavigationView : SelectingItemsControl
         }
     }
 
+    /// <summary>
+    /// Pushes a page onto the internal <see cref="Frame"/> — the single navigation primitive.
+    /// Selection-driven navigation calls it internally; consumers call it for non-menu pages
+    /// (Home, drill-down, deep links). It also keeps <see cref="SelectingItemsControl.SelectedItem"/>
+    /// in sync: when the target page matches the current selection (navigation originated from the
+    /// UI) it bails out; otherwise it selects the item bound to that page, or clears selection when
+    /// the page is not in the menu.
+    /// </summary>
+    public void Navigate(Type pageType, object? parameter = null, IPageTransition? transition = null)
+    {
+        _frame?.Navigate(pageType, parameter, transition);
+
+        if (SelectedItem is NavigationItem { PageType: { } selectedPage } && selectedPage == pageType)
+            return;
+
+        var match = Items.OfType<NavigationItem>().FirstOrDefault(i => i.PageType == pageType);
+        if (match == SelectedItem)
+            return;
+
+        _syncingSelection = true;
+        try { SelectedItem = match; }
+        finally { _syncingSelection = false; }
+    }
+
     private void OnSelectedItemChanged(object? selected)
     {
+        if (_syncingSelection)
+            return;
+
         if (_frame is null)
         {
             _pendingSelection = selected;
             return;
         }
 
-        if (selected is not NavigationItem item)
-            return;
-
-        if (item.PageType is not null)
-            _frame.Navigate(item.PageType, item.Parameter, null);
+        if (selected is NavigationItem { PageType: { } pageType } item)
+            Navigate(pageType, item.Parameter);
     }
 }
