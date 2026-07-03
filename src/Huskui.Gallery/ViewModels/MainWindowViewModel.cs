@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using Avalonia.Controls;
@@ -17,7 +16,6 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly SourceList<NavigationItem> _allItemsSource = new();
     private readonly CompositeDisposable _disposables = new();
-    private readonly IScheduler _uiScheduler = Scheduler.CurrentThread;
 
     public MainWindowViewModel(
         MenuItemService menuItemService,
