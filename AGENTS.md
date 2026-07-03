@@ -20,7 +20,7 @@
 
 - The project uses a **Radix-inspired 12-step color scale** where step 9 is always the base/interactive color. When adding new semantic colors, follow this 12-step pattern and generate both Default (light) and Dark theme dictionary variants.
 
-- Animation durations must reference the **named constants** from `Themes/Basics.axaml` (e.g. `ControlFasterAnimationDuration`, `ControlNormalAnimationDuration`) rather than hard-coded `TimeSpan` values. Transitions should use `SineEaseOut` easing.
+- Animation durations must reference the **named constants** from `Themes/Basics.axaml` (e.g. `ControlFasterAnimationDuration`, `ControlNormalAnimationDuration`) rather than hard-coded `TimeSpan` values.
 
 - Corner radii must use the **indirection layer** — reference `StaticResource` keys like `SmallCornerRadius`, `FullCornerRadius` etc. from `CornerRadii.axaml`, not raw `CornerRadius` values. These keys already handle dynamic forwarding internally. When a converter is needed on a `StaticResource` corner radius, use `StaticResourceBinding` instead of `StaticResource`.
 
