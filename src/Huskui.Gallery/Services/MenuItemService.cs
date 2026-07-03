@@ -7,7 +7,7 @@ using Huskui.Gallery.Views;
 namespace Huskui.Gallery.Services;
 
 /// <summary>
-///     Default implementation of IGalleryService
+///
 /// </summary>
 public class GalleryService : IGalleryService
 {
