@@ -31,6 +31,7 @@
 ## Control Implementation Patterns
 
 - `StyledProperty` registration uses multi-line generic syntax with type parameters on separate lines:
+
   ```csharp
   public static readonly StyledProperty<bool> IsReadOnlyProperty = AvaloniaProperty.Register<
       ControlName,
@@ -41,6 +42,7 @@
 - Use `OnPropertyChanged` override to react to property changes (including setting `PseudoClasses`), not property change callbacks.
 
 - The `field` keyword is used with `SetAndRaise` for `DirectProperty` accessors:
+
   ```csharp
   public int PageCount
   {
@@ -59,6 +61,7 @@
   1. `[TemplatePart(PART_Name, typeof(ControlType))]` attribute
   2. `public const string PART_Name = nameof(PART_Name);` constant
   3. In XAML, reference via `Name="{x:Static local:ControlName.PART_Name}"` rather than a bare `Name="PART_Name"`
+
   ```csharp
   [TemplatePart(PART_ItemsControl, typeof(ItemsControl))]
   [TemplatePart(PART_QuickJumperPopup, typeof(Popup))]
@@ -68,20 +71,24 @@
       public const string PART_QuickJumperPopup = nameof(PART_QuickJumperPopup);
   }
   ```
+
   `nameof(PART_Xxx)` self-checks: if you rename the constant, the string updates automatically, keeping XAML and C# in sync. Never use bare string literals like `Find<ScrollViewer>("PART_ScrollViewer")`.
 
 - **Template-internal elements that are NOT referenced from code-behind do NOT use the `PART_` prefix.** Give them descriptive, short names like `Background`, `Border`, `Indicator`, `ContentPresenter` — these names serve only styling selectors within the same ControlTheme and never appear in C#.
 
 - **Pseudo-class names used in code-behind must be declared as `public const string` with a `CLASS_` prefix** — same principle as `PART_` for template parts. Never use bare pseudo-class string literals in `PseudoClasses.Set` / `PseudoClasses.Remove`:
+
   ```csharp
   public const string CLASS_Error = ":error";
   public const string CLASS_Selected = ":selected";
   ```
+
   Then use `PseudoClasses.Set(CLASS_Error, true)` instead of `PseudoClasses.Set(":error", true)`. Pseudo-class selectors in `.axaml` are still written as bare `:error`/`:selected` in style selectors — the constant is only for code-behind references.
 
 ## Resource Key Naming
 
 Resource keys follow the pattern `{Owner}{Variant}{State}{Property}Type`. Examples:
+
 - `ControlBackgroundBrush`, `ControlInteractiveBorderBrush`
 - `ControlAccentForegroundBrush`, `ControlDangerTranslucentHalfBackgroundBrush`
 - `Accent9Color`, `Gray3Color`
@@ -91,9 +98,11 @@ Resource keys follow the pattern `{Owner}{Variant}{State}{Property}Type`. Exampl
 ## Converter Pattern
 
 Converters are organized as **static properties on static classes** (e.g. `CornerRadiusConverters`, `BoolConverters`), using `RelayConverter` / `RelayMultiConverter` for lambda-based implementations. They are referenced in XAML via `{x:Static}`:
+
 ```xml
 Converter="{x:Static husk:CornerRadiusConverters.Top}"
 ```
+
 Do not create standalone `IValueConverter` classes unless the converter is complex enough to warrant it.
 
 ## Code Organization
