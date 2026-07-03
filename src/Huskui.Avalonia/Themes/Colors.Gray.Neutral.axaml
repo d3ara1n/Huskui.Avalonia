@@ -26,7 +26,7 @@
             <Color x:Key="Gray7Color">#484848</Color>
             <Color x:Key="Gray8Color">#606060</Color>
             <Color x:Key="Gray9Color">#6E6E6E</Color>
-            <Color x:Key="Gray10Color">#9E9E9E</Color>
+            <Color x:Key="Gray10Color">#7B7B7B</Color>
             <Color x:Key="Gray11Color">#B4B4B4</Color>
             <Color x:Key="Gray12Color">#EEEEEE</Color>
         </ResourceDictionary>
