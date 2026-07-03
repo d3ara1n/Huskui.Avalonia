@@ -1,9 +1,8 @@
-using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Avalonia.Collections;
 using Avalonia.Controls;
+using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
@@ -19,30 +18,26 @@ namespace Huskui.Gallery.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
     // DynamicData collections
-    private readonly SourceList<GalleryItem> _allItemsSource = new();
+    private readonly SourceList<MenuItemVo> _allItemsSource = new();
     private readonly CompositeDisposable _disposables = new();
-    private readonly IGalleryService _galleryService;
-    private readonly ReadOnlyObservableCollection<GalleryItem> _searchResults;
     private readonly IServiceProvider _serviceProvider;
+    private readonly NavigationService _navigationService;
+    private readonly MenuItemService _menuItemService;
 
     public MainWindowViewModel(
-        IGalleryService galleryService,
-        INavigationService navigationService,
+        NavigationService navigationService,
+        MenuItemService menuItemService,
         IThemeService themeService,
         ISettingsViewFactory settingsViewFactory,
         IServiceProvider serviceProvider
     )
     {
-        _galleryService = galleryService;
-        NavigationService = navigationService;
+        _navigationService = navigationService;
+        _menuItemService = menuItemService;
         ThemeService = themeService;
         _serviceProvider = serviceProvider;
         SettingsView = settingsViewFactory.CreateSettingsView();
-
-        NavigationService.NavigationChanged += OnNavigationChanged;
-
-        // Initialize all items source
-        _allItemsSource.AddRange(_galleryService.AllItems);
+        _navigationService.NavigationChanged += OnNavigationChanged;
 
         // Setup reactive search
         var searchTextObservable = this.WhenPropertyChanged(x => x.SearchText)
@@ -51,37 +46,42 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
             .DistinctUntilChanged();
 
         // Create filtered collection based on search text
-        var searchSubscription = _allItemsSource
-            .Connect()
-            .Filter(
-                searchTextObservable.Select<string, Func<GalleryItem, bool>>(searchText =>
-                    item => string.IsNullOrWhiteSpace(searchText) || item.MatchesSearch(searchText)
-                )
-            )
-            .Bind(out _searchResults)
-            .Subscribe();
+        var searchSubscription = searchTextObservable
+           .Subscribe(searchText =>
+            {
+                SearchResults.Clear();
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    SearchResults.AddRange(_allItemsSource.Items);
+                }
+                else
+                {
+                    SearchResults.AddRange(_allItemsSource.Items.Where(item => item.MatchesSearch(searchText) && !item.IsSeparator));
+                }
+            });
 
         _disposables.Add(searchSubscription);
 
         // Initialize category groups
-        InitializeCategoryGroups();
+        InitializeMenuItem();
 
-        // Update category groups when search text changes
-        var categoryFilterSubscription = searchTextObservable.Subscribe(searchText =>
-        {
-            IsSearchActive = !string.IsNullOrWhiteSpace(searchText);
-            UpdateCategoryFilters(searchText);
-        });
-
-        _disposables.Add(categoryFilterSubscription);
     }
 
     [ObservableProperty]
-    public partial ObservableCollection<CategoryGroupViewModel> CategoryGroups { get; set; } =
-        new();
+    public partial AvaloniaList<MenuItemVo> SearchResults { get; set; } = [];
+
+    [ObservableProperty]
+    public partial bool CanGoback { get; set; } = false;
+
+    [ObservableProperty]
+    public partial bool CanGoForward { get; set; } = false;
+
 
     [ObservableProperty]
     public partial bool IsSearchActive { get; set; }
+
+    [ObservableProperty]
+    public partial bool HorizonCollapsed { get; set; }
 
     [ObservableProperty]
     public partial bool IsSettingsOpen { get; set; }
@@ -90,17 +90,13 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     public partial string SearchText { get; set; } = string.Empty;
 
     [ObservableProperty]
-    public partial GalleryItem? SelectedItem { get; set; }
+    public partial MenuItemVo? SelectedItem { get; set; }
 
-    public IThemeService ThemeService { get; }
+    private IThemeService ThemeService { get; }
 
     public Control SettingsView { get; }
 
-    public INavigationService NavigationService { get; }
-
     public Frame.PageActivatorDelegate PageActivator => ActivatePage;
-
-    public ReadOnlyObservableCollection<GalleryItem> SearchResults => _searchResults;
 
     #region IDisposable Members
 
@@ -108,13 +104,8 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     {
         _disposables.Dispose();
         _allItemsSource.Dispose();
-        NavigationService.NavigationChanged -= OnNavigationChanged;
+        _navigationService.NavigationChanged -= OnNavigationChanged;
 
-        // Unsubscribe from category group events
-        foreach (var categoryGroup in CategoryGroups)
-        {
-            categoryGroup.PropertyChanged -= OnCategoryGroupPropertyChanged;
-        }
     }
 
     #endregion
@@ -157,18 +148,18 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 
     // SearchText changes are now handled reactively in the constructor
 
-    partial void OnSelectedItemChanged(GalleryItem? value)
+    partial void OnSelectedItemChanged(MenuItemVo? value)
     {
         if (value != null)
         {
-            NavigationService.NavigateTo(value);
+            _navigationService.NavigateTo(value);
         }
     }
 
     [RelayCommand]
     private void NavigateHome()
     {
-        NavigationService.NavigateToHome();
+        _navigationService.NavigateToHome();
         SelectedItem = null;
         SearchText = string.Empty;
     }
@@ -176,97 +167,38 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     [RelayCommand]
     private void GoBack()
     {
-        NavigationService.GoBack();
-        UpdateSelectedItemFromNavigation();
+        _navigationService.GoBack();
     }
 
     [RelayCommand]
     private void GoForward()
     {
-        NavigationService.GoForward();
-        UpdateSelectedItemFromNavigation();
+        _navigationService.GoForward();
+    }
+
+    private void OnNavigationChanged(MenuItemVo? item,bool canGoBack,bool canGoForward)
+    {
+        Dispatcher.UIThread.Post(() =>
+        {
+            //if (item == SelectedItem) return;
+            SelectedItem = item;
+            CanGoback = canGoBack;
+            CanGoForward = canGoForward;
+        });
     }
 
     [RelayCommand]
     private void ToggleTheme() => ThemeService.ToggleTheme();
 
     [RelayCommand]
-    private void ToggleSettings() => IsSettingsOpen = !IsSettingsOpen;
+    private void Collapse() => HorizonCollapsed = !HorizonCollapsed;
 
     [RelayCommand]
-    private void SelectItem(GalleryItem item)
+    private void ToggleSettings() => IsSettingsOpen = !IsSettingsOpen;
+
+
+    private void InitializeMenuItem()
     {
-        // Clear selection from all category groups first
-        foreach (var categoryGroup in CategoryGroups)
-        {
-            categoryGroup.ClearSelection();
-        }
-
-        // Set the main selected item
-        SelectedItem = item;
-    }
-
-    private void InitializeCategoryGroups()
-    {
-        CategoryGroups.Clear();
-
-        foreach (var category in _galleryService.Categories)
-        {
-            // Create observable collection for this category's items
-            var categoryItems = new ObservableCollection<GalleryItem>(category.Items);
-            var readOnlyItems = new ReadOnlyObservableCollection<GalleryItem>(categoryItems);
-
-            // Create category group view model
-            var groupViewModel = new CategoryGroupViewModel(category, readOnlyItems);
-
-            // Subscribe to selection changes
-            groupViewModel.PropertyChanged += OnCategoryGroupPropertyChanged;
-
-            CategoryGroups.Add(groupViewModel);
-        }
-    }
-
-    private void UpdateCategoryFilters(string searchText)
-    {
-        foreach (var categoryGroup in CategoryGroups)
-        {
-            categoryGroup.UpdateFilter(searchText);
-        }
-    }
-
-    private void OnCategoryGroupPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (
-            e.PropertyName == nameof(CategoryGroupViewModel.SelectedItem)
-            && sender is CategoryGroupViewModel categoryGroup
-        )
-        {
-            if (categoryGroup.SelectedItem != null)
-            {
-                // Clear selection from other category groups
-                foreach (var otherGroup in CategoryGroups)
-                {
-                    if (otherGroup != categoryGroup)
-                    {
-                        otherGroup.ClearSelection();
-                    }
-                }
-
-                // Update main selected item
-                SelectedItem = categoryGroup.SelectedItem;
-            }
-        }
-    }
-
-    private void OnNavigationChanged(object? sender, GalleryItem? item) =>
-        UpdateSelectedItemFromNavigation();
-
-    private void UpdateSelectedItemFromNavigation()
-    {
-        var currentItem = NavigationService.CurrentItem;
-        if (SelectedItem != currentItem)
-        {
-            SelectedItem = currentItem;
-        }
+        _allItemsSource.AddRange(_menuItemService.AllMenus);
     }
 }

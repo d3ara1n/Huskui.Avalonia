@@ -1,18 +1,18 @@
-using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Models;
+using Huskui.Gallery.Services;
 using Huskui.Gallery.ViewModels;
 using Huskui.Gallery.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Gallery;
 
 public partial class AppView : UserControl
 {
     private Frame? _contentFrame;
-    private MainWindowViewModel? _viewModel;
 
     public AppView()
     {
@@ -32,16 +32,9 @@ public partial class AppView : UserControl
             return;
         }
 
-        if (!ReferenceEquals(_viewModel, viewModel))
-        {
-            if (_viewModel != null)
-            {
-                _viewModel.NavigationService.NavigationChanged -= OnNavigationChanged;
-            }
-
-            _viewModel = viewModel;
-            _viewModel.NavigationService.NavigationChanged += OnNavigationChanged;
-        }
+        var navigationService = App.ServiceProvider!.GetRequiredService<NavigationService>();
+        navigationService.NavigationChanged -= OnNavigationChanged;
+        navigationService.NavigationChanged += OnNavigationChanged;
 
         if (_contentFrame != null)
         {
@@ -56,19 +49,21 @@ public partial class AppView : UserControl
 
     private void OnUnloaded(object? sender, RoutedEventArgs e)
     {
-        if (_viewModel != null)
-        {
-            _viewModel.NavigationService.NavigationChanged -= OnNavigationChanged;
-            _viewModel = null;
-        }
+        var navigationService = App.ServiceProvider!.GetRequiredService<NavigationService>();
+        navigationService.NavigationChanged -= OnNavigationChanged;
     }
 
-    private void OnNavigationChanged(object? sender, GalleryItem? item)
+    private void OnNavigationChanged(MenuItemVo? item, bool canGoback, bool canGoForward)
     {
-        if (item?.PageType != null)
+        if (item is { IsSeparator: false })
         {
             try
             {
+                if (item.PageType == null)
+                {
+                    throw new NullReferenceException(item.Title);
+                }
+
                 _contentFrame?.Navigate(item.PageType, null, null);
             }
             catch (Exception ex)
@@ -77,7 +72,7 @@ public partial class AppView : UserControl
                 {
                     Text = $"Error loading page: {ex.Message}",
                     HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
-                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center,
+                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center
                 };
             }
         }

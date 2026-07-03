@@ -36,6 +36,7 @@
         <ResourceInclude Source="/Controls/ListBox.axaml" />
         <ResourceInclude Source="/Controls/Menu.axaml" />
         <ResourceInclude Source="/Controls/Modal.axaml" />
+        <ResourceInclude Source="/Controls/NavMenu.axaml" />
         <ResourceInclude Source="/Controls/NumericUpDown.axaml" />
         <ResourceInclude Source="/Controls/GridSplitter.axaml" />
         <ResourceInclude Source="/Controls/GroupBox.axaml" />

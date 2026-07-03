@@ -1,40 +1,43 @@
-using System;
-using System.Collections.Generic;
 using Huskui.Gallery.Models;
 
 namespace Huskui.Gallery.Services;
 
 /// <summary>
-///     Default implementation of INavigationService
+///
 /// </summary>
-public class NavigationService : INavigationService
+public class NavigationService
 {
-    private readonly List<GalleryItem?> _history = [];
+    private readonly List<MenuItemVo> _history = [];
     private int _currentIndex = -1;
 
     #region INavigationService Members
 
-    public GalleryItem? CurrentItem =>
+    private MenuItemVo? CurrentItem =>
         _currentIndex >= 0 && _currentIndex < _history.Count ? _history[_currentIndex] : null;
 
-    public bool CanGoBack => _currentIndex > 0;
-    public bool CanGoForward => _currentIndex < _history.Count - 1;
+    private bool CanGoBack => _currentIndex > 0;
+    private bool CanGoForward => _currentIndex < _history.Count - 1;
 
-    public event EventHandler<GalleryItem?>? NavigationChanged;
+    /// <summary>
+    /// MenuItemVo,CanGoback,CanGoForward
+    /// </summary>
+    public Action<MenuItemVo?,bool,bool>? NavigationChanged;
 
-    public void NavigateTo(GalleryItem item)
+    public void NavigateTo(MenuItemVo item)
     {
+        if (item.IsSeparator) return;
+        if (item == CurrentItem) return;
         // Remove any forward history
         if (_currentIndex < _history.Count - 1)
         {
-            _history.RemoveRange(_currentIndex + 1, _history.Count - _currentIndex - 1);
+            _history.RemoveRange(_currentIndex + 1, _history.Count - 1);
         }
 
         // Add new item to history
         _history.Add(item);
         _currentIndex = _history.Count - 1;
 
-        NavigationChanged?.Invoke(this, item);
+        NavigationChanged?.Invoke(item,CanGoBack,CanGoForward);
     }
 
     public void NavigateToHome()
@@ -42,14 +45,10 @@ public class NavigationService : INavigationService
         // Remove any forward history
         if (_currentIndex < _history.Count - 1)
         {
-            _history.RemoveRange(_currentIndex + 1, _history.Count - _currentIndex - 1);
+            _history.RemoveRange(_currentIndex, _history.Count - _currentIndex);
         }
 
-        // Add home to history
-        _history.Add(null);
-        _currentIndex = _history.Count - 1;
-
-        NavigationChanged?.Invoke(this, null);
+        NavigationChanged?.Invoke(null,CanGoBack,CanGoForward);
     }
 
     public void GoBack()
@@ -60,7 +59,7 @@ public class NavigationService : INavigationService
         }
 
         _currentIndex--;
-        NavigationChanged?.Invoke(this, CurrentItem);
+        NavigationChanged?.Invoke(CurrentItem,CanGoBack,CanGoForward);
     }
 
     public void GoForward()
@@ -71,7 +70,7 @@ public class NavigationService : INavigationService
         }
 
         _currentIndex++;
-        NavigationChanged?.Invoke(this, CurrentItem);
+        NavigationChanged?.Invoke(CurrentItem,CanGoBack,CanGoForward);
     }
 
     #endregion
