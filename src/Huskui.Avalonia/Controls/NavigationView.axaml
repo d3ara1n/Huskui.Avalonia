@@ -1,0 +1,207 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:local="clr-namespace:Huskui.Avalonia.Controls;assembly=Huskui.Avalonia">
+
+    <ControlTheme x:Key="{x:Type husk:NavigationView}" TargetType="husk:NavigationView">
+        <Setter Property="Background" Value="{StaticResource LayerBackgroundBrush}" />
+        <Setter Property="PaneClosedWidth" Value="82" />
+        <Setter Property="PaneOpenWidth" Value="320" />
+
+        <Setter Property="Template">
+            <ControlTemplate TargetType="husk:NavigationView">
+                <Grid ColumnDefinitions="Auto,*">
+                    <Border
+                        Name="Pane"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{StaticResource ControlBorderBrush}"
+                        BorderThickness="0,0,1,0">
+                        <Border.Transitions>
+                            <Transitions>
+                                <DoubleTransition
+                                    Property="Width"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}"
+                                    Easing="CubicEaseInOut" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+                            <StackPanel
+                                Grid.Row="0"
+                                HorizontalAlignment="Left"
+                                Orientation="Horizontal"
+                                Spacing="2">
+                                <Button
+                                    Name="{x:Static local:NavigationView.PART_BackButton}"
+                                    Padding="10"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Classes="Small"
+                                    CornerRadius="{StaticResource SmallCornerRadius}"
+                                    Cursor="Hand"
+                                    IsVisible="{TemplateBinding IsBackButtonVisible}"
+                                    Theme="{StaticResource GhostButtonTheme}">
+                                    <Path
+                                        Width="16"
+                                        Height="16"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Data="M14,5 L7,12 L14,19"
+                                        Stroke="{DynamicResource ControlForegroundBrush}"
+                                        StrokeThickness="2" />
+                                </Button>
+                                <ToggleButton
+                                    Name="PaneToggleButton"
+                                    Padding="10"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Classes="Small"
+                                    CornerRadius="{StaticResource SmallCornerRadius}"
+                                    Cursor="Hand"
+                                    IsChecked="{Binding IsPaneOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Path
+                                        Width="16"
+                                        Height="16"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Data="M3,6 L21,6 M3,12 L21,12 M3,18 L21,18"
+                                        Stroke="{DynamicResource ControlForegroundBrush}"
+                                        StrokeThickness="2" />
+                                </ToggleButton>
+                            </StackPanel>
+
+                            <ContentPresenter
+                                Grid.Row="1"
+                                Content="{TemplateBinding PaneHeader}" />
+
+                            <ScrollViewer
+                                Grid.Row="2"
+                                AllowAutoHide="True"
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer.Styles>
+                                    <Style Selector="ScrollViewer /template/ ScrollBar">
+                                        <Setter Property="Opacity" Value="0" />
+                                    </Style>
+                                    <Style Selector="ScrollViewer:pointerover">
+                                        <Style Selector="^ /template/ ScrollBar#PART_VerticalScrollBar">
+                                            <Setter Property="Opacity" Value="1" />
+                                        </Style>
+                                    </Style>
+                                </ScrollViewer.Styles>
+                                <ItemsPresenter Margin="0,4" />
+                            </ScrollViewer>
+
+                            <ContentPresenter
+                                Grid.Row="3"
+                                Content="{TemplateBinding PaneFooter}" />
+
+                        </Grid>
+                    </Border>
+
+                    <husk:Frame
+                        Name="{x:Static local:NavigationView.PART_Frame}"
+                        Grid.Column="1" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:not(:pane-collapsed) /template/ Border#Pane">
+            <Setter Property="Width" Value="{Binding PaneOpenWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+        </Style>
+
+        <Style Selector="^:pane-collapsed /template/ Border#Pane">
+            <Setter Property="Width" Value="{Binding PaneClosedWidth, RelativeSource={RelativeSource TemplatedParent}}" />
+        </Style>
+        <Style Selector="^:pane-collapsed /template/ ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        </Style>
+
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type husk:NavigationItem}" TargetType="husk:NavigationItem">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="Padding" Value="12,9" />
+        <Setter Property="Focusable" Value="True" />
+
+        <Setter Property="Template">
+            <ControlTemplate TargetType="husk:NavigationItem">
+                <StackPanel>
+                    <TextBlock
+                        Name="GroupLabel"
+                        Margin="14,16,14,6"
+                        FontSize="{StaticResource SmallFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        IsVisible="False"
+                        Text="{TemplateBinding Category}" />
+
+                    <Border
+                        Name="Background"
+                        Margin="6,2"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseInOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                            <ContentPresenter
+                                Name="IconPresenter"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Icon}"
+                                ContentTemplate="{TemplateBinding IconTemplate}" />
+                            <ContentPresenter
+                                Name="ContentPresenter"
+                                Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover:not(:selected) /template/ Border#Background">
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:selected">
+            <Setter Property="Foreground" Value="{StaticResource ControlAccentForegroundBrush}" />
+        </Style>
+        <Style Selector="^:selected /template/ Border#Background">
+            <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:group-start:not(:collapsed) /template/ TextBlock#GroupLabel">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^:collapsed /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+        <Style Selector="^:collapsed /template/ ContentPresenter#IconPresenter">
+            <Setter Property="(Grid.ColumnSpan)" Value="2" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+        <Style Selector="^:collapsed">
+            <Setter Property="(ToolTip.Tip)" Value="{Binding Content, RelativeSource={RelativeSource Self}}" />
+            <Setter Property="(ToolTip.ShowDelay)" Value="100" />
+        </Style>
+
+    </ControlTheme>
+
+</ResourceDictionary>
