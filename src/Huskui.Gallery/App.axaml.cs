@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Fonts;
+using Huskui.Avalonia.Mvvm;
 using Huskui.Gallery.Services;
 using Huskui.Gallery.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -69,8 +70,9 @@ public class App : Application
         // Register services
         services.AddSingleton<MenuItemService>();
         services.AddSingleton<IThemeService, ThemeService>();
-        services.AddSingleton<NavigationService>();
         services.AddSingleton<ISettingsViewFactory, DesktopSettingsViewFactory>();
+        services.AddViewModelActivation<GalleryViewActivator>();
+        services.AddViewState();
 
         ConfigureHostServices?.Invoke(services);
 

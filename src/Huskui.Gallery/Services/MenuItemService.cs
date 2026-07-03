@@ -1,25 +1,20 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using FluentIcons.Common;
+using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Models;
 using Huskui.Gallery.Views;
-using DrawerPage = Huskui.Gallery.Views.DrawerPage;
 
 namespace Huskui.Gallery.Services;
 
-/// <summary>
-///
-/// </summary>
 public class MenuItemService
 {
-    private readonly List<MenuItemVo> _allMenus = [];
+    private readonly List<NavigationItem> _allMenus = [];
 
-    public List<MenuItemVo> AllMenus => _allMenus;
+    public List<NavigationItem> AllMenus => _allMenus;
 
     public void Initialize()
     {
         _allMenus.Clear();
 
-        // Create categories and items
         CreateControlsCategory();
         CreateContainersCategory();
         CreateOverlaysCategory();
@@ -30,653 +25,771 @@ public class MenuItemService
         CreateMediaCategory();
         CreateExtensionCategory();
         CreateDocumentsCategory();
-
     }
 
     private void CreateControlsCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Controls";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Controls",
-                Description = "Interactive UI controls, buttons, and display components",
-                Icon = Symbol.ControlButton,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "Buttons",
-                Description = "Interactive button controls with various styles and states",
                 Icon = Symbol.Button,
+                Content = new MenuItemVo
+                {
+                    Title = "Buttons",
+                    Description = "Interactive button controls with various styles and states",
+                    Tags = ["button", "click", "action"],
+                },
                 PageType = typeof(ButtonsPage),
-                Tags = ["button", "click", "action"],
+                Category = category,
             },
             new()
             {
-                Title = "DropDownButtons",
-                Description = "Button controls with dropdown menus for additional actions",
                 Icon = Symbol.ChevronDown,
+                Content = new MenuItemVo
+                {
+                    Title = "DropDownButtons",
+                    Description = "Button controls with dropdown menus for additional actions",
+                    Tags = ["dropdown", "button", "menu", "flyout", "actions"],
+                },
                 PageType = typeof(DropDownButtonsPage),
-                Tags = ["dropdown", "button", "menu", "flyout", "actions"],
+                Category = category,
             },
             new()
             {
-                Title = "HyperlinkButtons",
-                Description = "Link-style buttons for navigation and external references",
                 Icon = Symbol.Link,
+                Content = new MenuItemVo
+                {
+                    Title = "HyperlinkButtons",
+                    Description = "Link-style buttons for navigation and external references",
+                    Tags = ["hyperlink", "link", "navigation", "url", "inline"],
+                },
                 PageType = typeof(HyperlinkButtonsPage),
-                Tags = ["hyperlink", "link", "navigation", "url", "inline"],
+                Category = category,
             },
             new()
             {
-                Title = "RadioButtons",
-                Description = "Single selection controls for mutually exclusive options",
                 Icon = Symbol.RadioButton,
+                Content = new MenuItemVo
+                {
+                    Title = "RadioButtons",
+                    Description = "Single selection controls for mutually exclusive options",
+                    Tags = ["radio", "button", "selection", "exclusive", "group"],
+                },
                 PageType = typeof(RadioButtonsPage),
-                Tags = ["radio", "button", "selection", "exclusive", "group"],
+                Category = category,
             },
             new()
             {
-                Title = "InfoBars",
-                Description = "Informational message components with different severity levels",
                 Icon = Symbol.Info,
+                Content = new MenuItemVo
+                {
+                    Title = "InfoBars",
+                    Description = "Informational message components with different severity levels",
+                    Tags = ["info", "message", "notification"],
+                },
                 PageType = typeof(InfoBarsPage),
-                Tags = ["info", "message", "notification"],
+                Category = category,
             },
             new()
             {
-                Title = "Tags",
-                Description = "Small labels for categorization and metadata",
                 Icon = Symbol.Tag,
+                Content = new MenuItemVo
+                {
+                    Title = "Tags",
+                    Description = "Small labels for categorization and metadata",
+                    Tags = ["tag", "label", "category"],
+                },
                 PageType = typeof(TagsPage),
-                Tags = ["tag", "label", "category"],
+                Category = category,
             },
             new()
             {
-                Title = "IconLabels",
-                Description = "Combined icon and text labels for enhanced visual communication",
                 Icon = Symbol.Icons,
+                Content = new MenuItemVo
+                {
+                    Title = "IconLabels",
+                    Description =
+                        "Combined icon and text labels for enhanced visual communication",
+                    Tags = ["icon", "label", "text", "fluent"],
+                },
                 PageType = typeof(IconLabelsPage),
-                Tags = ["icon", "label", "text", "fluent"],
+                Category = category,
             },
             new()
             {
-                Title = "HighlightBlocks",
-                Description = "Emphasized content blocks for important information and callouts",
                 Icon = Symbol.Highlight,
+                Content = new MenuItemVo
+                {
+                    Title = "HighlightBlocks",
+                    Description =
+                        "Emphasized content blocks for important information and callouts",
+                    Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"],
+                },
                 PageType = typeof(HighlightBlocksPage),
-                Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"],
+                Category = category,
             },
             new()
             {
-                Title = "Dividers",
-                Description = "Visual separators for organizing and structuring content layout",
                 Icon = Symbol.Line,
+                Content = new MenuItemVo
+                {
+                    Title = "Dividers",
+                    Description =
+                        "Visual separators for organizing and structuring content layout",
+                    Tags = ["divider", "separator", "line", "section"],
+                },
                 PageType = typeof(DividersPage),
-                Tags = ["divider", "separator", "line", "section"],
+                Category = category,
             },
-        ];
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateContainersCategory()
     {
-        List<MenuItemVo> menus = [
-            new ()
-            {
-                Title = "Containers",
-                Description = "Container components for layout and content organization",
-                Icon = Symbol.RectangleLandscape,
-                IsSeparator = true,
-            },
+        const string category = "Containers";
+
+        _allMenus.AddRange(
+        [
             new()
+            {
+                Icon = Symbol.RectangleLandscape,
+                Content = new MenuItemVo
                 {
                     Title = "Cards",
                     Description = "Container components for grouping and organizing content",
-                    Icon = Symbol.RectangleLandscape,
-                    PageType = typeof(CardsPage),
                     Tags = ["card", "container", "content"],
                 },
-                new()
+                PageType = typeof(CardsPage),
+                Category = category,
+            },
+            new()
+            {
+                Icon = Symbol.Group,
+                Content = new MenuItemVo
                 {
                     Title = "GroupBoxes",
-                    Description = "Labeled containers with header bar for grouping related content and forms",
-                    Icon = Symbol.Group,
-                    PageType = typeof(GroupBoxesPage),
+                    Description =
+                        "Labeled containers with header bar for grouping related content and forms",
                     Tags = ["groupbox", "group", "container", "header", "form", "section"],
                 },
-                new()
+                PageType = typeof(GroupBoxesPage),
+                Category = category,
+            },
+            new()
+            {
+                Icon = Symbol.ArrowClockwise,
+                Content = new MenuItemVo
                 {
                     Title = "BusyContainers",
                     Description =
                         "Loading state containers with visual feedback for async operations",
-                    Icon = Symbol.ArrowClockwise,
-                    PageType = typeof(BusyContainersPage),
                     Tags = ["busy", "loading", "container", "blur", "progress"],
                 },
-                new()
+                PageType = typeof(BusyContainersPage),
+                Category = category,
+            },
+            new()
+            {
+                Icon = Symbol.RectangleLandscape,
+                Content = new MenuItemVo
                 {
                     Title = "SkeletonContainers",
                     Description =
                         "Loading placeholders that mimic content structure during data fetching",
-                    Icon = Symbol.RectangleLandscape,
-                    PageType = typeof(SkeletonContainersPage),
                     Tags = ["skeleton", "loading", "placeholder", "shimmer"],
                 },
-                new()
+                PageType = typeof(SkeletonContainersPage),
+                Category = category,
+            },
+            new()
+            {
+                Icon = Symbol.BranchFork,
+                Content = new MenuItemVo
                 {
                     Title = "SwitchContainer",
                     Description =
                         "Conditional content container that swaps rendered branches based on the current value",
-                    Icon = Symbol.BranchFork,
-                    PageType = typeof(SwitchContainerPage),
                     Tags = ["switchcontainer", "switch", "case", "content", "state", "container"],
                 },
-                new()
+                PageType = typeof(SwitchContainerPage),
+                Category = category,
+            },
+            new()
+            {
+                Icon = Symbol.LayerDiagonal,
+                Content = new MenuItemVo
                 {
                     Title = "VariableContainer",
                     Description =
                         "Reusable content container whose wrapper can be fully customized through Template",
-                    Icon = Symbol.LayerDiagonal,
-                    PageType = typeof(VariableContainerPage),
-                    Tags =
-                    [
-                        "template",
-                        "contentcontrol",
-                        "switchcontainer",
-                        "container",
-                        "wrapper",
-                    ],
+                    Tags = ["template", "contentcontrol", "switchcontainer", "container", "wrapper"],
                 },
-        ];
-
-        _allMenus.AddRange(menus);
+                PageType = typeof(VariableContainerPage),
+                Category = category,
+            },
+        ]);
     }
 
     private void CreateOverlaysCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Overlays";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Overlays",
-                Description =
-                    "AppSurface-rooted floating layers with modal overlays and dedicated non-modal hosts",
                 Icon = Symbol.Layer,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "Flyouts",
-                Description = "Pop-up containers for displaying content.",
-                Icon = Symbol.Layer,
+                Content = new MenuItemVo
+                {
+                    Title = "Flyouts",
+                    Description = "Pop-up containers for displaying content.",
+                    Tags = ["flyout", "popup", "menu", "overlay"],
+                },
                 PageType = typeof(FlyoutsPage),
-                Tags = ["flyout", "popup", "menu", "overlay"],
+                Category = category,
             },
             new()
             {
-                Title = "ToolTips",
-                Description = "Display informational tooltips on hover.",
                 Icon = Symbol.TooltipQuote,
+                Content = new MenuItemVo
+                {
+                    Title = "ToolTips",
+                    Description = "Display informational tooltips on hover.",
+                    Tags = ["tooltip", "tip", "info", "hover"],
+                },
                 PageType = typeof(ToolTipsPage),
-                Tags = ["tooltip", "tip", "info", "hover"],
+                Category = category,
             },
             new()
             {
-                Title = "Toasts",
-                Description = "Heavy-weight content viewers that slide up from the bottom",
                 Icon = Symbol.SlideText,
+                Content = new MenuItemVo
+                {
+                    Title = "Toasts",
+                    Description = "Heavy-weight content viewers that slide up from the bottom",
+                    Tags = ["toast", "content", "preview", "bottom", "heavy"],
+                },
                 PageType = typeof(ToastsPage),
-                Tags = ["toast", "content", "preview", "bottom", "heavy"],
+                Category = category,
             },
             new()
             {
-                Title = "Modals",
-                Description =
-                    "Modal containers for complex user interactions and extended workflows",
                 Icon = Symbol.RectangleLandscape,
+                Content = new MenuItemVo
+                {
+                    Title = "Modals",
+                    Description =
+                        "Modal containers for complex user interactions and extended workflows",
+                    Tags = ["modal", "long", "interaction", "settings", "profile"],
+                },
                 PageType = typeof(ModalsPage),
-                Tags = ["modal", "long", "interaction", "settings", "profile"],
+                Category = category,
             },
             new()
             {
-                Title = "Dialogs",
-                Description =
-                    "Modal dialogs for user input collection and binary decision making",
                 Icon = Symbol.Chat,
+                Content = new MenuItemVo
+                {
+                    Title = "Dialogs",
+                    Description =
+                        "Modal dialogs for user input collection and binary decision making",
+                    Tags = ["dialog", "confirmation", "input", "binary", "choice"],
+                },
                 PageType = typeof(DialogsPage),
-                Tags = ["dialog", "confirmation", "input", "binary", "choice"],
+                Category = category,
             },
             new()
             {
-                Title = "Growls",
-                Description =
-                    "Status feedback notifications for user awareness and system updates",
                 Icon = Symbol.Alert,
+                Content = new MenuItemVo
+                {
+                    Title = "Growls",
+                    Description =
+                        "Status feedback notifications for user awareness and system updates",
+                    Tags = ["notification", "alert", "message", "status", "feedback"],
+                },
                 PageType = typeof(GrowlsPage),
-                Tags = ["notification", "alert", "message", "status", "feedback"],
+                Category = category,
             },
             new()
             {
-                Title = "Drawers",
-                Description = "Floating drawer that can be dragged, resized, and collapsed",
                 Icon = Symbol.PanelBottom,
+                Content = new MenuItemVo
+                {
+                    Title = "Drawers",
+                    Description =
+                        "Floating drawer that can be dragged, resized, and collapsed",
+                    Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"],
+                },
                 PageType = typeof(DrawerPage),
-                Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"],
+                Category = category,
             },
             new()
             {
-                Title = "Sidebars",
-                Description = "Sliding side panels for contextual content and quick actions",
                 Icon = Symbol.PanelRight,
+                Content = new MenuItemVo
+                {
+                    Title = "Sidebars",
+                    Description = "Sliding side panels for contextual content and quick actions",
+                    Tags = ["sidebar", "panel", "overlay", "slide", "contextual"],
+                },
                 PageType = typeof(SidebarsPage),
-                Tags = ["sidebar", "panel", "overlay", "slide", "contextual"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateLayoutCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Layout";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Layout",
-                Description = "Layout containers and panels",
-                Icon = Symbol.LayoutRowTwoSplitTop,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "FlexWrapPanels",
-                Description =
-                    "Flexible wrapping layout panels for responsive content arrangement",
                 Icon = Symbol.LayoutRowTwoSplitBottom,
+                Content = new MenuItemVo
+                {
+                    Title = "FlexWrapPanels",
+                    Description =
+                        "Flexible wrapping layout panels for responsive content arrangement",
+                    Tags = ["flex", "wrap", "responsive", "dynamic", "panel"],
+                },
                 PageType = typeof(FlexWrapPanelsPage),
-                Tags = ["flex", "wrap", "responsive", "dynamic", "panel"],
+                Category = category,
             },
             new()
             {
-                Title = "ModalActionPanels",
-                Description =
-                    "Platform-aware action button layout that pushes the default (IsDefault) button to the correct edge per platform",
                 Icon = Symbol.LayoutRowTwoSplitBottom,
+                Content = new MenuItemVo
+                {
+                    Title = "ModalActionPanels",
+                    Description =
+                        "Platform-aware action button layout that pushes the default (IsDefault) button to the correct edge per platform",
+                    Tags = ["modal", "action", "panel", "platform", "dialog", "footer", "layout"],
+                },
                 PageType = typeof(ModalActionPanelsPage),
-                Tags =
-                    ["modal", "action", "panel", "platform", "dialog", "footer", "layout"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateInputCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Input";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Input",
-                Description = "Input controls and forms",
-                Icon = Symbol.TextBoxSettings,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "AutoCompleteBoxes",
-                Description =
-                    "Search input controls with inline suggestions and text completion",
                 Icon = Symbol.Search,
+                Content = new MenuItemVo
+                {
+                    Title = "AutoCompleteBoxes",
+                    Description =
+                        "Search input controls with inline suggestions and text completion",
+                    Tags = ["autocomplete", "search", "suggestion", "input", "lookup"],
+                },
                 PageType = typeof(AutoCompleteBoxesPage),
-                Tags = ["autocomplete", "search", "suggestion", "input", "lookup"],
+                Category = category,
             },
             new()
             {
-                Title = "ToggleSwitches",
-                Description = "Binary toggle controls for on/off settings and preferences",
                 Icon = Symbol.ToggleRight,
+                Content = new MenuItemVo
+                {
+                    Title = "ToggleSwitches",
+                    Description = "Binary toggle controls for on/off settings and preferences",
+                    Tags = ["toggle", "switch", "boolean", "settings"],
+                },
                 PageType = typeof(ToggleSwitchesPage),
-                Tags = ["toggle", "switch", "boolean", "settings"],
+                Category = category,
             },
             new()
             {
-                Title = "NumericUpDowns",
-                Description =
-                    "Numeric input controls with built-in step actions and Huskui field styling",
                 Icon = Symbol.ChevronUpDown,
+                Content = new MenuItemVo
+                {
+                    Title = "NumericUpDowns",
+                    Description =
+                        "Numeric input controls with built-in step actions and Huskui field styling",
+                    Tags = ["numericupdown", "number", "stepper", "input", "numeric"],
+                },
                 PageType = typeof(NumericUpDownsPage),
-                Tags = ["numericupdown", "number", "stepper", "input", "numeric"],
+                Category = category,
             },
             new()
             {
-                Title = "DatePickers",
-                Description =
-                    "Date selection controls using Avalonia's built-in picker with Huskui field styling",
                 Icon = Symbol.Calendar,
+                Content = new MenuItemVo
+                {
+                    Title = "DatePickers",
+                    Description =
+                        "Date selection controls using Avalonia's built-in picker with Huskui field styling",
+                    Tags = ["datepicker", "date", "calendar", "picker", "input", "schedule"],
+                },
                 PageType = typeof(DatePickersPage),
-                Tags = ["datepicker", "date", "calendar", "picker", "input", "schedule"],
+                Category = category,
             },
             new()
             {
-                Title = "TimePickers",
-                Description =
-                    "Time selection controls using Avalonia's built-in picker with Huskui field styling",
                 Icon = Symbol.Clock,
+                Content = new MenuItemVo
+                {
+                    Title = "TimePickers",
+                    Description =
+                        "Time selection controls using Avalonia's built-in picker with Huskui field styling",
+                    Tags = ["timepicker", "time", "picker", "input", "schedule"],
+                },
                 PageType = typeof(TimePickersPage),
-                Tags = ["timepicker", "time", "picker", "input", "schedule"],
+                Category = category,
             },
             new()
             {
-                Title = "CalendarDatePicker",
-                Description =
-                    "Date selection controls with inline calendar dropdown and Huskui field styling",
                 Icon = Symbol.CalendarDate,
+                Content = new MenuItemVo
+                {
+                    Title = "CalendarDatePicker",
+                    Description =
+                        "Date selection controls with inline calendar dropdown and Huskui field styling",
+                    Tags =
+                    [
+                        "calendardatepicker",
+                        "calendar",
+                        "date",
+                        "picker",
+                        "input",
+                        "dropdown",
+                        "schedule",
+                    ],
+                },
                 PageType = typeof(CalendarDatePickerPage),
-                Tags =
-                [
-                    "calendardatepicker", "calendar", "date", "picker", "input", "dropdown", "schedule",
-                ],
+                Category = category,
             },
             new()
             {
-                Title = "TextBoxes",
-                Description = "Text input controls for single-line and multi-line text entry",
                 Icon = Symbol.TextBulletListSquare,
+                Content = new MenuItemVo
+                {
+                    Title = "TextBoxes",
+                    Description = "Text input controls for single-line and multi-line text entry",
+                    Tags = ["textbox", "input", "text", "validation", "form"],
+                },
                 PageType = typeof(TextBoxesPage),
-                Tags = ["textbox", "input", "text", "validation", "form"],
+                Category = category,
             },
             new()
             {
-                Title = "TagBoxes",
-                Description =
-                    "Multi-select text inputs that combine inline tags with searchable suggestions",
                 Icon = Symbol.Tag,
+                Content = new MenuItemVo
+                {
+                    Title = "TagBoxes",
+                    Description =
+                        "Multi-select text inputs that combine inline tags with searchable suggestions",
+                    Tags = ["tagbox", "tag", "input", "multi-select", "autocomplete"],
+                },
                 PageType = typeof(TagBoxesPage),
-                Tags = ["tagbox", "tag", "input", "multi-select", "autocomplete"],
+                Category = category,
             },
             new()
             {
-                Title = "ComboBoxes",
-                Description =
-                    "Dropdown selection controls for choosing from predefined options",
                 Icon = Symbol.ChevronDown,
+                Content = new MenuItemVo
+                {
+                    Title = "ComboBoxes",
+                    Description = "Dropdown selection controls for choosing from predefined options",
+                    Tags = ["combobox", "dropdown", "select", "picker"],
+                },
                 PageType = typeof(ComboBoxesPage),
-                Tags = ["combobox", "dropdown", "select", "picker"],
+                Category = category,
             },
             new()
             {
-                Title = "CheckBoxes",
-                Description = "Binary selection controls for multiple choice options",
                 Icon = Symbol.CheckboxChecked,
+                Content = new MenuItemVo
+                {
+                    Title = "CheckBoxes",
+                    Description = "Binary selection controls for multiple choice options",
+                    Tags = ["checkbox", "check", "selection", "boolean", "three-state"],
+                },
                 PageType = typeof(CheckBoxesPage),
-                Tags = ["checkbox", "check", "selection", "boolean", "three-state"],
+                Category = category,
             },
             new()
             {
-                Title = "RatingControls",
-                Description = "Star-based rating controls for user feedback and reviews",
                 Icon = Symbol.Star,
+                Content = new MenuItemVo
+                {
+                    Title = "RatingControls",
+                    Description = "Star-based rating controls for user feedback and reviews",
+                    Tags = ["rating", "star", "review", "feedback", "score"],
+                },
                 PageType = typeof(RatingControlsPage),
-                Tags = ["rating", "star", "review", "feedback", "score"],
+                Category = category,
             },
             new()
             {
-                Title = "Sliders",
-                Description = "Range selection controls for continuous value adjustment",
                 Icon = Symbol.ArrowSync,
+                Content = new MenuItemVo
+                {
+                    Title = "Sliders",
+                    Description = "Range selection controls for continuous value adjustment",
+                    Tags = ["slider", "range", "track", "value", "thumb"],
+                },
                 PageType = typeof(SlidersPage),
-                Tags = ["slider", "range", "track", "value", "thumb"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateNavigationCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Navigation";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Navigation",
-                Description = "Navigation and menu components",
-                Icon = Symbol.Navigation,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "TabControls",
-                Description = "Tab containers for content organization",
                 Icon = Symbol.Tab,
+                Content = new MenuItemVo
+                {
+                    Title = "TabControls",
+                    Description = "Tab containers for content organization",
+                    Tags = ["list", "tab", "navigation", "vertical", "switcher"],
+                },
                 PageType = typeof(TabControlsPage),
-                Tags = ["list", "tab", "navigation", "vertical", "switcher"],
+                Category = category,
             },
             new()
             {
-                Title = "Frames",
-                Description = "Navigation containers for page transitions and routing",
                 Icon = Symbol.Navigation,
+                Content = new MenuItemVo
+                {
+                    Title = "Frames",
+                    Description = "Navigation containers for page transitions and routing",
+                    Tags = ["frame", "navigation", "page", "transition"],
+                },
                 PageType = typeof(FramesPage),
-                Tags = ["frame", "navigation", "page", "transition"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateCollectionsCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Collections";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Collections",
-                Description = "Data display and collection controls",
-                Icon = Symbol.DataHistogram,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "ListBoxes",
-                Description = "Vertical list containers with different configurations",
                 Icon = Symbol.List,
+                Content = new MenuItemVo
+                {
+                    Title = "ListBoxes",
+                    Description =
+                        "Vertical list containers with different configurations",
+                    Tags = ["list", "box", "vertical", "content"],
+                },
                 PageType = typeof(ListBoxesPage),
-                Tags = ["list", "box", "vertical", "content"],
+                Category = category,
             },
             new()
             {
-                Title = "TabStrips",
-                Description = "Horizontal tab containers for content organization",
                 Icon = Symbol.Tab,
+                Content = new MenuItemVo
+                {
+                    Title = "TabStrips",
+                    Description = "Horizontal tab containers for content organization",
+                    Tags = ["list", "tab", "vertical", "switcher"],
+                },
                 PageType = typeof(TabStripsPage),
-                Tags = ["list", "tab", "vertical", "switcher"],
+                Category = category,
             },
             new()
             {
-                Title = "PaginationControls",
-                Description = "Page navigation controls for browsing through paged data",
                 Icon = Symbol.ArrowSort,
+                Content = new MenuItemVo
+                {
+                    Title = "PaginationControls",
+                    Description = "Page navigation controls for browsing through paged data",
+                    Tags = ["pagination", "page", "navigation", "data", "paging"],
+                },
                 PageType = typeof(PaginationControlsPage),
-                Tags = ["pagination", "page", "navigation", "data", "paging"],
+                Category = category,
             },
             new()
             {
-                Title = "StepControls",
-                Description = "Stepped navigation controls for multi-step workflows",
                 Icon = Symbol.Navigation,
+                Content = new MenuItemVo
+                {
+                    Title = "StepControls",
+                    Description = "Stepped navigation controls for multi-step workflows",
+                    Tags = ["step", "navigation", "workflow", "wizard"],
+                },
                 PageType = typeof(StepControlsPage),
-                Tags = ["step", "navigation", "workflow", "wizard"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateMediaCategory()
     {
-        List<MenuItemVo> menus =
-        [
-            new()
-            {
-                Title = "Media",
-                Description = "Media and graphics components",
-                Icon = Symbol.Image,
-                IsSeparator = true,
-            },
-        ];
-
-        _allMenus.AddRange(menus);
     }
 
     private void CreateExtensionCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Extensions";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Extensions",
-                Description = "Extension controls",
-                Icon = Symbol.PuzzlePiece,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "Mvvm",
-                Description =
-                    "Overview of the Huskui.Avalonia.Mvvm extension for activation, lifecycle binding, and view state",
                 Icon = Symbol.BranchFork,
+                Content = new MenuItemVo
+                {
+                    Title = "Mvvm",
+                    Description =
+                        "Overview of the Huskui.Avalonia.Mvvm extension for activation, lifecycle binding, and view state",
+                    Tags = ["mvvm", "activation", "lifecycle", "state", "extension", "viewmodel"],
+                },
                 PageType = typeof(MvvmPage),
-                Tags = ["mvvm", "activation", "lifecycle", "state", "extension", "viewmodel"],
+                Category = category,
             },
             new()
             {
-                Title = "CodeViewer",
-                Description =
-                    "Syntax-highlighted code presentation control from Huskui.Avalonia.Code extension library",
                 Icon = Symbol.Code,
+                Content = new MenuItemVo
+                {
+                    Title = "CodeViewer",
+                    Description =
+                        "Syntax-highlighted code presentation control from Huskui.Avalonia.Code extension library",
+                    Tags = ["code", "viewer", "syntax", "highlight", "extension", "colorcode"],
+                },
                 PageType = typeof(CodeViewerPage),
-                Tags = ["code", "viewer", "syntax", "highlight", "extension", "colorcode"],
+                Category = category,
             },
             new()
             {
-                Title = "DiffView",
-                Description =
-                    "Side-by-side difference viewer from Huskui.Avalonia.Code with DiffPlex-based computation and overview bar",
                 Icon = Symbol.ArrowSwap,
+                Content = new MenuItemVo
+                {
+                    Title = "DiffView",
+                    Description =
+                        "Side-by-side difference viewer from Huskui.Avalonia.Code with DiffPlex-based computation and overview bar",
+                    Tags = ["diff", "viewer", "difference", "side-by-side", "extension", "compare"],
+                },
                 PageType = typeof(DiffViewsPage),
-                Tags = ["diff", "viewer", "difference", "side-by-side", "extension", "compare"],
+                Category = category,
             },
             new()
             {
-                Title = "ZoomView",
-                Description =
-                    "Bounded zoom &amp; pan container with minimap, scroll bars, and fit-to-content from Huskui.Avalonia.Code",
                 Icon = Symbol.ZoomIn,
+                Content = new MenuItemVo
+                {
+                    Title = "ZoomView",
+                    Description =
+                        "Bounded zoom &amp; pan container with minimap, scroll bars, and fit-to-content from Huskui.Avalonia.Code",
+                    Tags = ["zoom", "pan", "minimap", "scroll", "viewport", "extension", "fit"],
+                },
                 PageType = typeof(ZoomViewsPage),
-                Tags = ["zoom", "pan", "minimap", "scroll", "viewport", "extension", "fit"],
+                Category = category,
             },
             new()
             {
-                Title = "MarkdownViewer",
-                Description =
-                    "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",
                 Icon = Symbol.Document,
+                Content = new MenuItemVo
+                {
+                    Title = "MarkdownViewer",
+                    Description =
+                        "Markdown rendering control from Huskui.Avalonia.Markdown extension library (not built-in)",
+                    Tags = ["markdown", "viewer", "render", "document", "extension", "markdig"],
+                },
                 PageType = typeof(MarkdownViewerPage),
-                Tags = ["markdown", "viewer", "render", "document", "extension", "markdig"],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 
     private void CreateDocumentsCategory()
     {
-        List<MenuItemVo> menus =
+        const string category = "Documents";
+
+        _allMenus.AddRange(
         [
             new()
             {
-                Title = "Documents",
-                Description = "Usage guides and reference documents",
-                Icon = Symbol.Document,
-                IsSeparator = true,
-            },
-            new()
-            {
-                Title = "Builtin Converters",
-                Description =
-                    "Overview of Huskui converter patterns, families, and practical XAML usage",
                 Icon = Symbol.DataHistogram,
+                Content = new MenuItemVo
+                {
+                    Title = "Builtin Converters",
+                    Description =
+                        "Overview of Huskui converter patterns, families, and practical XAML usage",
+                    Tags =
+                    [
+                        "converter",
+                        "multibinding",
+                        "relay",
+                        "string",
+                        "number",
+                        "cornerradius",
+                        "thickness",
+                    ],
+                },
                 PageType = typeof(ConvertersPage),
-                Tags =
-                [
-                    "converter",
-                    "multibinding",
-                    "relay",
-                    "string",
-                    "number",
-                    "cornerradius",
-                    "thickness",
-                ],
+                Category = category,
             },
             new()
             {
-                Title = "Overlay AppSurface Usage",
-                Description =
-                    "How AppSurface should be hosted on desktop, browser, and mobile so Huskui overlays can render",
                 Icon = Symbol.Layer,
+                Content = new MenuItemVo
+                {
+                    Title = "Overlay AppSurface Usage",
+                    Description =
+                        "How AppSurface should be hosted on desktop, browser, and mobile so Huskui overlays can render",
+                    Tags = ["overlay", "appsurface", "appwindow", "browser", "mobile", "dialog", "modal"],
+                },
                 PageType = typeof(OverlayAppSurfacePage),
-                Tags =
-                [
-                    "overlay",
-                    "appsurface",
-                    "appwindow",
-                    "browser",
-                    "mobile",
-                    "dialog",
-                    "modal",
-                ],
+                Category = category,
             },
             new()
             {
-                Title = "Resource Usage Notes",
-                Description =
-                    "How Brush/CornerRadius resources and resource binding extensions work",
                 Icon = Symbol.ColorBackground,
+                Content = new MenuItemVo
+                {
+                    Title = "Resource Usage Notes",
+                    Description =
+                        "How Brush/CornerRadius resources and resource binding extensions work",
+                    Tags =
+                    [
+                        "resource",
+                        "brush",
+                        "cornerradius",
+                        "staticresource",
+                        "dynamicresource",
+                        "binding",
+                    ],
+                },
                 PageType = typeof(ResourcesPage),
-                Tags =
-                [
-                    "resource",
-                    "brush",
-                    "cornerradius",
-                    "staticresource",
-                    "dynamicresource",
-                    "binding",
-                ],
+                Category = category,
             },
             new()
             {
-                Title = "Brush Resource Keys",
-                Description =
-                    "Categorized reference for theme brush keys with live previews, copy buttons, and naming notes",
                 Icon = Symbol.Color,
+                Content = new MenuItemVo
+                {
+                    Title = "Brush Resource Keys",
+                    Description =
+                        "Categorized reference for theme brush keys with live previews, copy buttons, and naming notes",
+                    Tags =
+                    ["brush", "resource", "theme", "color", "overlay", "foreground", "background"],
+                },
                 PageType = typeof(BrushResourceKeysPage),
-                Tags =
-                [
-                    "brush",
-                    "resource",
-                    "theme",
-                    "color",
-                    "overlay",
-                    "foreground",
-                    "background",
-                ],
+                Category = category,
             },
-        ];
-
-        _allMenus.AddRange(menus);
+        ]);
     }
 }
-
