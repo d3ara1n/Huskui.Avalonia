@@ -121,7 +121,7 @@
                         Symbol="{Binding}" />
                 </DataTemplate>
             </husk:NavMenu.IconTemplate>
-            <!--<husk:NavMenu.ContentTemplate>
+            <husk:NavMenu.ContentTemplate>
                 <DataTemplate DataType="{x:Type models:MenuItemVo}">
                     <Grid ColumnDefinitions="*, Auto">
 
@@ -161,7 +161,7 @@
 
                     </Grid>
                 </DataTemplate>
-            </husk:NavMenu.ContentTemplate>-->
+            </husk:NavMenu.ContentTemplate>
             <husk:NavMenu.Footer>
                 <Border
                     VerticalAlignment="Center"
