@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Huskui.Gallery.Models"
     xmlns:vm="clr-namespace:Huskui.Gallery.ViewModels"
+    Loaded="Control_OnLoaded"
     d:DesignHeight="800"
     d:DesignWidth="1200"
     x:DataType="vm:MainWindowViewModel"
@@ -76,12 +77,13 @@
                             Padding="0"
                             Background="Transparent"
                             BorderThickness="0"
+                            Click="Button_OnClick"
                             Command="{Binding TogglePaneCommand}">
                             <Image
-                                Width="50"
-                                Height="50"
+                                Width="42"
+                                Height="42"
                                 Source="Assets/Icon.ico"
-                                ToolTip.Tip="Toggle side menu" />
+                                ToolTip.Tip="Home" />
                         </Button>
                         <StackPanel
                             VerticalAlignment="Center"

@@ -41,7 +41,6 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
                .Subscribe());
 
         SearchResults = results;
-        SelectedItem = SearchResults.FirstOrDefault();
     }
 
     public ReadOnlyObservableCollection<NavigationItem> SearchResults { get; private set; } = null!;
