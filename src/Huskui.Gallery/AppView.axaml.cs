@@ -19,6 +19,12 @@ public partial class AppView : UserControl
 
     private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
+        // SelectionChanged is a bubbling routed event; nested SelectingItemsControls
+        // inside the page (e.g. AutoCompleteBox's suggestion ListBox) bubble up here.
+        // Only react to selection changes originating from the NavView itself.
+        if (!ReferenceEquals(e.Source, NavView))
+            return;
+
         if (NavView.SelectedItem is MenuItemVo { PageType: { } page })
             Frame.Navigate(page);
     }
