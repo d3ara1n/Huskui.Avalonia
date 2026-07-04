@@ -1,5 +1,4 @@
 using Avalonia;
-using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
@@ -8,17 +7,13 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using System.Linq;
+using System.Windows.Input;
 
 namespace Huskui.Avalonia.Controls;
 
-[TemplatePart(PART_Frame, typeof(Frame))]
-[TemplatePart(PART_BackButton, typeof(Button))]
 [PseudoClasses(CLASS_PaneCollapsed)]
 public class NavigationView : SelectingItemsControl
 {
-    public const string PART_Frame = nameof(PART_Frame);
-    public const string PART_BackButton = nameof(PART_BackButton);
     public const string CLASS_PaneCollapsed = ":pane-collapsed";
 
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
@@ -42,19 +37,19 @@ public class NavigationView : SelectingItemsControl
     public static readonly StyledProperty<object?> PaneFooterProperty =
         AvaloniaProperty.Register<NavigationView, object?>(nameof(PaneFooter));
 
+    public static readonly StyledProperty<object?> ContentProperty =
+        AvaloniaProperty.Register<NavigationView, object?>(nameof(Content));
+
     public static readonly StyledProperty<bool> IsBackButtonVisibleProperty =
         AvaloniaProperty.Register<NavigationView, bool>(nameof(IsBackButtonVisible), defaultValue: true);
+
+    public static readonly StyledProperty<ICommand?> BackCommandProperty =
+        AvaloniaProperty.Register<NavigationView, ICommand?>(nameof(BackCommand));
 
     static NavigationView() =>
         KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<NavigationView>(KeyboardNavigationMode.Once);
 
-    public NavigationView()
-    {
-        AddHandler(Button.ClickEvent, OnItemClicked);
-        ContainerPrepared += (_, _) => RefreshGroupStarts();
-        ContainerIndexChanged += (_, _) => RefreshGroupStarts();
-        ContainerClearing += (_, _) => RefreshGroupStarts();
-    }
+    public NavigationView() => AddHandler(Button.ClickEvent, OnItemClicked);
 
     public IDataTemplate? IconTemplate
     {
@@ -92,34 +87,23 @@ public class NavigationView : SelectingItemsControl
         set => SetValue(PaneFooterProperty, value);
     }
 
+    public object? Content
+    {
+        get => GetValue(ContentProperty);
+        set => SetValue(ContentProperty, value);
+    }
+
     public bool IsBackButtonVisible
     {
         get => GetValue(IsBackButtonVisibleProperty);
         set => SetValue(IsBackButtonVisibleProperty, value);
     }
 
-    /// <summary>
-    /// Page factory forwarded to the internal <see cref="Frame"/>. Wire it through
-    /// <c>FrameActivationMixin.Install</c> from the Huskui.Avalonia.Mvvm package.
-    /// </summary>
-    public Frame.PageActivatorDelegate? PageActivator
+    public ICommand? BackCommand
     {
-        get => _frame?.PageActivator ?? _pendingActivator;
-        set
-        {
-            ArgumentNullException.ThrowIfNull(value);
-            _pendingActivator = value;
-            if (_frame is not null)
-                _frame.PageActivator = value;
-        }
+        get => GetValue(BackCommandProperty);
+        set => SetValue(BackCommandProperty, value);
     }
-
-    private Frame? _frame;
-    private Button? _backButton;
-    private Frame.PageActivatorDelegate? _pendingActivator;
-    private object? _pendingSelection;
-    private (Type PageType, object? Parameter, IPageTransition? Transition)? _pendingNavigate;
-    private bool _syncingSelection;
 
     protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
         NeedsContainer<NavigationItem>(item, out recycleKey);
@@ -134,17 +118,18 @@ public class NavigationView : SelectingItemsControl
         if (container is not NavigationItem nvi)
             return;
 
-        // Wrapped non-NavigationItem data: present it as the item content.
+        // Pure-model items forward their display fields by property-name binding; the control never
+        // assumes the item type. NavigationItem-as-data still works via the self-equal path.
         if (!ReferenceEquals(nvi, item))
+        {
             nvi.Content = item;
+            nvi[!NavigationItem.IconProperty] = new Binding("Icon") { Source = item };
+            nvi[!NavigationItem.CategoryProperty] = new Binding("Category") { Source = item };
+        }
 
         nvi[!NavigationItem.IconTemplateProperty] = this[!IconTemplateProperty];
         nvi[!ContentControl.ContentTemplateProperty] = this[!ItemTemplateProperty];
 
-        var category = nvi.Category;
-        var isFirstOfCategory = !string.IsNullOrEmpty(category)
-            && (index == 0 || Items[index - 1] is NavigationItem prev && prev.Category != category);
-        nvi.MarkGroupStart(isFirstOfCategory);
         nvi.IsCollapsed = !IsPaneOpen;
     }
 
@@ -155,50 +140,45 @@ public class NavigationView : SelectingItemsControl
             var index = IndexFromContainer(container);
             if (index < 0)
                 continue;
-            var category = container.Category;
-            var isFirst = !string.IsNullOrEmpty(category)
-                && (index == 0 || Items[index - 1] is NavigationItem prev && prev.Category != category);
-            container.MarkGroupStart(isFirst);
+            container.MarkGroupStart(IsFirstOfCategory(index));
         }
     }
 
-    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
+    protected override void ContainerForItemPreparedOverride(Control container, object? item, int index)
     {
-        base.OnApplyTemplate(e);
+        base.ContainerForItemPreparedOverride(container, item, index);
+        RefreshGroupStarts();
+    }
 
-        _frame = e.NameScope.Find<Frame>(PART_Frame);
-        _backButton = e.NameScope.Find<Button>(PART_BackButton);
+    protected override void ContainerIndexChangedOverride(Control container, int oldIndex, int newIndex)
+    {
+        base.ContainerIndexChangedOverride(container, oldIndex, newIndex);
+        RefreshGroupStarts();
+    }
 
-        if (_frame is null)
-            return;
+    protected override void ClearContainerForItemOverride(Control container)
+    {
+        base.ClearContainerForItemOverride(container);
+        RefreshGroupStarts();
+    }
 
-        _backButton?.Command = _frame.GoBackCommand;
-
-        if (_pendingActivator is not null)
-            _frame.PageActivator = _pendingActivator;
-
-        // NOTE: a deferred initial selection navigates with whatever PageActivator is current. Consumers
-        //  who two-way bind SelectedItem before load should install their IViewActivator first, otherwise
-        //  the first page is activated by Frame's default activator.
-        if (_pendingSelection is { } deferred)
-        {
-            _pendingSelection = null;
-            OnSelectedItemChanged(deferred);
-        }
-
-        if (_pendingNavigate is { } pendingNav)
-        {
-            _pendingNavigate = null;
-            Navigate(pendingNav.PageType, pendingNav.Parameter, pendingNav.Transition);
-        }
+    private bool IsFirstOfCategory(int index)
+    {
+        if (ContainerFromIndex(index) is not NavigationItem current)
+            return false;
+        var category = current.Category;
+        if (string.IsNullOrEmpty(category))
+            return false;
+        if (index == 0)
+            return true;
+        return (ContainerFromIndex(index - 1) as NavigationItem)?.Category != category;
     }
 
     private void OnItemClicked(object? sender, RoutedEventArgs e)
     {
-        if (e.Handled || e.Source is not Visual)
+        if (e.Handled || e.Source is not Visual source)
             return;
 
-        var source = (Visual)e.Source;
         var item = source.GetSelfAndVisualAncestors().OfType<NavigationItem>().FirstOrDefault();
         if (item is null)
             return;
@@ -215,59 +195,12 @@ public class NavigationView : SelectingItemsControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == SelectedItemProperty)
-            OnSelectedItemChanged(change.NewValue);
-        else if (change.Property == IsPaneOpenProperty)
+        if (change.Property == IsPaneOpenProperty)
         {
             var collapsed = !change.GetNewValue<bool>();
             PseudoClasses.Set(CLASS_PaneCollapsed, collapsed);
             foreach (var item in GetRealizedContainers().OfType<NavigationItem>())
                 item.IsCollapsed = collapsed;
         }
-    }
-
-    /// <summary>
-    /// Pushes a page onto the internal <see cref="Frame"/> — the single navigation primitive.
-    /// Selection-driven navigation calls it internally; consumers call it for non-menu pages
-    /// (Home, drill-down, deep links). It also keeps <see cref="SelectingItemsControl.SelectedItem"/>
-    /// in sync: when the target page matches the current selection (navigation originated from the
-    /// UI) it bails out; otherwise it selects the item bound to that page, or clears selection when
-    /// the page is not in the menu.
-    /// </summary>
-    public void Navigate(Type pageType, object? parameter = null, IPageTransition? transition = null)
-    {
-        if (_frame is null)
-        {
-            _pendingNavigate = (pageType, parameter, transition);
-            return;
-        }
-
-        _frame?.Navigate(pageType, parameter, transition);
-
-        if (SelectedItem is NavigationItem { PageType: { } selectedPage } && selectedPage == pageType)
-            return;
-
-        var match = Items.OfType<NavigationItem>().FirstOrDefault(i => i.PageType == pageType);
-        if (match == SelectedItem)
-            return;
-
-        _syncingSelection = true;
-        try { SelectedItem = match; }
-        finally { _syncingSelection = false; }
-    }
-
-    private void OnSelectedItemChanged(object? selected)
-    {
-        if (_syncingSelection)
-            return;
-
-        if (_frame is null)
-        {
-            _pendingSelection = selected;
-            return;
-        }
-
-        if (selected is NavigationItem { PageType: { } pageType } item)
-            Navigate(pageType, item.Parameter);
     }
 }

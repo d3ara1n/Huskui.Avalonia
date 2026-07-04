@@ -101,7 +101,7 @@ public class Frame : TemplatedControl
 
     public void ClearHistory() => _history.Clear();
 
-    public void Navigate(Type page, object? parameter, IPageTransition? transition)
+    public void Navigate(Type page, object? parameter = null, IPageTransition? transition = null)
     {
         var content = PageActivator(page, parameter)
                    ?? throw new InvalidOperationException($"Activating {page.Name} gets null page model");

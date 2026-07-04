@@ -23,12 +23,6 @@ public class NavigationItem : Button, ISelectable
     public static readonly StyledProperty<IDataTemplate?> IconTemplateProperty =
         AvaloniaProperty.Register<NavigationItem, IDataTemplate?>(nameof(IconTemplate));
 
-    public static readonly StyledProperty<Type?> PageTypeProperty =
-        AvaloniaProperty.Register<NavigationItem, Type?>(nameof(PageType));
-
-    public static readonly StyledProperty<object?> ParameterProperty =
-        AvaloniaProperty.Register<NavigationItem, object?>(nameof(Parameter));
-
     public static readonly StyledProperty<string?> CategoryProperty =
         AvaloniaProperty.Register<NavigationItem, string?>(nameof(Category));
 
@@ -47,18 +41,6 @@ public class NavigationItem : Button, ISelectable
     {
         get => GetValue(IconTemplateProperty);
         set => SetValue(IconTemplateProperty, value);
-    }
-
-    public Type? PageType
-    {
-        get => GetValue(PageTypeProperty);
-        set => SetValue(PageTypeProperty, value);
-    }
-
-    public object? Parameter
-    {
-        get => GetValue(ParameterProperty);
-        set => SetValue(ParameterProperty, value);
     }
 
     public string? Category
