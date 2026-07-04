@@ -20,7 +20,11 @@
             Name="NavView"
             IsPaneOpen="{Binding IsPaneOpen}"
             ItemsSource="{Binding SearchResults}"
-            SelectedItem="{Binding SelectedItem}">
+            SelectedItem="{Binding SelectedEntry}"
+            BackCommand="{Binding #Frame.GoBackCommand}">
+            <husk:NavigationView.Content>
+                <husk:Frame x:Name="Frame" />
+            </husk:NavigationView.Content>
             <husk:NavigationView.IconTemplate>
                 <DataTemplate DataType="{x:Type common:Symbol}">
                     <fi:SymbolIcon
