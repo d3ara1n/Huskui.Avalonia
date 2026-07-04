@@ -52,7 +52,8 @@
                                     BorderThickness="0"
                                     CornerRadius="{StaticResource SmallCornerRadius}"
                                     Cursor="Hand"
-                                    IsChecked="{Binding IsPaneOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    IsChecked="{Binding IsPaneOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                    Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon Name="PaneIcon" FontSize="{StaticResource MediumFontSize}" />
                                 </ToggleButton>
                             </Grid>
