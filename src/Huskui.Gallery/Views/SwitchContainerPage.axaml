@@ -14,7 +14,7 @@
 
         <controls:ExampleContainer
             Title="State-Based Content"
-            Description="Bind Value to any state source and let each SwitchCase render a different layout.">
+            Description="Bind Value to any state source and let each SwitchCase render a different layout. The comparison type is inferred from the binding.">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -37,7 +37,6 @@
             </controls:ExampleContainer.Controls>
 
             <husk:SwitchContainer
-                TargetType="x:Int32"
                 Value="{Binding #DocumentStatePicker.SelectedIndex}">
                 <husk:SwitchCase Value="0">
                     <husk:Card Padding="20">
@@ -180,6 +179,100 @@
                     </husk:Card>
                 </husk:SwitchCase>
             </husk:SwitchContainer>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Why TargetType Matters for Literals"
+            Description="A literal Value is a string by default and compares as text. Set TargetType to coerce the comparison into another type, such as a number.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Literal Comparison" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Value is the literal &quot;2&quot; and the candidate case is &quot;02&quot;. They differ as strings but are equal as integers, so only the panel that declares TargetType matches."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <Grid ColumnDefinitions="*,16,*">
+                <StackPanel
+                    Grid.Column="0"
+                    Spacing="8">
+                    <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Without TargetType" />
+                    <husk:SwitchContainer Value="2">
+                        <husk:SwitchCase Value="02">
+                            <husk:Card Padding="16">
+                                <StackPanel Spacing="6">
+                                    <husk:Tag
+                                        Classes="Success"
+                                        Content="Matched 02" />
+                                    <TextBlock
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="Unreachable here: a string compare never reaches this branch."
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </husk:Card>
+                        </husk:SwitchCase>
+                        <husk:SwitchCase Value="3">
+                            <husk:Card Padding="16">
+                                <husk:Tag Content="Matched 3" />
+                            </husk:Card>
+                        </husk:SwitchCase>
+                        <husk:SwitchCase>
+                            <husk:Card Padding="16">
+                                <StackPanel Spacing="6">
+                                    <husk:Tag
+                                        Classes="Warning"
+                                        Content="Fallback" />
+                                    <TextBlock
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="&quot;2&quot; and &quot;02&quot; are different strings, so nothing matched."
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </husk:Card>
+                        </husk:SwitchCase>
+                    </husk:SwitchContainer>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2"
+                    Spacing="8">
+                    <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="With TargetType=&quot;x:Int32&quot;" />
+                    <husk:SwitchContainer
+                        TargetType="x:Int32"
+                        Value="2">
+                        <husk:SwitchCase Value="02">
+                            <husk:Card Padding="16">
+                                <StackPanel Spacing="6">
+                                    <husk:Tag
+                                        Classes="Success"
+                                        Content="Matched 02" />
+                                    <TextBlock
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="Both sides coerce to the integer 2 and compare equal."
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </husk:Card>
+                        </husk:SwitchCase>
+                        <husk:SwitchCase Value="3">
+                            <husk:Card Padding="16">
+                                <husk:Tag Content="Matched 3" />
+                            </husk:Card>
+                        </husk:SwitchCase>
+                        <husk:SwitchCase>
+                            <husk:Card Padding="16">
+                                <husk:Tag
+                                    Classes="Warning"
+                                    Content="Fallback" />
+                            </husk:Card>
+                        </husk:SwitchCase>
+                    </husk:SwitchContainer>
+                </StackPanel>
+            </Grid>
         </controls:ExampleContainer>
 
     </StackPanel>
