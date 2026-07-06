@@ -97,7 +97,7 @@ public partial class MarkdownViewerPage : ControlPage
         - [x] Render `inline code`
         - [ ] Render ```fenced code blocks```
         - [ ] Render images
-        - [ ] Render tables
+        - [x] Render tables
         - [ ] Render blockquotes
 
         ## Pipe Table
@@ -120,13 +120,13 @@ public partial class MarkdownViewerPage : ControlPage
 
         ## Grid Table
 
-        +---------+---------+
+        +----------+----------+
         | Header 1 | Header 2 |
-        +=========+=========+
-        | Cell A  | Cell B  |
-        +---------+---------+
-        | Cell C  | Cell D  |
-        +---------+---------+
+        +==========+==========+
+        | Cell A   | Cell B   |
+        +----------+----------+
+        | Cell C   | Cell D   |
+        +----------+----------+
 
         ## Blockquote
 

@@ -1,0 +1,16 @@
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 单元格容器:左/上描边与表格右/下外框拼合成完整网格线 -->
+    <Style Selector="Border.Markdown.Cell">
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1,1,0,0" />
+    </Style>
+
+    <!-- 表头单元格文字加粗 -->
+    <Style Selector="Border.Markdown.Cell.Header TextBlock">
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+    </Style>
+</Styles>

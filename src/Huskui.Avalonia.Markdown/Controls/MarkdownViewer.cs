@@ -11,6 +11,7 @@ using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Markdown.Models;
 using Markdig;
 using Markdig.Extensions.Alerts;
+using Markdig.Extensions.Tables;
 using Markdig.Extensions.TaskLists;
 using Markdig.Extensions.Yaml;
 using Markdig.Syntax;
@@ -275,6 +276,11 @@ public class MarkdownViewer : TemplatedControl
                     control = rv;
                 }
                 break;
+            case Table table:
+                {
+                    control = SpawnTable(table);
+                }
+                break;
             default:
                 {
                     var rv = SpawnText();
@@ -456,6 +462,75 @@ public class MarkdownViewer : TemplatedControl
 
     private DockPanel SpawnDock() =>
         new() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
+
+    private MarkdownTable SpawnTable(Table table)
+    {
+        var mdTable = new MarkdownTable();
+        MarkdownRow? header = null;
+
+        foreach (TableRow row in table)
+        {
+            var mdRow = SpawnRow(table, row);
+
+            if (row.IsHeader)
+                header = mdRow;
+            else
+                mdTable.Items.Add(mdRow);
+        }
+
+        mdTable.Header = header;
+        return mdTable;
+    }
+
+    private MarkdownRow SpawnRow(Table table, TableRow row)
+    {
+        var mdRow = new MarkdownRow();
+        mdRow.Classes.Set("Markdown", true);
+
+        for (var i = 0; i < row.Count; i++)
+        {
+            var cell = (TableCell)row[i];
+            var columnIndex = cell.ColumnIndex >= 0 ? cell.ColumnIndex : i;
+            var align = columnIndex < table.ColumnDefinitions.Count
+                ? table.ColumnDefinitions[columnIndex].Alignment
+                : null;
+
+            var border = new Border { Child = SpawnCell(cell, align) };
+            border.Classes.Set("Markdown", true);
+            border.Classes.Set("Cell", true);
+
+            if (row.IsHeader)
+                border.Classes.Set("Header", true);
+
+            mdRow.Items.Add(border);
+        }
+
+        return mdRow;
+    }
+
+    private Control SpawnCell(TableCell cell, TableColumnAlign? align)
+    {
+        var text = SpawnText();
+        var inlines = new InlineCollection();
+
+        foreach (var subBlock in cell)
+        {
+            if (subBlock is ParagraphBlock para && para.Inline is not null)
+            {
+                foreach (var inline in RenderInlines(para.Inline))
+                    inlines.Add(inline);
+            }
+        }
+
+        text.Inlines = inlines;
+        text.TextAlignment = align switch
+        {
+            TableColumnAlign.Center => TextAlignment.Center,
+            TableColumnAlign.Right => TextAlignment.Right,
+            _ => TextAlignment.Left,
+        };
+        return text;
+    }
 
     // 不能是 SelectableTextBlock 因为会吃掉内部 HyperlinkButton 的交互
     private TextBlock SpawnText() => new() { TextWrapping = TextWrapping.Wrap };
