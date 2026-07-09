@@ -478,6 +478,16 @@ public class MenuItemService
             },
             new MenuItemVo
             {
+                Icon = Symbol.Table,
+                PageType = typeof(TableViewPage),
+                Category = category,
+                Title = "TableView",
+                Description =
+                    "Read-only tabular control that presents items in configurable columns",
+                Tags = ["table", "grid", "column", "read-only", "data"],
+            },
+            new MenuItemVo
+            {
                 Icon = Symbol.Tab,
                 PageType = typeof(TabStripsPage),
                 Category = category,

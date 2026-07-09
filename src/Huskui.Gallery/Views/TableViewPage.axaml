@@ -1,0 +1,164 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.TableViewPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Huskui.Gallery.Models"
+    xmlns:views="clr-namespace:Huskui.Gallery.Views"
+    Title="TableView"
+    Subtitle="A read-only tabular control that presents items in configurable columns"
+    d:DesignHeight="800"
+    d:DesignWidth="900"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic Table"
+            Description="Star-sized columns bound to a data source, with single-row selection. Drag a column header edge to resize.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Selection" />
+                    <Button
+                        Click="OnClearSelectionClick"
+                        Content="Clear Selection" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <TableView
+                x:Name="BasicTable"
+                Height="280"
+                x:DataType="models:Country"
+                ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
+                <TableView.Columns>
+                    <TableViewColumn
+                        Header="Name"
+                        Width="*"
+                        Binding="{Binding Name}" />
+                    <TableViewColumn
+                        Header="Region"
+                        Width="*"
+                        Binding="{Binding Region}" />
+                    <TableViewColumn
+                        Header="Capital"
+                        Width="160"
+                        Binding="{Binding Capital}" />
+                </TableView.Columns>
+            </TableView>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Alignment &amp; Formatting"
+            Description="Per-column horizontal alignment via HorizontalContentAlignment, with StringFormat for numeric values">
+            <TableView
+                x:Name="FormattedTable"
+                Height="280"
+                x:DataType="models:Country"
+                ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
+                <TableView.Columns>
+                    <TableViewColumn
+                        Header="Name"
+                        Width="*"
+                        Binding="{Binding Name}" />
+                    <TableViewColumn
+                        Header="Population"
+                        Width="140"
+                        Binding="{Binding Population, StringFormat=N0}"
+                        HorizontalContentAlignment="Right" />
+                    <TableViewColumn
+                        Header="Area (km²)"
+                        Width="140"
+                        Binding="{Binding Area, StringFormat=N0}"
+                        HorizontalContentAlignment="Right" />
+                    <TableViewColumn
+                        Header="GDP ($B)"
+                        Width="140"
+                        Binding="{Binding Gdp, StringFormat=N1}"
+                        HorizontalContentAlignment="Right" />
+                </TableView.Columns>
+            </TableView>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Custom Cell Template"
+            Description="A column using CellTemplate to render richer content — a status badge instead of plain text">
+            <TableView
+                x:Name="CustomTable"
+                Height="280"
+                x:DataType="models:Country"
+                ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
+                <TableView.Columns>
+                    <TableViewColumn
+                        Header="Name"
+                        Width="*"
+                        Binding="{Binding Name}" />
+                    <TableViewColumn
+                        Header="Region"
+                        Width="*"
+                        Binding="{Binding Region}" />
+                    <TableViewColumn
+                        Header="Status"
+                        Width="160"
+                        HorizontalContentAlignment="Center">
+                        <TableViewColumn.CellTemplate>
+                            <DataTemplate x:DataType="models:Country">
+                                <Border
+                                    Padding="10,2"
+                                    CornerRadius="{StaticResource FullCornerRadius}"
+                                    Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}">
+                                    <TextBlock
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Foreground="{StaticResource ControlAccentForegroundBrush}"
+                                        Text="{Binding Status}" />
+                                </Border>
+                            </DataTemplate>
+                        </TableViewColumn.CellTemplate>
+                    </TableViewColumn>
+                </TableView.Columns>
+            </TableView>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Column Resizing"
+            Description="Toggle CanUserResizeColumns to enable or disable dragging column header edges.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <CheckBox
+                        x:Name="ResizingToggle"
+                        Click="OnResizingToggleClick"
+                        Content="Allow column resizing"
+                        IsChecked="True" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <TableView
+                x:Name="ResizableTable"
+                Height="220"
+                CanUserResizeColumns="True"
+                x:DataType="models:Country"
+                ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
+                <TableView.Columns>
+                    <TableViewColumn
+                        Header="Name"
+                        Width="*"
+                        Binding="{Binding Name}" />
+                    <TableViewColumn
+                        Header="Region"
+                        Width="*"
+                        Binding="{Binding Region}" />
+                    <TableViewColumn
+                        Header="Capital"
+                        Width="160"
+                        Binding="{Binding Capital}" />
+                </TableView.Columns>
+            </TableView>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
