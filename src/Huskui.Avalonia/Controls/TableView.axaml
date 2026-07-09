@@ -35,6 +35,7 @@
                     RowDefinitions="*,Auto">
                     <DockPanel Name="ContentPanel">
                         <Border
+                            Name="HeaderStrip"
                             Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                             BorderBrush="{StaticResource ControlBorderBrush}"
                             BorderThickness="0,0,0,1"
