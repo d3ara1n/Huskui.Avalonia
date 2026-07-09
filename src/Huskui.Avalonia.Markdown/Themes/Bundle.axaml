@@ -6,8 +6,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Controls/MarkdownViewer.axaml" />
-                <ResourceInclude Source="/Controls/MarkdownRow.axaml" />
-                <ResourceInclude Source="/Controls/MarkdownTable.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>

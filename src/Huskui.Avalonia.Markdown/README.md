@@ -65,7 +65,7 @@ viewer.Markdown = """
 
 ## Styling
 
-`MarkdownViewer` generates **bare controls with semantic CSS classes but no built-in visual styles**. The one exception is `MarkdownTable`, which ships its own chrome (border, corner radius, header background); its cells still follow the class convention below. The extension ships a default theme bundle that is auto-loaded by `HuskuiTheme`, but you can override or extend styles by targeting the generated class names.
+`MarkdownViewer` generates **bare controls with semantic CSS classes but no built-in visual styles**, with tables rendered through the fully-themed `TableView` control. The extension ships a default theme bundle that is auto-loaded by `HuskuiTheme`, but you can override or extend styles by targeting the generated class names.
 
 The class naming convention is `Control.Markdown.Variant`. Here are some examples:
 
@@ -84,10 +84,8 @@ The class naming convention is `Control.Markdown.Variant`. Here are some example
 | `husk:CodeViewer.Markdown.Code` | Fenced code block |
 | `husk:InfoBar.Markdown.Quote` | Blockquote |
 | `husk:Divider.Markdown.Rule` | Horizontal rule |
-| `husk:MarkdownTable.Markdown` | Markdown table (header row + body rows) |
-| `husk:MarkdownRow.Markdown` | Table row (uniformly distributed cells) |
-| `Border.Markdown.Cell` | Table cell container — padding & grid lines |
-| `Border.Markdown.Cell.Header` | Header cell — bold text |
+| `TableView.Markdown` | Markdown table |
+| `TableView.Markdown.Headerless` | Headerless table (grid tables without a header row) |
 
 ### Custom Style Example
 
@@ -144,7 +142,7 @@ The class naming convention is `Control.Markdown.Variant`. Here are some example
 | Blockquotes | `> quote` | Rendered as InfoBar |
 | Horizontal rules | `---` | Rendered as Divider |
 | Auto-links | `<https://example.com>` | AutoLinks extension |
-| Tables | `\| a \| b \|` | Pipe & grid tables, per-column alignment, rendered via `MarkdownTable` |
+| Tables | `\| a \| b \|` | Pipe & grid tables, per-column alignment, rendered via `TableView` |
 
 ### Not Yet Supported
 

@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Documents;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Huskui.Avalonia.Code.Controls;
@@ -208,15 +209,12 @@ public class MarkdownViewer : TemplatedControl
                     switch (FrontMatterRender)
                     {
                         case FrontMatterRenderMethods.Plain:
-                            var bar = new InfoBar();
-                            bar.Content = yaml.Lines.ToString();
+                            var bar = new InfoBar { Content = yaml.Lines.ToString() };
                             bar.Classes.Set("FrontMatter", true);
                             control = bar;
                             break;
                         case FrontMatterRenderMethods.Pretty:
-                            var viewer = new CodeViewer();
-                            viewer.Language = "yaml";
-                            viewer.Code = yaml.Lines.ToString();
+                            var viewer = new CodeViewer { Language = "yaml", Code = yaml.Lines.ToString() };
                             viewer.Classes.Set("FrontMatter", true);
                             control = viewer;
                             break;
@@ -228,8 +226,7 @@ public class MarkdownViewer : TemplatedControl
                 break;
             case CodeBlock code:
                 {
-                    var rv = new CodeViewer();
-                    rv.Code = code.Lines.ToString() ?? string.Empty;
+                    var rv = new CodeViewer { Code = code.Lines.ToString() ?? string.Empty };
                     if (code is FencedCodeBlock fenced)
                         rv.Language = fenced.Info ?? string.Empty;
                     rv.Classes.Set("Code", true);
@@ -360,7 +357,7 @@ public class MarkdownViewer : TemplatedControl
                     inlines.Add(run);
                 }
                 break;
-            case EmphasisInline em when em.FirstChild is not null:
+            case EmphasisInline { FirstChild: not null } em:
                 {
                     context.Bold |= em is { DelimiterChar: '*', DelimiterCount: 2 };
                     context.Italic |= em is { DelimiterChar: '*', DelimiterCount: 1 };
@@ -390,9 +387,8 @@ public class MarkdownViewer : TemplatedControl
             case LinkInline link:
                 {
                     if (
-                        link.IsImage
-                        && link.Url is not null
-                        && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
+                        link is { IsImage: true, Url: not null }
+                     && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
                     )
                     {
                         var image = new Image();
@@ -401,12 +397,11 @@ public class MarkdownViewer : TemplatedControl
                     }
                     else
                     {
-                        var linkBtn = new HyperlinkButton();
-                        linkBtn.NavigateUri =
-                            link.Url is not null
-                            && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
-                                ? new Uri(link.Url, UriKind.Absolute)
-                                : null;
+                        var linkBtn = new HyperlinkButton { NavigateUri = link.Url is not null
+                                                                       && Uri.IsWellFormedUriString(link.Url, UriKind.Absolute)
+                                                                              ? new Uri(link.Url, UriKind.Absolute)
+                                                                              : null
+                        };
                         var label = SpawnText();
                         if (link.FirstChild is not null)
                         {
@@ -463,50 +458,81 @@ public class MarkdownViewer : TemplatedControl
     private DockPanel SpawnDock() =>
         new() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
 
-    private MarkdownTable SpawnTable(Table table)
+    private TableView SpawnTable(Table table)
     {
-        var mdTable = new MarkdownTable();
-        MarkdownRow? header = null;
+        var columnCount = Math.Max(1, table.ColumnDefinitions.Count);
 
-        foreach (TableRow row in table)
+        foreach (var block in table)
         {
-            var mdRow = SpawnRow(table, row);
-
-            if (row.IsHeader)
-                header = mdRow;
-            else
-                mdTable.Items.Add(mdRow);
+            var row = (TableRow)block;
+            columnCount = Math.Max(columnCount, row.Count);
         }
 
-        mdTable.Header = header;
-        return mdTable;
+        var tableView = new TableView();
+        tableView.Classes.Set("Markdown", true);
+
+        for (var i = 0; i < columnCount; i++)
+            tableView.Columns.Add(
+                new()
+                {
+                    HorizontalContentAlignment = HorizontalAlignment.Stretch,
+                    Binding = new Binding("[" + i + "]"),
+                }
+            );
+
+        TableRow? header = null;
+
+        foreach (var block in table)
+        {
+            var row = (TableRow)block;
+            if (row.IsHeader)
+                header = row;
+            else
+                tableView.Items.Add(BuildRow(table, row, columnCount));
+        }
+
+        if (header is not null)
+        {
+            for (var i = 0; i < header.Count; i++)
+            {
+                var cell = (TableCell)header[i];
+                var columnIndex = cell.ColumnIndex >= 0 ? cell.ColumnIndex : i;
+
+                if (columnIndex < columnCount)
+                    tableView.Columns[columnIndex].Header = SpawnCell(
+                        cell,
+                        AlignOf(table, columnIndex)
+                    );
+            }
+        }
+        else
+        {
+            tableView.Classes.Set("Headerless", true);
+        }
+
+        return tableView;
     }
 
-    private MarkdownRow SpawnRow(Table table, TableRow row)
+    private MarkdownTableRow BuildRow(Table table, TableRow row, int columnCount)
     {
-        var mdRow = new MarkdownRow();
-        mdRow.Classes.Set("Markdown", true);
+        var cells = new Control?[columnCount];
 
         for (var i = 0; i < row.Count; i++)
         {
             var cell = (TableCell)row[i];
             var columnIndex = cell.ColumnIndex >= 0 ? cell.ColumnIndex : i;
-            var align = columnIndex < table.ColumnDefinitions.Count
-                ? table.ColumnDefinitions[columnIndex].Alignment
-                : null;
 
-            var border = new Border { Child = SpawnCell(cell, align) };
-            border.Classes.Set("Markdown", true);
-            border.Classes.Set("Cell", true);
-
-            if (row.IsHeader)
-                border.Classes.Set("Header", true);
-
-            mdRow.Items.Add(border);
+            if (columnIndex < columnCount)
+                cells[columnIndex] = SpawnCell(cell, AlignOf(table, columnIndex));
         }
 
-        return mdRow;
+        return new(cells);
     }
+
+    private static TableColumnAlign? AlignOf(Table table, int columnIndex) =>
+        columnIndex < table.ColumnDefinitions.Count
+            ? table.ColumnDefinitions[columnIndex].Alignment
+            : null;
 
     private Control SpawnCell(TableCell cell, TableColumnAlign? align)
     {

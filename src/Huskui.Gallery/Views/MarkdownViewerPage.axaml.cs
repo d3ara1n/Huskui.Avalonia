@@ -118,14 +118,14 @@ public partial class MarkdownViewerPage : ControlPage
         | Grid Tables   | Yes       | GridTables        |
         | Lettered Lists| Yes       | ListExtras        |
 
-        ## Grid Table
+        ## Grid Table (headerless — only grid tables can omit the header row)
 
         +----------+----------+
-        | Header 1 | Header 2 |
-        +==========+==========+
         | Cell A   | Cell B   |
         +----------+----------+
         | Cell C   | Cell D   |
+        +----------+----------+
+        | Cell E   | Cell F   |
         +----------+----------+
 
         ## Blockquote
