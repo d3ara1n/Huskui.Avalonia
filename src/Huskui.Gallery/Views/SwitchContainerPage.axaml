@@ -14,7 +14,8 @@
 
         <controls:ExampleContainer
             Title="State-Based Content"
-            Description="Bind Value to any state source and let each SwitchCase render a different layout. The comparison type is inferred from the binding.">
+            Description="Bind Value to any state source and let each SwitchCase render a different layout. The comparison type is inferred from the binding."
+            XamlCode="&lt;husk:SwitchContainer Value=&quot;{Binding #DocumentStatePicker.SelectedIndex}&quot;&gt;&#10;    &lt;husk:SwitchCase Value=&quot;0&quot;&gt;&#10;        &lt;!-- Draft layout --&gt;&#10;    &lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase Value=&quot;1&quot;&gt;&#10;        &lt;!-- Review layout --&gt;&#10;    &lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase Value=&quot;2&quot;&gt;&#10;        &lt;!-- Published layout --&gt;&#10;    &lt;/husk:SwitchCase&gt;&#10;&lt;/husk:SwitchContainer&gt;">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -122,7 +123,8 @@
 
         <controls:ExampleContainer
             Title="Fallback Case"
-            Description="Leave SwitchCase.Value unset to define the default branch when no explicit value matches.">
+            Description="Leave SwitchCase.Value unset to define the default branch when no explicit value matches."
+            XamlCode="&lt;husk:SwitchContainer Value=&quot;{Binding #StatusKeywordBox.Text}&quot;&gt;&#10;    &lt;husk:SwitchCase Value=&quot;success&quot;&gt;&#10;        &lt;!-- matched layout --&gt;&#10;    &lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase Value=&quot;warning&quot;&gt;...&lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase Value=&quot;danger&quot;&gt;...&lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase&gt;&#10;        &lt;!-- fallback / default branch (Value unset) --&gt;&#10;    &lt;/husk:SwitchCase&gt;&#10;&lt;/husk:SwitchContainer&gt;">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -183,7 +185,8 @@
 
         <controls:ExampleContainer
             Title="Why TargetType Matters for Literals"
-            Description="A literal Value is a string by default and compares as text. Set TargetType to coerce the comparison into another type, such as a number.">
+            Description="A literal Value is a string by default and compares as text. Set TargetType to coerce the comparison into another type, such as a number."
+            XamlCode="&lt;!-- Without TargetType: &quot;2&quot; and &quot;02&quot; differ as strings --&gt;&#10;&lt;husk:SwitchContainer Value=&quot;2&quot;&gt;&#10;    &lt;husk:SwitchCase Value=&quot;02&quot;&gt;...&lt;/husk:SwitchCase&gt;&#10;    &lt;husk:SwitchCase&gt;fallback&lt;/husk:SwitchCase&gt;&#10;&lt;/husk:SwitchContainer&gt;&#10;&#10;&lt;!-- With TargetType: both sides coerce to integer 2 --&gt;&#10;&lt;husk:SwitchContainer TargetType=&quot;x:Int32&quot; Value=&quot;2&quot;&gt;&#10;    &lt;husk:SwitchCase Value=&quot;02&quot;&gt;matched&lt;/husk:SwitchCase&gt;&#10;&lt;/husk:SwitchContainer&gt;">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
