@@ -80,9 +80,6 @@
                     <Button
                         Click="OnShowRichGrowlClick"
                         Content="Show Rich Content" />
-                    <Button
-                        Click="OnClearAllGrowlsClick"
-                        Content="Clear All Growls" />
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"

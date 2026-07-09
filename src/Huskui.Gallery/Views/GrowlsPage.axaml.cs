@@ -148,24 +148,6 @@ public partial class GrowlsPage : ControlPage
         appSurface.PopGrowl(notification);
     }
 
-    private void OnClearAllGrowlsClick(object? sender, RoutedEventArgs e)
-    {
-        var appSurface = GetAppSurface();
-        if (appSurface == null)
-        {
-            return;
-        }
-
-        var notification = new GrowlItem
-        {
-            Level = GrowlLevel.Information,
-            Title = "Growls Cleared",
-            Content = "All notifications have been dismissed.",
-        };
-
-        appSurface.PopGrowl(notification);
-    }
-
     private void OnShowFileOperationClick(object? sender, RoutedEventArgs e)
     {
         var appSurface = GetAppSurface();
