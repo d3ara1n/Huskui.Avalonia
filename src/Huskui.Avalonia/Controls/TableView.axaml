@@ -1,0 +1,230 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <TableView
+                Height="220"
+                Width="440">
+                <TableView.Columns>
+                    <TableViewColumn
+                        Header="Name"
+                        Width="*" />
+                    <TableViewColumn
+                        Header="Region"
+                        Width="*" />
+                    <TableViewColumn
+                        Header="Population"
+                        Width="120"
+                        HorizontalContentAlignment="Right" />
+                </TableView.Columns>
+            </TableView>
+        </Border>
+    </Design.PreviewWith>
+
+    <!--  ScrollViewer with a sticky (non-scrolling) column-header strip docked at the top  -->
+    <ControlTheme
+        x:Key="TableViewScrollViewerTheme"
+        TargetType="ScrollViewer">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid
+                    ColumnDefinitions="*,Auto"
+                    RowDefinitions="*,Auto">
+                    <DockPanel Name="ContentPanel">
+                        <Border
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="0,0,0,1"
+                            DockPanel.Dock="Top">
+                            <TableViewColumnHeadersPresenter />
+                        </Border>
+                        <ScrollContentPresenter
+                            Name="PART_ContentPresenter"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                            VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                            <ScrollContentPresenter.GestureRecognizers>
+                                <ScrollGestureRecognizer
+                                    CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                    CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                    IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+                            </ScrollContentPresenter.GestureRecognizers>
+                        </ScrollContentPresenter>
+                    </DockPanel>
+                    <ScrollBar
+                        Name="PART_HorizontalScrollBar"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Orientation="Horizontal" />
+                    <ScrollBar
+                        Name="PART_VerticalScrollBar"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Orientation="Vertical" />
+                    <Panel
+                        Name="PART_ScrollBarsSeparator"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Background="{StaticResource ControlBorderBrush}"
+                        Opacity="0">
+                        <Panel.Transitions>
+                            <Transitions>
+                                <DoubleTransition
+                                    Easing="SineEaseOut"
+                                    Property="Opacity"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Panel.Transitions>
+                    </Panel>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[IsExpanded=true] /template/ Panel#PART_ScrollBarsSeparator">
+            <Setter Property="Opacity" Value="1" />
+        </Style>
+        <Style Selector="^[AllowAutoHide=True] /template/ DockPanel#ContentPanel">
+            <Setter Property="Grid.ColumnSpan" Value="2" />
+            <Setter Property="Grid.RowSpan" Value="2" />
+        </Style>
+    </ControlTheme>
+
+    <!--  TableView  -->
+    <ControlTheme
+        x:Key="{x:Type TableView}"
+        TargetType="TableView">
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="{StaticResource SmallCornerRadius}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
+        <Setter Property="ScrollViewer.IsScrollInertiaEnabled" Value="True" />
+        <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    ClipToBounds="{TemplateBinding ClipToBounds}"
+                    CornerRadius="{TemplateBinding CornerRadius}">
+                    <ScrollViewer
+                        Name="PART_ScrollViewer"
+                        AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                        BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}"
+                        HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        HorizontalSnapPointsType="{TemplateBinding (ScrollViewer.HorizontalSnapPointsType)}"
+                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                        IsScrollInertiaEnabled="{TemplateBinding (ScrollViewer.IsScrollInertiaEnabled)}"
+                        Theme="{StaticResource TableViewScrollViewerTheme}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                        VerticalSnapPointsType="{TemplateBinding (ScrollViewer.VerticalSnapPointsType)}">
+                        <ItemsPresenter
+                            Name="PART_ItemsPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </ScrollViewer>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <!--  TableViewRow  -->
+    <ControlTheme
+        x:Key="{x:Type TableViewRow}"
+        TargetType="TableViewRow">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Name="Border"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
+                    <Border.Transitions>
+                        <Transitions>
+                            <BrushTransition
+                                Easing="SineEaseOut"
+                                Property="Background"
+                                Duration="{StaticResource ControlFasterAnimationDuration}" />
+                        </Transitions>
+                    </Border.Transitions>
+                    <TableViewCellsPresenter Name="PART_CellsPresenter" />
+                </Border>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover:not(:selected) /template/ Border#Border">
+            <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:pressed /template/ Border#Border">
+            <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:selected">
+            <Style Selector="^ /template/ Border#Border">
+                <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}" />
+            </Style>
+            <Style Selector="^:pointerover /template/ Border#Border">
+                <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#Border">
+            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        </Style>
+    </ControlTheme>
+
+    <!--  TableViewCell  -->
+    <ControlTheme
+        x:Key="{x:Type TableViewCell}"
+        TargetType="TableViewCell">
+        <Setter Property="Padding" Value="12,8" />
+    </ControlTheme>
+
+    <!--  TableViewColumnHeader  -->
+    <ControlTheme
+        x:Key="{x:Type TableViewColumnHeader}"
+        TargetType="TableViewColumnHeader">
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <Thumb
+                        Name="PART_Resizer"
+                        Width="8"
+                        Margin="0,0,-4,0"
+                        HorizontalAlignment="Right"
+                        Cursor="SizeWestEast"
+                        IsEnabled="{Binding Column?.CanUserEffectivelyResize, RelativeSource={RelativeSource TemplatedParent}, FallbackValue=False}" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <AvaloniaVersion>12.0.2</AvaloniaVersion>
+    <AvaloniaVersion>12.1.0</AvaloniaVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Avalonia" Version="$(AvaloniaVersion)" />
@@ -11,7 +11,7 @@
     <PackageVersion Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3" />
     <PackageVersion Include="AsyncImageLoader.Avalonia" Version="3.8.0" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-    <PackageVersion Include="DynamicData" Version="9.4.31" />
+    <PackageVersion Include="DynamicData" Version="9.4.33" />
     <PackageVersion Include="FluentIcons.Avalonia" Version="2.1.331" />
     <PackageVersion Include="GitVersion.MsBuild" Version="6.7.0" />
     <PackageVersion Include="JetBrains.Annotations" Version="2026.2.0" />

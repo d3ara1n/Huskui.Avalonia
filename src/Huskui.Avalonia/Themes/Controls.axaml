@@ -65,6 +65,7 @@
         <ResourceInclude Source="/Controls/SwitchContainer.axaml" />
         <ResourceInclude Source="/Controls/TabControl.axaml" />
         <ResourceInclude Source="/Controls/TabStrip.axaml" />
+        <ResourceInclude Source="/Controls/TableView.axaml" />
         <ResourceInclude Source="/Controls/Tag.axaml" />
         <ResourceInclude Source="/Controls/TagBox.axaml" />
         <ResourceInclude Source="/Controls/TextBox.axaml" />
