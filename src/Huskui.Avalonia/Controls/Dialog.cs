@@ -116,7 +116,7 @@ public class Dialog : HeaderedContentControl
         remove => RemoveHandler(ConfirmRequestedEvent, value);
     }
 
-    protected virtual bool ValidateResult(object? result) => result is not null;
+    protected virtual bool ValidateResult(object? result) => true;
 
     private bool CanConfirm() => ValidateResult(Result);
 
