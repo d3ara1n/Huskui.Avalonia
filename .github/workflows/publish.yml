@@ -133,50 +133,37 @@ jobs:
           }
           trap push_tags EXIT
 
-          # ═══ Phase 1 — Build everything (all-or-nothing) ════════════
-          # Any failure aborts via set -e before any push happens: nothing
-          # reaches NuGet and no tags are recorded. Clean slate.
-          BUILT=()  # entries: name|version|tag|nupkg_dir
+          # ═══ Phase 1a — Resolve every package's version ═══════════
+          # One relative computation per package: resolved = bump(latest_tag,
+          # commits since). A package publishes this run iff resolved !=
+          # latest_tag. resolved is then reused as the dependency version its
+          # siblings must reference — a sibling published this run resolves to
+          # its new tag; one that isn't resolves to its already-published tag.
+          declare -A RESOLVED         # name -> resolved version
+          TO_PUBLISH=()               # name|version|tag|csproj
           for entry in "${PACKAGES[@]}"; do
             IFS='|' read -r name csproj <<< "$entry"
-            pkg_src_dir=$(dirname "$csproj")
 
-            echo ""
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-            echo "  📦 ${name} (build)"
-            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-            # ── Find last tag for this package ──────────
             last_tag=$(git tag -l "${name}@v*" --sort=-v:refname | head -1 || true)
-
             if [[ -z "$last_tag" ]]; then
-              echo "  ⚠️  No previous tag found for ${name}, skipping (needs initial tag)"
+              echo "  ⚠️  No previous tag for ${name}, skipping (needs initial tag)"
               continue
             fi
-
-            # Extract version from tag: Huskui.Avalonia@v1.2.0 → 1.2.0
             last_version="${last_tag#*@v}"
-            echo "  Last tag: ${last_tag} (version: ${last_version})"
 
-            # ── Get commits since last tag ──────────────
+            # ── Scan commits since last tag for this package ──
             has_major=false
             has_minor=false
             has_patch=false
-
             while IFS= read -r commit_hash; do
               [[ -z "$commit_hash" ]] && continue
               msg=$(git log -1 --format="%B" "$commit_hash")
               parsed=$(parse_commit "$msg")
               [[ -z "$parsed" ]] && continue
-
               IFS='|' read -r type scope breaking <<< "$parsed"
 
-              # Scope → package matching (one rule, exact):
-              #   "Core"   → the base package Huskui.Avalonia
-              #   <suffix> → the extension Huskui.Avalonia.<suffix> (e.g. "Code")
-              #   empty / anything else → matches no package, bumps nothing.
-              # Writing the full package name does NOT match — use the suffix or "Core".
-
+              # Scope → package (exact): "Core" → Huskui.Avalonia,
+              # <suffix> → Huskui.Avalonia.<suffix>, else matches nothing.
               if [[ -z "$scope" ]]; then
                 continue
               elif [[ "$scope" == "Core" ]]; then
@@ -192,10 +179,8 @@ jobs:
               elif [[ "$type" == "fix" || "$type" == "perf" || "$type" == "refactor" ]]; then
                 has_patch=true
               fi
-              # chore, docs, ci, style, test, build → no bump
             done < <(git log --format="%H" "${last_tag}..HEAD" 2>/dev/null)
 
-            # ── Resolve bump level ─────────────────────
             direct_bump=""
             if [[ "$has_major" == "true" ]]; then
               direct_bump="major"
@@ -205,42 +190,68 @@ jobs:
               direct_bump="patch"
             fi
 
-            if [[ -z "$direct_bump" ]]; then
-              echo "  ⏭️  No relevant changes, skipping"
-              continue
+            if [[ -n "$direct_bump" ]]; then
+              new_version=$(bump_version "$last_version" "$direct_bump")
+              new_tag="${name}@v${new_version}"
+              # Tag exists ⟺ already published (fresh checkout only sees
+              # remote tags). Pin to the published version; do not republish.
+              if git rev-parse "$new_tag" >/dev/null 2>&1; then
+                RESOLVED["$name"]="$new_version"
+                echo "  ⏭️  ${name}: ${new_tag} already published"
+                continue
+              fi
+              RESOLVED["$name"]="$new_version"
+              TO_PUBLISH+=("${name}|${new_version}|${new_tag}|${csproj}")
+              echo "  📋 ${name}: ${last_version} → ${new_version} (${direct_bump})"
+            else
+              RESOLVED["$name"]="$last_version"
+              echo "  ⏭️  ${name}: no relevant changes, pinned to ${last_version}"
             fi
+          done
 
-            # ── Calculate new version ───────────────────
-            new_version=$(bump_version "$last_version" "$direct_bump")
-            new_tag="${name}@v${new_version}"
+          # Global dependency-pin map "id=ver|id=ver|...". '|'-delimited
+          # because ';' would make MSBuild treat -p: as multiple properties.
+          # Directory.Build.targets only overrides deps the packed project
+          # actually references, so passing the full map is safe.
+          PINNED=""
+          for entry in "${PACKAGES[@]}"; do
+            IFS='|' read -r pname _ <<< "$entry"
+            [[ -n "${RESOLVED[$pname]+x}" ]] || continue
+            PINNED+="${PINNED:+|}${pname}=${RESOLVED[$pname]}"
+          done
+          echo ""
+          echo "  🔗 Resolved pins: ${PINNED:-<none>}"
 
-            # Fresh CI checkout + this tag is newly computed → should not exist.
-            if git rev-parse "$new_tag" >/dev/null 2>&1; then
-              echo "  ⏭️  Tag ${new_tag} already exists, skipping"
-              continue
-            fi
+          # ═══ Phase 1b — Pack everything (all-or-nothing) ═══════════
+          # Any failure aborts via set -e before any push happens: nothing
+          # reaches NuGet and no tags are recorded. Clean slate.
+          BUILT=()  # entries: name|version|tag|nupkg_dir
+          for entry in "${TO_PUBLISH[@]}"; do
+            IFS='|' read -r name version tag csproj <<< "$entry"
+            pkg_src_dir=$(dirname "$csproj")
 
-            echo "  📋 ${last_version} → ${new_version} (${direct_bump})"
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "  📦 ${name} (build) → ${version}"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-            # ── Changelog ───────────────────────────────
-            # Written into the package directory so Directory.Build.props picks
-            # it up at pack time (see the Exists-conditioned PropertyGroup there).
-            # Passing the raw multi-line changelog via -p:PackageReleaseNotes=
-            # makes MSBuild parse "- ..." lines as switches (MSB1006).
+            # Changelog into the package dir; Directory.Build.props picks it
+            # up at pack time. (Raw multiline via -p:PackageReleaseNotes makes
+            # MSBuild parse "- ..." lines as switches — MSB1006.)
             git-cliff --latest --include-path "${pkg_src_dir}/**" -o "${pkg_src_dir}/RELEASE_NOTES.md" 2>/dev/null || echo "No changes" > "${pkg_src_dir}/RELEASE_NOTES.md"
 
-            # ── Pack into a per-package subdir ──────────
             pkg_out="./publish/${name}"
             mkdir -p "$pkg_out"
             dotnet pack "$csproj" \
               --configuration Release \
               --output "$pkg_out" \
-              -p:Version="${new_version}"
+              -p:Version="${version}" \
+              -p:HuskuiPinnedVersions="${PINNED}"
 
             rm -f "${pkg_src_dir}/RELEASE_NOTES.md"
 
-            BUILT+=("${name}|${new_version}|${new_tag}|${pkg_out}")
-            echo "  ✅ Built ${name}@v${new_version}"
+            BUILT+=("${name}|${version}|${tag}|${pkg_out}")
+            echo "  ✅ Built ${name}@v${version}"
           done
 
           # ═══ Phase 2 — Publish & tag (invariant-critical) ══════════

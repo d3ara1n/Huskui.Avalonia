@@ -1,0 +1,52 @@
+<Project>
+
+  <UsingTask TaskName="HuskuiPinProjectReferenceVersions"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <PinnedVersions ParameterType="System.String" Required="true" />
+      <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <Pinned ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Collections.Generic" />
+      <Code Type="Fragment" Language="C#">
+        var map = new Dictionary&lt;string, string&gt;(StringComparer.OrdinalIgnoreCase);
+        foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+          var kv = pair.Split(new[] { '=' }, 2);
+          if (kv.Length == 2)
+          map[kv[0].Trim()] = kv[1].Trim();
+        }
+        foreach (var item in Items)
+        {
+          var id = Path.GetFileNameWithoutExtension(item.ItemSpec);
+          if (map.TryGetValue(id, out var ver))
+          item.SetMetadata("ProjectVersion", ver);
+        }
+        Pinned = Items;
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="HuskuiPinDependencyVersions"
+          AfterTargets="_GetProjectReferenceVersions"
+          BeforeTargets="GenerateNuspec"
+          Condition="'$(IsPackable)' != 'false'
+                     AND '$(HuskuiPinnedVersions)' != ''
+                     AND '@(_ProjectReferencesWithVersions->Count())' != '0'">
+    <HuskuiPinProjectReferenceVersions
+        PinnedVersions="$(HuskuiPinnedVersions)"
+        Items="@(_ProjectReferencesWithVersions)">
+      <Output TaskParameter="Pinned" ItemName="_HuskuiPinnedTmp" />
+    </HuskuiPinProjectReferenceVersions>
+    <ItemGroup>
+      <_ProjectReferencesWithVersions Remove="@(_ProjectReferencesWithVersions)" />
+      <_ProjectReferencesWithVersions Include="@(_HuskuiPinnedTmp)" />
+    </ItemGroup>
+    <Message Text="HUSKUI-PIN: id=%(_ProjectReferencesWithVersions.FileName) -> %(_ProjectReferencesWithVersions.ProjectVersion)" Importance="high" />
+  </Target>
+
+</Project>
