@@ -31,6 +31,64 @@
     </Task>
   </UsingTask>
 
+  <UsingTask TaskName="HuskuiResolvePinnedVersion"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <PinnedVersions ParameterType="System.String" Required="true" />
+      <PackageId ParameterType="System.String" Required="true" />
+      <ResolvedVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="C#">
+        ResolvedVersion = string.Empty;
+        foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+          var kv = pair.Split(new[] { '=' }, 2);
+          if (kv.Length == 2 &amp;&amp; string.Equals(kv[0].Trim(), PackageId, StringComparison.OrdinalIgnoreCase))
+          {
+            ResolvedVersion = kv[1].Trim();
+            break;
+          }
+        }
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="HuskuiApplyPinnedVersion"
+          BeforeTargets="GetAssemblyVersion;GenerateNuspec"
+          Condition="'$(IsPackable)' != 'false'
+                     AND '$(HuskuiPinnedVersions)' != ''
+                     AND '$(PackageId)' != ''">
+    <HuskuiResolvePinnedVersion
+        PinnedVersions="$(HuskuiPinnedVersions)"
+        PackageId="$(PackageId)">
+      <Output TaskParameter="ResolvedVersion" PropertyName="_HuskuiPinnedVersion" />
+    </HuskuiResolvePinnedVersion>
+    <PropertyGroup Condition="'$(_HuskuiPinnedVersion)' != ''">
+      <Version>$(_HuskuiPinnedVersion)</Version>
+      <VersionPrefix>$(_HuskuiPinnedVersion)</VersionPrefix>
+      <PackageVersion>$(_HuskuiPinnedVersion)</PackageVersion>
+    </PropertyGroup>
+    <Message Text="HUSKUI-VERSION: $(PackageId) -> $(Version)" Importance="high" Condition="'$(_HuskuiPinnedVersion)' != ''" />
+  </Target>
+
+  <Target Name="HuskuiRemovePackVersionFromProjectReferences"
+          AfterTargets="AssignProjectConfiguration"
+          BeforeTargets="_SplitProjectReferencesByFileExistence"
+          Condition="'$(HuskuiPinnedVersions)' != ''
+                     AND '@(ProjectReferenceWithConfiguration)' != ''">
+    <ItemGroup>
+      <ProjectReferenceWithConfiguration>
+        <GlobalPropertiesToRemove>%(ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
+      </ProjectReferenceWithConfiguration>
+      <_ProjectReferenceWithConfiguration>
+        <GlobalPropertiesToRemove>%(_ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
+      </_ProjectReferenceWithConfiguration>
+    </ItemGroup>
+  </Target>
+
   <Target Name="HuskuiPinDependencyVersions"
           AfterTargets="_GetProjectReferenceVersions"
           BeforeTargets="GenerateNuspec"
