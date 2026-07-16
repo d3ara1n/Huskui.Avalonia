@@ -86,6 +86,19 @@ jobs:
             fi
           }
 
+          scope_matches_package() {
+            local scope="$1"
+            local name="$2"
+
+            if [[ -z "$scope" ]]; then
+              return 1
+            elif [[ "$scope" == "Core" ]]; then
+              [[ "$name" == "Huskui.Avalonia" ]]
+            else
+              [[ "$name" == "Huskui.Avalonia.${scope}" ]]
+            fi
+          }
+
           # ── Bump version ──────────────────────────────
           bump_version() {
             local version="$1"
@@ -164,13 +177,7 @@ jobs:
 
               # Scope → package (exact): "Core" → Huskui.Avalonia,
               # <suffix> → Huskui.Avalonia.<suffix>, else matches nothing.
-              if [[ -z "$scope" ]]; then
-                continue
-              elif [[ "$scope" == "Core" ]]; then
-                [[ "$name" != "Huskui.Avalonia" ]] && continue
-              else
-                [[ "$name" != "Huskui.Avalonia.${scope}" ]] && continue
-              fi
+              scope_matches_package "$scope" "$name" || continue
 
               if [[ "$breaking" == "true" ]]; then
                 has_major=true
@@ -229,16 +236,32 @@ jobs:
           for entry in "${TO_PUBLISH[@]}"; do
             IFS='|' read -r name version tag csproj <<< "$entry"
             pkg_src_dir=$(dirname "$csproj")
+            last_tag=$(git tag -l "${name}@v*" --sort=-v:refname | head -1)
 
             echo ""
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "  📦 ${name} (build) → ${version}"
             echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-            # Changelog into the package dir; Directory.Build.props picks it
-            # up at pack time. (Raw multiline via -p:PackageReleaseNotes makes
-            # MSBuild parse "- ..." lines as switches — MSB1006.)
-            git-cliff --latest --include-path "${pkg_src_dir}/**" -o "${pkg_src_dir}/RELEASE_NOTES.md" 2>/dev/null || echo "No changes" > "${pkg_src_dir}/RELEASE_NOTES.md"
+            # Reuse the version scanner's scope rule so release notes contain
+            # exactly the commits owned by this package.
+            skip_commits=()
+            while IFS= read -r commit_hash; do
+              [[ -z "$commit_hash" ]] && continue
+              parsed=$(parse_commit "$(git log -1 --format="%B" "$commit_hash")")
+              if [[ -n "$parsed" ]]; then
+                IFS='|' read -r _ scope _ <<< "$parsed"
+                scope_matches_package "$scope" "$name" && continue
+              fi
+              skip_commits+=(--skip-commit "$commit_hash")
+            done < <(git log --format="%H" "${last_tag}..HEAD" 2>/dev/null)
+
+            git-cliff \
+              --unreleased \
+              --tag-pattern "^${name//./\\.}@v[0-9]+\\.[0-9]+\\.[0-9]+$" \
+              --tag "$tag" \
+              "${skip_commits[@]}" \
+              -o "${pkg_src_dir}/RELEASE_NOTES.md"
 
             pkg_out="./publish/${name}"
             mkdir -p "$pkg_out"
