@@ -187,6 +187,9 @@ public class DiffView : TemplatedControl
     private double _maxContentWidth;
     private double _lastViewportWidth;
     private double _lastMaxContentWidth;
+    private double _overviewScrollableHeight = 1.0;
+    private double _overviewExtentHeight = double.NaN;
+    private double _overviewViewportHeight = double.NaN;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -198,7 +201,7 @@ public class DiffView : TemplatedControl
         }
         else if (change.Property == OverviewBarVisibilityProperty)
         {
-            UpdateOverview();
+            UpdateOverviewGeometry(force: true);
         }
     }
 
@@ -240,21 +243,27 @@ public class DiffView : TemplatedControl
             _overviewBar.ScrollRequested += OnOverviewScrollRequested;
         }
 
-        UpdateOverview();
+        UpdateOverviewGeometry();
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
         var result = base.ArrangeOverride(finalSize);
         UpdateScrollBarMaximum(force: false);
-        UpdateOverview();
+        UpdateOverviewGeometry();
         return result;
     }
 
     private void OnHScrollBarValueChanged(object? sender, RangeBaseValueChangedEventArgs e) =>
         SetCurrentValue(HorizontalOffsetProperty, -e.NewValue);
 
-    private void OnScrollChanged(object? sender, ScrollChangedEventArgs e) => UpdateOverview();
+    private void OnScrollChanged(object? sender, ScrollChangedEventArgs e)
+    {
+        if (e.ExtentDelta.Y != 0 || e.ViewportDelta.Y != 0)
+            UpdateOverviewGeometry();
+        else
+            UpdateOverviewOffset();
+    }
 
     private void OnOverviewScrollRequested(object? sender, double ratio)
     {
@@ -266,37 +275,48 @@ public class DiffView : TemplatedControl
         _scrollViewer.Offset = _scrollViewer.Offset.WithY(Math.Clamp(ratio, 0.0, 1.0) * scrollable);
     }
 
-    private void UpdateOverview()
+    private void UpdateOverviewGeometry(bool force = false)
     {
         if (_scrollViewer == null)
             return;
         var extent = _scrollViewer.Extent;
         var viewport = _scrollViewer.Viewport;
-        var offset = _scrollViewer.Offset;
-        var scrollable = Math.Max(1.0, extent.Height - viewport.Height);
-        SetCurrentValue(
-            OverviewTopRatioProperty,
-            Math.Clamp(offset.Y / scrollable, 0.0, 1.0)
-        );
+
+        if (
+            !force
+            && extent.Height == _overviewExtentHeight
+            && viewport.Height == _overviewViewportHeight
+        )
+        {
+            UpdateOverviewOffset();
+            return;
+        }
+
+        _overviewExtentHeight = extent.Height;
+        _overviewViewportHeight = viewport.Height;
+        _overviewScrollableHeight = Math.Max(1.0, extent.Height - viewport.Height);
+        UpdateOverviewOffset();
         SetCurrentValue(
             OverviewViewportRatioProperty,
             Math.Clamp(viewport.Height / Math.Max(1.0, extent.Height), 0.0, 1.0)
         );
-        PseudoClasses.Set(CLASS_OVERVIEWBAR,
-                          OverviewBarVisibility switch
-                          {
-                              ScrollBarVisibility.Visible => true,
-                              ScrollBarVisibility.Hidden => false,
-                              _ => extent.Height > viewport.Height,
-                          });
+        var isOverviewBarVisible = OverviewBarVisibility switch
+        {
+            ScrollBarVisibility.Visible => true,
+            ScrollBarVisibility.Hidden => false,
+            _ => extent.Height > viewport.Height,
+        };
+        PseudoClasses.Set(CLASS_OVERVIEWBAR, isOverviewBarVisible);
+        SetCurrentValue(IsOverviewBarVisibleProperty, isOverviewBarVisible);
+    }
+
+    private void UpdateOverviewOffset()
+    {
+        if (_scrollViewer == null)
+            return;
         SetCurrentValue(
-            IsOverviewBarVisibleProperty,
-            OverviewBarVisibility switch
-            {
-                ScrollBarVisibility.Visible => true,
-                ScrollBarVisibility.Hidden => false,
-                _ => extent.Height > viewport.Height,
-            }
+            OverviewTopRatioProperty,
+            Math.Clamp(_scrollViewer.Offset.Y / _overviewScrollableHeight, 0.0, 1.0)
         );
     }
 
