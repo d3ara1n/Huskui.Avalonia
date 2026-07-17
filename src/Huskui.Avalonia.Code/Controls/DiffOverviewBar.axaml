@@ -1,0 +1,32 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
+
+    <ControlTheme
+        x:Key="{x:Type husk:DiffOverviewBar}"
+        TargetType="husk:DiffOverviewBar">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border
+                    Name="{x:Static husk:DiffOverviewBar.PART_Track}"
+                    Background="{StaticResource ControlTranslucentHalfBackgroundBrush}"
+                    ClipToBounds="True"
+                    CornerRadius="{StaticResource SmallCornerRadius}">
+                    <Panel>
+                        <husk:DiffOverviewMarkerLayer
+                            IsHitTestVisible="False"
+                            Markers="{TemplateBinding Markers}" />
+                        <Border
+                            Name="{x:Static husk:DiffOverviewBar.PART_Thumb}"
+                            VerticalAlignment="Top"
+                            Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
+                            BorderBrush="{StaticResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="{StaticResource SmallCornerRadius}" />
+                    </Panel>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

@@ -108,6 +108,21 @@
         </controls:ExampleContainer>
 
         <controls:ExampleContainer
+            Title="Long Markdown document"
+            Description="A longer document comparison produces enough rows to exercise the vertical scroller and overview bar thumb behavior."
+            XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;{Binding PublishedMarkdown}&quot;&#x0a;    RightText=&quot;{Binding DraftMarkdown}&quot; /&gt;">
+            <StackPanel Spacing="12">
+                <TextBlock
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="This sample uses generated Markdown release notes with repeated sections, inserted bullets, and edited paragraphs so the overview bar has a long scroll range to track."
+                    TextWrapping="Wrap" />
+                <husk:DiffView
+                    x:Name="LongMarkdownDiffView"
+                    Height="460" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
             Title="Long lines"
             Description="Wide content triggers a horizontal scroll bar at the bottom. Both columns scroll together."
             XamlCode="&lt;husk:DiffView&#x0a;    LeftText=&quot;short line&quot;&#x0a;    RightText=&quot;this is an extremely long line that forces horizontal scrolling within the diff viewer control&quot; /&gt;">

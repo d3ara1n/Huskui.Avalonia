@@ -327,10 +327,10 @@ public class DiffView : TemplatedControl
             return;
         }
 
-        var diff = SideBySideDiffBuilder.Instance.BuildDiffModel(RightText, LeftText);
+        var diff = SideBySideDiffBuilder.Instance.BuildDiffModel(LeftText, RightText);
 
-        var leftLines = diff.NewText.Lines;
-        var rightLines = diff.OldText.Lines;
+        var leftLines = diff.OldText.Lines;
+        var rightLines = diff.NewText.Lines;
         var count = leftLines.Count;
         var lines = new List<DiffLineModel>(count);
 

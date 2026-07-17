@@ -2,18 +2,21 @@ using System;
 using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
-using Avalonia.Styling;
 using Huskui.Avalonia.Code.Models;
 
 namespace Huskui.Avalonia.Code.Controls;
 
-public class DiffOverviewBar : Control
+[TemplatePart(PART_Track, typeof(Control))]
+[TemplatePart(PART_Thumb, typeof(Control))]
+public class DiffOverviewBar : TemplatedControl
 {
+    public const string PART_Track = nameof(PART_Track);
+    public const string PART_Thumb = nameof(PART_Thumb);
     public const double DEFAULT_WIDTH = 20.0;
-    private const double MARKER_WIDTH = 5.0;
-    private const double MIN_MARKER_HEIGHT = 1.0;
     private const double MIN_THUMB_HEIGHT = 12.0;
 
     public static readonly StyledProperty<IReadOnlyList<DiffMarker>?> MarkersProperty =
@@ -27,16 +30,6 @@ public class DiffOverviewBar : Control
 
     public static readonly StyledProperty<int> TotalLinesProperty =
         AvaloniaProperty.Register<DiffOverviewBar, int>(nameof(TotalLines));
-
-    static DiffOverviewBar()
-    {
-        AffectsRender<DiffOverviewBar>(
-            MarkersProperty,
-            ViewTopRatioProperty,
-            ViewportRatioProperty,
-            TotalLinesProperty
-        );
-    }
 
     public IReadOnlyList<DiffMarker>? Markers
     {
@@ -64,130 +57,124 @@ public class DiffOverviewBar : Control
 
     public event EventHandler<double>? ScrollRequested;
 
-    private IBrush? _trackBrush;
-    private IBrush? _thumbBrush;
-    private IBrush? _thumbBorderBrush;
-    private IBrush? _addedBrush;
-    private IBrush? _removedBrush;
-    private IBrush? _modifiedBrush;
-    private IPen? _thumbPen;
-    private ThemeVariant? _theme;
-
+    private Control? _track;
+    private Control? _thumb;
+    private readonly TranslateTransform _thumbTransform = new();
     private bool _isDragging;
+    private double _thumbHeight = MIN_THUMB_HEIGHT;
 
-    private void EnsureBrushes()
+    protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
-        if (_theme == Application.Current?.ActualThemeVariant)
-            return;
+        base.OnApplyTemplate(e);
 
-        _theme = Application.Current?.ActualThemeVariant;
-        _trackBrush = TryBrush(
-            "ControlTranslucentHalfBackgroundBrush",
-            new SolidColorBrush(Color.FromArgb(40, 0x80, 0x80, 0x80))
-        );
-        _thumbBrush = TryBrush(
-            "ControlTranslucentFullBackgroundBrush",
-            new SolidColorBrush(Color.FromArgb(80, 0x80, 0x80, 0x80))
-        );
-        _thumbBorderBrush = TryBrush(
-            "ControlBorderBrush",
-            new SolidColorBrush(Color.FromArgb(0xFF, 0x80, 0x80, 0x80))
-        );
-        _addedBrush = TryBrush(
-            "ControlSuccessBackgroundBrush",
-            new SolidColorBrush(Color.FromRgb(0x2B, 0x9A, 0x66))
-        );
-        _removedBrush = TryBrush(
-            "ControlDangerBackgroundBrush",
-            new SolidColorBrush(Color.FromRgb(0xDC, 0x3E, 0x42))
-        );
-        _modifiedBrush = TryBrush(
-            "ControlAccentBackgroundBrush",
-            new SolidColorBrush(Color.FromRgb(0x00, 0x90, 0xFF))
-        );
-        _thumbPen = new Pen(_thumbBorderBrush, 1.0);
-    }
-
-    private static IBrush TryBrush(string key, IBrush fallback) =>
-        Application.Current?.TryGetResource(key, null, out var res) == true && res is IBrush b
-            ? b
-            : fallback;
-
-    private IBrush BrushFor(DiffLineKind kind) =>
-        kind switch
+        if (_track != null)
         {
-            DiffLineKind.Added => _addedBrush!,
-            DiffLineKind.Removed => _removedBrush!,
-            _ => _modifiedBrush!,
-        };
-
-    public override void Render(DrawingContext context)
-    {
-        EnsureBrushes();
-        var w = Bounds.Width;
-        var h = Bounds.Height;
-        if (w <= 0 || h <= 0)
-            return;
-
-        var radius = Math.Min(w, h) * 0.25;
-
-        context.DrawRectangle(_trackBrush, null, new RoundedRect(new Rect(0, 0, w, h), radius));
-
-        if (Markers is { Count: > 0 })
-        {
-            var x = (w - MARKER_WIDTH) / 2.0;
-            foreach (var m in Markers)
-            {
-                var y = m.YRatio * h;
-                var markerHeight = Math.Max(MIN_MARKER_HEIGHT, m.HeightRatio * h);
-                context.DrawRectangle(
-                    BrushFor(m.Kind),
-                    null,
-                    new Rect(x, y, MARKER_WIDTH, markerHeight)
-                );
-            }
+            _track.PointerPressed -= OnTrackPointerPressed;
+            _track.PointerMoved -= OnTrackPointerMoved;
+            _track.PointerReleased -= OnTrackPointerReleased;
+            _track.PointerCaptureLost -= OnTrackPointerCaptureLost;
         }
 
-        var thumbH = Math.Max(MIN_THUMB_HEIGHT, ViewportRatio * h);
-        var thumbY = ViewTopRatio * (h - thumbH);
-        var thumbRect = new RoundedRect(new Rect(0, thumbY, w, thumbH), radius);
-        context.DrawRectangle(_thumbBrush, null, thumbRect);
-        if (_thumbPen != null)
-            context.DrawRectangle(null, _thumbPen, thumbRect);
+        _track = e.NameScope.Find<Control>(PART_Track);
+        _thumb = e.NameScope.Find<Control>(PART_Thumb);
+
+        if (_thumb != null)
+            _thumb.RenderTransform = _thumbTransform;
+
+        if (_track != null)
+        {
+            _track.PointerPressed += OnTrackPointerPressed;
+            _track.PointerMoved += OnTrackPointerMoved;
+            _track.PointerReleased += OnTrackPointerReleased;
+            _track.PointerCaptureLost += OnTrackPointerCaptureLost;
+        }
+
+        UpdateThumbGeometry();
     }
 
-    protected override void OnPointerPressed(PointerPressedEventArgs e)
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
-        base.OnPointerPressed(e);
+        base.OnPropertyChanged(change);
+
+        if (change.Property == ViewTopRatioProperty)
+            UpdateThumbPosition();
+        else if (change.Property == ViewportRatioProperty)
+            UpdateThumbGeometry();
+    }
+
+    protected override Size ArrangeOverride(Size finalSize)
+    {
+        var result = base.ArrangeOverride(finalSize);
+        UpdateThumbGeometry();
+        return result;
+    }
+
+    private void OnTrackPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
         _isDragging = true;
-        e.Pointer.Capture(this);
+        e.Pointer.Capture(_track);
         RequestScroll(e);
         e.Handled = true;
     }
 
-    protected override void OnPointerMoved(PointerEventArgs e)
+    private void OnTrackPointerMoved(object? sender, PointerEventArgs e)
     {
-        base.OnPointerMoved(e);
-        if (_isDragging)
-            RequestScroll(e);
+        if (!_isDragging)
+            return;
+
+        RequestScroll(e);
+        e.Handled = true;
     }
 
-    protected override void OnPointerReleased(PointerReleasedEventArgs e)
+    private void OnTrackPointerReleased(object? sender, PointerReleasedEventArgs e)
     {
-        base.OnPointerReleased(e);
         _isDragging = false;
         e.Pointer.Capture(null);
+        e.Handled = true;
     }
+
+    private void OnTrackPointerCaptureLost(object? sender, PointerCaptureLostEventArgs e) =>
+        _isDragging = false;
 
     private void RequestScroll(PointerEventArgs e)
     {
-        var pos = e.GetPosition(this);
-        var h = Bounds.Height;
-        if (h <= 0)
+        if (_track == null)
             return;
-        var thumbH = Math.Max(MIN_THUMB_HEIGHT, ViewportRatio * h);
-        var movable = h - thumbH;
-        var ratio = movable > 0 ? (pos.Y - thumbH / 2.0) / movable : 0;
+
+        var height = _track.Bounds.Height;
+        if (height <= 0)
+            return;
+
+        var position = e.GetPosition(_track);
+        var movable = height - _thumbHeight;
+        var ratio = movable > 0 ? (position.Y - _thumbHeight / 2.0) / movable : 0;
         ScrollRequested?.Invoke(this, Math.Clamp(ratio, 0.0, 1.0));
+    }
+
+    private void UpdateThumbGeometry()
+    {
+        if (_track == null || _thumb == null)
+            return;
+
+        var height = _track.Bounds.Height;
+        if (height <= 0)
+            return;
+
+        _thumbHeight = Math.Min(height, Math.Max(MIN_THUMB_HEIGHT, ViewportRatio * height));
+        _thumb.Height = _thumbHeight;
+        UpdateThumbPosition();
+    }
+
+    private void UpdateThumbPosition()
+    {
+        if (_track == null || _thumb == null)
+            return;
+
+        var height = _track.Bounds.Height;
+        if (height <= 0)
+            return;
+
+        var movable = Math.Max(0, height - _thumbHeight);
+        _thumbTransform.Y = Math.Clamp(ViewTopRatio, 0.0, 1.0) * movable;
     }
 }

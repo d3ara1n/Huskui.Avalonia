@@ -179,7 +179,7 @@ public class ZoomView : ContentControl
         // 会与实际盒子脱节，内容偏出视口且无法拖回。按 DesiredSize 重排到原点让两者一致。
         if (Content is Layoutable content)
         {
-            content.Arrange(new Rect(default, content.DesiredSize));
+            content.Arrange(new(default, content.DesiredSize));
         }
 
         if (!_fitted && IsContentValid && _viewportSize.Width > 0)
