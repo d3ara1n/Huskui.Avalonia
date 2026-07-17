@@ -4,7 +4,7 @@ public sealed class DefaultViewStateFactory : IViewStateKeyFactory
 {
     public string CreateKey(Type owner, string? partitionKey)
     {
-        var assemblyName = owner.Assembly.GetName().FullName;
+        var assemblyName = owner.Assembly.GetName().Name;
         var typeName = owner.FullName ?? owner.Name;
         return partitionKey != null
             ? $"{assemblyName}|{typeName}|{partitionKey}"
