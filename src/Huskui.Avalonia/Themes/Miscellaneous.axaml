@@ -1,8 +1,15 @@
 ﻿<Styles
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="using:FluentIcons.Avalonia">
 
     <Style Selector="TextBlock HyperlinkButton">
         <Setter Property="Theme" Value="{StaticResource InlineHyperlinkButtonTheme}" />
+    </Style>
+
+    <!-- FluentIcons.SymbolIcon registers FontSize with inherits:false (default 20), so a bare
+         instance never picks up the ambient font size; pin it to the theme-scaled body size. -->
+    <Style Selector="fi|SymbolIcon">
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
     </Style>
 </Styles>
