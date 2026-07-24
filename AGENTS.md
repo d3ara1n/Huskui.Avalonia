@@ -108,6 +108,7 @@ Do not create standalone `IValueConverter` classes unless the converter is compl
 ## Code Organization
 
 - **One type per `.cs` file.** Never declare more than one top-level type in a single file. A new type has only two valid homes: its own file, or nested inside the type it belongs to.
+  - **Exception: generic overloads of the same type** (e.g. `Foo` and `Foo<T>`) belong in one file — they are the same type at different arities, not separate types.
 - **Choose by semantic ownership, not by visibility or who references it.** The question is whether the type is that other type's own concept — not whether it is public or used elsewhere.
   - **Nested type** when it is dedicated to an outer class, even if that class exposes it through its public API (e.g. as a parameter or return type). The fact that callers must supply/pass values of that type does **not** make it independent.
   - **Own file** when it is a shared model — a type with its own data/properties that View, ViewModel, and Services may all consume is a standalone entity and gets its own file (under `Models/` for models).
@@ -130,6 +131,7 @@ When in doubt, leave the comment out. The legitimate reasons to write one are na
 - Nullable reference types are enabled globally.
 - Private instance fields: `_camelCase`. Private static fields: `_camelCase`.
 - Target frameworks: `net8.0;net10.0`. LangVersion is `preview`.
+- Group related members with `#region` (interface implementations, property groups, nested types). Regions structure a type's anatomy at a glance — they are organization, not documentation, and do not override the default-no-comment rule.
 - Comments may be in either English or Chinese.
 
 ## Git Commit
