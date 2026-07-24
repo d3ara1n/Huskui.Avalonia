@@ -123,9 +123,7 @@ public class LazyContainer : TemplatedControl
         if (change.Property == SourceProperty)
         {
             if (
-                change.OldValue is LazyObject oldLazy
-                && !oldLazy.IsCancelled
-                && oldLazy.IsInProgress
+                change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } oldLazy
             )
             {
                 oldLazy.Cancel();

@@ -195,7 +195,7 @@ public class ZoomView : ContentControl
         return size;
     }
 
-    private bool IsContentValid => _contentSize.Width > 0 && _contentSize.Height > 0;
+    private bool IsContentValid => _contentSize is { Width: > 0, Height: > 0 };
 
     private double EffectiveMinZoom()
     {
