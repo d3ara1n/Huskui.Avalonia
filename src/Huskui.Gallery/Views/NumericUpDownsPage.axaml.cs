@@ -78,13 +78,13 @@ public partial class NumericUpDownsPage : ControlPage
     private void UpdateBasicStateText()
     {
         BasicStateText.Text =
-            $"Default: {FormatNullable(DefaultNumericUpDown.Value)} | Range: {FormatNullable(RangeNumericUpDown.Value)} | Decimal: {FormatNullable(DecimalNumericUpDown.Value, "F2")} | Clipped: {FormatNullable(ClippedNumericUpDown.Value)}";
+            $"Default: {FormatNullable(DefaultNumericUpDown.Value)}\nRange: {FormatNullable(RangeNumericUpDown.Value)}\nDecimal: {FormatNullable(DecimalNumericUpDown.Value, "F2")}\nClipped: {FormatNullable(ClippedNumericUpDown.Value)}";
     }
 
     private void UpdateBehaviorStateText()
     {
         BehaviorStateText.Text =
-            $"Nullable field: {FormatNullable(NullableNumericUpDown.Value)} | Budget: {FormatNullable(CurrencyNumericUpDown.Value, "F0")}";
+            $"Nullable field: {FormatNullable(NullableNumericUpDown.Value)}\nBudget: {FormatNullable(CurrencyNumericUpDown.Value, "F0")}";
     }
 
     private void UpdatePricingSummary()
