@@ -52,14 +52,18 @@
                     <MenuItem Header="Fit to Page" />
                     <MenuItem Header="Fit to Window" />
                 </MenuItem>
+                <Separator />
+                <MenuItem
+                    Header="Connected"
+                    IsChecked="True"
+                    ToggleType="CheckBox" />
             </MenuItem>
-            <MenuItem
-                Header="About"
-                InputGesture="Ctrl+Shift+A" />
-            <MenuItem
-                Header="Connected"
-                IsChecked="True"
-                ToggleType="CheckBox" />
+            <MenuItem Header="Help">
+                <MenuItem
+                    Header="About Huskui Gallery"
+                    Click="OnAboutClick"
+                    InputGesture="Ctrl+Shift+A" />
+            </MenuItem>
         </Menu>
 
         <gallery:AppView />

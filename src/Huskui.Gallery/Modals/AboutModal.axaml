@@ -1,0 +1,85 @@
+<husk:Modal
+    x:Class="Huskui.Gallery.Modals.AboutModal"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="480"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <StackPanel
+        Width="320"
+        Spacing="16">
+
+        <StackPanel Spacing="4">
+            <Image
+                Width="56"
+                Height="56"
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                Source="avares://Huskui.Gallery/Assets/Icon.ico" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="{StaticResource ExtraLargeFontSize}"
+                FontWeight="{StaticResource ControlStrongFontWeight}"
+                Text="Huskui Gallery" />
+            <TextBlock
+                HorizontalAlignment="Center"
+                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                Text="Control Library Showcase" />
+        </StackPanel>
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="8">
+            <husk:Tag x:Name="LibraryVersionTag" />
+            <husk:Tag x:Name="AvaloniaVersionTag" />
+        </StackPanel>
+
+        <TextBlock
+            FontSize="{StaticResource SmallFontSize}"
+            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+            Text="A modern UI component library for Avalonia. Browse live examples, code snippets, and theming options for every control."
+            TextAlignment="Center"
+            TextWrapping="Wrap" />
+
+        <husk:Divider />
+
+        <StackPanel
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="8">
+            <HyperlinkButton
+                NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia"
+                Theme="{StaticResource GhostButtonTheme}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <fi:SymbolIcon
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource SmallFontSize}"
+                        Symbol="Open" />
+                    <TextBlock VerticalAlignment="Center" Text="GitHub" />
+                </StackPanel>
+            </HyperlinkButton>
+            <HyperlinkButton
+                NavigateUri="https://docs.avaloniaui.net/"
+                Theme="{StaticResource GhostButtonTheme}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <fi:SymbolIcon
+                        VerticalAlignment="Center"
+                        FontSize="{StaticResource SmallFontSize}"
+                        Symbol="Document" />
+                    <TextBlock VerticalAlignment="Center" Text="Documentation" />
+                </StackPanel>
+            </HyperlinkButton>
+        </StackPanel>
+
+        <Button
+            HorizontalAlignment="Right"
+            Click="OnCloseClick"
+            Content="Close" />
+    </StackPanel>
+</husk:Modal>
