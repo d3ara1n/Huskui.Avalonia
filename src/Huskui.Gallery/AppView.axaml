@@ -145,9 +145,16 @@
                                 Command="{Binding ToggleThemeCommand}"
                                 Theme="{StaticResource GhostButtonTheme}"
                                 ToolTip.Tip="Toggle theme">
-                                <fi:SymbolIcon
-                                    FontSize="{StaticResource SmallFontSize}"
-                                    Symbol="WeatherMoon" />
+                                <Panel>
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        IsVisible="{Binding !IsDarkTheme}"
+                                        Symbol="WeatherMoon" />
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        IsVisible="{Binding IsDarkTheme}"
+                                        Symbol="WeatherSunny" />
+                                </Panel>
                             </Button>
                             <Button
                                 Classes="Small"

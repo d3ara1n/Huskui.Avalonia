@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using Avalonia.Controls;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynamicData;
@@ -23,6 +24,8 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     )
     {
         ThemeService = themeService;
+        IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
+        themeService.ThemeChanged += (_, _) => IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
         SettingsView = settingsViewFactory.CreateSettingsView();
 
         var filter = this.WhenPropertyChanged(x => x.SearchText)
@@ -53,6 +56,9 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 
     [ObservableProperty]
     public partial MenuItemVo? SelectedEntry { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsDarkTheme { get; set; }
 
     private IThemeService ThemeService { get; }
 
