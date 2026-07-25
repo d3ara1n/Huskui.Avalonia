@@ -35,7 +35,6 @@
 
     <!--  Search box styles  -->
     <Style Selector="TextBox.SearchBox">
-        <Setter Property="Watermark" Value="Search controls..." />
         <Setter Property="MinWidth" Value="200" />
     </Style>
 

@@ -52,7 +52,7 @@
                             Grid.Column="1"
                             Margin="16,0,0,0"
                             VerticalAlignment="Center"
-                            IsVisible="{Binding !#NavView.IsPaneOpen}"
+                            IsVisible="{Binding #NavView.IsPaneOpen}"
                             Orientation="Horizontal"
                             Spacing="4">
                             <Border
@@ -85,7 +85,7 @@
                             <Image
                                 Width="42"
                                 Height="42"
-                                Source="Assets/Icon.ico"
+                                Source="avares://Huskui.Gallery/Assets/Icon.ico"
                                 ToolTip.Tip="Home" />
                         </Button>
                         <StackPanel
