@@ -85,7 +85,7 @@
                         Placement="Top">
                         <Border
                             Width="148"
-                            Margin="0,8"
+                            Margin="2,4"
                             Padding="8"
                             Background="{StaticResource FlyoutBackgroundBrush}"
                             BorderBrush="{StaticResource ControlInteractiveBorderBrush}"

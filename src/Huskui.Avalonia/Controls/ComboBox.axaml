@@ -142,12 +142,16 @@
                                         OffsetY="0"
                                         Opacity="0.2" />
                                 </Border.Effect>
-                                <ScrollViewer
-                                    HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
-                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                                </ScrollViewer>
+                                <Border
+                                    ClipToBounds="True"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <ScrollViewer
+                                        HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                                        VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    </ScrollViewer>
+                                </Border>
                             </Border>
                         </Popup>
                     </Panel>
@@ -358,7 +362,6 @@
                             <Border
                                 Margin="2,4"
                                 Background="{StaticResource FlyoutBackgroundBrush}"
-                                ClipToBounds="True"
                                 CornerRadius="{StaticResource SmallCornerRadius}">
                                 <Border.Effect>
                                     <DropShadowEffect
@@ -366,12 +369,16 @@
                                         OffsetY="0"
                                         Opacity="0.2" />
                                 </Border.Effect>
-                                <ScrollViewer
-                                    HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
-                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
-                                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
-                                </ScrollViewer>
+                                <Border
+                                    ClipToBounds="True"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <ScrollViewer
+                                        HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                                        VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                        <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    </ScrollViewer>
+                                </Border>
                             </Border>
                         </Popup>
                     </Panel>

@@ -175,8 +175,8 @@
                                 <Border.Effect>
                                     <DropShadowEffect
                                         OffsetX="0"
-                                        OffsetY="8"
-                                        Opacity="0.18" />
+                                        OffsetY="0"
+                                        Opacity="0.2" />
                                 </Border.Effect>
                                 <Calendar
                                     Name="PART_Calendar"
