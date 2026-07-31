@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using System.Globalization;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -41,7 +42,7 @@ public class ConstrainedBox : ContentControl
 
     private static double ParseAspectRatio(string ratio)
     {
-        if (double.TryParse(ratio, out var result))
+        if (double.TryParse(ratio, NumberStyles.Float, CultureInfo.InvariantCulture, out var result))
         {
             return result;
         }
@@ -51,7 +52,7 @@ public class ConstrainedBox : ContentControl
             var split = ratio.Split(':');
             var width = split[0];
             var height = split[1];
-            if (double.TryParse(width, out var w) && double.TryParse(height, out var h))
+            if (double.TryParse(width, NumberStyles.Float, CultureInfo.InvariantCulture, out var w) && double.TryParse(height, NumberStyles.Float, CultureInfo.InvariantCulture, out var h))
             {
                 return w / h;
             }
