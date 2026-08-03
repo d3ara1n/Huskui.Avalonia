@@ -10,6 +10,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="Cascadia Code, Consolas, Courier New, monospace" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -57,7 +58,6 @@
                                     Grid.Column="0"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding IsLineNumbersVisible}"
-                                    FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                     FontSize="{StaticResource SmallFontSize}"
                                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                     TextAlignment="Right"
@@ -67,7 +67,6 @@
                                     Name="PART_CodeText"
                                     Grid.Column="1"
                                     VerticalAlignment="Top"
-                                    FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                     FontSize="{StaticResource SmallFontSize}"
                                     TextWrapping="NoWrap" />
                             </Grid>

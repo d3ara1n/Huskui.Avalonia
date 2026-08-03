@@ -7,6 +7,7 @@
     <ControlTheme
         x:Key="{x:Type husk:DiffView}"
         TargetType="husk:DiffView">
+        <Setter Property="FontFamily" Value="Cascadia Code, Consolas, Courier New, monospace" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -49,7 +50,6 @@
                                                         Margin="8,2"
                                                         HorizontalAlignment="Right"
                                                         VerticalAlignment="Center"
-                                                        FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                                         FontSize="{x:Static husk:DiffView.MEASURE_FONT_SIZE}"
                                                         Foreground="{Binding LeftKind, Converter={x:Static code:InternalConverters.DiffLineKindToForeground}}"
                                                         Text="{Binding LeftLineNumber}" />
@@ -69,7 +69,6 @@
                                                         Margin="8,2"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
-                                                        FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                                         FontSize="{x:Static husk:DiffView.MEASURE_FONT_SIZE}"
                                                         Text="{Binding LeftText}"
                                                         TextWrapping="NoWrap" />
@@ -92,7 +91,6 @@
                                                         Margin="8,2"
                                                         HorizontalAlignment="Right"
                                                         VerticalAlignment="Center"
-                                                        FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                                         FontSize="{x:Static husk:DiffView.MEASURE_FONT_SIZE}"
                                                         Foreground="{Binding RightKind, Converter={x:Static code:InternalConverters.DiffLineKindToForeground}}"
                                                         Text="{Binding RightLineNumber}" />
@@ -112,7 +110,6 @@
                                                         Margin="8,2"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Center"
-                                                        FontFamily="Cascadia Code, Consolas, Courier New, monospace"
                                                         FontSize="{x:Static husk:DiffView.MEASURE_FONT_SIZE}"
                                                         Text="{Binding RightText}"
                                                         TextWrapping="NoWrap" />
