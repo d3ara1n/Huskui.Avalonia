@@ -10,14 +10,8 @@
             <ControlTemplate>
                 <VisualLayerManager>
                     <Panel>
-                        <ContentPresenter
-                            Name="ContentPresenter"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}">
-                            <ContentPresenter.Transitions>
+                        <VisualLayerManager Name="ContentLayer">
+                            <VisualLayerManager.Transitions>
                                 <Transitions>
                                     <EffectTransition
                                         Property="Effect"
@@ -27,51 +21,69 @@
                                         Property="RenderTransform"
                                         Duration="{StaticResource ControlFasterAnimationDuration}" />
                                 </Transitions>
-                            </ContentPresenter.Transitions>
-                        </ContentPresenter>
-                        <local:DrawerHost Name="{x:Static local:AppSurface.PART_DrawerHost}">
-                            <local:DrawerHost.Transition>
-                                <local:DrawerTransition />
-                            </local:DrawerHost.Transition>
-                        </local:DrawerHost>
-                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_ToastHost}">
-                            <local:OverlayHost.Transition>
-                                <local:SlideUpTransition />
-                            </local:OverlayHost.Transition>
-                        </local:OverlayHost>
-                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_SidebarHost}">
-                            <local:OverlayHost.Transition>
-                                <local:SidebarTransition />
-                            </local:OverlayHost.Transition>
-                        </local:OverlayHost>
-                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_ModalHost}">
-                            <local:OverlayHost.Transition>
-                                <local:ModalTransition />
-                            </local:OverlayHost.Transition>
-                        </local:OverlayHost>
-                        <local:OverlayHost Name="{x:Static local:AppSurface.PART_DialogHost}">
-                            <local:OverlayHost.Transition>
-                                <local:ScaleInTransition />
-                            </local:OverlayHost.Transition>
-                        </local:OverlayHost>
-                        <local:GrowlHost
-                            Name="{x:Static local:AppSurface.PART_GrowlHost}"
-                            Margin="18,12"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            HorizontalContentAlignment="Right">
-                            <local:GrowlHost.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Spacing="2" />
-                                </ItemsPanelTemplate>
-                            </local:GrowlHost.ItemsPanel>
-                        </local:GrowlHost>
+                            </VisualLayerManager.Transitions>
+                            <ContentPresenter
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:DrawerHost Name="{x:Static local:AppSurface.PART_DrawerHost}">
+                                <local:DrawerHost.Transition>
+                                    <local:DrawerTransition />
+                                </local:DrawerHost.Transition>
+                            </local:DrawerHost>
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:OverlayHost Name="{x:Static local:AppSurface.PART_ToastHost}">
+                                <local:OverlayHost.Transition>
+                                    <local:SlideUpTransition />
+                                </local:OverlayHost.Transition>
+                            </local:OverlayHost>
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:OverlayHost Name="{x:Static local:AppSurface.PART_SidebarHost}">
+                                <local:OverlayHost.Transition>
+                                    <local:SidebarTransition />
+                                </local:OverlayHost.Transition>
+                            </local:OverlayHost>
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:OverlayHost Name="{x:Static local:AppSurface.PART_ModalHost}">
+                                <local:OverlayHost.Transition>
+                                    <local:ModalTransition />
+                                </local:OverlayHost.Transition>
+                            </local:OverlayHost>
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:OverlayHost Name="{x:Static local:AppSurface.PART_DialogHost}">
+                                <local:OverlayHost.Transition>
+                                    <local:ScaleInTransition />
+                                </local:OverlayHost.Transition>
+                            </local:OverlayHost>
+                        </VisualLayerManager>
+                        <VisualLayerManager>
+                            <local:GrowlHost
+                                Name="{x:Static local:AppSurface.PART_GrowlHost}"
+                                Margin="18,12"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                HorizontalContentAlignment="Right">
+                                <local:GrowlHost.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Spacing="2" />
+                                    </ItemsPanelTemplate>
+                                </local:GrowlHost.ItemsPanel>
+                            </local:GrowlHost>
+                        </VisualLayerManager>
                     </Panel>
                 </VisualLayerManager>
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:obstructed /template/ ContentPresenter#ContentPresenter">
+        <Style Selector="^:obstructed /template/ VisualLayerManager#ContentLayer">
             <Setter Property="Effect">
                 <BlurEffect />
             </Setter>
