@@ -14,15 +14,11 @@ public class PlaceholderContainer : TemplatedControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
-    public static readonly StyledProperty<object?> PlaceholderProperty = AvaloniaProperty.Register<
-        PlaceholderContainer,
-        object?
-    >(nameof(Placeholder));
+    public static readonly StyledProperty<object?> PlaceholderProperty =
+        AvaloniaProperty.Register<PlaceholderContainer, object?>(nameof(Placeholder));
 
-    public static readonly StyledProperty<object?> SourceProperty = AvaloniaProperty.Register<
-        PlaceholderContainer,
-        object?
-    >(nameof(Source));
+    public static readonly StyledProperty<object?> SourceProperty =
+        AvaloniaProperty.Register<PlaceholderContainer, object?>(nameof(Source));
 
     public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
         AvaloniaProperty.Register<PlaceholderContainer, IDataTemplate?>(nameof(SourceTemplate));

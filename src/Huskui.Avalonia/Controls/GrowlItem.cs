@@ -11,30 +11,22 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":progress", ":information", ":success", ":warning", ":danger")]
 public sealed class GrowlItem : ContentControl
 {
-    public static readonly StyledProperty<GrowlLevel> LevelProperty = AvaloniaProperty.Register<
-        GrowlItem,
-        GrowlLevel
-    >(nameof(Level));
+    public static readonly StyledProperty<GrowlLevel> LevelProperty =
+        AvaloniaProperty.Register<GrowlItem, GrowlLevel>(nameof(Level));
 
     public static readonly DirectProperty<GrowlItem, AvaloniaList<GrowlAction>> ActionsProperty =
-        AvaloniaProperty.RegisterDirect<GrowlItem, AvaloniaList<GrowlAction>>(
-            nameof(Actions),
-            o => o.Actions,
-            (o, v) => o.Actions = v
-        );
+        AvaloniaProperty.RegisterDirect<GrowlItem, AvaloniaList<GrowlAction>>(nameof(Actions),
+                                                                              o => o.Actions,
+                                                                              (o, v) => o.Actions = v);
 
-    public static readonly StyledProperty<string> TitleProperty = AvaloniaProperty.Register<
-        GrowlItem,
-        string
-    >(nameof(Title), string.Empty);
+    public static readonly StyledProperty<string> TitleProperty =
+        AvaloniaProperty.Register<GrowlItem, string>(nameof(Title), string.Empty);
 
     public static readonly StyledProperty<bool> IsCloseButtonVisibleProperty =
         AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsCloseButtonVisible));
 
-    public static readonly StyledProperty<double> ProgressProperty = AvaloniaProperty.Register<
-        GrowlItem,
-        double
-    >(nameof(Progress));
+    public static readonly StyledProperty<double> ProgressProperty =
+        AvaloniaProperty.Register<GrowlItem, double>(nameof(Progress));
 
     public static readonly StyledProperty<bool> IsProgressIndeterminateProperty =
         AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsProgressIndeterminate));
@@ -46,15 +38,10 @@ public sealed class GrowlItem : ContentControl
         AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsProgressBarVisible));
 
     public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
-        RoutedEvent.Register<GrowlItem, DismissRequestedEventArgs>(
-            nameof(DismissRequested),
-            RoutingStrategies.Bubble
-        );
+        RoutedEvent.Register<GrowlItem, DismissRequestedEventArgs>(nameof(DismissRequested), RoutingStrategies.Bubble);
 
-    public static readonly StyledProperty<bool> IsExpandedProperty = AvaloniaProperty.Register<
-        GrowlItem,
-        bool
-    >(nameof(IsExpanded), true);
+    public static readonly StyledProperty<bool> IsExpandedProperty =
+        AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsExpanded), true);
 
     public static readonly StyledProperty<bool> IsExpandButtonVisibleProperty =
         AvaloniaProperty.Register<GrowlItem, bool>(nameof(IsExpandButtonVisible), true);
@@ -142,16 +129,14 @@ public sealed class GrowlItem : ContentControl
 
         if (change.Property == LevelProperty)
         {
-            SetPseudoClass(
-                change.NewValue switch
-                {
-                    GrowlLevel.Information => ":information",
-                    GrowlLevel.Success => ":success",
-                    GrowlLevel.Warning => ":warning",
-                    GrowlLevel.Danger => ":danger",
-                    _ => ":information",
-                }
-            );
+            SetPseudoClass(change.NewValue switch
+            {
+                GrowlLevel.Information => ":information",
+                GrowlLevel.Success => ":success",
+                GrowlLevel.Warning => ":warning",
+                GrowlLevel.Danger => ":danger",
+                _ => ":information"
+            });
         }
 
         if (change.Property == IsProgressBarVisibleProperty)
@@ -185,8 +170,7 @@ public sealed class GrowlItem : ContentControl
 
     #region Nested type: DismissRequestedEventArgs
 
-    public class DismissRequestedEventArgs(object? source = null)
-        : RoutedEventArgs(DismissRequestedEvent, source);
+    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source);
 
     #endregion
 }

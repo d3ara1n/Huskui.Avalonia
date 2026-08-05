@@ -3,7 +3,6 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
     xmlns:gallery="clr-namespace:Huskui.Gallery;assembly=Huskui.Gallery"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -60,8 +59,8 @@
             </MenuItem>
             <MenuItem Header="Help">
                 <MenuItem
-                    Header="About Huskui Gallery"
                     Click="OnAboutClick"
+                    Header="About Huskui Gallery"
                     InputGesture="Ctrl+Shift+A" />
             </MenuItem>
         </Menu>

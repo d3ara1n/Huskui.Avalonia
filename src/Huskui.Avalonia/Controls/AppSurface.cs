@@ -120,13 +120,11 @@ public class AppSurface : ContentControl
         ArgumentNullException.ThrowIfNull(_modalHost);
         ArgumentNullException.ThrowIfNull(_dialogHost);
 
-        PseudoClasses.Set(
-            ":obstructed",
-            _toastHost.IsPresent
-                || _sidebarHost.IsPresent
-                || _modalHost.IsPresent
-                || _dialogHost.IsPresent
-        );
+        PseudoClasses.Set(":obstructed",
+                          _toastHost.IsPresent
+                       || _sidebarHost.IsPresent
+                       || _modalHost.IsPresent
+                       || _dialogHost.IsPresent);
     }
 
     public void PopToast(Toast toast)

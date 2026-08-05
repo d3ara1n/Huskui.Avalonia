@@ -1,15 +1,13 @@
+using System.Globalization;
 using Avalonia;
 using Avalonia.Controls;
-using System.Globalization;
 
 namespace Huskui.Avalonia.Controls;
 
 public class ConstrainedBox : ContentControl
 {
-    public static readonly StyledProperty<string> AspectRatioProperty = AvaloniaProperty.Register<
-        ConstrainedBox,
-        string
-    >(nameof(AspectRatio), "1:1");
+    public static readonly StyledProperty<string> AspectRatioProperty =
+        AvaloniaProperty.Register<ConstrainedBox, string>(nameof(AspectRatio), "1:1");
 
     public string AspectRatio
     {
@@ -52,7 +50,8 @@ public class ConstrainedBox : ContentControl
             var split = ratio.Split(':');
             var width = split[0];
             var height = split[1];
-            if (double.TryParse(width, NumberStyles.Float, CultureInfo.InvariantCulture, out var w) && double.TryParse(height, NumberStyles.Float, CultureInfo.InvariantCulture, out var h))
+            if (double.TryParse(width, NumberStyles.Float, CultureInfo.InvariantCulture, out var w)
+             && double.TryParse(height, NumberStyles.Float, CultureInfo.InvariantCulture, out var h))
             {
                 return w / h;
             }

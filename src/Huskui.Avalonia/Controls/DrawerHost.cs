@@ -18,27 +18,17 @@ public class DrawerHost : TemplatedControl
     public const string PART_ItemsPresenter = nameof(PART_ItemsPresenter);
 
     public static readonly StyledProperty<IPageTransition> TransitionProperty =
-        AvaloniaProperty.Register<DrawerHost, IPageTransition>(
-            nameof(Transition),
-            new DrawerTransition()
-        );
+        AvaloniaProperty.Register<DrawerHost, IPageTransition>(nameof(Transition), new DrawerTransition());
 
-    public static readonly StyledProperty<int> ItemCountProperty = AvaloniaProperty.Register<
-        DrawerHost,
-        int
-    >(nameof(ItemCount));
+    public static readonly StyledProperty<int> ItemCountProperty =
+        AvaloniaProperty.Register<DrawerHost, int>(nameof(ItemCount));
 
     public static readonly RoutedEvent<DismissRequestedEventArgs> DismissRequestedEvent =
-        RoutedEvent.Register<Drawer, DismissRequestedEventArgs>(
-            nameof(DismissRequested),
-            RoutingStrategies.Bubble
-        );
+        RoutedEvent.Register<Drawer, DismissRequestedEventArgs>(nameof(DismissRequested), RoutingStrategies.Bubble);
 
     public static readonly RoutedEvent<BringToFrontRequestedEventArgs> BringToFrontRequestedEvent =
-        RoutedEvent.Register<Drawer, BringToFrontRequestedEventArgs>(
-            nameof(BringToFrontRequested),
-            RoutingStrategies.Bubble
-        );
+        RoutedEvent.Register<Drawer, BringToFrontRequestedEventArgs>(nameof(BringToFrontRequested),
+                                                                     RoutingStrategies.Bubble);
 
     private readonly Queue<Drawer> _toDismiss = [];
     private readonly Queue<Drawer> _toPops = [];
@@ -58,6 +48,8 @@ public class DrawerHost : TemplatedControl
     [Content]
     public AvaloniaList<Drawer> Items { get; } = [];
 
+    protected override Type StyleKeyOverride => typeof(DrawerHost);
+
     public event EventHandler<DismissRequestedEventArgs>? DismissRequested
     {
         add => AddHandler(DismissRequestedEvent, value);
@@ -69,8 +61,6 @@ public class DrawerHost : TemplatedControl
         add => AddHandler(BringToFrontRequestedEvent, value);
         remove => RemoveHandler(BringToFrontRequestedEvent, value);
     }
-
-    protected override Type StyleKeyOverride => typeof(DrawerHost);
 
     protected override Size ArrangeOverride(Size finalSize)
     {
@@ -89,20 +79,18 @@ public class DrawerHost : TemplatedControl
             while (_toDismiss.TryDequeue(out var drawer))
             {
                 Transition
-                    .Start(drawer, null, true, CancellationToken.None)
-                    .ContinueWith(
-                        _ =>
-                        {
-                            if (Items.Remove(drawer))
-                            {
-                                drawer.IsDismissed = true;
-                                LogicalChildren.Remove(drawer);
-                                ItemCount = Items.Count;
-                                UpdatePresentPseudoClass();
-                            }
-                        },
-                        TaskScheduler.FromCurrentSynchronizationContext()
-                    );
+                   .Start(drawer, null, true, CancellationToken.None)
+                   .ContinueWith(_ =>
+                                 {
+                                     if (Items.Remove(drawer))
+                                     {
+                                         drawer.IsDismissed = true;
+                                         LogicalChildren.Remove(drawer);
+                                         ItemCount = Items.Count;
+                                         UpdatePresentPseudoClass();
+                                     }
+                                 },
+                                 TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 
@@ -152,7 +140,7 @@ public class DrawerHost : TemplatedControl
         {
             Drawer it => it,
             Visual visual => visual.FindAncestorOfType<Drawer>(),
-            _ => null,
+            _ => null
         };
 
         if (drawer is null || !Items.Contains(drawer) || _toDismiss.Contains(drawer))
@@ -178,7 +166,7 @@ public class DrawerHost : TemplatedControl
         {
             Drawer it => it,
             Visual visual => visual.FindAncestorOfType<Drawer>(),
-            _ => null,
+            _ => null
         };
 
         if (drawer is null)
@@ -190,9 +178,13 @@ public class DrawerHost : TemplatedControl
         foreach (var item in Items)
         {
             if (item.ZIndex > max)
+            {
                 max = item.ZIndex;
+            }
+
             item.ZIndex--;
         }
+
         drawer.ZIndex = max;
     }
 
@@ -240,8 +232,7 @@ public class DrawerHost : TemplatedControl
         }
     }
 
-    public class DismissRequestedEventArgs(object? source = null)
-        : RoutedEventArgs(DismissRequestedEvent, source)
+    public class DismissRequestedEventArgs(object? source = null) : RoutedEventArgs(DismissRequestedEvent, source)
     {
         public Drawer? Drawer { get; set; }
     }

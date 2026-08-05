@@ -27,7 +27,7 @@ public partial class ZoomViewsPage : ControlPage
             Color.FromRgb(0x9B, 0x72, 0xF9), // purple
             Color.FromRgb(0xF9, 0x94, 0x5A), // orange
             Color.FromRgb(0x5A, 0xE0, 0xE0), // teal
-            Color.FromRgb(0xF9, 0x72, 0xB8), // pink
+            Color.FromRgb(0xF9, 0x72, 0xB8) // pink
         };
 
         const int cols = 8;
@@ -43,11 +43,7 @@ public partial class ZoomViewsPage : ControlPage
                 var color = colors[(r * cols + c) % colors.Length];
                 var rect = new Rectangle
                 {
-                    Width = cellW,
-                    Height = cellH,
-                    Fill = new SolidColorBrush(color),
-                    RadiusX = 8,
-                    RadiusY = 8,
+                    Width = cellW, Height = cellH, Fill = new SolidColorBrush(color), RadiusX = 8, RadiusY = 8
                 };
                 Canvas.SetLeft(rect, gap + c * (cellW + gap));
                 Canvas.SetTop(rect, gap + r * (cellH + gap));
@@ -63,7 +59,7 @@ public partial class ZoomViewsPage : ControlPage
                     VerticalAlignment = VerticalAlignment.Center,
                     Width = cellW,
                     Height = cellH,
-                    TextAlignment = TextAlignment.Center,
+                    TextAlignment = TextAlignment.Center
                 };
                 Canvas.SetLeft(label, gap + c * (cellW + gap));
                 Canvas.SetTop(label, gap + r * (cellH + gap));
@@ -92,7 +88,7 @@ public partial class ZoomViewsPage : ControlPage
                 Height = size,
                 Fill = new SolidColorBrush(Color.FromRgb(r, g, b)),
                 Stroke = new SolidColorBrush(Color.FromRgb((byte)(r + 40), (byte)(g + 20), (byte)(b + 20))),
-                StrokeThickness = 1,
+                StrokeThickness = 1
             };
             Canvas.SetLeft(ellipse, (800 - size) / 2);
             Canvas.SetTop(ellipse, (600 - size) / 2);

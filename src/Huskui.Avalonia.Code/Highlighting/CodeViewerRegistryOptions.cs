@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using TextMateSharp.Grammars;
 using TextMateSharp.Internal.Types;
 using TextMateSharp.Registry;
@@ -9,9 +7,7 @@ namespace Huskui.Avalonia.Code.Highlighting;
 
 internal sealed class CodeViewerRegistryOptions : IRegistryOptions
 {
-    private static readonly Dictionary<string, string> LanguageExtensions = new(
-        StringComparer.OrdinalIgnoreCase
-    )
+    private static readonly Dictionary<string, string> LanguageExtensions = new(StringComparer.OrdinalIgnoreCase)
     {
         ["axaml"] = ".xml",
         ["bash"] = ".sh",
@@ -52,15 +48,25 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
         ["xml"] = ".xml",
         ["yaml"] = ".yml",
         ["yml"] = ".yml",
-        ["zsh"] = ".sh",
+        ["zsh"] = ".sh"
     };
 
     private readonly RegistryOptions _registryOptions = new(ThemeName.DarkPlus);
 
+    public IRawTheme GetTheme(string scopeName) => _registryOptions.GetTheme(scopeName);
+
+    public IRawGrammar GetGrammar(string scopeName) => _registryOptions.GetGrammar(scopeName);
+
+    public ICollection<string> GetInjections(string scopeName) => _registryOptions.GetInjections(scopeName);
+
+    public IRawTheme GetDefaultTheme() => CodeViewerTextMateThemes.Dark;
+
     public string? ResolveScopeName(string? language)
     {
         if (string.IsNullOrWhiteSpace(language))
+        {
             return null;
+        }
 
         var normalized = language.Trim();
 
@@ -74,7 +80,9 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
         {
             var scopeByExtension = _registryOptions.GetScopeByExtension(extension);
             if (!string.IsNullOrWhiteSpace(scopeByExtension))
+            {
                 return scopeByExtension;
+            }
         }
 
         foreach (var knownLanguage in _registryOptions.GetAvailableLanguages())
@@ -85,7 +93,9 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
             }
 
             if (knownLanguage.Aliases is null)
+            {
                 continue;
+            }
 
             foreach (var alias in knownLanguage.Aliases)
             {
@@ -99,19 +109,12 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
         return null;
     }
 
-    public IRawTheme GetTheme(string scopeName) => _registryOptions.GetTheme(scopeName);
-
-    public IRawGrammar GetGrammar(string scopeName) => _registryOptions.GetGrammar(scopeName);
-
-    public ICollection<string> GetInjections(string scopeName) =>
-        _registryOptions.GetInjections(scopeName);
-
-    public IRawTheme GetDefaultTheme() => CodeViewerTextMateThemes.Dark;
-
     private static string? ResolveExtension(string language)
     {
         if (LanguageExtensions.TryGetValue(language, out var extension))
+        {
             return extension;
+        }
 
         return language.Contains('/') ? null : $".{language}";
     }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using TextMateSharp.Grammars;
@@ -12,15 +10,11 @@ namespace Huskui.Avalonia.Code.Highlighting;
 
 internal sealed class TextMateInlineFormatter
 {
-    private readonly CodeViewerRegistryOptions _registryOptions;
+    private static Registry? registry;
     private readonly Dictionary<string, IBrush> _brushCache = [];
+    private readonly CodeViewerRegistryOptions _registryOptions;
 
-    private static Registry? registry = null;
-
-    public TextMateInlineFormatter(CodeViewerRegistryOptions registryOptions)
-    {
-        _registryOptions = registryOptions;
-    }
+    public TextMateInlineFormatter(CodeViewerRegistryOptions registryOptions) => _registryOptions = registryOptions;
 
     public InlineCollection? FormatInlines(string sourceCode, string scopeName, IRawTheme theme)
     {
@@ -29,12 +23,14 @@ internal sealed class TextMateInlineFormatter
 
         var grammar = registry.LoadGrammar(scopeName);
         if (grammar is null)
+        {
             return null;
+        }
 
         var colors = registry.GetTheme();
         var defaultForeground = GetEditorForeground(colors);
         var inlines = new InlineCollection();
-        var lines = NormalizeLineEndings(sourceCode).Split('\n', StringSplitOptions.None);
+        var lines = NormalizeLineEndings(sourceCode).Split('\n');
 
         IStateStack? state = null;
 
@@ -49,7 +45,9 @@ internal sealed class TextMateInlineFormatter
                 var start = Math.Min(token.StartIndex, line.Length);
                 var end = Math.Min(token.EndIndex, line.Length);
                 if (end <= start)
+                {
                     continue;
+                }
 
                 var run = new Run(line.Substring(start, end - start));
                 ApplyStyle(run, colors, token.Scopes, defaultForeground);
@@ -57,7 +55,9 @@ internal sealed class TextMateInlineFormatter
             }
 
             if (lineIndex < lines.Length - 1)
+            {
                 inlines.Add(new LineBreak());
+            }
         }
 
         return inlines;
@@ -85,30 +85,36 @@ internal sealed class TextMateInlineFormatter
             }
 
             if (foregroundResolved && fontStyleResolved)
+            {
                 break;
+            }
         }
 
         run.Foreground = GetCachedBrush(foreground);
 
         if ((fontStyle & TextMateFontStyle.Bold) != 0)
+        {
             run.FontWeight = FontWeight.Bold;
+        }
 
         if ((fontStyle & TextMateFontStyle.Italic) != 0)
+        {
             run.FontStyle = AvaloniaFontStyle.Italic;
+        }
     }
 
     private static string GetEditorForeground(Theme theme)
     {
         var colors = theme.GetGuiColorDictionary();
-        return colors.TryGetValue("editor.foreground", out var foreground)
-            ? foreground
-            : "#FF1C2024";
+        return colors.TryGetValue("editor.foreground", out var foreground) ? foreground : "#FF1C2024";
     }
 
     private IBrush GetCachedBrush(string color)
     {
         if (_brushCache.TryGetValue(color, out var brush))
+        {
             return brush;
+        }
 
         var parsed = Color.TryParse(color, out var value) ? value : Colors.White;
         brush = new SolidColorBrush(parsed);
@@ -116,6 +122,5 @@ internal sealed class TextMateInlineFormatter
         return brush;
     }
 
-    private static string NormalizeLineEndings(string text) =>
-        text.Replace("\r\n", "\n").Replace('\r', '\n');
+    private static string NormalizeLineEndings(string text) => text.Replace("\r\n", "\n").Replace('\r', '\n');
 }

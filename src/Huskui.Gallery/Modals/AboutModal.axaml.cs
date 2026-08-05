@@ -17,12 +17,10 @@ public partial class AboutModal : Modal
 
     private static string GetVersion(Assembly assembly)
     {
-        var informational = assembly
-            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-           ?.InformationalVersion;
+        var informational = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
         return informational is { Length: > 0 }
-            ? informational.Split('+')[0]
-            : assembly.GetName().Version?.ToString(3) ?? "Unknown";
+                   ? informational.Split('+')[0]
+                   : assembly.GetName().Version?.ToString(3) ?? "Unknown";
     }
 
     private void OnCloseClick(object? sender, RoutedEventArgs e) => Dismiss();

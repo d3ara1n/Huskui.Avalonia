@@ -1,4 +1,4 @@
-<controls:ControlPage
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.DiffViewsPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -56,7 +56,9 @@
                         <TextBlock
                             FontWeight="{StaticResource ControlStrongFontWeight}"
                             Text="Install into an existing Huskui app" />
-                        <husk:CodeViewer Language="bash" Code="dotnet add package Huskui.Avalonia.Code" />
+                        <husk:CodeViewer
+                            Code="dotnet add package Huskui.Avalonia.Code"
+                            Language="bash" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -170,8 +172,14 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="LeftHasDifference / RightHasDifference" />
-                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Bool: whether the left or right side has any line-level changes. Bind these to SwitchContainer to swap between identical/different banners." TextWrapping="Wrap" />
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="LeftHasDifference / RightHasDifference" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Bool: whether the left or right side has any line-level changes. Bind these to SwitchContainer to swap between identical/different banners."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -183,8 +191,14 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="LeftLineCount / RightLineCount / TotalLineCount" />
-                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Int: line count per side plus total rows. Attach a Run binding to display &quot;23 / 47 lines&quot; beneath a header." TextWrapping="Wrap" />
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="LeftLineCount / RightLineCount / TotalLineCount" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="Int: line count per side plus total rows. Attach a Run binding to display &quot;23 / 47 lines&quot; beneath a header."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -196,8 +210,14 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Lines" />
-                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ReadOnlyList of DiffLineModel: read-only output populated after SetLeftText/SetRightText. Use for programmatic inspection (e.g. jump to first change)." TextWrapping="Wrap" />
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Lines" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="ReadOnlyList of DiffLineModel: read-only output populated after SetLeftText/SetRightText. Use for programmatic inspection (e.g. jump to first change)."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -209,8 +229,14 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Markers" />
-                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ReadOnlyList of DiffMarker: aggregated change regions for the overview bar. Not typically consumed by users; exposed for custom rendering scenarios." TextWrapping="Wrap" />
+                            <TextBlock
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="Markers" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="ReadOnlyList of DiffMarker: aggregated change regions for the overview bar. Not typically consumed by users; exposed for custom rendering scenarios."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                 </Grid>

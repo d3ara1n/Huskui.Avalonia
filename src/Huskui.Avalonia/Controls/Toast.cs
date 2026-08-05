@@ -5,10 +5,8 @@ namespace Huskui.Avalonia.Controls;
 
 public class Toast : HeaderedContentControl
 {
-    public static readonly StyledProperty<bool> IsHeaderVisibleProperty = AvaloniaProperty.Register<
-        Toast,
-        bool
-    >(nameof(IsHeaderVisible), true);
+    public static readonly StyledProperty<bool> IsHeaderVisibleProperty =
+        AvaloniaProperty.Register<Toast, bool>(nameof(IsHeaderVisible), true);
 
     public bool IsHeaderVisible
     {

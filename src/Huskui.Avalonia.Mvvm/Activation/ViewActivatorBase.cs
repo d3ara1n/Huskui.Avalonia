@@ -5,18 +5,15 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Huskui.Avalonia.Mvvm.Activation;
 
-public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateManager stateManager)
-    : IViewActivator
+public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateManager stateManager) : IViewActivator
 {
     public virtual object? Activate(Type viewType, object? parameter = null)
     {
         if (!viewType.IsAssignableTo(typeof(Control)))
         {
-            throw new ArgumentOutOfRangeException(
-                nameof(viewType),
-                viewType,
-                "Parameter view must be derived from Control"
-            );
+            throw new ArgumentOutOfRangeException(nameof(viewType),
+                                                  viewType,
+                                                  "Parameter view must be derived from Control");
         }
 
         var modelType = FindViewModelType(viewType);
@@ -29,10 +26,7 @@ public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateMan
             var factory = scope.ServiceProvider.GetRequiredService<IViewContextAccessor>();
             factory.Parameter = parameter;
 
-            var viewModel = ActivatorUtilities.GetServiceOrCreateInstance(
-                scope.ServiceProvider,
-                modelType
-            );
+            var viewModel = ActivatorUtilities.GetServiceOrCreateInstance(scope.ServiceProvider, modelType);
             view.DataContext = viewModel;
             ViewModelMixin.Attach(view, scope);
             ViewStateMixin.Attach(view, stateManager);

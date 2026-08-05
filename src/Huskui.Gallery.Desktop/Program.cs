@@ -1,6 +1,4 @@
-using System;
 using Avalonia;
-using Huskui.Gallery;
 
 namespace Huskui.Gallery.Desktop;
 
@@ -14,8 +12,9 @@ internal sealed class Program
     }
 
     public static AppBuilder BuildAvaloniaApp() =>
-        App.ConfigureSharedBuilder(AppBuilder.Configure<App>())
-            .UsePlatformDetect()
-            .LogToTextWriter(Console.Out)
-            .WithDeveloperTools();
+        App
+           .ConfigureSharedBuilder(AppBuilder.Configure<App>())
+           .UsePlatformDetect()
+           .LogToTextWriter(Console.Out)
+           .WithDeveloperTools();
 }

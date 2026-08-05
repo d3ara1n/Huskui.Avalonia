@@ -1,10 +1,12 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
-    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <ControlTheme x:Key="{x:Type husk:NavigationView}" TargetType="husk:NavigationView">
+    <ControlTheme
+        x:Key="{x:Type husk:NavigationView}"
+        TargetType="husk:NavigationView">
         <Setter Property="Background" Value="{StaticResource LayerBackgroundBrush}" />
         <Setter Property="PaneClosedWidth" Value="82" />
         <Setter Property="PaneOpenWidth" Value="320" />
@@ -20,9 +22,9 @@
                         <Border.Transitions>
                             <Transitions>
                                 <DoubleTransition
+                                    Easing="CubicEaseInOut"
                                     Property="Width"
-                                    Duration="{StaticResource ControlFasterAnimationDuration}"
-                                    Easing="CubicEaseInOut" />
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
                         <Grid RowDefinitions="Auto,Auto,*,Auto">
@@ -32,21 +34,23 @@
                                 Margin="4,6,4,0"
                                 ColumnDefinitions="Auto,*,Auto">
                                 <Button
-                                    Grid.Column="0"
                                     Name="BackButton"
+                                    Grid.Column="0"
                                     Padding="8"
+                                    IsVisible="{TemplateBinding IsBackButtonVisible}"
                                     Background="Transparent"
                                     BorderThickness="0"
                                     Command="{TemplateBinding BackCommand}"
                                     CornerRadius="{StaticResource SmallCornerRadius}"
                                     Cursor="Hand"
-                                    IsVisible="{TemplateBinding IsBackButtonVisible}"
                                     Theme="{StaticResource GhostButtonTheme}">
-                                    <fi:SymbolIcon FontSize="{StaticResource MediumFontSize}" Symbol="ArrowLeft" />
+                                    <fi:SymbolIcon
+                                        FontSize="{StaticResource MediumFontSize}"
+                                        Symbol="ArrowLeft" />
                                 </Button>
                                 <ToggleButton
-                                    Grid.Column="2"
                                     Name="PaneToggleButton"
+                                    Grid.Column="2"
                                     Padding="8"
                                     Background="Transparent"
                                     BorderThickness="0"
@@ -54,7 +58,9 @@
                                     Cursor="Hand"
                                     IsChecked="{Binding IsPaneOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                     Theme="{StaticResource GhostButtonTheme}">
-                                    <fi:SymbolIcon Name="PaneIcon" FontSize="{StaticResource MediumFontSize}" />
+                                    <fi:SymbolIcon
+                                        Name="PaneIcon"
+                                        FontSize="{StaticResource MediumFontSize}" />
                                 </ToggleButton>
                             </Grid>
 
@@ -114,7 +120,9 @@
 
     </ControlTheme>
 
-    <ControlTheme x:Key="{x:Type husk:NavigationItem}" TargetType="husk:NavigationItem">
+    <ControlTheme
+        x:Key="{x:Type husk:NavigationItem}"
+        TargetType="husk:NavigationItem">
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
@@ -128,10 +136,10 @@
                     <TextBlock
                         Name="GroupLabel"
                         Margin="14,16,14,6"
+                        IsVisible="False"
                         FontSize="{StaticResource SmallFontSize}"
                         FontWeight="{StaticResource ControlStrongFontWeight}"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        IsVisible="False"
                         Text="{TemplateBinding Category}" />
 
                     <Border
@@ -148,7 +156,9 @@
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
                             </Transitions>
                         </Border.Transitions>
-                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Grid
+                            ColumnDefinitions="Auto,*"
+                            ColumnSpacing="12">
                             <ContentPresenter
                                 Name="IconPresenter"
                                 Grid.Column="0"

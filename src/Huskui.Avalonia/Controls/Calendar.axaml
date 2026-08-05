@@ -1,7 +1,7 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia">
     <Design.PreviewWith>
         <Panel
             Width="360"
@@ -40,8 +40,8 @@
                         Name="Overlay"
                         Margin="4"
                         Background="{StaticResource OverlayHalfBackgroundBrush}"
-                        Opacity="0"
-                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        CornerRadius="{StaticResource SmallCornerRadius}"
+                        Opacity="0">
                         <Border.Transitions>
                             <Transitions>
                                 <DoubleTransition
@@ -118,6 +118,7 @@
                                 <TextBox
                                     Name="PART_TextBox"
                                     Grid.Column="0"
+                                    Padding="{TemplateBinding Padding}"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -126,7 +127,6 @@
                                     CaretBrush="{StaticResource ControlForegroundBrush}"
                                     FontSize="{TemplateBinding FontSize}"
                                     Foreground="{TemplateBinding Foreground}"
-                                    Padding="{TemplateBinding Padding}"
                                     PlaceholderForeground="{TemplateBinding PlaceholderForeground}"
                                     PlaceholderText="{TemplateBinding PlaceholderText}"
                                     SelectionBrush="{StaticResource ControlAccentInteractiveBackgroundBrush}"
@@ -281,9 +281,9 @@
                         <Grid ColumnDefinitions="5*,*,*">
                             <Button
                                 Name="PART_HeaderButton"
+                                Padding="12,0,0,0"
                                 HorizontalContentAlignment="Left"
                                 Foreground="{TemplateBinding Foreground}"
-                                Padding="12,0,0,0"
                                 Theme="{StaticResource CalendarNavigationButtonTheme}" />
                             <Button
                                 Name="PART_PreviousButton"
@@ -321,8 +321,8 @@
                             Name="BackgroundLayer"
                             Grid.Row="1"
                             Margin="0,38,0,0"
-                            Background="{StaticResource TransparentBrush}"
-                            IsVisible="{Binding #PART_MonthView.IsVisible}" />
+                            IsVisible="{Binding #PART_MonthView.IsVisible}"
+                            Background="{StaticResource TransparentBrush}" />
                         <Grid
                             Name="PART_MonthView"
                             Grid.Row="1"
@@ -351,8 +351,8 @@
                             Name="PART_YearView"
                             Grid.Row="1"
                             MinHeight="{StaticResource CalendarViewMinHeight}"
-                            Background="{StaticResource TransparentBrush}"
-                            IsVisible="False">
+                            IsVisible="False"
+                            Background="{StaticResource TransparentBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />

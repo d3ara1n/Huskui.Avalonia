@@ -1,14 +1,17 @@
 # Huskui.Avalonia.Markdown
 
-A Markdown rendering extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia) that converts Markdown text into native Avalonia control trees using [Markdig](https://github.com/xoofx/markdig).
+A Markdown rendering extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia) that converts Markdown
+text into native Avalonia control trees using [Markdig](https://github.com/xoofx/markdig).
 
 ## Relationship to Huskui.Avalonia
 
 `Huskui.Avalonia.Markdown` is an **extension library** for Huskui.Avalonia — it cannot be used standalone.
 
 - **Prerequisite**: You must install `Huskui.Avalonia` and use `HuskuiTheme` in your application
-- **Auto-loading**: Once the assembly is loaded, `HuskuiTheme` automatically merges the extension's theme resources via the `[HuskuiExtension]` mechanism — no manual style includes needed
-- **Shared namespace**: Controls are mapped to `https://github.com/d3ara1n/Huskui.Avalonia`, using the same `husk:` XAML prefix as the core library
+- **Auto-loading**: Once the assembly is loaded, `HuskuiTheme` automatically merges the extension's theme resources via
+  the `[HuskuiExtension]` mechanism — no manual style includes needed
+- **Shared namespace**: Controls are mapped to `https://github.com/d3ara1n/Huskui.Avalonia`, using the same `husk:` XAML
+  prefix as the core library
 
 ## Installation
 
@@ -27,10 +30,10 @@ dotnet add package Huskui.Avalonia.Markdown
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `Markdown` | `string?` | `null` | Raw Markdown text to render |
-| `Spacing` | `double` | `4` | Spacing between block-level elements |
+| Property   | Type      | Default | Description                          |
+|------------|-----------|---------|--------------------------------------|
+| `Markdown` | `string?` | `null`  | Raw Markdown text to render          |
+| `Spacing`  | `double`  | `4`     | Spacing between block-level elements |
 
 ### XAML Example
 
@@ -65,27 +68,29 @@ viewer.Markdown = """
 
 ## Styling
 
-`MarkdownViewer` generates **bare controls with semantic CSS classes but no built-in visual styles**, with tables rendered through the fully-themed `TableView` control. The extension ships a default theme bundle that is auto-loaded by `HuskuiTheme`, but you can override or extend styles by targeting the generated class names.
+`MarkdownViewer` generates **bare controls with semantic CSS classes but no built-in visual styles**, with tables
+rendered through the fully-themed `TableView` control. The extension ships a default theme bundle that is auto-loaded by
+`HuskuiTheme`, but you can override or extend styles by targeting the generated class names.
 
 The class naming convention is `Control.Markdown.Variant`. Here are some examples:
 
-| Selector | Target |
-|----------|--------|
-| `TextBlock.Markdown.Heading1` | Level-1 heading |
-| `TextBlock.Markdown.Heading2` | Level-2 heading |
-| `TextBlock.Markdown.Paragraph` | Paragraph block |
-| `Run.Markdown.Literal.Bold` | Bold text run |
-| `Run.Markdown.Literal.Italic` | Italic text run |
-| `Run.Markdown.Literal.Deleted` | Strikethrough text run |
-| `Run.Markdown.Literal.Highlighted` | Highlighted text run (==text==) |
-| `Run.Markdown.Literal.Subscripted` | Subscript text run |
-| `Run.Markdown.Literal.Superscripted` | Superscript text run |
-| `DockPanel.Markdown.List.Item` | List item container |
-| `husk:CodeViewer.Markdown.Code` | Fenced code block |
-| `husk:InfoBar.Markdown.Quote` | Blockquote |
-| `husk:Divider.Markdown.Rule` | Horizontal rule |
-| `TableView.Markdown` | Markdown table |
-| `TableView.Markdown.Headerless` | Headerless table (grid tables without a header row) |
+| Selector                             | Target                                              |
+|--------------------------------------|-----------------------------------------------------|
+| `TextBlock.Markdown.Heading1`        | Level-1 heading                                     |
+| `TextBlock.Markdown.Heading2`        | Level-2 heading                                     |
+| `TextBlock.Markdown.Paragraph`       | Paragraph block                                     |
+| `Run.Markdown.Literal.Bold`          | Bold text run                                       |
+| `Run.Markdown.Literal.Italic`        | Italic text run                                     |
+| `Run.Markdown.Literal.Deleted`       | Strikethrough text run                              |
+| `Run.Markdown.Literal.Highlighted`   | Highlighted text run (==text==)                     |
+| `Run.Markdown.Literal.Subscripted`   | Subscript text run                                  |
+| `Run.Markdown.Literal.Superscripted` | Superscript text run                                |
+| `DockPanel.Markdown.List.Item`       | List item container                                 |
+| `husk:CodeViewer.Markdown.Code`      | Fenced code block                                   |
+| `husk:InfoBar.Markdown.Quote`        | Blockquote                                          |
+| `husk:Divider.Markdown.Rule`         | Horizontal rule                                     |
+| `TableView.Markdown`                 | Markdown table                                      |
+| `TableView.Markdown.Headerless`      | Headerless table (grid tables without a header row) |
 
 ### Custom Style Example
 
@@ -121,35 +126,35 @@ The class naming convention is `Control.Markdown.Variant`. Here are some example
 
 ### Supported
 
-| Syntax | Example | Notes |
-|--------|---------|-------|
-| Headings | `# H1` ~ `###### H6` | 6 levels, mapped to font size resources |
-| Paragraphs | plain text | Supports inline formatting |
-| **Bold** | `**bold**` | |
-| *Italic* | `*italic*` | |
-| ~~Strikethrough~~ | `~~text~~` | |
-| ++Inserted++ | `++text++` | EmphasisExtras extension |
-| ==Highlighted== | `==text==` | EmphasisExtras extension |
-| Subscript | `~text~` | EmphasisExtras extension |
-| Superscript | `^text^` | EmphasisExtras extension |
-| `Inline code` | `` `code` `` | Rendered as HighlightInline |
-| Code blocks | ` ```lang ` | Rendered as CodeViewer |
-| Unordered lists | `- item` | Nested; bullet varies by depth (●○■□) |
-| Ordered lists | `1. item` | Nested |
-| Task lists | `- [x] done` | Rendered as CheckBox |
-| Links | `[text](url)` | Rendered as HyperlinkButton |
-| Images | `![alt](url)` | Async loading via AsyncImageLoader |
-| Blockquotes | `> quote` | Rendered as InfoBar |
-| Horizontal rules | `---` | Rendered as Divider |
-| Auto-links | `<https://example.com>` | AutoLinks extension |
-| Tables | `\| a \| b \|` | Pipe & grid tables, per-column alignment, rendered via `TableView` |
+| Syntax            | Example                 | Notes                                                              |
+|-------------------|-------------------------|--------------------------------------------------------------------|
+| Headings          | `# H1` ~ `###### H6`    | 6 levels, mapped to font size resources                            |
+| Paragraphs        | plain text              | Supports inline formatting                                         |
+| **Bold**          | `**bold**`              |                                                                    |
+| *Italic*          | `*italic*`              |                                                                    |
+| ~~Strikethrough~~ | `~~text~~`              |                                                                    |
+| ++Inserted++      | `++text++`              | EmphasisExtras extension                                           |
+| ==Highlighted==   | `==text==`              | EmphasisExtras extension                                           |
+| Subscript         | `~text~`                | EmphasisExtras extension                                           |
+| Superscript       | `^text^`                | EmphasisExtras extension                                           |
+| `Inline code`     | `` `code` ``            | Rendered as HighlightInline                                        |
+| Code blocks       | ` ```lang `             | Rendered as CodeViewer                                             |
+| Unordered lists   | `- item`                | Nested; bullet varies by depth (●○■□)                              |
+| Ordered lists     | `1. item`               | Nested                                                             |
+| Task lists        | `- [x] done`            | Rendered as CheckBox                                               |
+| Links             | `[text](url)`           | Rendered as HyperlinkButton                                        |
+| Images            | `![alt](url)`           | Async loading via AsyncImageLoader                                 |
+| Blockquotes       | `> quote`               | Rendered as InfoBar                                                |
+| Horizontal rules  | `---`                   | Rendered as Divider                                                |
+| Auto-links        | `<https://example.com>` | AutoLinks extension                                                |
+| Tables            | `\| a \| b \|`          | Pipe & grid tables, per-column alignment, rendered via `TableView` |
 
 ### Not Yet Supported
 
-| Syntax | Notes |
-|--------|-------|
-| Math | No math rendering extension integrated |
-| Footnotes | Markdig footnotes extension not enabled |
+| Syntax              | Notes                                                         |
+|---------------------|---------------------------------------------------------------|
+| Math                | No math rendering extension integrated                        |
+| Footnotes           | Markdig footnotes extension not enabled                       |
 | Syntax highlighting | Code blocks use CodeViewer as plain text — no syntax coloring |
 
 ## Dependencies

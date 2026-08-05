@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -7,7 +8,6 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using System.Windows.Input;
 
 namespace Huskui.Avalonia.Controls;
 
@@ -20,16 +20,15 @@ public class NavigationView : SelectingItemsControl
         AvaloniaProperty.Register<NavigationView, IDataTemplate?>(nameof(IconTemplate));
 
     public static readonly StyledProperty<bool> IsPaneOpenProperty =
-        AvaloniaProperty.Register<NavigationView, bool>(
-            nameof(IsPaneOpen),
-            defaultValue: true,
-            defaultBindingMode: BindingMode.TwoWay);
+        AvaloniaProperty.Register<NavigationView, bool>(nameof(IsPaneOpen),
+                                                        true,
+                                                        defaultBindingMode: BindingMode.TwoWay);
 
     public static readonly StyledProperty<double> PaneOpenWidthProperty =
-        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneOpenWidth), defaultValue: 320);
+        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneOpenWidth), 320);
 
     public static readonly StyledProperty<double> PaneClosedWidthProperty =
-        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneClosedWidth), defaultValue: 82);
+        AvaloniaProperty.Register<NavigationView, double>(nameof(PaneClosedWidth), 82);
 
     public static readonly StyledProperty<object?> PaneHeaderProperty =
         AvaloniaProperty.Register<NavigationView, object?>(nameof(PaneHeader));
@@ -41,7 +40,7 @@ public class NavigationView : SelectingItemsControl
         AvaloniaProperty.Register<NavigationView, object?>(nameof(Content));
 
     public static readonly StyledProperty<bool> IsBackButtonVisibleProperty =
-        AvaloniaProperty.Register<NavigationView, bool>(nameof(IsBackButtonVisible), defaultValue: true);
+        AvaloniaProperty.Register<NavigationView, bool>(nameof(IsBackButtonVisible), true);
 
     public static readonly StyledProperty<ICommand?> BackCommandProperty =
         AvaloniaProperty.Register<NavigationView, ICommand?>(nameof(BackCommand));
@@ -116,7 +115,9 @@ public class NavigationView : SelectingItemsControl
         base.PrepareContainerForItemOverride(container, item, index);
 
         if (container is not NavigationItem nvi)
+        {
             return;
+        }
 
         // Pure-model items forward their display fields by property-name binding; the control never
         // assumes the item type. NavigationItem-as-data still works via the self-equal path.
@@ -139,7 +140,10 @@ public class NavigationView : SelectingItemsControl
         {
             var index = IndexFromContainer(container);
             if (index < 0)
+            {
                 continue;
+            }
+
             container.MarkGroupStart(IsFirstOfCategory(index));
         }
     }
@@ -165,23 +169,36 @@ public class NavigationView : SelectingItemsControl
     private bool IsFirstOfCategory(int index)
     {
         if (ContainerFromIndex(index) is not NavigationItem current)
+        {
             return false;
+        }
+
         var category = current.Category;
         if (string.IsNullOrEmpty(category))
+        {
             return false;
+        }
+
         if (index == 0)
+        {
             return true;
+        }
+
         return (ContainerFromIndex(index - 1) as NavigationItem)?.Category != category;
     }
 
     private void OnItemClicked(object? sender, RoutedEventArgs e)
     {
         if (e.Handled || e.Source is not Visual source)
+        {
             return;
+        }
 
         var item = source.GetSelfAndVisualAncestors().OfType<NavigationItem>().FirstOrDefault();
         if (item is null)
+        {
             return;
+        }
 
         var index = IndexFromContainer(item);
         if (index >= 0)
@@ -200,7 +217,9 @@ public class NavigationView : SelectingItemsControl
             var collapsed = !change.GetNewValue<bool>();
             PseudoClasses.Set(CLASS_PaneCollapsed, collapsed);
             foreach (var item in GetRealizedContainers().OfType<NavigationItem>())
+            {
                 item.IsCollapsed = collapsed;
+            }
         }
     }
 }

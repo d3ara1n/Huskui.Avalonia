@@ -6,6 +6,8 @@ namespace Huskui.Gallery.Views;
 
 public partial class TableViewPage : ControlPage
 {
+    public TableViewPage() => InitializeComponent();
+
     public IReadOnlyList<Country> Countries { get; } =
     [
         new("Japan", "Asia", "Tokyo", 125_800_000, 377_975, 4_212),
@@ -17,10 +19,8 @@ public partial class TableViewPage : ControlPage
         new("Norway", "Europe", "Oslo", 5_400_000, 385_207, 546),
         new("Argentina", "Americas", "Buenos Aires", 45_800_000, 2_780_400, 632),
         new("Vietnam", "Asia", "Hanoi", 97_500_000, 331_212, 409),
-        new("Kenya", "Africa", "Nairobi", 53_000_000, 580_367, 113),
+        new("Kenya", "Africa", "Nairobi", 53_000_000, 580_367, 113)
     ];
-
-    public TableViewPage() => InitializeComponent();
 
     private void OnClearSelectionClick(object? sender, RoutedEventArgs e) => BasicTable.SelectedIndex = -1;
 

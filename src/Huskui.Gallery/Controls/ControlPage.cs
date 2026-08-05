@@ -1,4 +1,3 @@
-using System;
 using Avalonia;
 using Huskui.Avalonia.Controls;
 
@@ -6,15 +5,11 @@ namespace Huskui.Gallery.Controls;
 
 public class ControlPage : Page
 {
-    public static readonly StyledProperty<string> TitleProperty = AvaloniaProperty.Register<
-        ControlPage,
-        string
-    >(nameof(Title));
+    public static readonly StyledProperty<string> TitleProperty =
+        AvaloniaProperty.Register<ControlPage, string>(nameof(Title));
 
-    public static readonly StyledProperty<string> SubtitleProperty = AvaloniaProperty.Register<
-        ControlPage,
-        string
-    >(nameof(Subtitle));
+    public static readonly StyledProperty<string> SubtitleProperty =
+        AvaloniaProperty.Register<ControlPage, string>(nameof(Subtitle));
 
     public string Title
     {

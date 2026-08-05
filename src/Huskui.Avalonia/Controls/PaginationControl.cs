@@ -21,33 +21,28 @@ public class PaginationControl : TemplatedControl
     private const int ELLIPSIS_PAGE_INDEX = -1;
     private const int MAX_VISIBLE_PAGE_COUNT = 7;
 
-    private ItemsControl? _itemsControl;
-    private Popup? _quickJumperPopup;
-    private NumericUpDown? _quickJumperInput;
-    private Button? _quickJumperButton;
-    private bool _updating;
-
-    public PaginationControl()
-    {
-        AddHandler(Button.ClickEvent, OnButtonClick);
-    }
-
-    static PaginationControl()
-    {
-        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<PaginationControl>(KeyboardNavigationMode.Once);
-    }
-
     public static readonly StyledProperty<int> TotalCountProperty =
         AvaloniaProperty.Register<PaginationControl, int>(nameof(TotalCount));
 
     public static readonly StyledProperty<int> PageSizeProperty =
-        AvaloniaProperty.Register<PaginationControl, int>(nameof(PageSize), defaultValue: 10);
+        AvaloniaProperty.Register<PaginationControl, int>(nameof(PageSize), 10);
 
     public static readonly StyledProperty<int> PageIndexProperty =
-        AvaloniaProperty.Register<PaginationControl, int>(nameof(PageIndex), defaultValue: 0);
+        AvaloniaProperty.Register<PaginationControl, int>(nameof(PageIndex), 0);
 
     public static readonly DirectProperty<PaginationControl, int> PageCountProperty =
         AvaloniaProperty.RegisterDirect<PaginationControl, int>(nameof(PageCount), o => o.PageCount);
+
+    private ItemsControl? _itemsControl;
+    private Button? _quickJumperButton;
+    private NumericUpDown? _quickJumperInput;
+    private Popup? _quickJumperPopup;
+    private bool _updating;
+
+    static PaginationControl() =>
+        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<PaginationControl>(KeyboardNavigationMode.Once);
+
+    public PaginationControl() => AddHandler(Button.ClickEvent, OnButtonClick);
 
     public int TotalCount
     {
@@ -73,20 +68,25 @@ public class PaginationControl : TemplatedControl
         private set => SetAndRaise(PageCountProperty, ref field, value);
     }
 
+    private IReadOnlyList<PaginationItem> PageItems =>
+        _itemsControl?.ItemsSource as IReadOnlyList<PaginationItem> ?? [];
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
 
         if (_updating)
+        {
             return;
+        }
 
         if (change.Property == TotalCountProperty || change.Property == PageSizeProperty)
         {
-            Refresh(updatePageCount: true);
+            Refresh(true);
         }
         else if (change.Property == PageIndexProperty)
         {
-            Refresh(updatePageCount: false);
+            Refresh(false);
         }
     }
 
@@ -97,10 +97,14 @@ public class PaginationControl : TemplatedControl
         ClearPageItems();
 
         if (_quickJumperInput is not null)
+        {
             _quickJumperInput.KeyDown -= OnQuickJumperInputKeyDown;
+        }
 
         if (_quickJumperButton is not null)
+        {
             _quickJumperButton.Click -= OnQuickJumperButtonClick;
+        }
 
         _itemsControl = e.NameScope.Find<ItemsControl>(PART_ItemsControl);
         _quickJumperPopup = e.NameScope.Find<Popup>(PART_QuickJumperPopup);
@@ -108,12 +112,16 @@ public class PaginationControl : TemplatedControl
         _quickJumperButton = e.NameScope.Find<Button>(PART_QuickJumperButton);
 
         if (_quickJumperInput is not null)
+        {
             _quickJumperInput.KeyDown += OnQuickJumperInputKeyDown;
+        }
 
         if (_quickJumperButton is not null)
+        {
             _quickJumperButton.Click += OnQuickJumperButtonClick;
+        }
 
-        Refresh(updatePageCount: true);
+        Refresh(true);
     }
 
     public void GoToFirst() => GoToPage(0);
@@ -129,7 +137,9 @@ public class PaginationControl : TemplatedControl
     private void OnButtonClick(object? sender, RoutedEventArgs e)
     {
         if (e.Source is not PaginationItem item)
+        {
             return;
+        }
 
         e.Handled = true;
 
@@ -161,7 +171,9 @@ public class PaginationControl : TemplatedControl
     private void OpenQuickJumper(PaginationItem placementTarget)
     {
         if (_quickJumperPopup is null || _quickJumperInput is null)
+        {
             return;
+        }
 
         _quickJumperInput.Maximum = Math.Max(1, PageCount);
 
@@ -195,7 +207,9 @@ public class PaginationControl : TemplatedControl
         try
         {
             if (updatePageCount)
+            {
                 PageCount = ComputePageCount();
+            }
 
             PageIndex = CoercePageIndex(PageIndex);
             UpdatePageItems();
@@ -210,25 +224,33 @@ public class PaginationControl : TemplatedControl
     private void UpdatePageItems()
     {
         if (_itemsControl is null)
+        {
             return;
+        }
 
         var pages = GetPageSlots();
         EnsurePageItems(pages.Length);
 
         var items = PageItems;
         for (var i = 0; i < pages.Length; i++)
+        {
             SetPageItem(items[i], pages[i]);
+        }
     }
 
     private int[] GetPageSlots()
     {
         var total = PageCount;
         if (total <= 0)
+        {
             return [];
+        }
 
         var maxVisibleCount = Math.Max(5, MAX_VISIBLE_PAGE_COUNT);
         if (total <= maxVisibleCount)
+        {
             return Enumerable.Range(0, total).ToArray();
+        }
 
         var current = CoercePageIndex(PageIndex);
         var middlePageCount = maxVisibleCount - 4;
@@ -249,35 +271,37 @@ public class PaginationControl : TemplatedControl
         var slots = new List<int>(maxVisibleCount) { 0 };
 
         if (firstMiddlePage > 1)
+        {
             slots.Add(ELLIPSIS_PAGE_INDEX);
+        }
 
         for (var page = firstMiddlePage; page <= lastMiddlePage; page++)
+        {
             slots.Add(page);
+        }
 
         if (lastMiddlePage < total - 2)
+        {
             slots.Add(ELLIPSIS_PAGE_INDEX);
+        }
 
         slots.Add(total - 1);
         return slots.ToArray();
     }
 
-    private IReadOnlyList<PaginationItem> PageItems =>
-        _itemsControl?.ItemsSource as IReadOnlyList<PaginationItem> ?? [];
-
     private void EnsurePageItems(int count)
     {
         if (_itemsControl is null || PageItems.Count == count)
+        {
             return;
+        }
 
         ClearPageItems();
 
         _itemsControl.ItemsSource = Enumerable.Range(0, count).Select(_ => new PaginationItem()).ToArray();
     }
 
-    private void ClearPageItems()
-    {
-        _itemsControl?.ItemsSource = null;
-    }
+    private void ClearPageItems() => _itemsControl?.ItemsSource = null;
 
     private void SetPageItem(PaginationItem item, int pageIndex)
     {

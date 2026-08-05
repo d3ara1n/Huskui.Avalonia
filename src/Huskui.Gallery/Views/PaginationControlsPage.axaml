@@ -1,4 +1,4 @@
-<controls:ControlPage
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.PaginationControlsPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -71,8 +71,8 @@
             <StackPanel Spacing="12">
                 <husk:PaginationControl
                     x:Name="LargePagination"
-                    TotalCount="1000"
-                    PageSize="10" />
+                    PageSize="10"
+                    TotalCount="1000" />
                 <TextBlock>
                     <Run Text="PageIndex: " />
                     <Run Text="{Binding #LargePagination.PageIndex}" />
@@ -101,8 +101,8 @@
             <StackPanel Spacing="12">
                 <husk:PaginationControl
                     x:Name="CustomPagination"
-                    TotalCount="200"
-                    PageSize="{Binding #PageSizeUpDown.Value, Mode=OneWay}" />
+                    PageSize="{Binding #PageSizeUpDown.Value, Mode=OneWay}"
+                    TotalCount="200" />
                 <TextBlock>
                     <Run Text="PageIndex: " />
                     <Run Text="{Binding #CustomPagination.PageIndex}" />
@@ -121,15 +121,15 @@
                 <StackPanel Spacing="12">
                     <ToggleSwitch
                         IsChecked="True"
-                        OnContent="Enabled"
+                        IsCheckedChanged="OnEnabledToggled"
                         OffContent="Disabled"
-                        IsCheckedChanged="OnEnabledToggled" />
+                        OnContent="Enabled" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
             <husk:PaginationControl
                 x:Name="DisabledPagination"
-                TotalCount="50"
-                PageSize="10" />
+                PageSize="10"
+                TotalCount="50" />
         </controls:ExampleContainer>
 
     </StackPanel>

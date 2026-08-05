@@ -7,9 +7,9 @@ namespace Huskui.Avalonia.Mvvm;
 
 public class StateRegistrationBuilder
 {
+    private Type? _factoryType;
     private Type? _managerType;
     private Type? _persistenceType;
-    private Type? _factoryType;
 
     public StateRegistrationBuilder WithManager(Type managerType)
     {
@@ -35,9 +35,7 @@ public class StateRegistrationBuilder
         {
             if (!_managerType.IsAssignableTo(typeof(IViewStateManager)))
             {
-                throw new InvalidOperationException(
-                    $"ManagerType should be assignable to {nameof(IViewStateManager)}"
-                );
+                throw new InvalidOperationException($"ManagerType should be assignable to {nameof(IViewStateManager)}");
             }
 
             services.AddSingleton(typeof(IViewStateManager), _managerType);
@@ -51,9 +49,8 @@ public class StateRegistrationBuilder
         {
             if (!_persistenceType.IsAssignableTo(typeof(IViewStatePersistence)))
             {
-                throw new InvalidOperationException(
-                    $"PersistenceType should be assignable to {nameof(IViewStatePersistence)}"
-                );
+                throw new
+                    InvalidOperationException($"PersistenceType should be assignable to {nameof(IViewStatePersistence)}");
             }
 
             services.AddSingleton(typeof(IViewStatePersistence), _persistenceType);
@@ -67,9 +64,8 @@ public class StateRegistrationBuilder
         {
             if (!_factoryType.IsAssignableTo(typeof(IViewStateKeyFactory)))
             {
-                throw new InvalidOperationException(
-                    $"FactoryType should be assignable to {nameof(IViewStateKeyFactory)}"
-                );
+                throw new
+                    InvalidOperationException($"FactoryType should be assignable to {nameof(IViewStateKeyFactory)}");
             }
 
             services.AddSingleton(typeof(IViewStateKeyFactory), _factoryType);

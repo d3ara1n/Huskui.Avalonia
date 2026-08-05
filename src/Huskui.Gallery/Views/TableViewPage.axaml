@@ -1,4 +1,4 @@
-<controls:ControlPage
+﻿<controls:ControlPage
     x:Class="Huskui.Gallery.Views.TableViewPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,9 +8,9 @@
     xmlns:models="clr-namespace:Huskui.Gallery.Models"
     xmlns:views="clr-namespace:Huskui.Gallery.Views"
     Title="TableView"
-    Subtitle="A read-only tabular control that presents items in configurable columns"
     d:DesignHeight="800"
     d:DesignWidth="900"
+    Subtitle="A read-only tabular control that presents items in configurable columns"
     mc:Ignorable="d">
 
     <StackPanel Spacing="32">
@@ -37,17 +37,17 @@
                 ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
                 <TableView.Columns>
                     <TableViewColumn
-                        Header="Name"
                         Width="*"
-                        Binding="{Binding Name}" />
+                        Binding="{Binding Name}"
+                        Header="Name" />
                     <TableViewColumn
-                        Header="Region"
                         Width="*"
-                        Binding="{Binding Region}" />
+                        Binding="{Binding Region}"
+                        Header="Region" />
                     <TableViewColumn
-                        Header="Capital"
                         Width="160"
-                        Binding="{Binding Capital}" />
+                        Binding="{Binding Capital}"
+                        Header="Capital" />
                 </TableView.Columns>
             </TableView>
         </controls:ExampleContainer>
@@ -62,24 +62,24 @@
                 ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
                 <TableView.Columns>
                     <TableViewColumn
-                        Header="Name"
                         Width="*"
-                        Binding="{Binding Name}" />
+                        Binding="{Binding Name}"
+                        Header="Name" />
                     <TableViewColumn
-                        Header="Population"
                         Width="140"
+                        HorizontalContentAlignment="Right"
                         Binding="{Binding Population, StringFormat=N0}"
-                        HorizontalContentAlignment="Right" />
+                        Header="Population" />
                     <TableViewColumn
-                        Header="Area (km²)"
                         Width="140"
+                        HorizontalContentAlignment="Right"
                         Binding="{Binding Area, StringFormat=N0}"
-                        HorizontalContentAlignment="Right" />
+                        Header="Area (km²)" />
                     <TableViewColumn
-                        Header="GDP ($B)"
                         Width="140"
+                        HorizontalContentAlignment="Right"
                         Binding="{Binding Gdp, StringFormat=N1}"
-                        HorizontalContentAlignment="Right" />
+                        Header="GDP ($B)" />
                 </TableView.Columns>
             </TableView>
         </controls:ExampleContainer>
@@ -94,23 +94,23 @@
                 ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
                 <TableView.Columns>
                     <TableViewColumn
-                        Header="Name"
                         Width="*"
-                        Binding="{Binding Name}" />
+                        Binding="{Binding Name}"
+                        Header="Name" />
                     <TableViewColumn
-                        Header="Region"
                         Width="*"
-                        Binding="{Binding Region}" />
+                        Binding="{Binding Region}"
+                        Header="Region" />
                     <TableViewColumn
-                        Header="Status"
                         Width="160"
-                        HorizontalContentAlignment="Center">
+                        HorizontalContentAlignment="Center"
+                        Header="Status">
                         <TableViewColumn.CellTemplate>
                             <DataTemplate x:DataType="models:Country">
                                 <Border
                                     Padding="10,2"
-                                    CornerRadius="{StaticResource FullCornerRadius}"
-                                    Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}">
+                                    Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}"
+                                    CornerRadius="{StaticResource FullCornerRadius}">
                                     <TextBlock
                                         FontSize="{StaticResource SmallFontSize}"
                                         FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -140,22 +140,22 @@
             <TableView
                 x:Name="ResizableTable"
                 Height="220"
-                CanUserResizeColumns="True"
                 x:DataType="models:Country"
+                CanUserResizeColumns="True"
                 ItemsSource="{Binding $parent[views:TableViewPage].Countries}">
                 <TableView.Columns>
                     <TableViewColumn
-                        Header="Name"
                         Width="*"
-                        Binding="{Binding Name}" />
+                        Binding="{Binding Name}"
+                        Header="Name" />
                     <TableViewColumn
-                        Header="Region"
                         Width="*"
-                        Binding="{Binding Region}" />
+                        Binding="{Binding Region}"
+                        Header="Region" />
                     <TableViewColumn
-                        Header="Capital"
                         Width="160"
-                        Binding="{Binding Capital}" />
+                        Binding="{Binding Capital}"
+                        Header="Capital" />
                 </TableView.Columns>
             </TableView>
         </controls:ExampleContainer>

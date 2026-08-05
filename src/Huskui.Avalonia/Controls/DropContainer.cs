@@ -9,20 +9,14 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":dragover")]
 public class DropContainer : ContentControl
 {
-    public static readonly StyledProperty<object?> OverlayProperty = AvaloniaProperty.Register<
-        DropContainer,
-        object?
-    >(nameof(Overlay));
+    public static readonly StyledProperty<object?> OverlayProperty =
+        AvaloniaProperty.Register<DropContainer, object?>(nameof(Overlay));
 
-    public static readonly RoutedEvent<DragOverEventArgs> DragOverEvent = RoutedEvent.Register<
-        DropContainer,
-        DragOverEventArgs
-    >(nameof(DragOver), RoutingStrategies.Direct);
+    public static readonly RoutedEvent<DragOverEventArgs> DragOverEvent =
+        RoutedEvent.Register<DropContainer, DragOverEventArgs>(nameof(DragOver), RoutingStrategies.Direct);
 
-    public static readonly RoutedEvent<DropEventArgs> DropEvent = RoutedEvent.Register<
-        DropContainer,
-        DropEventArgs
-    >(nameof(Drop), RoutingStrategies.Direct);
+    public static readonly RoutedEvent<DropEventArgs> DropEvent =
+        RoutedEvent.Register<DropContainer, DropEventArgs>(nameof(Drop), RoutingStrategies.Direct);
 
     public DropContainer() => DragDrop.SetAllowDrop(this, true);
 
@@ -95,8 +89,7 @@ public class DropContainer : ContentControl
 
     #region Nested type: DragOverEventArgs
 
-    public class DragOverEventArgs(object source, IDataTransfer data)
-        : RoutedEventArgs(DragOverEvent, source)
+    public class DragOverEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DragOverEvent, source)
     {
         public IDataTransfer Data => data;
         public bool IsValid { get; set; }
@@ -106,8 +99,7 @@ public class DropContainer : ContentControl
 
     #region Nested type: DropEventArgs
 
-    public class DropEventArgs(object source, IDataTransfer data)
-        : RoutedEventArgs(DropEvent, source)
+    public class DropEventArgs(object source, IDataTransfer data) : RoutedEventArgs(DropEvent, source)
     {
         public IDataTransfer Data => data;
     }

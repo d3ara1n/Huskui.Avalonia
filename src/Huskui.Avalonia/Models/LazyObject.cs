@@ -5,26 +5,17 @@ namespace Huskui.Avalonia.Models;
 public class LazyObject(
     Func<CancellationToken, Task<object?>> factory,
     Action<object?>? callback = null,
-    CancellationToken token = default
-) : AvaloniaObject
+    CancellationToken token = default) : AvaloniaObject
 {
     public static readonly DirectProperty<LazyObject, object?> ValueProperty =
-        AvaloniaProperty.RegisterDirect<LazyObject, object?>(
-            nameof(Value),
-            o => o.Value,
-            (o, v) => o.Value = v
-        );
+        AvaloniaProperty.RegisterDirect<LazyObject, object?>(nameof(Value), o => o.Value, (o, v) => o.Value = v);
 
     public static readonly DirectProperty<LazyObject, bool> IsInProgressProperty =
-        AvaloniaProperty.RegisterDirect<LazyObject, bool>(
-            nameof(IsInProgress),
-            o => o.IsInProgress,
-            (o, v) => o.IsInProgress = v
-        );
+        AvaloniaProperty.RegisterDirect<LazyObject, bool>(nameof(IsInProgress),
+                                                          o => o.IsInProgress,
+                                                          (o, v) => o.IsInProgress = v);
 
-    private readonly CancellationTokenSource _cts = CancellationTokenSource.CreateLinkedTokenSource(
-        token
-    );
+    private readonly CancellationTokenSource _cts = CancellationTokenSource.CreateLinkedTokenSource(token);
 
     public object? Value
     {

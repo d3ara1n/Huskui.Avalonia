@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Windows.Input;
@@ -27,26 +26,18 @@ public class TagBox : TemplatedControl
         AvaloniaProperty.Register<TagBox, IEnumerable<string>?>(nameof(ItemsSource));
 
     public static readonly DirectProperty<TagBox, IList<string>> SelectedItemsProperty =
-        AvaloniaProperty.RegisterDirect<TagBox, IList<string>>(
-            nameof(SelectedItems),
-            o => o.SelectedItems,
-            (o, v) => o.SelectedItems = v
-        );
+        AvaloniaProperty.RegisterDirect<TagBox, IList<string>>(nameof(SelectedItems),
+                                                               o => o.SelectedItems,
+                                                               (o, v) => o.SelectedItems = v);
 
-    public static readonly StyledProperty<string?> TextProperty = AvaloniaProperty.Register<
-        TagBox,
-        string?
-    >(nameof(Text), string.Empty);
+    public static readonly StyledProperty<string?> TextProperty =
+        AvaloniaProperty.Register<TagBox, string?>(nameof(Text), string.Empty);
 
-    public static readonly StyledProperty<bool> IsDropDownOpenProperty = AvaloniaProperty.Register<
-        TagBox,
-        bool
-    >(nameof(IsDropDownOpen));
+    public static readonly StyledProperty<bool> IsDropDownOpenProperty =
+        AvaloniaProperty.Register<TagBox, bool>(nameof(IsDropDownOpen));
 
-    public static readonly StyledProperty<bool> AllowCustomTagsProperty = AvaloniaProperty.Register<
-        TagBox,
-        bool
-    >(nameof(AllowCustomTags));
+    public static readonly StyledProperty<bool> AllowCustomTagsProperty =
+        AvaloniaProperty.Register<TagBox, bool>(nameof(AllowCustomTags));
 
     public static readonly StyledProperty<int> MinimumPrefixLengthProperty =
         AvaloniaProperty.Register<TagBox, int>(nameof(MinimumPrefixLength));
@@ -64,25 +55,19 @@ public class TagBox : TemplatedControl
 
     private readonly ObservableCollection<string> _displayedSelectedItems = [];
     private readonly ObservableCollection<TagBoxSuggestion> _suggestions = [];
-    private readonly ICommand _removeTagCommand;
     private INotifyCollectionChanged? _itemsSourceNotifier;
+    private IList<string> _selectedItems = new AvaloniaList<string>();
+
+    private INotifyCollectionChanged? _selectedItemsNotifier;
     private ListBox? _suggestionList;
     private TextBox? _textBox;
 
-    private INotifyCollectionChanged? _selectedItemsNotifier;
-    private IList<string> _selectedItems = new AvaloniaList<string>();
-
-    static TagBox()
-    {
-        FocusableProperty.OverrideDefaultValue<TagBox>(true);
-    }
+    static TagBox() => FocusableProperty.OverrideDefaultValue<TagBox>(true);
 
     public TagBox()
     {
-        _removeTagCommand = new DelegatingCommand(
-            parameter => RemoveSelectedTag(parameter as string),
-            parameter => parameter is string
-        );
+        RemoveTagCommand = new DelegatingCommand(parameter => RemoveSelectedTag(parameter as string),
+                                                 parameter => parameter is string);
 
         AttachToSelectedItems(_selectedItems);
         SyncSelectedItemsView();
@@ -157,7 +142,7 @@ public class TagBox : TemplatedControl
         set => SetValue(MaxDropDownHeightProperty, value);
     }
 
-    public ICommand RemoveTagCommand => _removeTagCommand;
+    public ICommand RemoveTagCommand { get; }
 
     public IReadOnlyList<string> DisplayedSelectedItems => _displayedSelectedItems;
 
@@ -173,11 +158,7 @@ public class TagBox : TemplatedControl
         if (_suggestionList != null)
         {
             _suggestionList.ItemsSource = _suggestions;
-            _suggestionList.AddHandler(
-                PointerReleasedEvent,
-                OnSuggestionPointerReleased,
-                RoutingStrategies.Tunnel
-            );
+            _suggestionList.AddHandler(PointerReleasedEvent, OnSuggestionPointerReleased, RoutingStrategies.Tunnel);
         }
 
         if (_textBox != null)
@@ -213,10 +194,7 @@ public class TagBox : TemplatedControl
             return;
         }
 
-        if (
-            change.Property == AllowCustomTagsProperty
-            || change.Property == MinimumPrefixLengthProperty
-        )
+        if (change.Property == AllowCustomTagsProperty || change.Property == MinimumPrefixLengthProperty)
         {
             RefreshSuggestions();
             return;
@@ -307,7 +285,7 @@ public class TagBox : TemplatedControl
         }
 
         var nextIndex = _suggestionList.SelectedIndex;
-        nextIndex = nextIndex < 0 ? (offset > 0 ? 0 : _suggestions.Count - 1) : nextIndex + offset;
+        nextIndex = nextIndex < 0 ? offset > 0 ? 0 : _suggestions.Count - 1 : nextIndex + offset;
         nextIndex = Math.Clamp(nextIndex, 0, _suggestions.Count - 1);
 
         _suggestionList.SelectedIndex = nextIndex;
@@ -463,12 +441,10 @@ public class TagBox : TemplatedControl
         UpdateSuggestionSelection();
     }
 
-    private void UpdateSuggestionSelection()
-    {
-        _suggestionList?.SelectedIndex = _suggestions.Count > 0 ? 0 : -1;
-    }
+    private void UpdateSuggestionSelection() => _suggestionList?.SelectedIndex = _suggestions.Count > 0 ? 0 : -1;
 
-    private static bool MatchesFilter(string item, string input) => string.IsNullOrEmpty(input) || item.Contains(input, StringComparison.OrdinalIgnoreCase);
+    private static bool MatchesFilter(string item, string input) =>
+        string.IsNullOrEmpty(input) || item.Contains(input, StringComparison.OrdinalIgnoreCase);
 
     private static string NormalizeInput(string? value) => value?.Trim() ?? string.Empty;
 
@@ -494,8 +470,7 @@ public class TagBox : TemplatedControl
         return -1;
     }
 
-    private static bool ContainsTag(IEnumerable<string> source, string value) =>
-        IndexOfTag(source, value) >= 0;
+    private static bool ContainsTag(IEnumerable<string> source, string value) => IndexOfTag(source, value) >= 0;
 
     private static HashSet<string> ToTagSet(IEnumerable<string> source)
     {
@@ -580,15 +555,10 @@ public class TagBox : TemplatedControl
         _selectedItemsNotifier = null;
     }
 
-    private void OnItemsSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-    {
+    private void OnItemsSourceCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) =>
         RefreshSuggestions();
-    }
 
-    private void OnSelectedItemsCollectionChanged(
-        object? sender,
-        NotifyCollectionChangedEventArgs e
-    )
+    private void OnSelectedItemsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
         SyncSelectedItemsView();
         RefreshSuggestions();
@@ -620,10 +590,7 @@ public sealed class TagBoxSuggestion(string text, bool isCustom)
     public bool IsCustom { get; } = isCustom;
 }
 
-internal sealed class DelegatingCommand(
-    Action<object?> execute,
-    Predicate<object?>? canExecute = null
-) : ICommand
+internal sealed class DelegatingCommand(Action<object?> execute, Predicate<object?>? canExecute = null) : ICommand
 {
     public event EventHandler? CanExecuteChanged;
 

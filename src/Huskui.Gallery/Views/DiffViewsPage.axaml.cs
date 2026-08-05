@@ -1,5 +1,4 @@
 using System.Text;
-
 using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;
@@ -7,69 +6,69 @@ namespace Huskui.Gallery.Views;
 public partial class DiffViewsPage : ControlPage
 {
     private const string LeftSnippet = """
-        {
-          "name": "example-project",
-          "version": "1.0.0",
-          "description": "A sample project for demonstration",
-          "dependencies": {
-            "react": "^18.2.0",
-            "lodash": "^4.17.21"
-          },
-          "scripts": {
-            "start": "node index.js",
-            "build": "webpack --mode production"
-          },
-          "license": "MIT"
-        }
-        """;
+                                       {
+                                         "name": "example-project",
+                                         "version": "1.0.0",
+                                         "description": "A sample project for demonstration",
+                                         "dependencies": {
+                                           "react": "^18.2.0",
+                                           "lodash": "^4.17.21"
+                                         },
+                                         "scripts": {
+                                           "start": "node index.js",
+                                           "build": "webpack --mode production"
+                                         },
+                                         "license": "MIT"
+                                       }
+                                       """;
 
     private const string RightSnippet = """
-        {
-          "name": "example-project",
-          "version": "2.0.0",
-          "description": "An updated sample project with new features",
-          "dependencies": {
-            "react": "^19.0.0",
-            "lodash": "^4.17.21",
-            "axios": "^1.6.0"
-          },
-          "scripts": {
-            "start": "node app.js",
-            "build": "webpack --mode production",
-            "test": "jest"
-          },
-          "license": "Apache-2.0"
-        }
-        """;
+                                        {
+                                          "name": "example-project",
+                                          "version": "2.0.0",
+                                          "description": "An updated sample project with new features",
+                                          "dependencies": {
+                                            "react": "^19.0.0",
+                                            "lodash": "^4.17.21",
+                                            "axios": "^1.6.0"
+                                          },
+                                          "scripts": {
+                                            "start": "node app.js",
+                                            "build": "webpack --mode production",
+                                            "test": "jest"
+                                          },
+                                          "license": "Apache-2.0"
+                                        }
+                                        """;
 
     private const string MonoLeftSnippet = """
-        Left
-        Unchanged
-        Unchanged
-        Removed only
-        Removed only
-        Unchanged
-        Unchanged
-        Modified
-        Modified
-        Unchanged
-        Unchanged
-        Unchanged
-        """;
+                                           Left
+                                           Unchanged
+                                           Unchanged
+                                           Removed only
+                                           Removed only
+                                           Unchanged
+                                           Unchanged
+                                           Modified
+                                           Modified
+                                           Unchanged
+                                           Unchanged
+                                           Unchanged
+                                           """;
 
     private const string MonoRightSnippet = """
-        Right
-        Unchanged
-        Unchanged
-        Unchanged
-        Modified
-        Modified
-        Added only
-        Added only
-        Added only
-        Unchanged
-        Unchanged
-        """;
+                                            Right
+                                            Unchanged
+                                            Unchanged
+                                            Unchanged
+                                            Modified
+                                            Modified
+                                            Added only
+                                            Added only
+                                            Added only
+                                            Unchanged
+                                            Unchanged
+                                            """;
 
     public DiffViewsPage()
     {
@@ -108,8 +107,8 @@ public partial class DiffViewsPage : ControlPage
 
         for (var section = 1; section <= 72; section++)
         {
-            AppendMarkdownSection(left, section, isDraft: false);
-            AppendMarkdownSection(right, section, isDraft: true);
+            AppendMarkdownSection(left, section, false);
+            AppendMarkdownSection(right, section, true);
         }
 
         left.AppendLine("## Appendix");
@@ -131,11 +130,17 @@ public partial class DiffViewsPage : ControlPage
         builder.AppendLine($"The service group `{ServiceName(section)}` owns this area and reviews changes during the weekly release window.");
 
         if (isDraft && section % 4 == 0)
+        {
             builder.AppendLine("The draft expands this section with rollout guardrails for staged production deployments.");
+        }
         else if (!isDraft && section % 6 == 0)
+        {
             builder.AppendLine("The published version keeps the shorter operational summary for the current release train.");
+        }
         else
+        {
             builder.AppendLine("The existing behavior remains compatible with the current package and configuration defaults.");
+        }
 
         builder.AppendLine();
         builder.AppendLine("### Checklist");
@@ -143,9 +148,14 @@ public partial class DiffViewsPage : ControlPage
         builder.AppendLine("- Verify dashboards after the first deployment wave.");
 
         if (isDraft && section % 5 == 0)
+        {
             builder.AppendLine("- Capture support handoff notes for regional operators.");
+        }
+
         if (!isDraft && section % 7 == 0)
+        {
             builder.AppendLine("- Keep the compatibility flag enabled for partner tenants.");
+        }
 
         builder.AppendLine();
         builder.AppendLine("### Example");
@@ -166,7 +176,7 @@ public partial class DiffViewsPage : ControlPage
             4 => "Import Pipeline",
             5 => "Export Pipeline",
             6 => "Support Workflow",
-            _ => "Migration Notes",
+            _ => "Migration Notes"
         };
 
     private static string ServiceName(int section) => $"widget-{section % 9 + 1}";

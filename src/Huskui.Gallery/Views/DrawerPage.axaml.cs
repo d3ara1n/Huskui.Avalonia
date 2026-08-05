@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Huskui.Avalonia.Controls;
 using Huskui.Gallery.Controls;
 
@@ -23,9 +24,9 @@ public partial class DrawerPage : ControlPage
                 Content = new TextBlock
                 {
                     Text = "This is the content of the drawer.",
-                    VerticalAlignment = global::Avalonia.Layout.VerticalAlignment.Center,
-                    HorizontalAlignment = global::Avalonia.Layout.HorizontalAlignment.Center,
-                },
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center
+                }
             };
             appSurface.PopDrawer(drawer);
         }

@@ -1,4 +1,3 @@
-using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -17,16 +16,14 @@ public class ZoomMinimap : Control
     public static readonly StyledProperty<Rect> ViewportRectProperty =
         AvaloniaProperty.Register<ZoomMinimap, Rect>(nameof(ViewportRect));
 
-    private IBrush? _trackBrush;
+    private bool _isDragging;
+    private ThemeVariant? _theme;
     private IBrush? _thumbBrush;
     private IPen? _thumbPen;
-    private ThemeVariant? _theme;
-    private bool _isDragging;
 
-    static ZoomMinimap()
-    {
-        AffectsRender<ZoomMinimap>(ContentSizeProperty, ViewportRectProperty);
-    }
+    private IBrush? _trackBrush;
+
+    static ZoomMinimap() => AffectsRender<ZoomMinimap>(ContentSizeProperty, ViewportRectProperty);
 
     public Size ContentSize
     {
@@ -61,12 +58,10 @@ public class ZoomMinimap : Control
         context.DrawRectangle(_trackBrush, null, new RoundedRect(content, 2));
 
         var vp = ViewportRect;
-        var thumb = new Rect(
-            content.X + vp.X * scale,
-            content.Y + vp.Y * scale,
-            Math.Max(MIN_THUMB, vp.Width * scale),
-            Math.Max(MIN_THUMB, vp.Height * scale)
-        );
+        var thumb = new Rect(content.X + vp.X * scale,
+                             content.Y + vp.Y * scale,
+                             Math.Max(MIN_THUMB, vp.Width * scale),
+                             Math.Max(MIN_THUMB, vp.Height * scale));
         thumb = thumb.Intersect(content);
         if (thumb is { Width: > 0, Height: > 0 })
         {
@@ -145,23 +140,14 @@ public class ZoomMinimap : Control
         }
 
         _theme = Application.Current?.ActualThemeVariant;
-        _trackBrush = TryBrush(
-            "ControlTranslucentHalfBackgroundBrush",
-            new SolidColorBrush(Color.FromArgb(40, 0x80, 0x80, 0x80))
-        );
-        _thumbBrush = TryBrush(
-            "ControlAccentTranslucentHalfBackgroundBrush",
-            new SolidColorBrush(Color.FromArgb(80, 0x00, 0x90, 0xFF))
-        );
-        var border = TryBrush(
-            "ControlAccentBorderBrush",
-            new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x90, 0xFF))
-        );
-        _thumbPen = new Pen(border, 1.0);
+        _trackBrush = TryBrush("ControlTranslucentHalfBackgroundBrush",
+                               new SolidColorBrush(Color.FromArgb(40, 0x80, 0x80, 0x80)));
+        _thumbBrush = TryBrush("ControlAccentTranslucentHalfBackgroundBrush",
+                               new SolidColorBrush(Color.FromArgb(80, 0x00, 0x90, 0xFF)));
+        var border = TryBrush("ControlAccentBorderBrush", new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x90, 0xFF)));
+        _thumbPen = new Pen(border);
     }
 
     private static IBrush TryBrush(string key, IBrush fallback) =>
-        Application.Current?.TryGetResource(key, null, out var res) == true && res is IBrush b
-            ? b
-            : fallback;
+        Application.Current?.TryGetResource(key, null, out var res) == true && res is IBrush b ? b : fallback;
 }

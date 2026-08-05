@@ -6,21 +6,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" />
-        <PackageReference Include="CommunityToolkit.Mvvm" />
-        <PackageReference Include="FluentIcons.Avalonia" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
-        <PackageReference Include="DynamicData" />
+        <PackageReference Include="Avalonia"/>
+        <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="FluentIcons.Avalonia"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection"/>
+        <PackageReference Include="DynamicData"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
-        <ProjectReference Include="..\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj" />
-        <ProjectReference Include="..\Huskui.Avalonia.Mvvm\Huskui.Avalonia.Mvvm.csproj" />
-        <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj" />
+        <ProjectReference Include="..\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj"/>
+        <ProjectReference Include="..\Huskui.Avalonia.Markdown\Huskui.Avalonia.Markdown.csproj"/>
+        <ProjectReference Include="..\Huskui.Avalonia.Mvvm\Huskui.Avalonia.Mvvm.csproj"/>
+        <ProjectReference Include="..\Huskui.Avalonia\Huskui.Avalonia.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
 </Project>

@@ -11,13 +11,11 @@ public record ThemeVariantItem(string DisplayName, string Description, ThemeVari
 {
     public static readonly ThemeVariantItem[] All =
     [
-        new(
-            "Follow System",
+        new("Follow System",
             "Automatically switch between light and dark based on system settings",
-            ThemeVariant.Default
-        ),
+            ThemeVariant.Default),
         new("Light Theme", "Light color scheme with bright backgrounds", ThemeVariant.Light),
-        new("Dark Theme", "Dark color scheme with dark backgrounds", ThemeVariant.Dark),
+        new("Dark Theme", "Dark color scheme with dark backgrounds", ThemeVariant.Dark)
     ];
 }
 
@@ -36,7 +34,7 @@ public record AccentColorItem(string DisplayName, string Description, AccentColo
         new("Purple", "Rich purple accent color", AccentColor.Purple),
         new("Red", "Bold red accent color", AccentColor.Red),
         new("Teal", "Calm teal accent color", AccentColor.Teal),
-        new("Yellow", "Bright yellow accent color", AccentColor.Yellow),
+        new("Yellow", "Bright yellow accent color", AccentColor.Yellow)
     ];
 }
 
@@ -49,40 +47,20 @@ public record CornerStyleItem(string DisplayName, string Description, CornerStyl
     [
         new("Large", "Extra radius for enthusiast", CornerStyle.Large),
         new("Normal", "Rounded corners with smooth curves", CornerStyle.Normal),
-        new("None", "Sharp corners with no rounding", CornerStyle.None),
+        new("None", "Sharp corners with no rounding", CornerStyle.None)
     ];
 }
 
 /// <summary>
 ///     User-friendly background material item
 /// </summary>
-public record BackgroundMaterialItem(
-    string DisplayName,
-    string Description,
-    BackgroundMaterial Material
-)
+public record BackgroundMaterialItem(string DisplayName, string Description, BackgroundMaterial Material)
 {
     public static readonly BackgroundMaterialItem[] All =
     [
-        new(
-            "Solid",
-            "Standard opaque background with no transparency effects",
-            BackgroundMaterial.None
-        ),
-        new(
-            "Mica",
-            "Modern translucent material with subtle texture (Windows 11+)",
-            BackgroundMaterial.Mica
-        ),
-        new(
-            "Acrylic Blur",
-            "Blurred translucent background with depth effect",
-            BackgroundMaterial.AcrylicBlur
-        ),
-        new(
-            "Transparent",
-            "Fully transparent background showing desktop behind",
-            BackgroundMaterial.Transparent
-        ),
+        new("Solid", "Standard opaque background with no transparency effects", BackgroundMaterial.None),
+        new("Mica", "Modern translucent material with subtle texture (Windows 11+)", BackgroundMaterial.Mica),
+        new("Acrylic Blur", "Blurred translucent background with depth effect", BackgroundMaterial.AcrylicBlur),
+        new("Transparent", "Fully transparent background showing desktop behind", BackgroundMaterial.Transparent)
     ];
 }

@@ -9,20 +9,14 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":dragover", ":drop")]
 public class DropZone : ContentControl
 {
-    public static readonly RoutedEvent<DragOverEventArgs> DragOverEvent = RoutedEvent.Register<
-        DropZone,
-        DragOverEventArgs
-    >(nameof(DragOver), RoutingStrategies.Direct);
+    public static readonly RoutedEvent<DragOverEventArgs> DragOverEvent =
+        RoutedEvent.Register<DropZone, DragOverEventArgs>(nameof(DragOver), RoutingStrategies.Direct);
 
-    public static readonly RoutedEvent<DropEventArgs> DropEvent = RoutedEvent.Register<
-        DropZone,
-        DropEventArgs
-    >(nameof(Drop), RoutingStrategies.Direct);
+    public static readonly RoutedEvent<DropEventArgs> DropEvent =
+        RoutedEvent.Register<DropZone, DropEventArgs>(nameof(Drop), RoutingStrategies.Direct);
 
-    public static readonly StyledProperty<object?> ModelProperty = AvaloniaProperty.Register<
-        DropZone,
-        object?
-    >(nameof(Model));
+    public static readonly StyledProperty<object?> ModelProperty =
+        AvaloniaProperty.Register<DropZone, object?>(nameof(Model));
 
     public DropZone() => DragDrop.SetAllowDrop(this, true);
 

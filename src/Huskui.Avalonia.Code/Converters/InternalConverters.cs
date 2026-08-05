@@ -25,6 +25,49 @@ internal static class InternalConverters
     private static IBrush? _diffSecondaryForegroundBrush;
     private static ThemeVariant? _diffTheme;
 
+    public static IValueConverter DiffLineKindToBackground { get; } = new RelayConverter((v, _) =>
+    {
+        EnsureDiffBrushes();
+        return v is DiffLineKind kind
+                   ? kind switch
+                   {
+                       DiffLineKind.Added => _diffAddedBrush,
+                       DiffLineKind.Removed => _diffRemovedBrush,
+                       DiffLineKind.Empty => _diffEmptyBrush,
+                       DiffLineKind.Modified => _diffModifiedBrush,
+                       _ => Brushes.Transparent
+                   }
+                   : AvaloniaProperty.UnsetValue;
+    });
+
+    public static IValueConverter DiffLineKindToIndicatorBrush { get; } = new RelayConverter((v, _) =>
+    {
+        EnsureDiffBrushes();
+        return v is DiffLineKind kind
+                   ? kind switch
+                   {
+                       DiffLineKind.Added => _diffAddedIndicatorBrush,
+                       DiffLineKind.Removed => _diffRemovedIndicatorBrush,
+                       DiffLineKind.Modified => _diffModifiedIndicatorBrush,
+                       _ => Brushes.Transparent
+                   }
+                   : AvaloniaProperty.UnsetValue;
+    });
+
+    public static IValueConverter DiffLineKindToForeground { get; } = new RelayConverter((v, _) =>
+    {
+        EnsureDiffBrushes();
+        return v is DiffLineKind kind
+                   ? kind switch
+                   {
+                       DiffLineKind.Added => _diffAddedForegroundBrush,
+                       DiffLineKind.Removed => _diffRemovedForegroundBrush,
+                       DiffLineKind.Modified => _diffModifiedForegroundBrush,
+                       _ => _diffSecondaryForegroundBrush
+                   }
+                   : AvaloniaProperty.UnsetValue;
+    });
+
     private static void EnsureDiffBrushes()
     {
         if (_diffTheme == Application.Current?.ActualThemeVariant)
@@ -81,47 +124,4 @@ internal static class InternalConverters
                 ? res11 as IBrush
                 : Brushes.Gray;
     }
-
-    public static IValueConverter DiffLineKindToBackground { get; } = new RelayConverter((v, _) =>
-    {
-        EnsureDiffBrushes();
-        return v is DiffLineKind kind
-                   ? kind switch
-                   {
-                       DiffLineKind.Added => _diffAddedBrush,
-                       DiffLineKind.Removed => _diffRemovedBrush,
-                       DiffLineKind.Empty => _diffEmptyBrush,
-                       DiffLineKind.Modified => _diffModifiedBrush,
-                       _ => Brushes.Transparent,
-                   }
-                   : AvaloniaProperty.UnsetValue;
-    });
-
-    public static IValueConverter DiffLineKindToIndicatorBrush { get; } = new RelayConverter((v, _) =>
-    {
-        EnsureDiffBrushes();
-        return v is DiffLineKind kind
-                   ? kind switch
-                   {
-                       DiffLineKind.Added => _diffAddedIndicatorBrush,
-                       DiffLineKind.Removed => _diffRemovedIndicatorBrush,
-                       DiffLineKind.Modified => _diffModifiedIndicatorBrush,
-                       _ => Brushes.Transparent,
-                   }
-                   : AvaloniaProperty.UnsetValue;
-    });
-
-    public static IValueConverter DiffLineKindToForeground { get; } = new RelayConverter((v, _) =>
-    {
-        EnsureDiffBrushes();
-        return v is DiffLineKind kind
-                   ? kind switch
-                   {
-                       DiffLineKind.Added => _diffAddedForegroundBrush,
-                       DiffLineKind.Removed => _diffRemovedForegroundBrush,
-                       DiffLineKind.Modified => _diffModifiedForegroundBrush,
-                       _ => _diffSecondaryForegroundBrush,
-                   }
-                   : AvaloniaProperty.UnsetValue;
-    });
 }

@@ -30,6 +30,8 @@ public class PaginationItem : Button
         base.OnPropertyChanged(change);
 
         if (change.Property == IsCurrentProperty)
+        {
             PseudoClasses.Set(":current", change.GetNewValue<bool>());
+        }
     }
 }

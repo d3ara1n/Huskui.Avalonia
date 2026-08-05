@@ -13,6 +13,5 @@ internal sealed class MarkdownTableRow
 
     public MarkdownTableRow(Control?[] cells) => _cells = cells;
 
-    public Control? this[int index] =>
-        index >= 0 && index < _cells.Length ? _cells[index] : null;
+    public Control? this[int index] => index >= 0 && index < _cells.Length ? _cells[index] : null;
 }

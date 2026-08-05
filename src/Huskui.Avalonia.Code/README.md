@@ -1,14 +1,17 @@
 # Huskui.Avalonia.Code
 
-A syntax-highlighted code viewer extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia), powered by TextMate grammars with a lightweight inline renderer.
+A syntax-highlighted code viewer extension for [Huskui.Avalonia](https://github.com/d3ara1n/Huskui.Avalonia), powered by
+TextMate grammars with a lightweight inline renderer.
 
 ## Relationship to Huskui.Avalonia
 
 `Huskui.Avalonia.Code` is an **extension library** for Huskui.Avalonia — it cannot be used standalone.
 
 - **Prerequisite**: You must install `Huskui.Avalonia` and use `HuskuiTheme` in your application
-- **Auto-loading**: Once the assembly is loaded, `HuskuiTheme` automatically merges the extension's theme resources via the `[HuskuiExtension]` mechanism — no manual style includes needed
-- **Shared namespace**: Controls are mapped to `https://github.com/d3ara1n/Huskui.Avalonia`, using the same `husk:` XAML prefix as the core library
+- **Auto-loading**: Once the assembly is loaded, `HuskuiTheme` automatically merges the extension's theme resources via
+  the `[HuskuiExtension]` mechanism — no manual style includes needed
+- **Shared namespace**: Controls are mapped to `https://github.com/d3ara1n/Huskui.Avalonia`, using the same `husk:` XAML
+  prefix as the core library
 
 ## Installation
 
@@ -27,13 +30,13 @@ dotnet add package Huskui.Avalonia.Code
 
 ### Properties
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `Code` | `string` | `""` | Source code text to display |
-| `Language` | `string` | `"xml"` | Language identifier for syntax highlighting |
-| `IsLineNumbersVisible` | `bool` | `true` | Show line numbers column |
-| `IsCopyButtonVisible` | `bool` | `true` | Show copy button in the header bar |
-| `Inlines` | `InlineCollection?` | `null` | Custom inline collection; overrides `Code`-based rendering when set |
+| Property               | Type                | Default | Description                                                         |
+|------------------------|---------------------|---------|---------------------------------------------------------------------|
+| `Code`                 | `string`            | `""`    | Source code text to display                                         |
+| `Language`             | `string`            | `"xml"` | Language identifier for syntax highlighting                         |
+| `IsLineNumbersVisible` | `bool`              | `true`  | Show line numbers column                                            |
+| `IsCopyButtonVisible`  | `bool`              | `true`  | Show copy button in the header bar                                  |
+| `Inlines`              | `InlineCollection?` | `null`  | Custom inline collection; overrides `Code`-based rendering when set |
 
 ### XAML Example
 
@@ -81,40 +84,42 @@ var viewer = new CodeViewer
 
 ## Language Support
 
-`CodeViewer` uses TextMate grammars through `TextMateSharp.Grammars`. Languages are resolved through built-in aliases and file-extension-style mappings, then fall back to plain text if no grammar is available.
+`CodeViewer` uses TextMate grammars through `TextMateSharp.Grammars`. Languages are resolved through built-in aliases
+and file-extension-style mappings, then fall back to plain text if no grammar is available.
 
 ### Supported Languages
 
-| Language | Identifiers |
-|----------|------------|
-| Bash | `bash`, `sh`, `shell`, `zsh` |
-| C# | `csharp`, `cs` |
-| C++ | `cpp` |
-| C | `c` |
-| CSS | `css` |
-| F# | `fsharp`, `fs` |
-| HTML | `html` |
-| Java | `java` |
-| JavaScript | `javascript`, `js` |
-| JSON | `json` |
-| Markdown | `markdown`, `md` |
-| Less | `less` |
-| Lua | `lua` |
-| PHP | `php` |
-| PowerShell | `powershell`, `ps1` |
-| Python | `python`, `py` |
-| Rust | `rust`, `rs` |
-| SCSS | `scss` |
-| SQL | `sql` |
-| TypeScript | `typescript`, `ts`, `tsx` |
-| XML | `xml`, `xaml`, `axaml` |
-| YAML | `yaml`, `yml` |
-| Visual Basic | `visualbasic`, `vb` |
-| ASP.NET | `aspx` |
-| CoffeeScript | `coffeescript` |
-| Ruby | `ruby` |
+| Language     | Identifiers                  |
+|--------------|------------------------------|
+| Bash         | `bash`, `sh`, `shell`, `zsh` |
+| C#           | `csharp`, `cs`               |
+| C++          | `cpp`                        |
+| C            | `c`                          |
+| CSS          | `css`                        |
+| F#           | `fsharp`, `fs`               |
+| HTML         | `html`                       |
+| Java         | `java`                       |
+| JavaScript   | `javascript`, `js`           |
+| JSON         | `json`                       |
+| Markdown     | `markdown`, `md`             |
+| Less         | `less`                       |
+| Lua          | `lua`                        |
+| PHP          | `php`                        |
+| PowerShell   | `powershell`, `ps1`          |
+| Python       | `python`, `py`               |
+| Rust         | `rust`, `rs`                 |
+| SCSS         | `scss`                       |
+| SQL          | `sql`                        |
+| TypeScript   | `typescript`, `ts`, `tsx`    |
+| XML          | `xml`, `xaml`, `axaml`       |
+| YAML         | `yaml`, `yml`                |
+| Visual Basic | `visualbasic`, `vb`          |
+| ASP.NET      | `aspx`                       |
+| CoffeeScript | `coffeescript`               |
+| Ruby         | `ruby`                       |
 
-> **Note**: The full list of supported languages depends on the bundled TextMate grammars. If a language is not recognized, the code is rendered as plain text without syntax highlighting.
+> **Note**: The full list of supported languages depends on the bundled TextMate grammars. If a language is not
+> recognized, the code is rendered as plain text without syntax highlighting.
 
 ## Features
 

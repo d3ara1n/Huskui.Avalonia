@@ -9,30 +9,21 @@ namespace Huskui.Avalonia.Controls;
 
 public class StepControl : SelectingItemsControl
 {
-    private static readonly FuncTemplate<Panel?> DefaultPanel = new(() =>
-        new StackPanel { Orientation = Orientation.Horizontal }
-    );
+    private static readonly FuncTemplate<Panel?> DefaultPanel =
+        new(() => new StackPanel { Orientation = Orientation.Horizontal });
 
     static StepControl()
     {
         ItemsPanelProperty.OverrideDefaultValue<StepControl>(DefaultPanel);
         SelectionModeProperty.OverrideDefaultValue<StepControl>(SelectionMode.Single);
-        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<StepControl>(
-            KeyboardNavigationMode.Once
-        );
+        KeyboardNavigation.TabNavigationProperty.OverrideDefaultValue<StepControl>(KeyboardNavigationMode.Once);
     }
 
-    protected override Control CreateContainerForItemOverride(
-        object? item,
-        int index,
-        object? recycleKey
-    ) => new StepItem();
+    protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
+        new StepItem();
 
-    protected override bool NeedsContainerOverride(
-        object? item,
-        int index,
-        out object? recycleKey
-    ) => NeedsContainer<StepItem>(item, out recycleKey);
+    protected override bool NeedsContainerOverride(object? item, int index, out object? recycleKey) =>
+        NeedsContainer<StepItem>(item, out recycleKey);
 
     public void NextStep() => SelectedIndex++;
 
@@ -72,11 +63,7 @@ public class StepControl : SelectingItemsControl
     //     }
     // }
 
-    protected override void PrepareContainerForItemOverride(
-        Control container,
-        object? item,
-        int index
-    )
+    protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         base.PrepareContainerForItemOverride(container, item, index);
 

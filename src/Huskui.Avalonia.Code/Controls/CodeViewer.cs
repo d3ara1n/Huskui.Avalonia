@@ -18,15 +18,11 @@ public class CodeViewer : TemplatedControl
     public const string PART_CodeText = nameof(PART_CodeText);
     public const string PART_LineNumbers = nameof(PART_LineNumbers);
 
-    public static readonly StyledProperty<string> CodeProperty = AvaloniaProperty.Register<
-        CodeViewer,
-        string
-    >(nameof(Code), string.Empty);
+    public static readonly StyledProperty<string> CodeProperty =
+        AvaloniaProperty.Register<CodeViewer, string>(nameof(Code), string.Empty);
 
-    public static readonly StyledProperty<string> LanguageProperty = AvaloniaProperty.Register<
-        CodeViewer,
-        string
-    >(nameof(Language), "xml");
+    public static readonly StyledProperty<string> LanguageProperty =
+        AvaloniaProperty.Register<CodeViewer, string>(nameof(Language), "xml");
 
     public static readonly StyledProperty<bool> IsLineNumbersVisibleProperty =
         AvaloniaProperty.Register<CodeViewer, bool>(nameof(IsLineNumbersVisible), true);
@@ -39,6 +35,12 @@ public class CodeViewer : TemplatedControl
 
     private TextBlock? _codeTextBlock;
     private TextBlock? _lineNumbersTextBlock;
+
+    public CodeViewer()
+    {
+        CopyCodeCommand = new InternalAsyncCommand(CopyCode);
+        ActualThemeVariantChanged += SyncContentProxy;
+    }
 
     public string Code
     {
@@ -66,12 +68,6 @@ public class CodeViewer : TemplatedControl
 
     public ICommand CopyCodeCommand { get; }
 
-    public CodeViewer()
-    {
-        CopyCodeCommand = new InternalAsyncCommand(CopyCode);
-        ActualThemeVariantChanged += SyncContentProxy;
-    }
-
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -86,11 +82,9 @@ public class CodeViewer : TemplatedControl
     {
         base.OnPropertyChanged(change);
 
-        if (
-            change.Property == CodeProperty
-            || change.Property == LanguageProperty
-            || change.Property == IsLineNumbersVisibleProperty
-        )
+        if (change.Property == CodeProperty
+         || change.Property == LanguageProperty
+         || change.Property == IsLineNumbersVisibleProperty)
         {
             SyncContent();
         }
@@ -103,7 +97,9 @@ public class CodeViewer : TemplatedControl
         {
             var task = TopLevel.GetTopLevel(this)?.Clipboard?.SetTextAsync(text);
             if (task != null)
+            {
                 await task;
+            }
         }
     }
 
@@ -112,7 +108,9 @@ public class CodeViewer : TemplatedControl
     private void SyncContent()
     {
         if (_codeTextBlock is null || _lineNumbersTextBlock is null)
+        {
             return;
+        }
 
         var text = Code;
 
@@ -130,10 +128,9 @@ public class CodeViewer : TemplatedControl
             return;
         }
 
-        var theme =
-            ActualThemeVariant == ThemeVariant.Dark
-                ? CodeViewerTextMateThemes.Dark
-                : CodeViewerTextMateThemes.Light;
+        var theme = ActualThemeVariant == ThemeVariant.Dark
+                        ? CodeViewerTextMateThemes.Dark
+                        : CodeViewerTextMateThemes.Light;
 
         var inlines = InlineFormatter.FormatInlines(text, scopeName, theme);
         if (inlines is { Count: > 0 })
@@ -150,7 +147,9 @@ public class CodeViewer : TemplatedControl
     private static string BuildLineNumbers(string text)
     {
         if (string.IsNullOrEmpty(text))
+        {
             return string.Empty;
+        }
 
         var normalized = NormalizeLineEndings(text);
         var lineCount = 1;
@@ -158,14 +157,18 @@ public class CodeViewer : TemplatedControl
         foreach (var ch in normalized)
         {
             if (ch == '\n')
+            {
                 lineCount++;
+            }
         }
 
         var builder = new StringBuilder();
         for (var i = 1; i <= lineCount; i++)
         {
             if (i > 1)
+            {
                 builder.AppendLine();
+            }
 
             builder.Append(i);
         }
@@ -173,6 +176,5 @@ public class CodeViewer : TemplatedControl
         return builder.ToString();
     }
 
-    private static string NormalizeLineEndings(string text) =>
-        text.Replace("\r\n", "\n").Replace('\r', '\n');
+    private static string NormalizeLineEndings(string text) => text.Replace("\r\n", "\n").Replace('\r', '\n');
 }

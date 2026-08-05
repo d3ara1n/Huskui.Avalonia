@@ -9,7 +9,8 @@ This package currently provides four mechanisms that work together:
 - activation parameter injection (`IViewContext`)
 - view state attach/persist/restore (`IStatefulViewModel<T>`)
 
-The goal is to keep ViewModels UI-agnostic while still giving Views a predictable lifecycle and a simple way to restore page-level state.
+The goal is to keep ViewModels UI-agnostic while still giving Views a predictable lifecycle and a simple way to restore
+page-level state.
 
 ## Install
 
@@ -22,9 +23,11 @@ The goal is to keep ViewModels UI-agnostic while still giving Views a predictabl
 The package is split into independent layers:
 
 1. `ViewModelMixin`
-   Binds `Control.Loaded`, `Control.Unloaded`, and `DataContextChanged` to `IViewModel.InitializeAsync` / `DeinitializeAsync`.
+   Binds `Control.Loaded`, `Control.Unloaded`, and `DataContextChanged` to `IViewModel.InitializeAsync` /
+   `DeinitializeAsync`.
 2. `ViewActivatorBase`
-   Creates the view, resolves the ViewModel from DI, injects navigation parameters through `IViewContext`, then attaches the lifecycle/state mixins.
+   Creates the view, resolves the ViewModel from DI, injects navigation parameters through `IViewContext`, then attaches
+   the lifecycle/state mixins.
 3. `ViewStateMixin` + `IViewStateManager`
    Detects `IStatefulViewModel<T>`, assigns `ViewState`, and releases it when the view detaches.
 4. `IViewStateStore` + `IViewStatePersistence`
@@ -109,17 +112,22 @@ When attached, the mixin does the following:
 
 ### Lifecycle notes
 
-- `InitializeAsync` receives a token that is cancelled when the control unloads or when the `DataContext` switches away from the current ViewModel.
+- `InitializeAsync` receives a token that is cancelled when the control unloads or when the `DataContext` switches away
+  from the current ViewModel.
 - `DeinitializeAsync` is called best-effort. Exceptions are swallowed by the mixin.
-- The mixin serializes transitions with an internal gate, so overlapping load/unload/data-context events do not run lifecycle methods concurrently.
+- The mixin serializes transitions with an internal gate, so overlapping load/unload/data-context events do not run
+  lifecycle methods concurrently.
 - `Design.IsDesignMode` short-circuits initialization.
 - `Attach` is idempotent for the same control.
 
 ### Important usage notes
 
-- Treat `InitializeAsync` as re-entrant across the lifetime of the same ViewModel instance. A control can be loaded, unloaded, then loaded again.
-- Respect the cancellation token in long-running work. If initialization ignores cancellation, stale results can still complete after navigation.
-- Do not assume `:finished` means the page is still current. It only means the latest initialization finished without cancellation or exception.
+- Treat `InitializeAsync` as re-entrant across the lifetime of the same ViewModel instance. A control can be loaded,
+  unloaded, then loaded again.
+- Respect the cancellation token in long-running work. If initialization ignores cancellation, stale results can still
+  complete after navigation.
+- Do not assume `:finished` means the page is still current. It only means the latest initialization finished without
+  cancellation or exception.
 
 ## 2. View Activation
 
@@ -230,9 +238,11 @@ frame.PageActivator = activator.Activate;
 - `ViewActivatorBase` only supports views derived from `Avalonia.Controls.Control`.
 - `FindViewModelType` is application-defined. Convention-based mapping is common, but not required.
 - The base `Activate` implementation attaches both `ViewModelMixin` and `ViewStateMixin` automatically.
-- If you manually create views instead of using `IViewActivator`, you must manually attach `ViewModelMixin` and, if needed, `ViewStateMixin`.
+- If you manually create views instead of using `IViewActivator`, you must manually attach `ViewModelMixin` and, if
+  needed, `ViewStateMixin`.
 - If you need different attach behavior, override `Activate` instead of using the base implementation as-is.
-- `ViewActivatorBase` creates a temporary DI scope during activation. `IViewContext` is designed for this flow. Be careful with additional scoped services whose lifetime must outlive activation.
+- `ViewActivatorBase` creates a temporary DI scope during activation. `IViewContext` is designed for this flow. Be
+  careful with additional scoped services whose lifetime must outlive activation.
 
 ## 3. Passing Navigation Parameters
 
@@ -284,7 +294,8 @@ public sealed class ErrorViewModel(IViewContext context) : ViewModelBase
 - `IViewContext<T>` is ideal when the page always expects one parameter type.
 - `GetRequiredParameter<T>()` throws if the parameter is missing or of the wrong type.
 - `Parameter == null` also means `HasParameter == false`.
-- The parameter is only supplied through activation. If you instantiate the ViewModel manually, DI will not magically invent a context value.
+- The parameter is only supplied through activation. If you instantiate the ViewModel manually, DI will not magically
+  invent a context value.
 
 ## 4. View State
 
@@ -360,7 +371,8 @@ services.AddViewState(builder =>
 
 By default, the key factory uses the ViewModel type as the state identity.
 
-That means all instances of the same ViewModel type resolve to the same state key unless you provide an additional partition key.
+That means all instances of the same ViewModel type resolve to the same state key unless you provide an additional
+partition key.
 
 Use `IViewStateKeyProvider` when the same ViewModel type can represent multiple logical pages:
 
@@ -426,28 +438,38 @@ Applications that use state persistence should flush before shutdown:
 serviceProvider.GetRequiredService<IViewStateStore>().Flush();
 ```
 
-This is especially important when a view is still attached at application exit, because its state may never reach the final `Release` call.
+This is especially important when a view is still attached at application exit, because its state may never reach the
+final `Release` call.
 
 ### Very important note for custom persistence
 
 `IViewStateStore.Flush()` exists to drain the default store's in-memory cache.
 
-The default store keeps attached states in memory and normally calls `IViewStatePersistence.Save(...)` only when the last attached owner releases a state key.
+The default store keeps attached states in memory and normally calls `IViewStatePersistence.Save(...)` only when the
+last attached owner releases a state key.
 
-If the application shuts down before some attached views unload, those states may never reach the final `Release(...)` call.
+If the application shuts down before some attached views unload, those states may never reach the final `Release(...)`
+call.
 
-Calling `IViewStateStore.Flush()` forces the store to push every still-cached state into `IViewStatePersistence.Save(...)` and then clears the store cache.
+Calling `IViewStateStore.Flush()` forces the store to push every still-cached state into
+`IViewStatePersistence.Save(...)` and then clears the store cache.
 
-So the main reason to call it is not "flush the persistence layer", but "make sure the store does not lose still-attached state during shutdown".
+So the main reason to call it is not "flush the persistence layer", but "make sure the store does not lose
+still-attached state during shutdown".
 
-If your custom `IViewStatePersistence` also has its own buffering or delayed-write mechanism, that is a separate concern. In that case, you may still need to call your persistence layer's own flush/commit API, but that behavior is outside the contract of `IViewStateStore.Flush()`.
+If your custom `IViewStatePersistence` also has its own buffering or delayed-write mechanism, that is a separate
+concern. In that case, you may still need to call your persistence layer's own flush/commit API, but that behavior is
+outside the contract of `IViewStateStore.Flush()`.
 
 ### State notes and pitfalls
 
-- The default store creates a new state instance with `Activator.CreateInstance(stateType)` when `Load(...)` returns `null`. Your state type should therefore be instantiable, typically with a public parameterless constructor.
+- The default store creates a new state instance with `Activator.CreateInstance(stateType)` when `Load(...)` returns
+  `null`. Your state type should therefore be instantiable, typically with a public parameterless constructor.
 - `ViewState` is assigned by reflection through the `IStatefulViewModel<T>` interface. Keep the property writable.
-- `NullStatePersistence` means restore/save is effectively disabled. You still get an in-memory state object during attachment, but nothing is persisted across releases.
-- Put only serializable and restore-worthy UI data into `ViewState`. Do not store services, controls, disposable resources, or large graphs tied to live runtime state.
+- `NullStatePersistence` means restore/save is effectively disabled. You still get an in-memory state object during
+  attachment, but nothing is persisted across releases.
+- Put only serializable and restore-worthy UI data into `ViewState`. Do not store services, controls, disposable
+  resources, or large graphs tied to live runtime state.
 
 ## 5. End-to-End Example
 
@@ -491,14 +513,15 @@ serviceProvider.GetRequiredService<IViewStateStore>().Flush();
 
 ## 6. Migration From The Old `IPageModel` Pattern
 
-The package replaces the older pattern where lifecycle was owned by `Huskui.Avalonia.Controls.Page` and ViewModels implemented `IPageModel` directly.
+The package replaces the older pattern where lifecycle was owned by `Huskui.Avalonia.Controls.Page` and ViewModels
+implemented `IPageModel` directly.
 
-| Old | New |
-| --- | --- |
-| `IPageModel` in UI package | `IViewModel` in MVVM package |
-| mutable `PageToken` property | `CancellationToken` parameter |
-| lifecycle hardcoded in `Page` | lifecycle attachable to any `Control` |
-| parameter passing by ad-hoc manual wiring | `IViewContext` |
-| no built-in page state restore model | `IStatefulViewModel<T>` + state store |
+| Old                                       | New                                   |
+|-------------------------------------------|---------------------------------------|
+| `IPageModel` in UI package                | `IViewModel` in MVVM package          |
+| mutable `PageToken` property              | `CancellationToken` parameter         |
+| lifecycle hardcoded in `Page`             | lifecycle attachable to any `Control` |
+| parameter passing by ad-hoc manual wiring | `IViewContext`                        |
+| no built-in page state restore model      | `IStatefulViewModel<T>` + state store |
 
 The new approach is more composable, testable, and reusable across different Huskui controls.

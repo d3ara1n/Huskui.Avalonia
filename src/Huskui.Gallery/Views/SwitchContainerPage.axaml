@@ -37,8 +37,7 @@
                 </StackPanel>
             </controls:ExampleContainer.Controls>
 
-            <husk:SwitchContainer
-                Value="{Binding #DocumentStatePicker.SelectedIndex}">
+            <husk:SwitchContainer Value="{Binding #DocumentStatePicker.SelectedIndex}">
                 <husk:SwitchCase Value="0">
                     <husk:Card Padding="20">
                         <StackPanel Spacing="12">
@@ -205,7 +204,9 @@
                 <StackPanel
                     Grid.Column="0"
                     Spacing="8">
-                    <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Without TargetType" />
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Without TargetType" />
                     <husk:SwitchContainer Value="2">
                         <husk:SwitchCase Value="02">
                             <husk:Card Padding="16">
@@ -244,7 +245,9 @@
                 <StackPanel
                     Grid.Column="2"
                     Spacing="8">
-                    <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="With TargetType=&quot;x:Int32&quot;" />
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="With TargetType=&quot;x:Int32&quot;" />
                     <husk:SwitchContainer
                         TargetType="x:Int32"
                         Value="2">

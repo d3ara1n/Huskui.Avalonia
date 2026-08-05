@@ -2,7 +2,8 @@
 
 <div align="center">
 
-A modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed for beautiful cross-platform desktop applications.
+A modern, elegant UI component library for [Avalonia UI](https://avaloniaui.net/), designed for beautiful cross-platform
+desktop applications.
 
 Inspired by [ParkUI](https://park-ui.com/) and built with the [Radix Colors](https://www.radix-ui.com/colors) palette.
 
@@ -58,14 +59,16 @@ Huskui.Avalonia includes the following components:
 
 Huskui.Avalonia offers optional extension libraries that extend the core functionality:
 
-| Package | Description |
-|---------|-------------|
-| [Huskui.Avalonia.Code](src/Huskui.Avalonia.Code/README.md) | Syntax-highlighted code viewer powered by TextMate grammars |
-| [Huskui.Avalonia.Markdown](src/Huskui.Avalonia.Markdown/README.md) | Markdown-to-native-Avalonia rendering powered by Markdig |
-| [Huskui.Avalonia.Mvvm](src/Huskui.Avalonia.Mvvm/README.md) | MVVM lifecycle helpers — decouple your ViewModels from UI controls |
+| Package                                                            | Description                                                        |
+|--------------------------------------------------------------------|--------------------------------------------------------------------|
+| [Huskui.Avalonia.Code](src/Huskui.Avalonia.Code/README.md)         | Syntax-highlighted code viewer powered by TextMate grammars        |
+| [Huskui.Avalonia.Markdown](src/Huskui.Avalonia.Markdown/README.md) | Markdown-to-native-Avalonia rendering powered by Markdig           |
+| [Huskui.Avalonia.Mvvm](src/Huskui.Avalonia.Mvvm/README.md)         | MVVM lifecycle helpers — decouple your ViewModels from UI controls |
 
 > [!WARNING]
-> If you were using `IPageModel` and `Page.Model` for ViewModel lifecycle management, this API has been **removed** in 1.0.0. Please refer to the [Huskui.Avalonia.Mvvm README](src/Huskui.Avalonia.Mvvm/README.md) for the new `IViewModel` + `ViewModelAttachableMixin` approach.
+> If you were using `IPageModel` and `Page.Model` for ViewModel lifecycle management, this API has been **removed** in
+1.0.0. Please refer to the [Huskui.Avalonia.Mvvm README](src/Huskui.Avalonia.Mvvm/README.md) for the new `IViewModel` +
+`ViewModelAttachableMixin` approach.
 
 ## Gallery
 
@@ -97,14 +100,16 @@ If you need help understanding or using specific controls, AI-assisted developme
 1. Download or clone the source code.
 2. Use one of the following approaches:
 
-   - Ask Claude:
+    - Ask Claude:
 
-     ```text
-     Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
-     ```
+      ```text
+      Study this repository and explain the difference between Sidebar and Drawer controls, and how to use them.
+      ```
 
 > [!TIP]
-> If you are a Z.AI Coding Plan user, use the [zread.ai](https://zread.ai/d3ara1n/Huskui.Avalonia) official [MCP](https://docs.z.ai/devpack/mcp/zread-mcp-server) to inspect the repository, read source files, and ask targeted questions about component usage and implementation details.
+> If you are a Z.AI Coding Plan user, use the [zread.ai](https://zread.ai/d3ara1n/Huskui.Avalonia)
+official [MCP](https://docs.z.ai/devpack/mcp/zread-mcp-server) to inspect the repository, read source files, and ask
+targeted questions about component usage and implementation details.
 
 Helpful prompt ideas:
 

@@ -12,10 +12,8 @@ public sealed class BadgeAdorner : ContentControl
 {
     public const string PART_Badge = nameof(PART_Badge);
 
-    public static readonly StyledProperty<BadgePlacement> PlacementProperty = AvaloniaProperty.Register<
-        BadgeAdorner,
-        BadgePlacement
-    >(nameof(Placement), BadgePlacement.TopRight);
+    public static readonly StyledProperty<BadgePlacement> PlacementProperty =
+        AvaloniaProperty.Register<BadgeAdorner, BadgePlacement>(nameof(Placement), BadgePlacement.TopRight);
 
     private Control? _badge;
 
@@ -58,9 +56,7 @@ public sealed class BadgeAdorner : ContentControl
         var horizontal = Placement is BadgePlacement.TopRight or BadgePlacement.BottomRight ? 1 : -1;
         var vertical = Placement is BadgePlacement.BottomLeft or BadgePlacement.BottomRight ? 1 : -1;
 
-        _badge.RenderTransform = new TranslateTransform(
-            horizontal * _badge.Bounds.Width / 2,
-            vertical * _badge.Bounds.Height / 2
-        );
+        _badge.RenderTransform = new TranslateTransform(horizontal * _badge.Bounds.Width / 2,
+                                                        vertical * _badge.Bounds.Height / 2);
     }
 }
