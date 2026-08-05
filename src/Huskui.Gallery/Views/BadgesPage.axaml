@@ -14,24 +14,47 @@
     <StackPanel Spacing="32">
         <controls:ExampleContainer
             Title="Badge Content"
-            Description="Attach lightweight status content to any control without wrapping the target."
+            Description="Attach lightweight status content to any control without wrapping the target — text buttons, icon buttons, and cards alike."
             XamlCode="&lt;Button&#10;    Content=&quot;Messages&quot;&#10;    husk:BadgeService.Content=&quot;12&quot; /&gt;">
             <StackPanel
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
-                Spacing="24">
+                Spacing="24"
+                VerticalAlignment="Center">
                 <Button
+                    VerticalAlignment="Center"
                     husk:BadgeService.Content="12"
                     Content="Messages" />
                 <Button
+                    VerticalAlignment="Center"
+                    husk:BadgeService.Content="3"
+                    Theme="{StaticResource GhostButtonTheme}"
+                    ToolTip.Tip="Inbox">
+                    <fi:SymbolIcon Symbol="Mail" />
+                </Button>
+                <Button
+                    VerticalAlignment="Center"
                     husk:BadgeService.Content="NEW"
                     Content="Updates"
                     Theme="{StaticResource OutlineButtonTheme}" />
-                <Button husk:BadgeService.Content="3">
-                    <husk:IconLabel
-                        Icon="Mail"
-                        Text="Inbox" />
-                </Button>
+                <husk:Card
+                    VerticalAlignment="Center"
+                    Width="132"
+                    Height="80"
+                    husk:BadgeService.Classes="Primary"
+                    husk:BadgeService.Content="Pro">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="4">
+                        <fi:SymbolIcon
+                            HorizontalAlignment="Center"
+                            Symbol="Star" />
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="Featured" />
+                    </StackPanel>
+                </husk:Card>
             </StackPanel>
         </controls:ExampleContainer>
 
@@ -42,35 +65,74 @@
             <StackPanel
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
-                Spacing="24">
+                Spacing="24"
+                VerticalAlignment="Center">
                 <Button
+                    VerticalAlignment="Center"
                     husk:BadgeService.Classes="Dot"
                     Content="Notifications" />
                 <Button
+                    VerticalAlignment="Center"
                     husk:BadgeService.Classes="Dot"
-                    Theme="{StaticResource GhostButtonTheme}">
+                    Theme="{StaticResource GhostButtonTheme}"
+                    ToolTip.Tip="Settings">
                     <fi:SymbolIcon Symbol="Settings" />
                 </Button>
+                <husk:Card
+                    VerticalAlignment="Center"
+                    Width="160"
+                    Height="80"
+                    husk:BadgeService.Classes="Dot Success">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="4">
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Online" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="All systems operational" />
+                    </StackPanel>
+                </husk:Card>
             </StackPanel>
         </controls:ExampleContainer>
-
 
         <controls:ExampleContainer
             Title="Visibility Gate"
             Description="Keep badge content intact and use IsVisible to explicitly hide or show the generated badge."
             XamlCode="&lt;Button&#10;    Content=&quot;Messages&quot;&#10;    husk:BadgeService.Content=&quot;0&quot;&#10;    husk:BadgeService.IsVisible=&quot;False&quot; /&gt;">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="Controls" />
+                    <ToggleSwitch
+                        Content="Show Badge"
+                        IsChecked="{Binding (husk:BadgeService.IsVisible), ElementName=LiveBadgeDemo}" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="The switch writes the attached property directly — the generated badge hides or reappears without recreating content."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
             <StackPanel
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
-                Spacing="24">
+                Spacing="24"
+                VerticalAlignment="Center">
+                <Button
+                    x:Name="LiveBadgeDemo"
+                    husk:BadgeService.Content="8"
+                    Content="Live" />
                 <Button
                     husk:BadgeService.Content="0"
                     husk:BadgeService.IsVisible="False"
                     Content="Hidden" />
-                <Button
-                    husk:BadgeService.Content="8"
-                    husk:BadgeService.IsVisible="True"
-                    Content="Visible" />
                 <Button
                     husk:BadgeService.Classes="Dot Success"
                     husk:BadgeService.IsVisible="False"
@@ -104,6 +166,7 @@
                     Content="Danger" />
             </StackPanel>
         </controls:ExampleContainer>
+
         <controls:ExampleContainer
             Title="Placement"
             Description="BadgePlacement keeps the public API focused on the four useful badge corners."
@@ -161,6 +224,56 @@
                         <TextBlock Text="@" />
                     </husk:BadgeService.Content>
                 </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Layer Hierarchy"
+            Description="Badges attach to the nearest layer scope. Page badges are covered by dialogs and modals; a badge inside an overlay renders within the overlay's own layer, above the smoke mask."
+            CSharpCode="var appSurface = AppSurface.GetAppSurface(this);&#10;appSurface.PopDialog(new Dialog { ... });">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Spacing="20">
+                <StackPanel
+                    Orientation="Horizontal"
+                    Spacing="16"
+                    VerticalAlignment="Center">
+                    <Button
+                        husk:BadgeService.Content="12"
+                        Content="Messages" />
+                    <Button
+                        husk:BadgeService.Classes="Dot Danger"
+                        Theme="{StaticResource GhostButtonTheme}"
+                        ToolTip.Tip="Unread activity">
+                        <fi:SymbolIcon Symbol="Mail" />
+                    </Button>
+                    <Button
+                        husk:BadgeService.Content="NEW"
+                        Content="Updates"
+                        Theme="{StaticResource OutlineButtonTheme}" />
+                    <Button
+                        husk:BadgeService.Classes="Dot Success"
+                        Content="Notifications" />
+                </StackPanel>
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="12">
+                    <Button
+                        Classes="Primary"
+                        Click="OnOpenDialogClick"
+                        Content="Open Dialog" />
+                    <Button
+                        Classes="Primary"
+                        Click="OnOpenModalClick"
+                        Content="Open Modal" />
+                </StackPanel>
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    FontSize="12"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="Open either overlay — the badges above are covered by the smoke mask, while the badge inside the overlay stays visible and sharp."
+                    TextWrapping="Wrap" />
             </StackPanel>
         </controls:ExampleContainer>
     </StackPanel>
