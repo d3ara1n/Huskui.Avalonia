@@ -1,23 +1,23 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Design.PreviewWith>
         <Border Padding="20">
             <TableView
-                Width="440"
-                Height="220">
+                Height="220"
+                Width="440">
                 <TableView.Columns>
                     <TableViewColumn
-                        Width="*"
-                        Header="Name" />
+                        Header="Name"
+                        Width="*" />
                     <TableViewColumn
-                        Width="*"
-                        Header="Region" />
+                        Header="Region"
+                        Width="*" />
                     <TableViewColumn
+                        Header="Population"
                         Width="120"
-                        HorizontalContentAlignment="Right"
-                        Header="Population" />
+                        HorizontalContentAlignment="Right" />
                 </TableView.Columns>
             </TableView>
         </Border>
@@ -36,21 +36,21 @@
                     <DockPanel Name="ContentPanel">
                         <Border
                             Name="HeaderStrip"
-                            DockPanel.Dock="Top"
                             Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                             BorderBrush="{StaticResource ControlBorderBrush}"
-                            BorderThickness="0,0,0,1">
+                            BorderThickness="0,0,0,1"
+                            DockPanel.Dock="Top">
                             <TableViewColumnHeadersPresenter />
                         </Border>
                         <ScrollContentPresenter
                             Name="PART_ContentPresenter"
-                            Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
-                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                            Padding="{TemplateBinding Padding}"
                             HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
-                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}"
+                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                            HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
                             VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
-                            VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}">
+                            ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
                             <ScrollContentPresenter.GestureRecognizers>
                                 <ScrollGestureRecognizer
                                     CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
@@ -61,13 +61,13 @@
                     </DockPanel>
                     <ScrollBar
                         Name="PART_HorizontalScrollBar"
-                        Grid.Row="1"
                         Grid.Column="0"
+                        Grid.Row="1"
                         Orientation="Horizontal" />
                     <ScrollBar
                         Name="PART_VerticalScrollBar"
-                        Grid.Row="0"
                         Grid.Column="1"
+                        Grid.Row="0"
                         Orientation="Vertical" />
                     <Panel
                         Name="PART_ScrollBarsSeparator"
@@ -151,11 +151,11 @@
             <ControlTemplate>
                 <Border
                     Name="Border"
-                    Padding="{TemplateBinding Padding}"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding CornerRadius}">
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Padding="{TemplateBinding Padding}">
                     <Border.Transitions>
                         <Transitions>
                             <BrushTransition
@@ -212,18 +212,18 @@
                 <Panel>
                     <ContentPresenter
                         Name="PART_ContentPresenter"
-                        Padding="{TemplateBinding Padding}"
-                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Content="{TemplateBinding Content}"
-                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                     <Thumb
                         Name="PART_Resizer"
                         Width="8"
                         Margin="0,0,-4,0"
                         HorizontalAlignment="Right"
-                        IsEnabled="{Binding Column?.CanUserEffectivelyResize, RelativeSource={RelativeSource TemplatedParent}, FallbackValue=False}"
-                        Cursor="SizeWestEast" />
+                        Cursor="SizeWestEast"
+                        IsEnabled="{Binding Column?.CanUserEffectivelyResize, RelativeSource={RelativeSource TemplatedParent}, FallbackValue=False}" />
                 </Panel>
             </ControlTemplate>
         </Setter>

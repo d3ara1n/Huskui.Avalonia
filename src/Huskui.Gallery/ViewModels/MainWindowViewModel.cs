@@ -20,18 +20,25 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     public MainWindowViewModel(
         MenuItemService menuItemService,
         IThemeService themeService,
-        ISettingsViewFactory settingsViewFactory)
+        ISettingsViewFactory settingsViewFactory
+    )
     {
         ThemeService = themeService;
         IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
         themeService.ThemeChanged += (_, _) => IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
         SettingsView = settingsViewFactory.CreateSettingsView();
 
-        var filter = this.WhenPropertyChanged(x => x.SearchText).Select(x => BuildFilter(x.Value));
+        var filter = this.WhenPropertyChanged(x => x.SearchText)
+                         .Select(x => BuildFilter(x.Value));
 
         _allItemsSource.AddRange(menuItemService.AllMenus);
 
-        _disposables.Add(_allItemsSource.Connect().Filter(filter).Bind(out var results).Subscribe());
+        _disposables.Add(
+            _allItemsSource
+               .Connect()
+               .Filter(filter)
+               .Bind(out var results)
+               .Subscribe());
 
         SearchResults = results;
     }
@@ -64,7 +71,9 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     }
 
     private static Func<MenuItemVo, bool> BuildFilter(string? search) =>
-        string.IsNullOrWhiteSpace(search) ? _ => true : vo => vo.MatchesSearch(search);
+        string.IsNullOrWhiteSpace(search)
+            ? _ => true
+            : vo => vo.MatchesSearch(search);
 
     [RelayCommand]
     private void ToggleTheme() => ThemeService.ToggleTheme();

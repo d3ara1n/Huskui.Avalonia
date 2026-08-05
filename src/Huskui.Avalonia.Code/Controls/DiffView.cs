@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -25,14 +28,19 @@ public class DiffView : TemplatedControl
     public const double LINE_HEIGHT = 22.0;
     public const string CLASS_OVERVIEWBAR = ":overviewbar";
 
-    private static readonly Typeface MONOSPACE_TYPEFACE =
-        new(new FontFamily("Cascadia Code, Consolas, Courier New, monospace"));
+    private static readonly Typeface MONOSPACE_TYPEFACE = new(
+        new FontFamily("Cascadia Code, Consolas, Courier New, monospace")
+    );
 
-    public static readonly StyledProperty<string?> LeftTextProperty =
-        AvaloniaProperty.Register<DiffView, string?>(nameof(LeftText));
+    public static readonly StyledProperty<string?> LeftTextProperty = AvaloniaProperty.Register<
+        DiffView,
+        string?
+    >(nameof(LeftText));
 
-    public static readonly StyledProperty<string?> RightTextProperty =
-        AvaloniaProperty.Register<DiffView, string?>(nameof(RightText));
+    public static readonly StyledProperty<string?> RightTextProperty = AvaloniaProperty.Register<
+        DiffView,
+        string?
+    >(nameof(RightText));
 
     public static readonly StyledProperty<IReadOnlyList<DiffLineModel>?> LinesProperty =
         AvaloniaProperty.Register<DiffView, IReadOnlyList<DiffLineModel>?>(nameof(Lines));
@@ -40,49 +48,31 @@ public class DiffView : TemplatedControl
     public static readonly StyledProperty<double> HorizontalOffsetProperty =
         AvaloniaProperty.Register<DiffView, double>(nameof(HorizontalOffset));
 
-    public static readonly StyledProperty<double> ContentWidthProperty =
-        AvaloniaProperty.Register<DiffView, double>(nameof(ContentWidth));
+    public static readonly StyledProperty<double> ContentWidthProperty = AvaloniaProperty.Register<
+        DiffView,
+        double
+    >(nameof(ContentWidth));
 
-    public static readonly StyledProperty<int> LeftLineCountProperty =
-        AvaloniaProperty.Register<DiffView, int>(nameof(LeftLineCount));
+    public static readonly StyledProperty<int> LeftLineCountProperty = AvaloniaProperty.Register<
+        DiffView,
+        int
+    >(nameof(LeftLineCount));
 
-    public static readonly StyledProperty<int> RightLineCountProperty =
-        AvaloniaProperty.Register<DiffView, int>(nameof(RightLineCount));
+    public static readonly StyledProperty<int> RightLineCountProperty = AvaloniaProperty.Register<
+        DiffView,
+        int
+    >(nameof(RightLineCount));
 
-    public static readonly StyledProperty<int> TotalLineCountProperty =
-        AvaloniaProperty.Register<DiffView, int>(nameof(TotalLineCount));
+    public static readonly StyledProperty<int> TotalLineCountProperty = AvaloniaProperty.Register<
+        DiffView,
+        int
+    >(nameof(TotalLineCount));
 
     public static readonly StyledProperty<bool> LeftHasDifferenceProperty =
         AvaloniaProperty.Register<DiffView, bool>(nameof(LeftHasDifference));
 
     public static readonly StyledProperty<bool> RightHasDifferenceProperty =
         AvaloniaProperty.Register<DiffView, bool>(nameof(RightHasDifference));
-
-    public static readonly StyledProperty<IReadOnlyList<DiffMarker>?> MarkersProperty =
-        AvaloniaProperty.Register<DiffView, IReadOnlyList<DiffMarker>?>(nameof(Markers));
-
-    public static readonly StyledProperty<double> OverviewTopRatioProperty =
-        AvaloniaProperty.Register<DiffView, double>(nameof(OverviewTopRatio));
-
-    public static readonly StyledProperty<double> OverviewViewportRatioProperty =
-        AvaloniaProperty.Register<DiffView, double>(nameof(OverviewViewportRatio));
-
-    public static readonly StyledProperty<ScrollBarVisibility> OverviewBarVisibilityProperty =
-        AvaloniaProperty.Register<DiffView, ScrollBarVisibility>(nameof(OverviewBarVisibility),
-                                                                 ScrollBarVisibility.Auto);
-
-    public static readonly StyledProperty<bool> IsOverviewBarVisibleProperty =
-        AvaloniaProperty.Register<DiffView, bool>(nameof(IsOverviewBarVisible));
-
-    private ScrollBar? _hScrollBar;
-    private double _lastMaxContentWidth;
-    private double _lastViewportWidth;
-    private double _maxContentWidth;
-    private DiffOverviewBar? _overviewBar;
-    private double _overviewExtentHeight = double.NaN;
-    private double _overviewScrollableHeight = 1.0;
-    private double _overviewViewportHeight = double.NaN;
-    private ScrollViewer? _scrollViewer;
 
     public bool LeftHasDifference
     {
@@ -132,6 +122,24 @@ public class DiffView : TemplatedControl
         set => SetValue(LinesProperty, value);
     }
 
+    public static readonly StyledProperty<IReadOnlyList<DiffMarker>?> MarkersProperty =
+        AvaloniaProperty.Register<DiffView, IReadOnlyList<DiffMarker>?>(nameof(Markers));
+
+    public static readonly StyledProperty<double> OverviewTopRatioProperty =
+        AvaloniaProperty.Register<DiffView, double>(nameof(OverviewTopRatio));
+
+    public static readonly StyledProperty<double> OverviewViewportRatioProperty =
+        AvaloniaProperty.Register<DiffView, double>(nameof(OverviewViewportRatio));
+
+    public static readonly StyledProperty<ScrollBarVisibility> OverviewBarVisibilityProperty =
+        AvaloniaProperty.Register<DiffView, ScrollBarVisibility>(
+            nameof(OverviewBarVisibility),
+            ScrollBarVisibility.Auto
+        );
+
+    public static readonly StyledProperty<bool> IsOverviewBarVisibleProperty =
+        AvaloniaProperty.Register<DiffView, bool>(nameof(IsOverviewBarVisible));
+
     public IReadOnlyList<DiffMarker>? Markers
     {
         get => GetValue(MarkersProperty);
@@ -156,7 +164,10 @@ public class DiffView : TemplatedControl
         set => SetValue(OverviewBarVisibilityProperty, value);
     }
 
-    public bool IsOverviewBarVisible => GetValue(IsOverviewBarVisibleProperty);
+    public bool IsOverviewBarVisible
+    {
+        get => GetValue(IsOverviewBarVisibleProperty);
+    }
 
     public double HorizontalOffset
     {
@@ -170,6 +181,16 @@ public class DiffView : TemplatedControl
         private set => SetValue(ContentWidthProperty, value);
     }
 
+    private ScrollBar? _hScrollBar;
+    private ScrollViewer? _scrollViewer;
+    private DiffOverviewBar? _overviewBar;
+    private double _maxContentWidth;
+    private double _lastViewportWidth;
+    private double _lastMaxContentWidth;
+    private double _overviewScrollableHeight = 1.0;
+    private double _overviewExtentHeight = double.NaN;
+    private double _overviewViewportHeight = double.NaN;
+
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -180,7 +201,7 @@ public class DiffView : TemplatedControl
         }
         else if (change.Property == OverviewBarVisibilityProperty)
         {
-            UpdateOverviewGeometry(true);
+            UpdateOverviewGeometry(force: true);
         }
     }
 
@@ -228,7 +249,7 @@ public class DiffView : TemplatedControl
     protected override Size ArrangeOverride(Size finalSize)
     {
         var result = base.ArrangeOverride(finalSize);
-        UpdateScrollBarMaximum(false);
+        UpdateScrollBarMaximum(force: false);
         UpdateOverviewGeometry();
         return result;
     }
@@ -239,42 +260,33 @@ public class DiffView : TemplatedControl
     private void OnScrollChanged(object? sender, ScrollChangedEventArgs e)
     {
         if (e.ExtentDelta.Y != 0 || e.ViewportDelta.Y != 0)
-        {
             UpdateOverviewGeometry();
-        }
         else
-        {
             UpdateOverviewOffset();
-        }
     }
 
     private void OnOverviewScrollRequested(object? sender, double ratio)
     {
         if (_scrollViewer == null)
-        {
             return;
-        }
-
         var scrollable = _scrollViewer.Extent.Height - _scrollViewer.Viewport.Height;
         if (scrollable <= 0)
-        {
             return;
-        }
-
         _scrollViewer.Offset = _scrollViewer.Offset.WithY(Math.Clamp(ratio, 0.0, 1.0) * scrollable);
     }
 
     private void UpdateOverviewGeometry(bool force = false)
     {
         if (_scrollViewer == null)
-        {
             return;
-        }
-
         var extent = _scrollViewer.Extent;
         var viewport = _scrollViewer.Viewport;
 
-        if (!force && extent.Height == _overviewExtentHeight && viewport.Height == _overviewViewportHeight)
+        if (
+            !force
+            && extent.Height == _overviewExtentHeight
+            && viewport.Height == _overviewViewportHeight
+        )
         {
             UpdateOverviewOffset();
             return;
@@ -284,13 +296,15 @@ public class DiffView : TemplatedControl
         _overviewViewportHeight = viewport.Height;
         _overviewScrollableHeight = Math.Max(1.0, extent.Height - viewport.Height);
         UpdateOverviewOffset();
-        SetCurrentValue(OverviewViewportRatioProperty,
-                        Math.Clamp(viewport.Height / Math.Max(1.0, extent.Height), 0.0, 1.0));
+        SetCurrentValue(
+            OverviewViewportRatioProperty,
+            Math.Clamp(viewport.Height / Math.Max(1.0, extent.Height), 0.0, 1.0)
+        );
         var isOverviewBarVisible = OverviewBarVisibility switch
         {
             ScrollBarVisibility.Visible => true,
             ScrollBarVisibility.Hidden => false,
-            _ => extent.Height > viewport.Height
+            _ => extent.Height > viewport.Height,
         };
         PseudoClasses.Set(CLASS_OVERVIEWBAR, isOverviewBarVisible);
         SetCurrentValue(IsOverviewBarVisibleProperty, isOverviewBarVisible);
@@ -299,12 +313,11 @@ public class DiffView : TemplatedControl
     private void UpdateOverviewOffset()
     {
         if (_scrollViewer == null)
-        {
             return;
-        }
-
-        SetCurrentValue(OverviewTopRatioProperty,
-                        Math.Clamp(_scrollViewer.Offset.Y / _overviewScrollableHeight, 0.0, 1.0));
+        SetCurrentValue(
+            OverviewTopRatioProperty,
+            Math.Clamp(_scrollViewer.Offset.Y / _overviewScrollableHeight, 0.0, 1.0)
+        );
     }
 
     private void UpdateDiff()
@@ -339,46 +352,50 @@ public class DiffView : TemplatedControl
 
             if (!string.IsNullOrEmpty(leftText))
             {
-                var ft = new FormattedText(leftText,
-                                           CultureInfo.CurrentCulture,
-                                           FlowDirection.LeftToRight,
-                                           MONOSPACE_TYPEFACE,
-                                           MEASURE_FONT_SIZE,
-                                           null);
+                var ft = new FormattedText(
+                    leftText,
+                    CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    MONOSPACE_TYPEFACE,
+                    MEASURE_FONT_SIZE,
+                    null
+                );
                 maxTextWidth = Math.Max(maxTextWidth, ft.WidthIncludingTrailingWhitespace);
             }
 
             if (!string.IsNullOrEmpty(rightText))
             {
-                var ft = new FormattedText(rightText,
-                                           CultureInfo.CurrentCulture,
-                                           FlowDirection.LeftToRight,
-                                           MONOSPACE_TYPEFACE,
-                                           MEASURE_FONT_SIZE,
-                                           null);
+                var ft = new FormattedText(
+                    rightText,
+                    CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight,
+                    MONOSPACE_TYPEFACE,
+                    MEASURE_FONT_SIZE,
+                    null
+                );
                 maxTextWidth = Math.Max(maxTextWidth, ft.WidthIncludingTrailingWhitespace);
             }
 
-            lines.Add(new()
-            {
-                LeftText = leftText,
-                RightText = rightText,
-                LeftLineNumber = left.Position?.ToString() ?? string.Empty,
-                RightLineNumber = right.Position?.ToString() ?? string.Empty,
-                LeftKind = ToKind(left.Type),
-                RightKind = ToKind(right.Type)
-            });
+            lines.Add(
+                new()
+                {
+                    LeftText = leftText,
+                    RightText = rightText,
+                    LeftLineNumber = left.Position?.ToString() ?? string.Empty,
+                    RightLineNumber = right.Position?.ToString() ?? string.Empty,
+                    LeftKind = ToKind(left.Type),
+                    RightKind = ToKind(right.Type),
+                }
+            );
         }
 
         _maxContentWidth = maxTextWidth + 16;
         SetCurrentValue(ContentWidthProperty, _maxContentWidth);
-        UpdateScrollBarMaximum(true);
+        UpdateScrollBarMaximum(force: true);
         SetCurrentValue(HorizontalOffsetProperty, 0.0);
 
         if (_hScrollBar != null)
-        {
             _hScrollBar.Value = 0;
-        }
 
         var markers = new List<DiffMarker>();
         for (var mi = 0; mi < count; mi++)
@@ -388,10 +405,7 @@ public class DiffView : TemplatedControl
             var leftChanged = lk is DiffLineKind.Added or DiffLineKind.Removed or DiffLineKind.Modified;
             var rightChanged = rk is DiffLineKind.Added or DiffLineKind.Removed or DiffLineKind.Modified;
             if (!leftChanged && !rightChanged)
-            {
                 continue;
-            }
-
             var kind = leftChanged ? lk : rk;
             var end = mi + 1;
             while (end < count)
@@ -401,25 +415,21 @@ public class DiffView : TemplatedControl
                 var lc2 = lk2 is DiffLineKind.Added or DiffLineKind.Removed or DiffLineKind.Modified;
                 var rc2 = rk2 is DiffLineKind.Added or DiffLineKind.Removed or DiffLineKind.Modified;
                 if (!lc2 && !rc2)
-                {
                     break;
-                }
-
                 var k2 = lc2 ? lk2 : rk2;
                 if (k2 != kind)
-                {
                     break;
-                }
-
                 end++;
             }
 
-            markers.Add(new()
-            {
-                YRatio = count > 1 ? (double)mi / count : 0.0,
-                HeightRatio = count > 0 ? (double)(end - mi) / count : 0.0,
-                Kind = kind
-            });
+            markers.Add(
+                new()
+                {
+                    YRatio = count > 1 ? (double)mi / count : 0.0,
+                    HeightRatio = count > 0 ? (double)(end - mi) / count : 0.0,
+                    Kind = kind,
+                }
+            );
             mi = end - 1;
         }
 
@@ -430,23 +440,24 @@ public class DiffView : TemplatedControl
     private void UpdateScrollBarMaximum(bool force = false)
     {
         if (_scrollViewer == null || _hScrollBar == null)
-        {
             return;
-        }
 
         var viewportWidth = _scrollViewer.Viewport.Width;
 
-        if (!force
-         && Math.Abs(viewportWidth - _lastViewportWidth) < 0.5
-         && Math.Abs(_maxContentWidth - _lastMaxContentWidth) < 0.5)
-        {
+        if (
+            !force
+            && Math.Abs(viewportWidth - _lastViewportWidth) < 0.5
+            && Math.Abs(_maxContentWidth - _lastMaxContentWidth) < 0.5
+        )
             return;
-        }
 
         _lastViewportWidth = viewportWidth;
         _lastMaxContentWidth = _maxContentWidth;
 
-        var contentColumnWidth = Math.Max(0, (viewportWidth - GUTTER_WIDTH * 2 - SEPARATOR_WIDTH) / 2);
+        var contentColumnWidth = Math.Max(
+            0,
+            (viewportWidth - GUTTER_WIDTH * 2 - SEPARATOR_WIDTH) / 2
+        );
 
         _hScrollBar.Maximum = Math.Max(0, _maxContentWidth - contentColumnWidth);
         _hScrollBar.ViewportSize = contentColumnWidth;
@@ -463,6 +474,7 @@ public class DiffView : TemplatedControl
             ChangeType.Inserted => DiffLineKind.Added,
             ChangeType.Modified => DiffLineKind.Modified,
             ChangeType.Imaginary => DiffLineKind.Empty,
-            _ => DiffLineKind.Unchanged
+            _ => DiffLineKind.Unchanged,
         };
+
 }

@@ -7,10 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia.Browser"/>
+        <PackageReference Include="Avalonia.Browser" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Huskui.Gallery\Huskui.Gallery.csproj"/>
+        <ProjectReference Include="..\Huskui.Gallery\Huskui.Gallery.csproj" />
     </ItemGroup>
 </Project>

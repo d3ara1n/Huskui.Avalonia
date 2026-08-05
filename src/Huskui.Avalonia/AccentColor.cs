@@ -27,5 +27,5 @@ public enum AccentColor
     Yellow,
     Lime,
     Mint,
-    Sky
+    Sky,
 }

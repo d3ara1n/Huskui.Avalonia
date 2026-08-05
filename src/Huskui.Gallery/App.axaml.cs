@@ -2,7 +2,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Avalonia.Media;
 using Avalonia.Media.Fonts;
 using Huskui.Avalonia.Mvvm;
 using Huskui.Gallery.Services;
@@ -21,12 +20,21 @@ public class App : Application
 
     public static AppBuilder ConfigureSharedBuilder(AppBuilder builder) =>
         builder
-           .ConfigureFonts(fontManager =>
+            .ConfigureFonts(fontManager =>
             {
-                fontManager.AddFontCollection(new EmbeddedFontCollection(new("fonts:Manrope"),
-                                                                         new("avares://Huskui.Gallery/Assets/Fonts/Manrope")));
+                fontManager.AddFontCollection(
+                    new EmbeddedFontCollection(
+                        new("fonts:Manrope"),
+                        new("avares://Huskui.Gallery/Assets/Fonts/Manrope")
+                    )
+                );
             })
-           .With(new FontManagerOptions { DefaultFamilyName = "fonts:Manrope#Manrope" });
+            .With(
+                new global::Avalonia.Media.FontManagerOptions
+                {
+                    DefaultFamilyName = "fonts:Manrope#Manrope",
+                }
+            );
 
     public override void Initialize()
     {

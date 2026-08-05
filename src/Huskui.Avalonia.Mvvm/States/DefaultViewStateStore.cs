@@ -2,6 +2,13 @@ namespace Huskui.Avalonia.Mvvm.States;
 
 internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) : IViewStateStore
 {
+    private sealed class Entry(Type type, object value)
+    {
+        public Type Type { get; } = type;
+        public object Value { get; } = value;
+        public int RefCount { get; set; } = 1;
+    }
+
     private readonly Dictionary<string, Entry> _entries = new();
 
     public object GetOrCreate(string key, Type stateType)
@@ -13,9 +20,10 @@ internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) :
         }
 
         var loaded = persistence.Load(key, stateType);
-        var value = loaded
-                 ?? Activator.CreateInstance(stateType)
-                 ?? throw new InvalidOperationException($"Cannot create {stateType.FullName}.");
+        var value =
+            loaded
+            ?? Activator.CreateInstance(stateType)
+            ?? throw new InvalidOperationException($"Cannot create {stateType.FullName}.");
         _entries[key] = new(stateType, value);
         return value;
     }
@@ -41,14 +49,6 @@ internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) :
         {
             persistence.Save(pair.Key, pair.Value.Type, pair.Value.Value);
         }
-
         _entries.Clear();
-    }
-
-    private sealed class Entry(Type type, object value)
-    {
-        public Type Type { get; } = type;
-        public object Value { get; } = value;
-        public int RefCount { get; set; } = 1;
     }
 }

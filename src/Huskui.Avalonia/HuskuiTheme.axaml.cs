@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
@@ -13,13 +12,15 @@ namespace Huskui.Avalonia;
 
 public class HuskuiTheme : Styles
 {
-    public static readonly StyledProperty<AccentColor> AccentProperty =
-        AvaloniaProperty.Register<HuskuiTheme, AccentColor>(nameof(Accent));
+    public static readonly StyledProperty<AccentColor> AccentProperty = AvaloniaProperty.Register<
+        HuskuiTheme,
+        AccentColor
+    >(nameof(Accent));
 
-    public static readonly StyledProperty<CornerStyle> CornerProperty =
-        AvaloniaProperty.Register<HuskuiTheme, CornerStyle>(nameof(Corner),
-                                                            CornerStyle.Normal,
-                                                            defaultBindingMode: BindingMode.OneWay);
+    public static readonly StyledProperty<CornerStyle> CornerProperty = AvaloniaProperty.Register<
+        HuskuiTheme,
+        CornerStyle
+    >(nameof(Corner), CornerStyle.Normal, defaultBindingMode: BindingMode.OneWay);
 
     public HuskuiTheme()
     {
@@ -30,10 +31,14 @@ public class HuskuiTheme : Styles
         {
             Resources.MergedDictionaries[1] = GenerateSystemAccentColorResourceDictionary();
         }
-
         // Load Extensions
         LoadExtensionResources();
         AppDomain.CurrentDomain.AssemblyLoad += OnExtensionAssemblyLoaded;
+    }
+
+    ~HuskuiTheme()
+    {
+        AppDomain.CurrentDomain.AssemblyLoad -= OnExtensionAssemblyLoaded;
     }
 
     public AccentColor Accent
@@ -48,8 +53,6 @@ public class HuskuiTheme : Styles
         set => SetValue(CornerProperty, value);
     }
 
-    ~HuskuiTheme() => AppDomain.CurrentDomain.AssemblyLoad -= OnExtensionAssemblyLoaded;
-
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -59,32 +62,33 @@ public class HuskuiTheme : Styles
             var color = change.GetNewValue<AccentColor>();
 
             var source = $"avares://Huskui.Avalonia/Themes/Colors.Accent.{color}.axaml";
-            Resources.MergedDictionaries[1] = color is AccentColor.System
-                                                  ? GenerateSystemAccentColorResourceDictionary()
-                                                  : new ResourceInclude(new Uri("avares://Huskui.Avalonia",
-                                                                                    UriKind.Absolute))
-                                                  {
-                                                      Source = new(source, UriKind.Absolute)
-                                                  };
+            Resources.MergedDictionaries[1] =
+                color is AccentColor.System
+                    ? GenerateSystemAccentColorResourceDictionary()
+                    : new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
+                    {
+                        Source = new(source, UriKind.Absolute),
+                    };
         }
 
         if (change.Property == CornerProperty)
         {
             var corner = change.GetNewValue<CornerStyle>();
             var source = $"avares://Huskui.Avalonia/Themes/CornerRadii.{corner}.axaml";
-            Resources.MergedDictionaries[0] =
-                new ResourceInclude(new Uri("avares://Huskui.Avalonia", UriKind.Absolute))
-                {
-                    Source = new(source, UriKind.Absolute)
-                };
+            Resources.MergedDictionaries[0] = new ResourceInclude(
+                new Uri("avares://Huskui.Avalonia", UriKind.Absolute)
+            )
+            {
+                Source = new(source, UriKind.Absolute),
+            };
         }
     }
 
     private ResourceDictionary GenerateSystemAccentColorResourceDictionary()
     {
         var systemAccent = Application.Current is { PlatformSettings: { } platformSettings }
-                               ? platformSettings.GetColorValues().AccentColor1
-                               : Color.FromRgb(0x00, 0x90, 0xFF);
+            ? platformSettings.GetColorValues().AccentColor1
+            : Color.FromRgb(0x00, 0x90, 0xFF);
 
         var lightScale = RadixColorGenerator.GenerateLightScale(systemAccent);
         var darkScale = RadixColorGenerator.GenerateDarkScale(systemAccent);
@@ -118,8 +122,10 @@ public class HuskuiTheme : Styles
         }
     }
 
-    private void OnExtensionAssemblyLoaded(object? sender, AssemblyLoadEventArgs args) =>
+    private void OnExtensionAssemblyLoaded(object? sender, AssemblyLoadEventArgs args)
+    {
         TryMergeResource(args.LoadedAssembly);
+    }
 
     private void TryMergeResource(Assembly assembly)
     {
@@ -134,7 +140,9 @@ public class HuskuiTheme : Styles
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Huskui] Failed to load extension resources from {assembly.GetName().Name}: {ex.Message}");
+                System.Diagnostics.Debug.WriteLine(
+                    $"[Huskui] Failed to load extension resources from {assembly.GetName().Name}: {ex.Message}"
+                );
             }
         }
     }

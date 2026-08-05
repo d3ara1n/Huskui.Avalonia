@@ -1,3 +1,4 @@
+using System.Collections;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Layout;
@@ -16,20 +17,21 @@ public class ModalActionPanel : Panel
     ///     按钮组的水平对齐方式，语义对应 <see cref="HorizontalAlignment" />。
     ///     <see cref="Edge" /> 是快捷预设：整组贴到主按钮该在的那侧。
     /// </summary>
-    public enum LayoutMode { Left, Right, Stretch, Edge }
+    public enum LayoutMode
+    {
+        Left,
+        Right,
+        Stretch,
+        Edge
+    }
 
     /// <summary>主按钮在组内的相对位置。</summary>
-    public enum PrimaryPlacementMode { Auto, Leading, Trailing }
-
-    public static readonly StyledProperty<LayoutMode> LayoutProperty =
-        AvaloniaProperty.Register<ModalActionPanel, LayoutMode>(nameof(Layout), LayoutMode.Edge);
-
-    public static readonly StyledProperty<PrimaryPlacementMode> PrimaryPlacementProperty =
-        AvaloniaProperty.Register<ModalActionPanel, PrimaryPlacementMode>(nameof(PrimaryPlacement),
-                                                                          PrimaryPlacementMode.Auto);
-
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<ModalActionPanel, double>(nameof(Spacing), 8d);
+    public enum PrimaryPlacementMode
+    {
+        Auto,
+        Leading,
+        Trailing
+    }
 
     static ModalActionPanel()
     {
@@ -38,6 +40,22 @@ public class ModalActionPanel : Panel
         // PrimaryPlacement 只改子级顺序/定位，不影响测量 → AffectsArrange
         AffectsArrange<ModalActionPanel>(PrimaryPlacementProperty);
     }
+
+    public static readonly StyledProperty<LayoutMode> LayoutProperty = AvaloniaProperty.Register<
+        ModalActionPanel,
+        LayoutMode
+    >(nameof(Layout), defaultValue: LayoutMode.Edge);
+
+    public static readonly StyledProperty<PrimaryPlacementMode> PrimaryPlacementProperty =
+        AvaloniaProperty.Register<
+            ModalActionPanel,
+            PrimaryPlacementMode
+        >(nameof(PrimaryPlacement), defaultValue: PrimaryPlacementMode.Auto);
+
+    public static readonly StyledProperty<double> SpacingProperty = AvaloniaProperty.Register<
+        ModalActionPanel,
+        double
+    >(nameof(Spacing), defaultValue: 8d);
 
     /// <summary>按钮组的水平对齐。默认 <see cref="LayoutMode.Edge" />。</summary>
     public LayoutMode Layout
@@ -67,9 +85,7 @@ public class ModalActionPanel : Panel
         var spacing = Spacing;
         var visible = GetVisibleChildren();
         if (visible.Count == 0)
-        {
             return default;
-        }
 
         // 用无限宽测量，得到每个子级的「内容宽」，不受 Stretch 干扰
         var measureSlot = new Size(double.PositiveInfinity, availableSize.Height);
@@ -80,9 +96,7 @@ public class ModalActionPanel : Panel
             child.Measure(measureSlot);
             contentWidth += child.DesiredSize.Width;
             if (child.DesiredSize.Height > maxHeight)
-            {
                 maxHeight = child.DesiredSize.Height;
-            }
         }
 
         contentWidth += spacing * (visible.Count - 1);
@@ -98,9 +112,7 @@ public class ModalActionPanel : Panel
         var spacing = Spacing;
         var visible = GetVisibleChildren();
         if (visible.Count == 0)
-        {
             return final;
-        }
 
         // Edge：主按钮独享一边，其余按原序挤另一边
         if (Layout == LayoutMode.Edge)
@@ -117,10 +129,15 @@ public class ModalActionPanel : Panel
                 ArrangeStretch(ordered, final, spacing);
                 break;
             case LayoutMode.Left:
-                ArrangePacked(ordered, final, spacing, 0);
+                ArrangePacked(ordered, final, spacing, startX: 0);
                 break;
             default: // Right
-                ArrangePacked(ordered, final, spacing, final.Width - ContentWidth(ordered, spacing));
+                ArrangePacked(
+                    ordered,
+                    final,
+                    spacing,
+                    startX: final.Width - ContentWidth(ordered, spacing)
+                );
                 break;
         }
 
@@ -135,19 +152,20 @@ public class ModalActionPanel : Panel
         var primaryIdx = visible.FindIndex(c => c is Button { IsDefault: true });
         if (primaryIdx < 0)
         {
-            ArrangePacked(visible, final, spacing, final.Width - ContentWidth(visible, spacing));
+            ArrangePacked(
+                visible,
+                final,
+                spacing,
+                startX: final.Width - ContentWidth(visible, spacing)
+            );
             return;
         }
 
         var primary = visible[primaryIdx];
         var others = new List<Control>(visible.Count - 1);
         for (var i = 0; i < visible.Count; i++)
-        {
             if (i != primaryIdx)
-            {
                 others.Add(visible[i]);
-            }
-        }
 
         var primaryWidth = primary.DesiredSize.Width;
 
@@ -181,9 +199,7 @@ public class ModalActionPanel : Panel
     {
         var primaryIdx = visible.FindIndex(c => c is Button { IsDefault: true });
         if (primaryIdx < 0)
-        {
             return visible; // 无主按钮 → 保持文档顺序，PrimaryPlacement 无的放矢
-        }
 
         var primary = visible[primaryIdx];
         var ordered = new List<Control>(visible.Count);
@@ -192,13 +208,8 @@ public class ModalActionPanel : Panel
         {
             // 主按钮去尾，其余按文档顺序排前面
             for (var i = 0; i < visible.Count; i++)
-            {
                 if (i != primaryIdx)
-                {
                     ordered.Add(visible[i]);
-                }
-            }
-
             ordered.Add(primary);
         }
         else
@@ -206,12 +217,8 @@ public class ModalActionPanel : Panel
             // 主按钮去首，其余按文档顺序排后面
             ordered.Add(primary);
             for (var i = 0; i < visible.Count; i++)
-            {
                 if (i != primaryIdx)
-                {
                     ordered.Add(visible[i]);
-                }
-            }
         }
 
         return ordered;
@@ -254,24 +261,16 @@ public class ModalActionPanel : Panel
     {
         var sum = 0d;
         foreach (var child in children)
-        {
             sum += child.DesiredSize.Width;
-        }
-
         return sum + spacing * double.Max(children.Count - 1, 0);
     }
 
     private List<Control> GetVisibleChildren()
     {
         var list = new List<Control>();
-        foreach (var child in Children)
-        {
+        foreach (Control child in Children)
             if (child.IsVisible)
-            {
                 list.Add(child);
-            }
-        }
-
         return list;
     }
 }

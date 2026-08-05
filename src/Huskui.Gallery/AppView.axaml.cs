@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 using Huskui.Avalonia.Mvvm.Activation;
 using Huskui.Avalonia.Mvvm.Mixins;
 using Huskui.Gallery.Models;
@@ -22,14 +23,10 @@ public partial class AppView : UserControl
         // inside the page (e.g. AutoCompleteBox's suggestion ListBox) bubble up here.
         // Only react to selection changes originating from the NavView itself.
         if (!ReferenceEquals(e.Source, NavView))
-        {
             return;
-        }
 
         if (NavView.SelectedItem is MenuItemVo { PageType: { } page })
-        {
             Frame.Navigate(page);
-        }
     }
 
     private void Control_OnLoaded(object? sender, RoutedEventArgs e)
@@ -39,5 +36,8 @@ public partial class AppView : UserControl
         Frame.Navigate(typeof(HomePage));
     }
 
-    private void Button_OnClick(object? sender, RoutedEventArgs e) => Frame.Navigate(typeof(HomePage));
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        Frame.Navigate(typeof(HomePage));
+    }
 }

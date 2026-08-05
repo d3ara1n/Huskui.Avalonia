@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Styling;
 using Huskui.Avalonia;
 
@@ -26,7 +27,7 @@ public enum BackgroundMaterial
     /// <summary>
     ///     Transparent background
     /// </summary>
-    Transparent
+    Transparent,
 }
 
 /// <summary>

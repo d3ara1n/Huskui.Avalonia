@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -11,44 +12,6 @@ namespace Huskui.Gallery.Services;
 /// </summary>
 public class ThemeService : IThemeService
 {
-    private void UpdateHuskuiTheme()
-    {
-        if (Application.Current?.Styles is { } styles)
-        {
-            foreach (var t in styles)
-            {
-                if (t is HuskuiTheme huskuiTheme)
-                {
-                    huskuiTheme.Accent = CurrentAccent;
-                    huskuiTheme.Corner = CurrentCorner;
-                    break;
-                }
-            }
-        }
-    }
-
-    private void UpdateWindowBackground()
-    {
-        // Update main window TransparencyLevelHint based on selected material
-        if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-        {
-            var mainWindow = desktop.MainWindow;
-            if (mainWindow != null)
-            {
-                var transparencyLevel = CurrentBackground switch
-                {
-                    BackgroundMaterial.None => WindowTransparencyLevel.None,
-                    BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
-                    BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
-                    BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
-                    _ => WindowTransparencyLevel.None
-                };
-
-                mainWindow.TransparencyLevelHint = [transparencyLevel];
-            }
-        }
-    }
-
     #region IThemeService Members
 
     public ThemeVariant CurrentTheme { get; private set; } = ThemeVariant.Default;
@@ -121,4 +84,45 @@ public class ThemeService : IThemeService
     }
 
     #endregion
+
+    private void UpdateHuskuiTheme()
+    {
+        if (Application.Current?.Styles is { } styles)
+        {
+            foreach (var t in styles)
+            {
+                if (t is HuskuiTheme huskuiTheme)
+                {
+                    huskuiTheme.Accent = CurrentAccent;
+                    huskuiTheme.Corner = CurrentCorner;
+                    break;
+                }
+            }
+        }
+    }
+
+    private void UpdateWindowBackground()
+    {
+        // Update main window TransparencyLevelHint based on selected material
+        if (
+            Application.Current?.ApplicationLifetime
+            is IClassicDesktopStyleApplicationLifetime desktop
+        )
+        {
+            var mainWindow = desktop.MainWindow;
+            if (mainWindow != null)
+            {
+                var transparencyLevel = CurrentBackground switch
+                {
+                    BackgroundMaterial.None => WindowTransparencyLevel.None,
+                    BackgroundMaterial.Mica => WindowTransparencyLevel.Mica,
+                    BackgroundMaterial.AcrylicBlur => WindowTransparencyLevel.AcrylicBlur,
+                    BackgroundMaterial.Transparent => WindowTransparencyLevel.Transparent,
+                    _ => WindowTransparencyLevel.None,
+                };
+
+                mainWindow.TransparencyLevelHint = [transparencyLevel];
+            }
+        }
+    }
 }

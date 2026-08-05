@@ -1,4 +1,5 @@
 using Huskui.Avalonia.Mvvm.Activation;
+using Huskui.Avalonia.Mvvm.Models;
 using Huskui.Avalonia.Mvvm.States;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +13,9 @@ public static class ServiceCollectionExtensions
         {
             if (!activatorType.IsAssignableTo(typeof(IViewActivator)))
             {
-                throw new ArgumentException($"{activatorType} must implement {nameof(IViewActivator)}");
+                throw new ArgumentException(
+                    $"{activatorType} must implement {nameof(IViewActivator)}"
+                );
             }
 
             services.AddSingleton(typeof(IViewActivator), activatorType);
@@ -23,8 +26,8 @@ public static class ServiceCollectionExtensions
             return services;
         }
 
-        public IServiceCollection AddViewModelActivation<T>() where T : IViewActivator =>
-            services.AddViewModelActivation(typeof(T));
+        public IServiceCollection AddViewModelActivation<T>()
+            where T : IViewActivator => services.AddViewModelActivation(typeof(T));
 
         public IServiceCollection AddViewState(Action<StateRegistrationBuilder>? configure = null)
         {

@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -28,7 +29,8 @@ public partial class NumericUpDownsPage : ControlPage
         ResetPricingValues();
     }
 
-    private void OnClearValuesClick(object? sender, RoutedEventArgs e) => SetBasicValues(null, null, null, null);
+    private void OnClearValuesClick(object? sender, RoutedEventArgs e) =>
+        SetBasicValues(null, null, null, null);
 
     private void OnResetValuesClick(object? sender, RoutedEventArgs e) => ResetBasicValues();
 
@@ -44,7 +46,12 @@ public partial class NumericUpDownsPage : ControlPage
 
     private void ResetBasicValues() => SetBasicValues(42m, 35m, 12.5m, 12m);
 
-    private void SetBasicValues(decimal? defaultValue, decimal? rangeValue, decimal? decimalValue, decimal? wrapValue)
+    private void SetBasicValues(
+        decimal? defaultValue,
+        decimal? rangeValue,
+        decimal? decimalValue,
+        decimal? wrapValue
+    )
     {
         DefaultNumericUpDown.Value = defaultValue;
         RangeNumericUpDown.Value = rangeValue;
@@ -68,13 +75,17 @@ public partial class NumericUpDownsPage : ControlPage
         UpdatePricingSummary();
     }
 
-    private void UpdateBasicStateText() =>
+    private void UpdateBasicStateText()
+    {
         BasicStateText.Text =
             $"Default: {FormatNullable(DefaultNumericUpDown.Value)}\nRange: {FormatNullable(RangeNumericUpDown.Value)}\nDecimal: {FormatNullable(DecimalNumericUpDown.Value, "F2")}\nClipped: {FormatNullable(ClippedNumericUpDown.Value)}";
+    }
 
-    private void UpdateBehaviorStateText() =>
+    private void UpdateBehaviorStateText()
+    {
         BehaviorStateText.Text =
-            $"Nullable field: {FormatNullable(NullableNumericUpDown.Value)}\nBudget: {FormatNullable(CurrencyNumericUpDown.Value)}";
+            $"Nullable field: {FormatNullable(NullableNumericUpDown.Value)}\nBudget: {FormatNullable(CurrencyNumericUpDown.Value, "F0")}";
+    }
 
     private void UpdatePricingSummary()
     {
@@ -98,7 +109,10 @@ public partial class NumericUpDownsPage : ControlPage
             $"{seats:0} seats with {usage:0}k monthly API calls results in an estimated ${total:0} monthly charge after {discount:0}% discount.";
     }
 
-    private void OnBasicNumericUpDownPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private void OnBasicNumericUpDownPropertyChanged(
+        object? sender,
+        AvaloniaPropertyChangedEventArgs e
+    )
     {
         if (e.Property == NumericUpDown.ValueProperty)
         {
@@ -106,7 +120,10 @@ public partial class NumericUpDownsPage : ControlPage
         }
     }
 
-    private void OnBehaviorNumericUpDownPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private void OnBehaviorNumericUpDownPropertyChanged(
+        object? sender,
+        AvaloniaPropertyChangedEventArgs e
+    )
     {
         if (e.Property == NumericUpDown.ValueProperty)
         {
@@ -114,7 +131,10 @@ public partial class NumericUpDownsPage : ControlPage
         }
     }
 
-    private void OnPricingNumericUpDownPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private void OnPricingNumericUpDownPropertyChanged(
+        object? sender,
+        AvaloniaPropertyChangedEventArgs e
+    )
     {
         if (e.Property == NumericUpDown.ValueProperty)
         {

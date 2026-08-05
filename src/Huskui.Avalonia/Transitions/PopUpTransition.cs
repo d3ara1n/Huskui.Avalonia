@@ -8,7 +8,8 @@ public sealed class PopUpTransition : PageTransitionBase
 {
     public PopUpTransition() { }
 
-    public PopUpTransition(TimeSpan? duration = null) : base(duration) { }
+    public PopUpTransition(TimeSpan? duration = null)
+        : base(duration) { }
 
     protected override void Cleanup(Visual? from, Visual? to)
     {
@@ -21,23 +22,31 @@ public sealed class PopUpTransition : PageTransitionBase
 
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {
-        from
-           .Animation(new BackEaseIn())
-           .AddFrame(0d, [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)])
-           .AddFrame(1d, [(ScaleTransform.ScaleXProperty, 0.96d), (ScaleTransform.ScaleYProperty, 0.96d)]);
-        from
-           .Animation(new SineEaseIn())
-           .AddFrame(0d, [(Visual.OpacityProperty, 1d)])
-           .AddFrame(1d, [(Visual.OpacityProperty, 0d)]);
+        from.Animation(new BackEaseIn())
+            .AddFrame(
+                0d,
+                [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)]
+            )
+            .AddFrame(
+                1d,
+                [(ScaleTransform.ScaleXProperty, 0.96d), (ScaleTransform.ScaleYProperty, 0.96d)]
+            );
+        from.Animation(new SineEaseIn())
+            .AddFrame(0d, [(Visual.OpacityProperty, 1d)])
+            .AddFrame(1d, [(Visual.OpacityProperty, 0d)]);
 
-        to
-           .Animation(new BackEaseOut())
-           .AddFrame(0d, [(ScaleTransform.ScaleXProperty, 0.96d), (ScaleTransform.ScaleYProperty, 0.96d)])
-           .AddFrame(1d, [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)]);
+        to.Animation(new BackEaseOut())
+            .AddFrame(
+                0d,
+                [(ScaleTransform.ScaleXProperty, 0.96d), (ScaleTransform.ScaleYProperty, 0.96d)]
+            )
+            .AddFrame(
+                1d,
+                [(ScaleTransform.ScaleXProperty, 1d), (ScaleTransform.ScaleYProperty, 1d)]
+            );
 
-        to
-           .Animation(new SineEaseOut())
-           .AddFrame(0d, [(Visual.OpacityProperty, 0d)])
-           .AddFrame(1d, [(Visual.OpacityProperty, 1d)]);
+        to.Animation(new SineEaseOut())
+            .AddFrame(0d, [(Visual.OpacityProperty, 0d)])
+            .AddFrame(1d, [(Visual.OpacityProperty, 1d)]);
     }
 }

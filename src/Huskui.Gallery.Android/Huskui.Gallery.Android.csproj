@@ -17,11 +17,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia.Android"/>
-        <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen"/>
+        <PackageReference Include="Avalonia.Android" />
+        <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Huskui.Gallery\Huskui.Gallery.csproj"/>
+        <ProjectReference Include="..\Huskui.Gallery\Huskui.Gallery.csproj" />
     </ItemGroup>
 </Project>

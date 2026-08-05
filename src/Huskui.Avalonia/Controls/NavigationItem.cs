@@ -14,8 +14,8 @@ public class NavigationItem : Button, ISelectable
     public const string CLASS_GroupStart = ":group-start";
     public const string CLASS_Collapsed = ":collapsed";
 
-    public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty
-       .AddOwner<NavigationItem>();
+    public static readonly StyledProperty<bool> IsSelectedProperty =
+        SelectingItemsControl.IsSelectedProperty.AddOwner<NavigationItem>();
 
     public static readonly StyledProperty<object?> IconProperty =
         AvaloniaProperty.Register<NavigationItem, object?>(nameof(Icon));
@@ -49,16 +49,16 @@ public class NavigationItem : Button, ISelectable
         set => SetValue(CategoryProperty, value);
     }
 
-    public bool IsCollapsed
-    {
-        get => GetValue(IsCollapsedProperty);
-        set => SetValue(IsCollapsedProperty, value);
-    }
-
     public bool IsSelected
     {
         get => GetValue(IsSelectedProperty);
         set => SetValue(IsSelectedProperty, value);
+    }
+
+    public bool IsCollapsed
+    {
+        get => GetValue(IsCollapsedProperty);
+        set => SetValue(IsCollapsedProperty, value);
     }
 
     internal void MarkGroupStart(bool value) => PseudoClasses.Set(CLASS_GroupStart, value);
@@ -68,8 +68,6 @@ public class NavigationItem : Button, ISelectable
         base.OnPropertyChanged(change);
 
         if (change.Property == IsCollapsedProperty)
-        {
             PseudoClasses.Set(CLASS_Collapsed, change.GetNewValue<bool>());
-        }
     }
 }

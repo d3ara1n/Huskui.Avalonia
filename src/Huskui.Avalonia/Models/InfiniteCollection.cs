@@ -2,8 +2,10 @@ using System.Collections.ObjectModel;
 
 namespace Huskui.Avalonia.Models;
 
-public class InfiniteCollection<T>(Func<int, CancellationToken, Task<IEnumerable<T>>> factory, int startIndex = 0)
-    : ObservableCollection<T>, IInfiniteCollection, IDisposable
+public class InfiniteCollection<T>(
+    Func<int, CancellationToken, Task<IEnumerable<T>>> factory,
+    int startIndex = 0
+) : ObservableCollection<T>, IInfiniteCollection, IDisposable
 {
     private readonly CancellationTokenSource _cts = new();
     private int _index = startIndex;

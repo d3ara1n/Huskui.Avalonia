@@ -11,6 +11,7 @@ using Avalonia.Media;
 using Huskui.Avalonia.Code.Controls;
 using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Markdown.Models;
+using Huskui.Avalonia.Models;
 using Markdig;
 using Markdig.Extensions.Alerts;
 using Markdig.Extensions.Tables;
@@ -18,7 +19,6 @@ using Markdig.Extensions.TaskLists;
 using Markdig.Extensions.Yaml;
 using Markdig.Syntax;
 using Markdig.Syntax.Inlines;
-using Inline = Markdig.Syntax.Inlines.Inline;
 
 namespace Huskui.Avalonia.Markdown.Controls;
 
@@ -29,21 +29,8 @@ public class MarkdownViewer : TemplatedControl
 
     private static readonly MarkdownPipeline MARKDOWN_PIPELINE;
 
-    public static readonly StyledProperty<string?> MarkdownProperty =
-        AvaloniaProperty.Register<MarkdownViewer, string?>(nameof(Markdown));
-
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<MarkdownViewer, double>(nameof(Spacing), 4);
-
-    public static readonly StyledProperty<FrontMatterRenderMethods> FrontMatterRenderProperty =
-        AvaloniaProperty.Register<MarkdownViewer, FrontMatterRenderMethods>(nameof(FrontMatterRender));
-
-    public static readonly StyledProperty<ICommand?> HyperlinkCommandProperty =
-        AvaloniaProperty.Register<MarkdownViewer, ICommand?>(nameof(HyperlinkCommand));
-
-    private ScrollViewer? _container;
-
-    static MarkdownViewer() =>
+    static MarkdownViewer()
+    {
         MARKDOWN_PIPELINE = new MarkdownPipelineBuilder()
                            .UseAutoLinks()
                            .UseAlertBlocks()
@@ -54,6 +41,12 @@ public class MarkdownViewer : TemplatedControl
                            .UsePipeTables()
                            .UseListExtras()
                            .Build();
+    }
+
+    private ScrollViewer? _container;
+
+    public static readonly StyledProperty<string?> MarkdownProperty =
+        AvaloniaProperty.Register<MarkdownViewer, string?>(nameof(Markdown));
 
     public string? Markdown
     {
@@ -61,17 +54,26 @@ public class MarkdownViewer : TemplatedControl
         set => SetValue(MarkdownProperty, value);
     }
 
+    public static readonly StyledProperty<double> SpacingProperty =
+        AvaloniaProperty.Register<MarkdownViewer, double>(nameof(Spacing), 4);
+
     public double Spacing
     {
         get => GetValue(SpacingProperty);
         set => SetValue(SpacingProperty, value);
     }
 
+    public static readonly StyledProperty<FrontMatterRenderMethods> FrontMatterRenderProperty =
+        AvaloniaProperty.Register<MarkdownViewer, FrontMatterRenderMethods>(nameof(FrontMatterRender));
+
     public FrontMatterRenderMethods FrontMatterRender
     {
         get => GetValue(FrontMatterRenderProperty);
         set => SetValue(FrontMatterRenderProperty, value);
     }
+
+    public static readonly StyledProperty<ICommand?> HyperlinkCommandProperty =
+        AvaloniaProperty.Register<MarkdownViewer, ICommand?>(nameof(HyperlinkCommand));
 
     public ICommand? HyperlinkCommand
     {
@@ -101,17 +103,13 @@ public class MarkdownViewer : TemplatedControl
     private void Render(string? markdown)
     {
         if (_container is null)
-        {
             return;
-        }
 
         _container.Content = null;
         LogicalChildren.Clear();
 
         if (string.IsNullOrEmpty(markdown))
-        {
             return;
-        }
 
         var document = Markdig.Markdown.Parse(markdown, MARKDOWN_PIPELINE);
 
@@ -128,6 +126,14 @@ public class MarkdownViewer : TemplatedControl
                 LogicalChildren.Add(control);
             }
         }
+    }
+
+    private struct BlockContext
+    {
+        public bool ListOrdered { get; set; }
+        public int ListDepth { get; set; }
+
+        public int ListIndex { get; set; }
     }
 
     private Control? RenderBlock(Block block, BlockContext context = default)
@@ -224,10 +230,7 @@ public class MarkdownViewer : TemplatedControl
             {
                 var rv = new CodeViewer { Code = code.Lines.ToString() ?? string.Empty };
                 if (code is FencedCodeBlock fenced)
-                {
                     rv.Language = fenced.Info ?? string.Empty;
-                }
-
                 rv.Classes.Set("Code", true);
                 control = rv;
             }
@@ -253,7 +256,7 @@ public class MarkdownViewer : TemplatedControl
                                        "TIP" => "Success",
                                        "WARNING" => "Warning",
                                        "CAUTION" => "Danger",
-                                       _ => "Primary"
+                                       _ => "Primary",
                                    },
                                    true);
                 }
@@ -265,7 +268,7 @@ public class MarkdownViewer : TemplatedControl
                 break;
             case ThematicBreakBlock:
             {
-                var rv = new Divider { Orientation = Orientation.Horizontal };
+                var rv = new Divider() { Orientation = Orientation.Horizontal };
                 rv.Classes.Set("Rule", true);
                 control = rv;
             }
@@ -293,9 +296,7 @@ public class MarkdownViewer : TemplatedControl
     {
         var inlines = new InlineCollection();
         if (inline is null)
-        {
             return inlines;
-        }
 
         foreach (var child in inline)
         {
@@ -314,7 +315,21 @@ public class MarkdownViewer : TemplatedControl
         return inlines;
     }
 
-    private void BuildInline(Inline inline, InlineCollection inlines, EmphasisContext context = default)
+    private struct EmphasisContext
+    {
+        public bool Bold { get; set; }
+        public bool Italic { get; set; }
+        public bool Deleted { get; set; }
+        public bool Underlined { get; set; }
+        public bool Highlighted { get; set; }
+        public bool Subscripted { get; set; }
+        public bool Superscripted { get; set; }
+    }
+
+    private void BuildInline(
+        Markdig.Syntax.Inlines.Inline inline,
+        InlineCollection inlines,
+        EmphasisContext context = default)
     {
         switch (inline)
         {
@@ -325,7 +340,7 @@ public class MarkdownViewer : TemplatedControl
                 {
                     LiteralInline it => it.Content.ToString(),
                     HtmlEntityInline it => it.Transcoded.ToString(),
-                    _ => inline.ToString()
+                    _ => inline.ToString(),
                 });
                 run.Classes.Set("Literal", true);
                 run.Classes.Set("Bold", context.Bold);
@@ -356,13 +371,13 @@ public class MarkdownViewer : TemplatedControl
                 break;
             case TaskList task:
             {
-                var rv = new CheckBox { IsChecked = task.Checked, IsEnabled = false };
+                var rv = new CheckBox() { IsChecked = task.Checked, IsEnabled = false };
                 inlines.Add(rv);
             }
                 break;
             case CodeInline code:
             {
-                var rv = new HighlightInline { Text = code.Content };
+                var rv = new HighlightInline() { Text = code.Content };
                 inlines.Add(rv);
             }
                 break;
@@ -441,7 +456,7 @@ public class MarkdownViewer : TemplatedControl
         }
     }
 
-    private Panel SpawnStack() => new StackPanel { Spacing = Spacing };
+    private Panel SpawnStack() => new StackPanel() { Spacing = Spacing };
 
     private DockPanel SpawnDock() => new() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
 
@@ -459,13 +474,11 @@ public class MarkdownViewer : TemplatedControl
         tableView.Classes.Set("Markdown", true);
 
         for (var i = 0; i < columnCount; i++)
-        {
             tableView.Columns.Add(new()
             {
                 HorizontalContentAlignment = HorizontalAlignment.Stretch,
-                Binding = new Binding("[" + i + "]")
+                Binding = new Binding("[" + i + "]"),
             });
-        }
 
         TableRow? header = null;
 
@@ -473,13 +486,9 @@ public class MarkdownViewer : TemplatedControl
         {
             var row = (TableRow)block;
             if (row.IsHeader)
-            {
                 header = row;
-            }
             else
-            {
                 tableView.Items.Add(BuildRow(table, row, columnCount));
-            }
         }
 
         if (header is not null)
@@ -490,9 +499,7 @@ public class MarkdownViewer : TemplatedControl
                 var columnIndex = cell.ColumnIndex >= 0 ? cell.ColumnIndex : i;
 
                 if (columnIndex < columnCount)
-                {
                     tableView.Columns[columnIndex].Header = SpawnCell(cell, AlignOf(table, columnIndex));
-                }
             }
         }
         else
@@ -513,9 +520,7 @@ public class MarkdownViewer : TemplatedControl
             var columnIndex = cell.ColumnIndex >= 0 ? cell.ColumnIndex : i;
 
             if (columnIndex < columnCount)
-            {
                 cells[columnIndex] = SpawnCell(cell, AlignOf(table, columnIndex));
-            }
         }
 
         return new(cells);
@@ -534,9 +539,7 @@ public class MarkdownViewer : TemplatedControl
             if (subBlock is ParagraphBlock { Inline: not null } para)
             {
                 foreach (var inline in RenderInlines(para.Inline))
-                {
                     inlines.Add(inline);
-                }
             }
         }
 
@@ -545,7 +548,7 @@ public class MarkdownViewer : TemplatedControl
         {
             TableColumnAlign.Center => TextAlignment.Center,
             TableColumnAlign.Right => TextAlignment.Right,
-            _ => TextAlignment.Left
+            _ => TextAlignment.Left,
         };
         return text;
     }
@@ -562,7 +565,7 @@ public class MarkdownViewer : TemplatedControl
             4 => "□",
             5 => "◆",
             6 => "♢",
-            _ => "‥"
+            _ => "‥",
         };
 
     private string GenerateOrderedListHead(int depth, int index)
@@ -572,24 +575,5 @@ public class MarkdownViewer : TemplatedControl
             default:
                 return index.ToString();
         }
-    }
-
-    private struct BlockContext
-    {
-        public bool ListOrdered { get; set; }
-        public int ListDepth { get; set; }
-
-        public int ListIndex { get; set; }
-    }
-
-    private struct EmphasisContext
-    {
-        public bool Bold { get; set; }
-        public bool Italic { get; set; }
-        public bool Deleted { get; set; }
-        public bool Underlined { get; set; }
-        public bool Highlighted { get; set; }
-        public bool Subscripted { get; set; }
-        public bool Superscripted { get; set; }
     }
 }

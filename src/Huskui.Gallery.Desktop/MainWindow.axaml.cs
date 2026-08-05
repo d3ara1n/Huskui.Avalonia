@@ -11,5 +11,6 @@ public partial class MainWindow : AppWindow
 
     private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 
-    private void OnAboutClick(object? sender, RoutedEventArgs e) => AppSurface?.PopModal(new AboutModal());
+    private void OnAboutClick(object? sender, RoutedEventArgs e) =>
+        AppSurface?.PopModal(new AboutModal());
 }

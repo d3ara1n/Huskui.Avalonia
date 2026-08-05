@@ -1,6 +1,11 @@
+using System;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Styling;
 using Huskui.Avalonia.Mvvm.Models;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +15,8 @@ public static class ViewModelMixin
 {
     private static readonly ConditionalWeakTable<Control, Store> Stores = new();
 
-    public static void Attach<T>(T control, IServiceScope? scope = null) where T : Control
+    public static void Attach<T>(T control, IServiceScope? scope = null)
+        where T : Control
     {
         var store = Stores.GetValue(control, _ => new());
         if (store.IsAttached)
@@ -51,8 +57,10 @@ public static class ViewModelMixin
         if (sender is Control control)
         {
             var store = Stores.GetValue(control, _ => new());
-            if (store is { IsLoaded: true, AttachedViewModel: not null }
-             && !ReferenceEquals(store.AttachedViewModel, control.DataContext))
+            if (
+                store is { IsLoaded: true, AttachedViewModel: not null }
+                && !ReferenceEquals(store.AttachedViewModel, control.DataContext)
+            )
             {
                 store.CancelCurrent();
             }
@@ -94,11 +102,14 @@ public static class ViewModelMixin
             var token = store.ReplaceTokenSource();
             store.AttachedViewModel = desiredViewModel;
 
-            SetState(control, true);
+            SetState(control, loading: true);
             try
             {
                 await desiredViewModel.InitializeAsync(token);
-                if (!token.IsCancellationRequested && ReferenceEquals(store.AttachedViewModel, desiredViewModel))
+                if (
+                    !token.IsCancellationRequested
+                    && ReferenceEquals(store.AttachedViewModel, desiredViewModel)
+                )
                 {
                     SetState(control, finished: true);
                 }
@@ -112,7 +123,10 @@ public static class ViewModelMixin
             }
             catch
             {
-                if (!token.IsCancellationRequested && ReferenceEquals(store.AttachedViewModel, desiredViewModel))
+                if (
+                    !token.IsCancellationRequested
+                    && ReferenceEquals(store.AttachedViewModel, desiredViewModel)
+                )
                 {
                     SetState(control, failed: true);
                 }
@@ -136,7 +150,12 @@ public static class ViewModelMixin
         }
     }
 
-    private static void SetState(object? sender, bool loading = false, bool finished = false, bool failed = false)
+    private static void SetState(
+        object? sender,
+        bool loading = false,
+        bool finished = false,
+        bool failed = false
+    )
     {
         if (sender is Control control)
         {

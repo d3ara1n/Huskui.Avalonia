@@ -1,3 +1,9 @@
 namespace Huskui.Avalonia.Models;
 
-public enum BadgePlacement { TopLeft, TopRight, BottomLeft, BottomRight }
+public enum BadgePlacement
+{
+    TopLeft,
+    TopRight,
+    BottomLeft,
+    BottomRight,
+}

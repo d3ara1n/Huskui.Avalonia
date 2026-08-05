@@ -4,8 +4,6 @@ namespace Huskui.Avalonia.Models;
 
 public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = null) : ICommand
 {
-    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
     #region ICommand Members
 
     private bool _isRunning;
@@ -19,10 +17,7 @@ public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = n
     async void ICommand.Execute(object? parameter)
     {
         if (!((ICommand)this).CanExecute(null))
-        {
             return;
-        }
-
         _isRunning = true;
         OnCanExecuteChanged();
         try
@@ -37,12 +32,12 @@ public class InternalAsyncCommand(Func<Task> execute, Func<bool>? canExecute = n
     }
 
     #endregion
+
+    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 }
 
 public class InternalAsyncCommand<T>(Func<T?, Task> execute, Func<T?, bool>? canExecute = null) : ICommand
 {
-    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
     #region ICommand Members
 
     private bool _isRunning;
@@ -54,7 +49,7 @@ public class InternalAsyncCommand<T>(Func<T?, Task> execute, Func<T?, bool>? can
         {
             null => canExecute?.Invoke(default) ?? true,
             T it => canExecute?.Invoke(it) ?? true,
-            _ => false
+            _ => false,
         };
 
     // async void on purpose: execute()'s exceptions surface on the captured
@@ -63,15 +58,12 @@ public class InternalAsyncCommand<T>(Func<T?, Task> execute, Func<T?, bool>? can
     async void ICommand.Execute(object? parameter)
     {
         if (parameter is not null and not T)
-        {
-            throw new InvalidCastException("Parameter must be null or of type " + typeof(T).FullName);
-        }
+            throw new InvalidCastException(
+                "Parameter must be null or of type " + typeof(T).FullName
+            );
 
         if (!((ICommand)this).CanExecute(parameter))
-        {
             return;
-        }
-
         _isRunning = true;
         OnCanExecuteChanged();
         try
@@ -86,4 +78,6 @@ public class InternalAsyncCommand<T>(Func<T?, Task> execute, Func<T?, bool>? can
     }
 
     #endregion
+
+    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 }

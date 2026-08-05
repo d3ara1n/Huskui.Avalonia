@@ -30,7 +30,7 @@ public static class RadixColorGenerator
             hsl.L, // Step 9: Base color (interactive)
             Math.Max(0.05, hsl.L - 0.05), // Step 10: Slightly darker
             Math.Max(0.05, hsl.L - 0.15), // Step 11: High contrast
-            Math.Max(0.05, hsl.L - 0.35) // Step 12: Very dark
+            Math.Max(0.05, hsl.L - 0.35), // Step 12: Very dark
         };
 
         // Saturation adjustments (lighter colors need less saturation)
@@ -47,15 +47,17 @@ public static class RadixColorGenerator
             1.00, // Step 9: Base saturation
             1.00, // Step 10
             1.00, // Step 11
-            0.85 // Step 12: Slightly desaturated for readability
+            0.85, // Step 12: Slightly desaturated for readability
         };
 
         var scale = new Color[12];
         for (var i = 0; i < 12; i++)
         {
-            var newHsl = new HslColor(hsl.H,
-                                      Math.Clamp(hsl.S * saturationMultipliers[i], 0, 1),
-                                      Math.Clamp(lightnessSteps[i], 0, 1));
+            var newHsl = new HslColor(
+                hsl.H,
+                Math.Clamp(hsl.S * saturationMultipliers[i], 0, 1),
+                Math.Clamp(lightnessSteps[i], 0, 1)
+            );
             scale[i] = HslToRgb(newHsl);
         }
 
@@ -83,7 +85,7 @@ public static class RadixColorGenerator
             hsl.L, // Step 9: Base color (interactive)
             Math.Min(0.95, hsl.L + 0.08), // Step 10: Slightly lighter
             Math.Min(0.95, hsl.L + 0.20), // Step 11: High contrast
-            Math.Min(0.95, hsl.L + 0.40) // Step 12: Very light
+            Math.Min(0.95, hsl.L + 0.40), // Step 12: Very light
         };
 
         // Saturation adjustments for dark theme
@@ -100,15 +102,17 @@ public static class RadixColorGenerator
             1.00, // Step 9: Base saturation
             1.00, // Step 10
             0.95, // Step 11: Slightly desaturated
-            0.85 // Step 12: More desaturated for readability
+            0.85, // Step 12: More desaturated for readability
         };
 
         var scale = new Color[12];
         for (var i = 0; i < 12; i++)
         {
-            var newHsl = new HslColor(hsl.H,
-                                      Math.Clamp(hsl.S * saturationMultipliers[i], 0, 1),
-                                      Math.Clamp(lightnessSteps[i], 0, 1));
+            var newHsl = new HslColor(
+                hsl.H,
+                Math.Clamp(hsl.S * saturationMultipliers[i], 0, 1),
+                Math.Clamp(lightnessSteps[i], 0, 1)
+            );
             scale[i] = HslToRgb(newHsl);
         }
 
@@ -156,7 +160,9 @@ public static class RadixColorGenerator
 
     private static Color HslToRgb(HslColor hsl)
     {
-        double r, g, b;
+        double r,
+            g,
+            b;
 
         if (hsl.S == 0)
         {
@@ -172,7 +178,11 @@ public static class RadixColorGenerator
             b = HueToRgb(p, q, hsl.H - 1.0 / 3.0);
         }
 
-        return Color.FromRgb((byte)Math.Round(r * 255), (byte)Math.Round(g * 255), (byte)Math.Round(b * 255));
+        return Color.FromRgb(
+            (byte)Math.Round(r * 255),
+            (byte)Math.Round(g * 255),
+            (byte)Math.Round(b * 255)
+        );
     }
 
     private static double HueToRgb(double p, double q, double t)

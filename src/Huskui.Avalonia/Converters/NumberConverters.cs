@@ -15,7 +15,7 @@ public static class NumberConverters
         float f => float.IsPositive(f),
         double d => double.IsPositive(d),
         decimal m => decimal.IsPositive(m),
-        _ => v
+        _ => v,
     });
 
     public static IValueConverter IsNonPositive { get; } = new RelayConverter((v, _) => v switch
@@ -25,7 +25,7 @@ public static class NumberConverters
         float f => !float.IsPositive(f),
         double d => !double.IsPositive(d),
         decimal m => !decimal.IsPositive(m),
-        _ => v
+        _ => v,
     });
 
     public static IValueConverter IsNegative { get; } = new RelayConverter((v, _) => v switch
@@ -35,7 +35,7 @@ public static class NumberConverters
         float f => float.IsNegative(f),
         double d => double.IsNegative(d),
         decimal m => decimal.IsNegative(m),
-        _ => v
+        _ => v,
     });
 
     public static IValueConverter IsNonNegative { get; } = new RelayConverter((v, _) => v switch
@@ -45,7 +45,7 @@ public static class NumberConverters
         float f => !float.IsNegative(f),
         double d => !double.IsNegative(d),
         decimal m => !decimal.IsNegative(m),
-        _ => v
+        _ => v,
     });
 
     private static bool IsObjectZero(object? value)

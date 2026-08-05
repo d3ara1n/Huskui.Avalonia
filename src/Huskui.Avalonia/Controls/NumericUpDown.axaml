@@ -67,9 +67,7 @@
                                 </Style>
                             </Grid.Styles>
 
-                            <Button
-                                Name="PART_IncreaseButton"
-                                Grid.Row="0">
+                            <Button Grid.Row="0" Name="PART_IncreaseButton">
                                 <fi:SymbolIcon
                                     FontSize="{TemplateBinding FontSize}"
                                     Symbol="ChevronUp" />

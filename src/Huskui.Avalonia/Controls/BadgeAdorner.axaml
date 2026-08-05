@@ -11,16 +11,14 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Spacing="8">
+                <local:BadgeAdorner HorizontalAlignment="Center" Content="9" />
                 <local:BadgeAdorner
                     HorizontalAlignment="Center"
-                    Content="9" />
-                <local:BadgeAdorner
                     Classes="Primary"
-                    HorizontalAlignment="Center"
                     Content="99+" />
                 <local:BadgeAdorner
-                    Classes="Dot Danger"
-                    HorizontalAlignment="Center" />
+                    HorizontalAlignment="Center"
+                    Classes="Dot Danger" />
             </StackPanel>
         </Panel>
     </Design.PreviewWith>
@@ -80,10 +78,8 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Bottom" />
         </Style>
-        <!--
-            HACK: 特例 —— Dot 是形态 variant（圆点 vs 文字），必须改模板内部尺寸并隐藏内容；
-            常规「variant class 仅改公共属性」规则在此豁免。
-        -->
+        <!-- HACK: 特例 —— Dot 是形态 variant（圆点 vs 文字），必须改模板内部尺寸并隐藏内容；
+             常规「variant class 仅改公共属性」规则在此豁免。 -->
         <Style Selector="^.Dot /template/ Border#PART_Badge">
             <Setter Property="Width" Value="8" />
             <Setter Property="Height" Value="8" />

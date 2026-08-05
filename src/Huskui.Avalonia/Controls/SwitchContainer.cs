@@ -9,29 +9,39 @@ namespace Huskui.Avalonia.Controls;
 public class SwitchContainer : TemplatedControl
 {
     public static readonly DirectProperty<SwitchContainer, SwitchCases> CasesProperty =
-        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCases>(nameof(Cases),
-                                                                      o => o.Cases,
-                                                                      (o, v) => o.Cases = v);
+        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCases>(
+            nameof(Cases),
+            o => o.Cases,
+            (o, v) => o.Cases = v
+        );
 
     public static readonly DirectProperty<SwitchContainer, SwitchCase?> CurrentCaseProperty =
-        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCase?>(nameof(CurrentCase),
-                                                                      o => o.CurrentCase,
-                                                                      (o, v) => o.CurrentCase = v);
+        AvaloniaProperty.RegisterDirect<SwitchContainer, SwitchCase?>(
+            nameof(CurrentCase),
+            o => o.CurrentCase,
+            (o, v) => o.CurrentCase = v
+        );
 
     public static readonly DirectProperty<SwitchContainer, object?> ValueProperty =
-        AvaloniaProperty.RegisterDirect<SwitchContainer, object?>(nameof(Value),
-                                                                  o => o.Value,
-                                                                  (o, v) => o.Value = v,
-                                                                  defaultBindingMode: BindingMode.OneWay);
+        AvaloniaProperty.RegisterDirect<SwitchContainer, object?>(
+            nameof(Value),
+            o => o.Value,
+            (o, v) => o.Value = v,
+            defaultBindingMode: BindingMode.OneWay
+        );
 
     public static readonly DirectProperty<SwitchContainer, Type?> TargetTypeProperty =
-        AvaloniaProperty.RegisterDirect<SwitchContainer, Type?>(nameof(TargetType),
-                                                                o => o.TargetType,
-                                                                (o, v) => o.TargetType = v,
-                                                                defaultBindingMode: BindingMode.OneTime);
+        AvaloniaProperty.RegisterDirect<SwitchContainer, Type?>(
+            nameof(TargetType),
+            o => o.TargetType,
+            (o, v) => o.TargetType = v,
+            defaultBindingMode: BindingMode.OneTime
+        );
 
-    public static readonly StyledProperty<object?> ContentProperty =
-        AvaloniaProperty.Register<SwitchContainer, object?>(nameof(Content));
+    public static readonly StyledProperty<object?> ContentProperty = AvaloniaProperty.Register<
+        SwitchContainer,
+        object?
+    >(nameof(Content));
 
     public object? Content
     {
@@ -80,8 +90,8 @@ public class SwitchContainer : TemplatedControl
     private void EvaluateCases()
     {
         if (CurrentCase?.Value != null && CurrentCase.Value.Equals(Value))
-            // If the current case we're on already matches our current value,
-            // then we don't have any work to do.
+        // If the current case we're on already matches our current value,
+        // then we don't have any work to do.
         {
             return;
         }

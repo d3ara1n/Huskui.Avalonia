@@ -9,19 +9,28 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":selected", ":completed")]
 public class StepItem : HeaderedContentControl, ISelectable
 {
-    public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty
-       .AddOwner<StepItem>();
+    public static readonly StyledProperty<bool> IsSelectedProperty =
+        SelectingItemsControl.IsSelectedProperty.AddOwner<StepItem>();
 
-    public static readonly StyledProperty<bool> IsCompletedProperty =
-        AvaloniaProperty.Register<StepItem, bool>(nameof(IsCompleted));
+    public static readonly StyledProperty<bool> IsCompletedProperty = AvaloniaProperty.Register<
+        StepItem,
+        bool
+    >(nameof(IsCompleted));
 
-    public static readonly StyledProperty<bool> IsLastProperty =
-        AvaloniaProperty.Register<StepItem, bool>(nameof(IsLast));
+    public static readonly StyledProperty<bool> IsLastProperty = AvaloniaProperty.Register<
+        StepItem,
+        bool
+    >(nameof(IsLast));
 
-    public static readonly StyledProperty<bool> IsFirstProperty =
-        AvaloniaProperty.Register<StepItem, bool>(nameof(IsFirst));
+    public static readonly StyledProperty<bool> IsFirstProperty = AvaloniaProperty.Register<
+        StepItem,
+        bool
+    >(nameof(IsFirst));
 
-    public static readonly StyledProperty<int> IndexProperty = AvaloniaProperty.Register<StepItem, int>(nameof(Index));
+    public static readonly StyledProperty<int> IndexProperty = AvaloniaProperty.Register<
+        StepItem,
+        int
+    >(nameof(Index));
 
     static StepItem() => SelectableMixin.Attach<StepItem>(IsSelectedProperty);
 

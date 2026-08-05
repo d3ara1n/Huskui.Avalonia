@@ -8,10 +8,14 @@ namespace Huskui.Avalonia.MarkupExtensions;
 
 public class DynamicResourceBindingExtension : MarkupExtension
 {
-    public DynamicResourceBindingExtension(string resourceKey) => ResourceKey = resourceKey;
     public string ResourceKey { get; }
     public IValueConverter? Converter { get; set; }
     public object? ConverterParameter { get; set; }
+
+    public DynamicResourceBindingExtension(string resourceKey)
+    {
+        ResourceKey = resourceKey;
+    }
 
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
@@ -20,7 +24,8 @@ public class DynamicResourceBindingExtension : MarkupExtension
 
         return new MultiBinding
         {
-            Bindings = [binding], Converter = new ResourceConverter(Converter, ConverterParameter)
+            Bindings = [binding],
+            Converter = new ResourceConverter(Converter, ConverterParameter),
         };
     }
 }

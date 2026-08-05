@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -29,13 +31,6 @@ public class DiffOverviewBar : TemplatedControl
     public static readonly StyledProperty<int> TotalLinesProperty =
         AvaloniaProperty.Register<DiffOverviewBar, int>(nameof(TotalLines));
 
-    private readonly TranslateTransform _thumbTransform = new();
-    private bool _isDragging;
-    private Control? _thumb;
-    private double _thumbHeight = MIN_THUMB_HEIGHT;
-
-    private Control? _track;
-
     public IReadOnlyList<DiffMarker>? Markers
     {
         get => GetValue(MarkersProperty);
@@ -62,6 +57,12 @@ public class DiffOverviewBar : TemplatedControl
 
     public event EventHandler<double>? ScrollRequested;
 
+    private Control? _track;
+    private Control? _thumb;
+    private readonly TranslateTransform _thumbTransform = new();
+    private bool _isDragging;
+    private double _thumbHeight = MIN_THUMB_HEIGHT;
+
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
         base.OnApplyTemplate(e);
@@ -78,9 +79,7 @@ public class DiffOverviewBar : TemplatedControl
         _thumb = e.NameScope.Find<Control>(PART_Thumb);
 
         if (_thumb != null)
-        {
             _thumb.RenderTransform = _thumbTransform;
-        }
 
         if (_track != null)
         {
@@ -98,13 +97,9 @@ public class DiffOverviewBar : TemplatedControl
         base.OnPropertyChanged(change);
 
         if (change.Property == ViewTopRatioProperty)
-        {
             UpdateThumbPosition();
-        }
         else if (change.Property == ViewportRatioProperty)
-        {
             UpdateThumbGeometry();
-        }
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -125,9 +120,7 @@ public class DiffOverviewBar : TemplatedControl
     private void OnTrackPointerMoved(object? sender, PointerEventArgs e)
     {
         if (!_isDragging)
-        {
             return;
-        }
 
         RequestScroll(e);
         e.Handled = true;
@@ -140,20 +133,17 @@ public class DiffOverviewBar : TemplatedControl
         e.Handled = true;
     }
 
-    private void OnTrackPointerCaptureLost(object? sender, PointerCaptureLostEventArgs e) => _isDragging = false;
+    private void OnTrackPointerCaptureLost(object? sender, PointerCaptureLostEventArgs e) =>
+        _isDragging = false;
 
     private void RequestScroll(PointerEventArgs e)
     {
         if (_track == null)
-        {
             return;
-        }
 
         var height = _track.Bounds.Height;
         if (height <= 0)
-        {
             return;
-        }
 
         var position = e.GetPosition(_track);
         var movable = height - _thumbHeight;
@@ -164,15 +154,11 @@ public class DiffOverviewBar : TemplatedControl
     private void UpdateThumbGeometry()
     {
         if (_track == null || _thumb == null)
-        {
             return;
-        }
 
         var height = _track.Bounds.Height;
         if (height <= 0)
-        {
             return;
-        }
 
         _thumbHeight = Math.Min(height, Math.Max(MIN_THUMB_HEIGHT, ViewportRatio * height));
         _thumb.Height = _thumbHeight;
@@ -182,15 +168,11 @@ public class DiffOverviewBar : TemplatedControl
     private void UpdateThumbPosition()
     {
         if (_track == null || _thumb == null)
-        {
             return;
-        }
 
         var height = _track.Bounds.Height;
         if (height <= 0)
-        {
             return;
-        }
 
         var movable = Math.Max(0, height - _thumbHeight);
         _thumbTransform.Y = Math.Clamp(ViewTopRatio, 0.0, 1.0) * movable;

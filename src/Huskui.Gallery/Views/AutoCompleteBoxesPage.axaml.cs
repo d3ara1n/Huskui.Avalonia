@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -13,7 +16,7 @@ public partial class AutoCompleteBoxesPage : ControlPage
         new("Polymerium Cloud", "Infrastructure", "$129 / month"),
         new("Atlas Monitor", "Observability", "$89 / month"),
         new("Nova Docs", "Knowledge Base", "$19 / editor"),
-        new("Signal Router", "Messaging", "$59 / month")
+        new("Signal Router", "Messaging", "$59 / month"),
     ];
 
     public AutoCompleteBoxesPage()
@@ -33,7 +36,7 @@ public partial class AutoCompleteBoxesPage : ControlPage
             "Tokyo",
             "Toronto",
             "Vancouver",
-            "Zurich"
+            "Zurich",
         };
 
         MemberSearchBox.ItemsSource = new[]
@@ -45,12 +48,21 @@ public partial class AutoCompleteBoxesPage : ControlPage
             "Noah Patel - Support",
             "Olivia Turner - Operations",
             "Sarah Chen - Product",
-            "Sofia Ivanova - Research"
+            "Sofia Ivanova - Research",
         };
 
         LanguageSearchBox.ItemsSource = new[]
         {
-            "C#", "F#", "Go", "Java", "JavaScript", "Kotlin", "Python", "Rust", "Swift", "TypeScript"
+            "C#",
+            "F#",
+            "Go",
+            "Java",
+            "JavaScript",
+            "Kotlin",
+            "Python",
+            "Rust",
+            "Swift",
+            "TypeScript",
         };
 
         ProductSearchBox.ItemsSource = _products;
@@ -61,7 +73,7 @@ public partial class AutoCompleteBoxesPage : ControlPage
             "Executive Reporting",
             "Growth Experiments",
             "Platform Reliability",
-            "Release Management"
+            "Release Management",
         };
 
         RoleSearchBox.ItemsSource = new[]
@@ -71,7 +83,7 @@ public partial class AutoCompleteBoxesPage : ControlPage
             "Incident Commander",
             "Project Maintainer",
             "Read-only Auditor",
-            "Workspace Admin"
+            "Workspace Admin",
         };
 
         InviteeSearchBox.ItemsSource = new[]
@@ -81,12 +93,12 @@ public partial class AutoCompleteBoxesPage : ControlPage
             "lena.wang@polymerium.dev",
             "mia.johnson@polymerium.dev",
             "sarah.chen@polymerium.dev",
-            "victor.park@polymerium.dev"
+            "victor.park@polymerium.dev",
         };
 
         ProductSearchBox
-           .GetObservable(AutoCompleteBox.SelectedItemProperty)
-           .Subscribe(selected => UpdateProductSelection(selected as ProductSuggestion));
+            .GetObservable(AutoCompleteBox.SelectedItemProperty)
+            .Subscribe(selected => UpdateProductSelection(selected as ProductSuggestion));
 
         ResetExamples();
     }
@@ -134,10 +146,12 @@ public partial class AutoCompleteBoxesPage : ControlPage
         ProductSearchBox.Text = _products.First().Name;
     }
 
-    private void UpdateProductSelection(ProductSuggestion? selected) =>
+    private void UpdateProductSelection(ProductSuggestion? selected)
+    {
         ProductSelectionText.Text = selected is null
-                                        ? "Selected product: none"
-                                        : $"Selected product: {selected.Name} · {selected.Category} · {selected.PriceLabel}";
+            ? "Selected product: none"
+            : $"Selected product: {selected.Name} · {selected.Category} · {selected.PriceLabel}";
+    }
 }
 
 public sealed record ProductSuggestion(string Name, string Category, string PriceLabel);

@@ -9,28 +9,25 @@ namespace Huskui.Avalonia.Controls;
 [TemplatePart(PART_AppSurface, typeof(AppSurface))]
 public class AppWindow : Window
 {
-    public const string PART_AppSurface = nameof(PART_AppSurface);
-
-    public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
-        AvaloniaProperty.RegisterDirect<AppWindow, bool>(nameof(IsMaximized),
-                                                         o => o.IsMaximized,
-                                                         (o, v) => o.IsMaximized = v);
-
     public AppWindow()
     {
         if (OperatingSystem.IsWindows())
-        {
             PseudoClasses.Set(":windows", true);
-        }
         else if (OperatingSystem.IsMacOS())
-        {
             PseudoClasses.Set(":macos", true);
-        }
         else if (OperatingSystem.IsLinux())
-        {
             PseudoClasses.Set(":linux", true);
-        }
     }
+    public const string PART_AppSurface = nameof(PART_AppSurface);
+
+    public static readonly DirectProperty<AppWindow, bool> IsMaximizedProperty =
+        AvaloniaProperty.RegisterDirect<AppWindow, bool>(
+            nameof(IsMaximized),
+            o => o.IsMaximized,
+            (o, v) => o.IsMaximized = v
+        );
+
+    private AppSurface? _appSurface;
 
     protected override Type StyleKeyOverride => typeof(AppWindow);
 
@@ -40,7 +37,7 @@ public class AppWindow : Window
         set => SetAndRaise(IsMaximizedProperty, ref field, value);
     }
 
-    public AppSurface? AppSurface { get; private set; }
+    public AppSurface? AppSurface => _appSurface;
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -58,9 +55,9 @@ public class AppWindow : Window
 
         UnregisterHandlers();
 
-        AppSurface = e.NameScope.Find<AppSurface>(PART_AppSurface);
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.MaskPointerPressed += OnMaskPointerPressed;
+        _appSurface = e.NameScope.Find<AppSurface>(PART_AppSurface);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.MaskPointerPressed += OnMaskPointerPressed;
     }
 
     protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
@@ -71,9 +68,9 @@ public class AppWindow : Window
 
     private void UnregisterHandlers()
     {
-        if (AppSurface != null)
+        if (_appSurface != null)
         {
-            AppSurface.MaskPointerPressed -= OnMaskPointerPressed;
+            _appSurface.MaskPointerPressed -= OnMaskPointerPressed;
         }
     }
 
@@ -85,37 +82,37 @@ public class AppWindow : Window
 
     public void PopToast(Toast toast)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopToast(toast);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopToast(toast);
     }
 
     public void PopSidebar(Sidebar sidebar)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopSidebar(sidebar);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopSidebar(sidebar);
     }
 
     public void PopDialog(Dialog dialog)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopDialog(dialog);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopDialog(dialog);
     }
 
     public void PopModal(Modal modal)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopModal(modal);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopModal(modal);
     }
 
     public void PopGrowl(GrowlItem growl)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopGrowl(growl);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopGrowl(growl);
     }
 
     public void PopDrawer(Drawer drawer)
     {
-        ArgumentNullException.ThrowIfNull(AppSurface);
-        AppSurface.PopDrawer(drawer);
+        ArgumentNullException.ThrowIfNull(_appSurface);
+        _appSurface.PopDrawer(drawer);
     }
 }

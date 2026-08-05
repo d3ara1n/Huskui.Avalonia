@@ -8,8 +8,10 @@ namespace Huskui.Gallery.Dialogs;
 
 public partial class EmailInputDialog : Dialog
 {
-    private static readonly Regex EmailRegex = new(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
-                                                   RegexOptions.Compiled);
+    private static readonly Regex EmailRegex = new(
+        @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+        RegexOptions.Compiled
+    );
 
     public EmailInputDialog()
     {

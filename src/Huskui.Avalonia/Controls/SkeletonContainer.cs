@@ -7,11 +7,15 @@ namespace Huskui.Avalonia.Controls;
 [PseudoClasses(":loading", ":animated")]
 public class SkeletonContainer : ContentControl
 {
-    public static readonly StyledProperty<bool> IsLoadingProperty =
-        AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsLoading));
+    public static readonly StyledProperty<bool> IsLoadingProperty = AvaloniaProperty.Register<
+        SkeletonContainer,
+        bool
+    >(nameof(IsLoading));
 
-    public static readonly StyledProperty<bool> IsAnimatedProperty =
-        AvaloniaProperty.Register<SkeletonContainer, bool>(nameof(IsAnimated));
+    public static readonly StyledProperty<bool> IsAnimatedProperty = AvaloniaProperty.Register<
+        SkeletonContainer,
+        bool
+    >(nameof(IsAnimated));
 
     // 同步伪类更新
     public SkeletonContainer() => IsAnimated = true;

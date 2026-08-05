@@ -10,8 +10,10 @@ public class BusyContainer : ContentControl
     public static readonly StyledProperty<object?> PendingContentProperty =
         AvaloniaProperty.Register<BusyContainer, object?>(nameof(PendingContent));
 
-    public static readonly StyledProperty<bool> IsBusyProperty =
-        AvaloniaProperty.Register<BusyContainer, bool>(nameof(IsBusy));
+    public static readonly StyledProperty<bool> IsBusyProperty = AvaloniaProperty.Register<
+        BusyContainer,
+        bool
+    >(nameof(IsBusy));
 
     public object? PendingContent
     {

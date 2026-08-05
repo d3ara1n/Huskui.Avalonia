@@ -6,11 +6,15 @@ namespace Huskui.Avalonia.Controls;
 
 public class FlexWrapPanel : Panel
 {
-    public static readonly StyledProperty<double> RowSpacingProperty =
-        AvaloniaProperty.Register<FlexWrapPanel, double>(nameof(RowSpacing));
+    public static readonly StyledProperty<double> RowSpacingProperty = AvaloniaProperty.Register<
+        FlexWrapPanel,
+        double
+    >(nameof(RowSpacing));
 
-    public static readonly StyledProperty<double> ColumnSpacingProperty =
-        AvaloniaProperty.Register<FlexWrapPanel, double>(nameof(ColumnSpacing));
+    public static readonly StyledProperty<double> ColumnSpacingProperty = AvaloniaProperty.Register<
+        FlexWrapPanel,
+        double
+    >(nameof(ColumnSpacing));
 
     public double RowSpacing
     {
@@ -45,7 +49,8 @@ public class FlexWrapPanel : Panel
                 }
             }
 
-            var avgWidth = (totalWidth - ColumnSpacing * (count - 1) - sumWidth) / (count - sumCount);
+            var avgWidth =
+                (totalWidth - ColumnSpacing * (count - 1) - sumWidth) / (count - sumCount);
 
             var rowMaxHeight = 0d;
             for (var i = start; i < start + count; i++)
@@ -95,7 +100,8 @@ public class FlexWrapPanel : Panel
                 maxHeight = double.Max(maxHeight, child.DesiredSize.Height);
             }
 
-            var avgWidth = (totalWidth - ColumnSpacing * (count - 1) - sumWidth) / (count - sumCount);
+            var avgWidth =
+                (totalWidth - ColumnSpacing * (count - 1) - sumWidth) / (count - sumCount);
             for (var i = start; i < start + count; i++)
             {
                 var child = Children[i];
@@ -149,7 +155,9 @@ public class FlexWrapPanel : Panel
                 // TODO: 当 HorizontalAlignment 不为 Stretch 时，依旧用同一个 count，但取每个 child 的 MinWidth
                 // TODO: 应该使用 DesiredSize.Width 作为 MinWidth 而不是 MinWidth
 
-                child.Arrange(new(usedWidth, totalHeight + RowSpacing * row, double.Floor(width), height));
+                child.Arrange(
+                    new(usedWidth, totalHeight + RowSpacing * row, double.Floor(width), height)
+                );
                 usedWidth += width + ColumnSpacing;
             }
 
@@ -160,7 +168,10 @@ public class FlexWrapPanel : Panel
         }
 
         var actualHeight = double.Max(totalHeight + RowSpacing * (row - 1), 0d);
-        return new(totalWidth, VerticalAlignment == VerticalAlignment.Stretch ? final.Height : actualHeight);
+        return new(
+            totalWidth,
+            VerticalAlignment == VerticalAlignment.Stretch ? final.Height : actualHeight
+        );
     }
 
     private int SeparateLines(double width, int start)
@@ -186,13 +197,19 @@ public class FlexWrapPanel : Panel
                 max = width - maxWidth;
             }
 
-            if (max > double.Epsilon && width - (maxWidth + max + ColumnSpacing * maxCount) > double.Epsilon)
+            if (
+                max > double.Epsilon
+                && width - (maxWidth + max + ColumnSpacing * maxCount) > double.Epsilon
+            )
             {
                 maxWidth += max;
                 maxCount++;
             }
 
-            if (min > double.Epsilon && width - (minWidth + ColumnSpacing * minCount) > double.Epsilon)
+            if (
+                min > double.Epsilon
+                && width - (minWidth + ColumnSpacing * minCount) > double.Epsilon
+            )
             {
                 minWidth += min;
                 minCount++;

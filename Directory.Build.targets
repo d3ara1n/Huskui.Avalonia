@@ -1,110 +1,110 @@
 <Project>
 
-    <UsingTask TaskName="HuskuiPinProjectReferenceVersions"
-               TaskFactory="RoslynCodeTaskFactory"
-               AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-        <ParameterGroup>
-            <PinnedVersions ParameterType="System.String" Required="true"/>
-            <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true"/>
-            <Pinned ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true"/>
-        </ParameterGroup>
-        <Task>
-            <Using Namespace="System"/>
-            <Using Namespace="System.IO"/>
-            <Using Namespace="System.Collections.Generic"/>
-            <Code Type="Fragment" Language="C#">
-                var map = new Dictionary&lt;string, string&gt;(StringComparer.OrdinalIgnoreCase);
-                foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                var kv = pair.Split(new[] { '=' }, 2);
-                if (kv.Length == 2)
-                map[kv[0].Trim()] = kv[1].Trim();
-                }
-                foreach (var item in Items)
-                {
-                var id = Path.GetFileNameWithoutExtension(item.ItemSpec);
-                if (map.TryGetValue(id, out var ver))
-                item.SetMetadata("ProjectVersion", ver);
-                }
-                Pinned = Items;
-            </Code>
-        </Task>
-    </UsingTask>
+  <UsingTask TaskName="HuskuiPinProjectReferenceVersions"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <PinnedVersions ParameterType="System.String" Required="true" />
+      <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <Pinned ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Collections.Generic" />
+      <Code Type="Fragment" Language="C#">
+        var map = new Dictionary&lt;string, string&gt;(StringComparer.OrdinalIgnoreCase);
+        foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+          var kv = pair.Split(new[] { '=' }, 2);
+          if (kv.Length == 2)
+          map[kv[0].Trim()] = kv[1].Trim();
+        }
+        foreach (var item in Items)
+        {
+          var id = Path.GetFileNameWithoutExtension(item.ItemSpec);
+          if (map.TryGetValue(id, out var ver))
+          item.SetMetadata("ProjectVersion", ver);
+        }
+        Pinned = Items;
+      </Code>
+    </Task>
+  </UsingTask>
 
-    <UsingTask TaskName="HuskuiResolvePinnedVersion"
-               TaskFactory="RoslynCodeTaskFactory"
-               AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-        <ParameterGroup>
-            <PinnedVersions ParameterType="System.String" Required="true"/>
-            <PackageId ParameterType="System.String" Required="true"/>
-            <ResolvedVersion ParameterType="System.String" Output="true"/>
-        </ParameterGroup>
-        <Task>
-            <Using Namespace="System"/>
-            <Code Type="Fragment" Language="C#">
-                ResolvedVersion = string.Empty;
-                foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                var kv = pair.Split(new[] { '=' }, 2);
-                if (kv.Length == 2 &amp;&amp; string.Equals(kv[0].Trim(), PackageId, StringComparison.OrdinalIgnoreCase))
-                {
-                ResolvedVersion = kv[1].Trim();
-                break;
-                }
-                }
-            </Code>
-        </Task>
-    </UsingTask>
+  <UsingTask TaskName="HuskuiResolvePinnedVersion"
+             TaskFactory="RoslynCodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <PinnedVersions ParameterType="System.String" Required="true" />
+      <PackageId ParameterType="System.String" Required="true" />
+      <ResolvedVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="C#">
+        ResolvedVersion = string.Empty;
+        foreach (var pair in (PinnedVersions ?? string.Empty).Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+          var kv = pair.Split(new[] { '=' }, 2);
+          if (kv.Length == 2 &amp;&amp; string.Equals(kv[0].Trim(), PackageId, StringComparison.OrdinalIgnoreCase))
+          {
+            ResolvedVersion = kv[1].Trim();
+            break;
+          }
+        }
+      </Code>
+    </Task>
+  </UsingTask>
 
-    <Target Name="HuskuiApplyPinnedVersion"
-            BeforeTargets="GetAssemblyVersion;GenerateNuspec"
-            Condition="'$(IsPackable)' != 'false'
+  <Target Name="HuskuiApplyPinnedVersion"
+          BeforeTargets="GetAssemblyVersion;GenerateNuspec"
+          Condition="'$(IsPackable)' != 'false'
                      AND '$(HuskuiPinnedVersions)' != ''
                      AND '$(PackageId)' != ''">
-        <HuskuiResolvePinnedVersion
-            PinnedVersions="$(HuskuiPinnedVersions)"
-            PackageId="$(PackageId)">
-            <Output TaskParameter="ResolvedVersion" PropertyName="_HuskuiPinnedVersion"/>
-        </HuskuiResolvePinnedVersion>
-        <PropertyGroup Condition="'$(_HuskuiPinnedVersion)' != ''">
-            <Version>$(_HuskuiPinnedVersion)</Version>
-            <VersionPrefix>$(_HuskuiPinnedVersion)</VersionPrefix>
-            <PackageVersion>$(_HuskuiPinnedVersion)</PackageVersion>
-        </PropertyGroup>
-        <Message Text="HUSKUI-VERSION: $(PackageId) -> $(Version)" Importance="high" Condition="'$(_HuskuiPinnedVersion)' != ''"/>
-    </Target>
+    <HuskuiResolvePinnedVersion
+        PinnedVersions="$(HuskuiPinnedVersions)"
+        PackageId="$(PackageId)">
+      <Output TaskParameter="ResolvedVersion" PropertyName="_HuskuiPinnedVersion" />
+    </HuskuiResolvePinnedVersion>
+    <PropertyGroup Condition="'$(_HuskuiPinnedVersion)' != ''">
+      <Version>$(_HuskuiPinnedVersion)</Version>
+      <VersionPrefix>$(_HuskuiPinnedVersion)</VersionPrefix>
+      <PackageVersion>$(_HuskuiPinnedVersion)</PackageVersion>
+    </PropertyGroup>
+    <Message Text="HUSKUI-VERSION: $(PackageId) -> $(Version)" Importance="high" Condition="'$(_HuskuiPinnedVersion)' != ''" />
+  </Target>
 
-    <Target Name="HuskuiRemovePackVersionFromProjectReferences"
-            AfterTargets="AssignProjectConfiguration"
-            BeforeTargets="_SplitProjectReferencesByFileExistence"
-            Condition="'$(HuskuiPinnedVersions)' != ''
+  <Target Name="HuskuiRemovePackVersionFromProjectReferences"
+          AfterTargets="AssignProjectConfiguration"
+          BeforeTargets="_SplitProjectReferencesByFileExistence"
+          Condition="'$(HuskuiPinnedVersions)' != ''
                      AND '@(ProjectReferenceWithConfiguration)' != ''">
-        <ItemGroup>
-            <ProjectReferenceWithConfiguration>
-                <GlobalPropertiesToRemove>%(ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
-            </ProjectReferenceWithConfiguration>
-            <_ProjectReferenceWithConfiguration>
-                <GlobalPropertiesToRemove>%(_ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
-            </_ProjectReferenceWithConfiguration>
-        </ItemGroup>
-    </Target>
+    <ItemGroup>
+      <ProjectReferenceWithConfiguration>
+        <GlobalPropertiesToRemove>%(ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
+      </ProjectReferenceWithConfiguration>
+      <_ProjectReferenceWithConfiguration>
+        <GlobalPropertiesToRemove>%(_ProjectReferenceWithConfiguration.GlobalPropertiesToRemove);Version;VersionPrefix;VersionSuffix;PackageVersion;AssemblyVersion;FileVersion;InformationalVersion</GlobalPropertiesToRemove>
+      </_ProjectReferenceWithConfiguration>
+    </ItemGroup>
+  </Target>
 
-    <Target Name="HuskuiPinDependencyVersions"
-            AfterTargets="_GetProjectReferenceVersions"
-            BeforeTargets="GenerateNuspec"
-            Condition="'$(IsPackable)' != 'false'
+  <Target Name="HuskuiPinDependencyVersions"
+          AfterTargets="_GetProjectReferenceVersions"
+          BeforeTargets="GenerateNuspec"
+          Condition="'$(IsPackable)' != 'false'
                      AND '$(HuskuiPinnedVersions)' != ''
                      AND '@(_ProjectReferencesWithVersions->Count())' != '0'">
-        <HuskuiPinProjectReferenceVersions
-            PinnedVersions="$(HuskuiPinnedVersions)"
-            Items="@(_ProjectReferencesWithVersions)">
-            <Output TaskParameter="Pinned" ItemName="_HuskuiPinnedTmp"/>
-        </HuskuiPinProjectReferenceVersions>
-        <ItemGroup>
-            <_ProjectReferencesWithVersions Remove="@(_ProjectReferencesWithVersions)"/>
-            <_ProjectReferencesWithVersions Include="@(_HuskuiPinnedTmp)"/>
-        </ItemGroup>
-        <Message Text="HUSKUI-PIN: id=%(_ProjectReferencesWithVersions.FileName) -> %(_ProjectReferencesWithVersions.ProjectVersion)" Importance="high"/>
-    </Target>
+    <HuskuiPinProjectReferenceVersions
+        PinnedVersions="$(HuskuiPinnedVersions)"
+        Items="@(_ProjectReferencesWithVersions)">
+      <Output TaskParameter="Pinned" ItemName="_HuskuiPinnedTmp" />
+    </HuskuiPinProjectReferenceVersions>
+    <ItemGroup>
+      <_ProjectReferencesWithVersions Remove="@(_ProjectReferencesWithVersions)" />
+      <_ProjectReferencesWithVersions Include="@(_HuskuiPinnedTmp)" />
+    </ItemGroup>
+    <Message Text="HUSKUI-PIN: id=%(_ProjectReferencesWithVersions.FileName) -> %(_ProjectReferencesWithVersions.ProjectVersion)" Importance="high" />
+  </Target>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿<husk:Modal
+<husk:Modal
     x:Class="Huskui.Gallery.Modals.AboutModal"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -56,31 +56,23 @@
             <HyperlinkButton
                 NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia"
                 Theme="{StaticResource GhostButtonTheme}">
-                <StackPanel
-                    Orientation="Horizontal"
-                    Spacing="6">
+                <StackPanel Orientation="Horizontal" Spacing="6">
                     <fi:SymbolIcon
                         VerticalAlignment="Center"
                         FontSize="{StaticResource SmallFontSize}"
                         Symbol="Open" />
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        Text="GitHub" />
+                    <TextBlock VerticalAlignment="Center" Text="GitHub" />
                 </StackPanel>
             </HyperlinkButton>
             <HyperlinkButton
                 NavigateUri="https://docs.avaloniaui.net/"
                 Theme="{StaticResource GhostButtonTheme}">
-                <StackPanel
-                    Orientation="Horizontal"
-                    Spacing="6">
+                <StackPanel Orientation="Horizontal" Spacing="6">
                     <fi:SymbolIcon
                         VerticalAlignment="Center"
                         FontSize="{StaticResource SmallFontSize}"
                         Symbol="Document" />
-                    <TextBlock
-                        VerticalAlignment="Center"
-                        Text="Documentation" />
+                    <TextBlock VerticalAlignment="Center" Text="Documentation" />
                 </StackPanel>
             </HyperlinkButton>
         </StackPanel>

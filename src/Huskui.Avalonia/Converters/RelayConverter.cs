@@ -7,12 +7,32 @@ public class RelayConverter : IValueConverter
 {
     private readonly Func<object?, Type, object?, CultureInfo, object?> _convert;
 
-    public RelayConverter(Func<object?, Type, object?, CultureInfo, object?> convert) => _convert = convert;
+    public RelayConverter(Func<object?, Type, object?, CultureInfo, object?> convert) =>
+        _convert = convert;
 
     public RelayConverter(Func<object?, object?, object?> convert) =>
         _convert = (value, _, parameter, _) => convert(value, parameter);
 
-    public RelayConverter(Func<object?, object?> convert) => _convert = (value, _, _, _) => convert(value);
+    public RelayConverter(Func<object?, object?> convert) =>
+        _convert = (value, _, _, _) => convert(value);
+
+    #region IValueConverter Members
+
+    public object? Convert(
+        object? value,
+        Type targetType,
+        object? parameter,
+        CultureInfo culture
+    ) => _convert(value, targetType, parameter, culture);
+
+    public object? ConvertBack(
+        object? value,
+        Type targetType,
+        object? parameter,
+        CultureInfo culture
+    ) => throw new NotImplementedException();
+
+    #endregion
 
     internal static object ConvertValue(Type targetType, object value)
     {
@@ -30,7 +50,9 @@ public class RelayConverter : IValueConverter
                     return result;
                 }
 
-                throw new InvalidOperationException("The requested bool value was not present in the provided type.");
+                throw new InvalidOperationException(
+                    "The requested bool value was not present in the provided type."
+                );
             }
 
             if (targetType.IsEnum)
@@ -40,11 +62,18 @@ public class RelayConverter : IValueConverter
                     return result;
                 }
 
-                throw new InvalidOperationException("The requested enum value was not present in the provided type.");
+                throw new InvalidOperationException(
+                    "The requested enum value was not present in the provided type."
+                );
             }
         }
 
-        return DefaultValueConverter.Instance.Convert(value, targetType, null, CultureInfo.CurrentCulture) ?? value;
+        return DefaultValueConverter.Instance.Convert(
+                value,
+                targetType,
+                null,
+                CultureInfo.CurrentCulture
+            ) ?? value;
     }
 
     internal static bool CompareValues(object? compare, object? value, Type? targetType)
@@ -55,7 +84,7 @@ public class RelayConverter : IValueConverter
         }
 
         if (targetType == compare.GetType() && targetType == value.GetType())
-            // Default direct object comparison or we're all the proper type
+        // Default direct object comparison or we're all the proper type
         {
             return compare.Equals(value);
         }
@@ -77,14 +106,4 @@ public class RelayConverter : IValueConverter
 
         return compareBase.Equals(valueBase);
     }
-
-    #region IValueConverter Members
-
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        _convert(value, targetType, parameter, culture);
-
-    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture) =>
-        throw new NotImplementedException();
-
-    #endregion
 }

@@ -7,10 +7,8 @@
         <Setter Property="Theme" Value="{StaticResource InlineHyperlinkButtonTheme}" />
     </Style>
 
-    <!--
-        FluentIcons.SymbolIcon registers FontSize with inherits:false (default 20), so a bare
-        instance never picks up the ambient font size; pin it to the theme-scaled body size.
-    -->
+    <!-- FluentIcons.SymbolIcon registers FontSize with inherits:false (default 20), so a bare
+         instance never picks up the ambient font size; pin it to the theme-scaled body size. -->
     <Style Selector="fi|SymbolIcon">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
     </Style>

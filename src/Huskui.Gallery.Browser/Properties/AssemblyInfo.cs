@@ -1,3 +1,1 @@
-using System.Runtime.Versioning;
-
-[assembly: SupportedOSPlatform("browser")]
+[assembly: System.Runtime.Versioning.SupportedOSPlatform("browser")]

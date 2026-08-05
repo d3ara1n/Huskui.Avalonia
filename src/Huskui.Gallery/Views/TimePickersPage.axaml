@@ -1,4 +1,4 @@
-﻿<controls:ControlPage
+<controls:ControlPage
     x:Class="Huskui.Gallery.Views.TimePickersPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -49,8 +49,8 @@
                     <TimePicker
                         ClockIdentifier="24HourClock"
                         SecondIncrement="5"
-                        SelectedTime="16:40:25"
-                        UseSeconds="True" />
+                        UseSeconds="True"
+                        SelectedTime="16:40:25" />
                 </StackPanel>
 
                 <StackPanel Spacing="8">

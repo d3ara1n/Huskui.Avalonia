@@ -7,8 +7,8 @@ namespace Huskui.Avalonia.Controls;
 
 public class TagItem : ContentControl, ISelectable
 {
-    public static readonly StyledProperty<bool> IsSelectedProperty = SelectingItemsControl.IsSelectedProperty
-       .AddOwner<TagItem>();
+    public static readonly StyledProperty<bool> IsSelectedProperty =
+        SelectingItemsControl.IsSelectedProperty.AddOwner<TagItem>();
 
     public TagItem() => SelectableMixin.Attach<TagItem>(IsSelectedProperty);
 

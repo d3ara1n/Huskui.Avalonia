@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="Huskui.Gallery.AppView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,19 +9,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Huskui.Gallery.Models"
     xmlns:vm="clr-namespace:Huskui.Gallery.ViewModels"
+    Loaded="Control_OnLoaded"
     d:DesignHeight="800"
     d:DesignWidth="1200"
     x:DataType="vm:MainWindowViewModel"
-    Loaded="Control_OnLoaded"
     mc:Ignorable="d">
 
     <Grid>
         <husk:NavigationView
             Name="NavView"
-            BackCommand="{Binding #Frame.GoBackCommand}"
             IsPaneOpen="{Binding IsPaneOpen}"
             ItemsSource="{Binding SearchResults}"
-            SelectedItem="{Binding SelectedEntry}">
+            SelectedItem="{Binding SelectedEntry}"
+            BackCommand="{Binding #Frame.GoBackCommand}">
             <husk:NavigationView.Content>
                 <husk:Frame x:Name="Frame" />
             </husk:NavigationView.Content>
@@ -58,16 +58,12 @@
                             <Border
                                 Classes="NewBadge"
                                 IsVisible="{Binding IsNew}">
-                                <TextBlock
-                                    Classes="BadgeText"
-                                    Text="NEW" />
+                                <TextBlock Classes="BadgeText" Text="NEW" />
                             </Border>
                             <Border
                                 Classes="UpdatedBadge"
                                 IsVisible="{Binding IsUpdated}">
-                                <TextBlock
-                                    Classes="BadgeText"
-                                    Text="UPD" />
+                                <TextBlock Classes="BadgeText" Text="UPD" />
                             </Border>
                         </StackPanel>
                     </Grid>
@@ -94,8 +90,8 @@
                         </Button>
                         <StackPanel
                             VerticalAlignment="Center"
-                            IsVisible="{Binding IsPaneOpen}"
-                            Spacing="4">
+                            Spacing="4"
+                            IsVisible="{Binding IsPaneOpen}">
                             <TextBlock
                                 FontSize="{StaticResource LargeFontSize}"
                                 FontWeight="{StaticResource ControlStrongFontWeight}"
@@ -109,8 +105,8 @@
 
                     <TextBox
                         Grid.Row="1"
-                        Classes="SearchBox"
                         Margin="16,16,16,0"
+                        Classes="SearchBox"
                         IsVisible="{Binding IsPaneOpen}"
                         PlaceholderText="Search controls..."
                         Text="{Binding SearchText}">
@@ -134,10 +130,10 @@
                         <HyperlinkButton
                             Grid.Column="0"
                             VerticalAlignment="Center"
-                            IsVisible="{Binding IsPaneOpen}"
                             Content="Huskui.Avalonia"
                             FontSize="{StaticResource SmallFontSize}"
                             Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            IsVisible="{Binding IsPaneOpen}"
                             NavigateUri="https://github.com/d3ara1n/Huskui.Avalonia" />
                         <StackPanel
                             Grid.Column="1"
@@ -151,12 +147,12 @@
                                 ToolTip.Tip="Toggle theme">
                                 <Panel>
                                     <fi:SymbolIcon
-                                        IsVisible="{Binding !IsDarkTheme}"
                                         FontSize="{StaticResource SmallFontSize}"
+                                        IsVisible="{Binding !IsDarkTheme}"
                                         Symbol="WeatherMoon" />
                                     <fi:SymbolIcon
-                                        IsVisible="{Binding IsDarkTheme}"
                                         FontSize="{StaticResource SmallFontSize}"
+                                        IsVisible="{Binding IsDarkTheme}"
                                         Symbol="WeatherSunny" />
                                 </Panel>
                             </Button>
@@ -178,10 +174,10 @@
         <Border
             MaxWidth="400"
             HorizontalAlignment="Right"
-            IsVisible="{Binding IsSettingsOpen}"
             Background="{StaticResource OverlaySolidBackgroundBrush}"
             BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1,0,0,0">
+            BorderThickness="1,0,0,0"
+            IsVisible="{Binding IsSettingsOpen}">
             <ScrollViewer Padding="32">
                 <StackPanel Spacing="32">
                     <StackPanel Spacing="16">

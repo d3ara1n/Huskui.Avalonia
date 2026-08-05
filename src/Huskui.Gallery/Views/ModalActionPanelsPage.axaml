@@ -1,4 +1,4 @@
-﻿<controls:ControlPage
+<controls:ControlPage
     x:Class="Huskui.Gallery.Views.ModalActionPanelsPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,7 +12,7 @@
     mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <!--  1. Interactive: Layout x PrimaryPlacement matrix  -->
+        <!-- 1. Interactive: Layout x PrimaryPlacement matrix -->
         <controls:ExampleContainer
             Title="Interactive — Layout and PrimaryPlacement"
             Description="Layout aligns the button group (pure layout, no platform awareness). PrimaryPlacement decides whether the IsDefault primary sits first (Leading) or last (Trailing) in the sequence — this is the only platform-aware part. Auto follows the running platform (macOS=Trailing, others=Leading). Try each Layout: every one now reflects the platform-correct ordering.">
@@ -86,9 +86,9 @@
                     Spacing="{Binding #SpacingSlider.Value}">
                     <Button
                         Classes="Primary"
-                        IsVisible="{Binding #ShowPrimary.IsChecked}"
                         Content="Confirm"
-                        IsDefault="True" />
+                        IsDefault="True"
+                        IsVisible="{Binding #ShowPrimary.IsChecked}" />
                     <Button
                         Content="Cancel"
                         IsCancel="True" />
@@ -96,7 +96,7 @@
             </Border>
         </controls:ExampleContainer>
 
-        <!--  2. Dialog footer (Stretch)  -->
+        <!-- 2. Dialog footer (Stretch) -->
         <controls:ExampleContainer
             Title="Dialog Footer — Stretch"
             Description="The Dialog theme uses Stretch: children split the width evenly, primary ordered per platform. macOS: [Cancel | Confirm]; others: [Confirm | Cancel].">
@@ -122,7 +122,7 @@
             </Border>
         </controls:ExampleContainer>
 
-        <!--  3. Multi-action Edge  -->
+        <!-- 3. Multi-action Edge -->
         <controls:ExampleContainer
             Title="Multi-action — Edge with three buttons"
             Description="Edge hugs the whole group to the primary's side. Non-IsDefault children stay together in document order. Save (IsDefault) leads the group; the two secondary actions follow.">

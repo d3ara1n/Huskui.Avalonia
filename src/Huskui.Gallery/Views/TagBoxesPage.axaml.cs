@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using Avalonia.Interactivity;
@@ -9,7 +10,13 @@ public partial class TagBoxesPage : ControlPage
 {
     private readonly ObservableCollection<string> _channelOptions =
     [
-        "Email", "PagerDuty", "Slack", "SMS", "Status Page", "Teams", "Webhook"
+        "Email",
+        "PagerDuty",
+        "Slack",
+        "SMS",
+        "Status Page",
+        "Teams",
+        "Webhook",
     ];
 
     private readonly ObservableCollection<string> _formChannels = ["Slack", "PagerDuty"];
@@ -25,22 +32,45 @@ public partial class TagBoxesPage : ControlPage
         "frontend",
         "high-priority",
         "release-candidate",
-        "ux-review"
+        "ux-review",
     ];
 
-    private readonly ObservableCollection<string> _releaseLabels = ["release-candidate", "blocking"];
+    private readonly ObservableCollection<string> _releaseLabels =
+    [
+        "release-candidate",
+        "blocking",
+    ];
 
     private readonly ObservableCollection<string> _teamOptions =
     [
-        "Core UX", "Docs", "Platform", "QA", "Security", "SRE", "Support"
+        "Core UX",
+        "Docs",
+        "Platform",
+        "QA",
+        "Security",
+        "SRE",
+        "Support",
     ];
 
     private readonly ObservableCollection<string> _technologyOptions =
     [
-        "Avalonia", "C#", "Cross-platform", "Design System", "Fluent Icons", "Huskui", "MVVM", "Reactive", "XAML"
+        "Avalonia",
+        "C#",
+        "Cross-platform",
+        "Design System",
+        "Fluent Icons",
+        "Huskui",
+        "MVVM",
+        "Reactive",
+        "XAML",
     ];
 
-    private readonly ObservableCollection<string> _technologySelections = ["Avalonia", "Huskui", "XAML"];
+    private readonly ObservableCollection<string> _technologySelections =
+    [
+        "Avalonia",
+        "Huskui",
+        "XAML",
+    ];
 
     public TagBoxesPage()
     {
@@ -72,46 +102,58 @@ public partial class TagBoxesPage : ControlPage
         UpdateFormSelectionText();
     }
 
-    private void OnClearBasicClick(object? sender, RoutedEventArgs e) => _technologySelections.Clear();
+    private void OnClearBasicClick(object? sender, RoutedEventArgs e) =>
+        _technologySelections.Clear();
 
     private void OnResetBasicClick(object? sender, RoutedEventArgs e)
     {
-        ResetCollection(_technologySelections, "Avalonia", "Huskui", "XAML");
+        ResetCollection(_technologySelections, ["Avalonia", "Huskui", "XAML"]);
         TechnologyTagBox.Text = string.Empty;
     }
 
-    private void OnSeedCustomInputClick(object? sender, RoutedEventArgs e) => ReleaseTagBox.Text = "needs-copy-review";
+    private void OnSeedCustomInputClick(object? sender, RoutedEventArgs e)
+    {
+        ReleaseTagBox.Text = "needs-copy-review";
+    }
 
     private void OnResetCustomClick(object? sender, RoutedEventArgs e)
     {
-        ResetCollection(_releaseLabels, "release-candidate", "blocking");
+        ResetCollection(_releaseLabels, ["release-candidate", "blocking"]);
         ReleaseTagBox.Text = string.Empty;
     }
 
     private void OnResetFormClick(object? sender, RoutedEventArgs e)
     {
-        ResetCollection(_formTeams, "Platform", "SRE");
-        ResetCollection(_formChannels, "Slack", "PagerDuty");
-        ResetCollection(_formLabels, "sev-1", "customer-facing");
+        ResetCollection(_formTeams, ["Platform", "SRE"]);
+        ResetCollection(_formChannels, ["Slack", "PagerDuty"]);
+        ResetCollection(_formLabels, ["sev-1", "customer-facing"]);
 
         TeamTagBox.Text = string.Empty;
         ChannelTagBox.Text = string.Empty;
         RuleLabelTagBox.Text = string.Empty;
     }
 
-    private void UpdateTechnologySelectionText() =>
-        TechnologySelectionText.Text = _technologySelections.Count == 0
-                                           ? "Selected tags: none"
-                                           : $"Selected tags: {string.Join(", ", _technologySelections)}";
+    private void UpdateTechnologySelectionText()
+    {
+        TechnologySelectionText.Text =
+            _technologySelections.Count == 0
+                ? "Selected tags: none"
+                : $"Selected tags: {string.Join(", ", _technologySelections)}";
+    }
 
-    private void UpdateReleaseSelectionText() =>
-        ReleaseSelectionText.Text = _releaseLabels.Count == 0
-                                        ? "Release labels: none"
-                                        : $"Release labels: {string.Join(", ", _releaseLabels)}";
+    private void UpdateReleaseSelectionText()
+    {
+        ReleaseSelectionText.Text =
+            _releaseLabels.Count == 0
+                ? "Release labels: none"
+                : $"Release labels: {string.Join(", ", _releaseLabels)}";
+    }
 
-    private void UpdateFormSelectionText() =>
+    private void UpdateFormSelectionText()
+    {
         FormSelectionText.Text =
             $"Teams: {FormatSelection(_formTeams)} | Channels: {FormatSelection(_formChannels)} | Labels: {FormatSelection(_formLabels)}";
+    }
 
     private static void ResetCollection(ObservableCollection<string> target, params string[] values)
     {
@@ -126,6 +168,11 @@ public partial class TagBoxesPage : ControlPage
     private static string FormatSelection(ObservableCollection<string> values) =>
         values.Count == 0 ? "none" : string.Join(", ", values);
 
-    private static void SubscribeSelectionChanges(INotifyCollectionChanged source, Action onCollectionChanged) =>
+    private static void SubscribeSelectionChanges(
+        INotifyCollectionChanged source,
+        Action onCollectionChanged
+    )
+    {
         source.CollectionChanged += (_, _) => onCollectionChanged();
+    }
 }

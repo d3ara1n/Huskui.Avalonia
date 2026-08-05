@@ -1,4 +1,4 @@
-﻿<controls:ControlPage
+<controls:ControlPage
     x:Class="Huskui.Gallery.Views.ZoomViewsPage"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -50,9 +50,7 @@
                         <TextBlock
                             FontWeight="{StaticResource ControlStrongFontWeight}"
                             Text="Install into an existing Huskui app" />
-                        <husk:CodeViewer
-                            Code="dotnet add package Huskui.Avalonia.Code"
-                            Language="bash" />
+                        <husk:CodeViewer Language="bash" Code="dotnet add package Huskui.Avalonia.Code" />
                     </StackPanel>
                 </Border>
             </StackPanel>
@@ -67,9 +65,7 @@
                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                     Text="Mouse wheel = pan (no modifier) or zoom (⌘/Ctrl). Middle-button drag = pan. The minimap in the bottom-right shows the current viewport position within the full content area."
                     TextWrapping="Wrap" />
-                <husk:ZoomView
-                    x:Name="PrimaryZoomView"
-                    Height="420" />
+                <husk:ZoomView x:Name="PrimaryZoomView" Height="420" />
             </StackPanel>
         </controls:ExampleContainer>
 
@@ -85,8 +81,8 @@
                 <husk:ZoomView
                     x:Name="ImageZoomView"
                     Height="420"
-                    MaxZoom="20"
-                    MinZoom="0.05" />
+                    MinZoom="0.05"
+                    MaxZoom="20" />
             </StackPanel>
         </controls:ExampleContainer>
 
@@ -99,9 +95,7 @@
                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                     Text="Small content stays centered at its natural size. Pan and zoom still work; overflowed axes clamp to keep the content visible."
                     TextWrapping="Wrap" />
-                <husk:ZoomView
-                    x:Name="SmallZoomView"
-                    Height="300">
+                <husk:ZoomView x:Name="SmallZoomView" Height="300">
                     <Border
                         Padding="24,12"
                         HorizontalAlignment="Center"
@@ -151,14 +145,8 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="Zoom / ZoomX / ZoomY" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="The current scale factor. Two-way bindable via Zoom; ZoomX and ZoomY are read-only and always equal (uniform scale)."
-                                TextWrapping="Wrap" />
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Zoom / ZoomX / ZoomY" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The current scale factor. Two-way bindable via Zoom; ZoomX and ZoomY are read-only and always equal (uniform scale)." TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -170,14 +158,8 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="ContentSize" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="The measured size of the wrapped content, in content pixels. Useful for building external overviews."
-                                TextWrapping="Wrap" />
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="ContentSize" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The measured size of the wrapped content, in content pixels. Useful for building external overviews." TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -189,14 +171,8 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="ViewportRect" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="The visible region in content coordinates (x, y, width, height). Bind external minimaps or overlay indicators to this."
-                                TextWrapping="Wrap" />
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="ViewportRect" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="The visible region in content coordinates (x, y, width, height). Bind external minimaps or overlay indicators to this." TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -208,14 +184,8 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="MinZoom / MaxZoom / ZoomSpeed" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="Clamp the zoom range and control the step factor for wheel zoom and +/- buttons (default 1.2)."
-                                TextWrapping="Wrap" />
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="MinZoom / MaxZoom / ZoomSpeed" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="Clamp the zoom range and control the step factor for wheel zoom and +/- buttons (default 1.2)." TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                     <Border
@@ -228,14 +198,8 @@
                         BorderThickness="1"
                         CornerRadius="{StaticResource SmallCornerRadius}">
                         <StackPanel Spacing="8">
-                            <TextBlock
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="Methods: ZoomAt / ZoomIn / ZoomOut / FitToContent / FitToAll / Reset" />
-                            <TextBlock
-                                FontSize="{StaticResource SmallFontSize}"
-                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                Text="ZoomAt(double factor, double cx, double cy) zooms anchored at a content coordinate. The toolbar buttons call ZoomIn/ZoomOut/FitToContent/FitToAll. Reset returns to Matrix.Identity."
-                                TextWrapping="Wrap" />
+                            <TextBlock FontWeight="{StaticResource ControlStrongFontWeight}" Text="Methods: ZoomAt / ZoomIn / ZoomOut / FitToContent / FitToAll / Reset" />
+                            <TextBlock FontSize="{StaticResource SmallFontSize}" Foreground="{StaticResource ControlSecondaryForegroundBrush}" Text="ZoomAt(double factor, double cx, double cy) zooms anchored at a content coordinate. The toolbar buttons call ZoomIn/ZoomOut/FitToContent/FitToAll. Reset returns to Matrix.Identity." TextWrapping="Wrap" />
                         </StackPanel>
                     </Border>
                 </Grid>

@@ -62,9 +62,7 @@
                             <Run Text=" is a " />
                             <husk:HighlightInline Text="HeaderedContentControl" />
                             <Run Text=" with a built-in header bar, back button, and ScrollViewer — it is " />
-                            <Run
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                Text="not" />
+                            <Run FontWeight="{StaticResource ControlStrongFontWeight}" Text="not" />
                             <Run Text=" the same type. When writing pages for Huskui's Frame, inherit from " />
                             <husk:HighlightInline Text="Huskui.Avalonia.Controls.Page" />
                             <Run Text=" (or " />

@@ -1,7 +1,7 @@
-﻿<ResourceDictionary
+<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel
@@ -23,8 +23,8 @@
                     SelectedTime="09:30" />
                 <TimePicker
                     ClockIdentifier="24HourClock"
-                    SelectedTime="16:40:25"
-                    UseSeconds="True" />
+                    UseSeconds="True"
+                    SelectedTime="16:40:25" />
                 <TimePicker IsEnabled="False" />
             </StackPanel>
         </Panel>
@@ -79,12 +79,10 @@
                     <Border
                         Name="Overlay"
                         Margin="4"
-                        IsHitTestVisible="False"
                         Background="{StaticResource OverlayHalfBackgroundBrush}"
-                        CornerRadius="{TemplateBinding CornerRadius,
-                                                       Converter={x:Static husk:CornerRadiusConverters.ToInnerRadius},
-                                                       ConverterParameter=4}"
-                        Opacity="0">
+                        Opacity="0"
+                        CornerRadius="{TemplateBinding CornerRadius, Converter={x:Static husk:CornerRadiusConverters.ToInnerRadius}, ConverterParameter=4}"
+                        IsHitTestVisible="False">
                         <Border.Transitions>
                             <Transitions>
                                 <DoubleTransition
@@ -124,7 +122,8 @@
                         Name="Background"
                         Margin="5,2"
                         Background="{TemplateBinding Background}"
-                        CornerRadius="{TemplateBinding CornerRadius}" />
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                    </Border>
                     <Border
                         Name="Overlay"
                         Margin="5,2"
@@ -200,23 +199,23 @@
                     <Panel>
                         <Button
                             Name="PART_FlyoutButton"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MaxWidth="{TemplateBinding MaxWidth}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            IsEnabled="{TemplateBinding IsEnabled}"
+                            MinWidth="{TemplateBinding MinWidth}"
+                            MaxWidth="{TemplateBinding MaxWidth}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Foreground="{TemplateBinding Foreground}"
+                            IsEnabled="{TemplateBinding IsEnabled}"
                             TemplatedControl.IsTemplateFocusTarget="True"
                             Theme="{StaticResource DateTimePickerFlyoutButtonTheme}">
                             <Grid Name="PART_ButtonContentGrid">
                                 <TextBlock
                                     Name="PART_DayTextBlock"
-                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     HorizontalAlignment="Stretch"
+                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     Text="{StaticResource DatePickerHostDayEmptyString}"
                                     TextAlignment="Center" />
 
@@ -224,17 +223,17 @@
                                     Name="PART_FirstSpacer"
                                     Grid.Column="1"
                                     Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                    Margin="0,8"
                                     HorizontalAlignment="Center"
-                                    Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                    Margin="0,8"
                                     RadiusX="1"
-                                    RadiusY="1" />
+                                    RadiusY="1"
+                                    Fill="{StaticResource ControlInteractiveBorderBrush}" />
 
                                 <TextBlock
                                     Name="PART_MonthTextBlock"
                                     Grid.Column="2"
-                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     HorizontalAlignment="Stretch"
+                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     Text="{StaticResource DatePickerHostMonthEmptyString}"
                                     TextAlignment="Center" />
 
@@ -242,17 +241,17 @@
                                     Name="PART_SecondSpacer"
                                     Grid.Column="3"
                                     Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                    Margin="0,8"
                                     HorizontalAlignment="Center"
-                                    Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                    Margin="0,8"
                                     RadiusX="1"
-                                    RadiusY="1" />
+                                    RadiusY="1"
+                                    Fill="{StaticResource ControlInteractiveBorderBrush}" />
 
                                 <TextBlock
                                     Name="PART_YearTextBlock"
                                     Grid.Column="4"
-                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     HorizontalAlignment="Stretch"
+                                    Padding="{StaticResource DateTimePickerHostPadding}"
                                     Text="{StaticResource DatePickerHostYearEmptyString}"
                                     TextAlignment="Center" />
                             </Grid>
@@ -330,10 +329,7 @@
                             OffsetY="8"
                             Opacity="0.18" />
                     </Border.Effect>
-                    <Grid
-                        Name="ContentPanel"
-                        RowDefinitions="*,Auto"
-                        RowSpacing="6">
+                    <Grid Name="ContentPanel" RowDefinitions="*,Auto" RowSpacing="6">
                         <Grid
                             Name="PART_PickerContainer"
                             ClipToBounds="True">
@@ -371,12 +367,12 @@
                                     Name="PART_MonthUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -386,12 +382,12 @@
                                     Name="PART_MonthDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -415,12 +411,12 @@
                                     Name="PART_DayUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -430,12 +426,12 @@
                                     Name="PART_DayDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -459,12 +455,12 @@
                                     Name="PART_YearUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -474,12 +470,12 @@
                                     Name="PART_YearDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -499,20 +495,20 @@
                                 Name="PART_FirstSpacer"
                                 Grid.Column="1"
                                 Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                Margin="0,28"
                                 HorizontalAlignment="Center"
-                                Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                Margin="0,28"
                                 RadiusX="1"
-                                RadiusY="1" />
+                                RadiusY="1"
+                                Fill="{StaticResource ControlInteractiveBorderBrush}" />
                             <Rectangle
                                 Name="PART_SecondSpacer"
                                 Grid.Column="3"
                                 Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                Margin="0,28"
                                 HorizontalAlignment="Center"
-                                Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                Margin="0,28"
                                 RadiusX="1"
-                                RadiusY="1" />
+                                RadiusY="1"
+                                Fill="{StaticResource ControlInteractiveBorderBrush}" />
                         </Grid>
 
                         <Grid
@@ -523,11 +519,11 @@
                             <Button
                                 Name="PART_AcceptButton"
                                 Grid.Column="0"
-                                Classes="Primary"
                                 Height="{StaticResource DateTimePickerFlyoutPresenterAcceptDismissHostGridHeight}"
-                                Padding="0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                                VerticalAlignment="Stretch"
+                                Classes="Primary"
+                                Padding="0">
                                 <fi:SymbolIcon
                                     FontSize="{StaticResource MediumFontSize}"
                                     Symbol="Checkmark" />
@@ -536,9 +532,9 @@
                                 Name="PART_DismissButton"
                                 Grid.Column="1"
                                 Height="{StaticResource DateTimePickerFlyoutPresenterAcceptDismissHostGridHeight}"
-                                Padding="0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                                VerticalAlignment="Stretch"
+                                Padding="0">
                                 <fi:SymbolIcon
                                     FontSize="{StaticResource MediumFontSize}"
                                     Symbol="Dismiss" />
@@ -575,16 +571,16 @@
                     <Panel>
                         <Button
                             Name="PART_FlyoutButton"
-                            MinWidth="{TemplateBinding MinWidth}"
-                            MaxWidth="{TemplateBinding MaxWidth}"
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
-                            IsEnabled="{TemplateBinding IsEnabled}"
+                            MinWidth="{TemplateBinding MinWidth}"
+                            MaxWidth="{TemplateBinding MaxWidth}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="{TemplateBinding CornerRadius}"
                             Foreground="{TemplateBinding Foreground}"
+                            IsEnabled="{TemplateBinding IsEnabled}"
                             TemplatedControl.IsTemplateFocusTarget="True"
                             Theme="{StaticResource DateTimePickerFlyoutButtonTheme}">
                             <Grid Name="PART_FlyoutButtonContentGrid">
@@ -605,8 +601,8 @@
                                     </Border.Transitions>
                                     <TextBlock
                                         Name="PART_HourTextBlock"
-                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         HorizontalAlignment="Center"
+                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
@@ -614,11 +610,11 @@
                                     Name="PART_FirstColumnDivider"
                                     Grid.Column="1"
                                     Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                    Margin="0,8"
                                     HorizontalAlignment="Center"
-                                    Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                    Margin="0,8"
                                     RadiusX="1"
-                                    RadiusY="1" />
+                                    RadiusY="1"
+                                    Fill="{StaticResource ControlInteractiveBorderBrush}" />
 
                                 <Border
                                     Name="PART_SecondPickerHost"
@@ -637,8 +633,8 @@
                                     </Border.Transitions>
                                     <TextBlock
                                         Name="PART_MinuteTextBlock"
-                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         HorizontalAlignment="Center"
+                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
@@ -646,11 +642,11 @@
                                     Name="PART_SecondColumnDivider"
                                     Grid.Column="3"
                                     Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                    Margin="0,8"
                                     HorizontalAlignment="Center"
-                                    Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                    Margin="0,8"
                                     RadiusX="1"
-                                    RadiusY="1" />
+                                    RadiusY="1"
+                                    Fill="{StaticResource ControlInteractiveBorderBrush}" />
 
                                 <Border
                                     Name="PART_ThirdPickerHost"
@@ -669,8 +665,8 @@
                                     </Border.Transitions>
                                     <TextBlock
                                         Name="PART_SecondTextBlock"
-                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         HorizontalAlignment="Center"
+                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
 
@@ -678,11 +674,11 @@
                                     Name="PART_ThirdColumnDivider"
                                     Grid.Column="5"
                                     Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                    Margin="0,8"
                                     HorizontalAlignment="Center"
-                                    Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                    Margin="0,8"
                                     RadiusX="1"
-                                    RadiusY="1" />
+                                    RadiusY="1"
+                                    Fill="{StaticResource ControlInteractiveBorderBrush}" />
 
                                 <Border
                                     Name="PART_FourthPickerHost"
@@ -701,8 +697,8 @@
                                     </Border.Transitions>
                                     <TextBlock
                                         Name="PART_PeriodTextBlock"
-                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         HorizontalAlignment="Center"
+                                        Padding="{StaticResource DateTimePickerHostPadding}"
                                         Text="{StaticResource TimePickerHostEmptyString}" />
                                 </Border>
                             </Grid>
@@ -780,10 +776,7 @@
                             OffsetY="8"
                             Opacity="0.18" />
                     </Border.Effect>
-                    <Grid
-                        Name="ContentPanel"
-                        RowDefinitions="*,Auto"
-                        RowSpacing="6">
+                    <Grid Name="ContentPanel" RowDefinitions="*,Auto" RowSpacing="6">
                         <Grid
                             Name="PART_PickerContainer"
                             ClipToBounds="True">
@@ -821,12 +814,12 @@
                                     Name="PART_HourUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -836,12 +829,12 @@
                                     Name="PART_HourDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -865,12 +858,12 @@
                                     Name="PART_MinuteUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -880,12 +873,12 @@
                                     Name="PART_MinuteDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -909,12 +902,12 @@
                                     Name="PART_SecondUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -924,12 +917,12 @@
                                     Name="PART_SecondDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -953,12 +946,12 @@
                                     Name="PART_PeriodUpButton"
                                     Height="24"
                                     Margin="4,3,4,0"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -968,12 +961,12 @@
                                     Name="PART_PeriodDownButton"
                                     Height="24"
                                     Margin="4,0,4,3"
-                                    Padding="0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Bottom"
-                                    IsVisible="False"
                                     Focusable="False"
                                     Foreground="{StaticResource ControlForegroundBrush}"
+                                    IsVisible="False"
+                                    Padding="0"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon
                                         FontSize="{StaticResource ExtraSmallFontSize}"
@@ -993,29 +986,29 @@
                                 Name="PART_FirstSpacer"
                                 Grid.Column="1"
                                 Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                Margin="0,28"
                                 HorizontalAlignment="Center"
-                                Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                Margin="0,28"
                                 RadiusX="1"
-                                RadiusY="1" />
+                                RadiusY="1"
+                                Fill="{StaticResource ControlInteractiveBorderBrush}" />
                             <Rectangle
                                 Name="PART_SecondSpacer"
                                 Grid.Column="3"
                                 Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                Margin="0,28"
                                 HorizontalAlignment="Center"
-                                Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                Margin="0,28"
                                 RadiusX="1"
-                                RadiusY="1" />
+                                RadiusY="1"
+                                Fill="{StaticResource ControlInteractiveBorderBrush}" />
                             <Rectangle
                                 Name="PART_ThirdSpacer"
                                 Grid.Column="5"
                                 Width="{StaticResource DateTimePickerSpacerThemeWidth}"
-                                Margin="0,28"
                                 HorizontalAlignment="Center"
-                                Fill="{StaticResource ControlInteractiveBorderBrush}"
+                                Margin="0,28"
                                 RadiusX="1"
-                                RadiusY="1" />
+                                RadiusY="1"
+                                Fill="{StaticResource ControlInteractiveBorderBrush}" />
                         </Grid>
 
                         <Grid
@@ -1026,11 +1019,11 @@
                             <Button
                                 Name="PART_AcceptButton"
                                 Grid.Column="0"
-                                Classes="Primary"
                                 Height="{StaticResource DateTimePickerFlyoutPresenterAcceptDismissHostGridHeight}"
-                                Padding="0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                                VerticalAlignment="Stretch"
+                                Classes="Primary"
+                                Padding="0">
                                 <fi:SymbolIcon
                                     FontSize="{StaticResource MediumFontSize}"
                                     Symbol="Checkmark" />
@@ -1039,9 +1032,9 @@
                                 Name="PART_DismissButton"
                                 Grid.Column="1"
                                 Height="{StaticResource DateTimePickerFlyoutPresenterAcceptDismissHostGridHeight}"
-                                Padding="0"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                                VerticalAlignment="Stretch"
+                                Padding="0">
                                 <fi:SymbolIcon
                                     FontSize="{StaticResource MediumFontSize}"
                                     Symbol="Dismiss" />

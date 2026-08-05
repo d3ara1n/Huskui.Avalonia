@@ -1,3 +1,5 @@
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Gallery.Controls;
 
@@ -11,9 +13,11 @@ public partial class PaginationControlsPage : ControlPage
 
     private void OnGoToLast(object? sender, RoutedEventArgs e) => BasicPagination.GoToLast();
 
-    private void OnGoToPage20(object? sender, RoutedEventArgs e) => LargePagination.PageIndex = 19;
+    private void OnGoToPage20(object? sender, RoutedEventArgs e) =>
+        LargePagination.PageIndex = 19;
 
-    private void OnGoToPage50(object? sender, RoutedEventArgs e) => LargePagination.PageIndex = 49;
+    private void OnGoToPage50(object? sender, RoutedEventArgs e) =>
+        LargePagination.PageIndex = 49;
 
     private void OnEnabledToggled(object? sender, RoutedEventArgs e) =>
         DisabledPagination.IsEnabled = !DisabledPagination.IsEnabled;

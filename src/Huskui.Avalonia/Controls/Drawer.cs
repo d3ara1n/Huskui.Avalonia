@@ -25,32 +25,45 @@ public class Drawer : ContentControl
     public const string PART_CloseButton = nameof(PART_CloseButton);
     public const string PART_ToggleStateButton = nameof(PART_ToggleStateButton);
 
-    public static readonly StyledProperty<bool> IsExpandedProperty =
-        AvaloniaProperty.Register<Drawer, bool>(nameof(IsExpanded), true);
+    public static readonly StyledProperty<bool> IsExpandedProperty = AvaloniaProperty.Register<
+        Drawer,
+        bool
+    >(nameof(IsExpanded), true);
 
-    public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent =
-        RoutedEvent.Register<Drawer, RoutedEventArgs>(nameof(Expanded), RoutingStrategies.Bubble);
+    public static readonly RoutedEvent<RoutedEventArgs> ExpandedEvent = RoutedEvent.Register<
+        Drawer,
+        RoutedEventArgs
+    >(nameof(Expanded), RoutingStrategies.Bubble);
 
-    public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent =
-        RoutedEvent.Register<Drawer, RoutedEventArgs>(nameof(Collapsed), RoutingStrategies.Bubble);
+    public static readonly RoutedEvent<RoutedEventArgs> CollapsedEvent = RoutedEvent.Register<
+        Drawer,
+        RoutedEventArgs
+    >(nameof(Collapsed), RoutingStrategies.Bubble);
 
-    public static readonly StyledProperty<double> OffsetXProperty =
-        AvaloniaProperty.Register<Drawer, double>(nameof(OffsetX));
+    public static readonly StyledProperty<double> OffsetXProperty = AvaloniaProperty.Register<
+        Drawer,
+        double
+    >(nameof(OffsetX));
 
-    public static readonly StyledProperty<string?> TitleProperty =
-        AvaloniaProperty.Register<Drawer, string?>(nameof(Title));
+    public static readonly StyledProperty<string?> TitleProperty = AvaloniaProperty.Register<
+        Drawer,
+        string?
+    >(nameof(Title));
 
-    public static readonly StyledProperty<bool> IsDismissableProperty =
-        AvaloniaProperty.Register<Drawer, bool>(nameof(IsDismissable), true);
+    public static readonly StyledProperty<bool> IsDismissableProperty = AvaloniaProperty.Register<
+        Drawer,
+        bool
+    >(nameof(IsDismissable), true);
 
     public static readonly StyledProperty<bool> IsToggleButtonVisibleProperty =
         AvaloniaProperty.Register<Drawer, bool>(nameof(IsToggleButtonVisible), true);
 
-    public static readonly StyledProperty<double> HeaderHeightProperty =
-        AvaloniaProperty.Register<Drawer, double>(nameof(HeaderHeight), 42d);
+    public static readonly StyledProperty<double> HeaderHeightProperty = AvaloniaProperty.Register<
+        Drawer,
+        double
+    >(nameof(HeaderHeight), 42d);
 
     private DrawerPanel? _drawerPanel;
-    private double? _expandedHeight;
 
     private Control? _header;
     private bool _isDragging;
@@ -62,6 +75,7 @@ public class Drawer : ContentControl
     private Control? _resizeLeft;
     private Control? _resizeRight;
     private Control? _resizeTop;
+    private double? _expandedHeight;
 
     static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
 
@@ -75,6 +89,18 @@ public class Drawer : ContentControl
     {
         get => GetValue(IsExpandedProperty);
         set => SetValue(IsExpandedProperty, value);
+    }
+
+    public event EventHandler<RoutedEventArgs>? Expanded
+    {
+        add => AddHandler(ExpandedEvent, value);
+        remove => RemoveHandler(ExpandedEvent, value);
+    }
+
+    public event EventHandler<RoutedEventArgs>? Collapsed
+    {
+        add => AddHandler(CollapsedEvent, value);
+        remove => RemoveHandler(CollapsedEvent, value);
     }
 
     public double OffsetX
@@ -109,18 +135,6 @@ public class Drawer : ContentControl
 
     protected override Type StyleKeyOverride => typeof(Drawer);
 
-    public event EventHandler<RoutedEventArgs>? Expanded
-    {
-        add => AddHandler(ExpandedEvent, value);
-        remove => RemoveHandler(ExpandedEvent, value);
-    }
-
-    public event EventHandler<RoutedEventArgs>? Collapsed
-    {
-        add => AddHandler(CollapsedEvent, value);
-        remove => RemoveHandler(CollapsedEvent, value);
-    }
-
     private void OnIsExpandedChanged(AvaloniaPropertyChangedEventArgs e)
     {
         var wasExpanded = e.GetOldValue<bool>();
@@ -144,10 +158,8 @@ public class Drawer : ContentControl
             {
                 _expandedHeight = Height;
             }
-
             Height = HeaderHeight;
         }
-
         UpdatePseudoClasses();
         InvalidateMeasure();
         InvalidateArrange();
@@ -198,21 +210,24 @@ public class Drawer : ContentControl
 
         if (_resizeLeft != null)
         {
-            _resizeLeft.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingLeft);
+            _resizeLeft.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingLeft);
             _resizeLeft.PointerMoved += OnResizePointerMoved;
             _resizeLeft.PointerReleased += OnResizePointerReleased;
         }
 
         if (_resizeRight != null)
         {
-            _resizeRight.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingRight);
+            _resizeRight.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingRight);
             _resizeRight.PointerMoved += OnResizePointerMoved;
             _resizeRight.PointerReleased += OnResizePointerReleased;
         }
 
         if (_resizeTop != null)
         {
-            _resizeTop.PointerPressed += (s, ev) => OnResizePointerPressed(s, ev, ref _isResizingTop);
+            _resizeTop.PointerPressed += (s, ev) =>
+                OnResizePointerPressed(s, ev, ref _isResizingTop);
             _resizeTop.PointerMoved += OnResizePointerMoved;
             _resizeTop.PointerReleased += OnResizePointerReleased;
         }
@@ -306,7 +321,11 @@ public class Drawer : ContentControl
         }
     }
 
-    private void OnResizePointerPressed(object? sender, PointerPressedEventArgs e, ref bool resizingFlag)
+    private void OnResizePointerPressed(
+        object? sender,
+        PointerPressedEventArgs e,
+        ref bool resizingFlag
+    )
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
@@ -320,7 +339,10 @@ public class Drawer : ContentControl
 
     private void OnResizePointerMoved(object? sender, PointerEventArgs e)
     {
-        if ((_isResizingLeft || _isResizingRight || _isResizingTop) && Parent is Control parentControl)
+        if (
+            (_isResizingLeft || _isResizingRight || _isResizingTop)
+            && Parent is Control parentControl
+        )
         {
             var currentPoint = e.GetPosition(parentControl);
             var delta = currentPoint - _lastPoint;
@@ -351,7 +373,6 @@ public class Drawer : ContentControl
                 Height = newHeight;
                 _expandedHeight = newHeight;
             }
-
             _lastPoint = currentPoint;
             parentControl.InvalidateArrange();
             e.Handled = true;

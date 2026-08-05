@@ -4,8 +4,6 @@ namespace Huskui.Avalonia.Models;
 
 public class InternalCommand(Action execute, Func<bool>? canExecute = null) : ICommand
 {
-    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
     #region ICommand Members
 
     bool ICommand.CanExecute(object? parameter) => canExecute?.Invoke() ?? true;
@@ -15,12 +13,12 @@ public class InternalCommand(Action execute, Func<bool>? canExecute = null) : IC
     public event EventHandler? CanExecuteChanged;
 
     #endregion
+
+    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 }
 
 public class InternalCommand<T>(Action<T?> execute, Func<T?, bool>? canExecute = null) : ICommand
 {
-    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
     #region ICommand Members
 
     bool ICommand.CanExecute(object? parameter) =>
@@ -28,7 +26,7 @@ public class InternalCommand<T>(Action<T?> execute, Func<T?, bool>? canExecute =
         {
             null => canExecute?.Invoke(default) ?? true,
             T it => canExecute?.Invoke(it) ?? true,
-            _ => false
+            _ => false,
         };
 
     void ICommand.Execute(object? parameter)
@@ -42,11 +40,15 @@ public class InternalCommand<T>(Action<T?> execute, Func<T?, bool>? canExecute =
                 execute(it);
                 break;
             default:
-                throw new InvalidCastException("Parameter must be null or of type " + typeof(T).FullName);
+                throw new InvalidCastException(
+                    "Parameter must be null or of type " + typeof(T).FullName
+                );
         }
     }
 
     public event EventHandler? CanExecuteChanged;
 
     #endregion
+
+    public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 }

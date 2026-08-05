@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
@@ -17,10 +18,23 @@ public class ZoomView : ContentControl
     public const string PART_V_SCROLL_BAR = nameof(PART_V_SCROLL_BAR);
     public const string PART_MINIMAP = nameof(PART_MINIMAP);
 
+    private Matrix _matrix = Matrix.Identity;
+    private Point _lastPointer;
+    private bool _isPanning;
+    private bool _fitted;
+    private Size _contentSize;
+    private Size _viewportSize;
+
+    private ScrollBar? _hScrollBar;
+    private ScrollBar? _vScrollBar;
+    private ZoomMinimap? _minimap;
+    private bool _suppressScrollSync;
+    private bool _suppressZoomSync;
+
     /// <summary>
-    ///     Fixed viewport-pixel distance moved per wheel unit when panning (no modifier).
-    ///     Avalonia already normalizes the raw native delta (÷5 for mouse, ÷50 for trackpad),
-    ///     so this single factor covers both devices.
+    /// Fixed viewport-pixel distance moved per wheel unit when panning (no modifier).
+    /// Avalonia already normalizes the raw native delta (÷5 for mouse, ÷50 for trackpad),
+    /// so this single factor covers both devices.
     /// </summary>
     private const double WHEEL_PAN_DISTANCE = 50;
 
@@ -44,28 +58,6 @@ public class ZoomView : ContentControl
 
     public static readonly StyledProperty<double> EffectiveMinZoomValueProperty =
         AvaloniaProperty.Register<ZoomView, double>(nameof(EffectiveMinZoomValue));
-
-    private Size _contentSize;
-    private bool _fitted;
-
-    private ScrollBar? _hScrollBar;
-    private bool _isPanning;
-    private Point _lastPointer;
-
-    private Matrix _matrix = Matrix.Identity;
-    private ZoomMinimap? _minimap;
-    private bool _suppressScrollSync;
-    private bool _suppressZoomSync;
-    private ScrollBar? _vScrollBar;
-    private Size _viewportSize;
-
-    public ZoomView()
-    {
-        ClipToBounds = true;
-        Focusable = true;
-        // macOS-only routed event; never fires on Win/Linux, safe to always subscribe.
-        AddHandler(PointerTouchPadGestureMagnifyEvent, OnMagnify);
-    }
 
     public double ZoomSpeed
     {
@@ -113,6 +105,14 @@ public class ZoomView : ContentControl
 
     public double ZoomY => _matrix.M22;
 
+    public ZoomView()
+    {
+        ClipToBounds = true;
+        Focusable = true;
+        // macOS-only routed event; never fires on Win/Linux, safe to always subscribe.
+        AddHandler(PointerTouchPadGestureMagnifyEvent, OnMagnify);
+    }
+
     #region Template
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
@@ -129,7 +129,7 @@ public class ZoomView : ContentControl
             _vScrollBar.ValueChanged -= OnVScrollBarValueChanged;
         }
 
-        if (_minimap != null)
+        if(_minimap != null)
         {
             _minimap.ViewportChanged -= OnMinimapViewportChanged;
         }
@@ -156,22 +156,6 @@ public class ZoomView : ContentControl
 
     #endregion
 
-    #region Minimap 桥接
-
-    private void OnMinimapViewportChanged(object? sender, Point contentTopLeft)
-    {
-        if (!IsContentValid)
-        {
-            return;
-        }
-
-        var scale = _matrix.M11;
-        _matrix = new(scale, 0, 0, scale, -contentTopLeft.X * scale, -contentTopLeft.Y * scale);
-        Commit();
-    }
-
-    #endregion
-
     #region Layout
 
     protected override Size MeasureOverride(Size availableSize)
@@ -182,7 +166,6 @@ public class ZoomView : ContentControl
             content.Measure(Size.Infinity);
             _contentSize = content.DesiredSize;
         }
-
         return availableSize;
     }
 
@@ -221,9 +204,10 @@ public class ZoomView : ContentControl
             return MinZoom;
         }
 
-        var fitFloor = Math.Min(1.0,
-                                Math.Min(_viewportSize.Width / _contentSize.Width,
-                                         _viewportSize.Height / _contentSize.Height));
+        var fitFloor = Math.Min(
+            1.0,
+            Math.Min(_viewportSize.Width / _contentSize.Width, _viewportSize.Height / _contentSize.Height)
+        );
         return Math.Max(MinZoom, fitFloor);
     }
 
@@ -238,11 +222,11 @@ public class ZoomView : ContentControl
         var scaledW = _contentSize.Width * scale;
         var scaledH = _contentSize.Height * scale;
         var tx = scaledW > _viewportSize.Width
-                     ? Math.Clamp(_matrix.M31, _viewportSize.Width - scaledW, 0)
-                     : (_viewportSize.Width - scaledW) / 2;
+            ? Math.Clamp(_matrix.M31, _viewportSize.Width - scaledW, 0)
+            : (_viewportSize.Width - scaledW) / 2;
         var ty = scaledH > _viewportSize.Height
-                     ? Math.Clamp(_matrix.M32, _viewportSize.Height - scaledH, 0)
-                     : (_viewportSize.Height - scaledH) / 2;
+            ? Math.Clamp(_matrix.M32, _viewportSize.Height - scaledH, 0)
+            : (_viewportSize.Height - scaledH) / 2;
         _matrix = new(scale, 0, 0, scale, tx, ty);
     }
 
@@ -374,11 +358,14 @@ public class ZoomView : ContentControl
     private Point ViewportCenterContent =>
         _matrix.M11 == 0
             ? default
-            : new Point((-_matrix.M31 + _viewportSize.Width / 2) / _matrix.M11,
-                        (-_matrix.M32 + _viewportSize.Height / 2) / _matrix.M11);
+            : new Point(
+                (-_matrix.M31 + _viewportSize.Width / 2) / _matrix.M11,
+                (-_matrix.M32 + _viewportSize.Height / 2) / _matrix.M11
+            );
 
     /// <summary>以内容坐标 (cx, cy) 为锚点，按 factor 缩放，结果 clamp 到 [EffectiveMinZoom, MaxZoom] 与画布边缘内。</summary>
-    public void ZoomAt(double factor, double cx, double cy) => ApplyScaleAt(_matrix.M11 * factor, cx, cy);
+    public void ZoomAt(double factor, double cx, double cy) =>
+        ApplyScaleAt(_matrix.M11 * factor, cx, cy);
 
     public void ZoomIn()
     {
@@ -439,7 +426,10 @@ public class ZoomView : ContentControl
             return;
         }
 
-        var coverScale = Math.Max(_viewportSize.Width / _contentSize.Width, _viewportSize.Height / _contentSize.Height);
+        var coverScale = Math.Max(
+            _viewportSize.Width / _contentSize.Width,
+            _viewportSize.Height / _contentSize.Height
+        );
         var scale = Math.Clamp(coverScale, EffectiveMinZoom(), MaxZoom);
         var scaledW = _contentSize.Width * scale;
         var scaledH = _contentSize.Height * scale;
@@ -491,10 +481,12 @@ public class ZoomView : ContentControl
         }
 
         var scale = _matrix.M11;
-        return new(-_matrix.M31 / scale,
+        return new(
+                   -_matrix.M31 / scale,
                    -_matrix.M32 / scale,
                    _viewportSize.Width / scale,
-                   _viewportSize.Height / scale);
+                   _viewportSize.Height / scale
+                  );
     }
 
     private void UpdateExposed()
@@ -629,6 +621,22 @@ public class ZoomView : ContentControl
         {
             ViewportRect = rect;
         }
+    }
+
+    #endregion
+
+    #region Minimap 桥接
+
+    private void OnMinimapViewportChanged(object? sender, Point contentTopLeft)
+    {
+        if (!IsContentValid)
+        {
+            return;
+        }
+
+        var scale = _matrix.M11;
+        _matrix = new(scale, 0, 0, scale, -contentTopLeft.X * scale, -contentTopLeft.Y * scale);
+        Commit();
     }
 
     #endregion

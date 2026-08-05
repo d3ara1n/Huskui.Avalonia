@@ -17,14 +17,20 @@ public class LazyContainer : TemplatedControl
 {
     public const string PART_ContentPresenter = nameof(PART_ContentPresenter);
 
-    public static readonly StyledProperty<object?> FaultContentProperty =
-        AvaloniaProperty.Register<LazyContainer, object?>(nameof(FaultContent));
+    public static readonly StyledProperty<object?> FaultContentProperty = AvaloniaProperty.Register<
+        LazyContainer,
+        object?
+    >(nameof(FaultContent));
 
-    public static readonly StyledProperty<bool> IsFaultedProperty =
-        AvaloniaProperty.Register<LazyContainer, bool>(nameof(IsFaulted));
+    public static readonly StyledProperty<bool> IsFaultedProperty = AvaloniaProperty.Register<
+        LazyContainer,
+        bool
+    >(nameof(IsFaulted));
 
-    public static readonly StyledProperty<LazyObject?> SourceProperty =
-        AvaloniaProperty.Register<LazyContainer, LazyObject?>(nameof(Source));
+    public static readonly StyledProperty<LazyObject?> SourceProperty = AvaloniaProperty.Register<
+        LazyContainer,
+        LazyObject?
+    >(nameof(Source));
 
     public static readonly StyledProperty<IDataTemplate?> SourceTemplateProperty =
         AvaloniaProperty.Register<LazyContainer, IDataTemplate?>(nameof(SourceTemplate));
@@ -91,7 +97,10 @@ public class LazyContainer : TemplatedControl
         }
     }
 
-    private void ContentPresenterOnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private void ContentPresenterOnPropertyChanged(
+        object? sender,
+        AvaloniaPropertyChangedEventArgs e
+    )
     {
         if (e.Property == ContentPresenter.ChildProperty)
         {
@@ -113,7 +122,9 @@ public class LazyContainer : TemplatedControl
 
         if (change.Property == SourceProperty)
         {
-            if (change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } oldLazy)
+            if (
+                change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } oldLazy
+            )
             {
                 oldLazy.Cancel();
             }
