@@ -31,6 +31,12 @@ public sealed class BadgeService : AvaloniaObject
         string?
     >("Classes");
 
+    public static readonly AttachedProperty<bool> IsVisibleProperty = AvaloniaProperty.RegisterAttached<
+        BadgeService,
+        Control,
+        bool
+    >("IsVisible", true);
+
     public static readonly AttachedProperty<BadgePlacement> PlacementProperty =
         AvaloniaProperty.RegisterAttached<BadgeService, Control, BadgePlacement>(
             "Placement",
@@ -47,6 +53,7 @@ public sealed class BadgeService : AvaloniaObject
     {
         ContentProperty.Changed.AddClassHandler<Control>((control, _) => Update(control));
         ContentTemplateProperty.Changed.AddClassHandler<Control>((control, _) => Update(control));
+        IsVisibleProperty.Changed.AddClassHandler<Control>((control, _) => Update(control));
         ClassesProperty.Changed.AddClassHandler<Control>((control, _) => Update(control));
         PlacementProperty.Changed.AddClassHandler<Control>((control, _) => Update(control));
     }
@@ -67,6 +74,10 @@ public sealed class BadgeService : AvaloniaObject
     public static void SetClasses(Control element, string? value) =>
         element.SetValue(ClassesProperty, value);
 
+    public static bool GetIsVisible(Control element) => element.GetValue(IsVisibleProperty);
+    public static void SetIsVisible(Control element, bool value) =>
+        element.SetValue(IsVisibleProperty, value);
+
     public static BadgePlacement GetPlacement(Control element) => element.GetValue(PlacementProperty);
 
     public static void SetPlacement(Control element, BadgePlacement value) =>
@@ -81,8 +92,9 @@ public sealed class BadgeService : AvaloniaObject
         var state = GetState(control);
         var classes = GetClassNames(control);
         var hasContent = GetContent(control) is not null || classes.Contains(DotClass);
+        var shouldShow = GetIsVisible(control) && hasContent;
 
-        if (!hasContent)
+        if (!shouldShow)
         {
             state?.Dispose();
             SetState(control, null);

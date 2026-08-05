@@ -56,6 +56,29 @@
 
 
         <controls:ExampleContainer
+            Title="Visibility Gate"
+            Description="Keep badge content intact and use IsVisible to explicitly hide or show the generated badge."
+            XamlCode="&lt;Button&#10;    Content=&quot;Messages&quot;&#10;    husk:BadgeService.Content=&quot;0&quot;&#10;    husk:BadgeService.IsVisible=&quot;False&quot; /&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="24">
+                <Button
+                    husk:BadgeService.Content="0"
+                    husk:BadgeService.IsVisible="False"
+                    Content="Hidden" />
+                <Button
+                    husk:BadgeService.Content="8"
+                    husk:BadgeService.IsVisible="True"
+                    Content="Visible" />
+                <Button
+                    husk:BadgeService.Classes="Dot Success"
+                    husk:BadgeService.IsVisible="False"
+                    Content="Muted" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
             Title="Classes"
             Description="BadgeService.Classes is forwarded to the generated badge adorner, so semantic variants follow Huskui class styling."
             XamlCode="&lt;Button&#10;    Content=&quot;Alerts&quot;&#10;    husk:BadgeService.Content=&quot;4&quot;&#10;    husk:BadgeService.Classes=&quot;Danger&quot; /&gt;">
