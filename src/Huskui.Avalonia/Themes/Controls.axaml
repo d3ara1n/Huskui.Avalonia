@@ -7,6 +7,7 @@
         <ResourceInclude Source="/Controls/AppWindow.axaml" />
         <ResourceInclude Source="/Controls/AutoCompleteBox.axaml" />
         <ResourceInclude Source="/Controls/Button.axaml" />
+        <ResourceInclude Source="/Controls/BadgeAdorner.axaml" />
         <ResourceInclude Source="/Controls/ButtonGroup.axaml" />
         <ResourceInclude Source="/Controls/BusyContainer.axaml" />
         <ResourceInclude Source="/Controls/Calendar.axaml" />

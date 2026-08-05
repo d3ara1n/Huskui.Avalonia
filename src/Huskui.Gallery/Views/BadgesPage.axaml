@@ -1,0 +1,144 @@
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.BadgesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Badge Content"
+            Description="Attach lightweight status content to any control without wrapping the target."
+            XamlCode="&lt;Button&#10;    Content=&quot;Messages&quot;&#10;    husk:BadgeService.Content=&quot;12&quot; /&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="24">
+                <Button
+                    husk:BadgeService.Content="12"
+                    Content="Messages" />
+                <Button
+                    husk:BadgeService.Content="NEW"
+                    Content="Updates"
+                    Theme="{StaticResource OutlineButtonTheme}" />
+                <Button husk:BadgeService.Content="3">
+                    <husk:IconLabel
+                        Icon="Mail"
+                        Text="Inbox" />
+                </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Dot Badge"
+            Description="Use Dot when the mark only needs to communicate presence, not a value."
+            XamlCode="&lt;Button&#10;    Content=&quot;Notifications&quot;&#10;    husk:BadgeService.Classes=&quot;Dot&quot; /&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="24">
+                <Button
+                    husk:BadgeService.Classes="Dot"
+                    Content="Notifications" />
+                <Button
+                    husk:BadgeService.Classes="Dot"
+                    Theme="{StaticResource GhostButtonTheme}">
+                    <fi:SymbolIcon Symbol="Settings" />
+                </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+
+        <controls:ExampleContainer
+            Title="Classes"
+            Description="BadgeService.Classes is forwarded to the generated badge adorner, so semantic variants follow Huskui class styling."
+            XamlCode="&lt;Button&#10;    Content=&quot;Alerts&quot;&#10;    husk:BadgeService.Content=&quot;4&quot;&#10;    husk:BadgeService.Classes=&quot;Danger&quot; /&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="24">
+                <Button
+                    husk:BadgeService.Classes="Primary"
+                    husk:BadgeService.Content="1"
+                    Content="Primary" />
+                <Button
+                    husk:BadgeService.Classes="Success"
+                    husk:BadgeService.Content="2"
+                    Content="Success" />
+                <Button
+                    husk:BadgeService.Classes="Warning"
+                    husk:BadgeService.Content="3"
+                    Content="Warning" />
+                <Button
+                    husk:BadgeService.Classes="Danger"
+                    husk:BadgeService.Content="4"
+                    Content="Danger" />
+            </StackPanel>
+        </controls:ExampleContainer>
+        <controls:ExampleContainer
+            Title="Placement"
+            Description="BadgePlacement keeps the public API focused on the four useful badge corners."
+            XamlCode="&lt;Button&#10;    Content=&quot;TopRight&quot;&#10;    husk:BadgeService.Content=&quot;1&quot;&#10;    husk:BadgeService.Placement=&quot;TopRight&quot; /&gt;">
+            <Grid
+                HorizontalAlignment="Center"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="32"
+                RowDefinitions="Auto,Auto"
+                RowSpacing="32">
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    husk:BadgeService.Content="1"
+                    husk:BadgeService.Placement="TopLeft"
+                    Content="TopLeft" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    husk:BadgeService.Content="2"
+                    husk:BadgeService.Placement="TopRight"
+                    Content="TopRight" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    husk:BadgeService.Content="3"
+                    husk:BadgeService.Placement="BottomLeft"
+                    Content="BottomLeft" />
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    husk:BadgeService.Content="4"
+                    husk:BadgeService.Placement="BottomRight"
+                    Content="BottomRight" />
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Custom Content"
+            Description="Content is object?, so callers can provide text, icons, or templated view-model values."
+            XamlCode="&lt;husk:BadgeService.Content&gt;&#10;    &lt;fi:SymbolIcon Symbol=&quot;CheckmarkCircle&quot; /&gt;&#10;&lt;/husk:BadgeService.Content&gt;">
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="24">
+                <Button Content="Verified">
+                    <husk:BadgeService.Content>
+                        <fi:SymbolIcon
+                            FontSize="10"
+                            Symbol="CheckmarkCircle" />
+                    </husk:BadgeService.Content>
+                </Button>
+                <Button Content="Mention">
+                    <husk:BadgeService.Content>
+                        <TextBlock Text="@" />
+                    </husk:BadgeService.Content>
+                </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

@@ -66,6 +66,8 @@
             </ControlTemplate>
         </Setter>
 
+        <!-- HACK: 特例 —— 颜色 variant 需半透明填充 + 实色描边双资源，超出单一 Background 语义槽，
+             故 Primary/Success/Warning/Danger 破例下钻模板。新增颜色 variant 照此惯例。 -->
         <Style Selector="^.Primary">
             <Setter Property="Foreground" Value="{StaticResource ControlAccentTranslucentForegroundBrush}" />
 

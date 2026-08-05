@@ -32,7 +32,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Button,
                 PageType = typeof(ButtonsPage),
@@ -41,7 +41,16 @@ public class MenuItemService
                 Description = "Interactive button controls with various styles and states",
                 Tags = ["button", "click", "action"],
             },
-            new MenuItemVo
+            new()
+            {
+                Icon = Symbol.AlertBadge,
+                PageType = typeof(BadgesPage),
+                Category = category,
+                Title = "Badges",
+                Description = "Small status marks attached to controls through BadgeService",
+                Tags = ["badge", "mark", "status", "notification", "adorner"],
+            },
+            new()
             {
                 Icon = Symbol.ChevronDown,
                 PageType = typeof(DropDownButtonsPage),
@@ -50,7 +59,7 @@ public class MenuItemService
                 Description = "Button controls with dropdown menus for additional actions",
                 Tags = ["dropdown", "button", "menu", "flyout", "actions"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Link,
                 PageType = typeof(HyperlinkButtonsPage),
@@ -59,7 +68,7 @@ public class MenuItemService
                 Description = "Link-style buttons for navigation and external references",
                 Tags = ["hyperlink", "link", "navigation", "url", "inline"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.RadioButton,
                 PageType = typeof(RadioButtonsPage),
@@ -68,7 +77,7 @@ public class MenuItemService
                 Description = "Single selection controls for mutually exclusive options",
                 Tags = ["radio", "button", "selection", "exclusive", "group"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Info,
                 PageType = typeof(InfoBarsPage),
@@ -77,7 +86,7 @@ public class MenuItemService
                 Description = "Informational message components with different severity levels",
                 Tags = ["info", "message", "notification"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Tag,
                 PageType = typeof(TagsPage),
@@ -86,7 +95,7 @@ public class MenuItemService
                 Description = "Small labels for categorization and metadata",
                 Tags = ["tag", "label", "category"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Icons,
                 PageType = typeof(IconLabelsPage),
@@ -96,7 +105,7 @@ public class MenuItemService
                     "Combined icon and text labels for enhanced visual communication",
                 Tags = ["icon", "label", "text", "fluent"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Highlight,
                 PageType = typeof(HighlightBlocksPage),
@@ -106,7 +115,7 @@ public class MenuItemService
                     "Emphasized content blocks for important information and callouts",
                 Tags = ["highlight", "text", "emphasis", "keyboard", "shortcut"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Line,
                 PageType = typeof(DividersPage),
@@ -125,7 +134,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.RectangleLandscape,
                 PageType = typeof(CardsPage),
@@ -134,7 +143,7 @@ public class MenuItemService
                 Description = "Container components for grouping and organizing content",
                 Tags = ["card", "container", "content"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Group,
                 PageType = typeof(GroupBoxesPage),
@@ -144,7 +153,7 @@ public class MenuItemService
                     "Labeled containers with header bar for grouping related content and forms",
                 Tags = ["groupbox", "group", "container", "header", "form", "section"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ArrowClockwise,
                 PageType = typeof(BusyContainersPage),
@@ -154,7 +163,7 @@ public class MenuItemService
                     "Loading state containers with visual feedback for async operations",
                 Tags = ["busy", "loading", "container", "blur", "progress"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.RectangleLandscape,
                 PageType = typeof(SkeletonContainersPage),
@@ -164,7 +173,7 @@ public class MenuItemService
                     "Loading placeholders that mimic content structure during data fetching",
                 Tags = ["skeleton", "loading", "placeholder", "shimmer"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.BranchFork,
                 PageType = typeof(SwitchContainerPage),
@@ -174,7 +183,7 @@ public class MenuItemService
                     "Conditional content container that swaps rendered branches based on the current value",
                 Tags = ["switchcontainer", "switch", "case", "content", "state", "container"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.LayerDiagonal,
                 PageType = typeof(VariableContainerPage),
@@ -193,7 +202,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Layer,
                 PageType = typeof(FlyoutsPage),
@@ -202,7 +211,7 @@ public class MenuItemService
                 Description = "Pop-up containers for displaying content.",
                 Tags = ["flyout", "popup", "menu", "overlay"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.TooltipQuote,
                 PageType = typeof(ToolTipsPage),
@@ -211,7 +220,7 @@ public class MenuItemService
                 Description = "Display informational tooltips on hover.",
                 Tags = ["tooltip", "tip", "info", "hover"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.SlideText,
                 PageType = typeof(ToastsPage),
@@ -220,7 +229,7 @@ public class MenuItemService
                 Description = "Heavy-weight content viewers that slide up from the bottom",
                 Tags = ["toast", "content", "preview", "bottom", "heavy"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.RectangleLandscape,
                 PageType = typeof(ModalsPage),
@@ -230,7 +239,7 @@ public class MenuItemService
                     "Modal containers for complex user interactions and extended workflows",
                 Tags = ["modal", "long", "interaction", "settings", "profile"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Chat,
                 PageType = typeof(DialogsPage),
@@ -240,7 +249,7 @@ public class MenuItemService
                     "Modal dialogs for user input collection and binary decision making",
                 Tags = ["dialog", "confirmation", "input", "binary", "choice"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Alert,
                 PageType = typeof(GrowlsPage),
@@ -250,7 +259,7 @@ public class MenuItemService
                     "Status feedback notifications for user awareness and system updates",
                 Tags = ["notification", "alert", "message", "status", "feedback"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.PanelBottom,
                 PageType = typeof(DrawerPage),
@@ -260,7 +269,7 @@ public class MenuItemService
                     "Floating drawer that can be dragged, resized, and collapsed",
                 Tags = ["drawer", "panel", "bottom", "resizable", "collapsible"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.PanelRight,
                 PageType = typeof(SidebarsPage),
@@ -278,7 +287,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.LayoutRowTwoSplitBottom,
                 PageType = typeof(FlexWrapPanelsPage),
@@ -288,7 +297,7 @@ public class MenuItemService
                     "Flexible wrapping layout panels for responsive content arrangement",
                 Tags = ["flex", "wrap", "responsive", "dynamic", "panel"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.LayoutRowTwoSplitBottom,
                 PageType = typeof(ModalActionPanelsPage),
@@ -307,7 +316,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Search,
                 PageType = typeof(AutoCompleteBoxesPage),
@@ -317,7 +326,7 @@ public class MenuItemService
                     "Search input controls with inline suggestions and text completion",
                 Tags = ["autocomplete", "search", "suggestion", "input", "lookup"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ToggleRight,
                 PageType = typeof(ToggleSwitchesPage),
@@ -326,7 +335,7 @@ public class MenuItemService
                 Description = "Binary toggle controls for on/off settings and preferences",
                 Tags = ["toggle", "switch", "boolean", "settings"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ChevronUpDown,
                 PageType = typeof(NumericUpDownsPage),
@@ -336,7 +345,7 @@ public class MenuItemService
                     "Numeric input controls with built-in step actions and Huskui field styling",
                 Tags = ["numericupdown", "number", "stepper", "input", "numeric"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Calendar,
                 PageType = typeof(DatePickersPage),
@@ -346,7 +355,7 @@ public class MenuItemService
                     "Date selection controls using Avalonia's built-in picker with Huskui field styling",
                 Tags = ["datepicker", "date", "calendar", "picker", "input", "schedule"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Clock,
                 PageType = typeof(TimePickersPage),
@@ -356,7 +365,7 @@ public class MenuItemService
                     "Time selection controls using Avalonia's built-in picker with Huskui field styling",
                 Tags = ["timepicker", "time", "picker", "input", "schedule"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.CalendarDate,
                 PageType = typeof(CalendarDatePickerPage),
@@ -375,7 +384,7 @@ public class MenuItemService
                     "schedule",
                 ],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.TextBulletListSquare,
                 PageType = typeof(TextBoxesPage),
@@ -384,7 +393,7 @@ public class MenuItemService
                 Description = "Text input controls for single-line and multi-line text entry",
                 Tags = ["textbox", "input", "text", "validation", "form"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Tag,
                 PageType = typeof(TagBoxesPage),
@@ -394,7 +403,7 @@ public class MenuItemService
                     "Multi-select text inputs that combine inline tags with searchable suggestions",
                 Tags = ["tagbox", "tag", "input", "multi-select", "autocomplete"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ChevronDown,
                 PageType = typeof(ComboBoxesPage),
@@ -403,7 +412,7 @@ public class MenuItemService
                 Description = "Dropdown selection controls for choosing from predefined options",
                 Tags = ["combobox", "dropdown", "select", "picker"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.CheckboxChecked,
                 PageType = typeof(CheckBoxesPage),
@@ -412,7 +421,7 @@ public class MenuItemService
                 Description = "Binary selection controls for multiple choice options",
                 Tags = ["checkbox", "check", "selection", "boolean", "three-state"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Star,
                 PageType = typeof(RatingControlsPage),
@@ -421,7 +430,7 @@ public class MenuItemService
                 Description = "Star-based rating controls for user feedback and reviews",
                 Tags = ["rating", "star", "review", "feedback", "score"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ArrowSync,
                 PageType = typeof(SlidersPage),
@@ -439,7 +448,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Tab,
                 PageType = typeof(TabControlsPage),
@@ -448,7 +457,7 @@ public class MenuItemService
                 Description = "Tab containers for content organization",
                 Tags = ["list", "tab", "navigation", "vertical", "switcher"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Navigation,
                 PageType = typeof(FramesPage),
@@ -466,7 +475,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.List,
                 PageType = typeof(ListBoxesPage),
@@ -476,7 +485,7 @@ public class MenuItemService
                     "Vertical list containers with different configurations",
                 Tags = ["list", "box", "vertical", "content"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Table,
                 PageType = typeof(TableViewPage),
@@ -486,7 +495,7 @@ public class MenuItemService
                     "Read-only tabular control that presents items in configurable columns",
                 Tags = ["table", "grid", "column", "read-only", "data"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Tab,
                 PageType = typeof(TabStripsPage),
@@ -495,7 +504,7 @@ public class MenuItemService
                 Description = "Horizontal tab containers for content organization",
                 Tags = ["list", "tab", "vertical", "switcher"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ArrowSort,
                 PageType = typeof(PaginationControlsPage),
@@ -504,7 +513,7 @@ public class MenuItemService
                 Description = "Page navigation controls for browsing through paged data",
                 Tags = ["pagination", "page", "navigation", "data", "paging"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Navigation,
                 PageType = typeof(StepControlsPage),
@@ -526,7 +535,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.BranchFork,
                 PageType = typeof(MvvmPage),
@@ -536,7 +545,7 @@ public class MenuItemService
                     "Overview of the Huskui.Avalonia.Mvvm extension for activation, lifecycle binding, and view state",
                 Tags = ["mvvm", "activation", "lifecycle", "state", "extension", "viewmodel"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Code,
                 PageType = typeof(CodeViewerPage),
@@ -546,7 +555,7 @@ public class MenuItemService
                     "Syntax-highlighted code presentation control from Huskui.Avalonia.Code extension library",
                 Tags = ["code", "viewer", "syntax", "highlight", "extension", "colorcode"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ArrowSwap,
                 PageType = typeof(DiffViewsPage),
@@ -556,7 +565,7 @@ public class MenuItemService
                     "Side-by-side difference viewer from Huskui.Avalonia.Code with DiffPlex-based computation and overview bar",
                 Tags = ["diff", "viewer", "difference", "side-by-side", "extension", "compare"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ZoomIn,
                 PageType = typeof(ZoomViewsPage),
@@ -566,7 +575,7 @@ public class MenuItemService
                     "Bounded zoom &amp; pan container with minimap, scroll bars, and fit-to-content from Huskui.Avalonia.Code",
                 Tags = ["zoom", "pan", "minimap", "scroll", "viewport", "extension", "fit"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Document,
                 PageType = typeof(MarkdownViewerPage),
@@ -585,7 +594,7 @@ public class MenuItemService
 
         _allMenus.AddRange(
         [
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.DataHistogram,
                 PageType = typeof(ConvertersPage),
@@ -604,7 +613,7 @@ public class MenuItemService
                     "thickness",
                 ],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Layer,
                 PageType = typeof(OverlayAppSurfacePage),
@@ -614,7 +623,7 @@ public class MenuItemService
                     "How AppSurface should be hosted on desktop, browser, and mobile so Huskui overlays can render",
                 Tags = ["overlay", "appsurface", "appwindow", "browser", "mobile", "dialog", "modal"],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.ColorBackground,
                 PageType = typeof(ResourcesPage),
@@ -632,7 +641,7 @@ public class MenuItemService
                     "binding",
                 ],
             },
-            new MenuItemVo
+            new()
             {
                 Icon = Symbol.Color,
                 PageType = typeof(BrushResourceKeysPage),

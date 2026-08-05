@@ -1,0 +1,111 @@
+﻿<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="https://github.com/d3ara1n/Huskui.Avalonia">
+    <Design.PreviewWith>
+        <Panel
+            Width="240"
+            Height="160"
+            Background="White">
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Spacing="8">
+                <local:BadgeAdorner HorizontalAlignment="Center" Content="9" />
+                <local:BadgeAdorner
+                    HorizontalAlignment="Center"
+                    Classes="Primary"
+                    Content="99+" />
+                <local:BadgeAdorner
+                    HorizontalAlignment="Center"
+                    Classes="Dot Danger" />
+            </StackPanel>
+        </Panel>
+    </Design.PreviewWith>
+
+    <ControlTheme
+        x:Key="{x:Type local:BadgeAdorner}"
+        TargetType="local:BadgeAdorner">
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+        <Setter Property="CornerRadius" Value="{StaticResource FullCornerRadius}" />
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="FontWeight" Value="{StaticResource ControlStrongFontWeight}" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="ClipToBounds" Value="False" />
+        <Setter Property="Padding" Value="5,1" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel ClipToBounds="False">
+                    <Border
+                        Name="{x:Static local:BadgeAdorner.PART_Badge}"
+                        MinWidth="16"
+                        MinHeight="16"
+                        Padding="{TemplateBinding Padding}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <ContentPresenter
+                            Name="Presenter"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            TextElement.FontSize="{TemplateBinding FontSize}"
+                            TextElement.FontWeight="{TemplateBinding FontWeight}"
+                            TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </Border>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^[Placement=TopLeft] /template/ Border#PART_Badge">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style Selector="^[Placement=TopRight] /template/ Border#PART_Badge">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style Selector="^[Placement=BottomLeft] /template/ Border#PART_Badge">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <Style Selector="^[Placement=BottomRight] /template/ Border#PART_Badge">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+        </Style>
+        <!-- HACK: 特例 —— Dot 是形态 variant（圆点 vs 文字），必须改模板内部尺寸并隐藏内容；
+             常规「variant class 仅改公共属性」规则在此豁免。 -->
+        <Style Selector="^.Dot /template/ Border#PART_Badge">
+            <Setter Property="Width" Value="8" />
+            <Setter Property="Height" Value="8" />
+            <Setter Property="MinWidth" Value="8" />
+            <Setter Property="MinHeight" Value="8" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+        <Style Selector="^.Dot /template/ ContentPresenter#Presenter">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <Style Selector="^.Primary">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
+        </Style>
+        <Style Selector="^.Success">
+            <Setter Property="Background" Value="{StaticResource ControlSuccessBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
+        </Style>
+        <Style Selector="^.Warning">
+            <Setter Property="Background" Value="{StaticResource ControlWarningBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
+        </Style>
+        <Style Selector="^.Danger">
+            <Setter Property="Background" Value="{StaticResource ControlDangerBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>
