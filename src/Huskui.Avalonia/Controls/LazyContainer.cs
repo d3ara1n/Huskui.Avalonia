@@ -6,7 +6,6 @@ using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
 using Avalonia.Interactivity;
-using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 using Huskui.Avalonia.Models;
 
@@ -67,52 +66,11 @@ public class LazyContainer : TemplatedControl
     {
         base.OnApplyTemplate(e);
 
-        UnregisterHandlers();
-
         _contentPresenter = e.NameScope.Find<ContentPresenter>(PART_ContentPresenter);
-        if (_contentPresenter != null)
-        {
-            _contentPresenter.PropertyChanged += ContentPresenterOnPropertyChanged;
-        }
 
-        // Start loading if source is available
         if (Source != null)
         {
             _ = LoadContentAsync(Source);
-        }
-    }
-
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        base.OnDetachedFromVisualTree(e);
-
-        UnregisterHandlers();
-    }
-
-    private void UnregisterHandlers()
-    {
-        if (_contentPresenter != null)
-        {
-            _contentPresenter.PropertyChanged -= ContentPresenterOnPropertyChanged;
-        }
-    }
-
-    private void ContentPresenterOnPropertyChanged(
-        object? sender,
-        AvaloniaPropertyChangedEventArgs e
-    )
-    {
-        if (e.Property == ContentPresenter.ChildProperty)
-        {
-            if (e.OldValue is ILogical oldChild)
-            {
-                LogicalChildren.Remove(oldChild);
-            }
-
-            if (e.NewValue is ILogical newChild)
-            {
-                LogicalChildren.Add(newChild);
-            }
         }
     }
 
@@ -122,9 +80,7 @@ public class LazyContainer : TemplatedControl
 
         if (change.Property == SourceProperty)
         {
-            if (
-                change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } oldLazy
-            )
+            if (change.OldValue is LazyObject { IsCancelled: false, IsInProgress: true } oldLazy)
             {
                 oldLazy.Cancel();
             }
@@ -138,37 +94,55 @@ public class LazyContainer : TemplatedControl
 
     private async Task LoadContentAsync(LazyObject lazy)
     {
-        if (Design.IsDesignMode || Source is null || _contentPresenter is null)
+        if (Design.IsDesignMode || _contentPresenter is null)
         {
             return;
         }
 
         try
         {
-            // 以下会在第二次替换 Source 时触发，并产生未知原因报错
-            // _contentPresenter.ContentTemplate = null;
-            // _contentPresenter.Content = null;
             IsFaulted = false;
 
-            if (Source.Value != null)
+            if (lazy.Value != null)
             {
-                _contentPresenter.ContentTemplate = SourceTemplate;
-                _contentPresenter.Content = Source.Value;
+                Present(lazy.Value);
                 return;
             }
 
             await lazy.FetchAsync();
-            _contentPresenter.ContentTemplate = SourceTemplate;
-            _contentPresenter.Content = Source.Value;
+
+            // NOTE: 加载期间 Source 可能已被替换为新的 LazyObject（翻页等场景）。
+            // 过期的加载不得写 Content，否则会把当前展示覆盖成 null 并触发模板内
+            // 编译绑定对错误 DataContext 的强 cast，抛 InvalidCastException。
+            if (!ReferenceEquals(Source, lazy))
+            {
+                return;
+            }
+
+            if (lazy.Value != null)
+            {
+                Present(lazy.Value);
+            }
         }
         catch (OperationCanceledException) { }
         catch (Exception ex)
         {
+            if (!ReferenceEquals(Source, lazy))
+            {
+                return;
+            }
+
             _contentPresenter.ContentTemplate = null;
             _contentPresenter.Content = FaultContent;
             IsFaulted = true;
             Debug.WriteLine($"LazyContainer failed to load content: {ex.Message}");
         }
+    }
+
+    private void Present(object value)
+    {
+        _contentPresenter!.ContentTemplate = SourceTemplate;
+        _contentPresenter.Content = value;
     }
 
     protected override void OnUnloaded(RoutedEventArgs e)

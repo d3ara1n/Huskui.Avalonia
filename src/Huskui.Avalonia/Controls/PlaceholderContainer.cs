@@ -4,7 +4,6 @@ using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Controls.Templates;
-using Avalonia.LogicalTree;
 using Avalonia.Metadata;
 
 namespace Huskui.Avalonia.Controls;
@@ -61,41 +60,33 @@ public class PlaceholderContainer : TemplatedControl
     {
         base.OnPropertyChanged(change);
 
-        if (change.Property == SourceProperty || change.Property == SourceTemplateProperty)
+        if ((change.Property == SourceProperty || change.Property == SourceTemplateProperty)
+         && _contentPresenter != null)
         {
-            if (_contentPresenter != null)
-            {
-                UpdateContent();
-            }
+            UpdateContent();
         }
     }
 
     private void UpdateContent()
     {
-        ArgumentNullException.ThrowIfNull(_contentPresenter);
-
-        var source = Source;
-        var template = SourceTemplate;
-
-        if (_contentPresenter.Child is ILogical oldLogical)
+        if (_contentPresenter == null)
         {
-            LogicalChildren.Remove(oldLogical);
+            return;
         }
 
-        if (source != null)
+        // NOTE: 不要手动操作 LogicalChildren。ContentPresenter 在 Avalonia 11 中会自动把
+        // 它的 child 注册进模板父级的逻辑树；手动 Remove/Add 会在切换瞬间把旧 child 摘出
+        // 逻辑树，触发继承式 DataContext 重算，模板内编译绑定（强 cast 到具体类型）就会在
+        // 这一瞬拿到外层 DataContext 而抛 InvalidCastException。交由 ContentPresenter 原子切换即可。
+        if (Source != null)
         {
-            _contentPresenter.ContentTemplate = template;
-            _contentPresenter.Content = source;
+            _contentPresenter.ContentTemplate = SourceTemplate;
+            _contentPresenter.Content = Source;
         }
         else
         {
             _contentPresenter.ContentTemplate = null;
             _contentPresenter.Content = Placeholder;
-        }
-
-        if (_contentPresenter.Child is ILogical newLogical)
-        {
-            LogicalChildren.Add(newLogical);
         }
     }
 }

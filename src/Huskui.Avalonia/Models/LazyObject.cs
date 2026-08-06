@@ -47,9 +47,17 @@ public class LazyObject(
     public async Task FetchAsync()
     {
         IsInProgress = true;
-        var value = await factory(_cts.Token);
-        Value = value;
-        IsInProgress = false;
-        Callback?.Invoke(value);
+        try
+        {
+            var value = await factory(_cts.Token);
+            Value = value;
+            Callback?.Invoke(value);
+        }
+        finally
+        {
+            // NOTE: factory 抛异常时也必须复位，否则 IsInProgress 永远卡 true，后续
+            // Source 替换的 in-progress 判定与骨架显隐都会失真。
+            IsInProgress = false;
+        }
     }
 }
