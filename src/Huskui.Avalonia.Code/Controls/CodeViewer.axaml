@@ -10,7 +10,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="FontFamily" Value="Cascadia Code, Consolas, Courier New, monospace" />
+        <Setter Property="FontFamily" Value="Cascadia Code, Menlo, Consolas, Courier New, monospace" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
