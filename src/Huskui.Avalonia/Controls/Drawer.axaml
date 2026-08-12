@@ -7,8 +7,8 @@
     <ControlTheme
         x:Key="{x:Type local:Drawer}"
         TargetType="local:Drawer">
-        <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlInteractiveBorderBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="Padding" Value="0" />
