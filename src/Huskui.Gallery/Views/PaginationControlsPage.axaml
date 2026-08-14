@@ -11,9 +11,47 @@
     mc:Ignorable="d">
     <StackPanel Spacing="32">
 
+        <Border
+            Padding="24"
+            Background="{StaticResource CardBackgroundBrush}"
+            BorderBrush="{StaticResource ControlBorderBrush}"
+            BorderThickness="1"
+            CornerRadius="{StaticResource MediumCornerRadius}">
+            <StackPanel Spacing="16">
+                <StackPanel Spacing="4">
+                    <TextBlock
+                        FontSize="{StaticResource LargeFontSize}"
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="PaginationControl overview" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Paginated navigation with page-number buttons, prev/next arrows, and a quick-jump popup (click the ellipsis)."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+
+                <TextBlock TextWrapping="Wrap">
+                    <Run Text="The current page is exposed twice: " />
+                    <husk:HighlightInline Text="PageIndex" />
+                    <Run Text=" is the 0-based authoritative state — bind or observe it to drive data-loading logic (e.g. " />
+                    <husk:HighlightInline Text="items.Skip(PageIndex * PageSize).Take(PageSize)" />
+                    <Run Text="), while " />
+                    <husk:HighlightInline Text="DisplayIndex" />
+                    <Run Text=" is the 1-based number shown on the buttons and in status readouts. " />
+                    <husk:HighlightInline Text="IndexChanged" />
+                    <Run Text=" fires after the page actually changes; changing " />
+                    <husk:HighlightInline Text="TotalCount" />
+                    <Run Text=" or " />
+                    <husk:HighlightInline Text="PageSize" />
+                    <Run Text=" can coerce " />
+                    <husk:HighlightInline Text="PageIndex" />
+                    <Run Text=" into range, which raises it as well." />
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
         <controls:ExampleContainer
             Title="Basic Pagination"
-            Description="A simple pagination with default settings">
+            Description="Default settings; every navigation path is logged through IndexChanged">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -29,7 +67,7 @@
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="Use the arrow buttons or click a page number to navigate."
+                        Text="The GoTo* methods, the arrows and the page-number buttons all end up in the log below."
                         TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
@@ -40,15 +78,21 @@
                 <TextBlock>
                     <Run Text="PageIndex: " />
                     <Run Text="{Binding #BasicPagination.PageIndex}" />
+                    <Run Text=" · Page: " />
+                    <Run Text="{Binding #BasicPagination.DisplayIndex}" />
                     <Run Text=" / " />
                     <Run Text="{Binding #BasicPagination.PageCount}" />
                 </TextBlock>
+                <ItemsControl
+                    x:Name="IndexChangedLog"
+                    FontSize="12"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
             </StackPanel>
         </controls:ExampleContainer>
 
         <controls:ExampleContainer
             Title="Large Dataset"
-            Description="PaginationControl with a large number of pages showing ellipsis behavior">
+            Description="Many pages collapse into an ellipsis; click it to open the quick-jump popup">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -64,7 +108,7 @@
                     <TextBlock
                         FontSize="12"
                         Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                        Text="Ellipsis (…) appears when there are too many pages to display."
+                        Text="The buttons assign 0-based PageIndex directly: 19 lands on the button labeled 20."
                         TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
@@ -74,8 +118,8 @@
                     TotalCount="1000"
                     PageSize="10" />
                 <TextBlock>
-                    <Run Text="PageIndex: " />
-                    <Run Text="{Binding #LargePagination.PageIndex}" />
+                    <Run Text="Page: " />
+                    <Run Text="{Binding #LargePagination.DisplayIndex}" />
                     <Run Text=" / " />
                     <Run Text="{Binding #LargePagination.PageCount}" />
                 </TextBlock>
@@ -84,7 +128,7 @@
 
         <controls:ExampleContainer
             Title="Custom PageSize"
-            Description="Different page sizes change the total number of pages">
+            Description="Changing PageSize recomputes PageCount and coerces PageIndex back into range">
             <controls:ExampleContainer.Controls>
                 <StackPanel Spacing="12">
                     <TextBlock
@@ -96,6 +140,11 @@
                         Maximum="100"
                         Minimum="1"
                         Value="25" />
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Raise the page size until the current page disappears — PageIndex is coerced to the last page and IndexChanged fires."
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </controls:ExampleContainer.Controls>
             <StackPanel Spacing="12">
@@ -104,8 +153,8 @@
                     TotalCount="200"
                     PageSize="{Binding #PageSizeUpDown.Value, Mode=OneWay}" />
                 <TextBlock>
-                    <Run Text="PageIndex: " />
-                    <Run Text="{Binding #CustomPagination.PageIndex}" />
+                    <Run Text="Page: " />
+                    <Run Text="{Binding #CustomPagination.DisplayIndex}" />
                     <Run Text=" | PageSize: " />
                     <Run Text="{Binding #CustomPagination.PageSize}" />
                     <Run Text=" | PageCount: " />

@@ -27,10 +27,7 @@ public class PaginationControl : TemplatedControl
     private Button? _quickJumperButton;
     private bool _updating;
 
-    public PaginationControl()
-    {
-        AddHandler(Button.ClickEvent, OnButtonClick);
-    }
+    public PaginationControl() => AddHandler(Button.ClickEvent, OnButtonClick);
 
     static PaginationControl()
     {
@@ -49,6 +46,15 @@ public class PaginationControl : TemplatedControl
     public static readonly DirectProperty<PaginationControl, int> PageCountProperty =
         AvaloniaProperty.RegisterDirect<PaginationControl, int>(nameof(PageCount), o => o.PageCount);
 
+    public static readonly DirectProperty<PaginationControl, int> DisplayIndexProperty =
+        AvaloniaProperty.RegisterDirect<PaginationControl, int>(nameof(DisplayIndex), o => o.DisplayIndex);
+
+    public static readonly RoutedEvent<PropertyChangedRoutedEventArgs<int>> IndexChangedEvent =
+        RoutedEvent.Register<PaginationControl, PropertyChangedRoutedEventArgs<int>>(
+            nameof(IndexChanged),
+            RoutingStrategies.Bubble
+        );
+
     public int TotalCount
     {
         get => GetValue(TotalCountProperty);
@@ -61,16 +67,40 @@ public class PaginationControl : TemplatedControl
         set => SetValue(PageSizeProperty, value);
     }
 
+    /// <summary>
+    /// Gets or sets the current page index (0-based). This is the authoritative page state — bind or
+    /// observe it to drive data-loading logic (e.g. <c>items.Skip(PageIndex * PageSize).Take(PageSize)</c>).
+    /// Changing <see cref="TotalCount"/> or <see cref="PageSize"/> may coerce it into range, which also
+    /// raises <see cref="IndexChanged"/>. For the 1-based page number shown in the UI, use <see cref="DisplayIndex"/>.
+    /// </summary>
     public int PageIndex
     {
         get => GetValue(PageIndexProperty);
         set => SetValue(PageIndexProperty, value);
     }
 
+    /// <summary>Gets the 1-based page number as shown in the UI, equivalent to <see cref="PageIndex"/> + 1.</summary>
+    public int DisplayIndex
+    {
+        get;
+        private set => SetAndRaise(DisplayIndexProperty, ref field, value);
+    } = 1;
+
     public int PageCount
     {
         get;
         private set => SetAndRaise(PageCountProperty, ref field, value);
+    }
+
+    /// <summary>
+    /// Raised after the current page has changed.
+    /// <see cref="PropertyChangedRoutedEventArgs{T}.OldValue"/> and <see cref="PropertyChangedRoutedEventArgs{T}.NewValue"/>
+    /// are 0-based; use <see cref="DisplayIndex"/> for the 1-based page number.
+    /// </summary>
+    public event EventHandler<PropertyChangedRoutedEventArgs<int>>? IndexChanged
+    {
+        add => AddHandler(IndexChangedEvent, value);
+        remove => RemoveHandler(IndexChangedEvent, value);
     }
 
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
@@ -86,9 +116,14 @@ public class PaginationControl : TemplatedControl
         }
         else if (change.Property == PageIndexProperty)
         {
-            Refresh(updatePageCount: false);
+            Refresh(updatePageCount: false, oldIndex: change.GetOldValue<int>());
         }
     }
+
+    private void RaiseIndexChanged(int oldIndex, int newIndex) =>
+        RaiseEvent(
+            new PropertyChangedRoutedEventArgs<int>(IndexChangedEvent, this, oldIndex, newIndex)
+        );
 
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -165,8 +200,8 @@ public class PaginationControl : TemplatedControl
 
         _quickJumperInput.Maximum = Math.Max(1, PageCount);
 
-        _quickJumperInput.Value = PageIndex + 1;
-        _quickJumperInput.PlaceholderText = (PageIndex + 1).ToString();
+        _quickJumperInput.Value = DisplayIndex;
+        _quickJumperInput.PlaceholderText = DisplayIndex.ToString();
         _quickJumperPopup.PlacementTarget = placementTarget;
         _quickJumperPopup.IsOpen = true;
         _quickJumperInput.Focus();
@@ -188,8 +223,12 @@ public class PaginationControl : TemplatedControl
 
     private int CoercePageIndex(int page) => Math.Clamp(page, 0, Math.Max(0, PageCount - 1));
 
-    private void Refresh(bool updatePageCount)
+    private void Refresh(bool updatePageCount, int? oldIndex = null)
     {
+        // When a PageIndex change triggers the refresh, PageIndex already holds the new value, so
+        // that caller must supply the pre-change index; every other path reads the still-unchanged
+        // PageIndex as the origin for IndexChanged.
+        var from = oldIndex ?? PageIndex;
         _updating = true;
 
         try
@@ -198,6 +237,7 @@ public class PaginationControl : TemplatedControl
                 PageCount = ComputePageCount();
 
             PageIndex = CoercePageIndex(PageIndex);
+            DisplayIndex = PageIndex + 1;
             UpdatePageItems();
             _quickJumperInput?.Maximum = Math.Max(1, PageCount);
         }
@@ -205,6 +245,9 @@ public class PaginationControl : TemplatedControl
         {
             _updating = false;
         }
+
+        if (from != PageIndex)
+            RaiseIndexChanged(from, PageIndex);
     }
 
     private void UpdatePageItems()

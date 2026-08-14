@@ -1,4 +1,4 @@
-using Avalonia;
+using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Huskui.Gallery.Controls;
@@ -7,7 +7,23 @@ namespace Huskui.Gallery.Views;
 
 public partial class PaginationControlsPage : ControlPage
 {
-    public PaginationControlsPage() => InitializeComponent();
+    private const int MaxLogEntries = 8;
+
+    private readonly ObservableCollection<string> _indexChangedEntries = [];
+
+    public PaginationControlsPage()
+    {
+        InitializeComponent();
+
+        IndexChangedLog.ItemsSource = _indexChangedEntries;
+        BasicPagination.IndexChanged += (_, e) =>
+        {
+            _indexChangedEntries.Insert(0, $"PageIndex {e.OldValue} → {e.NewValue} (page {e.OldValue + 1} → {e.NewValue + 1})");
+
+            if (_indexChangedEntries.Count > MaxLogEntries)
+                _indexChangedEntries.RemoveAt(_indexChangedEntries.Count - 1);
+        };
+    }
 
     private void OnGoToFirst(object? sender, RoutedEventArgs e) => BasicPagination.GoToFirst();
 
