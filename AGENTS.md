@@ -24,6 +24,8 @@
 
 - Corner radii must use the **indirection layer** — reference `StaticResource` keys like `SmallCornerRadius`, `FullCornerRadius` etc. from `CornerRadii.axaml`, not raw `CornerRadius` values. These keys already handle dynamic forwarding internally. When a converter is needed on a `StaticResource` corner radius, use `StaticResourceBinding` instead of `StaticResource`.
 
+- **Inter-item gaps belong to the container, not the children.** Reach for the panel's own spacing property — `StackPanel.Spacing`, `DockPanel.VerticalSpacing` / `HorizontalSpacing`, `Grid.ColumnSpacing` / `RowSpacing` — before touching `Margin` on the items; for an `ItemsControl`, set an `ItemsPanel` with `Spacing` instead of per-item margins. Per-child margins scatter one gap value across N items, double up at edges, and hide the rhythm the layout is trying to keep. `Margin` is reserved for what containers cannot express (e.g. `UniformGrid` has no spacing property) and for genuine outer insets, never for "put space between siblings".
+
 - The XAML namespace for the library is `https://github.com/d3ara1n/Huskui.Avalonia` (mapped to prefix `husk`). All new namespaces must be registered via `[XmlnsDefinition]` in `AssemblyInfo.cs`.
 
 - **Do NOT run any formatting tools** (`csharpier`, `xstyler`, etc.). They can produce unintended changes across the entire repo. Only the user may invoke formatting.
@@ -39,7 +41,7 @@
   >(nameof(IsReadOnly));
   ```
 
-- Use `OnPropertyChanged` override to react to property changes (including setting `PseudoClasses`), not property change callbacks.
+- **A property setter assigns the value and raises the change — nothing else.** Reactions to that change (derived state, cascades, side effects) live in `OnPropertyChanged`, the single point that fires whether the value comes from two-way binding, code-behind, or initialization — dispatch on `change.Property` and set `PseudoClasses` there. Do not use property change callbacks.
 
 - The `field` keyword is used with `SetAndRaise` for `DirectProperty` accessors:
 
