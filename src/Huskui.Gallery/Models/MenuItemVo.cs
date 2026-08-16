@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentIcons.Common;
 
 namespace Huskui.Gallery.Models;
@@ -5,6 +6,8 @@ namespace Huskui.Gallery.Models;
 public class MenuItemVo
 {
     public Symbol Icon { get; init; }
+
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
     public Type? PageType { get; init; }
     public string? Category { get; init; }
     public string Title { get; init; } = string.Empty;

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Avalonia.Data.Converters;
 
@@ -34,6 +35,12 @@ public class RelayConverter : IValueConverter
 
     #endregion
 
+    [UnconditionalSuppressMessage(
+        "TrimAnalysis",
+        "IL2026",
+        Justification = "The DefaultValueConverter fallback resolves user-defined conversions "
+            + "(op_Implicit / TypeConverter) by reflection on consumer types at runtime."
+    )]
     internal static object ConvertValue(Type targetType, object value)
     {
         if (targetType.IsInstanceOfType(value))

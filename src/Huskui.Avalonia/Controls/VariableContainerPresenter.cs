@@ -1,32 +1,45 @@
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.Presenters;
-using Avalonia.Data;
+using Avalonia.LogicalTree;
 
 namespace Huskui.Avalonia.Controls;
 
 public class VariableContainerPresenter : ContentPresenter
 {
-    public VariableContainerPresenter()
-    {
-        Bind(
-            ContentProperty,
-            new Binding(nameof(Content))
-            {
-                RelativeSource = new(RelativeSourceMode.FindAncestor)
-                {
-                    AncestorType = typeof(VariableContainer),
-                },
-            }
-        );
+    private IDisposable? _contentSubscription;
+    private IDisposable? _contentTemplateSubscription;
 
-        Bind(
-            ContentTemplateProperty,
-            new Binding(nameof(ContentTemplate))
-            {
-                RelativeSource = new(RelativeSourceMode.FindAncestor)
-                {
-                    AncestorType = typeof(VariableContainer),
-                },
-            }
+    protected override void OnAttachedToLogicalTree(LogicalTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToLogicalTree(e);
+
+        DetachSubscriptions();
+
+        if (this.GetLogicalAncestors().OfType<VariableContainer>().FirstOrDefault() is not { } container)
+            return;
+
+        _contentSubscription = Bind(
+            ContentProperty,
+            container.GetObservable(ContentControl.ContentProperty)
         );
+        _contentTemplateSubscription = Bind(
+            ContentTemplateProperty,
+            container.GetObservable(ContentControl.ContentTemplateProperty)
+        );
+    }
+
+    protected override void OnDetachedFromLogicalTree(LogicalTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromLogicalTree(e);
+        DetachSubscriptions();
+    }
+
+    private void DetachSubscriptions()
+    {
+        _contentSubscription?.Dispose();
+        _contentSubscription = null;
+        _contentTemplateSubscription?.Dispose();
+        _contentTemplateSubscription = null;
     }
 }

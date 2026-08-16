@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Data;
@@ -53,6 +54,12 @@ public class HuskuiTheme : Styles
         set => SetValue(CornerProperty, value);
     }
 
+    [UnconditionalSuppressMessage(
+        "TrimAnalysis",
+        "IL2026",
+        Justification = "Loads compiled Avalonia XAML from assemblies that are part of the application "
+            + "(own assembly for accent/corner dictionaries); no dynamic code generation."
+    )]
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
         base.OnPropertyChanged(change);
@@ -127,6 +134,12 @@ public class HuskuiTheme : Styles
         TryMergeResource(args.LoadedAssembly);
     }
 
+    [UnconditionalSuppressMessage(
+        "TrimAnalysis",
+        "IL2026",
+        Justification = "Extension bundles advertise compiled XAML via HuskuiExtensionAttribute; "
+            + "assemblies are part of the application, no dynamic code generation."
+    )]
     private void TryMergeResource(Assembly assembly)
     {
         var attributes = assembly.GetCustomAttributes<HuskuiExtensionAttribute>();
