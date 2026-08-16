@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using AsyncImageLoader;
 using Avalonia;
@@ -460,6 +461,18 @@ public class MarkdownViewer : TemplatedControl
 
     private DockPanel SpawnDock() => new() { HorizontalSpacing = Spacing, VerticalSpacing = Spacing };
 
+    [UnconditionalSuppressMessage(
+        "TrimAnalysis",
+        "IL2026",
+        Justification = "Column bindings address the int indexer of the internal MarkdownTableRow, "
+            + "whose members are kept via DynamicDependency on the type."
+    )]
+    [UnconditionalSuppressMessage(
+        "AotAnalysis",
+        "IL3050",
+        Justification = "Column bindings address the int indexer of the internal MarkdownTableRow, "
+            + "whose members are kept via DynamicDependency on the type."
+    )]
     private TableView SpawnTable(Table table)
     {
         var columnCount = Math.Max(1, table.ColumnDefinitions.Count);

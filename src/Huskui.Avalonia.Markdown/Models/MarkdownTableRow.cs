@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Huskui.Avalonia.Markdown.Models;
 
@@ -11,6 +12,7 @@ internal sealed class MarkdownTableRow
 {
     private readonly Control?[] _cells;
 
+    [DynamicDependency(DynamicallyAccessedMemberTypes.PublicProperties, typeof(MarkdownTableRow))]
     public MarkdownTableRow(Control?[] cells) => _cells = cells;
 
     public Control? this[int index] =>
