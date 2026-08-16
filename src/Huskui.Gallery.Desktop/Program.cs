@@ -16,6 +16,10 @@ internal sealed class Program
     public static AppBuilder BuildAvaloniaApp() =>
         App.ConfigureSharedBuilder(AppBuilder.Configure<App>())
             .UsePlatformDetect()
-            .LogToTextWriter(Console.Out)
+#if DEBUG
+			.LogToTextWriter(Console.Out)
             .WithDeveloperTools();
+#else
+			.LogToTrace();
+#endif
 }

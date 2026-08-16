@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using TextMateSharp.Grammars;
 using TextMateSharp.Internal.Types;
 using TextMateSharp.Registry;
 using TextMateSharp.Themes;
@@ -55,7 +54,7 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
         ["zsh"] = ".sh",
     };
 
-    private readonly RegistryOptions _registryOptions = new(ThemeName.DarkPlus);
+    private static readonly GrammarManifest Manifest = GrammarManifest.Instance;
 
     public string? ResolveScopeName(string? language)
     {
@@ -66,22 +65,22 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
 
         if (normalized.StartsWith('.'))
         {
-            return _registryOptions.GetScopeByExtension(normalized);
+            return Manifest.GetScopeByExtension(normalized);
         }
 
         var extension = ResolveExtension(normalized);
         if (extension is not null)
         {
-            var scopeByExtension = _registryOptions.GetScopeByExtension(extension);
+            var scopeByExtension = Manifest.GetScopeByExtension(extension);
             if (!string.IsNullOrWhiteSpace(scopeByExtension))
                 return scopeByExtension;
         }
 
-        foreach (var knownLanguage in _registryOptions.GetAvailableLanguages())
+        foreach (var knownLanguage in Manifest.Languages)
         {
             if (string.Equals(knownLanguage.Id, normalized, StringComparison.OrdinalIgnoreCase))
             {
-                return _registryOptions.GetScopeByLanguageId(knownLanguage.Id);
+                return knownLanguage.Scope;
             }
 
             if (knownLanguage.Aliases is null)
@@ -91,7 +90,7 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
             {
                 if (string.Equals(alias, normalized, StringComparison.OrdinalIgnoreCase))
                 {
-                    return _registryOptions.GetScopeByLanguageId(knownLanguage.Id);
+                    return knownLanguage.Scope;
                 }
             }
         }
@@ -99,12 +98,14 @@ internal sealed class CodeViewerRegistryOptions : IRegistryOptions
         return null;
     }
 
-    public IRawTheme GetTheme(string scopeName) => _registryOptions.GetTheme(scopeName);
+    // Theme.ParseInclude only consults the locator when the theme declares an include chain;
+    // the Huskui Radix themes do not, so this member is unreachable and mirrors DefaultLocator.
+    public IRawTheme GetTheme(string scopeName) => null!;
 
-    public IRawGrammar GetGrammar(string scopeName) => _registryOptions.GetGrammar(scopeName);
+    public IRawGrammar GetGrammar(string scopeName) => Manifest.GetGrammar(scopeName)!;
 
-    public ICollection<string> GetInjections(string scopeName) =>
-        _registryOptions.GetInjections(scopeName);
+    // TextMateSharp.Grammars RegistryOptions returns null here as well.
+    public ICollection<string> GetInjections(string scopeName) => null!;
 
     public IRawTheme GetDefaultTheme() => CodeViewerTextMateThemes.Dark;
 

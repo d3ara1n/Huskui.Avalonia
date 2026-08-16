@@ -1,0 +1,1334 @@
+{
+  "Source": "TextMateSharp.Grammars 2.0.4.0",
+  "GeneratedAtUtc": "2026-08-16T08:43:34.311906Z",
+  "Languages": [
+    {
+      "Id": "asciidoc",
+      "Aliases": [
+        "Asciidoc",
+        "asciidoc",
+        "Asciidoctor"
+      ],
+      "Extensions": [
+        ".adoc"
+      ],
+      "Scope": "document.adoc"
+    },
+    {
+      "Id": "bat",
+      "Aliases": [
+        "Batch",
+        "bat"
+      ],
+      "Extensions": [
+        ".bat",
+        ".cmd"
+      ],
+      "Scope": "source.batchfile"
+    },
+    {
+      "Id": "clojure",
+      "Aliases": [
+        "Clojure",
+        "clojure"
+      ],
+      "Extensions": [
+        ".clj",
+        ".cljs",
+        ".cljc",
+        ".cljx",
+        ".clojure",
+        ".edn"
+      ],
+      "Scope": "source.clojure"
+    },
+    {
+      "Id": "coffeescript",
+      "Aliases": [
+        "CoffeeScript",
+        "coffeescript",
+        "coffee"
+      ],
+      "Extensions": [
+        ".coffee",
+        ".cson",
+        ".iced"
+      ],
+      "Scope": "source.coffee"
+    },
+    {
+      "Id": "c",
+      "Aliases": [
+        "C",
+        "c"
+      ],
+      "Extensions": [
+        ".c",
+        ".i"
+      ],
+      "Scope": "source.c"
+    },
+    {
+      "Id": "cpp",
+      "Aliases": [
+        "C\u002B\u002B",
+        "Cpp",
+        "cpp"
+      ],
+      "Extensions": [
+        ".cpp",
+        ".cc",
+        ".cxx",
+        ".c\u002B\u002B",
+        ".hpp",
+        ".hh",
+        ".hxx",
+        ".h\u002B\u002B",
+        ".h",
+        ".ii",
+        ".ino",
+        ".inl",
+        ".ipp",
+        ".ixx",
+        ".tpp",
+        ".txx",
+        ".hpp.in",
+        ".h.in"
+      ],
+      "Scope": "source.cpp"
+    },
+    {
+      "Id": "cuda-cpp",
+      "Aliases": [
+        "CUDA C\u002B\u002B"
+      ],
+      "Extensions": [
+        ".cu",
+        ".cuh"
+      ],
+      "Scope": "source.cuda-cpp"
+    },
+    {
+      "Id": "csharp",
+      "Aliases": [
+        "C#",
+        "csharp"
+      ],
+      "Extensions": [
+        ".cs",
+        ".csx",
+        ".cake"
+      ],
+      "Scope": "source.cs"
+    },
+    {
+      "Id": "css",
+      "Aliases": [
+        "CSS",
+        "css"
+      ],
+      "Extensions": [
+        ".css"
+      ],
+      "Scope": "source.css"
+    },
+    {
+      "Id": "dart",
+      "Aliases": [
+        "Dart"
+      ],
+      "Extensions": [
+        ".dart"
+      ],
+      "Scope": "source.dart"
+    },
+    {
+      "Id": "diff",
+      "Aliases": [
+        "Diff",
+        "diff"
+      ],
+      "Extensions": [
+        ".diff",
+        ".patch",
+        ".rej"
+      ],
+      "Scope": "source.diff"
+    },
+    {
+      "Id": "dockerfile",
+      "Aliases": [
+        "Docker",
+        "Dockerfile",
+        "Containerfile"
+      ],
+      "Extensions": [
+        ".dockerfile",
+        ".containerfile"
+      ],
+      "Scope": "source.dockerfile"
+    },
+    {
+      "Id": "fsharp",
+      "Aliases": [
+        "F#",
+        "FSharp",
+        "fsharp"
+      ],
+      "Extensions": [
+        ".fs",
+        ".fsi",
+        ".fsx",
+        ".fsscript"
+      ],
+      "Scope": "source.fsharp"
+    },
+    {
+      "Id": "diff",
+      "Aliases": [
+        "Diff",
+        "diff"
+      ],
+      "Extensions": [
+        ".diff",
+        ".patch",
+        ".rej"
+      ],
+      "Scope": "source.diff"
+    },
+    {
+      "Id": "ignore",
+      "Aliases": [
+        "Ignore",
+        "ignore"
+      ],
+      "Extensions": [
+        ".gitignore_global",
+        ".gitignore"
+      ],
+      "Scope": "source.ignore"
+    },
+    {
+      "Id": "go",
+      "Aliases": [
+        "Go"
+      ],
+      "Extensions": [
+        ".go"
+      ],
+      "Scope": "source.go"
+    },
+    {
+      "Id": "groovy",
+      "Aliases": [
+        "Groovy",
+        "groovy"
+      ],
+      "Extensions": [
+        ".groovy",
+        ".gvy",
+        ".gradle",
+        ".jenkinsfile",
+        ".nf"
+      ],
+      "Scope": "source.groovy"
+    },
+    {
+      "Id": "handlebars",
+      "Aliases": [
+        "Handlebars",
+        "handlebars"
+      ],
+      "Extensions": [
+        ".handlebars",
+        ".hbs",
+        ".hjs"
+      ],
+      "Scope": "text.html.handlebars"
+    },
+    {
+      "Id": "hlsl",
+      "Aliases": [
+        "HLSL",
+        "hlsl"
+      ],
+      "Extensions": [
+        ".hlsl",
+        ".hlsli",
+        ".fx",
+        ".fxh",
+        ".vsh",
+        ".psh",
+        ".cginc",
+        ".compute"
+      ],
+      "Scope": "source.hlsl"
+    },
+    {
+      "Id": "html",
+      "Aliases": [
+        "HTML",
+        "htm",
+        "html",
+        "xhtml"
+      ],
+      "Extensions": [
+        ".html",
+        ".htm",
+        ".shtml",
+        ".xhtml",
+        ".xht",
+        ".mdoc",
+        ".jsp",
+        ".asp",
+        ".aspx",
+        ".jshtm",
+        ".volt",
+        ".ejs",
+        ".rhtml"
+      ],
+      "Scope": "text.html.derivative"
+    },
+    {
+      "Id": "ini",
+      "Aliases": [
+        "Ini",
+        "ini"
+      ],
+      "Extensions": [
+        ".ini"
+      ],
+      "Scope": "source.ini"
+    },
+    {
+      "Id": "properties",
+      "Aliases": [
+        "Properties",
+        "properties"
+      ],
+      "Extensions": [
+        ".properties",
+        ".cfg",
+        ".conf",
+        ".directory",
+        ".gitattributes",
+        ".gitconfig",
+        ".gitmodules",
+        ".editorconfig"
+      ],
+      "Scope": "source.ini"
+    },
+    {
+      "Id": "java",
+      "Aliases": [
+        "Java",
+        "java"
+      ],
+      "Extensions": [
+        ".java",
+        ".jav"
+      ],
+      "Scope": "source.java"
+    },
+    {
+      "Id": "javascriptreact",
+      "Aliases": [
+        "JavaScript React",
+        "jsx"
+      ],
+      "Extensions": [
+        ".jsx"
+      ],
+      "Scope": "source.js.jsx"
+    },
+    {
+      "Id": "javascript",
+      "Aliases": [
+        "JavaScript",
+        "javascript",
+        "js"
+      ],
+      "Extensions": [
+        ".js",
+        ".es6",
+        ".mjs",
+        ".cjs",
+        ".pac"
+      ],
+      "Scope": "source.js"
+    },
+    {
+      "Id": "json",
+      "Aliases": [
+        "JSON",
+        "json"
+      ],
+      "Extensions": [
+        ".json",
+        ".bowerrc",
+        ".jscsrc",
+        ".webmanifest",
+        ".js.map",
+        ".css.map",
+        ".ts.map",
+        ".har",
+        ".jslintrc",
+        ".jsonld",
+        ".geojson",
+        ".ipynb"
+      ],
+      "Scope": "source.json"
+    },
+    {
+      "Id": "jsonc",
+      "Aliases": [
+        "JSON with Comments"
+      ],
+      "Extensions": [
+        ".jsonc",
+        ".eslintrc",
+        ".eslintrc.json",
+        ".jsfmtrc",
+        ".jshintrc",
+        ".swcrc",
+        ".hintrc",
+        ".babelrc"
+      ],
+      "Scope": "source.json.comments"
+    },
+    {
+      "Id": "julia",
+      "Aliases": [
+        "Julia",
+        "julia"
+      ],
+      "Extensions": [
+        ".jl"
+      ],
+      "Scope": "source.julia"
+    },
+    {
+      "Id": "tex",
+      "Aliases": [
+        "TeX",
+        "tex"
+      ],
+      "Extensions": [
+        ".sty",
+        ".cls",
+        ".bbx",
+        ".cbx"
+      ],
+      "Scope": "text.tex"
+    },
+    {
+      "Id": "latex",
+      "Aliases": [
+        "LaTeX",
+        "latex"
+      ],
+      "Extensions": [
+        ".tex",
+        ".ltx",
+        ".ctx"
+      ],
+      "Scope": "text.tex.latex"
+    },
+    {
+      "Id": "bibtex",
+      "Aliases": [
+        "BibTeX",
+        "bibtex"
+      ],
+      "Extensions": [
+        ".bib"
+      ],
+      "Scope": "text.bibtex"
+    },
+    {
+      "Id": "less",
+      "Aliases": [
+        "Less",
+        "less"
+      ],
+      "Extensions": [
+        ".less"
+      ],
+      "Scope": "source.css.less"
+    },
+    {
+      "Id": "log",
+      "Aliases": [
+        "Log"
+      ],
+      "Extensions": [
+        ".log",
+        "*.log.?"
+      ],
+      "Scope": "text.log"
+    },
+    {
+      "Id": "lua",
+      "Aliases": [
+        "Lua",
+        "lua"
+      ],
+      "Extensions": [
+        ".lua"
+      ],
+      "Scope": "source.lua"
+    },
+    {
+      "Id": "makefile",
+      "Aliases": [
+        "Makefile",
+        "makefile"
+      ],
+      "Extensions": [
+        ".mak",
+        ".mk"
+      ],
+      "Scope": "source.makefile"
+    },
+    {
+      "Id": "markdown",
+      "Aliases": [
+        "Markdown",
+        "markdown"
+      ],
+      "Extensions": [
+        ".md",
+        ".mkd",
+        ".mdwn",
+        ".mdown",
+        ".markdown",
+        ".markdn",
+        ".mdtxt",
+        ".mdtext",
+        ".workbook"
+      ],
+      "Scope": "text.html.markdown"
+    },
+    {
+      "Id": "objective-c",
+      "Aliases": [
+        "Objective-C"
+      ],
+      "Extensions": [
+        ".m"
+      ],
+      "Scope": "source.objc"
+    },
+    {
+      "Id": "objective-cpp",
+      "Aliases": [
+        "Objective-C\u002B\u002B"
+      ],
+      "Extensions": [
+        ".mm"
+      ],
+      "Scope": "source.objcpp"
+    },
+    {
+      "Id": "pascal",
+      "Aliases": [
+        "Pascal",
+        "pascal"
+      ],
+      "Extensions": [
+        ".pas",
+        ".pp"
+      ],
+      "Scope": "source.pascal"
+    },
+    {
+      "Id": "perl",
+      "Aliases": [
+        "Perl",
+        "perl"
+      ],
+      "Extensions": [
+        ".pl",
+        ".pm",
+        ".pod",
+        ".t",
+        ".PL",
+        ".psgi"
+      ],
+      "Scope": "source.perl"
+    },
+    {
+      "Id": "perl6",
+      "Aliases": [
+        "Perl 6",
+        "perl6"
+      ],
+      "Extensions": [
+        ".p6",
+        ".pl6",
+        ".pm6",
+        ".nqp"
+      ],
+      "Scope": "source.perl.6"
+    },
+    {
+      "Id": "php",
+      "Aliases": [
+        "PHP",
+        "php"
+      ],
+      "Extensions": [
+        ".php",
+        ".php4",
+        ".php5",
+        ".phtml",
+        ".ctp"
+      ],
+      "Scope": "source.php"
+    },
+    {
+      "Id": "powershell",
+      "Aliases": [
+        "PowerShell",
+        "powershell",
+        "ps",
+        "ps1"
+      ],
+      "Extensions": [
+        ".ps1",
+        ".psm1",
+        ".psd1",
+        ".pssc",
+        ".psrc"
+      ],
+      "Scope": "source.powershell"
+    },
+    {
+      "Id": "jade",
+      "Aliases": [
+        "Pug",
+        "Jade",
+        "jade"
+      ],
+      "Extensions": [
+        ".pug",
+        ".jade"
+      ],
+      "Scope": "text.pug"
+    },
+    {
+      "Id": "python",
+      "Aliases": [
+        "Python",
+        "py"
+      ],
+      "Extensions": [
+        ".py",
+        ".rpy",
+        ".pyw",
+        ".cpy",
+        ".gyp",
+        ".gypi",
+        ".pyi",
+        ".ipy",
+        ".pyt"
+      ],
+      "Scope": "source.python"
+    },
+    {
+      "Id": "r",
+      "Aliases": [
+        "R",
+        "r"
+      ],
+      "Extensions": [
+        ".r",
+        ".rhistory",
+        ".rprofile",
+        ".rt"
+      ],
+      "Scope": "source.r"
+    },
+    {
+      "Id": "razor",
+      "Aliases": [
+        "Razor",
+        "razor"
+      ],
+      "Extensions": [
+        ".cshtml",
+        ".razor"
+      ],
+      "Scope": "text.html.cshtml"
+    },
+    {
+      "Id": "ruby",
+      "Aliases": [
+        "Ruby",
+        "rb"
+      ],
+      "Extensions": [
+        ".rb",
+        ".rbx",
+        ".rjs",
+        ".gemspec",
+        ".rake",
+        ".ru",
+        ".erb",
+        ".podspec",
+        ".rbi"
+      ],
+      "Scope": "source.ruby"
+    },
+    {
+      "Id": "rust",
+      "Aliases": [
+        "Rust",
+        "rust"
+      ],
+      "Extensions": [
+        ".rs"
+      ],
+      "Scope": "source.rust"
+    },
+    {
+      "Id": "scss",
+      "Aliases": [
+        "SCSS",
+        "scss"
+      ],
+      "Extensions": [
+        ".scss"
+      ],
+      "Scope": "source.css.scss"
+    },
+    {
+      "Id": "shaderlab",
+      "Aliases": [
+        "ShaderLab",
+        "shaderlab"
+      ],
+      "Extensions": [
+        ".shader"
+      ],
+      "Scope": "source.shaderlab"
+    },
+    {
+      "Id": "shellscript",
+      "Aliases": [
+        "Shell Script",
+        "shellscript",
+        "bash",
+        "sh",
+        "zsh",
+        "ksh",
+        "csh"
+      ],
+      "Extensions": [
+        ".sh",
+        ".bash",
+        ".bashrc",
+        ".bash_aliases",
+        ".bash_profile",
+        ".bash_login",
+        ".ebuild",
+        ".profile",
+        ".bash_logout",
+        ".xprofile",
+        ".xsession",
+        ".xsessionrc",
+        ".Xsession",
+        ".zsh",
+        ".zshrc",
+        ".zprofile",
+        ".zlogin",
+        ".zlogout",
+        ".zshenv",
+        ".zsh-theme",
+        ".ksh",
+        ".csh",
+        ".cshrc",
+        ".tcshrc",
+        ".yashrc",
+        ".yash_profile"
+      ],
+      "Scope": "source.shell"
+    },
+    {
+      "Id": "sql",
+      "Aliases": [
+        "SQL"
+      ],
+      "Extensions": [
+        ".sql",
+        ".dsql"
+      ],
+      "Scope": "source.sql"
+    },
+    {
+      "Id": "swift",
+      "Aliases": [
+        "Swift",
+        "swift"
+      ],
+      "Extensions": [
+        ".swift"
+      ],
+      "Scope": "source.swift"
+    },
+    {
+      "Id": "typescript",
+      "Aliases": [
+        "TypeScript",
+        "ts",
+        "typescript"
+      ],
+      "Extensions": [
+        ".ts"
+      ],
+      "Scope": "source.ts"
+    },
+    {
+      "Id": "typescriptreact",
+      "Aliases": [
+        "TypeScript React",
+        "tsx"
+      ],
+      "Extensions": [
+        ".tsx"
+      ],
+      "Scope": "source.tsx"
+    },
+    {
+      "Id": "typst",
+      "Aliases": [
+        "Typst",
+        "typst",
+        "typ"
+      ],
+      "Extensions": [
+        ".typ"
+      ],
+      "Scope": "source.typst"
+    },
+    {
+      "Id": "typst-code",
+      "Aliases": [
+        "Typst (Code Mode)",
+        "typc"
+      ],
+      "Extensions": [
+        ".typc"
+      ],
+      "Scope": "source.typst-code"
+    },
+    {
+      "Id": "vb",
+      "Aliases": [
+        "Visual Basic",
+        "vb"
+      ],
+      "Extensions": [
+        ".vb",
+        ".brs",
+        ".vbs",
+        ".bas"
+      ],
+      "Scope": "source.asp.vb.net"
+    },
+    {
+      "Id": "x86asm",
+      "Aliases": [
+        "x86 Assembly",
+        "x86",
+        "Assembly"
+      ],
+      "Extensions": [
+        ".asm"
+      ],
+      "Scope": "source.x86asm"
+    },
+    {
+      "Id": "xml",
+      "Aliases": [
+        "XML",
+        "xml"
+      ],
+      "Extensions": [
+        ".xml",
+        ".xsd",
+        ".ascx",
+        ".atom",
+        ".axml",
+        ".axaml",
+        ".bpmn",
+        ".cpt",
+        ".csl",
+        ".csproj",
+        ".csproj.user",
+        ".dita",
+        ".ditamap",
+        ".dtd",
+        ".ent",
+        ".mod",
+        ".dtml",
+        ".fsproj",
+        ".fxml",
+        ".iml",
+        ".isml",
+        ".jmx",
+        ".launch",
+        ".menu",
+        ".mxml",
+        ".nuspec",
+        ".opml",
+        ".owl",
+        ".proj",
+        ".props",
+        ".pt",
+        ".publishsettings",
+        ".pubxml",
+        ".pubxml.user",
+        ".rbxlx",
+        ".rbxmx",
+        ".rdf",
+        ".rng",
+        ".rss",
+        ".shproj",
+        ".storyboard",
+        ".svg",
+        ".targets",
+        ".tld",
+        ".tmx",
+        ".vbproj",
+        ".vbproj.user",
+        ".vcxproj",
+        ".vcxproj.filters",
+        ".wsdl",
+        ".wxi",
+        ".wxl",
+        ".wxs",
+        ".xaml",
+        ".xbl",
+        ".xib",
+        ".xlf",
+        ".xliff",
+        ".xpdl",
+        ".xul",
+        ".xoml"
+      ],
+      "Scope": "text.xml"
+    },
+    {
+      "Id": "xsl",
+      "Aliases": [
+        "XSL",
+        "xsl"
+      ],
+      "Extensions": [
+        ".xsl",
+        ".xslt"
+      ],
+      "Scope": "text.xml.xsl"
+    },
+    {
+      "Id": "dockercompose",
+      "Aliases": [
+        "Compose",
+        "compose"
+      ],
+      "Extensions": null,
+      "Scope": "source.yaml"
+    },
+    {
+      "Id": "yaml",
+      "Aliases": [
+        "YAML",
+        "yaml"
+      ],
+      "Extensions": [
+        ".yml",
+        ".eyaml",
+        ".eyml",
+        ".yaml"
+      ],
+      "Scope": "source.yaml"
+    }
+  ],
+  "Grammars": {
+    "document.adoc": "document.adoc.json.gz",
+    "documentation.injection.js.jsx": "documentation.injection.js.jsx.json.gz",
+    "documentation.injection.ts": "documentation.injection.ts.json.gz",
+    "markdown.math.block": "markdown.math.block.json.gz",
+    "markdown.math.inline": "markdown.math.inline.json.gz",
+    "markdown.typst.codeblock": "markdown.typst.codeblock.json.gz",
+    "source.asp.vb.net": "source.asp.vb.net.json.gz",
+    "source.batchfile": "source.batchfile.json.gz",
+    "source.c": "source.c.json.gz",
+    "source.c.platform": "source.c.platform.json.gz",
+    "source.clojure": "source.clojure.json.gz",
+    "source.coffee": "source.coffee.json.gz",
+    "source.cpp": "source.cpp.json.gz",
+    "source.cpp.embedded.latex": "source.cpp.embedded.latex.json.gz",
+    "source.cpp.embedded.macro": "source.cpp.embedded.macro.json.gz",
+    "source.cs": "source.cs.json.gz",
+    "source.css": "source.css.json.gz",
+    "source.css.less": "source.css.less.json.gz",
+    "source.css.scss": "source.css.scss.json.gz",
+    "source.cuda-cpp": "source.cuda-cpp.json.gz",
+    "source.dart": "source.dart.json.gz",
+    "source.diff": "source.diff.json.gz",
+    "source.dockerfile": "source.dockerfile.json.gz",
+    "source.fsharp": "source.fsharp.json.gz",
+    "source.go": "source.go.json.gz",
+    "source.groovy": "source.groovy.json.gz",
+    "source.hlsl": "source.hlsl.json.gz",
+    "source.ignore": "source.ignore.json.gz",
+    "source.ini": "source.ini.json.gz",
+    "source.java": "source.java.json.gz",
+    "source.js": "source.js.json.gz",
+    "source.js.jsx": "source.js.jsx.json.gz",
+    "source.json": "source.json.json.gz",
+    "source.json.comments": "source.json.comments.json.gz",
+    "source.julia": "source.julia.json.gz",
+    "source.lua": "source.lua.json.gz",
+    "source.makefile": "source.makefile.json.gz",
+    "source.objc": "source.objc.json.gz",
+    "source.objcpp": "source.objcpp.json.gz",
+    "source.pascal": "source.pascal.json.gz",
+    "source.perl": "source.perl.json.gz",
+    "source.perl.6": "source.perl.6.json.gz",
+    "source.php": "source.php.json.gz",
+    "source.powershell": "source.powershell.json.gz",
+    "source.python": "source.python.json.gz",
+    "source.r": "source.r.json.gz",
+    "source.regexp.python": "source.regexp.python.json.gz",
+    "source.ruby": "source.ruby.json.gz",
+    "source.rust": "source.rust.json.gz",
+    "source.sassdoc": "source.sassdoc.json.gz",
+    "source.shaderlab": "source.shaderlab.json.gz",
+    "source.shell": "source.shell.json.gz",
+    "source.sql": "source.sql.json.gz",
+    "source.swift": "source.swift.json.gz",
+    "source.ts": "source.ts.json.gz",
+    "source.tsx": "source.tsx.json.gz",
+    "source.typst": "source.typst.json.gz",
+    "source.typst-code": "source.typst-code.json.gz",
+    "source.x86asm": "source.x86asm.json.gz",
+    "source.yaml": "source.yaml.json.gz",
+    "text.bibtex": "text.bibtex.json.gz",
+    "text.html.basic": "text.html.basic.json.gz",
+    "text.html.cshtml": "text.html.cshtml.json.gz",
+    "text.html.derivative": "text.html.derivative.json.gz",
+    "text.html.handlebars": "text.html.handlebars.json.gz",
+    "text.html.markdown": "text.html.markdown.json.gz",
+    "text.html.markdown.math": "text.html.markdown.math.json.gz",
+    "text.html.php": "text.html.php.json.gz",
+    "text.log": "text.log.json.gz",
+    "text.pug": "text.pug.json.gz",
+    "text.tex": "text.tex.json.gz",
+    "text.tex.latex": "text.tex.latex.json.gz",
+    "text.tex.markdown_latex_combined": "text.tex.markdown_latex_combined.json.gz",
+    "text.xml": "text.xml.json.gz",
+    "text.xml.xsl": "text.xml.xsl.json.gz"
+  },
+  "ExtensionScopes": {
+    ".adoc": "document.adoc",
+    ".bat": "source.batchfile",
+    ".cmd": "source.batchfile",
+    ".clj": "source.clojure",
+    ".cljs": "source.clojure",
+    ".cljc": "source.clojure",
+    ".cljx": "source.clojure",
+    ".clojure": "source.clojure",
+    ".edn": "source.clojure",
+    ".coffee": "source.coffee",
+    ".cson": "source.coffee",
+    ".iced": "source.coffee",
+    ".c": "source.c",
+    ".i": "source.c",
+    ".cpp": "source.c",
+    ".cc": "source.c",
+    ".cxx": "source.c",
+    ".c\u002B\u002B": "source.c",
+    ".hpp": "source.c",
+    ".hh": "source.c",
+    ".hxx": "source.c",
+    ".h\u002B\u002B": "source.c",
+    ".h": "source.c",
+    ".ii": "source.c",
+    ".ino": "source.c",
+    ".inl": "source.c",
+    ".ipp": "source.c",
+    ".ixx": "source.c",
+    ".tpp": "source.c",
+    ".txx": "source.c",
+    ".hpp.in": "source.c",
+    ".h.in": "source.c",
+    ".cu": "source.c",
+    ".cuh": "source.c",
+    ".cs": "source.cs",
+    ".csx": "source.cs",
+    ".cake": "source.cs",
+    ".css": "source.css",
+    ".dart": "source.dart",
+    ".diff": "source.diff",
+    ".patch": "source.diff",
+    ".rej": "source.diff",
+    ".dockerfile": "source.dockerfile",
+    ".containerfile": "source.dockerfile",
+    ".fs": "source.fsharp",
+    ".fsi": "source.fsharp",
+    ".fsx": "source.fsharp",
+    ".fsscript": "source.fsharp",
+    ".gitignore_global": "source.diff",
+    ".gitignore": "source.diff",
+    ".go": "source.go",
+    ".groovy": "source.groovy",
+    ".gvy": "source.groovy",
+    ".gradle": "source.groovy",
+    ".jenkinsfile": "source.groovy",
+    ".nf": "source.groovy",
+    ".handlebars": "text.html.handlebars",
+    ".hbs": "text.html.handlebars",
+    ".hjs": "text.html.handlebars",
+    ".hlsl": "source.hlsl",
+    ".hlsli": "source.hlsl",
+    ".fx": "source.hlsl",
+    ".fxh": "source.hlsl",
+    ".vsh": "source.hlsl",
+    ".psh": "source.hlsl",
+    ".cginc": "source.hlsl",
+    ".compute": "source.hlsl",
+    ".html": "text.html.basic",
+    ".htm": "text.html.basic",
+    ".shtml": "text.html.basic",
+    ".xhtml": "text.html.basic",
+    ".xht": "text.html.basic",
+    ".mdoc": "text.html.basic",
+    ".jsp": "text.html.basic",
+    ".asp": "text.html.basic",
+    ".aspx": "text.html.basic",
+    ".jshtm": "text.html.basic",
+    ".volt": "text.html.basic",
+    ".ejs": "text.html.basic",
+    ".rhtml": "text.html.basic",
+    ".ini": "source.ini",
+    ".properties": "source.ini",
+    ".cfg": "source.ini",
+    ".conf": "source.ini",
+    ".directory": "source.ini",
+    ".gitattributes": "source.ini",
+    ".gitconfig": "source.ini",
+    ".gitmodules": "source.ini",
+    ".editorconfig": "source.ini",
+    ".java": "source.java",
+    ".jav": "source.java",
+    ".jsx": "source.js.jsx",
+    ".js": "source.js.jsx",
+    ".es6": "source.js.jsx",
+    ".mjs": "source.js.jsx",
+    ".cjs": "source.js.jsx",
+    ".pac": "source.js.jsx",
+    ".json": "source.json",
+    ".bowerrc": "source.json",
+    ".jscsrc": "source.json",
+    ".webmanifest": "source.json",
+    ".js.map": "source.json",
+    ".css.map": "source.json",
+    ".ts.map": "source.json",
+    ".har": "source.json",
+    ".jslintrc": "source.json",
+    ".jsonld": "source.json",
+    ".geojson": "source.json",
+    ".ipynb": "source.json",
+    ".jsonc": "source.json",
+    ".eslintrc": "source.json",
+    ".eslintrc.json": "source.json",
+    ".jsfmtrc": "source.json",
+    ".jshintrc": "source.json",
+    ".swcrc": "source.json",
+    ".hintrc": "source.json",
+    ".babelrc": "source.json",
+    ".jl": "source.julia",
+    ".sty": "text.tex",
+    ".cls": "text.tex",
+    ".bbx": "text.tex",
+    ".cbx": "text.tex",
+    ".tex": "text.tex",
+    ".ltx": "text.tex",
+    ".ctx": "text.tex",
+    ".bib": "text.tex",
+    ".less": "source.css.less",
+    ".log": "text.log",
+    "*.log.?": "text.log",
+    ".lua": "source.lua",
+    ".mak": "source.makefile",
+    ".mk": "source.makefile",
+    ".md": "text.html.markdown",
+    ".mkd": "text.html.markdown",
+    ".mdwn": "text.html.markdown",
+    ".mdown": "text.html.markdown",
+    ".markdown": "text.html.markdown",
+    ".markdn": "text.html.markdown",
+    ".mdtxt": "text.html.markdown",
+    ".mdtext": "text.html.markdown",
+    ".workbook": "text.html.markdown",
+    ".m": "source.objc",
+    ".mm": "source.objc",
+    ".pas": "source.pascal",
+    ".pp": "source.pascal",
+    ".pl": "source.perl",
+    ".pm": "source.perl",
+    ".pod": "source.perl",
+    ".t": "source.perl",
+    ".psgi": "source.perl",
+    ".p6": "source.perl",
+    ".pl6": "source.perl",
+    ".pm6": "source.perl",
+    ".nqp": "source.perl",
+    ".php": "source.php",
+    ".php4": "source.php",
+    ".php5": "source.php",
+    ".phtml": "source.php",
+    ".ctp": "source.php",
+    ".ps1": "source.powershell",
+    ".psm1": "source.powershell",
+    ".psd1": "source.powershell",
+    ".pssc": "source.powershell",
+    ".psrc": "source.powershell",
+    ".pug": "text.pug",
+    ".jade": "text.pug",
+    ".py": "source.python",
+    ".rpy": "source.python",
+    ".pyw": "source.python",
+    ".cpy": "source.python",
+    ".gyp": "source.python",
+    ".gypi": "source.python",
+    ".pyi": "source.python",
+    ".ipy": "source.python",
+    ".pyt": "source.python",
+    ".r": "source.r",
+    ".rhistory": "source.r",
+    ".rprofile": "source.r",
+    ".rt": "source.r",
+    ".cshtml": "text.html.cshtml",
+    ".razor": "text.html.cshtml",
+    ".rb": "source.ruby",
+    ".rbx": "source.ruby",
+    ".rjs": "source.ruby",
+    ".gemspec": "source.ruby",
+    ".rake": "source.ruby",
+    ".ru": "source.ruby",
+    ".erb": "source.ruby",
+    ".podspec": "source.ruby",
+    ".rbi": "source.ruby",
+    ".rs": "source.rust",
+    ".scss": "source.css.scss",
+    ".shader": "source.shaderlab",
+    ".sh": "source.shell",
+    ".bash": "source.shell",
+    ".bashrc": "source.shell",
+    ".bash_aliases": "source.shell",
+    ".bash_profile": "source.shell",
+    ".bash_login": "source.shell",
+    ".ebuild": "source.shell",
+    ".profile": "source.shell",
+    ".bash_logout": "source.shell",
+    ".xprofile": "source.shell",
+    ".xsession": "source.shell",
+    ".xsessionrc": "source.shell",
+    ".zsh": "source.shell",
+    ".zshrc": "source.shell",
+    ".zprofile": "source.shell",
+    ".zlogin": "source.shell",
+    ".zlogout": "source.shell",
+    ".zshenv": "source.shell",
+    ".zsh-theme": "source.shell",
+    ".ksh": "source.shell",
+    ".csh": "source.shell",
+    ".cshrc": "source.shell",
+    ".tcshrc": "source.shell",
+    ".yashrc": "source.shell",
+    ".yash_profile": "source.shell",
+    ".sql": "source.sql",
+    ".dsql": "source.sql",
+    ".swift": "source.swift",
+    ".ts": "source.ts",
+    ".tsx": "source.ts",
+    ".typ": "source.typst",
+    ".typc": "source.typst",
+    ".vb": "source.asp.vb.net",
+    ".brs": "source.asp.vb.net",
+    ".vbs": "source.asp.vb.net",
+    ".bas": "source.asp.vb.net",
+    ".asm": "source.x86asm",
+    ".xml": "text.xml",
+    ".xsd": "text.xml",
+    ".ascx": "text.xml",
+    ".atom": "text.xml",
+    ".axml": "text.xml",
+    ".axaml": "text.xml",
+    ".bpmn": "text.xml",
+    ".cpt": "text.xml",
+    ".csl": "text.xml",
+    ".csproj": "text.xml",
+    ".csproj.user": "text.xml",
+    ".dita": "text.xml",
+    ".ditamap": "text.xml",
+    ".dtd": "text.xml",
+    ".ent": "text.xml",
+    ".mod": "text.xml",
+    ".dtml": "text.xml",
+    ".fsproj": "text.xml",
+    ".fxml": "text.xml",
+    ".iml": "text.xml",
+    ".isml": "text.xml",
+    ".jmx": "text.xml",
+    ".launch": "text.xml",
+    ".menu": "text.xml",
+    ".mxml": "text.xml",
+    ".nuspec": "text.xml",
+    ".opml": "text.xml",
+    ".owl": "text.xml",
+    ".proj": "text.xml",
+    ".props": "text.xml",
+    ".pt": "text.xml",
+    ".publishsettings": "text.xml",
+    ".pubxml": "text.xml",
+    ".pubxml.user": "text.xml",
+    ".rbxlx": "text.xml",
+    ".rbxmx": "text.xml",
+    ".rdf": "text.xml",
+    ".rng": "text.xml",
+    ".rss": "text.xml",
+    ".shproj": "text.xml",
+    ".storyboard": "text.xml",
+    ".svg": "text.xml",
+    ".targets": "text.xml",
+    ".tld": "text.xml",
+    ".tmx": "text.xml",
+    ".vbproj": "text.xml",
+    ".vbproj.user": "text.xml",
+    ".vcxproj": "text.xml",
+    ".vcxproj.filters": "text.xml",
+    ".wsdl": "text.xml",
+    ".wxi": "text.xml",
+    ".wxl": "text.xml",
+    ".wxs": "text.xml",
+    ".xaml": "text.xml",
+    ".xbl": "text.xml",
+    ".xib": "text.xml",
+    ".xlf": "text.xml",
+    ".xliff": "text.xml",
+    ".xpdl": "text.xml",
+    ".xul": "text.xml",
+    ".xoml": "text.xml",
+    ".xsl": "text.xml",
+    ".xslt": "text.xml",
+    ".yml": "source.yaml",
+    ".eyaml": "source.yaml",
+    ".eyml": "source.yaml",
+    ".yaml": "source.yaml"
+  }
+}

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <!--
+          Dev tool, never packed or shipped. Extracts the TextMate grammar snapshot embedded in
+          TextMateSharp.Grammars into gzip assets + a language manifest for Huskui.Avalonia.Code,
+          and verifies the self-hosted locator against the upstream implementation.
+        -->
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TextMateSharp.Grammars" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Huskui.Avalonia.Code\Huskui.Avalonia.Code.csproj" />
+    </ItemGroup>
+
+</Project>
