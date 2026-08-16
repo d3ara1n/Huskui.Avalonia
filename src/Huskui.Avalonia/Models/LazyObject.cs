@@ -25,6 +25,7 @@ public class LazyObject(
     private readonly CancellationTokenSource _cts = CancellationTokenSource.CreateLinkedTokenSource(
         token
     );
+    private Task? _inFlight;
 
     public object? Value
     {
@@ -44,7 +45,12 @@ public class LazyObject(
 
     public void Cancel() => _cts.Cancel();
 
-    public async Task FetchAsync()
+    // NOTE: 已完成的 Task 不保留——成功路径调用方以 Value != null 短路，失败路径
+    // 需要能重跑工厂重试；只去重进行中的调用。
+    public Task FetchAsync() =>
+        _inFlight is { IsCompleted: false } ? _inFlight : _inFlight = FetchCoreAsync();
+
+    private async Task FetchCoreAsync()
     {
         IsInProgress = true;
         try
