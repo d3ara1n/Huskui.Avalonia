@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using FluentIcons.Common;
 
 namespace Huskui.Avalonia.Controls;
@@ -26,6 +27,11 @@ public class IconLabel : TemplatedControl
         double
     >(nameof(Spacing), 4d);
 
+    public static readonly StyledProperty<TextTrimming> TextTrimmingProperty = AvaloniaProperty.Register<
+        IconLabel,
+        TextTrimming
+    >(nameof(TextTrimming));
+
     public Symbol Icon
     {
         get => GetValue(IconProperty);
@@ -48,5 +54,11 @@ public class IconLabel : TemplatedControl
     {
         get => GetValue(SpacingProperty);
         set => SetValue(SpacingProperty, value);
+    }
+
+    public TextTrimming TextTrimming
+    {
+        get => GetValue(TextTrimmingProperty);
+        set => SetValue(TextTrimmingProperty, value);
     }
 }

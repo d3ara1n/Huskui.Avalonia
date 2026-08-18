@@ -27,14 +27,12 @@
                         Grid.Column="0"
                         VerticalAlignment="Center"
                         FontSize="{TemplateBinding FontSize}"
-                        Foreground="{TemplateBinding Foreground}"
                         IconVariant="{TemplateBinding Variant}"
                         Symbol="{TemplateBinding Icon}" />
                     <TextBlock
                         Grid.Column="1"
-                        FontSize="{TemplateBinding FontSize}"
-                        Foreground="{TemplateBinding Foreground}"
-                        Text="{TemplateBinding Text}" />
+                        Text="{TemplateBinding Text}"
+                        TextTrimming="{TemplateBinding TextTrimming}" />
                 </Grid>
             </ControlTemplate>
         </Setter>
