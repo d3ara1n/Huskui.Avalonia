@@ -211,6 +211,21 @@
                         </Border.Transitions>
                     </Border>
 
+                    <Border
+                        x:Name="Indicator"
+                        IsHitTestVisible="False"
+                        Background="{StaticResource TransparentBrush}"
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Easing="SineEaseOut"
+                                    Property="Background"
+                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
+                            </Transitions>
+                        </Border.Transitions>
+                    </Border>
+
                     <ContentPresenter
                         Name="PART_ContentPresenter"
                         Padding="{TemplateBinding Padding}"
@@ -233,19 +248,6 @@
                             </Transitions>
                         </ContentPresenter.Transitions>
                     </ContentPresenter>
-                    <Border
-                        x:Name="Indicator"
-                        Background="{StaticResource TransparentBrush}"
-                        CornerRadius="{TemplateBinding CornerRadius}">
-                        <Border.Transitions>
-                            <Transitions>
-                                <BrushTransition
-                                    Easing="SineEaseOut"
-                                    Property="Background"
-                                    Duration="{StaticResource ControlFasterAnimationDuration}" />
-                            </Transitions>
-                        </Border.Transitions>
-                    </Border>
                 </Panel>
             </ControlTemplate>
         </Setter>
