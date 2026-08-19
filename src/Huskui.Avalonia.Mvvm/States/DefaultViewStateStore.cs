@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Huskui.Avalonia.Mvvm.States;
 
 internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) : IViewStateStore
@@ -13,11 +11,7 @@ internal sealed class DefaultViewStateStore(IViewStatePersistence persistence) :
 
     private readonly Dictionary<string, Entry> _entries = new();
 
-    public object GetOrCreate(
-        string key,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type stateType
-    )
+    public object GetOrCreate(string key, Type stateType)
     {
         if (_entries.TryGetValue(key, out var existing))
         {

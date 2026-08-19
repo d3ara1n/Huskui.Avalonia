@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 using Avalonia;
 using Avalonia.Animation;
@@ -18,11 +17,7 @@ public class Frame : TemplatedControl
 {
     #region Delegates
 
-    public delegate object? PageActivatorDelegate(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type page,
-        object? parameter
-    );
+    public delegate object? PageActivatorDelegate(Type page, object? parameter);
 
     #endregion
 
@@ -57,14 +52,6 @@ public class Frame : TemplatedControl
     private ContentPresenter? _presenter2;
     private bool _toggle;
 
-    [UnconditionalSuppressMessage(
-        "TrimAnalysis",
-        "IL2111",
-        Justification = "Property initializers run in the constructor; delegate creation over an "
-            + "annotated method is beyond ILLink's tracking. Every invocation origin (Navigate, "
-            + "GoBack/FrameFrame) receives the Type via annotated surfaces, which root the constructor "
-            + "independently of this assignment."
-    )]
     public Frame() => _goBackCommand = new(GoBack, () => CanGoBack);
 
     public bool CanGoBack
@@ -99,21 +86,9 @@ public class Frame : TemplatedControl
 
     public ICommand GoBackCommand => _goBackCommand;
 
-    [UnconditionalSuppressMessage(
-        "TrimAnalysis",
-        "IL2111",
-        Justification = "Compile-time analysis attributes this initializer to the property; publish-time "
-            + "attribution needs the ctor suppress below. Delegate creation over an annotated method is "
-            + "beyond ILLink's tracking; every invocation origin (Navigate, GoBack/FrameFrame) receives "
-            + "the Type via annotated surfaces, which root the constructor independently."
-    )]
     public PageActivatorDelegate PageActivator { get; set; } = ActivatePage;
 
-    private static object? ActivatePage(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type page,
-        object? parameter
-    )
+    private static object? ActivatePage(Type page, object? parameter)
     {
         var obj = Activator.CreateInstance(page);
         if (obj is StyledElement element)
@@ -126,12 +101,7 @@ public class Frame : TemplatedControl
 
     public void ClearHistory() => _history.Clear();
 
-    public void Navigate(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type page,
-        object? parameter = null,
-        IPageTransition? transition = null
-    )
+    public void Navigate(Type page, object? parameter = null, IPageTransition? transition = null)
     {
         var content = PageActivator(page, parameter)
                    ?? throw new InvalidOperationException($"Activating {page.Name} gets null page model");
@@ -256,13 +226,7 @@ public class Frame : TemplatedControl
 
     #region Nested type: FrameFrame
 
-    public record FrameFrame(
-        [property: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        [param: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type Page,
-        object? Parameter,
-        IPageTransition? Transition
-    );
+    public record FrameFrame(Type Page, object? Parameter, IPageTransition? Transition);
 
     #endregion
 }

@@ -7,7 +7,6 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
 namespace Huskui.Avalonia.Controls;
@@ -112,18 +111,6 @@ public class NavigationView : SelectingItemsControl
     protected override Control CreateContainerForItemOverride(object? item, int index, object? recycleKey) =>
         new NavigationItem();
 
-    [UnconditionalSuppressMessage(
-        "TrimAnalysis",
-        "IL2026",
-        Justification = "Icon/Category are forwarded to consumer-provided item models via property-name "
-            + "bindings; consumers trimming their own assemblies must keep those model properties reachable."
-    )]
-    [UnconditionalSuppressMessage(
-        "AotAnalysis",
-        "IL3050",
-        Justification = "Icon/Category are forwarded to consumer-provided item models via property-name "
-            + "bindings; NativeAOT consumers must keep those model properties visible."
-    )]
     protected override void PrepareContainerForItemOverride(Control container, object? item, int index)
     {
         base.PrepareContainerForItemOverride(container, item, index);

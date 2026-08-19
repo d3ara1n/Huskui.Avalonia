@@ -2,43 +2,28 @@ using Huskui.Avalonia.Mvvm.States;
 using Huskui.Avalonia.Mvvm.States.Managers;
 using Huskui.Avalonia.Mvvm.States.Persistences;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Huskui.Avalonia.Mvvm;
 
 public class StateRegistrationBuilder
 {
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     private Type? _managerType;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     private Type? _persistenceType;
-
-    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     private Type? _factoryType;
 
-    public StateRegistrationBuilder WithManager(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        Type managerType
-    )
+    public StateRegistrationBuilder WithManager(Type managerType)
     {
         _managerType = managerType;
         return this;
     }
 
-    public StateRegistrationBuilder WithStatePersistence(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        Type persistenceType
-    )
+    public StateRegistrationBuilder WithStatePersistence(Type persistenceType)
     {
         _persistenceType = persistenceType;
         return this;
     }
 
-    public StateRegistrationBuilder WithKeyFactory(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-        Type factoryType
-    )
+    public StateRegistrationBuilder WithKeyFactory(Type factoryType)
     {
         _factoryType = factoryType;
         return this;

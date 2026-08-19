@@ -2,18 +2,13 @@ using Avalonia.Controls;
 using Huskui.Avalonia.Mvvm.Mixins;
 using Huskui.Avalonia.Mvvm.States;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Huskui.Avalonia.Mvvm.Activation;
 
 public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateManager stateManager)
     : IViewActivator
 {
-    public virtual object? Activate(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)]
-        Type viewType,
-        object? parameter = null
-    )
+    public virtual object? Activate(Type viewType, object? parameter = null)
     {
         if (!viewType.IsAssignableTo(typeof(Control)))
         {
@@ -46,6 +41,5 @@ public abstract class ViewActivatorBase(IServiceProvider provider, IViewStateMan
         return view;
     }
 
-    [return: DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
     protected abstract Type FindViewModelType(Type view);
 }

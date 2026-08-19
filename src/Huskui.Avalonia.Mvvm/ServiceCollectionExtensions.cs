@@ -2,7 +2,6 @@ using Huskui.Avalonia.Mvvm.Activation;
 using Huskui.Avalonia.Mvvm.Models;
 using Huskui.Avalonia.Mvvm.States;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Huskui.Avalonia.Mvvm;
 
@@ -10,10 +9,7 @@ public static class ServiceCollectionExtensions
 {
     extension(IServiceCollection services)
     {
-        public IServiceCollection AddViewModelActivation(
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
-            Type activatorType
-        )
+        public IServiceCollection AddViewModelActivation(Type activatorType)
         {
             if (!activatorType.IsAssignableTo(typeof(IViewActivator)))
             {
@@ -30,9 +26,7 @@ public static class ServiceCollectionExtensions
             return services;
         }
 
-        public IServiceCollection AddViewModelActivation<
-            [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] T
-        >()
+        public IServiceCollection AddViewModelActivation<T>()
             where T : IViewActivator => services.AddViewModelActivation(typeof(T));
 
         public IServiceCollection AddViewState(Action<StateRegistrationBuilder>? configure = null)

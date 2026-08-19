@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace Huskui.Avalonia.Mvvm.States.Managers;
 
 public sealed class ReflectionViewStateManager(
@@ -9,20 +7,6 @@ public sealed class ReflectionViewStateManager(
 {
     private readonly Dictionary<object, string> _attached = new(ReferenceEqualityComparer.Instance);
 
-    [UnconditionalSuppressMessage(
-        "TrimAnalysis",
-        "IL2075",
-        Justification = "Reflects over consumer view-model types discovered at runtime; consumers "
-            + "trimming their own assemblies must keep view-model interfaces and the ViewState "
-            + "property reachable, or supply a non-reflective IViewStateManager."
-    )]
-    [UnconditionalSuppressMessage(
-        "TrimAnalysis",
-        "IL2062",
-        Justification = "stateType is derived from the runtime interface scan above; consumers "
-            + "trimming their own assemblies must keep state types constructible, or supply a "
-            + "non-reflective IViewStateManager."
-    )]
     public bool TryAttach(object viewModel)
     {
         var type = viewModel.GetType();
