@@ -107,15 +107,16 @@
             <Setter Property="RenderTransform" Value="translateY(2px)" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Rectangle#Underline">
-            <Setter Property="Stroke" Value="{StaticResource ControlBorderBrush}" />
-        </Style>
-
         <Style Selector="^.Dashed /template/ Rectangle#Underline">
             <Setter Property="StrokeDashArray" Value="2,2" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Rectangle#Underline">
+            <Setter Property="Stroke" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
     </ControlTheme>
 
@@ -204,14 +205,15 @@
             <Setter Property="RenderTransform" Value="translateY(3px)" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ Rectangle#Underline">
-            <Setter Property="Stroke" Value="{StaticResource ControlBorderBrush}" />
+            <Setter Property="Stroke" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

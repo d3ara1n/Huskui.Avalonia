@@ -192,6 +192,16 @@
             <Setter Property="Margin" Value="0" />
         </Style>
 
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Background">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#ContentPresenter, ^:disabled /template/ ContentPresenter#IconPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+
     </ControlTheme>
 
 </ResourceDictionary>

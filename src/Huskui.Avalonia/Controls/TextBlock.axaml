@@ -7,8 +7,8 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
 
-        <Style Selector="^:disabled /template/ Border#PART_Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

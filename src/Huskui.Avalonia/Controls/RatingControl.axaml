@@ -85,16 +85,17 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:readonly">
             <Setter Property="Cursor" Value="Arrow" />
         </Style>
 
         <Style Selector="^:not(:readonly):pointerover /template/ Panel &gt; fi|SymbolIcon">
             <Setter Property="RenderTransform" Value="scale(1.1)" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="FilledColor" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="UnfilledColor" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

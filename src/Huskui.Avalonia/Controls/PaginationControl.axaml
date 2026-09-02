@@ -124,8 +124,8 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Panel#Background">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

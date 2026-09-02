@@ -147,6 +147,14 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
+
+        <Style Selector="^:disabled /template/ Border">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme
@@ -172,6 +180,10 @@
 
         <Style Selector="^:selected /template/ Ellipse#Indicator">
             <Setter Property="Fill" Value="{StaticResource ControlAccentForegroundBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Ellipse#Indicator">
+            <Setter Property="Fill" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

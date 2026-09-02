@@ -110,5 +110,15 @@
         <Style Selector="^.Outline">
             <Setter Property="BorderThickness" Value="1" />
         </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_Border">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

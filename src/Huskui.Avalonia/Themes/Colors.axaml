@@ -145,6 +145,21 @@
     <SolidColorBrush
         x:Key="ControlTranslucentForegroundBrush"
         Color="{DynamicResource Gray11Color}" />
+    <SolidColorBrush
+        x:Key="ControlDisabledBackgroundBrush"
+        Color="{DynamicResource Gray4Color}" />
+    <SolidColorBrush
+        x:Key="ControlDisabledInteractiveBackgroundBrush"
+        Color="{DynamicResource Gray6Color}" />
+    <SolidColorBrush
+        x:Key="ControlDisabledBorderBrush"
+        Color="{DynamicResource Gray7Color}" />
+    <SolidColorBrush
+        x:Key="ControlDisabledInteractiveBorderBrush"
+        Color="{DynamicResource Gray8Color}" />
+    <SolidColorBrush
+        x:Key="ControlDisabledForegroundBrush"
+        Color="{DynamicResource Gray11Color}" />
 
     <!--  Accent  -->
     <SolidColorBrush

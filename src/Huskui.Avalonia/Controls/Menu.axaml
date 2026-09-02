@@ -214,7 +214,20 @@
         </Style>
 
         <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ fi|SymbolIcon#Checkbox">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ fi|SymbolIcon#ExpandMark">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ TextBlock#PART_InputGestureText">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 
@@ -356,7 +369,20 @@
         </Style>
 
         <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ fi|SymbolIcon#Checkbox">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ fi|SymbolIcon#ExpandMark">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ TextBlock#PART_InputGestureText">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

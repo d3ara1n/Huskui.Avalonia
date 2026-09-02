@@ -135,10 +135,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:horizontal">
             <Setter Property="MinHeight" Value="4" />
 
@@ -319,6 +315,13 @@
                 </Style>
             </Style>
         </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Border">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme
@@ -335,6 +338,13 @@
 
         <Style Selector="^:vertical">
             <Setter Property="MinWidth" Value="10" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Border">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

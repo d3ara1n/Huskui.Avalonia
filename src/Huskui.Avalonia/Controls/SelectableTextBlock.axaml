@@ -9,8 +9,9 @@
         <Setter Property="SelectionForegroundBrush" Value="{StaticResource ControlReversedForegroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
 
-        <Style Selector="^:disabled /template/ Border#PART_Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="SelectionBrush" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -134,10 +134,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:indeterminate">
             <Style Selector="^ /template/ Panel#Determinate">
                 <Setter Property="IsVisible" Value="False" />
@@ -163,6 +159,17 @@
                     </Animation>
                 </Style.Animations>
             </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Arc#PART_Indicator">
+            <Setter Property="Stroke" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Arc#Track">
+            <Setter Property="Stroke" Value="{StaticResource ControlDisabledBackgroundBrush}" />
         </Style>
     </ControlTheme>
 
@@ -228,9 +235,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
         <Style Selector="^:indeterminate">
             <Style Selector="^ /template/ Panel#Determinate">
                 <Setter Property="IsVisible" Value="False" />
@@ -272,6 +276,11 @@
                     </Animation>
                 </Style.Animations>
             </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

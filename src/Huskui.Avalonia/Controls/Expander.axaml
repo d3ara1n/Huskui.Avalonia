@@ -94,7 +94,10 @@
             <Setter Property="Background" Value="{StaticResource OverlayFullBackgroundBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Indicator">
+            <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         </Style>
     </ControlTheme>
 
@@ -155,10 +158,6 @@
                 </DockPanel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^:disabled /template/ DockPanel#Root">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
 
         <Style Selector="^ /template/ fi|SymbolIcon#Symbol">
             <Setter Property="Symbol" Value="Add" />
@@ -241,6 +240,10 @@
                     <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static husk:ThicknessConverters.WithoutRight}}" />
                 </Style>
             </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -212,5 +212,9 @@
                 </ControlTemplate>
             </Setter>
         </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

@@ -101,7 +101,14 @@
         </Style>
 
         <Style Selector="^:disabled /template/ Border#Background">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Overlay">
+            <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         </Style>
     </ControlTheme>
 
@@ -297,8 +304,21 @@
             <Setter Property="BorderBrush" Value="{StaticResource ControlDangerInteractiveBorderBrush}" />
         </Style>
 
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Button#PART_FlyoutButton">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
         <Style Selector="^:disabled /template/ Rectangle">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Fill" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
     </ControlTheme>
 
@@ -744,8 +764,21 @@
             <Setter Property="BorderBrush" Value="{StaticResource ControlDangerInteractiveBorderBrush}" />
         </Style>
 
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Button#PART_FlyoutButton">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
         <Style Selector="^:disabled /template/ Rectangle">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Fill" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
     </ControlTheme>
 

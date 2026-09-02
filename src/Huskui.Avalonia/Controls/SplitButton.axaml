@@ -117,5 +117,11 @@
             <Setter Property="Background" Value="{StaticResource ControlDangerInteractiveBackgroundBrush}" />
             <Setter Property="Foreground" Value="{StaticResource ControlBlackForegroundBrush}" />
         </Style>
+
+        <Style Selector="^:disabled /template/ Button">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
     </ControlTheme>
 </ResourceDictionary>

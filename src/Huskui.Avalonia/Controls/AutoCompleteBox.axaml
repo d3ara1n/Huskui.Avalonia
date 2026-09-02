@@ -154,8 +154,14 @@
             <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#PART_Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="PlaceholderForeground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
         </Style>
     </ControlTheme>
 
@@ -252,7 +258,12 @@
         </Style>
 
         <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="RenderTransform" Value="{x:Null}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

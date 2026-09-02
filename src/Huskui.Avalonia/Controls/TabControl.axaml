@@ -230,10 +230,6 @@
             <Setter Property="Background" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Panel#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Bottom" />
             <Setter Property="Height" Value="{StaticResource TabItemHighlightThickness}" />
@@ -277,6 +273,13 @@
         </Style>
         <Style Selector="^[TabStripPlacement=Right]:pointerover /template/ Border#PART_Indicator">
             <Setter Property="RenderTransform" Value="scaleX(1.0)" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_Indicator">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
         </Style>
     </ControlTheme>
 
@@ -330,16 +333,6 @@
                 </Panel>
             </ControlTemplate>
         </Setter>
-
-        <Style Selector="^:disabled /template/ Border#PART_Indicator">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Border#PART_Overlay">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
 
         <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_Indicator">
             <Setter Property="VerticalAlignment" Value="Bottom" />
@@ -461,6 +454,16 @@
                 </LinearGradientBrush>
             </Setter>
         </Style>
+
+        <Style Selector="^:disabled /template/ Border#PART_Indicator">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_Overlay">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme
@@ -537,13 +540,6 @@
             <Setter Property="Background" Value="{StaticResource ControlTranslucentFullBackgroundBrush}" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#PART_Indicator">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:not(:selected):not(:pointerover) /template/ Border#PART_Indicator">
             <Setter Property="IsVisible" Value="False" />
         </Style>
@@ -583,6 +579,13 @@
         </Style>
         <Style Selector="^.Primary:selected /template/ Border#PART_Indicator">
             <Setter Property="Background" Value="{StaticResource ControlAccentTranslucentFullBackgroundBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#PART_Indicator">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

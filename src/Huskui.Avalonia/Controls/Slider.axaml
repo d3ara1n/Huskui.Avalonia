@@ -220,10 +220,6 @@
             <Setter Property="IsVisible" Value="True" />
         </Style>
 
-        <Style Selector="^:disabled">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^ /template/ RepeatButton">
             <Setter Property="Template">
                 <ControlTemplate>
@@ -277,8 +273,17 @@
             </Setter>
         </Style>
 
-        <Style Selector="^:disabled /template/ Grid#Container">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled /template/ RepeatButton#PART_DecreaseButton">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ RepeatButton#PART_IncreaseButton">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Thumb">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ TickBar">
+            <Setter Property="Fill" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

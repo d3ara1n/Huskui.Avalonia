@@ -135,10 +135,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Grid#InteractivePart">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:pointerover /template/ Border#SwitchKnob">
             <Setter Property="RenderTransform" Value="scale(0.9)" />
         </Style>
@@ -165,6 +161,17 @@
             <Style Selector="^ /template/ ContentPresenter#PART_OffContentPresenter">
                 <Setter Property="Opacity" Value="1" />
             </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#SwitchKnobBounds">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter, ^:disabled /template/ ContentPresenter#PART_OnContentPresenter, ^:disabled /template/ ContentPresenter#PART_OffContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

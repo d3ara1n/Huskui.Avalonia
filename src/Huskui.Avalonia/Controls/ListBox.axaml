@@ -156,13 +156,15 @@
             </Style>
         </Style>
 
-        <Style Selector="^:disabled">
-            <Style Selector="^ /template/ Border#Background">
-                <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-            </Style>
-            <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-                <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-            </Style>
+        <Style Selector="^:disabled /template/ Border#Background">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Indicator">
+            <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 
@@ -252,13 +254,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^:pointerover /template/ Border#Indicator">
             <Setter Property="Background" Value="{StaticResource OverlayHalfBackgroundBrush}" />
         </Style>
@@ -269,6 +264,17 @@
 
         <Style Selector="^:selected /template/ Border#Border">
             <Setter Property="BorderBrush" Value="{StaticResource ControlAccentInteractiveBorderBrush}" />
+        </Style>
+
+        <Style Selector="^:disabled /template/ Border#Border">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Indicator">
+            <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>

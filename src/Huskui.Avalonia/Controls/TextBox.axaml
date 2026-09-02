@@ -208,10 +208,6 @@
             <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#PART_Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^[UseFloatingWatermark=true]:not(:empty) /template/ TextBlock#PART_FloatingWatermark">
             <Setter Property="IsVisible" Value="True" />
         </Style>
@@ -223,6 +219,21 @@
 
         <Style Selector="^[IsReadOnly=False]:not(:empty).Clearable /template/ Button#ClearButton">
             <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="CaretBrush" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="PlaceholderForeground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="SelectionBrush" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#PART_GlowBorder">
+            <Setter Property="BorderBrush" Value="{StaticResource TransparentBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Button#ClearButton">
+            <Setter Property="IsVisible" Value="False" />
         </Style>
     </ControlTheme>
 
@@ -373,10 +384,6 @@
             <Setter Property="Background" Value="{StaticResource OverlaySolidBackgroundBrush}" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Panel#Root">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^.Multiline">
             <Setter Property="AcceptsReturn" Value="True" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -384,6 +391,21 @@
 
         <Style Selector="^[IsReadOnly=False]:not(:empty).Clearable /template/ Button#ClearButton">
             <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+            <Setter Property="CaretBrush" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="PlaceholderForeground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="SelectionBrush" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Indicator">
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Button#ClearButton">
+            <Setter Property="IsVisible" Value="False" />
         </Style>
     </ControlTheme>
 
@@ -506,10 +528,6 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Panel#Root">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
-        </Style>
-
         <Style Selector="^.Multiline">
             <Setter Property="AcceptsReturn" Value="True" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -517,6 +535,18 @@
 
         <Style Selector="^[IsReadOnly=False]:not(:empty).Clearable /template/ Button#ClearButton">
             <Setter Property="IsVisible" Value="True" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
+            <Setter Property="CaretBrush" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="PlaceholderForeground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="SelectionBrush" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Button#ClearButton">
+            <Setter Property="IsVisible" Value="False" />
         </Style>
     </ControlTheme>
 
@@ -584,8 +614,11 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border#PART_Border">
-            <Setter Property="Opacity" Value="{StaticResource ControlDimOpacity}" />
+        <Style Selector="^:disabled">
+            <Setter Property="CaretBrush" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="PlaceholderForeground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="SelectionBrush" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
