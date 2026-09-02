@@ -1,0 +1,195 @@
+﻿<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ProgressesPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+        <controls:ExampleContainer
+            Title="Progress Bars"
+            Description="Determinate and indeterminate progress bars for tracking work in horizontal layouts">
+            <Grid ColumnDefinitions="*,16,*">
+                <StackPanel Grid.Column="0" Spacing="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="0%" />
+                        <ProgressBar Maximum="100" Minimum="0" Value="0" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="35%" />
+                        <ProgressBar Maximum="100" Minimum="0" Value="35" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="75%" />
+                        <ProgressBar Maximum="100" Minimum="0" Value="75" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="100%" />
+                        <ProgressBar Maximum="100" Minimum="0" Value="100" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Spacing="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="Indeterminate" />
+                        <ProgressBar IsIndeterminate="True" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="Bordered theme" />
+                        <ProgressBar
+                            Height="12"
+                            Theme="{StaticResource BorderedProgressBarTheme}"
+                            Value="60" />
+                    </StackPanel>
+                    <StackPanel Spacing="6">
+                        <TextBlock FontWeight="Bold" Text="Bordered indeterminate" />
+                        <ProgressBar
+                            Height="12"
+                            IsIndeterminate="True"
+                            Theme="{StaticResource BorderedProgressBarTheme}" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Progress Rings"
+            Description="Circular progress indicators with determinate, indeterminate, and solid variants">
+            <Grid ColumnDefinitions="*,16,*">
+                <StackPanel
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="28">
+                    <StackPanel Spacing="8">
+                        <husk:ProgressRing
+                            Width="72"
+                            Height="72"
+                            ShowProgressText="True"
+                            Value="35" />
+                        <TextBlock HorizontalAlignment="Center" Text="35%" />
+                    </StackPanel>
+                    <StackPanel Spacing="8">
+                        <husk:ProgressRing
+                            Width="72"
+                            Height="72"
+                            IsIndeterminate="True" />
+                        <TextBlock HorizontalAlignment="Center" Text="Loading" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="28">
+                    <StackPanel Spacing="8">
+                        <husk:ProgressRing
+                            Width="72"
+                            Height="72"
+                            ShowProgressText="True"
+                            Theme="{StaticResource SolidProgressRingTheme}"
+                            Value="65" />
+                        <TextBlock HorizontalAlignment="Center" Text="Solid 65%" />
+                    </StackPanel>
+                    <StackPanel Spacing="8">
+                        <husk:ProgressRing
+                            Width="72"
+                            Height="72"
+                            IsIndeterminate="True"
+                            Theme="{StaticResource SolidProgressRingTheme}" />
+                        <TextBlock HorizontalAlignment="Center" Text="Solid loading" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Orientation and Sizes"
+            Description="Progress indicators adapt to vertical layouts and different display sizes">
+            <Grid ColumnDefinitions="*,16,*">
+                <StackPanel
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="32">
+                    <StackPanel Spacing="8">
+                        <TextBlock HorizontalAlignment="Center" Text="Vertical 25%" />
+                        <ProgressBar
+                            Width="12"
+                            Height="160"
+                            Orientation="Vertical"
+                            Value="25" />
+                    </StackPanel>
+                    <StackPanel Spacing="8">
+                        <TextBlock HorizontalAlignment="Center" Text="Vertical 75%" />
+                        <ProgressBar
+                            Width="12"
+                            Height="160"
+                            Orientation="Vertical"
+                            Value="75" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    Spacing="20">
+                    <husk:ProgressRing Width="32" Height="32" Value="40" />
+                    <husk:ProgressRing Width="56" Height="56" Value="60" />
+                    <husk:ProgressRing Width="84" Height="84" Value="80" />
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Disabled State"
+            Description="Disabled progress indicators use opaque neutral surfaces instead of accent colors or opacity dimming">
+            <Grid
+                ColumnDefinitions="*,16,*"
+                RowDefinitions="Auto,24,Auto">
+                <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="ProgressBar" />
+                    <ProgressBar
+                        IsEnabled="False"
+                        Maximum="100"
+                        Minimum="0"
+                        Value="65" />
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="Bordered ProgressBar" />
+                    <ProgressBar
+                        Height="12"
+                        IsEnabled="False"
+                        Theme="{StaticResource BorderedProgressBarTheme}"
+                        Value="65" />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="0" Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="ProgressRing" />
+                    <husk:ProgressRing
+                        Width="84"
+                        Height="84"
+                        IsEnabled="False"
+                        ShowProgressText="True"
+                        Value="65" />
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2" Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="Solid ProgressRing" />
+                    <husk:ProgressRing
+                        Width="84"
+                        Height="84"
+                        IsEnabled="False"
+                        ShowProgressText="True"
+                        Theme="{StaticResource SolidProgressRingTheme}"
+                        Value="65" />
+                </StackPanel>
+            </Grid>
+        </controls:ExampleContainer>
+    </StackPanel>
+</controls:ControlPage>

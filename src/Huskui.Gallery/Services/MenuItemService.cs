@@ -453,6 +453,15 @@ public class MenuItemService
             new()
             {
                 Icon = Symbol.ArrowSync,
+                PageType = typeof(ProgressesPage),
+                Category = category,
+                Title = "Progress",
+                Description = "Linear and circular indicators for tracking ongoing work",
+                Tags = ["progress", "progressbar", "progressring", "loading", "determinate", "indeterminate"],
+            },
+            new()
+            {
+                Icon = Symbol.ArrowSync,
                 PageType = typeof(SlidersPage),
                 Category = category,
                 Title = "Sliders",
