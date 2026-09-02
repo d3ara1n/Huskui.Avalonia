@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class SlideUpTransition : PageTransitionBase
+public class SlideUpTransition : FrameTransitionBase
 {
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {

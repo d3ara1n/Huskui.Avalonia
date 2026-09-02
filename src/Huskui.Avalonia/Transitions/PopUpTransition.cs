@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public sealed class PopUpTransition : PageTransitionBase
+public sealed class PopUpTransition : FrameTransitionBase
 {
     public PopUpTransition() { }
 

@@ -6,7 +6,7 @@ using Avalonia.VisualTree;
 
 namespace Huskui.Avalonia.Transitions;
 
-public abstract class PageTransitionBase(TimeSpan? duration = null) : IPageTransition
+public abstract class FrameTransitionBase(TimeSpan? duration = null) : IPageTransition
 {
     private static readonly TimeSpan DefaultDuration = TimeSpan.FromMilliseconds(197);
     private static readonly Easing DefaultEasing = new LinearEasing();

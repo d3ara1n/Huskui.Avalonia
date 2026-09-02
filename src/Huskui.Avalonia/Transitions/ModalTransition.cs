@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class ModalTransition : PageTransitionBase
+public class ModalTransition : FrameTransitionBase
 {
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {

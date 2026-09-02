@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public sealed class PageCoverOverTransition : PageTransitionBase
+public sealed class PageCoverOverTransition : FrameTransitionBase
 {
     public PageCoverOverTransition()
         : this(null) { }

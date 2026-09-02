@@ -5,7 +5,7 @@ using Avalonia.Media;
 namespace Huskui.Avalonia.Transitions;
 
 public class FocusOnTransition(TimeSpan? duration = null, DirectionFrom? direction = null)
-    : PageTransitionBase(duration)
+    : FrameTransitionBase(duration)
 {
     public FocusOnTransition()
         : this(null) { }

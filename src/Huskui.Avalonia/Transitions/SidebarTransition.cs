@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class SidebarTransition(TimeSpan? duration = null) : PageTransitionBase(duration)
+public class SidebarTransition(TimeSpan? duration = null) : FrameTransitionBase(duration)
 {
     public SidebarTransition()
         : this(TimeSpan.FromMilliseconds(320)) { }

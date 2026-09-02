@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public sealed class DrawerTransition(TimeSpan? duration = null) : PageTransitionBase(duration)
+public sealed class DrawerTransition(TimeSpan? duration = null) : FrameTransitionBase(duration)
 {
     public DrawerTransition()
         : this(TimeSpan.FromMilliseconds(260)) { }

@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class ScaleInTransition : PageTransitionBase
+public class ScaleInTransition : FrameTransitionBase
 {
     public ScaleInTransition() { }
 

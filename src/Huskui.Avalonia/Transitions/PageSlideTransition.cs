@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class PageSlideTransition(TimeSpan? duration = null) : PageTransitionBase(duration)
+public class PageSlideTransition(TimeSpan? duration = null) : FrameTransitionBase(duration)
 {
     // 使用更长的持续时间以获得更优雅的动画效果，类似现代 Web 应用
     public PageSlideTransition()

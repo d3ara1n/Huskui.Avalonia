@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public class GrowlTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(400))
+public class GrowlTransition() : FrameTransitionBase(TimeSpan.FromMilliseconds(400))
 {
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {

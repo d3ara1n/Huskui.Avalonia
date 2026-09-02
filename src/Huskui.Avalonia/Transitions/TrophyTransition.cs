@@ -4,7 +4,7 @@ using Avalonia.Media;
 
 namespace Huskui.Avalonia.Transitions;
 
-public sealed class TrophyTransition() : PageTransitionBase(TimeSpan.FromMilliseconds(300))
+public sealed class TrophyTransition() : FrameTransitionBase(TimeSpan.FromMilliseconds(300))
 {
     protected override void Configure(Builder from, Builder to, Lazy<Visual> parentAccessor)
     {
