@@ -107,6 +107,16 @@ public class MenuItemService
             },
             new()
             {
+                Icon = Symbol.Icons,
+                PageType = typeof(PathIconsPage),
+                Category = category,
+                Title = "PathIcons",
+                Description =
+                    "Geometry-based icons rendered from path data with the theme's default ControlTheme",
+                Tags = ["pathicon", "icon", "geometry", "path", "vector"],
+            },
+            new()
+            {
                 Icon = Symbol.Highlight,
                 PageType = typeof(HighlightBlocksPage),
                 Category = category,
@@ -210,6 +220,16 @@ public class MenuItemService
                 Title = "Flyouts",
                 Description = "Pop-up containers for displaying content.",
                 Tags = ["flyout", "popup", "menu", "overlay"],
+            },
+            new()
+            {
+                Icon = Symbol.AppsList,
+                PageType = typeof(ContextMenusPage),
+                Category = category,
+                Title = "ContextMenus",
+                Description =
+                    "Right-click menus with separators, input gestures, toggle items, icons, and submenus",
+                Tags = ["contextmenu", "menu", "right-click", "popup", "context"],
             },
             new()
             {

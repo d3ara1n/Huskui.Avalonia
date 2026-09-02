@@ -1,0 +1,152 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ContextMenusPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic Context Menu"
+            Description="Right-click the card; plain items, separators, and input gestures">
+            <husk:Card
+                Width="380"
+                Padding="24">
+                <StackPanel Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="Right-click this card" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="A ContextMenu attached via the ContextMenu property opens at the pointer on right-click"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+                <husk:Card.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="New File" InputGesture="Ctrl+N" />
+                        <MenuItem Header="Open…" InputGesture="Ctrl+O" />
+                        <Separator />
+                        <MenuItem Header="Cut" InputGesture="Ctrl+X" />
+                        <MenuItem Header="Copy" InputGesture="Ctrl+C" />
+                        <MenuItem Header="Paste" InputGesture="Ctrl+V" />
+                        <Separator />
+                        <MenuItem Header="Delete" InputGesture="Delete" />
+                    </ContextMenu>
+                </husk:Card.ContextMenu>
+            </husk:Card>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Toggle Items"
+            Description="CheckBox and Radio items via ToggleType, plus a disabled item">
+            <husk:Card
+                Width="380"
+                Padding="24">
+                <StackPanel Spacing="8">
+                    <TextBlock FontWeight="Bold" Text="Right-click for options" />
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="ToggleType switches a MenuItem between CheckBox and Radio visuals"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+                <husk:Card.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            Header="Word Wrap"
+                            IsChecked="True"
+                            ToggleType="CheckBox" />
+                        <MenuItem Header="Show Line Numbers" ToggleType="CheckBox" />
+                        <Separator />
+                        <MenuItem Header="Small Icons" ToggleType="Radio" />
+                        <MenuItem
+                            Header="Medium Icons"
+                            IsChecked="True"
+                            ToggleType="Radio" />
+                        <MenuItem Header="Large Icons" ToggleType="Radio" />
+                        <Separator />
+                        <MenuItem
+                            Header="Disabled Item"
+                            InputGesture="Ctrl+D"
+                            IsEnabled="False" />
+                    </ContextMenu>
+                </husk:Card.ContextMenu>
+            </husk:Card>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Icons and Submenus"
+            Description="MenuItem.Icon accepts any control; nested MenuItems open flyouts">
+            <Button
+                Width="380"
+                HorizontalAlignment="Left"
+                Content="Right-click this button">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Share">
+                            <MenuItem.Icon>
+                                <PathIcon Data="M10,20 L10,14 L14,14 L14,20 L19,20 L19,12 L22,12 L12,3 L2,12 L5,12 L5,20 Z" />
+                            </MenuItem.Icon>
+                            <MenuItem Header="Copy Link">
+                                <MenuItem.Icon>
+                                    <PathIcon Data="M9,16.17 L4.83,12 L3.41,13.41 L9,19 L21,7 L19.59,5.59 Z" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Copy Image">
+                                <MenuItem.Icon>
+                                    <PathIcon Data="M9,16.17 L4.83,12 L3.41,13.41 L9,19 L21,7 L19.59,5.59 Z" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Rate">
+                            <MenuItem.Icon>
+                                <PathIcon Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z" />
+                            </MenuItem.Icon>
+                            <MenuItem Header="5 stars" />
+                            <MenuItem Header="4 stars" />
+                            <MenuItem Header="3 stars" />
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="Close" InputGesture="Ctrl+W" />
+                    </ContextMenu>
+                </Button.ContextMenu>
+            </Button>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Any Control Can Host One"
+            Description="ContextMenu is a property on Control, so it works on anything">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="16">
+                <TextBox
+                    Width="180"
+                    PlaceholderText="Right-click me"
+                    Text="TextBox host">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Cut" InputGesture="Ctrl+X" />
+                            <MenuItem Header="Copy" InputGesture="Ctrl+C" />
+                            <MenuItem Header="Paste" InputGesture="Ctrl+V" />
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <ListBox
+                    Width="180"
+                    Height="120">
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Select All" InputGesture="Ctrl+A" />
+                            <MenuItem Header="Invert Selection" />
+                            <Separator />
+                            <MenuItem Header="Clear" />
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                    Alpine</ListBox>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

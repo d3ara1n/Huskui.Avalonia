@@ -1,0 +1,207 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.PathIconsPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="600"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <StackPanel Spacing="32">
+
+        <controls:ExampleContainer
+            Title="Basic Path Icons"
+            Description="Default is 16×16; the geometry is filled with Foreground">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <PathIcon Data="M9,16.17 L4.83,12 L3.41,13.41 L9,19 L21,7 L19.59,5.59 Z" />
+                <PathIcon Data="M19,6.41 L17.59,5 L12,10.59 L6.41,5 L5,6.41 L10.59,12 L5,17.59 L6.41,19 L12,13.41 L17.59,19 L19,17.59 L13.41,12 Z" />
+                <PathIcon Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z" />
+                <PathIcon Data="M12,21.35 L10.55,20.03 C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3 C9.24,3 10.91,3.81 12,5.08 C13.09,3.81 14.76,3 16.5,3 C19.58,3 22,5.41 22,8.5 C22,12.27 18.6,15.36 13.45,20.03 Z" />
+                <PathIcon Data="M12,12 C14.21,12 16,10.21 16,8 C16,5.79 14.21,4 12,4 C9.79,4 8,5.79 8,8 C8,10.21 9.79,12 12,12 Z M12,14 C7.99,14 4,16.01 4,19.2 L4,20 L20,20 L20,19.2 C20,16.01 16.01,14 12,14 Z" />
+                <PathIcon Data="M15.5,14 L14.71,14 L14.43,13.73 C15.41,12.59 16,11.11 16,9.5 C16,5.91 13.09,3 9.5,3 C5.91,3 3,5.91 3,9.5 C3,13.09 5.91,16 9.5,16 C11.11,16 12.59,15.41 13.73,14.43 L14,14.71 L14,15.5 L19,20.49 L20.49,19 Z M9.5,14 C7.01,14 5,11.99 5,9.5 C5,7.01 7.01,5 9.5,5 C11.99,5 14,7.01 14,9.5 C14,11.99 11.99,14 9.5,14 Z" />
+                <PathIcon Data="M10,20 L10,14 L14,14 L14,20 L19,20 L19,12 L22,12 L12,3 L2,12 L5,12 L5,20 Z" />
+                <PathIcon Data="M0,0 L4,3.5 L0,7 Z" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Sizes"
+            Description="Override Width/Height; the geometry scales uniformly">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="16"
+                        Height="16"
+                        Data="M12,21.35 L10.55,20.03 C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3 C9.24,3 10.91,3.81 12,5.08 C13.09,3.81 14.76,3 16.5,3 C19.58,3 22,5.41 22,8.5 C22,12.27 18.6,15.36 13.45,20.03 Z" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="16" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,21.35 L10.55,20.03 C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3 C9.24,3 10.91,3.81 12,5.08 C13.09,3.81 14.76,3 16.5,3 C19.58,3 22,5.41 22,8.5 C22,12.27 18.6,15.36 13.45,20.03 Z" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="24" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="32"
+                        Height="32"
+                        Data="M12,21.35 L10.55,20.03 C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3 C9.24,3 10.91,3.81 12,5.08 C13.09,3.81 14.76,3 16.5,3 C19.58,3 22,5.41 22,8.5 C22,12.27 18.6,15.36 13.45,20.03 Z" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="32" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="48"
+                        Height="48"
+                        Data="M12,21.35 L10.55,20.03 C5.4,15.36 2,12.27 2,8.5 C2,5.41 4.42,3 7.5,3 C9.24,3 10.91,3.81 12,5.08 C13.09,3.81 14.76,3 16.5,3 C19.58,3 22,5.41 22,8.5 C22,12.27 18.6,15.36 13.45,20.03 Z" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="48" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Colors"
+            Description="Set Foreground per icon, or bind it to a theme brush">
+            <StackPanel Orientation="Horizontal" Spacing="24">
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z"
+                        Foreground="{StaticResource ControlForegroundBrush}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Default" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z"
+                        Foreground="{StaticResource ControlAccentForegroundBrush}" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Accent" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z"
+                        Foreground="#43A047" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="#43A047" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z"
+                        Foreground="#E53935" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="#E53935" />
+                </StackPanel>
+                <StackPanel Spacing="4">
+                    <PathIcon
+                        Width="24"
+                        Height="24"
+                        Data="M12,17.27 L18.18,21 L16.54,13.97 L22,9.24 L14.81,8.62 L12,2 L9.19,8.62 L2,9.24 L7.46,13.97 L5.82,21 Z"
+                        Foreground="#8E24AA" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="#8E24AA" />
+                </StackPanel>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Foreground Inheritance"
+            Description="Foreground is inherited; a local value still wins">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="16"
+                TextElement.Foreground="{StaticResource ControlAccentForegroundBrush}">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Inherited from panel" />
+                <PathIcon
+                    Width="20"
+                    Height="20"
+                    Data="M15.5,14 L14.71,14 L14.43,13.73 C15.41,12.59 16,11.11 16,9.5 C16,5.91 13.09,3 9.5,3 C5.91,3 3,5.91 3,9.5 C3,13.09 5.91,16 9.5,16 C11.11,16 12.59,15.41 13.73,14.43 L14,14.71 L14,15.5 L19,20.49 L20.49,19 Z M9.5,14 C7.01,14 5,11.99 5,9.5 C5,7.01 7.01,5 9.5,5 C11.99,5 14,7.01 14,9.5 C14,11.99 11.99,14 9.5,14 Z" />
+                <PathIcon
+                    Width="20"
+                    Height="20"
+                    Data="M15.5,14 L14.71,14 L14.43,13.73 C15.41,12.59 16,11.11 16,9.5 C16,5.91 13.09,3 9.5,3 C5.91,3 3,5.91 3,9.5 C3,13.09 5.91,16 9.5,16 C11.11,16 12.59,15.41 13.73,14.43 L14,14.71 L14,15.5 L19,20.49 L20.49,19 Z M9.5,14 C7.01,14 5,11.99 5,9.5 C5,7.01 7.01,5 9.5,5 C11.99,5 14,7.01 14,9.5 C14,11.99 11.99,14 9.5,14 Z"
+                    Foreground="#E53935" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    Text="← local #E53935 wins" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Icon + Text"
+            Description="Typical inline usage inside buttons">
+            <StackPanel
+                HorizontalAlignment="Left"
+                Orientation="Horizontal"
+                Spacing="12">
+                <Button>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon
+                            VerticalAlignment="Center"
+                            Data="M15.5,14 L14.71,14 L14.43,13.73 C15.41,12.59 16,11.11 16,9.5 C16,5.91 13.09,3 9.5,3 C5.91,3 3,5.91 3,9.5 C3,13.09 5.91,16 9.5,16 C11.11,16 12.59,15.41 13.73,14.43 L14,14.71 L14,15.5 L19,20.49 L20.49,19 Z M9.5,14 C7.01,14 5,11.99 5,9.5 C5,7.01 7.01,5 9.5,5 C11.99,5 14,7.01 14,9.5 C14,11.99 11.99,14 9.5,14 Z" />
+                        <TextBlock VerticalAlignment="Center" Text="Search" />
+                    </StackPanel>
+                </Button>
+                <Button Classes="Primary">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon
+                            VerticalAlignment="Center"
+                            Data="M9,16.17 L4.83,12 L3.41,13.41 L9,19 L21,7 L19.59,5.59 Z" />
+                        <TextBlock VerticalAlignment="Center" Text="Confirm" />
+                    </StackPanel>
+                </Button>
+                <Button Classes="Danger">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <PathIcon
+                            VerticalAlignment="Center"
+                            Data="M19,6.41 L17.59,5 L12,10.59 L6.41,5 L5,6.41 L10.59,12 L5,17.59 L6.41,19 L12,13.41 L17.59,19 L19,17.59 L13.41,12 Z" />
+                        <TextBlock VerticalAlignment="Center" Text="Delete" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>

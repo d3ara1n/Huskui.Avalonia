@@ -15,6 +15,7 @@
         <ResourceInclude Source="/Controls/Carousel.axaml" />
         <ResourceInclude Source="/Controls/CheckBox.axaml" />
         <ResourceInclude Source="/Controls/ComboBox.axaml" />
+        <ResourceInclude Source="/Controls/ContextMenu.axaml" />
         <ResourceInclude Source="/Controls/DateTimePicker.axaml" />
         <ResourceInclude Source="/Controls/Dialog.axaml" />
         <ResourceInclude Source="/Controls/Divider.axaml" />
@@ -48,6 +49,7 @@
         <ResourceInclude Source="/Controls/Page.axaml" />
         <ResourceInclude Source="/Controls/PaginationControl.axaml" />
         <ResourceInclude Source="/Controls/PaginationItem.axaml" />
+        <ResourceInclude Source="/Controls/PathIcon.axaml" />
         <ResourceInclude Source="/Controls/PipsPager.axaml" />
         <ResourceInclude Source="/Controls/PlaceholderContainer.axaml" />
         <ResourceInclude Source="/Controls/Popup.axaml" />
