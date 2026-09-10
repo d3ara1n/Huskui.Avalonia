@@ -14,7 +14,7 @@ Inspired by [ParkUI](https://park-ui.com/) and built with the [Radix Colors](htt
 
 </div>
 
-![Screenshot](assets/screenshots.png)
+![Screenshot](assets/screenshot.png)
 
 ## Compatibility
 
