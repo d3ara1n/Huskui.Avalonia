@@ -477,15 +477,7 @@
         </Style>
 
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Border#Background">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
@@ -602,15 +594,7 @@
         </Style>
 
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Border#Background">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-        </Style>
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />

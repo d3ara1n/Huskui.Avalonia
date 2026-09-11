@@ -213,10 +213,6 @@
             <Setter Property="IconVariant" Value="Filled" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
-        </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
@@ -368,10 +364,6 @@
             <Setter Property="IconVariant" Value="Filled" />
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
-        </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>

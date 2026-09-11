@@ -39,80 +39,51 @@
                     <Grid
                         Grid.Row="0"
                         ColumnDefinitions="*,Auto,*">
-                        <husk:SwitchContainer
+                        <Border
+                            Name="LeftConnector"
                             Grid.Column="0"
                             Height="4"
+                            Background="{StaticResource ControlBorderBrush}"
                             IsVisible="{TemplateBinding IsFirst,
-                                                        Converter={x:Static BoolConverters.Not}}">
-                            <husk:SwitchContainer.Value>
-                                <MultiBinding Converter="{x:Static BoolConverters.Or}">
-                                    <Binding
-                                        Path="IsSelected"
-                                        RelativeSource="{RelativeSource TemplatedParent}" />
-                                    <Binding
-                                        Path="IsCompleted"
-                                        RelativeSource="{RelativeSource TemplatedParent}" />
-                                </MultiBinding>
-                            </husk:SwitchContainer.Value>
-                            <husk:SwitchCase Value="{x:True}">
-                                <Border Background="{StaticResource ControlAccentBorderBrush}" />
-                            </husk:SwitchCase>
-                            <husk:SwitchCase Value="{x:False}">
-                                <Border Background="{StaticResource ControlBorderBrush}" />
-                            </husk:SwitchCase>
-                        </husk:SwitchContainer>
-                        <husk:SwitchContainer
+                                                        Converter={x:Static BoolConverters.Not}}" />
+                        <Border
+                            Name="Circle"
                             Grid.Column="1"
                             Width="32"
                             Height="32"
-                            Value="{TemplateBinding IsCompleted}">
-                            <husk:SwitchCase Value="{x:True}">
-                                <Border
-                                    Background="{StaticResource ControlAccentBackgroundBrush}"
-                                    BorderBrush="{StaticResource ControlAccentBorderBrush}"
-                                    BorderThickness="2"
-                                    CornerRadius="{StaticResource FullCornerRadius}">
-                                    <fi:SymbolIcon
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="{StaticResource LargeFontSize}"
-                                        Symbol="Checkmark" />
-                                </Border>
-                            </husk:SwitchCase>
-                            <husk:SwitchCase Value="{x:False}">
-                                <Border
-                                    Width="32"
-                                    Height="32"
-                                    BorderBrush="{StaticResource ControlAccentBorderBrush}"
-                                    BorderThickness="2"
-                                    CornerRadius="{StaticResource FullCornerRadius}">
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="{StaticResource LargeFontSize}"
-                                        Text="{TemplateBinding Index,
-                                                               Converter={x:Static husk:InternalConverters.ToDisplayIndex}}" />
-                                </Border>
-                            </husk:SwitchCase>
-                        </husk:SwitchContainer>
-                        <husk:SwitchContainer
+                            BorderBrush="{StaticResource ControlAccentBorderBrush}"
+                            BorderThickness="2"
+                            CornerRadius="{StaticResource FullCornerRadius}">
+                            <Panel>
+                                <fi:SymbolIcon
+                                    Name="Checkmark"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    IsVisible="False"
+                                    Symbol="Checkmark" />
+                                <TextBlock
+                                    Name="Index"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    Text="{TemplateBinding Index,
+                                                           Converter={x:Static husk:InternalConverters.ToDisplayIndex}}" />
+                            </Panel>
+                        </Border>
+                        <Border
+                            Name="RightConnector"
                             Grid.Column="2"
                             Height="4"
+                            Background="{StaticResource ControlBorderBrush}"
                             IsVisible="{TemplateBinding IsLast,
-                                                        Converter={x:Static BoolConverters.Not}}"
-                            Value="{TemplateBinding IsCompleted}">
-                            <husk:SwitchCase Value="{x:True}">
-                                <Border Background="{StaticResource ControlAccentBorderBrush}" />
-                            </husk:SwitchCase>
-                            <husk:SwitchCase Value="{x:False}">
-                                <Border Background="{StaticResource ControlBorderBrush}" />
-                            </husk:SwitchCase>
-                        </husk:SwitchContainer>
+                                                        Converter={x:Static BoolConverters.Not}}" />
                     </Grid>
                     <Panel
                         Grid.Row="1"
                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Border
+                            Name="Highlight"
                             IsVisible="{TemplateBinding IsSelected}"
                             Background="{StaticResource ControlAccentTranslucentHalfBackgroundBrush}"
                             CornerRadius="{TemplateBinding CornerRadius}" />
@@ -148,12 +119,39 @@
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^:disabled /template/ Border">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
+        <Style Selector="^:selected /template/ Border#LeftConnector, ^:completed /template/ Border#LeftConnector">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBorderBrush}" />
+        </Style>
+        <Style Selector="^:completed /template/ Border#RightConnector">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBorderBrush}" />
+        </Style>
+        <Style Selector="^:completed /template/ Border#Circle">
+            <Setter Property="Background" Value="{StaticResource ControlAccentBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:completed /template/ fi|SymbolIcon#Checkmark">
+            <Setter Property="IsVisible" Value="True" />
+        </Style>
+        <Style Selector="^:completed /template/ TextBlock#Index">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Circle">
             <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
         </Style>
-        <Style Selector="^:disabled /template/ TextBlock">
+        <Style Selector="^:disabled:completed /template/ Border#Circle">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ fi|SymbolIcon#Checkmark">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
+        </Style>
+        <Style Selector="^:disabled:selected /template/ Border#LeftConnector, ^:disabled:completed /template/ Border#LeftConnector, ^:disabled:completed /template/ Border#RightConnector">
+            <Setter Property="Background" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled /template/ Border#Highlight">
+            <Setter Property="Background" Value="{StaticResource ControlTranslucentHalfBackgroundBrush}" />
         </Style>
     </ControlTheme>
 
@@ -170,12 +168,14 @@
                     x:Name="Indicator"
                     Width="8"
                     Height="8"
-                    Fill="{StaticResource ControlTranslucentFullBackgroundBrush}" />
+                    Fill="{StaticResource TransparentBrush}"
+                    Stroke="{StaticResource ControlAccentBorderBrush}"
+                    StrokeThickness="1.5" />
             </ControlTemplate>
         </Setter>
 
         <Style Selector="^:completed /template/ Ellipse#Indicator">
-            <Setter Property="Fill" Value="{StaticResource ControlSecondaryForegroundBrush}" />
+            <Setter Property="Fill" Value="{StaticResource ControlAccentBackgroundBrush}" />
         </Style>
 
         <Style Selector="^:selected /template/ Ellipse#Indicator">
@@ -183,7 +183,10 @@
         </Style>
 
         <Style Selector="^:disabled /template/ Ellipse#Indicator">
-            <Setter Property="Fill" Value="{StaticResource ControlDisabledForegroundBrush}" />
+            <Setter Property="Stroke" Value="{StaticResource ControlDisabledBorderBrush}" />
+        </Style>
+        <Style Selector="^:disabled:completed /template/ Ellipse#Indicator, ^:disabled:selected /template/ Ellipse#Indicator">
+            <Setter Property="Fill" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
