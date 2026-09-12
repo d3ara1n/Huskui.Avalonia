@@ -36,6 +36,33 @@
                         </ComboBox>
                     </StackPanel>
 
+                    <!--  Palette Selection  -->
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Palette" />
+                        <ComboBox
+                            Name="PART_PaletteComboBox"
+                            MinWidth="200"
+                            PlaceholderText="Custom">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:PaletteItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
                     <!--  Accent Color Selection  -->
                     <StackPanel Spacing="8">
                         <TextBlock
@@ -47,6 +74,32 @@
                             MinWidth="200">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="models:AccentColorItem">
+                                    <StackPanel Spacing="2">
+                                        <TextBlock
+                                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                                            Text="{Binding DisplayName}" />
+                                        <TextBlock
+                                            FontSize="{StaticResource SmallFontSize}"
+                                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                            Text="{Binding Description}"
+                                            TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--  Gray Scale Selection  -->
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            FontSize="{StaticResource MediumFontSize}"
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="Gray Scale" />
+                        <ComboBox
+                            Name="PART_GrayComboBox"
+                            MinWidth="200">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:GrayColorItem">
                                     <StackPanel Spacing="2">
                                         <TextBlock
                                             FontWeight="{StaticResource ControlStrongFontWeight}"

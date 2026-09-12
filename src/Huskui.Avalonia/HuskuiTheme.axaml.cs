@@ -17,6 +17,11 @@ public class HuskuiTheme : Styles
         AccentColor
     >(nameof(Accent));
 
+    public static readonly StyledProperty<GrayColor> GrayProperty = AvaloniaProperty.Register<
+        HuskuiTheme,
+        GrayColor
+    >(nameof(Gray));
+
     public static readonly StyledProperty<CornerStyle> CornerProperty = AvaloniaProperty.Register<
         HuskuiTheme,
         CornerStyle
@@ -47,6 +52,22 @@ public class HuskuiTheme : Styles
         set => SetValue(AccentProperty, value);
     }
 
+    public GrayColor Gray
+    {
+        get => GetValue(GrayProperty);
+        set => SetValue(GrayProperty, value);
+    }
+
+    /// <summary>
+    ///     Applies a curated palette, presetting both <see cref="Gray" /> and <see cref="Accent" />.
+    ///     Either can still be overridden afterwards by setting the individual properties.
+    /// </summary>
+    public void ApplyPalette(ColorPalette palette)
+    {
+        Gray = palette.Gray;
+        Accent = palette.Accent;
+    }
+
     public CornerStyle Corner
     {
         get => GetValue(CornerProperty);
@@ -69,6 +90,18 @@ public class HuskuiTheme : Styles
                     {
                         Source = new(source, UriKind.Absolute),
                     };
+        }
+
+        if (change.Property == GrayProperty)
+        {
+            var gray = change.GetNewValue<GrayColor>();
+            var source = $"avares://Huskui.Avalonia/Themes/Colors.Gray.{gray}.axaml";
+            Resources.MergedDictionaries[2] = new ResourceInclude(
+                new Uri("avares://Huskui.Avalonia", UriKind.Absolute)
+            )
+            {
+                Source = new(source, UriKind.Absolute),
+            };
         }
 
         if (change.Property == CornerProperty)

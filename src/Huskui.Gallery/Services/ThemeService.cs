@@ -16,7 +16,9 @@ public class ThemeService : IThemeService
 
     public ThemeVariant CurrentTheme { get; private set; } = ThemeVariant.Default;
 
-    public AccentColor CurrentAccent { get; private set; } = AccentColor.System;
+    public AccentColor CurrentAccent { get; private set; } = AccentColor.Ember;
+
+    public GrayColor CurrentGray { get; private set; } = GrayColor.Warm;
 
     public CornerStyle CurrentCorner { get; private set; } = CornerStyle.Normal;
 
@@ -53,6 +55,18 @@ public class ThemeService : IThemeService
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public void SetGray(GrayColor gray)
+    {
+        if (CurrentGray == gray)
+        {
+            return;
+        }
+
+        CurrentGray = gray;
+        UpdateHuskuiTheme();
+        ThemeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     public void SetCorner(CornerStyle corner)
     {
         if (CurrentCorner == corner)
@@ -62,6 +76,25 @@ public class ThemeService : IThemeService
 
         CurrentCorner = corner;
         UpdateHuskuiTheme();
+        ThemeChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void ApplyPalette(ColorPalette palette)
+    {
+        if (Application.Current?.Styles is { } styles)
+        {
+            foreach (var t in styles)
+            {
+                if (t is HuskuiTheme huskuiTheme)
+                {
+                    huskuiTheme.ApplyPalette(palette);
+                    CurrentGray = huskuiTheme.Gray;
+                    CurrentAccent = huskuiTheme.Accent;
+                    break;
+                }
+            }
+        }
+
         ThemeChanged?.Invoke(this, EventArgs.Empty);
     }
 
@@ -94,6 +127,7 @@ public class ThemeService : IThemeService
                 if (t is HuskuiTheme huskuiTheme)
                 {
                     huskuiTheme.Accent = CurrentAccent;
+                    huskuiTheme.Gray = CurrentGray;
                     huskuiTheme.Corner = CurrentCorner;
                     break;
                 }

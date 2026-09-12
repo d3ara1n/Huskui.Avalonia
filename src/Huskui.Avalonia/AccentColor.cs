@@ -29,4 +29,5 @@ public enum AccentColor
     Mint,
     Sky,
     Brown,
+    Ember,
 }

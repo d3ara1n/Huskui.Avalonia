@@ -6,7 +6,6 @@
         <ResourceInclude Source="/Themes/Colors.Layover.axaml" />
         <ResourceInclude Source="/Themes/Colors.White.axaml" />
         <ResourceInclude Source="/Themes/Colors.Black.axaml" />
-        <ResourceInclude Source="/Themes/Colors.Gray.Neutral.axaml" />
         <ResourceInclude Source="/Themes/Colors.Success.Grass.axaml" />
         <ResourceInclude Source="/Themes/Colors.Warning.Orange.axaml" />
         <ResourceInclude Source="/Themes/Colors.Danger.Tomato.axaml" />

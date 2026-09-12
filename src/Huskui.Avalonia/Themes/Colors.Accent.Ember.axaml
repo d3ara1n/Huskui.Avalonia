@@ -1,0 +1,34 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="Accent1Color">#FDFDFC</Color>
+            <Color x:Key="Accent2Color">#F9F8F6</Color>
+            <Color x:Key="Accent3Color">#F5F0EA</Color>
+            <Color x:Key="Accent4Color">#F3E9DE</Color>
+            <Color x:Key="Accent5Color">#F0E0CC</Color>
+            <Color x:Key="Accent6Color">#EDD5B5</Color>
+            <Color x:Key="Accent7Color">#ECC798</Color>
+            <Color x:Key="Accent8Color">#E8B572</Color>
+            <Color x:Key="Accent9Color">#E8A855</Color>
+            <Color x:Key="Accent10Color">#E59D3F</Color>
+            <Color x:Key="Accent11Color">#D4841D</Color>
+            <Color x:Key="Accent12Color">#724B18</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="Accent1Color">#191510</Color>
+            <Color x:Key="Accent2Color">#211B12</Color>
+            <Color x:Key="Accent3Color">#2F2313</Color>
+            <Color x:Key="Accent4Color">#3D2B15</Color>
+            <Color x:Key="Accent5Color">#503716</Color>
+            <Color x:Key="Accent6Color">#694516</Color>
+            <Color x:Key="Accent7Color">#8B5918</Color>
+            <Color x:Key="Accent8Color">#BB751B</Color>
+            <Color x:Key="Accent9Color">#E8A855</Color>
+            <Color x:Key="Accent10Color">#EDBA79</Color>
+            <Color x:Key="Accent11Color">#F2D6B1</Color>
+            <Color x:Key="Accent12Color">#FBF3EA</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

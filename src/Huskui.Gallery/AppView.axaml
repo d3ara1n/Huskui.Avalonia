@@ -158,7 +158,7 @@
                             </Button>
                             <Button
                                 Classes="Small"
-                                Command="{Binding ToggleSettingsCommand}"
+                                Click="OnSettingsClick"
                                 Theme="{StaticResource GhostButtonTheme}"
                                 ToolTip.Tip="Settings">
                                 <fi:SymbolIcon
@@ -170,35 +170,5 @@
                 </Border>
             </husk:NavigationView.PaneFooter>
         </husk:NavigationView>
-
-        <Border
-            MaxWidth="400"
-            HorizontalAlignment="Right"
-            Background="{StaticResource OverlaySolidBackgroundBrush}"
-            BorderBrush="{StaticResource ControlBorderBrush}"
-            BorderThickness="1,0,0,0"
-            IsVisible="{Binding IsSettingsOpen}">
-            <ScrollViewer Padding="32">
-                <StackPanel Spacing="32">
-                    <StackPanel Spacing="16">
-                        <TextBlock
-                            FontSize="{StaticResource LargeFontSize}"
-                            FontWeight="{StaticResource ControlStrongFontWeight}"
-                            Text="Settings" />
-                        <TextBlock
-                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                            Text="Customize the appearance and behavior of the gallery"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-
-                    <ContentControl Content="{Binding SettingsView}" />
-
-                    <Button
-                        HorizontalAlignment="Right"
-                        Command="{Binding ToggleSettingsCommand}"
-                        Content="Close" />
-                </StackPanel>
-            </ScrollViewer>
-        </Border>
     </Grid>
 </UserControl>

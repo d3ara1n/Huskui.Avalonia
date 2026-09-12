@@ -46,6 +46,11 @@ public interface IThemeService
     AccentColor CurrentAccent { get; }
 
     /// <summary>
+    ///     Gets the current gray scale
+    /// </summary>
+    GrayColor CurrentGray { get; }
+
+    /// <summary>
     ///     Gets the current corner style
     /// </summary>
     CornerStyle CurrentCorner { get; }
@@ -71,6 +76,18 @@ public interface IThemeService
     /// </summary>
     /// <param name="accent">The accent color to set</param>
     void SetAccent(AccentColor accent);
+
+    /// <summary>
+    ///     Sets the gray scale
+    /// </summary>
+    /// <param name="gray">The gray scale to set</param>
+    void SetGray(GrayColor gray);
+
+    /// <summary>
+    ///     Applies a curated palette, presetting both gray scale and accent color at once
+    /// </summary>
+    /// <param name="palette">The palette to apply</param>
+    void ApplyPalette(ColorPalette palette);
 
     /// <summary>
     ///     Sets the corner style

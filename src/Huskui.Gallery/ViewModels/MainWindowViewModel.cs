@@ -16,6 +16,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly SourceList<MenuItemVo> _allItemsSource = new();
     private readonly CompositeDisposable _disposables = new();
+    private readonly ISettingsViewFactory _settingsViewFactory;
 
     public MainWindowViewModel(
         MenuItemService menuItemService,
@@ -24,9 +25,9 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     )
     {
         ThemeService = themeService;
+        _settingsViewFactory = settingsViewFactory;
         IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
         themeService.ThemeChanged += (_, _) => IsDarkTheme = themeService.CurrentTheme == ThemeVariant.Dark;
-        SettingsView = settingsViewFactory.CreateSettingsView();
 
         var filter = this.WhenPropertyChanged(x => x.SearchText)
                          .Select(x => BuildFilter(x.Value));
@@ -49,9 +50,6 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
     public partial bool IsPaneOpen { get; set; } = true;
 
     [ObservableProperty]
-    public partial bool IsSettingsOpen { get; set; }
-
-    [ObservableProperty]
     public partial string SearchText { get; set; } = string.Empty;
 
     [ObservableProperty]
@@ -62,7 +60,7 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 
     private IThemeService ThemeService { get; }
 
-    public Control SettingsView { get; }
+    public Control CreateSettingsView() => _settingsViewFactory.CreateSettingsView();
 
     public void Dispose()
     {
@@ -80,7 +78,4 @@ public partial class MainWindowViewModel : ViewModelBase, IDisposable
 
     [RelayCommand]
     private void TogglePane() => IsPaneOpen = !IsPaneOpen;
-
-    [RelayCommand]
-    private void ToggleSettings() => IsSettingsOpen = !IsSettingsOpen;
 }

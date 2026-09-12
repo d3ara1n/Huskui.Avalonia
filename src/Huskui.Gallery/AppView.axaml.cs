@@ -1,9 +1,12 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Huskui.Avalonia.Controls;
 using Huskui.Avalonia.Mvvm.Activation;
 using Huskui.Avalonia.Mvvm.Mixins;
 using Huskui.Gallery.Models;
+using Huskui.Gallery.Siderbars;
+using Huskui.Gallery.ViewModels;
 using Huskui.Gallery.Views;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -34,6 +37,14 @@ public partial class AppView : UserControl
         FrameActivationMixin.Install(Frame, App.ServiceProvider!.GetRequiredService<IViewActivator>());
 
         Frame.Navigate(typeof(HomePage));
+    }
+
+    private void OnSettingsClick(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is MainWindowViewModel vm)
+        {
+            AppSurface.GetAppSurface(this)?.PopSidebar(new SettingsSidebar(vm.CreateSettingsView()));
+        }
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)

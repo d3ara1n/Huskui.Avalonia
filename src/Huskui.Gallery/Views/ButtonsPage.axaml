@@ -139,13 +139,13 @@
                 HorizontalAlignment="Center"
                 Orientation="Horizontal"
                 Spacing="12">
-                <Button
+                <Button VerticalAlignment="Center"
                     Classes="Small Primary"
                     Content="Small" />
-                <Button
+                <Button VerticalAlignment="Center"
                     Classes="Primary"
                     Content="Default" />
-                <Button
+                <Button VerticalAlignment="Center"
                     Classes="Large Primary"
                     Content="Large" />
             </StackPanel>

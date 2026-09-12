@@ -1,0 +1,34 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="Gray1Color">#FDFCFD</Color>
+            <Color x:Key="Gray2Color">#FAF9FB</Color>
+            <Color x:Key="Gray3Color">#F2EFF3</Color>
+            <Color x:Key="Gray4Color">#EAE7EC</Color>
+            <Color x:Key="Gray5Color">#E3DFE6</Color>
+            <Color x:Key="Gray6Color">#DBD8E0</Color>
+            <Color x:Key="Gray7Color">#D0CDD7</Color>
+            <Color x:Key="Gray8Color">#BCBAC7</Color>
+            <Color x:Key="Gray9Color">#8E8C99</Color>
+            <Color x:Key="Gray10Color">#84828E</Color>
+            <Color x:Key="Gray11Color">#65636D</Color>
+            <Color x:Key="Gray12Color">#211F26</Color>
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <Color x:Key="Gray1Color">#121113</Color>
+            <Color x:Key="Gray2Color">#1A191B</Color>
+            <Color x:Key="Gray3Color">#232225</Color>
+            <Color x:Key="Gray4Color">#2B292D</Color>
+            <Color x:Key="Gray5Color">#323035</Color>
+            <Color x:Key="Gray6Color">#3C393F</Color>
+            <Color x:Key="Gray7Color">#49474E</Color>
+            <Color x:Key="Gray8Color">#625F69</Color>
+            <Color x:Key="Gray9Color">#6F6D78</Color>
+            <Color x:Key="Gray10Color">#7C7A85</Color>
+            <Color x:Key="Gray11Color">#B5B2BC</Color>
+            <Color x:Key="Gray12Color">#EEEEF0</Color>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
