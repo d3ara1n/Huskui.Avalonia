@@ -234,6 +234,10 @@
                 <Button
                     IsEnabled="False"
                     Content="Disabled" />
+                <Button
+                    IsEnabled="False"
+                    Content="Ghost Disabled"
+                    Theme="{StaticResource GhostButtonTheme}" />
                 <Button Classes="Primary">
                     <husk:IconLabel
                         Icon="ArrowClockwise"

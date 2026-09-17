@@ -79,6 +79,15 @@ public class MenuItemService
             },
             new()
             {
+                Icon = Symbol.ToggleMultiple,
+                PageType = typeof(ToggleButtonsPage),
+                Category = category,
+                Title = "ToggleButtons",
+                Description = "Two-state buttons that switch between on and off states",
+                Tags = ["toggle", "button", "switch", "state", "checked"],
+            },
+            new()
+            {
                 Icon = Symbol.Info,
                 PageType = typeof(InfoBarsPage),
                 Category = category,
