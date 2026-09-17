@@ -500,13 +500,10 @@
         </Style>
 
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
         </Style>
         <Style Selector="^:disabled /template/ Border#Indicator">
             <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledBorderBrush}" />
             <Setter Property="Opacity" Value="0" />
         </Style>
     </ControlTheme>

@@ -257,10 +257,6 @@
             </Style>
         </Style>
 
-        <Style Selector="^:disabled /template/ Border#Border">
-            <Setter Property="Background" Value="{StaticResource ControlDisabledInteractiveBackgroundBrush}" />
-            <Setter Property="BorderBrush" Value="{StaticResource ControlDisabledInteractiveBorderBrush}" />
-        </Style>
         <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
             <Setter Property="RenderTransform" Value="{x:Null}" />
