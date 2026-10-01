@@ -8,25 +8,34 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="Template">
             <ControlTemplate>
-                <Border
+                <Grid
+                    Name="PopupRoot"
                     Margin="2,4"
-                    Background="{StaticResource OverlaySolidBackgroundBrush}"
-                    ClipToBounds="False"
-                    CornerRadius="{StaticResource SmallCornerRadius}">
-                    <Border.Effect>
-                        <DropShadowEffect
-                            OffsetX="0"
-                            OffsetY="0"
-                            Opacity="0.2" />
-                    </Border.Effect>
-                    <ScrollViewer>
-                        <ItemsPresenter
-                            Name="PART_ItemsPresenter"
-                            Grid.IsSharedSizeScope="True"
-                            ItemsPanel="{TemplateBinding ItemsPanel}"
-                            KeyboardNavigation.TabNavigation="Continue" />
-                    </ScrollViewer>
-                </Border>
+                    Background="{StaticResource TransparentBrush}">
+                    <Border
+                        Name="PopupBackground"
+                        IsHitTestVisible="False"
+                        Background="{StaticResource OverlaySolidBackgroundBrush}"
+                        CornerRadius="{StaticResource SmallCornerRadius}">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                OffsetX="0"
+                                OffsetY="0"
+                                Opacity="0.2" />
+                        </Border.Effect>
+                    </Border>
+                    <Border
+                        Name="PopupContent"
+                        ClipToBounds="False">
+                        <ScrollViewer>
+                            <ItemsPresenter
+                                Name="PART_ItemsPresenter"
+                                Grid.IsSharedSizeScope="True"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                KeyboardNavigation.TabNavigation="Continue" />
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
             </ControlTemplate>
         </Setter>
     </ControlTheme>

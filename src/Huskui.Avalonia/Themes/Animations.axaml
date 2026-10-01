@@ -2,35 +2,38 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style Selector="Popup[IsOpen=True] LayoutTransformControl#PART_LayoutTransform">
+    <Style Selector="Popup[IsOpen=True] > Grid#PopupRoot > Border#PopupBackground,
+                     Popup[IsOpen=True] > :is(TemplatedControl) /template/ Grid#PopupRoot > Border#PopupBackground">
+        <Setter Property="RenderTransformOrigin" Value="50%,0%" />
         <Style.Animations>
             <Animation
                 Easing="CubicEaseOut"
-                Duration="{StaticResource ControlSlowerAnimationDuration}">
-                <KeyFrame Cue="0.0">
-                    <Setter Property="ScaleTransform.ScaleX" Value="0.98" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="0.98" />
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="0" />
                 </KeyFrame>
-                <KeyFrame Cue="1.0">
-                    <Setter Property="ScaleTransform.ScaleX" Value="1.0" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="1.0" />
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="1" />
                 </KeyFrame>
             </Animation>
         </Style.Animations>
     </Style>
 
-    <Style Selector="Popup[IsOpen=False] LayoutTransformControl#PART_LayoutTransform">
+    <Style Selector="Popup[IsOpen=True] > Grid#PopupRoot > Border#PopupContent,
+                     Popup[IsOpen=True] > :is(TemplatedControl) /template/ Grid#PopupRoot > Border#PopupContent">
         <Style.Animations>
             <Animation
-                Easing="CubicEaseOut"
-                Duration="{StaticResource ControlSlowerAnimationDuration}">
-                <KeyFrame Cue="0.0">
-                    <Setter Property="ScaleTransform.ScaleX" Value="1.0" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="1.0" />
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0" />
                 </KeyFrame>
-                <KeyFrame Cue="1.0">
-                    <Setter Property="ScaleTransform.ScaleX" Value="0.98" />
-                    <Setter Property="ScaleTransform.ScaleY" Value="0.98" />
+                <KeyFrame Cue="20%">
+                    <Setter Property="Opacity" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1" />
                 </KeyFrame>
             </Animation>
         </Style.Animations>

@@ -132,17 +132,24 @@
                             IsOpen="{TemplateBinding IsDropDownOpen,
                                                      Mode=TwoWay}"
                             PlacementTarget="{TemplateBinding}">
-                            <Border
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource FlyoutBackgroundBrush}"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
+                                Background="{StaticResource TransparentBrush}">
                                 <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource FlyoutBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent"
                                     ClipToBounds="True"
                                     CornerRadius="{StaticResource SmallCornerRadius}">
                                     <ScrollViewer
@@ -152,7 +159,7 @@
                                         <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                     </ScrollViewer>
                                 </Border>
-                            </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </DataValidationErrors>
@@ -373,17 +380,24 @@
                             IsOpen="{TemplateBinding IsDropDownOpen,
                                                      Mode=TwoWay}"
                             PlacementTarget="{TemplateBinding}">
-                            <Border
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource FlyoutBackgroundBrush}"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
+                                Background="{StaticResource TransparentBrush}">
                                 <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource FlyoutBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent"
                                     ClipToBounds="True"
                                     CornerRadius="{StaticResource SmallCornerRadius}">
                                     <ScrollViewer
@@ -393,7 +407,7 @@
                                         <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" />
                                     </ScrollViewer>
                                 </Border>
-                            </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </DataValidationErrors>

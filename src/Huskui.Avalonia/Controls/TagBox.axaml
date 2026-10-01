@@ -121,37 +121,46 @@
                             IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                             PlacementTarget="{TemplateBinding}"
                             WindowManagerAddShadowHint="False">
-                            <Border
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource FlyoutBackgroundBrush}"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
-                                <ListBox
-                                    Name="PART_SelectingItemsControl"
-                                    ItemContainerTheme="{StaticResource AutoCompleteSuggestionItemTheme}"
-                                    ScrollViewer.IsScrollChainingEnabled="False"
-                                    Theme="{StaticResource AutoCompleteSuggestionListTheme}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate x:DataType="local:TagBoxSuggestion">
-                                            <Grid
-                                                ColumnDefinitions="*,Auto"
-                                                ColumnSpacing="12">
-                                                <TextBlock Text="{Binding Text}" />
-                                                <fi:SymbolIcon
-                                                    Grid.Column="1"
-                                                    IsVisible="{Binding IsCustom}"
-                                                    FontSize="{StaticResource MediumFontSize}"
-                                                    Symbol="Edit" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </Border>
+                                Background="{StaticResource TransparentBrush}">
+                                <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource FlyoutBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent">
+                                    <ListBox
+                                        Name="PART_SelectingItemsControl"
+                                        ItemContainerTheme="{StaticResource AutoCompleteSuggestionItemTheme}"
+                                        ScrollViewer.IsScrollChainingEnabled="False"
+                                        Theme="{StaticResource AutoCompleteSuggestionListTheme}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="local:TagBoxSuggestion">
+                                                <Grid
+                                                    ColumnDefinitions="*,Auto"
+                                                    ColumnSpacing="12">
+                                                    <TextBlock Text="{Binding Text}" />
+                                                    <fi:SymbolIcon
+                                                        Grid.Column="1"
+                                                        IsVisible="{Binding IsCustom}"
+                                                        FontSize="{StaticResource MediumFontSize}"
+                                                        Symbol="Edit" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </DataValidationErrors>

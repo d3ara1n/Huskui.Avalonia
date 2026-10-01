@@ -83,42 +83,52 @@
                         Name="{x:Static local:PaginationControl.PART_QuickJumperPopup}"
                         IsLightDismissEnabled="True"
                         Placement="Top">
-                        <Border
+                        <Grid
+                            Name="PopupRoot"
                             Width="148"
                             Margin="2,4"
-                            Padding="8"
-                            Background="{StaticResource FlyoutBackgroundBrush}"
-                            BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="{StaticResource MediumCornerRadius}">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    OffsetX="0"
-                                    OffsetY="0"
-                                    Opacity="0.2" />
-                            </Border.Effect>
-                            <NumericUpDown
-                                Name="{x:Static local:PaginationControl.PART_QuickJumperInput}"
-                                Padding="10,7"
-                                ClipValueToMinMax="True"
-                                FontWeight="{StaticResource ControlStrongFontWeight}"
-                                FormatString="F0"
-                                Minimum="1">
-                                <NumericUpDown.InnerRightContent>
-                                    <Button
-                                        Name="{x:Static local:PaginationControl.PART_QuickJumperButton}"
-                                        Classes="Primary"
-                                        Width="30"
-                                        Height="28"
-                                        Padding="0"
-                                        CornerRadius="{StaticResource SmallCornerRadius}">
-                                        <fi:SymbolIcon
-                                            FontSize="{StaticResource SmallFontSize}"
-                                            Symbol="Checkmark" />
-                                    </Button>
-                                </NumericUpDown.InnerRightContent>
-                            </NumericUpDown>
-                        </Border>
+                            Background="{StaticResource TransparentBrush}">
+                            <Border
+                                Name="PopupBackground"
+                                IsHitTestVisible="False"
+                                Background="{StaticResource FlyoutBackgroundBrush}"
+                                BorderBrush="{StaticResource ControlInteractiveBorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="{StaticResource MediumCornerRadius}">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        OffsetX="0"
+                                        OffsetY="0"
+                                        Opacity="0.2" />
+                                </Border.Effect>
+                            </Border>
+                            <Border
+                                Name="PopupContent"
+                                Padding="8"
+                                BorderThickness="1">
+                                <NumericUpDown
+                                    Name="{x:Static local:PaginationControl.PART_QuickJumperInput}"
+                                    Padding="10,7"
+                                    ClipValueToMinMax="True"
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    FormatString="F0"
+                                    Minimum="1">
+                                    <NumericUpDown.InnerRightContent>
+                                        <Button
+                                            Name="{x:Static local:PaginationControl.PART_QuickJumperButton}"
+                                            Classes="Primary"
+                                            Width="30"
+                                            Height="28"
+                                            Padding="0"
+                                            CornerRadius="{StaticResource SmallCornerRadius}">
+                                            <fi:SymbolIcon
+                                                FontSize="{StaticResource SmallFontSize}"
+                                                Symbol="Checkmark" />
+                                        </Button>
+                                    </NumericUpDown.InnerRightContent>
+                                </NumericUpDown>
+                            </Border>
+                        </Grid>
                     </Popup>
                 </Panel>
             </ControlTemplate>

@@ -110,24 +110,32 @@
                             IsLightDismissEnabled="True"
                             PlacementTarget="{TemplateBinding}"
                             WindowManagerAddShadowHint="False">
-                            <Border
-                                x:Name="PART_SuggestionsContainer"
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource FlyoutBackgroundBrush}"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
-                                <ListBox
-                                    Name="PART_SelectingItemsControl"
-                                    ItemContainerTheme="{StaticResource AutoCompleteSuggestionItemTheme}"
-                                    ItemTemplate="{TemplateBinding ItemTemplate}"
-                                    ScrollViewer.IsScrollChainingEnabled="False"
-                                    Theme="{StaticResource AutoCompleteSuggestionListTheme}" />
-                            </Border>
+                                Background="{StaticResource TransparentBrush}">
+                                <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource FlyoutBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent">
+                                    <ListBox
+                                        Name="PART_SelectingItemsControl"
+                                        ItemContainerTheme="{StaticResource AutoCompleteSuggestionItemTheme}"
+                                        ItemTemplate="{TemplateBinding ItemTemplate}"
+                                        ScrollViewer.IsScrollChainingEnabled="False"
+                                        Theme="{StaticResource AutoCompleteSuggestionListTheme}" />
+                                </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </DataValidationErrors>

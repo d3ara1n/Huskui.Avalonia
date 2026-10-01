@@ -174,22 +174,15 @@
                             Placement="Bottom"
                             PlacementTarget="{TemplateBinding}"
                             WindowManagerAddShadowHint="False">
-                            <Border Margin="2,4">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
-                                <Calendar
-                                    Name="PART_Calendar"
-                                    DisplayDate="{TemplateBinding DisplayDate}"
-                                    DisplayDateEnd="{TemplateBinding DisplayDateEnd}"
-                                    DisplayDateStart="{TemplateBinding DisplayDateStart}"
-                                    FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
-                                    IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
-                                    SelectedDate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedDate, Mode=TwoWay}" />
-                            </Border>
+                            <Calendar
+                                Name="PART_Calendar"
+                                DisplayDate="{TemplateBinding DisplayDate}"
+                                DisplayDateEnd="{TemplateBinding DisplayDateEnd}"
+                                DisplayDateStart="{TemplateBinding DisplayDateStart}"
+                                FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                                IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
+                                SelectedDate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedDate, Mode=TwoWay}"
+                                Theme="{StaticResource PopupCalendarTheme}" />
                         </Popup>
                     </Panel>
                 </DataValidationErrors>
@@ -244,20 +237,47 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <ControlTemplate>
-                <StackPanel
-                    Name="PART_Root"
-                    HorizontalAlignment="Center"
-                    ClipToBounds="True">
-                    <CalendarItem
-                        Name="PART_CalendarItem"
+                <Grid
+                    Name="PopupRoot"
+                    Background="{StaticResource TransparentBrush}">
+                    <Border
+                        Name="PopupBackground"
+                        IsHitTestVisible="False"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        HeaderBackground="{TemplateBinding HeaderBackground}" />
-                </StackPanel>
+                        CornerRadius="{TemplateBinding CornerRadius}" />
+                    <Border
+                        Name="PopupContent"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel
+                            Name="PART_Root"
+                            HorizontalAlignment="Center"
+                            ClipToBounds="True">
+                            <CalendarItem
+                                Name="PART_CalendarItem"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                HeaderBackground="{TemplateBinding HeaderBackground}" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </ControlTemplate>
         </Setter>
+    </ControlTheme>
+
+    <ControlTheme
+        x:Key="PopupCalendarTheme"
+        BasedOn="{StaticResource {x:Type Calendar}}"
+        TargetType="Calendar">
+        <Setter Property="Margin" Value="2,4" />
+        <Style Selector="^ /template/ Border#PopupBackground">
+            <Setter Property="Effect">
+                <DropShadowEffect
+                    OffsetX="0"
+                    OffsetY="0"
+                    Opacity="0.2" />
+            </Setter>
+        </Style>
     </ControlTheme>
 
     <ControlTheme

@@ -30,6 +30,15 @@
 
 - **Do NOT run any formatting tools** (`csharpier`, `xstyler`, etc.). They can produce unintended changes across the entire repo. Only the user may invoke formatting.
 
+## Popup Template Structure
+
+- A popup surface is a `Grid` named `PopupRoot`, with two direct children in drawing order: a `Border` named `PopupBackground` and a `Border` named `PopupContent`.
+- `PopupRoot` is either the direct `Popup.Child`, or the template root of the templated control used as `Popup.Child`. Keep this relationship direct so animations track the owning popup rather than an ancestor popup.
+- `PopupBackground` owns the surface background, border, corner radius, and shadow. `PopupContent` owns content, padding, and any content clipping; reserve the surface border inset with its `BorderThickness` without drawing another border. Outer shadow margins belong to the root. Keep required `PART_` elements inside the content layer.
+- `PopupRoot` has a transparent background for hit testing. The decorative `PopupBackground` is not hit-testable.
+- Popup opening animations live in `Themes/Animations.axaml` and consume this structure using generic selectors. Do not enumerate individual control types, duplicate animations in templates, or add code-behind animation hooks.
+- Controls that also appear outside popups may use the same structure. Popup-specific appearance belongs in a named `ControlTheme`; opening animations apply only under an open `Popup`.
+
 ## Control Implementation Patterns
 
 - `StyledProperty` registration uses multi-line generic syntax with type parameters on separate lines:
@@ -76,7 +85,7 @@
 
   `nameof(PART_Xxx)` self-checks: if you rename the constant, the string updates automatically, keeping XAML and C# in sync. Never use bare string literals like `Find<ScrollViewer>("PART_ScrollViewer")`.
 
-- **Template-internal elements that are NOT referenced from code-behind do NOT use the `PART_` prefix.** Give them descriptive, short names like `Background`, `Border`, `Indicator`, `ContentPresenter` — these names serve only styling selectors within the same ControlTheme and never appear in C#.
+- **Template-internal elements that are NOT referenced from code-behind do NOT use the `PART_` prefix.** Give them descriptive, short names like `Background`, `Border`, `Indicator`, `ContentPresenter` — these names serve styling selectors and never appear in C#. Keep them local to the ControlTheme except for the shared popup structure defined above.
 
 - **Pseudo-class names used in code-behind must be declared as `public const string` with a `CLASS_` prefix** — same principle as `PART_` for template parts. Never use bare pseudo-class string literals in `PseudoClasses.Set` / `PseudoClasses.Remove`:
 

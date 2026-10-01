@@ -149,24 +149,34 @@
                             IsOpen="{TemplateBinding IsSubMenuOpen,
                                                      Mode=TwoWay}"
                             Placement="RightEdgeAlignedTop">
-                            <Border
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                ClipToBounds="True"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
-                                <ScrollViewer>
-                                    <ItemsPresenter
-                                        Name="PART_ItemsPresenter"
-                                        Grid.IsSharedSizeScope="True"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
-                                </ScrollViewer>
-                            </Border>
+                                Background="{StaticResource TransparentBrush}">
+                                <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent"
+                                    ClipToBounds="True"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <ScrollViewer>
+                                        <ItemsPresenter
+                                            Name="PART_ItemsPresenter"
+                                            Grid.IsSharedSizeScope="True"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </Border>
@@ -302,24 +312,34 @@
                                                      Mode=TwoWay}"
                             OverlayInputPassThroughElement="{Binding $parent[Menu]}"
                             Placement="RightEdgeAlignedTop">
-                            <Border
+                            <Grid
+                                Name="PopupRoot"
                                 Margin="2,4"
-                                Background="{StaticResource OverlaySolidBackgroundBrush}"
-                                ClipToBounds="True"
-                                CornerRadius="{StaticResource SmallCornerRadius}">
-                                <Border.Effect>
-                                    <DropShadowEffect
-                                        OffsetX="0"
-                                        OffsetY="0"
-                                        Opacity="0.2" />
-                                </Border.Effect>
-                                <ScrollViewer>
-                                    <ItemsPresenter
-                                        Name="PART_ItemsPresenter"
-                                        Grid.IsSharedSizeScope="True"
-                                        ItemsPanel="{TemplateBinding ItemsPanel}" />
-                                </ScrollViewer>
-                            </Border>
+                                Background="{StaticResource TransparentBrush}">
+                                <Border
+                                    Name="PopupBackground"
+                                    IsHitTestVisible="False"
+                                    Background="{StaticResource OverlaySolidBackgroundBrush}"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <Border.Effect>
+                                        <DropShadowEffect
+                                            OffsetX="0"
+                                            OffsetY="0"
+                                            Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+                                <Border
+                                    Name="PopupContent"
+                                    ClipToBounds="True"
+                                    CornerRadius="{StaticResource SmallCornerRadius}">
+                                    <ScrollViewer>
+                                        <ItemsPresenter
+                                            Name="PART_ItemsPresenter"
+                                            Grid.IsSharedSizeScope="True"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Grid>
                         </Popup>
                     </Panel>
                 </Border>
