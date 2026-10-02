@@ -349,7 +349,7 @@
                         <Border.Effect>
                             <DropShadowEffect
                                 OffsetX="0"
-                                OffsetY="8"
+                                OffsetY="0"
                                 Opacity="0.18" />
                         </Border.Effect>
                     </Border>
@@ -818,7 +818,7 @@
                         <Border.Effect>
                             <DropShadowEffect
                                 OffsetX="0"
-                                OffsetY="8"
+                                OffsetY="0"
                                 Opacity="0.18" />
                         </Border.Effect>
                     </Border>

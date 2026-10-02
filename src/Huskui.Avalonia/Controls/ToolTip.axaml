@@ -14,7 +14,7 @@
             <ControlTemplate>
                 <Grid
                     Name="PopupRoot"
-                    Margin="2"
+                    Margin="2,4"
                     Background="{StaticResource TransparentBrush}">
                     <Border
                         Name="PopupBackground"
@@ -22,8 +22,14 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        BoxShadow="0 0 4 0 #3F000000"
-                        CornerRadius="{TemplateBinding CornerRadius}" />
+                        CornerRadius="{TemplateBinding CornerRadius}">
+                        <Border.Effect>
+                            <DropShadowEffect
+                                OffsetX="0"
+                                OffsetY="0"
+                                Opacity="0.2" />
+                        </Border.Effect>
+                    </Border>
                     <Border
                         Name="PopupContent"
                         BorderThickness="{TemplateBinding BorderThickness}">

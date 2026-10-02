@@ -269,7 +269,9 @@
         x:Key="PopupCalendarTheme"
         BasedOn="{StaticResource {x:Type Calendar}}"
         TargetType="Calendar">
-        <Setter Property="Margin" Value="2,4" />
+        <Style Selector="^ /template/ Grid#PopupRoot">
+            <Setter Property="Margin" Value="2,4" />
+        </Style>
         <Style Selector="^ /template/ Border#PopupBackground">
             <Setter Property="Effect">
                 <DropShadowEffect
