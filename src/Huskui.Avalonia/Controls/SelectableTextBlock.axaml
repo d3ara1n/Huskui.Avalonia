@@ -4,10 +4,15 @@
     <ControlTheme
         x:Key="{x:Type SelectableTextBlock}"
         TargetType="SelectableTextBlock">
+        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="SelectionBrush" Value="{StaticResource ControlAccentInteractiveBackgroundBrush}" />
         <Setter Property="SelectionForegroundBrush" Value="{StaticResource ControlReversedForegroundBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
+
+        <Style Selector="^[IsEnabled=True]">
+            <Setter Property="Cursor" Value="IBeam" />
+        </Style>
 
         <Style Selector="^:disabled">
             <Setter Property="Foreground" Value="{StaticResource ControlDisabledForegroundBrush}" />
