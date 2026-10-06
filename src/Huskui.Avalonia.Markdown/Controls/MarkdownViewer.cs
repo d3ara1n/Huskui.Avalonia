@@ -190,7 +190,7 @@ public class MarkdownViewer : TemplatedControl
                     }
                 }
 
-                var bullet = SpawnText();
+                var bullet = SpawnText(selectable: false);
                 bullet.Text = context.ListOrdered
                                   ? GenerateOrderedListHead(context.ListDepth, context.ListIndex)
                                   : GenerateUnorderedListHead(context.ListDepth);
@@ -405,7 +405,7 @@ public class MarkdownViewer : TemplatedControl
                         linkBtn.NavigateUri = uri;
                     }
 
-                    var label = SpawnText();
+                    var label = SpawnText(selectable: false);
                     if (link.FirstChild is not null)
                     {
                         var labelInlines = new InlineCollection();
@@ -447,8 +447,7 @@ public class MarkdownViewer : TemplatedControl
                 break;
             default:
             {
-                var text = SpawnText();
-                text.Text = inline.ToString();
+                var text = new Run(inline.ToString());
                 text.Classes.Set("Unknown", true);
                 inlines.Add(text);
             }
@@ -553,8 +552,12 @@ public class MarkdownViewer : TemplatedControl
         return text;
     }
 
-    // 不能是 SelectableTextBlock 因为会吃掉内部 HyperlinkButton 的交互
-    private TextBlock SpawnText() => new() { TextWrapping = TextWrapping.Wrap };
+    private TextBlock SpawnText(bool selectable = true)
+    {
+        var text = selectable ? new SelectableTextBlock() : new TextBlock();
+        text.TextWrapping = TextWrapping.Wrap;
+        return text;
+    }
 
     private string GenerateUnorderedListHead(int depth) =>
         depth switch

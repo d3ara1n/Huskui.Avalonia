@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
 
-    <Style Selector="TextBlock.Markdown.Heading1">
+    <Style Selector=":is(TextBlock).Markdown.Heading1">
         <Setter Property="FontSize" Value="{StaticResource ExtraExtraLargeFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">
@@ -13,7 +13,7 @@
             <Setter Property="FontSize" Value="{StaticResource ExtraExtraLargeFontSize}" />
         </Style>
     </Style>
-    <Style Selector="TextBlock.Markdown.Heading2">
+    <Style Selector=":is(TextBlock).Markdown.Heading2">
         <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">
@@ -23,7 +23,7 @@
             <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
         </Style>
     </Style>
-    <Style Selector="TextBlock.Markdown.Heading3">
+    <Style Selector=":is(TextBlock).Markdown.Heading3">
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">
@@ -33,7 +33,7 @@
             <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
         </Style>
     </Style>
-    <Style Selector="TextBlock.Markdown.Heading4">
+    <Style Selector=":is(TextBlock).Markdown.Heading4">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">
@@ -43,7 +43,7 @@
             <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         </Style>
     </Style>
-    <Style Selector="TextBlock.Markdown.Heading5">
+    <Style Selector=":is(TextBlock).Markdown.Heading5">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">
@@ -53,7 +53,7 @@
             <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         </Style>
     </Style>
-    <Style Selector="TextBlock.Markdown.Heading6">
+    <Style Selector=":is(TextBlock).Markdown.Heading6">
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
 
         <Style Selector="^ husk|HighlightBlock">

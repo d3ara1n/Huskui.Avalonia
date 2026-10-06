@@ -63,6 +63,10 @@ viewer.Markdown = """
     """;
 ```
 
+## Text Selection
+
+Headings, paragraphs, list item text, and table cells support selection and copying within each text block. Link labels remain non-selectable to preserve button interaction. Embedded controls such as links and inline code are represented by object placeholders when copied as part of a surrounding selection.
+
 ## Styling
 
 `MarkdownViewer` generates **bare controls with semantic CSS classes but no built-in visual styles**, with tables rendered through the fully-themed `TableView` control. The extension ships a default theme bundle that is auto-loaded by `HuskuiTheme`, but you can override or extend styles by targeting the generated class names.
@@ -71,9 +75,9 @@ The class naming convention is `Control.Markdown.Variant`. Here are some example
 
 | Selector | Target |
 |----------|--------|
-| `TextBlock.Markdown.Heading1` | Level-1 heading |
-| `TextBlock.Markdown.Heading2` | Level-2 heading |
-| `TextBlock.Markdown.Paragraph` | Paragraph block |
+| `:is(TextBlock).Markdown.Heading1` | Level-1 heading |
+| `:is(TextBlock).Markdown.Heading2` | Level-2 heading |
+| `:is(TextBlock).Markdown.Paragraph` | Paragraph block |
 | `Run.Markdown.Literal.Bold` | Bold text run |
 | `Run.Markdown.Literal.Italic` | Italic text run |
 | `Run.Markdown.Literal.Deleted` | Strikethrough text run |
@@ -92,7 +96,7 @@ The class naming convention is `Control.Markdown.Variant`. Here are some example
 ```xml
 <Styles>
     <!-- Make all headings bold -->
-    <Style Selector="TextBlock.Markdown.Heading1">
+    <Style Selector=":is(TextBlock).Markdown.Heading1">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="FontSize" Value="28" />
     </Style>
