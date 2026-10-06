@@ -25,7 +25,9 @@
                             IsVisible="{TemplateBinding IsCopyButtonVisible}"
                             Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                             BorderBrush="{StaticResource ControlBorderBrush}"
-                            BorderThickness="0,0,0,1">
+                            BorderThickness="0,0,0,1"
+                            CornerRadius="{TemplateBinding CornerRadius,
+                                                           Converter={x:Static husk:CornerRadiusConverters.Top}}">
                             <Grid ColumnDefinitions="*,Auto">
                                 <TextBlock
                                     Grid.Column="0"
