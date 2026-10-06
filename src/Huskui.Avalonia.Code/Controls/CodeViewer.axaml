@@ -57,7 +57,7 @@
                                 ColumnDefinitions="Auto,*"
                                 ColumnSpacing="12">
                                 <TextBlock
-                                    Name="PART_LineNumbers"
+                                    Name="{x:Static husk:CodeViewer.PART_LineNumbers}"
                                     Grid.Column="0"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding IsLineNumbersVisible}"
@@ -66,8 +66,8 @@
                                     TextAlignment="Right"
                                     TextWrapping="NoWrap" />
 
-                                <TextBlock
-                                    Name="PART_CodeText"
+                                <SelectableTextBlock
+                                    Name="{x:Static husk:CodeViewer.PART_CodeText}"
                                     Grid.Column="1"
                                     VerticalAlignment="Top"
                                     FontSize="{TemplateBinding FontSize}"
