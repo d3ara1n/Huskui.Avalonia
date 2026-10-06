@@ -11,6 +11,7 @@
         <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontFamily" Value="Cascadia Code, Menlo, Consolas, Courier New, monospace" />
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -60,7 +61,7 @@
                                     Grid.Column="0"
                                     VerticalAlignment="Top"
                                     IsVisible="{TemplateBinding IsLineNumbersVisible}"
-                                    FontSize="{StaticResource SmallFontSize}"
+                                    FontSize="{TemplateBinding FontSize}"
                                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
                                     TextAlignment="Right"
                                     TextWrapping="NoWrap" />
@@ -69,7 +70,7 @@
                                     Name="PART_CodeText"
                                     Grid.Column="1"
                                     VerticalAlignment="Top"
-                                    FontSize="{StaticResource SmallFontSize}"
+                                    FontSize="{TemplateBinding FontSize}"
                                     TextWrapping="NoWrap" />
                             </Grid>
                         </ScrollViewer>
