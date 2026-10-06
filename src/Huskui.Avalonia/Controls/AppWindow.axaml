@@ -71,7 +71,7 @@
         </Style>
 
         <Style Selector="^local|AppWindow[ActualTransparencyLevel=AcrylicBlur] /template/ ExperimentalAcrylicBorder#PART_AcrylicMaterial">
-            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="IsVisible" Value="{OnPlatform Default={x:False}, Windows={x:True}}" />
         </Style>
     </ControlTheme>
 </ResourceDictionary>
