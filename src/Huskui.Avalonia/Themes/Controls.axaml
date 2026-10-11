@@ -25,6 +25,7 @@
         <ResourceInclude Source="/Controls/DropContainer.axaml" />
         <ResourceInclude Source="/Controls/DropDownButton.axaml" />
         <ResourceInclude Source="/Controls/DropZone.axaml" />
+        <ResourceInclude Source="/Controls/EmbeddableControlRoot.axaml" />
         <ResourceInclude Source="/Controls/Expander.axaml" />
         <ResourceInclude Source="/Controls/Flyout.axaml" />
         <ResourceInclude Source="/Controls/Frame.axaml" />

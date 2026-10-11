@@ -1,6 +1,17 @@
 name: Deploy Gallery (WASM) to Pages
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'Directory.Build.*'
+      - 'Directory.Packages.props'
+      - 'global.json'
+      - 'NuGet.Config'
+      - 'nuget.config'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
 
 permissions:
@@ -22,9 +33,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 10.0
+          dotnet-version: '10.0.x'
 
       - name: Install wasm-tools workload
         run: dotnet workload install wasm-tools
@@ -37,7 +51,7 @@ jobs:
         run: touch src/Huskui.Gallery.Browser/bin/Release/net10.0-browser/publish/wwwroot/.nojekyll
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: src/Huskui.Gallery.Browser/bin/Release/net10.0-browser/publish/wwwroot
 

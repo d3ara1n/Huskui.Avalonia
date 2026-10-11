@@ -72,11 +72,20 @@ Huskui.Avalonia offers optional extension libraries that extend the core functio
 Explore all components and their features in the interactive Gallery application included in this repository. The
 Gallery provides live examples, interactive controls, and comprehensive documentation for each component.
 
-To run the Gallery:
+To run the desktop Gallery with the .NET 10 SDK:
 
 ```bash
-dotnet run --project src/Huskui.Gallery
+dotnet run --project src/Huskui.Gallery.Desktop
 ```
+
+To run the Gallery in a browser, install the WebAssembly workload once, then start the browser project:
+
+```bash
+dotnet workload install wasm-tools
+dotnet run --project src/Huskui.Gallery.Browser --launch-profile Browser
+```
+
+Open `http://localhost:5235/` while the command is running. The `Browser` launch profile also provides the browser debugging endpoint for compatible IDEs.
 
 > [!NOTE]
 > The Gallery application and this README documentation were created entirely by AI to showcase the
