@@ -133,7 +133,7 @@ public class NavigationView : SelectingItemsControl
         nvi.IsCollapsed = !IsPaneOpen;
     }
 
-    private void RefreshGroupStarts()
+    internal void RefreshGroupStarts()
     {
         foreach (var container in GetRealizedContainers().OfType<NavigationItem>())
         {

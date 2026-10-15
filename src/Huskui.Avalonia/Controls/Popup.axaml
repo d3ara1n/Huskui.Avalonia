@@ -34,7 +34,7 @@
         <Setter Property="Cursor" Value="Arrow" />
         <Setter Property="TransparencyBackgroundFallback" Value="{StaticResource WindowBackgroundBrush}" />
         <Setter Property="TransparencyLevelHint" Value="Transparent" />
-        <Setter Property="Background" Value="{StaticResource TransparentBrush}" />
+        <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="Foreground" Value="{StaticResource ControlForegroundBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
         <Setter Property="FontWeight" Value="{StaticResource ControlFontWeight}" />

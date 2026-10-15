@@ -69,5 +69,7 @@ public class NavigationItem : Button, ISelectable
 
         if (change.Property == IsCollapsedProperty)
             PseudoClasses.Set(CLASS_Collapsed, change.GetNewValue<bool>());
+        else if (change.Property == CategoryProperty)
+            (Parent as NavigationView)?.RefreshGroupStarts();
     }
 }

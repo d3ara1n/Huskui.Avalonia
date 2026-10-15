@@ -14,19 +14,6 @@
     mc:Ignorable="d">
     <StackPanel Spacing="32">
 
-        <StackPanel Spacing="12">
-            <TextBlock
-                FontSize="28"
-                FontWeight="{StaticResource ControlStrongFontWeight}"
-                Text="{Binding $parent[gallery:AppView].((viewModels:MainWindowViewModel)DataContext).SelectedEntry.Title, FallbackValue={x:Null}}" />
-
-            <TextBlock
-                FontSize="{StaticResource LargeFontSize}"
-                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                Text="{Binding $parent[gallery:AppView].((viewModels:MainWindowViewModel)DataContext).SelectedEntry.Description, FallbackValue={x:Null}}"
-                TextWrapping="Wrap" />
-        </StackPanel>
-
         <Border
             Padding="24"
             Background="{StaticResource CardBackgroundBrush}"

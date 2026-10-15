@@ -13,18 +13,6 @@
 
     <StackPanel Spacing="32">
 
-        <StackPanel Spacing="8">
-            <TextBlock
-                FontSize="28"
-                FontWeight="{StaticResource ControlStrongFontWeight}"
-                Text="Resource Usage Notes" />
-            <TextBlock
-                FontSize="{StaticResource LargeFontSize}"
-                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                Text="Understanding how Huskui theme resources are structured and how to consume them correctly in your application."
-                TextWrapping="Wrap" />
-        </StackPanel>
-
         <!--  Section 1: DynamicResource forwarding  -->
         <Border
             Padding="24"
