@@ -31,6 +31,9 @@ dotnet add package Huskui.Avalonia.Code
 |----------|------|---------|-------------|
 | `Code` | `string` | `""` | Source code text to display |
 | `Language` | `string` | `"xml"` | Language identifier for syntax highlighting |
+| `Header` | `object?` | Bound to `Language` by the default theme | Header content; accepts text, controls, or a data object |
+| `HeaderTemplate` | `IDataTemplate?` | `null` | Template for the header content |
+| `IsHeaderVisible` | `bool` | `true` | Show the entire header bar |
 | `IsLineNumbersVisible` | `bool` | `true` | Show line numbers column |
 | `IsCopyButtonVisible` | `bool` | `true` | Show copy button in the header bar |
 | `Inlines` | `InlineCollection?` | `null` | Custom inline collection; overrides `Code`-based rendering when set |
@@ -63,6 +66,33 @@ dotnet add package Huskui.Avalonia.Code
     </StackPanel>
 </UserControl>
 ```
+
+### Custom Header
+
+The header fills the space beside the built-in copy button. Set `IsCopyButtonVisible="False"` to use the full width for your own title and actions. Custom copy buttons can reuse `CopyCodeCommand`; other actions belong to the consuming application.
+
+```xml
+<husk:CodeViewer
+    Language="bash"
+    Code="dotnet add package Huskui.Avalonia.Code"
+    IsCopyButtonVisible="False">
+    <husk:CodeViewer.Header>
+        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+            <TextBlock Text="Terminal" VerticalAlignment="Center" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                <Button Classes="Small Primary" Content="Run" Command="{Binding RunCommand}" />
+                <Button
+                    Classes="Small"
+                    Content="Copy"
+                    Theme="{StaticResource GhostButtonTheme}"
+                    Command="{Binding $parent[husk:CodeViewer].CopyCodeCommand}" />
+            </StackPanel>
+        </Grid>
+    </husk:CodeViewer.Header>
+</husk:CodeViewer>
+```
+
+Use `HeaderTemplate` to present a header data object. Without an explicit `Header`, the default theme supplies `Language` as the template's data. Set `IsHeaderVisible="False"` to hide the entire bar, independently of the copy button.
 
 ### C# Example
 

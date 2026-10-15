@@ -6,9 +6,13 @@ namespace Huskui.Gallery.Siderbars;
 
 public partial class SettingsSidebar : Sidebar
 {
-    public SettingsSidebar(object? content = null)
+    public SettingsSidebar()
     {
         InitializeComponent();
+    }
+
+    public SettingsSidebar(object? content) : this()
+    {
         this.FindControl<ContentControl>("ContentHost")!.Content = content;
     }
 

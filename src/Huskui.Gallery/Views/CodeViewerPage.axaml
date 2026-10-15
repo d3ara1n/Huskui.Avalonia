@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="using:FluentIcons.Avalonia"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="1100"
@@ -81,9 +82,67 @@
         </controls:ExampleContainer>
 
         <controls:ExampleContainer
+            x:Name="TerminalExample"
+            Title="Custom terminal header"
+            Description="A full-width header with a terminal title and custom Run / Copy actions. Run previews the installation without installing packages.">
+            <StackPanel Spacing="12">
+                <husk:CodeViewer
+                    x:Name="TerminalCodeViewer"
+                    Header="Terminal"
+                    IsCopyButtonVisible="False"
+                    IsLineNumbersVisible="False"
+                    Language="bash">
+                    <husk:CodeViewer.HeaderTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <fi:SymbolIcon Symbol="WindowConsole" />
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Text="{Binding}" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    Spacing="8">
+                                    <Button
+                                        Classes="Small Primary"
+                                        Click="OnRunInstallClick">
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <fi:SymbolIcon Symbol="Play" />
+                                            <TextBlock Text="Run" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button
+                                        Classes="Small"
+                                        Command="{Binding $parent[husk:CodeViewer].CopyCodeCommand}"
+                                        Theme="{StaticResource GhostButtonTheme}">
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <fi:SymbolIcon Symbol="Copy" />
+                                            <TextBlock Text="Copy" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </husk:CodeViewer.HeaderTemplate>
+                </husk:CodeViewer>
+                <TextBlock
+                    x:Name="InstallPreview"
+                    IsVisible="False"
+                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
             Title="Compact embedded snippet"
             Description="Hide viewer chrome when code is only supporting surrounding copy or documentation."
-            XamlCode="&lt;husk:CodeViewer&#x0a;    Language=&quot;axaml&quot;&#x0a;    IsCopyButtonVisible=&quot;False&quot;&#x0a;    IsLineNumbersVisible=&quot;False&quot;&#x0a;    Code=&quot;&amp;lt;husk:Tag Content=&amp;quot;Copied&amp;quot; /&amp;gt;&quot; /&gt;">
+            XamlCode="&lt;husk:CodeViewer&#x0a;    Language=&quot;axaml&quot;&#x0a;    IsHeaderVisible=&quot;False&quot;&#x0a;    IsLineNumbersVisible=&quot;False&quot;&#x0a;    Code=&quot;&amp;lt;husk:Tag Content=&amp;quot;Copied&amp;quot; /&amp;gt;&quot; /&gt;">
             <StackPanel Spacing="12">
                 <TextBlock
                     Foreground="{StaticResource ControlSecondaryForegroundBrush}"
@@ -91,7 +150,7 @@
                     TextWrapping="Wrap" />
                 <husk:CodeViewer
                     x:Name="CompactCodeViewer"
-                    IsCopyButtonVisible="False"
+                    IsHeaderVisible="False"
                     IsLineNumbersVisible="False"
                     Language="axaml" />
             </StackPanel>

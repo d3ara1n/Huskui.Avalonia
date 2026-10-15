@@ -12,6 +12,7 @@
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FontFamily" Value="Cascadia Code, Menlo, Consolas, Courier New, monospace" />
         <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="Header" Value="{Binding Language, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
@@ -23,22 +24,25 @@
                         <Border
                             Grid.Row="0"
                             Padding="12,8"
-                            IsVisible="{TemplateBinding IsCopyButtonVisible}"
+                            IsVisible="{TemplateBinding IsHeaderVisible}"
                             Background="{StaticResource ControlTranslucentFullBackgroundBrush}"
                             BorderBrush="{StaticResource ControlBorderBrush}"
                             BorderThickness="0,0,0,1"
                             CornerRadius="{TemplateBinding CornerRadius,
                                                            Converter={x:Static husk:CornerRadiusConverters.Top}}">
                             <Grid ColumnDefinitions="*,Auto">
-                                <TextBlock
+                                <ContentPresenter
                                     Grid.Column="0"
-                                    VerticalAlignment="Center"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Center"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
                                     FontSize="{StaticResource SmallFontSize}"
-                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
-                                    Text="{TemplateBinding Language}" />
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}" />
                                 <Button
                                     Grid.Column="1"
                                     Classes="Small"
+                                    IsVisible="{TemplateBinding IsCopyButtonVisible}"
                                     Command="{Binding CopyCodeCommand, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                     Theme="{StaticResource GhostButtonTheme}">
                                     <fi:SymbolIcon

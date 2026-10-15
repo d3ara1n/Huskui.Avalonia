@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
 using Avalonia.Controls.Primitives;
+using Avalonia.Controls.Templates;
 using Avalonia.Input.Platform;
 using Avalonia.Styling;
 using Huskui.Avalonia.Code.Highlighting;
@@ -27,6 +28,21 @@ public class CodeViewer : TemplatedControl
         CodeViewer,
         string
     >(nameof(Language), "xml");
+
+    public static readonly StyledProperty<object?> HeaderProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        object?
+    >(nameof(Header));
+
+    public static readonly StyledProperty<IDataTemplate?> HeaderTemplateProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        IDataTemplate?
+    >(nameof(HeaderTemplate));
+
+    public static readonly StyledProperty<bool> IsHeaderVisibleProperty = AvaloniaProperty.Register<
+        CodeViewer,
+        bool
+    >(nameof(IsHeaderVisible), true);
 
     public static readonly StyledProperty<bool> IsLineNumbersVisibleProperty =
         AvaloniaProperty.Register<CodeViewer, bool>(nameof(IsLineNumbersVisible), true);
@@ -56,6 +72,24 @@ public class CodeViewer : TemplatedControl
     {
         get => GetValue(IsLineNumbersVisibleProperty);
         set => SetValue(IsLineNumbersVisibleProperty, value);
+    }
+
+    public object? Header
+    {
+        get => GetValue(HeaderProperty);
+        set => SetValue(HeaderProperty, value);
+    }
+
+    public IDataTemplate? HeaderTemplate
+    {
+        get => GetValue(HeaderTemplateProperty);
+        set => SetValue(HeaderTemplateProperty, value);
+    }
+
+    public bool IsHeaderVisible
+    {
+        get => GetValue(IsHeaderVisibleProperty);
+        set => SetValue(IsHeaderVisibleProperty, value);
     }
 
     public bool IsCopyButtonVisible

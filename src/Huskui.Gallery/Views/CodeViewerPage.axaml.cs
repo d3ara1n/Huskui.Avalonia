@@ -1,3 +1,4 @@
+using Avalonia.Interactivity;
 using Huskui.Gallery.Controls;
 
 namespace Huskui.Gallery.Views;
@@ -32,7 +33,7 @@ public partial class CodeViewerPage : ControlPage
                 <TextBlock Text="Inline theme include" />
                 <husk:CodeViewer
                     Language="axaml"
-                    IsCopyButtonVisible="False"
+                    IsHeaderVisible="False"
                     IsLineNumbersVisible="False"
                     Code="&lt;husk:Tag Content=&quot;Copied&quot; /&gt;" />
             </StackPanel>
@@ -76,6 +77,34 @@ public partial class CodeViewerPage : ControlPage
             IsCopyButtonVisible="True" />
         """;
 
+    private const string TerminalXamlSnippet = """
+        <husk:CodeViewer
+            Header="Terminal"
+            Language="bash"
+            Code="dotnet add package Huskui.Avalonia&#x0a;dotnet add package Huskui.Avalonia.Code"
+            IsCopyButtonVisible="False"
+            IsLineNumbersVisible="False">
+            <husk:CodeViewer.HeaderTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="16">
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <fi:SymbolIcon Symbol="WindowConsole" />
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8">
+                            <Button Classes="Small Primary" Content="Run" Click="OnRunInstallClick" />
+                            <Button
+                                Classes="Small"
+                                Content="Copy"
+                                Theme="{StaticResource GhostButtonTheme}"
+                                Command="{Binding $parent[husk:CodeViewer].CopyCodeCommand}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </husk:CodeViewer.HeaderTemplate>
+        </husk:CodeViewer>
+        """;
+
     private const string UsageCSharpSnippet = """
         var viewer = new CodeViewer
         {
@@ -90,6 +119,8 @@ public partial class CodeViewerPage : ControlPage
         InitializeComponent();
 
         InstallCodeViewer.Code = InstallSnippet;
+        TerminalCodeViewer.Code = InstallSnippet;
+        TerminalExample.XamlCode = TerminalXamlSnippet;
         PrimaryCodeViewer.Code = PrimarySnippet;
         CompactCodeViewer.Code = CompactSnippet;
         AxamlCodeViewer.Code = AxamlSnippet;
@@ -98,5 +129,12 @@ public partial class CodeViewerPage : ControlPage
         FallbackCodeViewer.Code = FallbackSnippet;
         UsageXamlCodeViewer.Code = UsageXamlSnippet;
         UsageCSharpCodeViewer.Code = UsageCSharpSnippet;
+    }
+
+    private void OnRunInstallClick(object? sender, RoutedEventArgs e)
+    {
+        InstallPreview.Text =
+            "Installation preview: Huskui.Avalonia + Huskui.Avalonia.Code. No packages were installed.";
+        InstallPreview.IsVisible = true;
     }
 }
