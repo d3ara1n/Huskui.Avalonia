@@ -174,6 +174,16 @@ public class MenuItemService
             },
             new()
             {
+                Icon = Symbol.ChevronDownUp,
+                PageType = typeof(ExpandersPage),
+                Category = category,
+                Title = "Expanders",
+                Description =
+                    "Collapsible containers with directional expansion and customizable headers",
+                Tags = ["expander", "collapse", "expand", "accordion", "container", "fold"],
+            },
+            new()
+            {
                 Icon = Symbol.ArrowClockwise,
                 PageType = typeof(BusyContainersPage),
                 Category = category,

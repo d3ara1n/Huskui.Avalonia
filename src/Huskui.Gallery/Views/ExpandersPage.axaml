@@ -1,0 +1,337 @@
+<controls:ControlPage
+    x:Class="Huskui.Gallery.Views.ExpandersPage"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1200"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Spacing="32">
+
+        <!--  Basic Expanders  -->
+        <controls:ExampleContainer
+            Title="Basic Expanders"
+            Description="Collapsible containers in collapsed, expanded, and disabled states"
+            XamlCode="&lt;Expander Header=&quot;Collapsed by default&quot;&gt;&#10;    &lt;TextBlock Text=&quot;Hidden content revealed when expanded.&quot; /&gt;&#10;&lt;/Expander&gt;&#10;&lt;Expander Header=&quot;Expanded by default&quot; IsExpanded=&quot;True&quot;&gt;&#10;    &lt;TextBlock Text=&quot;Visible immediately on load.&quot; /&gt;&#10;&lt;/Expander&gt;&#10;&lt;Expander Header=&quot;Disabled expander&quot; IsEnabled=&quot;False&quot;&gt;&#10;    &lt;TextBlock Text=&quot;Cannot be toggled.&quot; /&gt;&#10;&lt;/Expander&gt;">
+            <StackPanel
+                MaxWidth="520"
+                Spacing="12">
+                <Expander Header="Collapsed by default">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="This content is hidden until the user clicks the header toggle button."
+                        TextWrapping="Wrap" />
+                </Expander>
+                <Expander
+                    Header="Expanded by default"
+                    IsExpanded="True">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Set IsExpanded=&quot;True&quot; to reveal the body section when the view loads."
+                        TextWrapping="Wrap" />
+                </Expander>
+                <Expander
+                    Header="Disabled expander"
+                    IsEnabled="False">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Disabled expanders cannot be toggled by user interaction."
+                        TextWrapping="Wrap" />
+                </Expander>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Expand Directions  -->
+        <controls:ExampleContainer
+            Title="Expand Directions"
+            Description="Expanders support four directions: Down (default), Up, Left, and Right"
+            XamlCode="&lt;Expander Header=&quot;Expand Down&quot; ExpandDirection=&quot;Down&quot;&gt;...&lt;/Expander&gt;&#10;&lt;Expander Header=&quot;Expand Up&quot; ExpandDirection=&quot;Up&quot;&gt;...&lt;/Expander&gt;&#10;&lt;Expander ExpandDirection=&quot;Left&quot;&gt;&#10;    &lt;Expander.Header&gt;&#10;        &lt;LayoutTransformControl LayoutTransform=&quot;rotate(90deg)&quot;&gt;&#10;            &lt;TextBlock Text=&quot;Expand Left&quot; /&gt;&#10;        &lt;/LayoutTransformControl&gt;&#10;    &lt;/Expander.Header&gt;&#10;    ...&#10;&lt;/Expander&gt;">
+            <StackPanel
+                MaxWidth="560"
+                Spacing="16">
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="12">
+                    <Expander
+                        Grid.Column="0"
+                        VerticalAlignment="Top"
+                        ExpandDirection="Down"
+                        Header="Expand Down (Default)"
+                        IsExpanded="True">
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Content expands downward below the header bar."
+                            TextWrapping="Wrap" />
+                    </Expander>
+                    <Expander
+                        Grid.Column="1"
+                        VerticalAlignment="Bottom"
+                        ExpandDirection="Up"
+                        Header="Expand Up"
+                        IsExpanded="True">
+                        <TextBlock
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Content expands upward above the header bar."
+                            TextWrapping="Wrap" />
+                    </Expander>
+                </Grid>
+
+                <Grid
+                    Height="140"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="12">
+                    <Expander
+                        Grid.Column="0"
+                        HorizontalAlignment="Right"
+                        ExpandDirection="Left"
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <LayoutTransformControl
+                                LayoutTransform="rotate(90deg)"
+                                UseRenderTransform="False">
+                                <TextBlock Text="Expand Left" />
+                            </LayoutTransformControl>
+                        </Expander.Header>
+                        <TextBlock
+                            MaxWidth="180"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Content opens to the left of the vertical header."
+                            TextWrapping="Wrap" />
+                    </Expander>
+                    <Expander
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        ExpandDirection="Right"
+                        IsExpanded="True">
+                        <Expander.Header>
+                            <LayoutTransformControl
+                                LayoutTransform="rotate(270deg)"
+                                UseRenderTransform="False">
+                                <TextBlock Text="Expand Right" />
+                            </LayoutTransformControl>
+                        </Expander.Header>
+                        <TextBlock
+                            MaxWidth="180"
+                            VerticalAlignment="Center"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="Content opens to the right of the vertical header."
+                            TextWrapping="Wrap" />
+                    </Expander>
+                </Grid>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Rich Header and Structured Content  -->
+        <controls:ExampleContainer
+            Title="Rich Header and Content"
+            Description="Custom header layouts with icons, badges, and interactive form controls inside"
+            XamlCode="&lt;Expander IsExpanded=&quot;True&quot;&gt;&#10;    &lt;Expander.Header&gt;&#10;        &lt;Grid ColumnDefinitions=&quot;Auto,*,Auto&quot; ColumnSpacing=&quot;12&quot;&gt;&#10;            &lt;fi:SymbolIcon Symbol=&quot;ShieldCheckmark&quot; /&gt;&#10;            &lt;TextBlock Grid.Column=&quot;1&quot; Text=&quot;Security &amp;amp; Privacy&quot; /&gt;&#10;            &lt;husk:Tag Grid.Column=&quot;2&quot; Classes=&quot;Success&quot; Content=&quot;Protected&quot; /&gt;&#10;        &lt;/Grid&gt;&#10;    &lt;/Expander.Header&gt;&#10;    &lt;StackPanel Spacing=&quot;12&quot;&gt;...&lt;/StackPanel&gt;&#10;&lt;/Expander&gt;">
+            <StackPanel
+                MaxWidth="520"
+                Spacing="12">
+                <Expander IsExpanded="True">
+                    <Expander.Header>
+                        <Grid
+                            ColumnDefinitions="Auto,*,Auto"
+                            ColumnSpacing="12">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource LargeFontSize}"
+                                Foreground="{StaticResource ControlAccentForegroundBrush}"
+                                Symbol="ShieldCheckmark" />
+                            <StackPanel Grid.Column="1">
+                                <TextBlock
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="Security &amp; Privacy" />
+                                <TextBlock
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Two-factor authentication and session policies" />
+                            </StackPanel>
+                            <husk:Tag
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Classes="Success"
+                                Content="Protected" />
+                        </Grid>
+                    </Expander.Header>
+                    <StackPanel Spacing="12">
+                        <ToggleSwitch
+                            Content="Require two-factor authentication"
+                            IsChecked="True" />
+                        <ToggleSwitch
+                            Content="Sign out automatically after 30 minutes of inactivity"
+                            IsChecked="True" />
+                        <ToggleSwitch Content="Allow login from new devices without verification" />
+                    </StackPanel>
+                </Expander>
+
+                <Expander>
+                    <Expander.Header>
+                        <Grid
+                            ColumnDefinitions="Auto,*,Auto"
+                            ColumnSpacing="12">
+                            <fi:SymbolIcon
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                FontSize="{StaticResource LargeFontSize}"
+                                Foreground="{StaticResource ControlWarningForegroundBrush}"
+                                Symbol="Database" />
+                            <StackPanel Grid.Column="1">
+                                <TextBlock
+                                    FontWeight="{StaticResource ControlStrongFontWeight}"
+                                    Text="Connection Pool Settings" />
+                                <TextBlock
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="Configure timeout and retry limits for database connections" />
+                            </StackPanel>
+                            <husk:Tag
+                                Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Classes="Warning"
+                                Content="Custom" />
+                        </Grid>
+                    </Expander.Header>
+                    <StackPanel Spacing="12">
+                        <Grid
+                            ColumnDefinitions="*,140"
+                            ColumnSpacing="12"
+                            RowDefinitions="Auto,Auto"
+                            RowSpacing="8">
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Text="Max Pool Size" />
+                            <NumericUpDown
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Maximum="500"
+                                Minimum="1"
+                                Value="64" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Text="Connection Timeout (s)" />
+                            <NumericUpDown
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Maximum="120"
+                                Minimum="5"
+                                Value="30" />
+                        </Grid>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Interactive Control Binding  -->
+        <controls:ExampleContainer
+            Title="Interactive Control &amp; FAQ Accordion"
+            Description="Bind IsExpanded or CornerRadius dynamically to coordinate multiple sections">
+            <controls:ExampleContainer.Controls>
+                <StackPanel
+                    Width="200"
+                    Spacing="12">
+                    <ToggleSwitch
+                        Name="ExpandAllSwitch"
+                        Content="Expand first item"
+                        IsChecked="True" />
+                    <StackPanel Spacing="6">
+                        <TextBlock
+                            FontWeight="{StaticResource ControlStrongFontWeight}"
+                            Text="CornerRadius" />
+                        <Slider
+                            Name="RadiusSlider"
+                            Maximum="16"
+                            Minimum="0"
+                            Value="6" />
+                    </StackPanel>
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+            <StackPanel
+                MaxWidth="520"
+                Spacing="8">
+                <Expander
+                    CornerRadius="{Binding #RadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Header="How do I customize the theme accent color?"
+                    IsExpanded="{Binding #ExpandAllSwitch.IsChecked, Mode=TwoWay}">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Set the Accent property on HuskuiTheme in App.axaml or update it at runtime through ThemeService."
+                        TextWrapping="Wrap" />
+                </Expander>
+                <Expander
+                    CornerRadius="{Binding #RadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Header="Can Expander headers contain interactive buttons?">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Yes. Expander.Header accepts any control or layout panel, including IconLabel, Tag, and secondary action buttons."
+                        TextWrapping="Wrap" />
+                </Expander>
+                <Expander
+                    CornerRadius="{Binding #RadiusSlider.Value, Converter={x:Static husk:CornerRadiusConverters.FromDouble}}"
+                    Header="What happens to the border when an Expander opens?">
+                    <TextBlock
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Huskui automatically merges the shared inner border and adjusts the corner radii of the header and content area according to ExpandDirection."
+                        TextWrapping="Wrap" />
+                </Expander>
+            </StackPanel>
+        </controls:ExampleContainer>
+
+        <!--  Nested Expanders  -->
+        <controls:ExampleContainer
+            Title="Nested Expanders"
+            Description="Expanders can be nested to represent hierarchical categories or logs"
+            XamlCode="&lt;Expander Header=&quot;Build Pipeline&quot; IsExpanded=&quot;True&quot;&gt;&#10;    &lt;StackPanel Spacing=&quot;8&quot;&gt;&#10;        &lt;Expander Header=&quot;Stage 1: Restore &amp;amp; Compile&quot; IsExpanded=&quot;True&quot;&gt;...&lt;/Expander&gt;&#10;        &lt;Expander Header=&quot;Stage 2: Unit Tests&quot;&gt;...&lt;/Expander&gt;&#10;    &lt;/StackPanel&gt;&#10;&lt;/Expander&gt;">
+            <Expander
+                MaxWidth="520"
+                Header="Build Pipeline #1042"
+                IsExpanded="True">
+                <StackPanel Spacing="10">
+                    <Expander
+                        Header="Stage 1: Restore &amp; Compile (14.2s)"
+                        IsExpanded="True">
+                        <StackPanel Spacing="4">
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="✓ Restored 42 packages in 2.1s" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="✓ Huskui.Avalonia -> bin/Release/net10.0/Huskui.Avalonia.dll" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="✓ Huskui.Gallery -> bin/Release/net10.0/Huskui.Gallery.dll" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander Header="Stage 2: Verification &amp; Packaging (6.8s)">
+                        <StackPanel Spacing="4">
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="✓ All theme resource keys validated" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                Text="✓ NuGet package symbols generated" />
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Expander>
+        </controls:ExampleContainer>
+
+    </StackPanel>
+</controls:ControlPage>
