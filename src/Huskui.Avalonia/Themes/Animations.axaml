@@ -38,4 +38,90 @@
             </Animation>
         </Style.Animations>
     </Style>
+
+    <Style Selector="Expander:expanded:down /template/ Grid#ExpanderRoot > Border#ExpanderBackground">
+        <Setter Property="RenderTransformOrigin" Value="50%,0%" />
+        <Style.Animations>
+            <Animation
+                Easing="CubicEaseOut"
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Expander:expanded:up /template/ Grid#ExpanderRoot > Border#ExpanderBackground">
+        <Setter Property="RenderTransformOrigin" Value="50%,100%" />
+        <Style.Animations>
+            <Animation
+                Easing="CubicEaseOut"
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleY" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Expander:expanded:right /template/ Grid#ExpanderRoot > Border#ExpanderBackground">
+        <Setter Property="RenderTransformOrigin" Value="0%,50%" />
+        <Style.Animations>
+            <Animation
+                Easing="CubicEaseOut"
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Expander:expanded:left /template/ Grid#ExpanderRoot > Border#ExpanderBackground">
+        <Setter Property="RenderTransformOrigin" Value="100%,50%" />
+        <Style.Animations>
+            <Animation
+                Easing="CubicEaseOut"
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="ScaleTransform.ScaleX" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="Expander:expanded /template/ Grid#ExpanderRoot > Border#ExpanderContent">
+        <Style.Animations>
+            <Animation
+                FillMode="None"
+                Duration="{StaticResource ControlFasterAnimationDuration}">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="20%">
+                    <Setter Property="Opacity" Value="0" />
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1" />
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
 </Styles>
