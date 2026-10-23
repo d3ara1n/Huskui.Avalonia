@@ -63,7 +63,7 @@ Reference: [Gallery application styles](https://github.com/d3ara1n/Huskui.Avalon
 
 Use a coherent neutral foundation and an accent for emphasis, selection, and primary actions. Success, warning, and danger communicate meaning. Preserve that distinction when applying an application's branding.
 
-Huskui uses 12-step color scales with light and dark variants. Step 9 is the base accent color, but application UI normally consumes semantic brushes rather than selecting scale steps individually.
+Huskui uses 12-step color scales with light and dark variants. Step 9 is the base accent color, but application UI normally consumes semantic brushes rather than selecting scale steps individually. Each gray palette also ships a translucent `GrayA1Color`–`GrayA12Color` scale; neutral borders and interactive fills draw from it so they blend into whatever surface sits underneath.
 
 | Resource | Role |
 | --- | --- |
@@ -73,7 +73,8 @@ Huskui uses 12-step color scales with light and dark variants. Step 9 is the bas
 | `FlyoutBackgroundBrush` | Popup and flyout surfaces |
 | `ControlForegroundBrush` | Main readable text |
 | `ControlSecondaryForegroundBrush` | Secondary metadata and hints; check legibility at the chosen size |
-| `ControlBorderBrush` | Neutral boundaries |
+| `ControlBorderBrush` | Subtle neutral boundaries for cards, dividers, and containers |
+| `ControlInteractiveBorderBrush` | Stronger boundaries for inputs and outlined controls |
 | `ControlAccentForegroundBrush` | Accent emphasis in text or icons |
 | `ControlAccentTranslucentHalfBackgroundBrush` | Subtle accent-tinted surface |
 | `ControlSuccessForegroundBrush`, `ControlWarningForegroundBrush`, `ControlDangerForegroundBrush` | Semantic feedback |

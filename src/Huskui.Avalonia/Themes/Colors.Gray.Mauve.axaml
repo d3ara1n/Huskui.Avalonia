@@ -15,6 +15,18 @@
             <Color x:Key="Gray10Color">#84828E</Color>
             <Color x:Key="Gray11Color">#65636D</Color>
             <Color x:Key="Gray12Color">#211F26</Color>
+            <Color x:Key="GrayA1Color">#03550055</Color>
+            <Color x:Key="GrayA2Color">#062A0055</Color>
+            <Color x:Key="GrayA3Color">#10300040</Color>
+            <Color x:Key="GrayA4Color">#18200035</Color>
+            <Color x:Key="GrayA5Color">#20200038</Color>
+            <Color x:Key="GrayA6Color">#27140034</Color>
+            <Color x:Key="GrayA7Color">#320F0033</Color>
+            <Color x:Key="GrayA8Color">#45070030</Color>
+            <Color x:Key="GrayA9Color">#7304001D</Color>
+            <Color x:Key="GrayA10Color">#7D040018</Color>
+            <Color x:Key="GrayA11Color">#9C030010</Color>
+            <Color x:Key="GrayA12Color">#E0020008</Color>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <Color x:Key="Gray1Color">#121113</Color>
@@ -29,6 +41,18 @@
             <Color x:Key="Gray10Color">#7C7A85</Color>
             <Color x:Key="Gray11Color">#B5B2BC</Color>
             <Color x:Key="Gray12Color">#EEEEF0</Color>
+            <Color x:Key="GrayA1Color">#00000000</Color>
+            <Color x:Key="GrayA2Color">#09F5F4F6</Color>
+            <Color x:Key="GrayA3Color">#14EBEAF8</Color>
+            <Color x:Key="GrayA4Color">#1DEEE4F8</Color>
+            <Color x:Key="GrayA5Color">#25EFE7FD</Color>
+            <Color x:Key="GrayA6Color">#30F1E6FD</Color>
+            <Color x:Key="GrayA7Color">#40EDE8FE</Color>
+            <Color x:Key="GrayA8Color">#5DEDE7FF</Color>
+            <Color x:Key="GrayA9Color">#6EEAE6FD</Color>
+            <Color x:Key="GrayA10Color">#7CECE9FD</Color>
+            <Color x:Key="GrayA11Color">#B7F5F1FE</Color>
+            <Color x:Key="GrayA12Color">#EFFDFDFF</Color>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>

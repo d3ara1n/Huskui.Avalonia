@@ -5,7 +5,7 @@
         x:Key="{x:Type Separator}"
         TargetType="Separator">
         <Setter Property="Focusable" Value="False" />
-        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="Background" Value="{StaticResource ControlBorderBrush}" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Height" Value="1" />
         <Setter Property="Template">

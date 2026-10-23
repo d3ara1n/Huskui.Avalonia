@@ -51,10 +51,10 @@
                 ResourceKey="Black5Color" />
             <StaticResource
                 x:Key="CardColor"
-                ResourceKey="Black3Color" />
+                ResourceKey="White1Color" />
             <StaticResource
                 x:Key="InteractiveColor"
-                ResourceKey="Black3Color" />
+                ResourceKey="White1Color" />
             <StaticResource
                 x:Key="SmokeColor"
                 ResourceKey="Black7Color" />
@@ -117,19 +117,19 @@
         x:Key="OverlayMaskBackgroundBrush"
         Color="{DynamicResource Layover7Color}" />
 
-    <!--  Normal：这 ParkUI 这部分的颜色就完全没按 Step 分区来  -->
+    <!--  Normal：边框与可互动底色取 GrayA 透明阶，叠在任意表面上都能融入；需要遮住下层内容的底色（遮罩、轨道、抽屉头）保持实色  -->
     <SolidColorBrush
         x:Key="ControlBackgroundBrush"
-        Color="{DynamicResource Gray7Color}" />
+        Color="{DynamicResource Gray6Color}" />
     <SolidColorBrush
         x:Key="ControlInteractiveBackgroundBrush"
-        Color="{DynamicResource Gray5Color}" />
+        Color="{DynamicResource GrayA4Color}" />
     <SolidColorBrush
         x:Key="ControlBorderBrush"
-        Color="{DynamicResource Gray7Color}" />
+        Color="{DynamicResource GrayA5Color}" />
     <SolidColorBrush
         x:Key="ControlInteractiveBorderBrush"
-        Color="{DynamicResource Gray7Color}" />
+        Color="{DynamicResource GrayA7Color}" />
     <SolidColorBrush
         x:Key="ControlTranslucentHalfBackgroundBrush"
         Opacity="0.1"
@@ -146,16 +146,16 @@
         Color="{DynamicResource Gray11Color}" />
     <SolidColorBrush
         x:Key="ControlDisabledBackgroundBrush"
-        Color="{DynamicResource Gray4Color}" />
+        Color="{DynamicResource GrayA3Color}" />
     <SolidColorBrush
         x:Key="ControlDisabledInteractiveBackgroundBrush"
-        Color="{DynamicResource Gray6Color}" />
+        Color="{DynamicResource GrayA3Color}" />
     <SolidColorBrush
         x:Key="ControlDisabledBorderBrush"
-        Color="{DynamicResource Gray7Color}" />
+        Color="{DynamicResource GrayA4Color}" />
     <SolidColorBrush
         x:Key="ControlDisabledInteractiveBorderBrush"
-        Color="{DynamicResource Gray8Color}" />
+        Color="{DynamicResource GrayA5Color}" />
     <SolidColorBrush
         x:Key="ControlDisabledForegroundBrush"
         Color="{DynamicResource Gray11Color}" />

@@ -143,15 +143,15 @@ public partial class BrushResourceKeysPage : ControlPage
             new(
                 "Neutral Control Brushes",
                 "The default control family for buttons, inputs, borders, and readable content on neutral surfaces.",
-                "This family is intentionally pragmatic rather than perfectly step-based. Colors.axaml even calls out that the original palette mapping is not a strict numeric ladder, so treat these as role tokens first and numeric color steps second.",
+                "Borders and interactive fills draw from the translucent GrayA scale so they blend into whatever surface sits underneath; fills that must hide what is below (skeleton masks, tracks, drawer headers) stay on the opaque Gray scale.",
                 CreateControlFamilyEntries(
                     familyPrefix: "Control",
                     familyLabel: "neutral",
                     sourcePrefix: "Gray",
-                    backgroundStep: "7",
-                    interactiveStep: "5",
-                    borderStep: "7",
-                    interactiveBorderStep: "7",
+                    backgroundStep: "6",
+                    interactiveStep: "A4",
+                    borderStep: "A5",
+                    interactiveBorderStep: "A7",
                     translucentStep: "9",
                     foregroundStep: "12",
                     translucentForegroundStep: "11"
