@@ -34,11 +34,11 @@
                         Background="{TemplateBinding Background}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="CubicEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlSlowestAnimationDuration}" />
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="BorderBrush"
                                     Duration="{StaticResource ControlSlowerAnimationDuration}" />

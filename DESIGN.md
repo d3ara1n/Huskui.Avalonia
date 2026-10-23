@@ -132,6 +132,8 @@ Use `Card` to group related content and the built-in overlay controls for tempor
 
 Additional animations should use the named duration resources from [Basics.axaml](https://github.com/d3ara1n/Huskui.Avalonia/blob/main/src/Huskui.Avalonia/Themes/Basics.axaml), such as `ControlFasterAnimationDuration` and `ControlNormalAnimationDuration`. Keep motion tied to state changes and task progress. The application owns any reduced-motion preference and its integration; do not assume custom animations inherit that policy automatically.
 
+Animate brush properties with `husk:BrushTransition` rather than Avalonia's `BrushTransition`. It blends solid colors in premultiplied sRGB and folds `Opacity` into alpha, so fades between translucent brushes such as the `GrayA` or `Translucent` families stay between their endpoints instead of flashing toward black or white. Non-solid brushes switch at the midpoint. Keyframe `Animation` setters on brush properties still use Avalonia's interpolation.
+
 ## 3. Choose the right customization layer
 
 | Need | Mechanism | Example |

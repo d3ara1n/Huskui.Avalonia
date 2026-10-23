@@ -292,14 +292,14 @@ public partial class BrushResourceKeysPage : ControlPage
                 "Lighter translucent background",
                 $"A softer {familyLabel} tint wash for static emphasis and subtle fills.",
                 $"Source: {sourcePrefix}{translucentStep}Color at 10% opacity",
-                "Translucent Half is intended as a static tint layer rather than a general-purpose animated interaction brush."
+                "Translucent Half suits subtle tint layers and hover fills; animate it with husk:BrushTransition so the fade stays smooth."
             ),
             CreateEntry(
                 $"{familyPrefix}TranslucentFullBackgroundBrush",
                 "Stronger translucent background",
                 $"A stronger {familyLabel} tint wash when Half is too subtle.",
                 $"Source: {sourcePrefix}{translucentStep}Color at 20% opacity",
-                "Translucent Full is the denser companion to Half and is best kept for static washes and section highlighting."
+                "Translucent Full is the denser companion to Half, used for pressed fills and stronger washes."
             ),
             CreateEntry(
                 $"{familyPrefix}ForegroundBrush",

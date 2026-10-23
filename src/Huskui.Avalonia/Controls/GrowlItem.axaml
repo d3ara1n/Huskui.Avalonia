@@ -86,7 +86,7 @@
         <Setter Property="MinWidth" Value="220" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition
+                <local:BrushTransition
                     Easing="CubicEaseOut"
                     Property="Background"
                     Duration="{StaticResource ControlNormalAnimationDuration}" />

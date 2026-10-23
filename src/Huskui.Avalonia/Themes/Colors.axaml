@@ -73,7 +73,7 @@
     <!--  Control(Variant)InteractiveBackgroundBrush：互动类控件背景色，例如按钮滚动条等  -->
     <!--  Control(Variant)BorderBrush：非互动类控件边框色  -->
     <!--  Control(Variant)InteractiveBorderBrush：互动类控件或触发中边框色，例如当控件被选中时  -->
-    <!--  Control(Variant)TranslucentBackgroundBrush：半透明背景色，除按钮外只用作静态底色（因为过渡动画有BUG）  -->
+    <!--  Control(Variant)TranslucentBackgroundBrush：半透明背景色，用于浅色铺底和悬停/按下态；动画请用 husk:BrushTransition  -->
 
     <SolidColorBrush
         x:Key="TransparentBrush"

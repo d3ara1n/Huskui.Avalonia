@@ -98,7 +98,7 @@
                         Opacity="0">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />

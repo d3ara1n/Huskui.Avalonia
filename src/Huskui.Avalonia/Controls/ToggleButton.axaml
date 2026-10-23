@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia">
     <Design.PreviewWith>
         <Panel Background="White">
             <StackPanel
@@ -59,11 +60,11 @@
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="BorderBrush"
                                     Duration="{StaticResource ControlNormalAnimationDuration}" />
@@ -95,7 +96,7 @@
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
@@ -175,11 +176,11 @@
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlNormalAnimationDuration}" />
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="BorderBrush"
                                     Duration="{StaticResource ControlNormalAnimationDuration}" />
@@ -201,11 +202,11 @@
                             CornerRadius="{StaticResource SmallCornerRadius}">
                             <Border.Transitions>
                                 <Transitions>
-                                    <BrushTransition
+                                    <husk:BrushTransition
                                         Easing="SineEaseOut"
                                         Property="Background"
                                         Duration="{StaticResource ControlNormalAnimationDuration}" />
-                                    <BrushTransition
+                                    <husk:BrushTransition
                                         Easing="SineEaseOut"
                                         Property="BorderBrush"
                                         Duration="{StaticResource ControlNormalAnimationDuration}" />
@@ -233,7 +234,7 @@
                         CornerRadius="{TemplateBinding CornerRadius}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />

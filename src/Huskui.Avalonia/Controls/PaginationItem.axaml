@@ -33,11 +33,11 @@
                                                     ConverterParameter=-1}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="BorderBrush"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
@@ -66,11 +66,11 @@
                                                     ConverterParameter=-1}">
                         <Border.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Background"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />
-                                <BrushTransition
+                                <local:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="BorderBrush"
                                     Duration="{StaticResource ControlFasterAnimationDuration}" />

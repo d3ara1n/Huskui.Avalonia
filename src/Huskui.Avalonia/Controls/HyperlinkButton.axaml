@@ -71,7 +71,7 @@
                                                           ConverterParameter=bottom}">
                         <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Stroke"
                                     Duration="{StaticResource ControlFastestAnimationDuration}" />
@@ -161,7 +161,7 @@
                                                           ConverterParameter=bottom}">
                         <Rectangle.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Stroke"
                                     Duration="{StaticResource ControlFastestAnimationDuration}" />
@@ -182,7 +182,7 @@
                         RecognizesAccessKey="True">
                         <ContentPresenter.Transitions>
                             <Transitions>
-                                <BrushTransition
+                                <husk:BrushTransition
                                     Easing="SineEaseOut"
                                     Property="Foreground"
                                     Duration="{StaticResource ControlFastestAnimationDuration}" />

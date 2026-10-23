@@ -81,7 +81,7 @@
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition
+                            <local:BrushTransition
                                 Easing="SineEaseOut"
                                 Property="Background"
                                 Duration="{StaticResource ControlFastestAnimationDuration}" />
@@ -258,7 +258,7 @@
                     CornerRadius="{TemplateBinding CornerRadius}">
                     <Border.Transitions>
                         <Transitions>
-                            <BrushTransition
+                            <local:BrushTransition
                                 Easing="SineEaseOut"
                                 Property="Background"
                                 Duration="{StaticResource ControlFastestAnimationDuration}" />
