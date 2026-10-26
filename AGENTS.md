@@ -150,6 +150,7 @@ When in doubt, leave the comment out. The legitimate reasons to write one are na
 - **Do not commit on your own initiative.** Make all the edits you need, then stop and wait for the user to explicitly tell you to commit. Never auto-commit after editing without being asked.
 - First line follows Conventional Commits: `type(scope): description`.
 - Blank line between first line and body; body lists key changes.
+- AI-assisted commits carry a `Co-Authored-By: <model ID> <email>` trailer after the body. Read the model identity from the `PI_*` environment variables before each commit rather than reusing an earlier trailer. Keep only the provider's model ID: drop channel markers such as `[Kiro]` and variant suffixes such as `-thinking`, so `[Kiro]claude-opus-5-5-thinking` becomes `claude-opus-5-5`. Use `noreply@pi.dev` when no matching address exists, and never invent a provider domain.
 - **Scope chooses which package publishes.** The `publish.yml` workflow bumps a package only when a commit's scope resolves to it:
   - `Core` → the base package `Huskui.Avalonia`
   - a package suffix → `Huskui.Avalonia.<suffix>` (e.g. `Code`, `Markdown`, `Mvvm`)
