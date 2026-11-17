@@ -77,7 +77,12 @@ public class Drawer : ContentControl
     private Control? _resizeTop;
     private double? _expandedHeight;
 
-    static Drawer() => AffectsArrange<Drawer>(OffsetXProperty);
+    static Drawer()
+    {
+        AffectsArrange<Drawer>(OffsetXProperty);
+        // MinHeight 只约束展开态，否则布局约束会把折叠后的 HeaderHeight 撑回 MinHeight
+        MinHeightProperty.OverrideMetadata<Drawer>(new(coerce: CoerceMinHeight));
+    }
 
     public Drawer() => DismissCommand = new InternalCommand(Dismiss);
 
@@ -135,6 +140,9 @@ public class Drawer : ContentControl
 
     protected override Type StyleKeyOverride => typeof(Drawer);
 
+    private static double CoerceMinHeight(AvaloniaObject sender, double value) =>
+        sender is Drawer { IsExpanded: false } ? 0d : value;
+
     private void OnIsExpandedChanged(AvaloniaPropertyChangedEventArgs e)
     {
         var wasExpanded = e.GetOldValue<bool>();
@@ -144,6 +152,8 @@ public class Drawer : ContentControl
         {
             return;
         }
+
+        CoerceValue(MinHeightProperty);
 
         if (isExpanded)
         {
