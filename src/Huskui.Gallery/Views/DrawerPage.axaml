@@ -4,30 +4,171 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Huskui.Gallery.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
     xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    xmlns:models="clr-namespace:Huskui.Gallery.Models"
+    d:DesignHeight="900"
+    d:DesignWidth="900"
     mc:Ignorable="d">
-    <StackPanel
-        Margin="20"
-        Spacing="20">
+    <StackPanel Spacing="32">
 
         <controls:ExampleContainer
-            Title="Drawers"
-            Description="A floating drawer that can be dragged, resized, and collapsed">
+            Title="Compose While Reading"
+            Description="A drawer keeps a form open without blocking the page. Write a reply while scrolling through the original message, then collapse or drag the drawer aside when it gets in the way.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Mail Scenario" />
+                    <Button
+                        Classes="Primary"
+                        Click="OnComposeClick">
+                        <husk:IconLabel
+                            Icon="Compose"
+                            Text="New Message" />
+                    </Button>
+                    <Button Click="OnReplyClick">
+                        <husk:IconLabel
+                            Icon="ArrowReply"
+                            Text="Reply to Selected" />
+                    </Button>
+                    <TextBlock
+                        FontSize="{StaticResource SmallFontSize}"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Each click opens another draft. The inbox stays interactive: change the selection, select text, or open several drafts and click one to bring it to the front."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
 
-            <StackPanel>
-                <Button
-                    Margin="5"
-                    Click="OpenDrawer_OnClick"
-                    Content="Open New Drawer" />
-                <ToggleButton
-                    x:Name="ShowToggle"
-                    Margin="5"
-                    Content="Show Toggle Button"
-                    IsChecked="True" />
-            </StackPanel>
+            <Grid
+                Height="420"
+                ColumnDefinitions="240,*"
+                ColumnSpacing="16">
+                <ListBox
+                    x:Name="InboxList"
+                    Theme="{StaticResource CleanListBoxTheme}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:MailMessage">
+                            <StackPanel Spacing="2">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <TextBlock
+                                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                                        Text="{Binding Sender}"
+                                        TextTrimming="CharacterEllipsis" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        FontSize="{StaticResource SmallFontSize}"
+                                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                        Text="{Binding ReceivedAt}" />
+                                </Grid>
+                                <TextBlock
+                                    Text="{Binding Subject}"
+                                    TextTrimming="CharacterEllipsis" />
+                                <TextBlock
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="{Binding Preview}"
+                                    TextTrimming="CharacterEllipsis" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border
+                    Grid.Column="1"
+                    x:DataType="models:MailMessage"
+                    DataContext="{Binding #InboxList.SelectedItem}"
+                    Background="{StaticResource LayerBackgroundBrush}"
+                    BorderBrush="{StaticResource ControlBorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource MediumCornerRadius}">
+                    <DockPanel>
+                        <StackPanel
+                            Margin="20,16"
+                            DockPanel.Dock="Top"
+                            Spacing="4">
+                            <TextBlock
+                                FontSize="{StaticResource LargeFontSize}"
+                                FontWeight="{StaticResource ControlStrongFontWeight}"
+                                Text="{Binding Subject}"
+                                TextWrapping="Wrap" />
+                            <TextBlock
+                                FontSize="{StaticResource SmallFontSize}"
+                                Foreground="{StaticResource ControlSecondaryForegroundBrush}">
+                                <Run Text="{Binding Sender}" />
+                                <Run Text="&lt;" /><Run Text="{Binding SenderAddress}" /><Run Text="&gt;" />
+                                <Run Text="·" />
+                                <Run Text="{Binding ReceivedAt}" />
+                            </TextBlock>
+                        </StackPanel>
+                        <husk:Divider DockPanel.Dock="Top" />
+                        <ScrollViewer>
+                            <SelectableTextBlock
+                                Margin="20,16"
+                                Text="{Binding Body}"
+                                TextWrapping="Wrap" />
+                        </ScrollViewer>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </controls:ExampleContainer>
+
+        <controls:ExampleContainer
+            Title="Background Task Progress"
+            Description="A drawer can report long-running work while the user keeps using the page. Collapse it to the header to keep the progress title visible.">
+            <controls:ExampleContainer.Controls>
+                <StackPanel Spacing="12">
+                    <TextBlock
+                        FontWeight="{StaticResource ControlStrongFontWeight}"
+                        Text="Upload Scenario" />
+                    <Button
+                        Classes="Primary"
+                        Click="OnUploadClick">
+                        <husk:IconLabel
+                            Icon="ArrowUpload"
+                            Text="Upload 4 Files" />
+                    </Button>
+                    <TextBlock
+                        FontSize="{StaticResource SmallFontSize}"
+                        Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                        Text="Files appear in the list as they finish. The drawer cannot be closed until the queue is done, and its title tracks the current file."
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </controls:ExampleContainer.Controls>
+
+            <ItemsControl x:Name="ProjectFileList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Spacing="8" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="models:ProjectFile">
+                        <husk:Card Padding="12,8">
+                            <Grid
+                                ColumnDefinitions="Auto,*,Auto"
+                                ColumnSpacing="12">
+                                <fi:SymbolIcon
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource LargeFontSize}"
+                                    Symbol="{Binding Icon}" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource SmallFontSize}"
+                                    Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                                    Text="{Binding SizeLabel}" />
+                            </Grid>
+                        </husk:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </controls:ExampleContainer>
     </StackPanel>
 </controls:ControlPage>

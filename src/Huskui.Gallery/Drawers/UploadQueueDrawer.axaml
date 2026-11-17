@@ -1,0 +1,54 @@
+<husk:Drawer
+    x:Class="Huskui.Gallery.Drawers.UploadQueueDrawer"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fi="clr-namespace:FluentIcons.Avalonia;assembly=FluentIcons.Avalonia"
+    xmlns:husk="https://github.com/d3ara1n/Huskui.Avalonia"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Huskui.Gallery.Models"
+    MaxWidth="440"
+    MaxHeight="320"
+    Padding="16"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <ItemsControl x:Name="QueueList">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Spacing="12" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="models:ProjectFile">
+                    <Grid
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="6">
+                        <fi:SymbolIcon
+                            Grid.RowSpan="2"
+                            VerticalAlignment="Center"
+                            FontSize="{StaticResource LargeFontSize}"
+                            Symbol="{Binding Icon}" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Text="{Binding Name}"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            Grid.Column="2"
+                            FontSize="{StaticResource SmallFontSize}"
+                            Foreground="{StaticResource ControlSecondaryForegroundBrush}"
+                            Text="{Binding StatusText}" />
+                        <ProgressBar
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Maximum="100"
+                            Value="{Binding Progress}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</husk:Drawer>
