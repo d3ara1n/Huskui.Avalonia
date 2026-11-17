@@ -40,8 +40,8 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Install wasm-tools workload
-        run: dotnet workload install wasm-tools
+      - name: Restore browser workloads
+        run: dotnet workload restore src/Huskui.Gallery.Browser/Huskui.Gallery.Browser.csproj
 
       - name: Publish browser project
         working-directory: src/Huskui.Gallery.Browser
