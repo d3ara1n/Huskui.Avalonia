@@ -150,8 +150,8 @@ dotnet add package Huskui.Avalonia
         <husk:HuskuiTheme Accent="Lime" />
 
         <!-- Optional Addons -->
-        <StyleINclude Source="avares://Huskui.Avalonia/Themes/Addons.NoAutoScrollToSelectedItem.axaml" />
-        <StyleINclude Source="avares://Huskui.Avalonia/Themes/Addons.InlineUIContainerAlignment.axaml" />
+        <StyleInclude Source="avares://Huskui.Avalonia/Themes/Addons.NoAutoScrollToSelectedItem.axaml" />
+        <StyleInclude Source="avares://Huskui.Avalonia/Themes/Addons.InlineUIContainerAlignment.axaml" />
     </Application.Styles>
 </Application>
 ```
